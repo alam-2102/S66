@@ -188,6 +188,7 @@ tfoot td{border-top:1px solid var(--axis);font-weight:600;color:var(--ink);borde
 .tip{background:var(--surface);border:1px solid var(--ring);border-left:3px solid var(--s1);
   border-radius:var(--radius);padding:13px 15px;margin:0 0 11px}
 .tip-hot{border-left-color:var(--critical)}
+.tip-done{border-left-color:var(--good);opacity:.72}
 .tip-tags{display:flex;flex-wrap:wrap;gap:5px;margin:0 0 8px}
 .tip-when{margin:0 0 5px;color:var(--ink-2);font-size:14px;line-height:1.5}
 .tip-do{margin:0 0 6px;color:var(--ink);font-size:14.5px;font-weight:550;line-height:1.5}
@@ -933,17 +934,17 @@ const EXAM = {
    ========================================================================== */
 const SYNC = {
   "meta": {
-    "lastVerified": "2026-09-16",
-    "lastRunAttempted": "2026-09-16",
+    "lastVerified": "2026-09-17",
+    "lastRunAttempted": "2026-09-17",
     "source": "kaplan",
     "examDate": null,
     "noDataRuns": 0,
-    "lastActivityDate": "2026-09-16",
-    "courseActivitiesDone": 7,
+    "lastActivityDate": "2026-09-17",
+    "courseActivitiesDone": 9,
     "courseActivitiesTotal": 137,
-    "studyPlanPct": 1.7,
-    "kaplanExamAvg": null,
-    "kaplanQBankAvg": 72.73,
+    "studyPlanPct": 2.6,
+    "kaplanExamAvg": 58.33,
+    "kaplanQBankAvg": 81.48,
     "unreadReason": ""
   },
   "unitTopicMap": [
@@ -1136,14 +1137,14 @@ const SYNC = {
     {
       "id": "U1",
       "name": "Unit 1: Regulation of Investment Advisers and Investment Adviser Representatives",
-      "qbankAnswered": 11,
-      "qbankCorrect": 8,
-      "examAnswered": 0,
-      "examCorrect": 0,
+      "qbankAnswered": 27,
+      "qbankCorrect": 22,
+      "examAnswered": 12,
+      "examCorrect": 7,
       "mixedAnswered": 0,
       "mixedCorrect": 0,
       "covers": "Who is and is not an investment adviser/IAR, SEC Release IA-1092, exclusions, private fund advisers",
-      "recurring": "The 'in the business' element of the investment adviser definition: missed it from both sides (over-included transaction earnings in Q4, left out holding out in Q7). Also mixed up the private fund investor standards (qualified purchaser vs qualified client)."
+      "recurring": "Which client types create an exemption, and whether a rule is federal or state: insurance-company clients are a federal exemption but not a state one, and bank-only clients are neither (Quiz 2 Q3, Quiz 2 Q11, Exam Q6). Exclusion vs exemption, especially for publishers and professionals (Exam Q11, Exam Q12, Quiz 2 Q3). The 'in the business' test tripped him on Sep 16 (Quiz 1 Q4, Q7) but he re-answered the identical IA-1092 question correctly on Sep 17."
     },
     {
       "id": "U2",
@@ -1414,19 +1415,77 @@ const SYNC = {
   "kaplanQBank": [
     {
       "date": "2026-09-16",
-      "label": "Unit 1 Quiz 1",
+      "label": "Unit 1 Quiz 1 (Test 410528324)",
       "answered": 11,
       "correct": 8
+    },
+    {
+      "date": "2026-09-17",
+      "label": "Unit 1 Quiz 2 (Test 410668856)",
+      "answered": 11,
+      "correct": 9
+    },
+    {
+      "date": "2026-09-17",
+      "label": "U1 (Test 410676408)",
+      "answered": 6,
+      "correct": 5
     }
   ],
-  "simExams": [],
+  "simExams": [
+    {
+      "name": "Unit 1 Checkpoint Exam (Test 410671140)",
+      "date": "2026-09-17",
+      "score": 7,
+      "total": 12,
+      "timeUsed": 27.73,
+      "timeAllowed": null,
+      "byTopic": {
+        "IV": {
+          "answered": 12,
+          "correct": 7
+        }
+      },
+      "byUnit": {
+        "U1": {
+          "answered": 12,
+          "correct": 7
+        }
+      },
+      "segments": [
+        {
+          "label": "1-3",
+          "missed": 0
+        },
+        {
+          "label": "4-6",
+          "missed": 2
+        },
+        {
+          "label": "7-9",
+          "missed": 1
+        },
+        {
+          "label": "10-12",
+          "missed": 2
+        }
+      ],
+      "missCats": {
+        "did not know the rule": 5
+      }
+    }
+  ],
   "weakSpots": [
-    "U1 (Topic IV): the 'in the business' element of the investment adviser definition, incl. IA-1092's holding-out factor (Q4, Q7)",
-    "U1 (Topic IV): private fund investor standards: accredited vs qualified client vs qualified purchaser, and which goes with 3(c)(1) vs 3(c)(7) (Q3)"
+    "U1 (Topic IV): which client types create an exemption and whether the rule is federal or state, incl. insurance companies and banks (Quiz 2 Q3, Quiz 2 Q11, Exam Q6)",
+    "U1 (Topic IV): applying exclusion vs exemption, especially the publisher exclusion in both directions (Exam Q11, Exam Q12)",
+    "U1 (Topic IV): private fund adviser detail beyond the basics, incl. the exempt reporting adviser definition (Exam Q7) and the 3(c)(1) investor standard (Quiz 1 Q3)",
+    "U1 (Topic IV): the 'investment counsel' title test (Quiz 3 Q5)"
   ],
   "strongSpots": [
-    "U1 (Topic IV): de minimis and institutional-client exemptions from state IA registration, LO 1.i (5/5: Q1, Q2, Q5, Q10, Q11)",
-    "U1 (Topic IV): exclusions from the IA definition (publishers, LATE professionals) and SEC exemptions (VC fund advisers) (Q6, Q8, Q9)"
+    "U1 (Topic IV): the de minimis rule and its wordings, plus the no-office institutional-client exemption (Quiz 1 Q1/Q5/Q10/Q11, Quiz 2 Q1/Q5/Q10, Quiz 3 Q1/Q3)",
+    "U1 (Topic IV): who counts as a person for accounts and contracts (Quiz 2 Q9, Quiz 3 Q4, Exam Q4)",
+    "U1 (Topic IV): the LATE professional exclusions when advice is incidental (Quiz 1 Q9, Quiz 2 Q4, Quiz 3 Q2)",
+    "U1 (Topic IV): the IA-1092 business and compensation tests, after missing them on Sep 16 (Quiz 2 Q6/Q7/Q8, Exam Q8/Q9)"
   ],
   "missedQuestions": [
     {
@@ -1464,6 +1523,102 @@ const SYNC = {
       "correctAnswer": "B) I, II, and III",
       "rationale": "To meet the business standard, persons must meet three criteria. First, they must hold themselves out (advertise) as persons who provide investment advice. Second, they must provide such advice on a frequent or regular basis, but it need not be their principal business activity. Third, they must receive separate or additional compensation for doing so.",
       "explanation": "IA-1092 gives three ways to tell whether someone is 'in the business' of giving securities advice: (1) holding out, meaning advertising or presenting yourself as an adviser; (2) giving specific advice more than rarely, i.e., on a regular basis; and (3) getting separate or additional pay for the advice. You got II and III but dropped I. Holding out is the one people skip because it is about how you present yourself, not what you actually do. The SEC's view is that calling yourself an investment adviser puts you in the business, whether or not you are busy. A useful comparison: a person who is not an adviser cannot just advertise as one, and someone with the title on their card does not escape the definition by saying they rarely give advice. On the exam, all three are business-standard factors, so the answer is I, II and III. (Kaplan's rationale phrases these as three criteria that must all be met. The SEC release treats them as factors, and any one generally puts you in the business. Either reading gives the same answer here.) Note the connection to Q4: II and III here are the same 'regular advice' and 'paid for advice' ideas as Q4's correct answer. IA-1092 adds holding out as a third factor."
+    },
+    {
+      "id": "u1qz2-q03",
+      "date": "2026-09-17",
+      "unitId": "U1",
+      "topic": "IV",
+      "lo": "LO 1.g",
+      "question": "Under the Investment Advisers Act of 1940, which of the following are excluded from the definition of an investment adviser?",
+      "myAnswer": "D) Insurance companies",
+      "correctAnswer": "B) Banks and trust companies",
+      "rationale": "The act excludes the following from the definition: banks or trust companies; publishers of bona fide publications of general circulation; persons advising about certain securities (U.S. government or agency issues); broker-dealers not receiving special compensation for giving advice; and persons whose advice is incidental to their profession, such as lawyers, accountants, engineers, and teachers. Under the federal law, one of the exemptions from registration is if the investment adviser's only clients are insurance companies. Please note - this is an exemption from registration rather than an exclusion from the definition.",
+      "explanation": "Two different doors, and this question asks which one you walked through. An EXCLUSION means you are not an investment adviser at all; the definition never reaches you. An EXEMPTION means you are an investment adviser but don't have to register. Banks and trust companies are excluded: federal law simply carves them out of the definition. Insurance companies show up in a different rule, the federal exemption for an adviser whose only clients are insurance companies, so that adviser is still an adviser, just not a registered one. You picked the right topic and the wrong door. Notice the question also asks about the adviser's own status versus who its clients are: banks/trust companies is about what the firm IS, while the insurance-company rule is about WHO IT ADVISES. When you see 'insurance companies' in a Unit 1 answer, ask two questions: is this about the adviser or its clients, and is this about the definition or about registration?"
+    },
+    {
+      "id": "u1qz2-q11",
+      "date": "2026-09-17",
+      "unitId": "U1",
+      "topic": "IV",
+      "lo": "LO 1.i",
+      "question": "Under state law, all of the following investment advisers are exempt from registration except",
+      "myAnswer": "A) foreign private advisers with no place of business in the United States and less than $25 million in assets under management.",
+      "correctAnswer": "D) advisers whose only clients are insurance companies.",
+      "rationale": "It is the federal law, the Investment Advisers Act of 1940, that exempts investment advisers from registration if their only clients are insurance companies. State law does not have that exemption. Among other exemptions, the Uniform Securities Act exempts investment advisers whose only clients are private funds. Note that if the choice had said the adviser had no place of business in the state and its only clients were insurance companies, registration would not be required.",
+      "explanation": "This is the same insurance-company rule as Quiz 2 Q3, now tested on which government it belongs to. The federal exemption for advisers whose only clients are insurance companies has no state twin: the USA doesn't grant an exemption just because every client is an insurer. What the USA does grant is an exemption for an adviser with NO PLACE OF BUSINESS in the state whose in-state clients are all institutional, which would include insurance companies. The missing condition is the office. Strip the answer choice down: 'only clients are insurance companies' with no mention of where the office is, so the state exemption never switches on. Build the habit of reading every Unit 1 exemption answer as a two-part test: what kind of clients, and is there an office in the state? If the choice is silent about the office and the rule needs it, the choice fails."
+    },
+    {
+      "id": "u1qz3-q05",
+      "date": "2026-09-17",
+      "unitId": "U1",
+      "topic": "IV",
+      "lo": "LO 1.e",
+      "question": "The term investment counsel can be used by investment advisers",
+      "myAnswer": "C) who are also attorneys.",
+      "correctAnswer": "A) with a primary business of rendering investment advice.",
+      "rationale": "Under the Investment Advisers Act of 1940, the term investment counsel may be used by any adviser that meets two standards: the adviser performs investment supervisory services, and the adviser provides advice as the primary business of the firm. No other special qualifications or registrations are needed.",
+      "explanation": "'Investment counsel' sounds like it implies a lawyer, and that's exactly the trap; the word counsel here has nothing to do with the bar. It's a title an adviser may use only when two things are true: giving advice is the firm's PRIMARY business, and the firm provides investment supervisory services, meaning continuous advice based on each client's individual needs. No license, no registration status and no profession enters into it. The answer only names the primary-business half, which is why Kaplan calls it half correct, but it's the only choice pointing at the real test. Memory hook: counsel = primary business + continuous, individualized supervision. If you see it paired with attorney, broker-dealer or SEC registration, that's the distractor."
+    },
+    {
+      "id": "u1exam-q05",
+      "date": "2026-09-17",
+      "unitId": "U1",
+      "topic": "IV",
+      "lo": "LO 1.i",
+      "question": "Under current law, which of the following would not be required to register as an investment adviser in a state?",
+      "myAnswer": "C) A person whose home office is in the state and who manages less than $90 million in assets",
+      "correctAnswer": "D) A person who deals exclusively with broker-dealers in that state but maintains no place of business within the boundaries of the state",
+      "rationale": "Persons having no place of business in a state can qualify for the de minimis exemption as long as they have fewer than six retail residents of that state as clients within any 12-month period. Unless an exception applies, investment advisers with less than $100 million in AUM must register on the state level. Once they reach $100 million they may choose state or SEC registration. Once $110 million is reached, the only choice is the SEC. Once registered with the SEC, if AUM falls below $90 million the adviser must return to state registration.",
+      "explanation": "Your pick had the fatal words 'home office is in the state.' An office in the state means state registration, full stop; no client list or AUM figure rescues it. The $90 million in that choice is bait: it's a real number, but it belongs to a different rule, the exit threshold for an adviser already SEC-registered whose AUM slips below $90M and must come back to the states. Sub-$100M with an in-state office is precisely who registers with the state. The correct answer has both halves of the state exemption: no place of business in the state, and only institutional clients (broker-dealers). Keep the AUM ladder separate from the office test: $100M = may choose SEC, $110M = must be SEC, below $90M once SEC-registered = back to the state. The office question comes first, and it decides the answer more often than the dollars do."
+    },
+    {
+      "id": "u1exam-q06",
+      "date": "2026-09-17",
+      "unitId": "U1",
+      "topic": "IV",
+      "lo": "LO 1.h",
+      "question": "The Investment Advisers Act of 1940 would consider each of the following investment advisers to be exempt from registration except",
+      "myAnswer": "C) an adviser who maintains an office in only one state, advises only residents of that state (none of whom is a private fund), and gives advice relating solely to securities not traded on any national exchange.",
+      "correctAnswer": "D) an adviser whose only clients are banks.",
+      "rationale": "Advising only banks does not qualify one for the exemption. Advisers who only service insurance companies or venture capital funds are exempt, as are advisers performing intrastate who do not give advice to private funds or on listed securities.",
+      "explanation": "The federal exemption list is specific, and banks are not on it. Insurance companies are; venture capital fund advisers are; private fund advisers under $150M are; and the intrastate adviser is, which is the choice you picked. That intrastate exemption has three conditions and the question satisfied all three: one state only, clients all in that state and none of them private funds, and no advice on exchange-listed securities. It reads like a trick because it's so specific, but every condition was met, so it is genuinely exempt. Note how banks flip depending on the sentence: a bank AS the adviser is excluded from the definition entirely, while banks as the CLIENTS earn the adviser nothing under federal law. Pair this with Quiz 2 Q3: bank as adviser = excluded, insurance companies as clients = exempt, banks as clients = neither."
+    },
+    {
+      "id": "u1exam-q07",
+      "date": "2026-09-17",
+      "unitId": "U1",
+      "topic": "IV",
+      "lo": "LO 1.k",
+      "question": "The term exempt reporting adviser refers to",
+      "myAnswer": "C) advisers who are registered on the state level but who file their Form ADVs through the IARD.",
+      "correctAnswer": "D) advisers who rely on either the venture capital fund adviser exemption or the private fund adviser exemption.",
+      "rationale": "Exempt reporting advisers are defined as investment advisers but, because they either are private fund advisers or advise venture capital funds, are exempt from registration on either the state or federal level. However, even though they are exempt from registration, they must file certain portions of Form ADV - hence the name exempt reporting advisers.",
+      "explanation": "Read the name literally and it gives you the answer: EXEMPT from registration, but still REPORTING. Only two exemptions produce this creature, and both are private-fund flavored: the venture capital fund adviser exemption and the private fund adviser exemption (under $150M in the US). Those advisers file parts of Form ADV Part 1 without ever registering. Your pick described a registered state adviser, which fails on the first word, since a registered adviser isn't exempt at all; everyone files through the IARD, so that detail distinguishes nothing. This connects to Quiz 1 Q3 and Quiz 2 Q2, both private-fund questions: the fund side has the investor standards (qualified client, qualified purchaser), and the adviser side has the exemption plus the ERA filing duty."
+    },
+    {
+      "id": "u1exam-q11",
+      "date": "2026-09-17",
+      "unitId": "U1",
+      "topic": "IV",
+      "lo": "LO 1.f",
+      "question": "Which of the following would be excluded from the definition of investment adviser under the Uniform Securities Act?",
+      "myAnswer": "A) A civil damages attorney who advertises that he is available to assist clients in suggesting appropriate investments for their successful claims",
+      "correctAnswer": "D) The publisher of a weekly newsmagazine, sold on newsstands, that contains at least five stock recommendations per issue",
+      "rationale": "Publishers of general circulation newspapers and magazines are excluded from the definition of investment adviser. A broker-dealer loses its exclusion the moment it offers advice for a separate charge, as does an attorney who holds himself out as offering investment advice. Normally a teacher is excluded, but not when charging for advice. On this examination, the term comprehensive financial planning always includes securities advice.",
+      "explanation": "Every wrong choice here is a professional who broke their own exclusion. The attorney you chose ADVERTISES investment help, which is holding out, and the moment a LATE professional holds out or charges separately for securities advice, the incidental-advice exclusion evaporates. The teacher charges for financial planning seminars, same problem, and Kaplan warns that comprehensive financial planning always counts as securities advice on this exam. The broker-dealer charges a separate fee, which is the classic way a BD loses its exclusion. The publisher is left standing: a newsstand magazine on a regular schedule is general and impersonal circulation, and stock picks inside don't ruin it. Compare with Quiz 1 Q8, which you got right, listing what the publication must be. The same idea, and this time the trap was that the other three all self-destructed."
+    },
+    {
+      "id": "u1exam-q12",
+      "date": "2026-09-17",
+      "unitId": "U1",
+      "topic": "IV",
+      "lo": "LO 1.b",
+      "question": "Under the Uniform Securities Act, a person whose business model is selling reports on a subscription basis concerning specific securities to investors based on their individual objectives will be defined as",
+      "myAnswer": "A) a publisher.",
+      "correctAnswer": "D) an investment adviser.",
+      "rationale": "The definition of investment adviser includes any person who (1) for compensation, engages in the business of advising others as to the value of securities or the advisability of buying, selling, or investing in securities or (2) as a part of a regular business, publishes securities analyses or securities reports for individual investors on a paid-subscription basis. Although there is an exclusion for publishers, that is the case only when the reports are general in nature and not specific to any one person.",
+      "explanation": "This is Exam Q11 run backwards, and you fell off the other side. There, a publisher kept its exclusion; here, a publisher loses it. The deciding words are 'based on their individual objectives.' Once the content is tailored to the individual subscriber, it isn't impersonal any more, and the definition of investment adviser explicitly reaches anyone publishing securities reports for individual investors on a paid-subscription basis. Charging by subscription doesn't save you; personalization is what matters. One test for both questions: could this exact issue go to every subscriber unchanged? Yes means publisher (excluded); no, it's written for this client's objectives, means investment adviser."
     }
   ],
   "answeredCorrect": [
@@ -1506,40 +1661,210 @@ const SYNC = {
       "id": "u1qz1-q11",
       "question": "An investment adviser need not register in a state if it has",
       "note": "No place of business plus only institutional clients (insurance companies, banks) means no state registration regardless of client count; a place of business in the state always requires registration."
+    },
+    {
+      "id": "u1qz2-q01",
+      "question": "The Uniform Securities Act would not provide an exemption from registration as an investment adviser to an investment adviser who",
+      "note": "De minimis is 5 clients, not 12; no office plus clients limited to banks/insurers, BDs or other IAs is exempt."
+    },
+    {
+      "id": "u1qz2-q02",
+      "question": "One of the exemptions from registration under state and federal law applies to investment advisers to private funds. One characteristic of all private funds is that",
+      "note": "A private fund is one not registered as an investment company; AUM limits apply to the adviser, not the fund, and 3(c)(7) funds have no investor cap."
+    },
+    {
+      "id": "u1qz2-q04",
+      "question": "Under the Investment Advisers Act of 1940, who is not excluded from the definition of investment adviser when their investment advice is solely incidental to the individual's profession?",
+      "note": "LATE covers lawyers, accountants, teachers and engineers; insurance agents are not in the group."
+    },
+    {
+      "id": "u1qz2-q05",
+      "question": "Under the Uniform Securities Act, who must register as an investment adviser?",
+      "note": "A BD that takes compensation for advice must register; banks are excluded, incidental accountants excluded, and a no-office planner advising only trust companies is exempt."
+    },
+    {
+      "id": "u1qz2-q06",
+      "question": "Under IA-1092, which of these are true regarding an investment adviser? (principal vs regular activity; compensated directly vs directly or indirectly)",
+      "note": "Advice must be a REGULAR activity, not the principal one, and compensation may be direct or indirect."
+    },
+    {
+      "id": "u1qz2-q07",
+      "question": "In defining an investment adviser under SEC Release IA-1092, which of the following would meet the business standard?",
+      "note": "Repeat of the Sep 16 miss (same question ID): holding out, regular advice and separate compensation are all business-standard factors. Answered correctly this time."
+    },
+    {
+      "id": "u1qz2-q08",
+      "question": "The Investment Advisers Act of 1940 contains the basic definition of persons who are investment advisers. Which of the following persons would be included in the listing of those who must register?",
+      "note": "You need not name specific securities to be an IA; advising to liquidate bonds is securities advice even if the proceeds buy gold coins; collectibles advice alone is not."
+    },
+    {
+      "id": "u1qz2-q09",
+      "question": "A broker-dealer would not be able to open an account for",
+      "note": "The three nonpersons are minors, deceased persons and the mentally incompetent; an estate is a person, and so are cities."
+    },
+    {
+      "id": "u1qz2-q10",
+      "question": "Under the Uniform Security Act, all of the following persons with no place of business in the state are exempt from registration as investment advisers EXCEPT",
+      "note": "6 individual clients breaks the de minimis cap of 5; investment companies, savings banks and federal covered advisers are all institutional."
+    },
+    {
+      "id": "u1qz3-q01",
+      "question": "Under the Uniform Securities Act, which of the following investment advisers with no place of business in the state must register with the state as an investment adviser?",
+      "note": "10 individual clients exceeds the 5-client de minimis; BD-only clients and $1M+ employee benefit plans are exempt."
+    },
+    {
+      "id": "u1qz3-q02",
+      "question": "Which of the following is specifically excluded from the definition of an investment adviser, provided the investment advice is solely incidental to the business in which the person is engaged?",
+      "note": "Engineer is one of the LATE professions; business managers, pension managers and fee-charging sports reps are not excluded."
+    },
+    {
+      "id": "u1qz3-q03",
+      "question": "Under the Uniform Securities Act, investment advisers are exempt from registration in a state where they have no office if they direct business communications with no more than five retail clients within",
+      "note": "The de minimis window is 12 months."
+    },
+    {
+      "id": "u1qz3-q04",
+      "question": "An investment adviser would be able to enter into an advisory contract with all of the following except",
+      "note": "Minors are nonpersons; foundations, joint accounts of adults and closed-end funds are all persons."
+    },
+    {
+      "id": "u1qz3-q06",
+      "question": "For many reasons, it is important to be able to distinguish between a retail customer and an institutional one. Which of the following is an example of a retail customer?",
+      "note": "Retail includes individuals, trusts, estates and sole proprietorships, however large; banks, insurers and registered funds are institutional."
+    },
+    {
+      "id": "u1exam-q01",
+      "question": "Under the Investment Advisers Act of 1940, which of the following would be excluded from the definition of an investment adviser?",
+      "note": "Banks get a blanket exclusion even when charging for advice; BDs need advice within brokerage scope and no special compensation; publishers need general, regular circulation."
+    },
+    {
+      "id": "u1exam-q02",
+      "question": "Under the Investment Advisers Act of 1940, which of the following investment advisers is not exempt from federal registration?",
+      "note": "The private fund adviser exemption caps US AUM at $150M, so $200M must register; the insurance-company, intrastate and foreign private adviser exemptions all held."
+    },
+    {
+      "id": "u1exam-q03",
+      "question": "(Unit 1 Checkpoint Exam, question 3)",
+      "note": "Answered correctly."
+    },
+    {
+      "id": "u1exam-q04",
+      "question": "An investment adviser could enter into an advisory contract with any of the following except",
+      "note": "Mentally incompetent persons are nonpersons; a custodian for a minor, an LLC and a political subdivision are all persons."
+    },
+    {
+      "id": "u1exam-q08",
+      "question": "Which of the following would not be considered an investment adviser under Release IA-1092?",
+      "note": "An investment club president advising fellow members as part of his duties isn't an IA; the paid retired banker, the pension consultant and the athlete's agent advising on securities are."
+    },
+    {
+      "id": "u1exam-q09",
+      "question": "Which of the following does not meet the compensation test for defining investment advisers under SEC Release IA-1092?",
+      "note": "A neighbor's free tip earns no compensation of any kind; commissions or any economic benefit tied to the advice do satisfy the test."
+    },
+    {
+      "id": "u1exam-q10",
+      "question": "Which of the following statements best illustrates the difference between an exclusion and an exemption under the Uniform Securities Act?",
+      "note": "Exclusion removes you from the Act entirely; exemption leaves you covered by the antifraud provisions. You had the definition right here even though the applied questions (Q11, Q12) went the other way."
     }
   ],
   "errorPatterns": [
     {
-      "rule": "What makes someone 'in the business' of giving investment advice: regular advice, compensation for the advice (not for transactions), and, under IA-1092, holding out as an adviser",
+      "rule": "Which clients earn an adviser an exemption, and whether the rule is federal or state: insurance-company clients are a federal exemption (not a state one and not an exclusion); bank-only clients are neither; a bank acting AS the adviser is excluded",
+      "count": 3,
+      "topic": "IV",
+      "occurrences": [
+        "u1qz2-q03",
+        "u1qz2-q11",
+        "u1exam-q06"
+      ],
+      "note": "Three misses in one day on the same family of rules. The fix is a two-part reading of every answer choice: is this about the adviser itself or about its clients, and is this federal or state?"
+    },
+    {
+      "rule": "Exclusion (not an investment adviser at all) vs exemption (an adviser who need not register), and how a professional or publisher loses an exclusion by holding out, charging separately, or personalizing the advice",
+      "count": 3,
+      "topic": "IV",
+      "occurrences": [
+        "u1qz2-q03",
+        "u1exam-q11",
+        "u1exam-q12"
+      ],
+      "note": "He stated the distinction correctly when asked directly (Exam Q10) but missed it in all three applied questions, including the publisher rule in both directions."
+    },
+    {
+      "rule": "The 'in the business' element of the investment adviser definition: regular advice, compensation for the advice (not for transactions), and, under IA-1092, holding out as an adviser",
       "count": 2,
       "topic": "IV",
       "occurrences": [
         "u1qz1-q04",
         "u1qz1-q07"
       ],
-      "note": "Missed from both sides: Q4 added a factor that isn't part of the test (transaction-based earnings = BD/agent), and Q7 dropped one that is (holding out). Both are Roman-numeral questions where the elements weren't pinned down precisely."
+      "note": "Sep 16 misses. The identical IA-1092 question (ID 1806719) came back on Sep 17 as Quiz 2 Q7 and was answered correctly, so this one looks fixed; Quiz 2 Q6 and Q8 on the same test were also correct."
     }
   ],
   "quickTips": [
     {
-      "id": "t-in-the-business",
-      "kind": "rule",
       "topic": "IV",
       "unitId": "U1",
-      "count": 2,
+      "kind": "rule",
+      "id": "t-client-type-exemption",
+      "count": 3,
       "fromMisses": [
-        "u1qz1-q04",
-        "u1qz1-q07"
+        "u1qz2-q03",
+        "u1qz2-q11",
+        "u1exam-q06"
       ],
-      "trigger": "a question asking which criteria make someone \"in the business\" of giving investment advice",
-      "move": "Count exactly three: gives advice regularly + is paid FOR THE ADVICE + (under IA-1092) holds himself out as an adviser. Strike anything about earnings from executing transactions.",
-      "why": "You have missed this from both directions - once by adding transaction pay, once by dropping holding out. Paid for advice = IA. Paid per trade = BD or agent."
+      "trigger": "an answer choice about an adviser whose only clients are one type - insurance companies, banks, broker-dealers, other advisers",
+      "move": "Ask two things before anything else. (1) Is this about the adviser itself or about its clients? (2) Federal or state? Insurance-company clients = FEDERAL exemption only. Bank clients = nothing, either level. A bank AS the adviser = excluded from the definition entirely.",
+      "why": "Three misses in one day on this one family. Banks flip meaning depending on which side of the sentence they sit."
     },
     {
-      "id": "t-private-fund-ladder",
-      "kind": "rule",
       "topic": "IV",
       "unitId": "U1",
+      "kind": "rule",
+      "id": "t-exclusion-vs-exemption",
+      "count": 3,
+      "fromMisses": [
+        "u1qz2-q03",
+        "u1exam-q11",
+        "u1exam-q12"
+      ],
+      "trigger": "\"excluded from the definition\" versus \"exempt from registration\"",
+      "move": "Excluded = not an adviser at all, the Act never reaches you. Exempt = you ARE an adviser but need not register, and antifraud still applies. Then check whether the professional or publisher broke their own exclusion by holding out, charging separately, or personalising the advice.",
+      "why": "You defined this correctly when asked straight out (Exam Q10) and then missed all three questions that made you apply it. Knowing the definition is not the gap; spotting which one a question is asking about is."
+    },
+    {
+      "topic": "IV",
+      "unitId": "U1",
+      "kind": "rule",
+      "id": "t-publisher-both-ways",
+      "count": 2,
+      "fromMisses": [
+        "u1exam-q11",
+        "u1exam-q12"
+      ],
+      "trigger": "a publisher, newsletter or subscription-report question",
+      "move": "One test: could this exact issue go to every subscriber unchanged? Yes = publisher, excluded. Written around an individual's objectives = investment adviser, no matter that it is sold by subscription.",
+      "why": "You got this wrong in both directions on the same exam - kept the exclusion where it was lost, lost it where it was kept. Personalisation decides it, not the price model."
+    },
+    {
+      "topic": "IV",
+      "unitId": "U1",
+      "kind": "rule",
+      "id": "t-office-before-aum",
+      "count": 1,
+      "fromMisses": [
+        "u1exam-q05"
+      ],
+      "trigger": "an exemption choice that quotes a dollar figure of assets under management",
+      "move": "Check for a place of business in the state FIRST. An in-state office means state registration, whatever the AUM or client list. Only if there is no office does the ladder matter: $100M may choose SEC, $110M must be SEC, below $90M once SEC-registered means back to the states.",
+      "why": "You picked \"home office is in the state ... less than $90 million.\" The $90M is real but belongs to a different rule, and the office had already decided the answer."
+    },
+    {
+      "topic": "IV",
+      "unitId": "U1",
+      "kind": "rule",
+      "id": "t-private-fund-ladder",
       "count": 1,
       "fromMisses": [
         "u1qz1-q03"
@@ -1549,10 +1874,36 @@ const SYNC = {
       "why": "Federal law only requires accredited investors for 3(c)(1); the Uniform Securities Act raises it to qualified client. If the question names no law, answer state law."
     },
     {
-      "id": "t-roman-numerals",
-      "kind": "technique",
       "topic": "IV",
       "unitId": "U1",
+      "kind": "rule",
+      "id": "t-exempt-reporting-adviser",
+      "count": 1,
+      "fromMisses": [
+        "u1exam-q07"
+      ],
+      "trigger": "the term \"exempt reporting adviser\"",
+      "move": "Read the name literally: EXEMPT from registering, still REPORTING. Only two routes in, both private-fund flavoured - the venture capital fund adviser exemption, or the private fund adviser exemption under $150M.",
+      "why": "Anything describing a registered adviser fails on the first word. Everyone files through the IARD, so that detail never distinguishes anything."
+    },
+    {
+      "topic": "IV",
+      "unitId": "U1",
+      "kind": "rule",
+      "id": "t-investment-counsel",
+      "count": 1,
+      "fromMisses": [
+        "u1qz3-q05"
+      ],
+      "trigger": "the title \"investment counsel\"",
+      "move": "Two tests, neither about lawyers: advice is the firm's PRIMARY business, and it provides investment supervisory services - continuous advice built on each client's own situation.",
+      "why": "\"Counsel\" has nothing to do with the bar. Paired with attorney, broker-dealer or SEC registration, it is the distractor."
+    },
+    {
+      "topic": "IV",
+      "unitId": "U1",
+      "kind": "technique",
+      "id": "t-roman-numerals",
       "count": 2,
       "fromMisses": [
         "u1qz1-q04",
@@ -1560,10 +1911,42 @@ const SYNC = {
       ],
       "trigger": "a Roman-numeral question (I, II, III) asking which items belong to a definition",
       "move": "Write your own yes/no on each numeral against the rule BEFORE reading the lettered choices, then find the choice that matches your list.",
-      "why": "Both your Unit 1 misses were Roman-numeral questions, and you erred in opposite directions - once picking all three, once dropping a real element. The shape of the answer choices is pulling you off the rule."
+      "why": "Both your Sep 16 misses were Roman-numeral questions and you erred in opposite directions - once picking all three, once dropping a real element."
+    },
+    {
+      "topic": "IV",
+      "unitId": "U1",
+      "kind": "rule",
+      "id": "t-in-the-business",
+      "count": 2,
+      "cleared": true,
+      "fromMisses": [
+        "u1qz1-q04",
+        "u1qz1-q07"
+      ],
+      "trigger": "a question asking which criteria make someone \"in the business\" of giving investment advice",
+      "move": "Count exactly three: gives advice regularly + is paid FOR THE ADVICE + (under IA-1092) holds himself out as an adviser. Strike anything about earnings from executing transactions.",
+      "why": "Missed twice on Sep 16. The identical IA-1092 question came back on Sep 17 and you got it right, along with the other two IA-1092 questions on that test. Treating this as cleared."
     }
   ],
-  "priorSnapshot": null
+  "priorSnapshot": {
+    "asOf": "2026-09-16",
+    "pooledPct": 72.7273,
+    "units": {
+      "U1": 72.7273
+    },
+    "missIds": [
+      "u1qz1-q03",
+      "u1qz1-q04",
+      "u1qz1-q07"
+    ],
+    "patternRules": [
+      "What makes someone 'in the business' of giving investment advice: regular advice, compensation for the advice (not for transactions), and, under IA-1092, holding out as an adviser"
+    ],
+    "activityIds": [
+      "Unit 1 Quiz 1 (Test 410528324)"
+    ]
+  }
 };
 /* ===== END SYNC DATA ===== */
 
@@ -2553,18 +2936,22 @@ function renderQuickTips() {
       + 'reading it.</p></div>');
     return;
   }
-  const repeated = quickTips.filter(t => (t.count || 1) >= 2)
+  const live = quickTips.filter(t => !t.cleared);
+  const repeated = live.filter(t => (t.count || 1) >= 2)
     .sort((a, b) => (b.count || 1) - (a.count || 1));
-  const rest = quickTips.filter(t => (t.count || 1) < 2);
+  const rest = live.filter(t => (t.count || 1) < 2);
+  const cleared = quickTips.filter(t => t.cleared);
 
   const card = t => {
     const u = unitData.find(x => x.id === t.unitId);
-    return '<div class="tip' + ((t.count || 1) >= 2 ? ' tip-hot' : '') + '">'
+    return '<div class="tip' + (t.cleared ? ' tip-done'
+             : (t.count || 1) >= 2 ? ' tip-hot' : '') + '">'
       + '<div class="tip-tags">'
       + (t.topic ? '<span class="tag neutral">Topic ' + esc(t.topic) + '</span>' : '')
       + (u ? '<span class="tag neutral">' + esc(u.name.replace(/:.*$/, "")) + '</span>' : '')
-      + ((t.count || 1) >= 2
+      + ((t.count || 1) >= 2 && !t.cleared
           ? '<span class="tag bad">missed ' + t.count + '&times;</span>' : '')
+      + (t.cleared ? '<span class="tag ok">cleared on retest</span>' : '')
       + (t.kind === "technique" ? '<span class="tag warn">technique</span>' : '')
       + '</div>'
       + '<p class="tip-when"><b>When you see</b> ' + esc(t.trigger) + '</p>'
@@ -2583,6 +2970,12 @@ function renderQuickTips() {
   if (rest.length) {
     html += '<h2>' + (repeated.length ? 'Everything else' : 'Your tips') + '</h2>'
       + rest.map(card).join("");
+  }
+  if (cleared.length) {
+    html += '<h2>Cleared</h2>'
+      + '<small class="note">You have since answered these correctly under test conditions. '
+      + 'Kept for reference, but do not spend time here.</small>'
+      + cleared.map(card).join("");
   }
   setHTML("tips-body", html);
 }
@@ -2698,7 +3091,10 @@ function txtPatterns() {
 }
 function txtTips() {
   if (!quickTips.length) return "  (none yet)\n";
-  const ordered = [...quickTips].sort((a, b) => (b.count || 1) - (a.count || 1));
+  const ordered = [...quickTips]
+    .filter(t => !t.cleared)
+    .sort((a, b) => (b.count || 1) - (a.count || 1));
+  if (!ordered.length) return "  (all cleared on retest)\n";
   return ordered.map(t =>
     "- When you see " + t.trigger + "\n"
     + "  -> " + t.move + "\n"
