@@ -42,7 +42,7 @@ try {
 /* ------------------------------------------------------------------ shape */
 const KEYS = ["meta", "unitTopicMap", "unitData", "mixedQuizzes", "kaplanQBank",
   "simExams", "weakSpots", "strongSpots", "missedQuestions", "answeredCorrect",
-  "errorPatterns", "priorSnapshot"];
+  "errorPatterns", "quickTips", "priorSnapshot"];
 const ARRAYS = KEYS.filter(k => k !== "meta" && k !== "priorSnapshot");
 
 const errors = [], warnings = [];
@@ -110,6 +110,16 @@ for (const u of payload.unitData) {
 for (const e of payload.simExams) {
   if (e.score > e.total) errors.push("exam '" + e.name + "': score exceeds total");
   if (!isISO(e.date)) errors.push("exam '" + e.name + "': date must be YYYY-MM-DD");
+}
+for (const t of payload.quickTips) {
+  for (const f of ["trigger", "move"]) {
+    if (!t[f]) errors.push("quickTip " + (t.id || "?") + " has no " + f);
+  }
+  for (const mid of (t.fromMisses || [])) {
+    if (!payload.missedQuestions.some(q => q.id === mid)) {
+      warnings.push("quickTip " + (t.id || "?") + " cites miss '" + mid + "' that is not in this payload");
+    }
+  }
 }
 for (const q of payload.missedQuestions) {
   for (const f of ["question", "myAnswer", "correctAnswer"]) {

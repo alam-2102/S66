@@ -161,6 +161,38 @@ units; derive the real number from Kaplan.
 
 ---
 
+## Quick Tips
+
+The compressed, recall-ready version of what the misses taught. This is the tab
+Austin opens for thirty seconds before a quiz, so it has to be short and it has to
+be about HIS errors.
+
+Each tip is a trigger he will actually see on the exam plus the move that answers
+it:
+
+```json
+{ "id": "t-in-the-business", "kind": "rule", "topic": "IV", "unitId": "U1",
+  "count": 2, "fromMisses": ["u1qz1-q04", "u1qz1-q07"],
+  "trigger": "a question asking which criteria make someone 'in the business' of giving investment advice",
+  "move": "Count exactly three: gives advice regularly + is paid FOR THE ADVICE + (under IA-1092) holds himself out. Strike anything about earnings from executing transactions.",
+  "why": "Missed from both directions - once by adding transaction pay, once by dropping holding out." }
+```
+
+Rules:
+
+- **Never generic exam advice.** Every tip must trace to a real miss via
+  `fromMisses`, and the sanity check enforces it. Generic advice on this tab would
+  be indistinguishable from the Reference Sheet and he would stop reading it.
+- `trigger` is what he sees on the page, phrased so he recognises it mid-question.
+  `move` is what to do about it. Keep both to a sentence or two.
+- `count` is how many times the underlying error has now shown up. Tips at 2 or
+  more lead the tab, so keep it accurate as patterns repeat.
+- `kind` is `"rule"` for content or `"technique"` for how he answers questions.
+  Technique tips come from noticing HOW he is getting things wrong - e.g. both his
+  Unit 1 misses were Roman-numeral questions and he erred in opposite directions.
+- Rewrite an existing tip rather than adding a near-duplicate when the same error
+  recurs; bump its `count` and cite the new miss.
+
 ## Getting the data back to the repo
 
 There are two shapes this run can take. Work out which one you are in **before**
@@ -243,6 +275,11 @@ has `correct` exceeding `answered`, or leaves a unit unmapped. It writes the
   "answeredCorrect": [ { "id": "e1q08", "question": "...", "note": "one line on the concept tested" } ],
   "errorPatterns": [ { "rule": "...", "count": 2, "topic": "IV",
                        "occurrences": ["e1q07"], "note": "..." } ],
+  "quickTips": [ { "id": "t-...", "kind": "rule", "topic": "IV", "unitId": "U1",
+                   "count": 2, "fromMisses": ["e1q07"],
+                   "trigger": "what he sees on the page",
+                   "move": "what to do about it",
+                   "why": "one line" } ],
   "priorSnapshot": { "asOf": "2026-09-10", "pooledPct": 66.1, "units": { "U1": 61.4 },
                      "missIds": ["e1q07"], "patternRules": ["..."], "activityIds": ["Exam 1"] }
 }

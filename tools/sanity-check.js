@@ -125,7 +125,7 @@ sandbox.getSelection = () => ({ removeAllRanges() {}, addRange() {} });
 const EXPORTS = `
 ;globalThis.__X__ = {
   nasaaData, EXAM, META, unitData, mixedQuizzes, kaplanQBank, simExams,
-  UNIT_TOPIC_MAP, missedQuestions, errorPatterns,
+  UNIT_TOPIC_MAP, missedQuestions, errorPatterns, quickTips,
   pooledTotals, topicTotals, unitPool, buildBindings, bindAll, renderAll,
   renderSimulated, renderPerformance, buildPaste, MISSING_BINDS
 };`;
@@ -287,6 +287,26 @@ function rowCount(html) { return (String(html).match(/<tr/g) || []).length; }
   const delta = X.buildPaste("delta");
   assert(/SUPERSEDES ALL EARLIER FIGURES|NO PRIOR SNAPSHOT/.test(delta),
     "delta briefing opens with a supersede line, or says no snapshot exists");
+  /* Quick Tips must be actionable and must trace back to a real miss - generic exam
+     advice on that tab would be indistinguishable from the Reference Sheet. */
+  {
+    const tips = X.quickTips || [];
+    const badShape = tips.filter(t => !t.trigger || !t.move);
+    assert(badShape.length === 0, "every quick tip has both a trigger and a move",
+      badShape.map(t => t.id).join(", ") || "(" + tips.length + " tips)");
+    const missIds = new Set(X.missedQuestions.map(q => q.id));
+    const orphan = tips.filter(t => (t.fromMisses || []).some(m => !missIds.has(m)));
+    assert(orphan.length === 0, "every quick tip traces to a real missed question",
+      orphan.map(t => t.id).join(", "));
+    const untraced = tips.filter(t => !(t.fromMisses || []).length);
+    assert(untraced.length === 0, "no quick tip is generic advice with no miss behind it",
+      untraced.map(t => t.id).join(", "));
+    if (tips.length) {
+      assert(/When you see/.test(X.buildPaste("full")),
+        "quick tips reach the full briefing");
+    }
+  }
+
   /* The tutoring variants must NOT tell Claude to quiz him. That chat is a place to
      bring questions, not a quiz machine; only the 'quiz' variant quizzes. This is a
      stated preference, so guard it rather than trusting it not to drift back. */

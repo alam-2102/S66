@@ -224,6 +224,13 @@ schema. Nothing else after it.
     { "rule": "the rule I keep missing", "count": 2, "topic": "IV",
       "occurrences": ["e1q07"], "note": "why it keeps happening" }
   ],
+  "quickTips": [
+    { "id": "t-short-slug", "kind": "rule", "topic": "IV", "unitId": "U1",
+      "count": 2, "fromMisses": ["e1q07"],
+      "trigger": "a question asking which criteria make someone 'in the business' of giving advice",
+      "move": "Count exactly three: regular advice + paid FOR THE ADVICE + holds himself out. Strike transaction earnings.",
+      "why": "one line on why this keeps catching me" }
+  ],
   "priorSnapshot": null
 }
 ```
@@ -232,6 +239,12 @@ Rules for the payload:
 
 - Dates are `YYYY-MM-DD`. Unit ids are yours to assign (`U1`, `U2`, …) but must
   be consistent across `unitData`, `unitTopicMap` and `byUnit`.
+- **`quickTips` is the compressed version of what I got wrong** - a trigger I will
+  recognise mid-question and the move that answers it. Write one per distinct error.
+  **Never generic exam advice**: every tip must cite real misses in `fromMisses`, or
+  it will be rejected. `kind` is `"rule"` for content or `"technique"` for how I am
+  answering questions wrong (e.g. mishandling Roman-numeral questions). `count` is
+  how many times that error has shown up.
 - **Every entry in `missedQuestions` must have an `explanation`.** It is the
   highest-value field in the whole payload. A payload with misses missing it will
   be rejected.

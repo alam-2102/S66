@@ -184,6 +184,17 @@ tfoot td{border-top:1px solid var(--axis);font-weight:600;color:var(--ink);borde
   padding:9px 11px;margin:0 0 11px;overflow-x:auto;color:var(--ink-2)}
 .formula b{color:var(--ink)}
 
+/* ---------- quick tips ---------- */
+.tip{background:var(--surface);border:1px solid var(--ring);border-left:3px solid var(--s1);
+  border-radius:var(--radius);padding:13px 15px;margin:0 0 11px}
+.tip-hot{border-left-color:var(--critical)}
+.tip-tags{display:flex;flex-wrap:wrap;gap:5px;margin:0 0 8px}
+.tip-when{margin:0 0 5px;color:var(--ink-2);font-size:14px;line-height:1.5}
+.tip-do{margin:0 0 6px;color:var(--ink);font-size:14.5px;font-weight:550;line-height:1.5}
+.tip-do b{color:var(--s1);font-weight:700;margin-right:3px}
+.tip-hot .tip-do b{color:var(--critical)}
+.tip-why{margin:0;color:var(--muted);font-size:12.5px;line-height:1.5}
+
 /* ---------- claude paste ---------- */
 .paste-bar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:0 0 12px}
 .copybtn{
@@ -225,6 +236,7 @@ footer.foot{margin-top:40px;padding-top:16px;border-top:1px solid var(--grid);
 <nav class="tabs" role="tablist" aria-label="Sections">
   <button role="tab" id="t-perf"  aria-controls="tab-perf"  aria-selected="true">Performance</button>
   <button role="tab" id="t-exams" aria-controls="tab-exams" aria-selected="false">Practice &amp; Sim Exams</button>
+  <button role="tab" id="t-tips"  aria-controls="tab-tips"  aria-selected="false">Quick Tips</button>
   <button role="tab" id="t-guide" aria-controls="tab-guide" aria-selected="false">Study Guide</button>
   <button role="tab" id="t-ref"   aria-controls="tab-ref"   aria-selected="false">Reference Sheet</button>
   <button role="tab" id="t-dump"  aria-controls="tab-dump"  aria-selected="false">Dump Sheet</button>
@@ -299,7 +311,17 @@ reweighted = 0.08&times;T1 + 0.17&times;T2 + 0.30&times;T3 + 0.45&times;T4
   <div class="scroller" id="exam-delta"></div>
   <div id="exam-stuck"></div>
 </section>
-<!-- ============ 3 · STUDY GUIDE ============ -->
+<!-- ============ 3 · QUICK TIPS ============ -->
+<section class="tab" id="tab-tips" role="tabpanel" aria-labelledby="t-tips">
+  <p class="lead">The recall-ready version of what you have got wrong so far. Each one is a
+    trigger you will actually see on the exam and the move that answers it.</p>
+  <small class="note">Written from your real misses, not generic advice, and rebuilt every
+    sync. Tips from a rule you have missed more than once lead the list. The full
+    reasoning behind each is on the Study Guide tab.</small>
+  <div id="tips-body"></div>
+</section>
+
+<!-- ============ 4 · STUDY GUIDE ============ -->
 <section class="tab" id="tab-guide" role="tabpanel" aria-labelledby="t-guide">
   <div id="guide-empty"></div>
 
@@ -1498,6 +1520,49 @@ const SYNC = {
       "note": "Missed from both sides: Q4 added a factor that isn't part of the test (transaction-based earnings = BD/agent), and Q7 dropped one that is (holding out). Both are Roman-numeral questions where the elements weren't pinned down precisely."
     }
   ],
+  "quickTips": [
+    {
+      "id": "t-in-the-business",
+      "kind": "rule",
+      "topic": "IV",
+      "unitId": "U1",
+      "count": 2,
+      "fromMisses": [
+        "u1qz1-q04",
+        "u1qz1-q07"
+      ],
+      "trigger": "a question asking which criteria make someone \"in the business\" of giving investment advice",
+      "move": "Count exactly three: gives advice regularly + is paid FOR THE ADVICE + (under IA-1092) holds himself out as an adviser. Strike anything about earnings from executing transactions.",
+      "why": "You have missed this from both directions - once by adding transaction pay, once by dropping holding out. Paid for advice = IA. Paid per trade = BD or agent."
+    },
+    {
+      "id": "t-private-fund-ladder",
+      "kind": "rule",
+      "topic": "IV",
+      "unitId": "U1",
+      "count": 1,
+      "fromMisses": [
+        "u1qz1-q03"
+      ],
+      "trigger": "a private fund question naming 3(c)(1) or 3(c)(7)",
+      "move": "3(c)(1) -> qualified CLIENT (~$2.2M). 3(c)(7) -> qualified PURCHASER (~$5M). Lower number, lower bar.",
+      "why": "Federal law only requires accredited investors for 3(c)(1); the Uniform Securities Act raises it to qualified client. If the question names no law, answer state law."
+    },
+    {
+      "id": "t-roman-numerals",
+      "kind": "technique",
+      "topic": "IV",
+      "unitId": "U1",
+      "count": 2,
+      "fromMisses": [
+        "u1qz1-q04",
+        "u1qz1-q07"
+      ],
+      "trigger": "a Roman-numeral question (I, II, III) asking which items belong to a definition",
+      "move": "Write your own yes/no on each numeral against the rule BEFORE reading the lettered choices, then find the choice that matches your list.",
+      "why": "Both your Unit 1 misses were Roman-numeral questions, and you erred in opposite directions - once picking all three, once dropping a real element. The shape of the answer choices is pulling you off the rule."
+    }
+  ],
   "priorSnapshot": null
 };
 /* ===== END SYNC DATA ===== */
@@ -1556,6 +1621,14 @@ const answeredCorrect = SYNC.answeredCorrect;
 /* Recurring error patterns. A rule missed twice belongs here.
      { rule, count, occurrences: [questionId], topic, note }                   */
 const errorPatterns = SYNC.errorPatterns;
+
+/* Quick Tips - the compressed, recall-ready version of what the misses taught.
+   Written by the sync job from the actual misses, never generic exam advice.
+     { id, trigger: "when you see ...", move: "do this ...", why: "one line",
+       topic, unitId, fromMisses: [questionId], count: n, kind: "rule"|"technique" }
+   `count` is how many times the underlying error has now shown up; tips from a
+   rule missed twice lead the tab.                                              */
+const quickTips = SYNC.quickTips || [];
 
 /* Snapshot of the previous sync, so the delta briefing is computed rather than
    reconstructed. Overwritten with the CURRENT state at the end of every run
@@ -2468,6 +2541,53 @@ function renderGuide() {
 }
 
 /* ==========================================================================
+   QUICK TIPS
+   ========================================================================== */
+function renderQuickTips() {
+  if (!quickTips.length) {
+    setHTML("tips-body",
+      '<div class="empty"><h3>No tips yet</h3>'
+      + '<p>These are written from questions you have actually missed, so there is nothing '
+      + 'to write until some are decomposed. Generic exam advice does not go here '
+      + EM + ' it would be indistinguishable from the Reference Sheet and you would stop '
+      + 'reading it.</p></div>');
+    return;
+  }
+  const repeated = quickTips.filter(t => (t.count || 1) >= 2)
+    .sort((a, b) => (b.count || 1) - (a.count || 1));
+  const rest = quickTips.filter(t => (t.count || 1) < 2);
+
+  const card = t => {
+    const u = unitData.find(x => x.id === t.unitId);
+    return '<div class="tip' + ((t.count || 1) >= 2 ? ' tip-hot' : '') + '">'
+      + '<div class="tip-tags">'
+      + (t.topic ? '<span class="tag neutral">Topic ' + esc(t.topic) + '</span>' : '')
+      + (u ? '<span class="tag neutral">' + esc(u.name.replace(/:.*$/, "")) + '</span>' : '')
+      + ((t.count || 1) >= 2
+          ? '<span class="tag bad">missed ' + t.count + '&times;</span>' : '')
+      + (t.kind === "technique" ? '<span class="tag warn">technique</span>' : '')
+      + '</div>'
+      + '<p class="tip-when"><b>When you see</b> ' + esc(t.trigger) + '</p>'
+      + '<p class="tip-do"><b>&rarr;</b> ' + esc(t.move) + '</p>'
+      + (t.why ? '<p class="tip-why">' + esc(t.why) + '</p>' : '')
+      + '</div>';
+  };
+
+  let html = "";
+  if (repeated.length) {
+    html += '<h2>Missed more than once</h2>'
+      + '<small class="note">Worth more than anything else on this tab. Re-reading these '
+      + 'has already failed at least once, so the tip is the intervention.</small>'
+      + repeated.map(card).join("");
+  }
+  if (rest.length) {
+    html += '<h2>' + (repeated.length ? 'Everything else' : 'Your tips') + '</h2>'
+      + rest.map(card).join("");
+  }
+  setHTML("tips-body", html);
+}
+
+/* ==========================================================================
    DUMP SHEET - cut order is computed from exam weight and current weakness
    ========================================================================== */
 const DUMP_BLOCKS = [
@@ -2576,6 +2696,15 @@ function txtPatterns() {
   }
   return s;
 }
+function txtTips() {
+  if (!quickTips.length) return "  (none yet)\n";
+  const ordered = [...quickTips].sort((a, b) => (b.count || 1) - (a.count || 1));
+  return ordered.map(t =>
+    "- When you see " + t.trigger + "\n"
+    + "  -> " + t.move + "\n"
+    + ((t.count || 1) >= 2 ? "  [this has caught me " + t.count + " times]\n" : "")
+  ).join("");
+}
 function txtPriorities(n) {
   const tp = topicPriorityOrder();
   if (!tp.length) return "  (no data to rank yet)\n";
@@ -2662,6 +2791,12 @@ function briefFull(budget) {
   + "PER NASAA TOPIC\n" + txtTopicTable() + "\n"
   + "TOP PRIORITIES (weight x miss rate)\n" + txtPriorities(3) + "\n";
 
+  const tips = quickTips.length
+    ? "THE SHORTCUTS I AM TRYING TO INTERNALISE\n"
+      + "Written from my own misses. If I get one of these wrong again in conversation,\n"
+      + "say so directly.\n" + txtTips() + "\n"
+    : "";
+
   const patterns = "RECURRING ERROR PATTERNS\n"
     + "The most important section here. A rule I have missed more than once is a rule\n"
     + "re-reading has already failed to fix.\n" + txtPatterns() + "\n";
@@ -2688,7 +2823,7 @@ function briefFull(budget) {
     head + standing
     + (includeStrong ? strong : "")
     + missBlock + misses.map(q => txtMiss(q, true)).join("")
-    + "\n" + patterns
+    + "\n" + tips + patterns
     + (includeCorrect ? correctBlock : "")
     + HOW_TO_HELP;
 
@@ -2815,6 +2950,7 @@ function briefFocused() {
   + "RECENT MISSES\n"
   + (recent.length ? recent.map(q => txtMiss(q, true)).join("") : "  (none decomposed yet)\n")
   + "\nRECURRING ERROR PATTERNS\n" + txtPatterns() + "\n"
+  + (quickTips.length ? "MY SHORTCUTS FOR THESE\n" + txtTips() + "\n" : "")
   + HOW_TO_HELP;
   return s;
 }
@@ -3197,6 +3333,7 @@ function renderAll() {
   renderPerformance();
   renderExams();
   renderGuide();
+  renderQuickTips();
   renderCutOrder();
   renderPaste();
   renderCharts();
