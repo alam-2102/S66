@@ -161,6 +161,100 @@ units; derive the real number from Kaplan.
 
 ---
 
+## Getting the data back to the repo
+
+There are two shapes this run can take. Work out which one you are in **before**
+you start reading Kaplan, because it changes what you produce at the end.
+
+### Path A - this session is inside the repo
+A Claude Code session started in a local clone, with browser tooling attached.
+You can edit, check and push directly. Edit the `SYNC` block in `index.html`,
+run `node tools/sanity-check.js`, commit, push. GitHub Pages redeploys in 30-60
+seconds. Nothing to hand off.
+
+### Path B - this session can drive Chrome but has no clone
+A Cowork run, or any surface with browser control and no repo. The ready-to-paste
+brief for that case is `COWORK-BRIEF.md` at the repo root — self-contained, no
+files needed. You can read Kaplan but you cannot commit. **Do not try to describe the numbers in prose and
+hope they get transcribed** - that is exactly how figures drift.
+
+Instead, end the run by emitting **one JSON payload** in a fenced code block,
+complete and self-contained, using the schema below. Austin hands that payload
+to a session that does have the repo (or pastes it into the Claude Code session
+that built this dashboard), and it gets applied mechanically:
+
+```bash
+node tools/apply-payload.js payload.json
+node tools/sanity-check.js
+git commit -am "Sim 2 logged, 71.2% -> pooled 68.4%" && git push
+```
+
+`apply-payload.js` validates before it writes and **refuses** a payload that
+claims `lastVerified` with empty arrays, has split weights that do not sum to 1,
+has `correct` exceeding `answered`, or leaves a unit unmapped. It writes the
+`SYNC` block and nothing else, so no number is ever hand-typed.
+
+### The payload schema
+
+```json
+{
+  "meta": {
+    "lastVerified": "2026-09-17",
+    "lastRunAttempted": "2026-09-17",
+    "source": "kaplan",
+    "examDate": null,
+    "noDataRuns": 0,
+    "lastActivityDate": "2026-09-15",
+    "courseActivitiesDone": 3,
+    "courseActivitiesTotal": 48,
+    "studyPlanPct": 6,
+    "kaplanExamAvg": 68,
+    "kaplanQBankAvg": null,
+    "unreadReason": ""
+  },
+  "unitTopicMap": [
+    { "id": "U1", "name": "...", "split": { "IV": 1.0 }, "note": "why" },
+    { "id": "U2", "name": "...", "split": { "II": 0.6, "III": 0.4 }, "note": "spans two topics" }
+  ],
+  "unitData": [
+    { "id": "U1", "name": "...", "qbankAnswered": 50, "qbankCorrect": 31,
+      "examAnswered": 20, "examCorrect": 12, "mixedAnswered": 10, "mixedCorrect": 7,
+      "covers": "optional one-liner", "recurring": "optional" }
+  ],
+  "mixedQuizzes": [ { "date": "2026-09-12", "label": "...", "answered": 25, "correct": 18 } ],
+  "kaplanQBank":  [ { "date": "2026-09-10", "label": "...", "answered": 40, "correct": 26 } ],
+  "simExams": [
+    { "name": "Exam 1", "date": "2026-09-15", "score": 68, "total": 100,
+      "timeUsed": 141, "timeAllowed": 150,
+      "byTopic": { "I": { "answered": 8, "correct": 5 }, "IV": { "answered": 45, "correct": 28 } },
+      "byUnit":  { "U1": { "answered": 30, "correct": 18 } },
+      "segments": [ { "label": "1-25", "missed": 6 }, { "label": "26-50", "missed": 7 },
+                    { "label": "51-75", "missed": 8 }, { "label": "76-100", "missed": 11 } ],
+      "missCats": { "misread the question": 5, "did not know the rule": 12 } }
+  ],
+  "weakSpots": [], "strongSpots": [],
+  "missedQuestions": [
+    { "id": "e1q07", "date": "2026-09-15", "unitId": "U1", "topic": "IV", "lo": "LO 4.2",
+      "question": "full question text",
+      "myAnswer": "what he picked", "correctAnswer": "the right one",
+      "rationale": "Kaplan's rationale, verbatim",
+      "explanation": "the tutoring write-up - why, what the distinction is, what the distractor was built to catch" }
+  ],
+  "answeredCorrect": [ { "id": "e1q08", "question": "...", "note": "one line on the concept tested" } ],
+  "errorPatterns": [ { "rule": "...", "count": 2, "topic": "IV",
+                       "occurrences": ["e1q07"], "note": "..." } ],
+  "priorSnapshot": { "asOf": "2026-09-10", "pooledPct": 66.1, "units": { "U1": 61.4 },
+                     "missIds": ["e1q07"], "patternRules": ["..."], "activityIds": ["Exam 1"] }
+}
+```
+
+Every field is optional except `meta`; omitted arrays default to empty. Dates are
+`YYYY-MM-DD`. **`explanation` on every miss is the highest-value field on the
+page - never ship a payload with misses that lack it.**
+
+If the run could not reach Kaplan, emit a payload that leaves `lastVerified` at
+its previous value, increments `noDataRuns`, and changes nothing else.
+
 ## Writing the data back
 
 - Append to the arrays. A new simulated exam is a **one-line append to `simExams`**
@@ -217,7 +311,8 @@ report that only re-dated a frozen file.
 ## Before committing
 
 ```bash
-node tools/sanity-check.js
+node tools/apply-payload.js payload.json   # Path B only
+node tools/sanity-check.js                 # always
 ```
 
 28 checks. **Do not push a file that fails it.** The `data-bind` resolution check is

@@ -81,6 +81,27 @@ The playbook is `.claude/skills/s66-sync/SKILL.md` — Kaplan navigation, the
 question-by-question capture procedure, what to do when the session has expired, and
 the rules for writing data back.
 
+## Getting data in from a session that has no clone
+
+`COWORK-BRIEF.md` is a ready-to-paste brief for Cowork or any other Claude
+surface that can drive Chrome but has no clone of this repo. It is self-contained:
+paste it, make sure Kaplan is logged in, and tell it to run. It ends by printing a
+JSON payload.
+
+That payload then gets applied mechanically:
+
+```bash
+node tools/apply-payload.js payload.json   # validates, then writes the SYNC block
+node tools/sanity-check.js
+```
+
+`apply-payload.js` refuses a payload that claims to have verified something with
+empty arrays, has unit split weights that don't sum to 1, has `correct` exceeding
+`answered`, or leaves a unit unmapped. The schema is in the skill.
+
+Nothing is ever hand-typed into the dashboard: `index.html` has a single marked
+`SYNC` block and the script writes that block and nothing else.
+
 ## Before every commit
 
 ```bash
