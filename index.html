@@ -910,31 +910,595 @@ const EXAM = {
    increment `noDataRuns`. That asymmetry is the whole point of the field.
    ========================================================================== */
 const SYNC = {
-  meta: {
-    lastVerified:          null,
-    lastRunAttempted:      null,
-    source:                null,
-    examDate:              null,
-    noDataRuns:            0,
-    lastActivityDate:      null,
-    courseActivitiesDone:  null,
-    courseActivitiesTotal: null,
-    studyPlanPct:          null,
-    kaplanExamAvg:         null,
-    kaplanQBankAvg:        null,
-    unreadReason:          "No Kaplan read has run yet. Run the sync from a machine with a live, logged-in Kaplan session."
+  "meta": {
+    "lastVerified": "2026-09-16",
+    "lastRunAttempted": "2026-09-16",
+    "source": "kaplan",
+    "examDate": null,
+    "noDataRuns": 0,
+    "lastActivityDate": "2026-09-16",
+    "courseActivitiesDone": 7,
+    "courseActivitiesTotal": 137,
+    "studyPlanPct": 1.7,
+    "kaplanExamAvg": null,
+    "kaplanQBankAvg": 72.73,
+    "unreadReason": ""
   },
-  unitTopicMap:    [],
-  unitData:        [],
-  mixedQuizzes:    [],
-  kaplanQBank:     [],
-  simExams:        [],
-  weakSpots:       [],
-  strongSpots:     [],
-  missedQuestions: [],
-  answeredCorrect: [],
-  errorPatterns:   [],
-  priorSnapshot:   null
+  "unitTopicMap": [
+    {
+      "id": "U1",
+      "name": "Unit 1: Regulation of Investment Advisers and Investment Adviser Representatives",
+      "split": {
+        "IV": 1
+      },
+      "note": "Whole unit; Kaplan's intro says ~7 exam questions, which fits Topic IV totals."
+    },
+    {
+      "id": "U2",
+      "name": "Unit 2: Registration Requirements for Investment Advisers and Their Representatives",
+      "split": {
+        "IV": 1
+      },
+      "note": "Whole unit; Kaplan's intro says ~5 exam questions, which fits Topic IV totals."
+    },
+    {
+      "id": "U3",
+      "name": "Unit 3: Regulation of Broker-Dealers and Their Agents",
+      "split": {
+        "IV": 1
+      },
+      "note": "Whole unit; Kaplan's intro says ~4 exam questions, which fits Topic IV totals."
+    },
+    {
+      "id": "U4",
+      "name": "Unit 4: Regulation of Securities and Issuers",
+      "split": {
+        "IV": 1
+      },
+      "note": "Whole unit; Kaplan's intro says ~2 exam questions, which fits Topic IV totals."
+    },
+    {
+      "id": "U5",
+      "name": "Unit 5: Remedies and Administrative Provisions",
+      "split": {
+        "IV": 1
+      },
+      "note": "Whole unit; Kaplan's intro says ~2 exam questions, which fits Topic IV totals."
+    },
+    {
+      "id": "U6",
+      "name": "Unit 6: Communications with Clients and Prospects",
+      "split": {
+        "IV": 1
+      },
+      "note": "Whole unit; Kaplan's intro says ~11 exam questions, which fits Topic IV totals."
+    },
+    {
+      "id": "U7",
+      "name": "Unit 7: Ethical Practices and Fiduciary Obligations",
+      "split": {
+        "IV": 1
+      },
+      "note": "Whole unit; Kaplan's intro says ~14 exam questions, which fits Topic IV totals."
+    },
+    {
+      "id": "U8",
+      "name": "Unit 8: Analytical Methods",
+      "split": {
+        "I": 1
+      },
+      "note": "Whole unit; Kaplan's intro says ~8 exam questions, which fits Topic I totals."
+    },
+    {
+      "id": "U9",
+      "name": "Unit 9: Equity Securities",
+      "split": {
+        "II": 1
+      },
+      "note": "Mapped whole to II to match how Kaplan tracks it (its per-unit question counts only sum to NASAA's 8/17/30/45 this way). Content note: Lesson 9.3 (fundamental and technical analysis) overlaps Topic I analytical methods."
+    },
+    {
+      "id": "U10",
+      "name": "Unit 10: Debt Securities",
+      "split": {
+        "II": 1
+      },
+      "note": "Whole unit; Kaplan's intro says ~5 exam questions, which fits Topic II totals."
+    },
+    {
+      "id": "U11",
+      "name": "Unit 11: Pooled Investments",
+      "split": {
+        "II": 1
+      },
+      "note": "Whole unit; Kaplan's intro says ~3 exam questions, which fits Topic II totals."
+    },
+    {
+      "id": "U12",
+      "name": "Unit 12: Derivatives",
+      "split": {
+        "II": 1
+      },
+      "note": "Whole unit; Kaplan's intro says ~1 exam questions, which fits Topic II totals."
+    },
+    {
+      "id": "U13",
+      "name": "Unit 13: Alternative Investments",
+      "split": {
+        "II": 1
+      },
+      "note": "Whole unit; Kaplan's intro says ~3 exam questions, which fits Topic II totals."
+    },
+    {
+      "id": "U14",
+      "name": "Unit 14: Other Investment Products",
+      "split": {
+        "II": 1
+      },
+      "note": "Whole unit; Kaplan's intro says ~2 exam questions, which fits Topic II totals."
+    },
+    {
+      "id": "U15",
+      "name": "Unit 15: Types of Clients or Customers",
+      "split": {
+        "III": 1
+      },
+      "note": "Whole unit; Kaplan's intro says ~5 exam questions, which fits Topic III totals."
+    },
+    {
+      "id": "U16",
+      "name": "Unit 16: Client or Customer Profiles",
+      "split": {
+        "III": 1
+      },
+      "note": "Mapped whole to III to match how Kaplan tracks it (its per-unit question counts only sum to NASAA's 8/17/30/45 this way). Content note: Lesson 16.3 (senior exploitation) overlaps Topic IV ethics."
+    },
+    {
+      "id": "U17",
+      "name": "Unit 17: Considerations in Portfolio Management",
+      "split": {
+        "III": 1
+      },
+      "note": "Whole unit; Kaplan's intro says ~5 exam questions, which fits Topic III totals."
+    },
+    {
+      "id": "U18",
+      "name": "Unit 18: Tax Considerations",
+      "split": {
+        "III": 1
+      },
+      "note": "Whole unit; Kaplan's intro says ~2 exam questions, which fits Topic III totals."
+    },
+    {
+      "id": "U19",
+      "name": "Unit 19: Retirement Plans, Including ERISA",
+      "split": {
+        "III": 1
+      },
+      "note": "Whole unit; Kaplan's intro says ~4 exam questions, which fits Topic III totals."
+    },
+    {
+      "id": "U20",
+      "name": "Unit 20: Special Types of Accounts",
+      "split": {
+        "III": 1
+      },
+      "note": "Whole unit; Kaplan's intro says ~2 exam questions, which fits Topic III totals."
+    },
+    {
+      "id": "U21",
+      "name": "Unit 21: Ownership and Estate Planning Techniques",
+      "split": {
+        "III": 1
+      },
+      "note": "Whole unit; Kaplan's intro says ~2 exam questions, which fits Topic III totals."
+    },
+    {
+      "id": "U22",
+      "name": "Unit 22: Trading Securities",
+      "split": {
+        "III": 1
+      },
+      "note": "Whole unit; Kaplan's intro says ~3 exam questions, which fits Topic III totals."
+    },
+    {
+      "id": "U23",
+      "name": "Unit 23: Performance Measures",
+      "split": {
+        "III": 1
+      },
+      "note": "Whole unit; Kaplan's intro says ~2 exam questions, which fits Topic III totals."
+    }
+  ],
+  "unitData": [
+    {
+      "id": "U1",
+      "name": "Unit 1: Regulation of Investment Advisers and Investment Adviser Representatives",
+      "qbankAnswered": 11,
+      "qbankCorrect": 8,
+      "examAnswered": 0,
+      "examCorrect": 0,
+      "mixedAnswered": 0,
+      "mixedCorrect": 0,
+      "covers": "Who is and is not an investment adviser/IAR, SEC Release IA-1092, exclusions, private fund advisers",
+      "recurring": "The 'in the business' element of the investment adviser definition: missed it from both sides (over-included transaction earnings in Q4, left out holding out in Q7). Also mixed up the private fund investor standards (qualified purchaser vs qualified client)."
+    },
+    {
+      "id": "U2",
+      "name": "Unit 2: Registration Requirements for Investment Advisers and Their Representatives",
+      "qbankAnswered": 0,
+      "qbankCorrect": 0,
+      "examAnswered": 0,
+      "examCorrect": 0,
+      "mixedAnswered": 0,
+      "mixedCorrect": 0,
+      "covers": "NSMIA's impact on IAs, IA registration and post-registration requirements, IAR regulation",
+      "recurring": ""
+    },
+    {
+      "id": "U3",
+      "name": "Unit 3: Regulation of Broker-Dealers and Their Agents",
+      "qbankAnswered": 0,
+      "qbankCorrect": 0,
+      "examAnswered": 0,
+      "examCorrect": 0,
+      "mixedAnswered": 0,
+      "mixedCorrect": 0,
+      "covers": "Who is and is not a broker-dealer or agent; their registration and post-registration requirements",
+      "recurring": ""
+    },
+    {
+      "id": "U4",
+      "name": "Unit 4: Regulation of Securities and Issuers",
+      "qbankAnswered": 0,
+      "qbankCorrect": 0,
+      "examAnswered": 0,
+      "examCorrect": 0,
+      "mixedAnswered": 0,
+      "mixedCorrect": 0,
+      "covers": "Securities and issuer terms, the securities registration process, registration exemptions",
+      "recurring": ""
+    },
+    {
+      "id": "U5",
+      "name": "Unit 5: Remedies and Administrative Provisions",
+      "qbankAnswered": 0,
+      "qbankCorrect": 0,
+      "examAnswered": 0,
+      "examCorrect": 0,
+      "mixedAnswered": 0,
+      "mixedCorrect": 0,
+      "covers": "Administrator's administrative and disciplinary powers, other penalties and liabilities",
+      "recurring": ""
+    },
+    {
+      "id": "U6",
+      "name": "Unit 6: Communications with Clients and Prospects",
+      "qbankAnswered": 0,
+      "qbankCorrect": 0,
+      "examAnswered": 0,
+      "examCorrect": 0,
+      "mixedAnswered": 0,
+      "mixedCorrect": 0,
+      "covers": "Disclosure, misrepresentations and guarantees, advisory contracts, the IA brochure, advertising, social media",
+      "recurring": ""
+    },
+    {
+      "id": "U7",
+      "name": "Unit 7: Ethical Practices and Fiduciary Obligations",
+      "qbankAnswered": 0,
+      "qbankCorrect": 0,
+      "examAnswered": 0,
+      "examCorrect": 0,
+      "mixedAnswered": 0,
+      "mixedCorrect": 0,
+      "covers": "Fiduciary duty, IA compensation, custody, discretion and BSA, ethics for IAs/IARs and BDs/agents, criminal activity, data protection, business continuity",
+      "recurring": ""
+    },
+    {
+      "id": "U8",
+      "name": "Unit 8: Analytical Methods",
+      "qbankAnswered": 0,
+      "qbankCorrect": 0,
+      "examAnswered": 0,
+      "examCorrect": 0,
+      "mixedAnswered": 0,
+      "mixedCorrect": 0,
+      "covers": "Time value of money, NPV, descriptive statistics, other analytical tools, financial and valuation ratios",
+      "recurring": ""
+    },
+    {
+      "id": "U9",
+      "name": "Unit 9: Equity Securities",
+      "qbankAnswered": 0,
+      "qbankCorrect": 0,
+      "examAnswered": 0,
+      "examCorrect": 0,
+      "mixedAnswered": 0,
+      "mixedCorrect": 0,
+      "covers": "Equity securities, international investing, fundamental and technical analysis, equity public offerings",
+      "recurring": ""
+    },
+    {
+      "id": "U10",
+      "name": "Unit 10: Debt Securities",
+      "qbankAnswered": 0,
+      "qbankCorrect": 0,
+      "examAnswered": 0,
+      "examCorrect": 0,
+      "mixedAnswered": 0,
+      "mixedCorrect": 0,
+      "covers": "Fixed-income valuation, bond yields, duration and discounted cash flow, other bond price factors, cash equivalents",
+      "recurring": ""
+    },
+    {
+      "id": "U11",
+      "name": "Unit 11: Pooled Investments",
+      "qbankAnswered": 0,
+      "qbankCorrect": 0,
+      "examAnswered": 0,
+      "examCorrect": 0,
+      "mixedAnswered": 0,
+      "mixedCorrect": 0,
+      "covers": "Types of pooled investments, investment company capitalization, ETFs and REITs, comparing pooled products",
+      "recurring": ""
+    },
+    {
+      "id": "U12",
+      "name": "Unit 12: Derivatives",
+      "qbankAnswered": 0,
+      "qbankCorrect": 0,
+      "examAnswered": 0,
+      "examCorrect": 0,
+      "mixedAnswered": 0,
+      "mixedCorrect": 0,
+      "covers": "Derivative securities, uses/costs/benefits/risks of options, forwards and futures",
+      "recurring": ""
+    },
+    {
+      "id": "U13",
+      "name": "Unit 13: Alternative Investments",
+      "qbankAnswered": 0,
+      "qbankCorrect": 0,
+      "examAnswered": 0,
+      "examCorrect": 0,
+      "mixedAnswered": 0,
+      "mixedCorrect": 0,
+      "covers": "Alternative investment funds, plus investment real estate and commodities",
+      "recurring": ""
+    },
+    {
+      "id": "U14",
+      "name": "Unit 14: Other Investment Products",
+      "qbankAnswered": 0,
+      "qbankCorrect": 0,
+      "examAnswered": 0,
+      "examCorrect": 0,
+      "mixedAnswered": 0,
+      "mixedCorrect": 0,
+      "covers": "Insurance-based products, annuity purchases and withdrawals, life insurance as an investment, other assets incl. digital assets",
+      "recurring": ""
+    },
+    {
+      "id": "U15",
+      "name": "Unit 15: Types of Clients or Customers",
+      "qbankAnswered": 0,
+      "qbankCorrect": 0,
+      "examAnswered": 0,
+      "examCorrect": 0,
+      "mixedAnswered": 0,
+      "mixedCorrect": 0,
+      "covers": "Natural and nonnatural person accounts, fiduciary and trust accounts, foundations and charities",
+      "recurring": ""
+    },
+    {
+      "id": "U16",
+      "name": "Unit 16: Client or Customer Profiles",
+      "qbankAnswered": 0,
+      "qbankCorrect": 0,
+      "examAnswered": 0,
+      "examCorrect": 0,
+      "mixedAnswered": 0,
+      "mixedCorrect": 0,
+      "covers": "Know your customer, investment goals/objectives/constraints, senior exploitation",
+      "recurring": ""
+    },
+    {
+      "id": "U17",
+      "name": "Unit 17: Considerations in Portfolio Management",
+      "qbankAnswered": 0,
+      "qbankCorrect": 0,
+      "examAnswered": 0,
+      "examCorrect": 0,
+      "mixedAnswered": 0,
+      "mixedCorrect": 0,
+      "covers": "Capital market theory, portfolio management strategies, styles and techniques",
+      "recurring": ""
+    },
+    {
+      "id": "U18",
+      "name": "Unit 18: Tax Considerations",
+      "qbankAnswered": 0,
+      "qbankCorrect": 0,
+      "examAnswered": 0,
+      "examCorrect": 0,
+      "mixedAnswered": 0,
+      "mixedCorrect": 0,
+      "covers": "Individual taxation, taxation of nonnatural entities, taxation of wealth transfers",
+      "recurring": ""
+    },
+    {
+      "id": "U19",
+      "name": "Unit 19: Retirement Plans, Including ERISA",
+      "qbankAnswered": 0,
+      "qbankCorrect": 0,
+      "examAnswered": 0,
+      "examCorrect": 0,
+      "mixedAnswered": 0,
+      "mixedCorrect": 0,
+      "covers": "IRAs, employer-sponsored plans, ERISA issues",
+      "recurring": ""
+    },
+    {
+      "id": "U20",
+      "name": "Unit 20: Special Types of Accounts",
+      "qbankAnswered": 0,
+      "qbankCorrect": 0,
+      "examAnswered": 0,
+      "examCorrect": 0,
+      "mixedAnswered": 0,
+      "mixedCorrect": 0,
+      "covers": "Education accounts (529, Coverdell, UTMA/UGMA), special employee benefit plans",
+      "recurring": ""
+    },
+    {
+      "id": "U21",
+      "name": "Unit 21: Ownership and Estate Planning Techniques",
+      "qbankAnswered": 0,
+      "qbankCorrect": 0,
+      "examAnswered": 0,
+      "examCorrect": 0,
+      "mixedAnswered": 0,
+      "mixedCorrect": 0,
+      "covers": "Simple and complex methods of ownership transfer",
+      "recurring": ""
+    },
+    {
+      "id": "U22",
+      "name": "Unit 22: Trading Securities",
+      "qbankAnswered": 0,
+      "qbankCorrect": 0,
+      "examAnswered": 0,
+      "examCorrect": 0,
+      "mixedAnswered": 0,
+      "mixedCorrect": 0,
+      "covers": "Cash and margin accounts, roles of BDs/custodians/market makers/exchanges, order types, market practices, trading costs",
+      "recurring": ""
+    },
+    {
+      "id": "U23",
+      "name": "Unit 23: Performance Measures",
+      "qbankAnswered": 0,
+      "qbankCorrect": 0,
+      "examAnswered": 0,
+      "examCorrect": 0,
+      "mixedAnswered": 0,
+      "mixedCorrect": 0,
+      "covers": "Portfolio performance measurement and benchmarking",
+      "recurring": ""
+    }
+  ],
+  "mixedQuizzes": [],
+  "kaplanQBank": [
+    {
+      "date": "2026-09-16",
+      "label": "Unit 1 Quiz 1",
+      "answered": 11,
+      "correct": 8
+    }
+  ],
+  "simExams": [],
+  "weakSpots": [
+    "U1 (Topic IV): the 'in the business' element of the investment adviser definition, incl. IA-1092's holding-out factor (Q4, Q7)",
+    "U1 (Topic IV): private fund investor standards: accredited vs qualified client vs qualified purchaser, and which goes with 3(c)(1) vs 3(c)(7) (Q3)"
+  ],
+  "strongSpots": [
+    "U1 (Topic IV): de minimis and institutional-client exemptions from state IA registration, LO 1.i (5/5: Q1, Q2, Q5, Q10, Q11)",
+    "U1 (Topic IV): exclusions from the IA definition (publishers, LATE professionals) and SEC exemptions (VC fund advisers) (Q6, Q8, Q9)"
+  ],
+  "missedQuestions": [
+    {
+      "id": "u1qz1-q03",
+      "date": "2026-09-16",
+      "unitId": "U1",
+      "topic": "IV",
+      "lo": "LO 1.k",
+      "question": "Under the Uniform Securities Act, the 3(c)(1) private fund exemption requires that, at a minimum, all investors meet the definition of",
+      "myAnswer": "A) qualified purchaser",
+      "correctAnswer": "C) qualified client",
+      "rationale": "The investor financial requirement is one way in which state law and federal law differ with respect to the 3(c)(1) private fund exemption. While federal law sets the limit at an accredited investor (generally a net worth exceeding $1 million), the state law requires investors to be qualified clients. Qualified clients are those for whom performance-based compensation is permitted and one of the requirements is a net worth exceeding $2.2 million. To meet the 3(c)(7) exemption, all investors must be qualified purchasers. The qualified purchaser is the highest standard - $5 million for most individuals.",
+      "explanation": "This question tests the ladder of investor standards and which rung goes with which exemption. From lowest to highest: accredited investor (about $1M net worth), then qualified client (about $2.2M net worth; the people an adviser may charge performance fees), then qualified purchaser (about $5M in investments). Each private fund exemption has its own rung: a 3(c)(7) fund is only for qualified purchasers, which is where 'qualified purchaser' belongs. A 3(c)(1) fund, at the federal level, only needs accredited investors. The question says 'Under the Uniform Securities Act,' though, and state law is stricter here: for an adviser to a 3(c)(1) fund to be exempt at the state level, every investor must be a qualified client. The key words are 'at a minimum.' Qualified purchaser does satisfy the state rule, since anyone above the bar clears it, but it is the 3(c)(7) standard, not the minimum for 3(c)(1). That is the trap: choice A is a real, familiar term that belongs to the neighboring exemption. 'Sophisticated investor' is a Reg D 506(b) idea and does not apply here. Memory hook: (1) = qualified CLIENT under state law, (7) = qualified PURCHASER, and with no law named, the exam defaults to state law."
+    },
+    {
+      "id": "u1qz1-q04",
+      "date": "2026-09-16",
+      "unitId": "U1",
+      "topic": "IV",
+      "lo": "LO 1.b",
+      "question": "Under the Investment Advisers Act of 1940, which of the following criteria are considered in determining whether a person is in the business of rendering investment advice? I. The person regularly gives advice on securities. II. The person derives his earnings from executing transactions on recommended securities. III. The person receives compensation from rendering advice on securities.",
+      "myAnswer": "A) I, II, and III",
+      "correctAnswer": "D) I and III",
+      "rationale": "To be in the business of rendering investment advice, a person must regularly provide advice about securities and must be compensated for giving such advice. Those whose earnings are based on securities transactions are broker-dealers and/or agents.",
+      "explanation": "The investment adviser definition comes down to advice about securities, given as a business, for compensation, and the compensation has to be for the ADVICE. Statement II is the distractor: someone paid for executing trades earns commissions on transactions, which is how broker-dealers and agents are paid, not advisers. That is why broker-dealers are excluded from the adviser definition when their advice is solely incidental to their brokerage business and they get no special compensation for it. Statement II sounds like it belongs because it mentions 'recommended securities,' but what it describes is transaction-based pay, and that points away from adviser status. Choosing 'all of the above' on a Roman-numeral question is the over-inclusion trap. For each numeral, ask whether it is really part of the test or just sounds close to it. Test yourself: who is paying, and what are they paying for? Paid for advice means investment adviser; paid per trade means broker-dealer or agent."
+    },
+    {
+      "id": "u1qz1-q07",
+      "date": "2026-09-16",
+      "unitId": "U1",
+      "topic": "IV",
+      "lo": "LO 1.d",
+      "question": "In defining an investment adviser under SEC Release IA-1092, which of the following would meet the business standard? I. A person who advertises himself as an investment adviser. II. A person who provides securities-related advice on a frequent or regular basis. III. A person who receives separate or additional compensation for securities-related advice.",
+      "myAnswer": "C) II and III",
+      "correctAnswer": "B) I, II, and III",
+      "rationale": "To meet the business standard, persons must meet three criteria. First, they must hold themselves out (advertise) as persons who provide investment advice. Second, they must provide such advice on a frequent or regular basis, but it need not be their principal business activity. Third, they must receive separate or additional compensation for doing so.",
+      "explanation": "IA-1092 gives three ways to tell whether someone is 'in the business' of giving securities advice: (1) holding out, meaning advertising or presenting yourself as an adviser; (2) giving specific advice more than rarely, i.e., on a regular basis; and (3) getting separate or additional pay for the advice. You got II and III but dropped I. Holding out is the one people skip because it is about how you present yourself, not what you actually do. The SEC's view is that calling yourself an investment adviser puts you in the business, whether or not you are busy. A useful comparison: a person who is not an adviser cannot just advertise as one, and someone with the title on their card does not escape the definition by saying they rarely give advice. On the exam, all three are business-standard factors, so the answer is I, II and III. (Kaplan's rationale phrases these as three criteria that must all be met. The SEC release treats them as factors, and any one generally puts you in the business. Either reading gives the same answer here.) Note the connection to Q4: II and III here are the same 'regular advice' and 'paid for advice' ideas as Q4's correct answer. IA-1092 adds holding out as a third factor."
+    }
+  ],
+  "answeredCorrect": [
+    {
+      "id": "u1qz1-q01",
+      "question": "Under the Uniform Securities Act, which of the following statements is true about an investment adviser who does not have an office in a state and solicits no more than five clients in that state?",
+      "note": "De minimis exemption: no place of business in the state plus no more than 5 retail clients in 12 months means no state registration (antifraud still applies)."
+    },
+    {
+      "id": "u1qz1-q02",
+      "question": "Under the Uniform Securities Act, which of the following are not required to register as investment adviser representatives in this state?",
+      "note": "Trust companies aren't IAs under the USA, and an out-of-state IA dealing only with in-state IAs is exempt. Someone selling advisory services, or an agent paid on AUM, is acting as an IAR."
+    },
+    {
+      "id": "u1qz1-q05",
+      "question": "Which of the following investment advisers, with no place of business in the state, does not qualify for the de minimis exemption?",
+      "note": "De minimis cap wording: 'fewer than six' = 'five or fewer' = 'no more than five'; 'no more than six' goes over."
+    },
+    {
+      "id": "u1qz1-q06",
+      "question": "In which of the following cases is the exemption from registration with the SEC not based on the value of assets under management?",
+      "note": "Advisers solely to venture capital funds are exempt from SEC registration with no AUM limit; private fund (<$150M) and small adviser (<$25M) rules are AUM-based."
+    },
+    {
+      "id": "u1qz1-q08",
+      "question": "Under both state and federal law, the definition of investment adviser excludes certain publishers. To qualify for that exclusion, the publication must meet which of the following criteria?",
+      "note": "Publisher exclusion (Lowe v. SEC): impersonal advice, bona fide/disinterested content, general and regular circulation, not timed to market events."
+    },
+    {
+      "id": "u1qz1-q09",
+      "question": "Both the Investment Advisers Act of 1940 and SEC Release IA-1092 specifically exclude from the definition of investment adviser certain persons who provide investment advice solely incidental to the practice of their profession. Which of the following would not by definition qualify for this exclusion?",
+      "note": "The professional exclusion covers LATE (lawyer, accountant, teacher, engineer) only when the advice is incidental. A professor paid substantial fees for advice, or an economist acting as a pension consultant, is an adviser."
+    },
+    {
+      "id": "u1qz1-q10",
+      "question": "In which of the following cases would the Uniform Securities Act require registration of an investment adviser who had no place of business in the state?",
+      "note": "More than 5 noninstitutional (retail) clients in the state triggers registration even with no office; institutional clients and websites don't."
+    },
+    {
+      "id": "u1qz1-q11",
+      "question": "An investment adviser need not register in a state if it has",
+      "note": "No place of business plus only institutional clients (insurance companies, banks) means no state registration regardless of client count; a place of business in the state always requires registration."
+    }
+  ],
+  "errorPatterns": [
+    {
+      "rule": "What makes someone 'in the business' of giving investment advice: regular advice, compensation for the advice (not for transactions), and, under IA-1092, holding out as an adviser",
+      "count": 2,
+      "topic": "IV",
+      "occurrences": [
+        "u1qz1-q04",
+        "u1qz1-q07"
+      ],
+      "note": "Missed from both sides: Q4 added a factor that isn't part of the test (transaction-based earnings = BD/agent), and Q7 dropped one that is (holding out). Both are Roman-numeral questions where the elements weren't pinned down precisely."
+    }
+  ],
+  "priorSnapshot": null
 };
 /* ===== END SYNC DATA ===== */
 
