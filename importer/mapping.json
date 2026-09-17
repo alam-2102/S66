@@ -1,0 +1,19 @@
+{
+  "_comment": [
+    "Tuning knobs for parse.mjs. Everything here is optional \u2014 the parser works",
+    "off heuristics alone, and you only edit this when it guesses wrong.",
+    "",
+    "areaOverrides: force a Kaplan unit name onto a content area. Keys are matched",
+    "  case-insensitively against the unit name, substring match. Values must be one",
+    "  of: econ, vehicles, recommendations, laws.",
+    "",
+    "endpoints: once you know which Kaplan endpoints hold your data (capture.mjs",
+    "  prints the list), name them here and the parser reads only those instead of",
+    "  scoring every payload. Substring match against the request URL.",
+    "",
+    "ignoreUnits: unit names to drop entirely (e.g. an orientation chapter)."
+  ],
+  "areaOverrides": {},
+  "endpoints": [],
+  "ignoreUnits": []
+}

@@ -1,0 +1,8 @@
+# Captured Kaplan payloads — your personal data, never commit
+importer/captured/
+importer/.browser-profile/
+importer/*.local.json
+
+node_modules/
+.DS_Store
+*.log

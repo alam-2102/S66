@@ -1,0 +1,17 @@
+{
+  "name": "s66-importer",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Pulls Series 66 progress out of the Kaplan student portal into ../data/progress.js",
+  "scripts": {
+    "capture": "node capture.mjs",
+    "parse": "node parse.mjs",
+    "import": "node capture.mjs && node parse.mjs",
+    "log": "node log.mjs",
+    "serve": "node serve.mjs"
+  },
+  "devDependencies": {
+    "playwright": "^1.47.0"
+  }
+}

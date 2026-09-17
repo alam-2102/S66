@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Series 66 Progress</title>
+<style>
+  :root {
+    color-scheme: light;
+    --page:            #f9f9f7;
+    --surface-1:       #fcfcfb;
+    --text-primary:    #0b0b0b;
+    --text-secondary:  #52514e;
+    --text-muted:      #898781;
+    --grid:            #e1e0d9;
+    --axis:            #c3c2b7;
+    --border:          rgba(11,11,11,0.10);
+    --series-1:        #2a78d6;
+    --series-2:        #eb6834;
+    --deemph:          #c3c2b7;
+    --track:           #cde2fb;
+    --success-text:    #006300;
+    /* status palette — fixed, never themed */
+    --good:            #0ca30c;
+    --warning:         #fab219;
+    --serious:         #ec835a;
+    --critical:        #d03b3b;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:where(:not([data-theme="light"])) {
+      color-scheme: dark;
+      --page:           #0d0d0d;
+      --surface-1:      #1a1a19;
+      --text-primary:   #ffffff;
+      --text-secondary: #c3c2b7;
+      --text-muted:     #898781;
+      --grid:           #2c2c2a;
+      --axis:           #383835;
+      --border:         rgba(255,255,255,0.10);
+      --series-1:       #3987e5;
+      --series-2:       #d95926;
+      --deemph:         #383835;
+      --track:          #184f95;
+      --success-text:   #0ca30c;
+    }
+  }
+  :root[data-theme="dark"] {
+    color-scheme: dark;
+    --page:           #0d0d0d;
+    --surface-1:      #1a1a19;
+    --text-primary:   #ffffff;
+    --text-secondary: #c3c2b7;
+    --text-muted:     #898781;
+    --grid:           #2c2c2a;
+    --axis:           #383835;
+    --border:         rgba(255,255,255,0.10);
+    --series-1:       #3987e5;
+    --series-2:       #d95926;
+    --deemph:         #383835;
+    --track:          #184f95;
+    --success-text:   #0ca30c;
+  }
+
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0;
+    background: var(--page);
+    color: var(--text-primary);
+    font: 15px/1.5 system-ui, -apple-system, "Segoe UI", sans-serif;
+    overflow-x: hidden;
+  }
+  .wrap { max-width: 1060px; margin: 0 auto; padding: 28px 16px 72px; }
+
+  /* ---------- header ---------- */
+  header.top { display: flex; flex-wrap: wrap; gap: 12px; align-items: baseline;
+               justify-content: space-between; margin-bottom: 8px; }
+  h1 { font-size: 20px; font-weight: 650; margin: 0; letter-spacing: -0.01em; }
+  .sub { color: var(--text-secondary); font-size: 13px; margin: 2px 0 0; }
+  .head-actions { display: flex; gap: 8px; align-items: center; }
+  button.ghost {
+    font: inherit; font-size: 12.5px; color: var(--text-secondary);
+    background: var(--surface-1); border: 1px solid var(--border);
+    border-radius: 7px; padding: 6px 11px; cursor: pointer; min-height: 32px;
+  }
+  button.ghost:hover { color: var(--text-primary); }
+  button.ghost[aria-pressed="true"] { color: var(--text-primary); border-color: var(--axis); }
+
+  .banner {
+    /* block, not flex — flex would make every text run its own item and fragment
+       the sentence into columns */
+    display: block;
+    background: var(--surface-1); border: 1px solid var(--border);
+    border-left: 3px solid var(--warning);
+    border-radius: 8px; padding: 11px 14px; margin: 16px 0 0; font-size: 13.5px;
+    color: var(--text-secondary);
+  }
+  .banner strong { color: var(--text-primary); font-weight: 600; }
+
+  /* ---------- cards ---------- */
+  .card {
+    background: var(--surface-1); border: 1px solid var(--border);
+    border-radius: 12px; padding: 18px 18px 16px; margin-top: 16px;
+  }
+  .card-head { display: flex; flex-wrap: wrap; gap: 8px; align-items: baseline;
+               justify-content: space-between; margin-bottom: 4px; }
+  .card h2 { font-size: 14px; font-weight: 600; margin: 0; letter-spacing: -0.005em; }
+  .card .note { font-size: 12.5px; color: var(--text-muted); margin: 0 0 16px; max-width: 62ch; }
+
+  /* ---------- hero ---------- */
+  .hero-grid { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1.15fr);
+               gap: 28px; align-items: center; }
+  @media (max-width: 720px) { .hero-grid { grid-template-columns: 1fr; gap: 20px; } }
+  .hero-label { font-size: 12.5px; color: var(--text-secondary); margin: 0 0 2px; }
+  .hero-fig { font-size: 56px; line-height: 1.02; font-weight: 600; letter-spacing: -0.02em;
+              display: flex; align-items: baseline; gap: 4px; }
+  .hero-fig .unit { font-size: 24px; font-weight: 500; color: var(--text-secondary); }
+  .hero-fig.none, .kpi .k-val.none { color: var(--text-muted); font-weight: 400; }
+  .hero-meta { font-size: 12.5px; color: var(--text-muted); margin: 8px 0 0; }
+
+  /* meter: fill = severity, track = lighter step of same ramp */
+  .meter { margin-top: 4px; }
+  .meter-track { position: relative; height: 12px; border-radius: 6px;
+                 background: var(--track); overflow: visible; }
+  .meter-fill { height: 12px; border-radius: 6px 3px 3px 6px; }
+  .meter-mark { position: absolute; top: -5px; bottom: -5px; width: 1px; background: var(--text-secondary); }
+  .meter-scale { display: flex; justify-content: space-between; font-size: 11.5px;
+                 color: var(--text-muted); margin-top: 6px; font-variant-numeric: tabular-nums; }
+
+  /* ---------- readiness checklist ---------- */
+  ul.checks { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+  ul.checks li { display: grid; grid-template-columns: 18px minmax(0,1fr) auto;
+                 gap: 10px; align-items: baseline; font-size: 13.5px; }
+  .ico { font-size: 13px; line-height: 1.4; text-align: center; font-weight: 700; }
+  .ico.good { color: var(--good); }
+  .ico.warning { color: var(--warning); }
+  .ico.critical { color: var(--critical); }
+  .ico.muted { color: var(--text-muted); font-weight: 400; }
+  .check-label { color: var(--text-secondary); }
+  .check-label b { color: var(--text-primary); font-weight: 600; }
+  .check-state { font-size: 12.5px; color: var(--text-muted); white-space: nowrap;
+                 font-variant-numeric: tabular-nums; }
+
+  /* ---------- KPI row ---------- */
+  .kpis { display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap: 16px; margin-top: 16px; }
+  @media (max-width: 860px) { .kpis { grid-template-columns: repeat(2, minmax(0,1fr)); } }
+  .kpi { background: var(--surface-1); border: 1px solid var(--border);
+         border-radius: 12px; padding: 14px 16px 13px; }
+  .kpi .k-label { font-size: 12px; color: var(--text-secondary); margin: 0 0 6px; }
+  .kpi .k-val { font-size: 27px; font-weight: 600; letter-spacing: -0.015em; line-height: 1.1; }
+  .kpi .k-val .unit { font-size: 15px; font-weight: 500; color: var(--text-secondary); }
+  .kpi .k-sub { font-size: 12px; color: var(--text-muted); margin: 5px 0 0; }
+  .kpi .k-sub.up { color: var(--success-text); }
+  .kpi svg.spark { display: block; margin-top: 9px; width: 100%; height: 26px; }
+
+  /* ---------- horizontal bars ---------- */
+  .bars { display: grid; gap: 2px; }
+  /* three columns — name | track | value + status — so a label can never sit on
+     top of a bar or get clipped by one, whatever the value */
+  .bar-row { display: grid; grid-template-columns: minmax(92px, 164px) minmax(0,1fr) auto;
+             gap: 14px; align-items: center; padding: 3px 0; border-radius: 6px; }
+  .bar-row:hover { background: color-mix(in srgb, var(--text-primary) 4%, transparent); }
+  .bar-name { font-size: 12.5px; color: var(--text-secondary); text-align: right; line-height: 1.25; }
+  .bar-name span { display: block; color: var(--text-muted); font-size: 11px; }
+  .bar-lane { position: relative; height: 22px; display: flex; align-items: center; }
+  .bar-fill { height: 18px; background: var(--series-1); border-radius: 0 4px 4px 0; min-width: 2px; }
+  .bar-ref { position: absolute; top: -1px; bottom: -1px; width: 1px; background: var(--axis); }
+  .bar-meta { display: flex; align-items: baseline; gap: 9px; justify-content: flex-end;
+              font-size: 12px; white-space: nowrap; }
+  .bar-meta .v { color: var(--text-primary); font-variant-numeric: tabular-nums;
+                 min-width: 42px; text-align: right; }
+  .bar-meta .st { color: var(--text-muted); display: inline-flex; align-items: baseline;
+                  gap: 5px; min-width: 56px; }
+  .bar-empty { font-size: 12px; color: var(--text-muted); font-style: normal; }
+  /* narrow screens: a name column plus a meta column leaves no room for the bar,
+     so the track gets its own full-width line underneath */
+  @media (max-width: 640px) {
+    .bar-row { grid-template-columns: minmax(0,1fr) auto;
+               grid-template-areas: "name meta" "lane lane";
+               column-gap: 10px; row-gap: 3px; padding: 7px 0; align-items: baseline; }
+    .bar-name { grid-area: name; text-align: left; }
+    .bar-name span { display: inline; margin-left: 7px; }
+    .bar-meta { grid-area: meta; }
+    .bar-lane { grid-area: lane; height: 18px; }
+    .bar-fill { height: 14px; }
+  }
+  .ref-key { display: flex; gap: 14px; flex-wrap: wrap; margin-top: 14px;
+             font-size: 11.5px; color: var(--text-muted); }
+  .ref-key i { display: inline-block; width: 10px; height: 0; border-top: 1px solid var(--axis);
+               vertical-align: middle; margin-right: 5px; }
+
+  /* ---------- columns ---------- */
+  .cols { display: flex; align-items: flex-end; gap: 2px; height: 132px;
+          border-bottom: 1px solid var(--axis); padding-bottom: 0; }
+  .col-slot { flex: 1 1 0; display: flex; flex-direction: column; justify-content: flex-end;
+              align-items: center; height: 100%; min-width: 0; border-radius: 4px 4px 0 0; }
+  .col-slot:hover { background: color-mix(in srgb, var(--text-primary) 4%, transparent); }
+  .col-fill { width: 100%; max-width: 24px; background: var(--series-1); border-radius: 4px 4px 0 0; }
+  .col-axis { display: flex; gap: 2px; margin-top: 7px; }
+  .col-tick { flex: 1 1 0; min-width: 0; text-align: center; font-size: 11px;
+              color: var(--text-muted); font-variant-numeric: tabular-nums;
+              overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+  /* ---------- legend ---------- */
+  .legend { display: flex; gap: 16px; flex-wrap: wrap; margin: 0 0 12px; font-size: 12.5px;
+            color: var(--text-secondary); }
+  .legend span { display: inline-flex; align-items: center; gap: 6px; }
+  .legend i { width: 14px; height: 2px; border-radius: 1px; display: inline-block; }
+
+  /* ---------- line chart ---------- */
+  .chart-host { position: relative; }
+  svg.line-chart { display: block; width: 100%; height: auto; }
+  .tip {
+    position: absolute; pointer-events: none; z-index: 5; opacity: 0; transition: opacity .1s;
+    background: var(--surface-1); border: 1px solid var(--border);
+    box-shadow: 0 2px 10px rgba(0,0,0,.10);
+    border-radius: 8px; padding: 8px 10px; font-size: 12px; min-width: 128px;
+    color: var(--text-primary);
+  }
+  .tip .t-date { color: var(--text-muted); font-size: 11px; margin-bottom: 5px; }
+  .tip .t-row { display: flex; align-items: center; gap: 7px; justify-content: space-between;
+                margin-top: 3px; }
+  .tip .t-row .nm { display: inline-flex; align-items: center; gap: 6px; color: var(--text-secondary); }
+  .tip .t-row i { width: 9px; height: 9px; border-radius: 50%; display: inline-block; flex: none; }
+  .tip .t-row b { font-weight: 600; font-variant-numeric: tabular-nums; }
+
+  /* ---------- table view ---------- */
+  table.dv { width: 100%; border-collapse: collapse; font-size: 12.5px; }
+  table.dv caption { text-align: left; color: var(--text-muted); font-size: 12px;
+                     padding-bottom: 8px; }
+  table.dv th, table.dv td { text-align: right; padding: 6px 8px;
+                             border-bottom: 1px solid var(--grid); font-variant-numeric: tabular-nums; }
+  table.dv th:first-child, table.dv td:first-child { text-align: left; font-variant-numeric: normal; }
+  table.dv th { color: var(--text-muted); font-weight: 500; white-space: nowrap; }
+  .scroll-x { overflow-x: auto; }
+  [hidden] { display: none !important; }
+
+  /* ---------- empty states ---------- */
+  .empty { border: 1px dashed var(--axis); border-radius: 9px; padding: 22px 18px;
+           text-align: center; color: var(--text-muted); font-size: 13px; }
+  .empty b { display: block; color: var(--text-secondary); font-weight: 600; margin-bottom: 3px; }
+  code.inline { font: 12px/1.4 ui-monospace, SFMono-Regular, Menlo, monospace;
+                background: color-mix(in srgb, var(--text-primary) 6%, transparent);
+                padding: 1.5px 5px; border-radius: 4px; }
+  footer.foot { margin-top: 28px; font-size: 12px; color: var(--text-muted); }
+  footer.foot a { color: inherit; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="top">
+    <div>
+      <h1>Series 66 Progress</h1>
+      <p class="sub" id="subline">Uniform Combined State Law Examination · 100 scored questions · 75 to pass</p>
+    </div>
+    <div class="head-actions">
+      <button class="ghost" id="sample-btn" aria-pressed="false">Sample data</button>
+      <button class="ghost" id="theme-btn" aria-label="Toggle dark mode">Theme</button>
+    </div>
+  </header>
+
+  <div id="banner-slot"></div>
+
+  <!-- hero -->
+  <section class="card" id="hero-card">
+    <div class="hero-grid">
+      <div>
+        <p class="hero-label">Weighted projected score</p>
+        <div class="hero-fig" id="hero-val">—<span class="unit"></span></div>
+        <p class="hero-meta" id="hero-meta">No performance data yet.</p>
+      </div>
+      <div class="meter" id="hero-meter" hidden>
+        <div class="meter-track">
+          <div class="meter-fill" id="meter-fill" style="width:0"></div>
+          <div class="meter-mark" id="meter-mark" style="left:75%"></div>
+        </div>
+        <div class="meter-scale"><span>0</span><span id="meter-pass">75 to pass</span><span>100</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- readiness -->
+  <section class="card">
+    <div class="card-head"><h2>Readiness</h2></div>
+    <p class="note">Your own bars, set in <code class="inline">data/progress.js</code> — deliberately above the
+      75 pass mark so a bad day on exam morning still clears it.</p>
+    <ul class="checks" id="checks"></ul>
+  </section>
+
+  <!-- KPIs -->
+  <div class="kpis" id="kpis"></div>
+
+  <!-- trend -->
+  <section class="card">
+    <div class="card-head">
+      <h2>Score trend</h2>
+      <button class="ghost" data-toggle="trend" aria-pressed="false">Table</button>
+    </div>
+    <p class="note">Cumulative QBank accuracy against each practice exam you sit. Both are
+      percent correct, so they share one axis.</p>
+    <div id="trend-chart"></div>
+    <div id="trend-table" hidden></div>
+  </section>
+
+  <!-- accuracy by area -->
+  <section class="card">
+    <div class="card-head">
+      <h2>Accuracy by content area</h2>
+      <button class="ghost" data-toggle="areas" aria-pressed="false">Table</button>
+    </div>
+    <p class="note">Each area's share of the exam is under its name — a weak area worth 42
+      questions matters five times more than one worth 8.</p>
+    <div id="areas-chart"></div>
+    <div id="areas-table" hidden></div>
+  </section>
+
+  <!-- priority -->
+  <section class="card">
+    <div class="card-head">
+      <h2>Where your lost points are</h2>
+      <button class="ghost" data-toggle="priority" aria-pressed="false">Table</button>
+    </div>
+    <p class="note">Scored questions you'd expect to miss per area at your current accuracy —
+      exam weight times miss rate. Top of this list is what to study next.</p>
+    <div id="priority-chart"></div>
+    <div id="priority-table" hidden></div>
+  </section>
+
+  <!-- study time -->
+  <section class="card">
+    <div class="card-head">
+      <h2>Study time by week</h2>
+      <button class="ghost" data-toggle="study" aria-pressed="false">Table</button>
+    </div>
+    <p class="note">Hours logged per calendar week, most recent twelve.</p>
+    <div id="study-chart"></div>
+    <div id="study-table" hidden></div>
+  </section>
+
+  <footer class="foot">
+    <span id="foot-updated">No data loaded.</span>
+    Blueprint weights from the NASAA Series 66 content outline. Refresh with
+    <code class="inline">node importer/capture.mjs</code>.
+  </footer>
+</div>
+
+<script src="data/exam.js"></script>
+<script src="data/progress.js"></script>
+<script src="assets/sample.js"></script>
+<script src="assets/dashboard.js"></script>
+</body>
+</html>
