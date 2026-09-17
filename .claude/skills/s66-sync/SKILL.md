@@ -84,6 +84,19 @@ cumulative and authoritative: **they override any older single-quiz score** show
 unit's section header. When the tracker and an old quiz result disagree, the tracker
 wins, always. Read it every run. This is the primary source for `unitData`.
 
+**The tracker counts unique questions, not attempts.** If a question is answered in
+two different quizzes, the tracker keeps the LATEST attempt and drops the earlier
+one. Confirmed 17 Sep 2026: four activities decomposed to 28 QBank attempts / 22
+correct, while the tracker read 27 / 22 - the dropped attempt was the earlier,
+wrong answer to an IA-1092 question that reappeared and was answered correctly.
+
+So per-activity question counts will sometimes sum to MORE than the tracker's
+figure, and that is not an error in either. **Always use the tracker's number for
+`unitData`**: it is the one where every question is counted exactly once, which is
+exactly what the pooled score requires. Summing raw attempts double-counts repeats
+and drags the score down (74.4% vs 72.5% on this run). When the two disagree,
+look for a repeated question before assuming something was missed.
+
 ### Finding the quizzes - Study Tools menu
 **Coordinate clicks on the header menu miss.** The screenshot coordinate frame is
 scaled relative to the real viewport, so a click aimed at "Study Tools" lands on the
