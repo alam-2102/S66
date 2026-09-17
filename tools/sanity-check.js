@@ -125,7 +125,8 @@ sandbox.getSelection = () => ({ removeAllRanges() {}, addRange() {} });
 const EXPORTS = `
 ;globalThis.__X__ = {
   nasaaData, EXAM, META, unitData, mixedQuizzes, kaplanQBank, simExams,
-  UNIT_TOPIC_MAP, missedQuestions, errorPatterns, quickTips,
+  UNIT_TOPIC_MAP, missedQuestions, errorPatterns, quickTips, answeredCorrect,
+  PRIOR_SNAPSHOT,
   pooledTotals, topicTotals, unitPool, buildBindings, bindAll, renderAll,
   renderSimulated, renderPerformance, buildPaste, MISSING_BINDS
 };`;
@@ -285,6 +286,17 @@ function rowCount(html) { return (String(html).match(/<tr/g) || []).length; }
   assert(/HOW I WANT TO BE HELPED/.test(full), "full briefing carries the how-to-help instructions");
   assert(/73%/.test(full), "full briefing states the pass line");
   const delta = X.buildPaste("delta");
+  /* The delta has to carry what he has LEARNED, not only what he got wrong -
+     otherwise the tutoring chat only ever sees failures and re-teaches things he
+     has already demonstrated. */
+  if (X.PRIOR_SNAPSHOT) {
+    assert(/EVERYTHING I HAVE WORKED THROUGH SO FAR/.test(delta),
+      "delta states which chapters have been covered");
+    const newCorrect = X.answeredCorrect.filter(
+      q => !new Set(X.PRIOR_SNAPSHOT.correctIds || []).has(q.id));
+    assert(newCorrect.length === 0 || /CONCEPTS I ANSWERED CORRECTLY THIS ROUND/.test(delta),
+      "delta reports concepts newly answered correctly", newCorrect.length + " new");
+  }
   assert(/SUPERSEDES ALL EARLIER FIGURES|NO PRIOR SNAPSHOT/.test(delta),
     "delta briefing opens with a supersede line, or says no snapshot exists");
   /* Quick Tips must be actionable and must trace back to a real miss - generic exam

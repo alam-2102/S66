@@ -223,6 +223,13 @@ You can edit, check and push directly. Edit the `SYNC` block in `index.html`,
 run `node tools/sanity-check.js`, commit, push. GitHub Pages redeploys in 30-60
 seconds. Nothing to hand off.
 
+The delta briefing is not just a scoreboard diff. It has to tell the tutoring
+conversation **what material Austin has now been through** - newly covered chapters
+with what they cover, everything worked through so far, and the concepts he answered
+correctly this round - alongside the new misses. He uses that chat to ask questions
+about chapters as he goes, so a delta that lists only failures leaves it guessing at
+what he has read.
+
 ### Path B - this session can drive Chrome but has no clone
 A Cowork run, or any surface with browser control and no repo. The ready-to-paste
 brief for that case is `COWORK-BRIEF.md` at the repo root — self-contained, no
@@ -324,7 +331,14 @@ its previous value, increments `noDataRuns`, and changes nothing else.
   reset `noDataRuns` to 0.
 - Update `PRIOR_SNAPSHOT` **last**, to the state as of this run, so the next run's
   delta briefing is computed rather than guessed. Shape:
-  `{ asOf, pooledPct, units: {id: pct}, missIds: [], patternRules: [], activityIds: [] }`
+  `{ asOf, pooledPct, units: {id: pct}, missIds: [], correctIds: [],
+     patternRules: [], activityIds: [] }`
+
+  `units` must carry an entry for every unit that had data, because the delta uses
+  it to work out which chapters are **newly** covered. `correctIds` must list every
+  entry in `answeredCorrect`, because the delta uses it to report what he has newly
+  demonstrated he knows. Omit either and the tutoring chat only ever sees his
+  failures, and will re-teach material he has already got right.
 - Everything else recomputes. Do not hand-edit a derived value.
 
 ### Exam date

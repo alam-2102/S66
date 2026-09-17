@@ -1945,6 +1945,16 @@ const SYNC = {
     ],
     "activityIds": [
       "Unit 1 Quiz 1 (Test 410528324)"
+    ],
+    "correctIds": [
+      "u1qz1-q01",
+      "u1qz1-q02",
+      "u1qz1-q05",
+      "u1qz1-q06",
+      "u1qz1-q08",
+      "u1qz1-q09",
+      "u1qz1-q10",
+      "u1qz1-q11"
     ]
   }
 };
@@ -3309,10 +3319,36 @@ function briefDelta() {
   }
   s += "\n";
 
+  /* Chapters newly opened since the last sync, so the tutor knows what material I
+     have actually been through - not just what I got wrong in it. */
+  const prevStarted = new Set(Object.keys(prevUnits).filter(k => prevUnits[k] != null));
+  const nowStarted = unitData.filter(u => unitPool(u).answered > 0);
+  const newlyStarted = nowStarted.filter(u => !prevStarted.has(u.id));
+  if (newlyStarted.length) {
+    s += "CHAPTERS I HAVE NOW COVERED SINCE THE LAST UPDATE\n"
+       + newlyStarted.map(u => "- " + u.name + (u.covers ? "\n    " + u.covers : "")).join("\n")
+       + "\n\n";
+  }
+  s += "EVERYTHING I HAVE WORKED THROUGH SO FAR\n"
+     + (nowStarted.length
+         ? nowStarted.map(u => "  - " + u.name + " (" + fmtPct(pct(unitPool(u).correct, unitPool(u).answered)) + ")").join("\n") + "\n"
+         : "  (nothing yet)\n")
+     + "  Everything else in the course is untouched - do not assume I know it.\n\n";
+
   if (newMisses.length) {
     s += "NEWLY MISSED QUESTIONS (" + newMisses.length + ")\n";
     for (const q of newMisses) s += txtMiss(q, true);
     s += "\n";
+  }
+
+  /* What I got RIGHT since last time. Without this the tutor only ever sees my
+     failures and will re-teach things I have already demonstrated. */
+  const prevCorrect = new Set(prev.correctIds || []);
+  const newCorrect = answeredCorrect.filter(q => !prevCorrect.has(q.id));
+  if (newCorrect.length) {
+    s += "CONCEPTS I ANSWERED CORRECTLY THIS ROUND (" + newCorrect.length + ")\n"
+       + "Do not re-teach these unless I ask. They are here so you know what has landed.\n"
+       + newCorrect.map(q => "- " + (q.note || q.question)).join("\n") + "\n\n";
   }
 
   const prevPatterns = new Set(prev.patternRules || []);
@@ -3321,6 +3357,16 @@ function briefDelta() {
     s += "ERROR PATTERNS THAT NEWLY REPEATED\n"
        + newlyRepeated.map(p => "- " + p.rule + " [now " + p.count + "x]"
            + (p.note ? "\n  " + p.note : "")).join("\n") + "\n\n";
+  }
+  if (quickTips.filter(t => !t.cleared).length) {
+    s += "THE SHORTCUTS I AM TRYING TO INTERNALISE RIGHT NOW\n"
+       + "Written from my own misses. If I get one of these wrong in conversation, say so.\n"
+       + txtTips() + "\n";
+  }
+  const clearedNow = quickTips.filter(t => t.cleared);
+  if (clearedNow.length) {
+    s += "ERRORS I HAVE SINCE FIXED (verified on a retest - do not drill these)\n"
+       + clearedNow.map(t => "- " + t.trigger).join("\n") + "\n\n";
   }
   s += HOW_TO_HELP;
   return s;
