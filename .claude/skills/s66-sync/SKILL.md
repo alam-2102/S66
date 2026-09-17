@@ -191,6 +191,12 @@ it:
   "why": "Missed from both directions - once by adding transaction pay, once by dropping holding out." }
 ```
 
+**Who writes them.** On a Path A run (session inside the repo) the sync writes them
+directly. On a Path B run (a browser session with no clone) the tips are NOT part of
+the payload: that run has no memory of previous syncs, so it would duplicate tips and
+reset counts. It supplies the misses and patterns; whoever applies the payload writes
+the tips against the existing ones. Same for `priorSnapshot`.
+
 Rules:
 
 - **Never generic exam advice.** Every tip must trace to a real miss via

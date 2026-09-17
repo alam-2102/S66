@@ -224,13 +224,6 @@ schema. Nothing else after it.
     { "rule": "the rule I keep missing", "count": 2, "topic": "IV",
       "occurrences": ["e1q07"], "note": "why it keeps happening" }
   ],
-  "quickTips": [
-    { "id": "t-short-slug", "kind": "rule", "topic": "IV", "unitId": "U1",
-      "count": 2, "fromMisses": ["e1q07"],
-      "trigger": "a question asking which criteria make someone 'in the business' of giving advice",
-      "move": "Count exactly three: regular advice + paid FOR THE ADVICE + holds himself out. Strike transaction earnings.",
-      "why": "one line on why this keeps catching me" }
-  ],
   "priorSnapshot": null
 }
 ```
@@ -239,12 +232,6 @@ Rules for the payload:
 
 - Dates are `YYYY-MM-DD`. Unit ids are yours to assign (`U1`, `U2`, …) but must
   be consistent across `unitData`, `unitTopicMap` and `byUnit`.
-- **`quickTips` is the compressed version of what I got wrong** - a trigger I will
-  recognise mid-question and the move that answers it. Write one per distinct error.
-  **Never generic exam advice**: every tip must cite real misses in `fromMisses`, or
-  it will be rejected. `kind` is `"rule"` for content or `"technique"` for how I am
-  answering questions wrong (e.g. mishandling Roman-numeral questions). `count` is
-  how many times that error has shown up.
 - **Every entry in `missedQuestions` must have an `explanation`.** It is the
   highest-value field in the whole payload. A payload with misses missing it will
   be rejected.
@@ -254,6 +241,13 @@ Rules for the payload:
   nothing, do not produce a payload at all — just tell me the session was dead.
 - Anything in `errorPatterns` with `count` 2 or more is the most useful thing you
   can give me. Look for it deliberately: the same rule missed twice.
+- **Do not write `quickTips`.** That field exists in the dashboard but is filled in
+  on the repo side, where the previous syncs are available. Tips have to be updated
+  rather than re-invented - counts bumped, fixed errors marked cleared, near-
+  duplicates merged - and you are starting cold with no memory of what is already
+  there. Give me the misses and the patterns; the tips get written from those.
+- Likewise leave `priorSnapshot` as `null`. It is set on the repo side from the
+  actual previous state, which is the only way the "what changed" diff is real.
 
 After the payload, give me a short plain-prose summary — what my pooled score is,
 what is weakest, 2–4 of the misses with their explanations, and one concrete next
