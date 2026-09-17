@@ -5,6 +5,9 @@ Examination, kept current by a sync job that reads real Kaplan data.
 
 **Live:** https://alam-2102.github.io/S66/
 
+Append `?v=<short-sha>` after a push to bypass the Pages cache — handy on a phone,
+where hard-refreshing is awkward. The query string is ignored for file lookup.
+
 ## The deliverable
 
 `index.html` at the repo root. One file, all CSS and JS inline, no build step, no

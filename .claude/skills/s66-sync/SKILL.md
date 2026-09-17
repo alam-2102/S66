@@ -330,6 +330,25 @@ The commit history becomes a free study log. Push to
 Pages takes 30-60 seconds to redeploy and caches - if the site looks stale, hard-refresh
 before hunting for a bug.
 
+## End every run with the live link
+
+The dashboard is the deliverable, not the report. Finish every run by giving
+Austin a link he can open and interact with straight away:
+
+```
+https://alam-2102.github.io/S66/?v=<short-sha>
+```
+
+Use the short SHA of the commit you just pushed. GitHub Pages caches hard and
+hard-refreshing on a phone is awkward; the `?v=` makes the browser treat it as a
+new URL, so tapping the link always loads the build you just pushed. The query
+string is ignored for file lookup, so it serves the same page.
+
+Pages takes 30-60 seconds to redeploy. **Confirm it is actually live before
+sending the link** - fetch the URL and check it contains something only the new
+build has, rather than assuming the push was enough. Do not send a link to a
+build that has not deployed.
+
 ## Reporting back
 
 Short, direct, plain prose, minimal markdown. Write like a study partner, not a report

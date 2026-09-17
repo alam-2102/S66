@@ -901,25 +901,48 @@ const EXAM = {
   TARGET_AVG: 81   // 8 points of buffer over the pass line. Adjustable; don't move casually.
 };
 
+/* ===== BEGIN SYNC DATA ======================================================
+   Everything between these markers is written by the sync job, via
+   tools/apply-payload.js. Do NOT hand-edit it - hand-editing is how numbers
+   drift. Field notes are on the aliases below the block.
+
+   A sync run that cannot reach Kaplan must leave `lastVerified` alone and
+   increment `noDataRuns`. That asymmetry is the whole point of the field.
+   ========================================================================== */
+const SYNC = {
+  meta: {
+    lastVerified:          null,
+    lastRunAttempted:      null,
+    source:                null,
+    examDate:              null,
+    noDataRuns:            0,
+    lastActivityDate:      null,
+    courseActivitiesDone:  null,
+    courseActivitiesTotal: null,
+    studyPlanPct:          null,
+    kaplanExamAvg:         null,
+    kaplanQBankAvg:        null,
+    unreadReason:          "No Kaplan read has run yet. Run the sync from a machine with a live, logged-in Kaplan session."
+  },
+  unitTopicMap:    [],
+  unitData:        [],
+  mixedQuizzes:    [],
+  kaplanQBank:     [],
+  simExams:        [],
+  weakSpots:       [],
+  strongSpots:     [],
+  missedQuestions: [],
+  answeredCorrect: [],
+  errorPatterns:   [],
+  priorSnapshot:   null
+};
+/* ===== END SYNC DATA ===== */
+
 /* ---------- run metadata ----------------------------------------------------
    lastVerified is the date Kaplan was actually READ. If a run cannot reach
-   Kaplan it must not move this date - that is the whole point of the field.
+   Kaplan it must not move this date.
    -------------------------------------------------------------------------- */
-const META = {
-  lastVerified:          null,   // ISO date of the last successful Kaplan read
-  lastRunAttempted:      null,   // ISO date of the last sync attempt, successful or not
-  source:                null,   // "kaplan" once real data lands; null while empty
-  examDate:              null,   // null = NOT BOOKED. Do not invent one.
-  noDataRuns:            0,      // consecutive runs that reached a login page / read nothing
-  lastActivityDate:      null,   // most recent dated activity found in Kaplan
-  courseActivitiesDone:  null,
-  courseActivitiesTotal: null,
-  studyPlanPct:          null,
-  kaplanExamAvg:         null,   // Kaplan's own headline, for cross-check only
-  kaplanQBankAvg:        null,
-  unreadReason:          "No Kaplan read has run yet. This container cannot reach a logged-in "
-                       + "Kaplan session; the sync must run from a machine with the live session."
-};
+const META = SYNC.meta;
 
 /* ---------- Kaplan unit -> NASAA topic map ----------------------------------
    MUST be derived from Kaplan's actual unit list and learning objectives, then
@@ -927,9 +950,8 @@ const META = {
    spans two topics it is split, and the split is stored - never forced into one
    bucket. Split weights for a unit must sum to exactly 1.
      { id, name, split: { IV: 0.7, III: 0.3 }, note: "why it splits" }
-   Empty until the Kaplan unit list has been read.
    -------------------------------------------------------------------------- */
-const UNIT_TOPIC_MAP = [];
+const UNIT_TOPIC_MAP = SYNC.unitTopicMap;
 
 /* ---------- per-unit performance -------------------------------------------
    Canonical source is the Performance Tracker Breakdown table. Those figures
@@ -939,14 +961,14 @@ const UNIT_TOPIC_MAP = [];
        examAnswered,  examCorrect,    <- in the pool
        mixedAnswered, mixedCorrect }  <- counterweight only, NOT pooled
    -------------------------------------------------------------------------- */
-const unitData = [];
+const unitData = SYNC.unitData;
 
 /* Mixed / cumulative review quizzes. Drawn from the QBank, so already inside
    the QBank counts. Reported alongside the pooled score, never added into it. */
-const mixedQuizzes = [];
+const mixedQuizzes = SYNC.mixedQuizzes;
 
 /* Individual QBank sittings, for the trend line. */
-const kaplanQBank = [];
+const kaplanQBank = SYNC.kaplanQBank;
 
 /* Simulated and practice exams. Adding one must be a one-line append.
      { name, date, score, total, timeUsed, timeAllowed,
@@ -954,28 +976,27 @@ const kaplanQBank = [];
        byTopic: {I|II|III|IV: {answered, correct}},
        segments: [{label:"1-25", missed:n}, ...],
        missCats: {"misread the question": n, ...} }                            */
-const simExams = [];
+const simExams = SYNC.simExams;
 
 /* Derived narrative anchors, written by the sync job from the real data. */
-const weakSpots = [];
-const strongSpots = [];
+const weakSpots = SYNC.weakSpots;
+const strongSpots = SYNC.strongSpots;
 
 /* Question-by-question decomposition. The most valuable payload on the page.
      { id, source, date, unitId, topic, lo, question,
-       myAnswer, correctAnswer, correct: false,
-       rationale, explanation }
+       myAnswer, correctAnswer, rationale, explanation }
    Correct answers carry a one-line `note` instead of `explanation`.           */
-const missedQuestions = [];
-const answeredCorrect = [];
+const missedQuestions = SYNC.missedQuestions;
+const answeredCorrect = SYNC.answeredCorrect;
 
 /* Recurring error patterns. A rule missed twice belongs here.
      { rule, count, occurrences: [questionId], topic, note }                   */
-const errorPatterns = [];
+const errorPatterns = SYNC.errorPatterns;
 
 /* Snapshot of the previous sync, so the delta briefing is computed rather than
-   reconstructed. The sync job overwrites this with the CURRENT state at the end
-   of every run that produced a briefing. null = no prior snapshot yet.        */
-const PRIOR_SNAPSHOT = null;
+   reconstructed. Overwritten with the CURRENT state at the end of every run
+   that produced a briefing. null = no prior snapshot yet.                     */
+const PRIOR_SNAPSHOT = SYNC.priorSnapshot;
 
 /* ==========================================================================
    DERIVATION
