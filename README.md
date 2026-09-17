@@ -1,123 +1,105 @@
 # Series 66 study dashboard
 
-A progress dashboard for the NASAA Uniform Combined State Law Examination, with an
-importer that pulls your numbers out of the Kaplan student portal.
+A single self-contained dashboard for the NASAA Uniform Combined State Law
+Examination, kept current by a sync job that reads real Kaplan data.
 
-Open `index.html`. That's it — no build step, no dependencies, works offline and
-from a `file://` URL. Press **Sample data** to see it filled in before you have any
-data of your own.
+**Live:** https://alam-2102.github.io/S66/
 
-## What it shows
+## The deliverable
 
-- **Weighted projected score** — your accuracy per content area, weighted by that
-  area's share of the exam, against the 75 you need. One number, the one that matters.
-- **Readiness** — four bars you set yourself, deliberately above 75 so a bad exam
-  morning still clears.
-- **Score trend** — cumulative QBank accuracy against each practice exam, one axis.
-- **Accuracy by content area** — all four NASAA areas against the pass mark.
-- **Where your lost points are** — expected scored questions missed per area
-  (exam weight × your miss rate). This is the study-next list: a weak area worth 42
-  questions costs you five times what one worth 8 does.
-- **Study time by week.**
+`index.html` at the repo root. One file, all CSS and JS inline, no build step, no
+bundler, no npm dependencies at runtime. Chart.js loads from a CDN at the bottom of
+the script and the page falls back to readable tables if it is unreachable.
 
-Every chart has a table view behind the **Table** button, and the whole thing has
-a dark mode.
+Six tabs: Performance, Practice & Sim Exams, Study Guide, Reference Sheet, Dump
+Sheet, Claude Paste.
 
-## Getting your data in
+## The two rules the architecture enforces
 
-### Pull it from Kaplan
+**Real data only.** Every number comes from Kaplan. No placeholder scores, no
+illustrative numbers, no example data, no synthetic units. When there is no data the
+arrays are empty and the dashboard renders an explicit "no data yet" state. An empty
+dashboard is correct; a populated fake one is worse than nothing.
 
-Kaplan publishes no API for student progress, so the importer works the way you
-would: it drives a real browser. **You** log in — at the real Kaplan login page, with
-your own hands — and the script takes over from there, recording what the portal
-sends while you click through your progress pages. It never asks for, sees, or
-stores your password, and it keeps response bodies only: no cookies, no tokens, no
-request headers.
+**No typed numbers.** Every figure shown anywhere — including inside hand-written
+prose — is injected from the data arrays at render time through `data-bind`. A
+`bindAll()` pass runs on load and after any data change. Nothing is ever typed into
+the HTML, so a figure cannot drift from the data that produced it.
 
-```bash
-cd importer
-npm install
-npx playwright install chromium     # once
-node capture.mjs                    # a browser opens; log in, browse, press Enter
-node parse.mjs                      # writes ../data/progress.js
+Exam-rule constants on the Reference and Dump tabs (AUM thresholds, statute periods)
+are static regulatory facts, not performance data, and are written out.
+
+## The readiness metric
+
+```
+pooled = (QBank correct + Exam correct) / (QBank answered + Exam answered)
 ```
 
-Then reopen `index.html`.
+Every question counted exactly once. Not a weighted blend of category averages.
 
-`capture.mjs --url https://your.portal.url` starts somewhere specific;
-`--auto` also clicks through progress-looking links itself after you've logged in.
+Mixed and cumulative review quizzes and simulated exams are drawn from the QBank, so
+their questions are already inside the QBank counts. They are reported alongside the
+pooled score as a separate counterweight column and never added back into it.
 
-Worth knowing before you rely on this:
+Reweighted against the blueprint:
 
-- **Check Kaplan's terms of use.** This pulls your own data from a service you pay
-  for, which is reasonable, but automated access may be restricted. The script does
-  one unhurried pass and nothing more.
-- **It will break when Kaplan changes their site.** Field names are matched by
-  family rather than fixed paths, which survives small changes but not redesigns.
-- `importer/captured/` holds your personal data and is gitignored. Delete it whenever.
-
-If `parse.mjs` guesses wrong:
-
-```bash
-node parse.mjs --inspect    # dump every candidate array and its keys
-node parse.mjs --dry        # show what it found, write nothing
-node parse.mjs --merge      # add to existing entries instead of replacing
+```
+0.08×T1 + 0.17×T2 + 0.30×T3 + 0.45×T4
 ```
 
-and correct it in `importer/mapping.json` — `areaOverrides` forces a unit onto a
-content area, `endpoints` narrows parsing to the URLs you know hold your data, and
-`ignoreUnits` drops chapters you don't want counted.
+## The exam
 
-### Or log it by hand
+Written by NASAA, administered by FINRA. 100 scored questions plus 10 pretest = 110
+total, in 150 minutes — about 82 seconds a question. **Passing score 73%.**
+Co-requisite with the Series 7.
 
-Works with no Kaplan involvement at all, and covers study time Kaplan doesn't track:
+| Topic | Weight | Questions |
+|---|---|---|
+| I — Economic Factors and Business Information | 8% | 8 |
+| II — Investment Vehicle Characteristics | 17% | 17 |
+| III — Client/Customer Investment Recommendations and Strategies | 30% | 30 |
+| IV — Laws, Regulations and Guidelines, incl. Prohibition on Unethical Business Practice | **45%** | **45** |
 
-```bash
-node importer/log.mjs --minutes 60 --activity qbank \
-                      --answered 40 --correct 31 --unit "Unethical Business Practices"
-node importer/log.mjs --exam "Mastery Exam 3" --score 78 --minutes 130
-node importer/log.mjs --exam-date 2026-11-14     # adds a countdown and pacing
-node importer/log.mjs --target-exam 82           # move a readiness bar
-node importer/log.mjs --show
+Verified against `Series-66-Outline-June-2023.pdf`, fetched directly from NASAA,
+effective 12 June 2023. Several prep vendors publish 5/20/30/45 for this exam; that
+does not match NASAA's published test specifications. If you re-verify, verify
+against NASAA's own PDF, not a vendor summary.
+
+## Syncing
+
+The sync needs browser control of a machine with a live, logged-in Kaplan session. A
+cloud session cannot do it — no access to the browser's cookies, and Kaplan refuses
+its requests.
+
+From a local clone, with browser tooling attached:
+
+```
+/s66-sync
 ```
 
-Unit names are matched to content areas automatically where possible
-(`"Unethical Business Practices"` → `laws`).
+The playbook is `.claude/skills/s66-sync/SKILL.md` — Kaplan navigation, the
+question-by-question capture procedure, what to do when the session has expired, and
+the rules for writing data back.
 
-### Or edit the file
+## Before every commit
 
-`data/progress.js` is a plain object. `data/schema.md` documents every field.
+```bash
+node tools/sanity-check.js
+```
+
+28 checks against a stubbed DOM: the script runs clean, the pooled score matches an
+independent recomputation from the raw arrays, every unit resolves into the topic
+buckets with split weights summing to 1, topic question counts sum to 100,
+`renderSimulated(0)` called five times produces a stable row count, and **every
+`data-bind` attribute resolves to a real key** — the main failure mode now that there
+is no second file to reconcile against.
+
+Do not push a file that fails it.
 
 ## Layout
 
 ```
-index.html              the dashboard
-assets/dashboard.js     rendering and the derived numbers
-assets/sample.js        demo dataset behind the "Sample data" button
-data/exam.js            NASAA blueprint — content areas and weights (static)
-data/progress.js        your progress (the importer overwrites this)
-data/schema.md          field-by-field documentation
-importer/capture.mjs    you log in, it records
-importer/parse.mjs      captured payloads -> data/progress.js
-importer/log.mjs        log a session by hand
-importer/mapping.json   corrections for when the parser guesses wrong
-importer/serve.mjs      optional local http server
+index.html                        the dashboard — the deliverable
+tools/sanity-check.js             pre-commit checks
+.claude/skills/s66-sync/SKILL.md  the Kaplan sync playbook
 ```
-
-`node importer/serve.mjs` serves it at <http://localhost:8066> if you'd rather not
-use `file://`.
-
-## The exam
-
-100 scored questions (plus 10 unscored pretest), 150 minutes, **75% to pass**.
-Content areas and weights, from the NASAA outline:
-
-| Area | Share | Questions |
-|---|---|---|
-| Economic Factors and Business Information | 8% | 8 |
-| Investment Vehicle Characteristics | 20% | 20 |
-| Client/Client Investment Recommendations and Strategies | 30% | 30 |
-| Laws, Regulations, and Guidelines, incl. Prohibition on Unethical Business Practices | 42% | 42 |
-
-Verify against NASAA's current outline before exam day — if it changes, edit
-`data/exam.js` and every chart follows.

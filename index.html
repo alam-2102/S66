@@ -1,353 +1,2604 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="dark">
 <title>Series 66 Progress</title>
 <style>
-  :root {
-    color-scheme: light;
-    --page:            #f9f9f7;
-    --surface-1:       #fcfcfb;
-    --text-primary:    #0b0b0b;
-    --text-secondary:  #52514e;
-    --text-muted:      #898781;
-    --grid:            #e1e0d9;
-    --axis:            #c3c2b7;
-    --border:          rgba(11,11,11,0.10);
-    --series-1:        #2a78d6;
-    --series-2:        #eb6834;
-    --deemph:          #c3c2b7;
-    --track:           #cde2fb;
-    --success-text:    #006300;
-    /* status palette — fixed, never themed */
-    --good:            #0ca30c;
-    --warning:         #fab219;
-    --serious:         #ec835a;
-    --critical:        #d03b3b;
-  }
-  @media (prefers-color-scheme: dark) {
-    :root:where(:not([data-theme="light"])) {
-      color-scheme: dark;
-      --page:           #0d0d0d;
-      --surface-1:      #1a1a19;
-      --text-primary:   #ffffff;
-      --text-secondary: #c3c2b7;
-      --text-muted:     #898781;
-      --grid:           #2c2c2a;
-      --axis:           #383835;
-      --border:         rgba(255,255,255,0.10);
-      --series-1:       #3987e5;
-      --series-2:       #d95926;
-      --deemph:         #383835;
-      --track:          #184f95;
-      --success-text:   #0ca30c;
-    }
-  }
-  :root[data-theme="dark"] {
-    color-scheme: dark;
-    --page:           #0d0d0d;
-    --surface-1:      #1a1a19;
-    --text-primary:   #ffffff;
-    --text-secondary: #c3c2b7;
-    --text-muted:     #898781;
-    --grid:           #2c2c2a;
-    --axis:           #383835;
-    --border:         rgba(255,255,255,0.10);
-    --series-1:       #3987e5;
-    --series-2:       #d95926;
-    --deemph:         #383835;
-    --track:          #184f95;
-    --success-text:   #0ca30c;
-  }
+:root{
+  color-scheme:dark;
+  --plane:#0d0d0d;
+  --surface:#1a1a19;
+  --surface-2:#211f1e;
+  --ink:#ffffff;
+  --ink-2:#c3c2b7;
+  --muted:#898781;
+  --grid:#2c2c2a;
+  --axis:#383835;
+  --ring:rgba(255,255,255,0.10);
+  --s1:#3987e5;
+  --s2:#d95926;
+  --s3:#199e70;
+  --s4:#c98500;
+  --good:#0ca30c;
+  --warning:#fab219;
+  --serious:#ec835a;
+  --critical:#d03b3b;
+  --radius:10px;
+  --gutter:16px;
+  --sans:system-ui,-apple-system,"Segoe UI",sans-serif;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{
+  background:var(--plane);
+  color:var(--ink);
+  font:15px/1.55 var(--sans);
+  -webkit-text-size-adjust:100%;
+  overflow-x:hidden;
+}
+.wrap{max-width:1080px;margin:0 auto;padding:0 var(--gutter) 64px}
 
-  * { box-sizing: border-box; }
-  html { -webkit-text-size-adjust: 100%; }
-  body {
-    margin: 0;
-    background: var(--page);
-    color: var(--text-primary);
-    font: 15px/1.5 system-ui, -apple-system, "Segoe UI", sans-serif;
-    overflow-x: hidden;
-  }
-  .wrap { max-width: 1060px; margin: 0 auto; padding: 28px 16px 72px; }
+/* ---------- header ---------- */
+header.top{padding:22px 0 12px}
+header.top h1{margin:0;font-size:19px;font-weight:650;letter-spacing:-0.01em}
+header.top .sub{margin:3px 0 0;color:var(--muted);font-size:13px}
+.stamp{margin-top:10px;display:flex;flex-wrap:wrap;gap:6px}
+.pill{
+  display:inline-flex;align-items:center;gap:6px;
+  background:var(--surface);border:1px solid var(--ring);border-radius:999px;
+  padding:4px 10px;font-size:12px;color:var(--ink-2);white-space:nowrap
+}
+.pill b{color:var(--ink);font-weight:600}
+.pill.warn{border-color:rgba(250,178,25,.45);color:var(--warning)}
+.pill.warn b{color:var(--warning)}
 
-  /* ---------- header ---------- */
-  header.top { display: flex; flex-wrap: wrap; gap: 12px; align-items: baseline;
-               justify-content: space-between; margin-bottom: 8px; }
-  h1 { font-size: 20px; font-weight: 650; margin: 0; letter-spacing: -0.01em; }
-  .sub { color: var(--text-secondary); font-size: 13px; margin: 2px 0 0; }
-  .head-actions { display: flex; gap: 8px; align-items: center; }
-  button.ghost {
-    font: inherit; font-size: 12.5px; color: var(--text-secondary);
-    background: var(--surface-1); border: 1px solid var(--border);
-    border-radius: 7px; padding: 6px 11px; cursor: pointer; min-height: 32px;
-  }
-  button.ghost:hover { color: var(--text-primary); }
-  button.ghost[aria-pressed="true"] { color: var(--text-primary); border-color: var(--axis); }
+/* ---------- tabs ---------- */
+nav.tabs{
+  position:sticky;top:0;z-index:20;background:var(--plane);
+  border-bottom:1px solid var(--grid);
+  display:flex;gap:2px;overflow-x:auto;scrollbar-width:none;
+  margin:14px calc(var(--gutter)*-1) 0;padding:0 var(--gutter);
+}
+nav.tabs::-webkit-scrollbar{display:none}
+nav.tabs button{
+  flex:0 0 auto;appearance:none;background:none;border:0;
+  border-bottom:2px solid transparent;
+  color:var(--muted);font:inherit;font-size:13.5px;font-weight:550;
+  padding:11px 12px;cursor:pointer;white-space:nowrap;
+}
+nav.tabs button:hover{color:var(--ink-2)}
+nav.tabs button[aria-selected="true"]{color:var(--ink);border-bottom-color:var(--s1)}
+nav.tabs button:focus-visible{outline:2px solid var(--s1);outline-offset:-2px;border-radius:4px}
+section.tab{display:none;padding-top:20px}
+section.tab.active{display:block}
 
-  .banner {
-    /* block, not flex — flex would make every text run its own item and fragment
-       the sentence into columns */
-    display: block;
-    background: var(--surface-1); border: 1px solid var(--border);
-    border-left: 3px solid var(--warning);
-    border-radius: 8px; padding: 11px 14px; margin: 16px 0 0; font-size: 13.5px;
-    color: var(--text-secondary);
-  }
-  .banner strong { color: var(--text-primary); font-weight: 600; }
+/* ---------- blocks ---------- */
+h2{font-size:16px;font-weight:620;margin:28px 0 10px;letter-spacing:-0.01em}
+h2:first-child{margin-top:4px}
+h3{font-size:14px;font-weight:600;margin:20px 0 7px;color:var(--ink)}
+p{margin:0 0 11px;color:var(--ink-2)}
+p.lead{color:var(--ink)}
+small.note{display:block;color:var(--muted);font-size:12.5px;margin:-4px 0 12px}
+.card{
+  background:var(--surface);border:1px solid var(--ring);
+  border-radius:var(--radius);padding:15px 16px;margin:0 0 14px
+}
+.card h3{margin-top:0}
+ul,ol{margin:0 0 12px;padding-left:20px;color:var(--ink-2)}
+li{margin:0 0 5px}
+b,strong{color:var(--ink);font-weight:600}
+code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12.5px;
+  background:var(--surface-2);border:1px solid var(--ring);border-radius:5px;padding:1px 5px}
 
-  /* ---------- cards ---------- */
-  .card {
-    background: var(--surface-1); border: 1px solid var(--border);
-    border-radius: 12px; padding: 18px 18px 16px; margin-top: 16px;
-  }
-  .card-head { display: flex; flex-wrap: wrap; gap: 8px; align-items: baseline;
-               justify-content: space-between; margin-bottom: 4px; }
-  .card h2 { font-size: 14px; font-weight: 600; margin: 0; letter-spacing: -0.005em; }
-  .card .note { font-size: 12.5px; color: var(--text-muted); margin: 0 0 16px; max-width: 62ch; }
+/* ---------- empty state ---------- */
+.empty{
+  border:1px dashed var(--axis);border-radius:var(--radius);
+  padding:20px 18px;margin:0 0 16px;background:var(--surface);
+}
+.empty h3{margin:0 0 6px;color:var(--warning);font-size:14px}
+.empty p{margin:0 0 8px;font-size:13.5px}
+.empty p:last-child{margin-bottom:0}
 
-  /* ---------- hero ---------- */
-  .hero-grid { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1.15fr);
-               gap: 28px; align-items: center; }
-  @media (max-width: 720px) { .hero-grid { grid-template-columns: 1fr; gap: 20px; } }
-  .hero-label { font-size: 12.5px; color: var(--text-secondary); margin: 0 0 2px; }
-  .hero-fig { font-size: 56px; line-height: 1.02; font-weight: 600; letter-spacing: -0.02em;
-              display: flex; align-items: baseline; gap: 4px; }
-  .hero-fig .unit { font-size: 24px; font-weight: 500; color: var(--text-secondary); }
-  .hero-fig.none, .kpi .k-val.none { color: var(--text-muted); font-weight: 400; }
-  .hero-meta { font-size: 12.5px; color: var(--text-muted); margin: 8px 0 0; }
+/* ---------- stat cards ---------- */
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin:0 0 18px}
+.stat{background:var(--surface);border:1px solid var(--ring);border-radius:var(--radius);padding:13px 14px}
+.stat .label{font-size:11.5px;color:var(--muted);text-transform:uppercase;letter-spacing:.055em;font-weight:600}
+.stat .value{font-size:26px;font-weight:660;margin:5px 0 0;letter-spacing:-0.02em;line-height:1.1}
+.stat .value.none{color:var(--muted);font-size:20px;font-weight:550}
+.stat .meta{font-size:12px;color:var(--muted);margin-top:3px}
+.stat.flag{border-color:rgba(208,59,59,.5)}
+.stat.flag .value{color:var(--critical)}
 
-  /* meter: fill = severity, track = lighter step of same ramp */
-  .meter { margin-top: 4px; }
-  .meter-track { position: relative; height: 12px; border-radius: 6px;
-                 background: var(--track); overflow: visible; }
-  .meter-fill { height: 12px; border-radius: 6px 3px 3px 6px; }
-  .meter-mark { position: absolute; top: -5px; bottom: -5px; width: 1px; background: var(--text-secondary); }
-  .meter-scale { display: flex; justify-content: space-between; font-size: 11.5px;
-                 color: var(--text-muted); margin-top: 6px; font-variant-numeric: tabular-nums; }
+/* ---------- charts ---------- */
+.figure{background:var(--surface);border:1px solid var(--ring);border-radius:var(--radius);padding:14px 14px 10px;margin:0 0 16px}
+.figure .fig-head{display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin-bottom:2px}
+.figure .fig-title{font-size:14px;font-weight:600}
+.figure .fig-sub{font-size:12.5px;color:var(--muted);margin:0 0 12px}
+.figure .canvas-box{position:relative;height:280px}
+@media(max-width:560px){.figure .canvas-box{height:230px}}
+.toggle{
+  appearance:none;background:var(--surface-2);border:1px solid var(--ring);
+  color:var(--ink-2);border-radius:6px;font:inherit;font-size:12px;font-weight:550;
+  padding:4px 9px;cursor:pointer;flex:0 0 auto
+}
+.toggle:hover{color:var(--ink);border-color:var(--axis)}
+.legend{display:flex;flex-wrap:wrap;gap:12px;margin:10px 0 2px;font-size:12.5px;color:var(--ink-2)}
+.legend span{display:inline-flex;align-items:center;gap:6px}
+.swatch{width:10px;height:10px;border-radius:3px;flex:0 0 auto}
+.swatch.line{height:2px;border-radius:2px;width:14px}
+.swatch.dash{height:0;border-top:2px dashed currentColor;width:14px;border-radius:0}
 
-  /* ---------- readiness checklist ---------- */
-  ul.checks { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
-  ul.checks li { display: grid; grid-template-columns: 18px minmax(0,1fr) auto;
-                 gap: 10px; align-items: baseline; font-size: 13.5px; }
-  .ico { font-size: 13px; line-height: 1.4; text-align: center; font-weight: 700; }
-  .ico.good { color: var(--good); }
-  .ico.warning { color: var(--warning); }
-  .ico.critical { color: var(--critical); }
-  .ico.muted { color: var(--text-muted); font-weight: 400; }
-  .check-label { color: var(--text-secondary); }
-  .check-label b { color: var(--text-primary); font-weight: 600; }
-  .check-state { font-size: 12.5px; color: var(--text-muted); white-space: nowrap;
-                 font-variant-numeric: tabular-nums; }
+/* ---------- tables ---------- */
+.scroller{overflow-x:auto;-webkit-overflow-scrolling:touch;margin:0 0 14px;
+  border:1px solid var(--ring);border-radius:var(--radius);background:var(--surface)}
+table{border-collapse:collapse;width:100%;min-width:520px;font-size:13.5px}
+table.narrow{min-width:360px}
+th,td{padding:9px 12px;text-align:right;white-space:nowrap;border-bottom:1px solid var(--grid)}
+th:first-child,td:first-child{text-align:left;white-space:normal;min-width:150px}
+thead th{
+  color:var(--muted);font-size:11.5px;text-transform:uppercase;letter-spacing:.05em;
+  font-weight:600;border-bottom:1px solid var(--axis);position:sticky;top:0;background:var(--surface)
+}
+tbody tr:last-child td{border-bottom:0}
+tbody tr:hover td{background:var(--surface-2)}
+td.num{font-variant-numeric:tabular-nums}
+tfoot td{border-top:1px solid var(--axis);font-weight:600;color:var(--ink);border-bottom:0}
+.below td{background:rgba(208,59,59,.07)}
+.below td:first-child{box-shadow:inset 3px 0 0 var(--critical)}
+.tag{display:inline-block;font-size:11px;font-weight:600;padding:2px 7px;border-radius:999px;
+  border:1px solid currentColor;line-height:1.5}
+.tag.bad{color:var(--critical)}
+.tag.ok{color:var(--good)}
+.tag.warn{color:var(--warning)}
+.tag.neutral{color:var(--muted)}
+.delta-up{color:var(--good);font-variant-numeric:tabular-nums}
+.delta-down{color:var(--critical);font-variant-numeric:tabular-nums}
+.delta-flat{color:var(--muted);font-variant-numeric:tabular-nums}
+.empty-row td{text-align:center;color:var(--muted);padding:24px 12px;font-size:13px}
 
-  /* ---------- KPI row ---------- */
-  .kpis { display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap: 16px; margin-top: 16px; }
-  @media (max-width: 860px) { .kpis { grid-template-columns: repeat(2, minmax(0,1fr)); } }
-  .kpi { background: var(--surface-1); border: 1px solid var(--border);
-         border-radius: 12px; padding: 14px 16px 13px; }
-  .kpi .k-label { font-size: 12px; color: var(--text-secondary); margin: 0 0 6px; }
-  .kpi .k-val { font-size: 27px; font-weight: 600; letter-spacing: -0.015em; line-height: 1.1; }
-  .kpi .k-val .unit { font-size: 15px; font-weight: 500; color: var(--text-secondary); }
-  .kpi .k-sub { font-size: 12px; color: var(--text-muted); margin: 5px 0 0; }
-  .kpi .k-sub.up { color: var(--success-text); }
-  .kpi svg.spark { display: block; margin-top: 9px; width: 100%; height: 26px; }
+/* ---------- misc ---------- */
+.rowsel{display:flex;flex-wrap:wrap;gap:7px;margin:0 0 14px}
+.rowsel button{
+  appearance:none;background:var(--surface);border:1px solid var(--ring);color:var(--ink-2);
+  border-radius:7px;font:inherit;font-size:12.5px;font-weight:550;padding:6px 11px;cursor:pointer
+}
+.rowsel button[aria-pressed="true"]{background:var(--s1);border-color:var(--s1);color:#fff}
+.rowsel button:hover:not([aria-pressed="true"]){color:var(--ink);border-color:var(--axis)}
+.kv{display:grid;grid-template-columns:auto 1fr;gap:4px 14px;font-size:13.5px;margin:0 0 12px}
+.kv dt{color:var(--muted)}
+.kv dd{margin:0;color:var(--ink);font-variant-numeric:tabular-nums}
+.miss{border-left:2px solid var(--critical);padding:2px 0 2px 13px;margin:0 0 18px}
+.miss .q{font-weight:600;margin:0 0 7px;color:var(--ink)}
+.miss .ans{font-size:13px;margin:0 0 3px;color:var(--ink-2)}
+.miss .ans .mine{color:var(--critical);font-weight:600}
+.miss .ans .right{color:var(--good);font-weight:600}
+.miss .why{margin:8px 0 0;font-size:13.5px}
+.hit{border-left:2px solid var(--good);padding:2px 0 2px 13px;margin:0 0 12px;font-size:13.5px}
+.pattern{border-left:2px solid var(--warning);padding:2px 0 2px 13px;margin:0 0 14px}
+.cut{counter-reset:cut}
+.cut li{margin-bottom:9px}
+.formula{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12.5px;
+  background:var(--surface-2);border:1px solid var(--ring);border-radius:7px;
+  padding:9px 11px;margin:0 0 11px;overflow-x:auto;color:var(--ink-2)}
+.formula b{color:var(--ink)}
 
-  /* ---------- horizontal bars ---------- */
-  .bars { display: grid; gap: 2px; }
-  /* three columns — name | track | value + status — so a label can never sit on
-     top of a bar or get clipped by one, whatever the value */
-  .bar-row { display: grid; grid-template-columns: minmax(92px, 164px) minmax(0,1fr) auto;
-             gap: 14px; align-items: center; padding: 3px 0; border-radius: 6px; }
-  .bar-row:hover { background: color-mix(in srgb, var(--text-primary) 4%, transparent); }
-  .bar-name { font-size: 12.5px; color: var(--text-secondary); text-align: right; line-height: 1.25; }
-  .bar-name span { display: block; color: var(--text-muted); font-size: 11px; }
-  .bar-lane { position: relative; height: 22px; display: flex; align-items: center; }
-  .bar-fill { height: 18px; background: var(--series-1); border-radius: 0 4px 4px 0; min-width: 2px; }
-  .bar-ref { position: absolute; top: -1px; bottom: -1px; width: 1px; background: var(--axis); }
-  .bar-meta { display: flex; align-items: baseline; gap: 9px; justify-content: flex-end;
-              font-size: 12px; white-space: nowrap; }
-  .bar-meta .v { color: var(--text-primary); font-variant-numeric: tabular-nums;
-                 min-width: 42px; text-align: right; }
-  .bar-meta .st { color: var(--text-muted); display: inline-flex; align-items: baseline;
-                  gap: 5px; min-width: 56px; }
-  .bar-empty { font-size: 12px; color: var(--text-muted); font-style: normal; }
-  /* narrow screens: a name column plus a meta column leaves no room for the bar,
-     so the track gets its own full-width line underneath */
-  @media (max-width: 640px) {
-    .bar-row { grid-template-columns: minmax(0,1fr) auto;
-               grid-template-areas: "name meta" "lane lane";
-               column-gap: 10px; row-gap: 3px; padding: 7px 0; align-items: baseline; }
-    .bar-name { grid-area: name; text-align: left; }
-    .bar-name span { display: inline; margin-left: 7px; }
-    .bar-meta { grid-area: meta; }
-    .bar-lane { grid-area: lane; height: 18px; }
-    .bar-fill { height: 14px; }
-  }
-  .ref-key { display: flex; gap: 14px; flex-wrap: wrap; margin-top: 14px;
-             font-size: 11.5px; color: var(--text-muted); }
-  .ref-key i { display: inline-block; width: 10px; height: 0; border-top: 1px solid var(--axis);
-               vertical-align: middle; margin-right: 5px; }
-
-  /* ---------- columns ---------- */
-  .cols { display: flex; align-items: flex-end; gap: 2px; height: 132px;
-          border-bottom: 1px solid var(--axis); padding-bottom: 0; }
-  .col-slot { flex: 1 1 0; display: flex; flex-direction: column; justify-content: flex-end;
-              align-items: center; height: 100%; min-width: 0; border-radius: 4px 4px 0 0; }
-  .col-slot:hover { background: color-mix(in srgb, var(--text-primary) 4%, transparent); }
-  .col-fill { width: 100%; max-width: 24px; background: var(--series-1); border-radius: 4px 4px 0 0; }
-  .col-axis { display: flex; gap: 2px; margin-top: 7px; }
-  .col-tick { flex: 1 1 0; min-width: 0; text-align: center; font-size: 11px;
-              color: var(--text-muted); font-variant-numeric: tabular-nums;
-              overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-
-  /* ---------- legend ---------- */
-  .legend { display: flex; gap: 16px; flex-wrap: wrap; margin: 0 0 12px; font-size: 12.5px;
-            color: var(--text-secondary); }
-  .legend span { display: inline-flex; align-items: center; gap: 6px; }
-  .legend i { width: 14px; height: 2px; border-radius: 1px; display: inline-block; }
-
-  /* ---------- line chart ---------- */
-  .chart-host { position: relative; }
-  svg.line-chart { display: block; width: 100%; height: auto; }
-  .tip {
-    position: absolute; pointer-events: none; z-index: 5; opacity: 0; transition: opacity .1s;
-    background: var(--surface-1); border: 1px solid var(--border);
-    box-shadow: 0 2px 10px rgba(0,0,0,.10);
-    border-radius: 8px; padding: 8px 10px; font-size: 12px; min-width: 128px;
-    color: var(--text-primary);
-  }
-  .tip .t-date { color: var(--text-muted); font-size: 11px; margin-bottom: 5px; }
-  .tip .t-row { display: flex; align-items: center; gap: 7px; justify-content: space-between;
-                margin-top: 3px; }
-  .tip .t-row .nm { display: inline-flex; align-items: center; gap: 6px; color: var(--text-secondary); }
-  .tip .t-row i { width: 9px; height: 9px; border-radius: 50%; display: inline-block; flex: none; }
-  .tip .t-row b { font-weight: 600; font-variant-numeric: tabular-nums; }
-
-  /* ---------- table view ---------- */
-  table.dv { width: 100%; border-collapse: collapse; font-size: 12.5px; }
-  table.dv caption { text-align: left; color: var(--text-muted); font-size: 12px;
-                     padding-bottom: 8px; }
-  table.dv th, table.dv td { text-align: right; padding: 6px 8px;
-                             border-bottom: 1px solid var(--grid); font-variant-numeric: tabular-nums; }
-  table.dv th:first-child, table.dv td:first-child { text-align: left; font-variant-numeric: normal; }
-  table.dv th { color: var(--text-muted); font-weight: 500; white-space: nowrap; }
-  .scroll-x { overflow-x: auto; }
-  [hidden] { display: none !important; }
-
-  /* ---------- empty states ---------- */
-  .empty { border: 1px dashed var(--axis); border-radius: 9px; padding: 22px 18px;
-           text-align: center; color: var(--text-muted); font-size: 13px; }
-  .empty b { display: block; color: var(--text-secondary); font-weight: 600; margin-bottom: 3px; }
-  code.inline { font: 12px/1.4 ui-monospace, SFMono-Regular, Menlo, monospace;
-                background: color-mix(in srgb, var(--text-primary) 6%, transparent);
-                padding: 1.5px 5px; border-radius: 4px; }
-  footer.foot { margin-top: 28px; font-size: 12px; color: var(--text-muted); }
-  footer.foot a { color: inherit; }
+/* ---------- claude paste ---------- */
+.paste-bar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:0 0 12px}
+.copybtn{
+  appearance:none;border:0;border-radius:9px;background:var(--s1);color:#fff;
+  font:inherit;font-size:15px;font-weight:620;padding:13px 22px;cursor:pointer;flex:0 0 auto
+}
+.copybtn:hover{background:#4d95ea}
+.copybtn:active{transform:translateY(1px)}
+.copybtn.done{background:var(--good)}
+.count{font-size:12.5px;color:var(--muted);font-variant-numeric:tabular-nums}
+pre.paste{
+  background:var(--surface);border:1px solid var(--ring);border-radius:var(--radius);
+  padding:14px;margin:0;max-height:440px;overflow:auto;-webkit-overflow-scrolling:touch;
+  font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12px;line-height:1.5;
+  white-space:pre-wrap;word-break:break-word;color:var(--ink-2);user-select:text
+}
+footer.foot{margin-top:40px;padding-top:16px;border-top:1px solid var(--grid);
+  color:var(--muted);font-size:12px}
+[hidden]{display:none!important}
+[data-bind-missing]{outline:2px dashed var(--critical);outline-offset:2px}
+@media print{nav.tabs{display:none}section.tab{display:block!important}}
 </style>
 </head>
 <body>
 <div class="wrap">
+<header class="top">
+  <h1>Series 66 &mdash; Uniform Combined State Law</h1>
+  <p class="sub">NASAA blueprint &middot; <span data-bind="exam.scored"></span> scored questions
+    (+<span data-bind="exam.pretest"></span> pretest) &middot;
+    <span data-bind="exam.minutes"></span> minutes &middot;
+    <span data-bind="exam.passLine"></span> to pass</p>
+  <div class="stamp">
+    <span class="pill">Data as of <b data-bind="meta.lastVerified"></b></span>
+    <span class="pill">Source <b data-bind="meta.source"></b></span>
+    <span class="pill" id="pill-nodata" hidden>Consecutive no-data runs <b data-bind="meta.noDataRuns"></b></span>
+  </div>
+</header>
 
-  <header class="top">
-    <div>
-      <h1>Series 66 Progress</h1>
-      <p class="sub" id="subline">Uniform Combined State Law Examination · 100 scored questions · 75 to pass</p>
+<nav class="tabs" role="tablist" aria-label="Sections">
+  <button role="tab" id="t-perf"  aria-controls="tab-perf"  aria-selected="true">Performance</button>
+  <button role="tab" id="t-exams" aria-controls="tab-exams" aria-selected="false">Practice &amp; Sim Exams</button>
+  <button role="tab" id="t-guide" aria-controls="tab-guide" aria-selected="false">Study Guide</button>
+  <button role="tab" id="t-ref"   aria-controls="tab-ref"   aria-selected="false">Reference Sheet</button>
+  <button role="tab" id="t-dump"  aria-controls="tab-dump"  aria-selected="false">Dump Sheet</button>
+  <button role="tab" id="t-paste" aria-controls="tab-paste" aria-selected="false">Claude Paste</button>
+</nav>
+
+<!-- ============ 1 · PERFORMANCE ============ -->
+<section class="tab active" id="tab-perf" role="tabpanel" aria-labelledby="t-perf">
+  <div id="perf-empty"></div>
+
+  <div class="stats" id="stat-cards"></div>
+
+  <div class="figure">
+    <div class="fig-head">
+      <span class="fig-title">Score trend</span>
+      <button class="toggle" data-table-for="chart-trend">Table</button>
     </div>
-    <div class="head-actions">
-      <button class="ghost" id="sample-btn" aria-pressed="false">Sample data</button>
-      <button class="ghost" id="theme-btn" aria-label="Toggle dark mode">Theme</button>
+    <p class="fig-sub">Every scored sitting in date order, against the
+      <span data-bind="exam.passLine"></span> pass line and the
+      <span data-bind="exam.targetAvg"></span> target average.</p>
+    <div class="canvas-box" id="box-trend"><canvas id="chart-trend"></canvas></div>
+    <div class="legend" id="legend-trend"></div>
+    <div id="table-trend" hidden></div>
+  </div>
+
+  <h2>By Kaplan unit</h2>
+  <small class="note">Pooled counts every question once. Mixed quizzes sit outside the pool &mdash;
+    they are drawn from the QBank, so counting them again would double-count.
+    Units below <span data-bind="exam.passLine"></span> are flagged.</small>
+  <div class="scroller" id="unit-table"></div>
+
+  <h2>By NASAA topic</h2>
+  <small class="note">Rolled up through the Kaplan-unit &rarr; NASAA-topic map on the Study Guide tab,
+    weighted <span data-bind="exam.weightString"></span>.</small>
+  <div class="figure">
+    <div class="fig-head">
+      <span class="fig-title">Accuracy by topic</span>
+      <button class="toggle" data-table-for="chart-topic">Table</button>
     </div>
-  </header>
+    <p class="fig-sub">Against the <span data-bind="exam.passLine"></span> pass line.</p>
+    <div class="canvas-box" id="box-topic"><canvas id="chart-topic"></canvas></div>
+    <div class="legend" id="legend-topic"></div>
+    <div id="table-topic" hidden></div>
+  </div>
+  <div class="scroller" id="topic-table"></div>
 
-  <div id="banner-slot"></div>
+  <h2>How the pooled score is built</h2>
+  <div class="formula">
+pooled = (QBank correct + Exam correct) &divide; (QBank answered + Exam answered)
+  </div>
+  <p>Every question counted exactly once. Not a weighted blend of category averages.
+    Mixed and cumulative review quizzes and simulated exams are drawn from the QBank
+    pool, so they are reported as a separate counterweight column and never added
+    back into the pooled figure.</p>
+  <div class="formula">
+reweighted = 0.08&times;T1 + 0.17&times;T2 + 0.30&times;T3 + 0.45&times;T4
+  </div>
+  <p>The Series 66 weighting is flat compared with the Series 7 &mdash; no single block
+    dominates &mdash; so reweighting moves the headline number less than it did there.
+    Worth computing, not worth building a narrative on.</p>
+</section>
 
-  <!-- hero -->
-  <section class="card" id="hero-card">
-    <div class="hero-grid">
-      <div>
-        <p class="hero-label">Weighted projected score</p>
-        <div class="hero-fig" id="hero-val">—<span class="unit"></span></div>
-        <p class="hero-meta" id="hero-meta">No performance data yet.</p>
-      </div>
-      <div class="meter" id="hero-meter" hidden>
-        <div class="meter-track">
-          <div class="meter-fill" id="meter-fill" style="width:0"></div>
-          <div class="meter-mark" id="meter-mark" style="left:75%"></div>
-        </div>
-        <div class="meter-scale"><span>0</span><span id="meter-pass">75 to pass</span><span>100</span></div>
-      </div>
-    </div>
-  </section>
+<!-- ============ 2 · PRACTICE & SIM EXAMS ============ -->
+<section class="tab" id="tab-exams" role="tabpanel" aria-labelledby="t-exams">
+  <div id="exam-empty"></div>
+  <div class="rowsel" id="exam-select"></div>
+  <div id="exam-detail"></div>
 
-  <!-- readiness -->
-  <section class="card">
-    <div class="card-head"><h2>Readiness</h2></div>
-    <p class="note">Your own bars, set in <code class="inline">data/progress.js</code> — deliberately above the
-      75 pass mark so a bad day on exam morning still clears it.</p>
-    <ul class="checks" id="checks"></ul>
-  </section>
+  <h2>Exam over exam</h2>
+  <small class="note">Gaps that appear in consecutive exams without improving are flagged
+    &mdash; a repeated weakness that has not moved is the strongest signal here.</small>
+  <div class="scroller" id="exam-delta"></div>
+  <div id="exam-stuck"></div>
+</section>
+<!-- ============ 3 · STUDY GUIDE ============ -->
+<section class="tab" id="tab-guide" role="tabpanel" aria-labelledby="t-guide">
+  <div id="guide-empty"></div>
 
-  <!-- KPIs -->
-  <div class="kpis" id="kpis"></div>
+  <h2>Where you stand</h2>
+  <div id="guide-standing"></div>
 
-  <!-- trend -->
-  <section class="card">
-    <div class="card-head">
-      <h2>Score trend</h2>
-      <button class="ghost" data-toggle="trend" aria-pressed="false">Table</button>
-    </div>
-    <p class="note">Cumulative QBank accuracy against each practice exam you sit. Both are
-      percent correct, so they share one axis.</p>
-    <div id="trend-chart"></div>
-    <div id="trend-table" hidden></div>
-  </section>
+  <h2>Priority order</h2>
+  <small class="note">Derived from the data, not typed. Ranked by expected scored questions
+    lost &mdash; topic weight &times; miss rate &mdash; so a weak block worth
+    <span data-bind="exam.topIVQuestions"></span> questions outranks a weaker one worth
+    <span data-bind="exam.topIQuestions"></span>.</small>
+  <div id="guide-priority"></div>
 
-  <!-- accuracy by area -->
-  <section class="card">
-    <div class="card-head">
-      <h2>Accuracy by content area</h2>
-      <button class="ghost" data-toggle="areas" aria-pressed="false">Table</button>
-    </div>
-    <p class="note">Each area's share of the exam is under its name — a weak area worth 42
-      questions matters five times more than one worth 8.</p>
-    <div id="areas-chart"></div>
-    <div id="areas-table" hidden></div>
-  </section>
+  <h2>Kaplan unit &rarr; NASAA topic map</h2>
+  <p>Kaplan's unit numbering is its own and does not line up one-to-one with NASAA's four
+    topics. Every weighted number on this page computes from this table, so it is the one
+    thing worth checking by hand. Where a unit spans two topics it is split, with the split
+    shown rather than forced into a single bucket.</p>
+  <div class="scroller" id="map-table"></div>
+  <div id="map-status"></div>
 
-  <!-- priority -->
-  <section class="card">
-    <div class="card-head">
-      <h2>Where your lost points are</h2>
-      <button class="ghost" data-toggle="priority" aria-pressed="false">Table</button>
-    </div>
-    <p class="note">Scored questions you'd expect to miss per area at your current accuracy —
-      exam weight times miss rate. Top of this list is what to study next.</p>
-    <div id="priority-chart"></div>
-    <div id="priority-table" hidden></div>
-  </section>
+  <h2>Unit by unit</h2>
+  <div id="guide-units"></div>
 
-  <!-- study time -->
-  <section class="card">
-    <div class="card-head">
-      <h2>Study time by week</h2>
-      <button class="ghost" data-toggle="study" aria-pressed="false">Table</button>
-    </div>
-    <p class="note">Hours logged per calendar week, most recent twelve.</p>
-    <div id="study-chart"></div>
-    <div id="study-table" hidden></div>
-  </section>
+  <h2>Missed questions</h2>
+  <p>The highest-value content here. Every question missed gets the underlying concept
+    explained &mdash; not the letter. Correct answers get a one-line note so a pattern is
+    still visible later.</p>
+  <div id="guide-misses"></div>
 
-  <footer class="foot">
-    <span id="foot-updated">No data loaded.</span>
-    Blueprint weights from the NASAA Series 66 content outline. Refresh with
-    <code class="inline">node importer/capture.mjs</code>.
-  </footer>
+  <h2>Patterns across everything so far</h2>
+  <small class="note">The same rule missed twice is the strongest signal this page produces.</small>
+  <div id="guide-patterns"></div>
+
+  <h2>Action list</h2>
+  <div id="guide-actions"></div>
+</section>
+
+<!-- ============ 4 · REFERENCE SHEET ============ -->
+<section class="tab" id="tab-ref" role="tabpanel" aria-labelledby="t-ref">
+  <p class="lead">Rules, thresholds, formulas and definitions. No performance figures live
+    here, so this is the one tab that does not move between runs.</p>
+
+  <h2>Topic IV &mdash; Laws, Regulations and Guidelines
+    <span class="tag warn"><span data-bind="exam.topIVWeight"></span> of the exam</span></h2>
+  <p>The largest block and the one with least overlap with the Series 7. If anything is
+    going to decide this exam, it is this tab.</p>
+
+  <h3>Who has to register &mdash; the four persons</h3>
+  <div class="scroller">
+    <table class="narrow">
+      <thead><tr><th>Person</th><th>Registers with</th><th>Core test</th></tr></thead>
+      <tbody>
+        <tr><td>Investment Adviser (IA)</td><td>State, or SEC if federal covered</td>
+          <td>ABC: <b>A</b>dvice about securities, as a <b>B</b>usiness, for <b>C</b>ompensation &mdash; all three</td></tr>
+        <tr><td>Investment Adviser Rep (IAR)</td><td>State (always &mdash; even reps of federal covered IAs)</td>
+          <td>Natural person associated with an IA who advises, solicits, or supervises those who do</td></tr>
+        <tr><td>Broker-Dealer (BD)</td><td>State and SEC</td>
+          <td>Effects securities transactions for the account of others <i>or its own</i></td></tr>
+        <tr><td>Agent of a BD</td><td>State</td>
+          <td>Natural person representing a BD or issuer in effecting securities transactions</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p><b>The split that gets tested:</b> the IA registers where it has a place of business or
+    enough clients; the <b>IAR always registers with the state</b>, including when their firm
+    is federal covered. A federal covered IA <i>notice files</i> with the state and pays the
+    fee &mdash; it does not register there.</p>
+
+  <h3>Federal covered vs. state-registered IA &mdash; the dollar thresholds</h3>
+  <div class="scroller">
+    <table class="narrow">
+      <thead><tr><th>Assets under management</th><th>Registers with</th></tr></thead>
+      <tbody>
+        <tr><td>Under $100 million</td><td>State</td></tr>
+        <tr><td>$100m &ndash; $110m</td><td>Optional &mdash; may choose either (the buffer)</td></tr>
+        <tr><td>$110 million or more</td><td>SEC &mdash; must register federally</td></tr>
+        <tr><td>Drops below $90 million</td><td>Must withdraw from SEC and register with the state</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p>Also federal covered regardless of AUM: advisers to <b>registered investment companies</b>,
+    and advisers not required to register in <i>any</i> state. An adviser with under $25m in a
+    state that has no registration provision is federal covered by default.</p>
+
+  <h3>Exclusions &mdash; not an IA at all</h3>
+  <p>The classic mnemonic is <b>LATE</b> &mdash; these professions are excluded when advice is
+    <i>incidental</i> to their practice and no <i>separate</i> fee is charged for it:</p>
+  <ul>
+    <li><b>L</b>awyers &middot; <b>A</b>ccountants &middot; <b>T</b>eachers &middot; <b>E</b>ngineers</li>
+    <li>Banks, savings institutions and trust companies (banks are excluded as IAs; note the
+      contrast with BDs, where banks are also excluded)</li>
+    <li>Broker-dealers and their agents, when advice is incidental and there is no special
+      compensation for it</li>
+    <li>Publishers of <i>bona fide</i>, regular, general-circulation publications &mdash; the
+      test is that the advice is impersonal and not tailored to a client's situation</li>
+    <li>Federal covered advisers (excluded from <i>state</i> registration, notice filing aside)</li>
+  </ul>
+  <p><b>The trap:</b> charge a separate, identifiable fee for the advice and the exclusion
+    evaporates. An accountant who bills separately for a financial plan is an IA.</p>
+
+  <h3>The brokerage / advisory line</h3>
+  <p>A BD that charges commissions for executing trades and gives incidental advice is a
+    BD. The moment it charges a <b>fee based on assets</b>, wraps advice into a separate
+    charge, or holds itself out as an adviser, it is acting as an IA and owes the
+    <b>fiduciary standard</b> rather than Reg BI's best-interest standard. Fee-based wrap
+    accounts are advisory business.</p>
+
+  <h3>Agent registration &mdash; the exclusions that get tested</h3>
+  <ul>
+    <li>A person representing an <b>issuer</b> in an <b>exempt transaction</b> or with an
+      <b>exempt security</b> is not an agent</li>
+    <li>Clerical and ministerial employees are not agents &mdash; until they take an order</li>
+    <li>A person representing an issuer who receives <b>no commission</b> and sells only to
+      existing employees, partners or directors is not an agent</li>
+    <li><b>Administrative personnel of a BD are still agents</b> if they take orders. This one
+      catches people.</li>
+  </ul>
+
+  <h3>Administrator authority &mdash; what the state can actually do</h3>
+  <div class="scroller">
+    <table class="narrow">
+      <thead><tr><th>Action</th><th>Prior notice / hearing?</th><th>Note</th></tr></thead>
+      <tbody>
+        <tr><td>Deny, suspend, revoke a registration</td><td>Yes &mdash; notice, hearing, written findings</td><td>Must be in the public interest <i>and</i> have a listed cause</td></tr>
+        <tr><td>Issue a <b>stop order</b> on a securities registration</td><td>Yes</td><td>Halts an offering</td></tr>
+        <tr><td>Issue a <b>cease and desist</b></td><td>May be issued <i>without</i> a prior hearing</td><td>Administrator's own order</td></tr>
+        <tr><td>Seek an <b>injunction</b></td><td>Court &mdash; the Administrator cannot issue one</td><td>Courts issue injunctions; Administrators do not</td></tr>
+        <tr><td>Summarily <b>postpone or suspend</b> pending final determination</td><td>Notice after, hearing on written request</td><td>The summary power</td></tr>
+        <tr><td>Investigate, subpoena, administer oaths</td><td>No</td><td>In or outside the state</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p><b>Lack of experience alone is not grounds for denial.</b> The Administrator may not deny
+    a registration solely because the applicant lacks experience &mdash; it can be considered
+    alongside training and knowledge, but it cannot stand on its own.</p>
+
+  <h3>Time limits worth memorising</h3>
+  <div class="scroller">
+    <table class="narrow">
+      <thead><tr><th>Item</th><th>Period</th></tr></thead>
+      <tbody>
+        <tr><td>Registration effective (no denial pending)</td><td>Noon of the 30th day</td></tr>
+        <tr><td>Registration expires</td><td>31 December annually &mdash; must renew</td></tr>
+        <tr><td>Statute of limitations &mdash; civil</td><td>Earlier of 2 years after discovery or 3 years after the act</td></tr>
+        <tr><td>Statute of limitations &mdash; criminal</td><td>5 years</td></tr>
+        <tr><td>Criminal penalty under USA</td><td>Up to $5,000 and/or 3 years (&ldquo;5 and 3&rdquo;)</td></tr>
+        <tr><td>Right of rescission &mdash; buyer must accept within</td><td>30 days of the offer</td></tr>
+        <tr><td>Books and records retention (state IA)</td><td>5 years, first 2 readily accessible</td></tr>
+        <tr><td>Appeal an Administrator's order</td><td>60 days to the appropriate court</td></tr>
+        <tr><td>Custody &mdash; surprise annual audit</td><td>Once per year, unannounced, by an independent accountant</td></tr>
+        <tr><td>Custody &mdash; notify Administrator of client funds received</td><td>Promptly; funds forwarded within 3 business days if not permitted custody</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Custody &mdash; what counts and what it triggers</h3>
+  <p>Custody means holding client funds or securities, <i>or</i> having any authority to
+    obtain possession of them. It includes a general power of attorney, acting as trustee,
+    and direct fee deduction from a client account.</p>
+  <ul>
+    <li>Receiving a cheque made out to a <b>third party</b> and forwarding it within
+      3 business days is <b>not</b> custody</li>
+    <li>Receiving a cheque made out to <b>the adviser</b> is custody</li>
+    <li>Inadvertently receiving client funds and returning them within 3 business days is not custody</li>
+    <li>Custody requires: notice to the Administrator, a qualified custodian, quarterly
+      account statements, and the annual surprise audit</li>
+    <li>Fee deduction is custody, but is relieved of the surprise audit if the custodian
+      sends statements directly to the client and the adviser sends an invoice showing the
+      calculation</li>
+  </ul>
+
+  <h3>Discretion &mdash; and the three things that are not</h3>
+  <p>Discretion is authority over <b>A</b>sset, <b>A</b>mount, or <b>A</b>ction &mdash; what to
+    buy, how much, whether to buy or sell. <b>Time and price alone are not discretion</b>
+    &mdash; &ldquo;buy 100 XYZ when you think it's right today&rdquo; is an unsolicited order
+    good for that day only, not discretionary authority.</p>
+  <ul>
+    <li><b>IA:</b> may exercise discretion orally for the first 10 business days, then needs
+      written authority</li>
+    <li><b>BD:</b> needs prior written authorization before the <i>first</i> discretionary trade</li>
+  </ul>
+  <p>That 10-day asymmetry is a favourite exam question.</p>
+
+  <h3>Contracts &mdash; what an advisory contract must say</h3>
+  <ul>
+    <li>In <b>writing</b> (state-registered IAs)</li>
+    <li>Services, term, fee and the formula for computing it</li>
+    <li>That the contract may not be <b>assigned</b> without client consent</li>
+    <li>For a partnership, that the client is notified of any change in the
+      <b>minority</b> membership within a reasonable time</li>
+    <li>No prepayment refund terms omitted &mdash; state how prepaid fees are refunded</li>
+    <li><b>No performance-based fees</b>, except for a qualified client:
+      $1.1m under management with the adviser, or $2.2m net worth (indexed &mdash; confirm
+      the current figures against your Kaplan text)</li>
+  </ul>
+
+  <h3>Brochure rule</h3>
+  <p>Form ADV Part 2 (or an equivalent brochure) must be delivered <b>not later than entry
+    into the contract</b>. Under state rules the older 48-hour test still appears: deliver
+    48 hours before entering the contract, <i>or</i> at entry provided the client has 5
+    business days to cancel without penalty. Annual delivery of a summary of material
+    changes within 120 days of fiscal year end.</p>
+  <p><b>Impersonal advice under $500/year</b> and advice to registered investment companies
+    are excepted from brochure delivery.</p>
+
+  <h3>Prohibited and unethical practices &mdash; Topic IV&middot;H&middot;4</h3>
+  <small class="note">The densest single block on the exam and the highest question yield
+    per hour of study. Treat it the way the Series 7 treated options.</small>
+  <ul>
+    <li><b>Loans to or from clients</b> &mdash; prohibited, unless the client is a bank,
+      an affiliate, or a broker-dealer in the business of lending</li>
+    <li><b>Sharing in profits and losses</b> &mdash; an IAR may never share; a BD agent may
+      only with written approval of the firm, a joint account, and sharing proportionate
+      to capital contributed</li>
+    <li><b>Guaranteeing against loss</b> &mdash; always prohibited, no exceptions</li>
+    <li><b>Churning / excessive trading</b> &mdash; judged against the client's objectives
+      and resources, not a fixed turnover number</li>
+    <li><b>Selling away</b> &mdash; private securities transactions without firm knowledge
+      and approval</li>
+    <li><b>Market manipulation</b> &mdash; matched orders, wash trades, painting the tape</li>
+    <li><b>Insider trading</b> &mdash; the duty runs to material non-public information;
+      tippee liability follows the tipper's breach and personal benefit</li>
+    <li><b>Client confidentiality</b> &mdash; no disclosure without consent, except to the
+      Administrator, by subpoena, or as required by law</li>
+    <li><b>Personal securities transactions</b> &mdash; front-running prohibited; initial
+      holdings and quarterly reports required under the code of ethics</li>
+    <li><b>Outside securities accounts</b> &mdash; disclosure and firm consent</li>
+    <li><b>Political contributions</b> &mdash; the pay-to-play rule: a 2-year time-out on
+      compensated advisory services to a government client after a triggering contribution.
+      <i>De minimis</i> exceptions: $350 per election to a candidate you can vote for,
+      $150 if you cannot</li>
+    <li><b>Exploitation of vulnerable adults</b> &mdash; the NASAA model act permits a
+      delay of disbursement on reasonable belief of exploitation, with notification to
+      the Administrator and Adult Protective Services</li>
+    <li><b>Unlawful representation concerning registration</b> &mdash; registration never
+      implies the Administrator approved the merits. Saying or implying it is prohibited.</li>
+    <li><b>Performance guarantees</b> &mdash; prohibited; so is cherry-picked or
+      non-representative performance advertising</li>
+  </ul>
+
+  <h3>Fiduciary standard vs. Reg BI</h3>
+  <div class="scroller">
+    <table class="narrow">
+      <thead><tr><th></th><th>IA / IAR</th><th>BD / agent</th></tr></thead>
+      <tbody>
+        <tr><td>Standard</td><td>Fiduciary &mdash; loyalty and care</td><td>Reg BI &mdash; best interest at the time of recommendation</td></tr>
+        <tr><td>Duration</td><td>Ongoing, for the life of the relationship</td><td>Transaction-based, at recommendation</td></tr>
+        <tr><td>Conflicts</td><td>Eliminate or fully disclose</td><td>Disclose, mitigate; eliminate sales contests</td></tr>
+        <tr><td>Compensation</td><td>Typically asset-based fee</td><td>Typically commission</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Definitions &mdash; security, and what is not one</h3>
+  <p>The <b>Howey</b> test: an investment of money, in a common enterprise, with an
+    expectation of profits, derived primarily from the efforts of others.</p>
+  <p><b>Not securities:</b> insurance policies with fixed benefits, fixed annuities,
+    endowment policies, collectibles, precious metals, commodities and futures contracts,
+    currency, condominiums bought as a residence, retirement plans themselves (an IRA is
+    an account, not a security).</p>
+  <p><b>Securities that surprise people:</b> variable annuities, variable life,
+    options on securities, warrants, rights, limited partnership interests,
+    interests in oil and gas programs, and investment contracts of all kinds.</p>
+
+  <h3>Exempt securities vs. exempt transactions</h3>
+  <p>An <b>exempt security</b> is exempt because of what it <i>is</i>. An <b>exempt
+    transaction</b> is exempt because of how it is <i>sold</i>. The antifraud provisions
+    apply to both &mdash; exemption never exempts you from fraud liability.</p>
+  <div class="scroller">
+    <table class="narrow">
+      <thead><tr><th>Exempt securities</th><th>Exempt transactions</th></tr></thead>
+      <tbody>
+        <tr><td>US government and municipal securities</td><td>Isolated non-issuer transactions</td></tr>
+        <tr><td>Canadian federal / provincial government</td><td>Unsolicited client orders (the big one)</td></tr>
+        <tr><td>Bank, savings institution and trust company issues</td><td>Underwriter transactions with an issuer</td></tr>
+        <tr><td>Insurance company securities (not variable)</td><td>Transactions with financial institutions</td></tr>
+        <tr><td>Federal covered securities</td><td>Private placements &mdash; 10 or fewer non-institutional offerees in 12 months</td></tr>
+        <tr><td>Non-profit / charitable issues</td><td>Fiduciary transactions &mdash; executor, administrator, trustee in bankruptcy</td></tr>
+        <tr><td>Public utility and common carrier securities</td><td>Pre-organization certificates &mdash; 10 or fewer subscribers, no commission, no payment</td></tr>
+        <tr><td>Employee benefit plan interests</td><td>Transactions with existing security holders where no commission is paid</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p><b>The unsolicited order exemption is the most-tested single line in this block.</b>
+    The Administrator may require the client to sign an acknowledgement that the order
+    was unsolicited.</p>
+
+  <h3>Registration methods for securities</h3>
+  <ul>
+    <li><b>Notification / filing</b> &mdash; for established issuers with a track record</li>
+    <li><b>Coordination</b> &mdash; filed with SEC and state simultaneously; effective when
+      the federal registration is, provided the state filing has been on file 10 days and
+      the price terms have been on file 2 full business days</li>
+    <li><b>Qualification</b> &mdash; the fallback, state only; effective when the
+      Administrator says so</li>
+  </ul>
+
+  <h2>Topic I &mdash; the formulas
+    <span class="tag neutral"><span data-bind="exam.topIWeight"></span> of the exam</span></h2>
+  <p>Only <span data-bind="exam.topIQuestions"></span> questions, but the most formula-dense
+    part of the exam and the cheapest block to lose points in. These have to be cold.</p>
+
+  <h3>Time value of money</h3>
+  <div class="formula">
+<b>FV</b> = PV &times; (1 + r)<sup>n</sup>
+<b>PV</b> = FV &divide; (1 + r)<sup>n</sup>
+<b>NPV</b> = PV of inflows &minus; cost. Positive NPV &rarr; accept.
+<b>IRR</b> = the discount rate where NPV = 0.
+  </div>
+  <p>For a bond, IRR <i>is</i> yield to maturity. If a bond trades at a discount, IRR
+    exceeds the coupon; at a premium, IRR is below it.</p>
+
+  <h3>Risk and return</h3>
+  <div class="formula">
+<b>Beta</b> &mdash; volatility vs. the market. Market = 1.0. Beta 1.2 &rarr; 20% more volatile.
+<b>Alpha</b> = actual return &minus; expected return
+         expected = rf + &beta;(market return &minus; rf)
+<b>Sharpe</b> = (portfolio return &minus; risk-free rate) &divide; standard deviation
+<b>CAPM</b>  = rf + &beta;(market return &minus; rf)
+  </div>
+  <p>Sharpe uses <b>standard deviation</b> (total risk) in the denominator; Treynor uses
+    beta (systematic risk). Picking the wrong denominator is the usual miss.</p>
+
+  <h3>Correlation and diversification</h3>
+  <p>Correlation runs &minus;1.0 to +1.0. Diversification benefit rises as correlation falls;
+    at exactly +1.0 there is no benefit at all. Standard deviation measures
+    <b>total</b> risk; beta measures <b>systematic</b> (non-diversifiable) risk.
+    Diversification reduces unsystematic risk only.</p>
+  <p>One standard deviation covers ~68% of outcomes, two ~95%, three ~99.7%.</p>
+
+  <h3>Financial ratios</h3>
+  <div class="formula">
+<b>Current ratio</b>     = current assets &divide; current liabilities
+<b>Quick ratio</b>       = (current assets &minus; inventory) &divide; current liabilities
+<b>Debt-to-equity</b>    = total debt &divide; total equity
+<b>P/E</b>               = market price &divide; earnings per share
+<b>P/B</b>               = market price &divide; book value per share
+<b>Working capital</b>   = current assets &minus; current liabilities
+  </div>
+  <p>The quick ratio is the current ratio with inventory stripped out &mdash; the &ldquo;acid
+    test&rdquo;. A high P/E signals a growth expectation; a low P/B is the value screen.</p>
+
+  <h3>Returns</h3>
+  <div class="formula">
+<b>Current yield</b>        = annual income &divide; current market price
+<b>Total return</b>         = (income + capital gain) &divide; beginning value
+<b>Holding period return</b>= (ending value &minus; beginning + income) &divide; beginning
+<b>Real (inflation-adj.)</b>= nominal return &minus; inflation rate
+<b>After-tax return</b>     = nominal &times; (1 &minus; tax rate)
+<b>Risk-free real rate</b>  &asymp; T-bill rate &minus; CPI
+  </div>
+  <p><b>Time-weighted</b> return measures the manager &mdash; it strips out the effect of
+    client deposits and withdrawals. <b>Dollar-weighted</b> (which is an IRR) measures the
+    client's actual experience because it includes cash flow timing. Asked which judges a
+    portfolio manager's skill, the answer is time-weighted.</p>
+
+  <h3>Rule of 72</h3>
+  <div class="formula">years to double &asymp; 72 &divide; rate of return</div>
+
+  <h2>Topics II &amp; III &mdash; the lines that get tested</h2>
+  <small class="note">Heavy overlap with the Series 7, so this is deliberately short.
+    It covers the places where the Series 66 asks differently.</small>
+
+  <h3>Duration</h3>
+  <p>Longer maturity and lower coupon both mean longer duration and more interest-rate
+    sensitivity. A zero-coupon bond's duration equals its maturity. Given a choice, the
+    most volatile bond is the longest-maturity, lowest-coupon one.</p>
+
+  <h3>Retirement plans &mdash; post-SECURE 2.0</h3>
+  <p>NASAA updated retirement questions effective 12 June 2023 for SECURE 2.0. Confirm your
+    Kaplan material is post-2023 &mdash; if a practice question uses an RMD age of 70&frac12;
+    or 72, it is stale.</p>
+  <ul>
+    <li><b>RMD age 73</b> (rising to 75 in 2033). No RMDs from a Roth IRA during the
+      owner's life; SECURE 2.0 removed RMDs from <b>Roth 401(k)</b>s as well</li>
+    <li>Inherited IRAs for most non-spouse beneficiaries: the <b>10-year rule</b></li>
+    <li>Catch-up contributions indexed; higher catch-up for ages 60&ndash;63</li>
+    <li>529-to-Roth rollover permitted, lifetime cap $35,000, 15-year account seasoning</li>
+  </ul>
+  <p>Traditional IRA: deductible depending on income and plan coverage, taxed at
+    withdrawal, 10% penalty before 59&frac12;. Roth: no deduction, qualified withdrawals
+    tax-free after 5 years <i>and</i> 59&frac12;; contributions (not earnings) come out
+    first and are always tax-free.</p>
+
+  <h3>Account ownership</h3>
+  <div class="scroller">
+    <table class="narrow">
+      <thead><tr><th>Type</th><th>On death</th></tr></thead>
+      <tbody>
+        <tr><td>JTWROS</td><td>Passes to survivor, outside probate</td></tr>
+        <tr><td>Tenants in common</td><td>Decedent's share to the estate, through probate</td></tr>
+        <tr><td>Tenancy by the entirety</td><td>Spouses only; survivor takes; creditor protection</td></tr>
+        <tr><td>Community property WROS</td><td>Community property states; survivor takes</td></tr>
+        <tr><td>TOD / POD</td><td>Named beneficiary, avoids probate</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p>UTMA/UGMA: one custodian, one minor, irrevocable gift, taxed to the minor,
+    control transfers at the age of majority. UGMA excludes real property; UTMA allows it.</p>
+
+  <h3>Trading terms</h3>
+  <p>A <b>buy stop</b> sits above the market, a <b>sell stop</b> below. Stop orders become
+    market orders when triggered &mdash; which is why a stop-limit can go unfilled.
+    <b>Payment for order flow</b> must be disclosed. <b>Best execution</b> is an obligation
+    independent of commission level.</p>
+</section>
+<!-- ============ 5 · DUMP SHEET ============ -->
+<section class="tab" id="tab-dump" role="tabpanel" aria-labelledby="t-dump">
+  <p class="lead">What to write down cold in the first five minutes, before the clock
+    starts costing you anything. Blocks are ordered by exam weight.</p>
+  <small class="note">You get <span data-bind="exam.minutes"></span> minutes for
+    <span data-bind="exam.total"></span> questions &mdash;
+    <span data-bind="exam.secondsPerQuestion"></span> seconds each. That is materially
+    tighter than the Series 7, so the dump has to be fast and short. If you cannot write
+    a block in under a minute, it does not belong on the sheet.</small>
+
+  <h2>Cut order</h2>
+  <small class="note">If you are short on time, drop from the bottom up. Computed from exam
+    weight and from which units are currently weakest &mdash; it moves as your data moves.</small>
+  <div id="dump-cutorder"></div>
+
+  <h2>Block 1 &mdash; Registration thresholds
+    <span class="tag warn">Topic IV &middot; <span data-bind="exam.topIVWeight"></span></span></h2>
+  <div class="formula">
+AUM &lt; $100m ...... state
+$100&ndash;110m ......... optional
+&ge; $110m ........... SEC
+&lt; $90m ............ must drop to state
+
+IAR always registers with the STATE
+Federal covered IA: notice file + fee only
+  </div>
+
+  <h2>Block 2 &mdash; Time limits
+    <span class="tag warn">Topic IV</span></h2>
+  <div class="formula">
+30 days ..... registration effective (noon of 30th)
+31 Dec ...... all registrations expire
+2 / 3 yrs ... civil SOL (discovery / act)
+5 yrs ....... criminal SOL
+5 &amp; 3 ....... $5,000 fine / 3 yrs prison
+30 days ..... rescission acceptance window
+5 yrs ....... books and records (2 readily accessible)
+60 days ..... appeal an order
+10 days ..... IA oral discretion grace
+3 bus days .. forward third-party cheque
+  </div>
+
+  <h2>Block 3 &mdash; Prohibited practices
+    <span class="tag warn">Topic IV &middot; H&middot;4</span></h2>
+  <div class="formula">
+NEVER:  guarantee against loss
+        share in losses (IAR: never)
+        loan to/from client (banks &amp; BD lenders excepted)
+        imply registration = approval
+        front-run, churn, sell away, manipulate
+
+Political contributions: 2-yr time-out
+  de minimis $350 (can vote) / $150 (cannot)
+  </div>
+
+  <h2>Block 4 &mdash; Discretion &amp; custody
+    <span class="tag warn">Topic IV</span></h2>
+  <div class="formula">
+Discretion = A A A (Asset / Amount / Action)
+  Time &amp; Price alone = NOT discretion
+  IA: 10 business days oral, then written
+  BD: written BEFORE first trade
+
+Custody triggers: notice, qualified custodian,
+  quarterly statements, annual surprise audit
+  Cheque to third party + 3 days = NOT custody
+  Cheque to adviser = custody
+  </div>
+
+  <h2>Block 5 &mdash; Exempt transactions
+    <span class="tag warn">Topic IV</span></h2>
+  <div class="formula">
+UNSOLICITED order ...... the most-tested one
+Isolated non-issuer
+Private placement ...... &le;10 non-inst. offerees/12mo
+Pre-organization cert .. &le;10 subscribers, no commission
+Fiduciary .............. executor, trustee in bankruptcy
+Financial institutions
+Existing holders, no commission
+
+Antifraud applies to EVERYTHING. No exceptions.
+  </div>
+
+  <h2>Block 6 &mdash; Formulas
+    <span class="tag neutral">Topic I &middot; <span data-bind="exam.topIWeight"></span></span></h2>
+  <small class="note">Small block, high cost per question. Worth the sheet space despite
+    the weight &mdash; these are the questions you either get instantly or lose entirely.</small>
+  <div class="formula">
+Sharpe   = (Rp &minus; rf) &divide; std dev      &larr; total risk
+Treynor  = (Rp &minus; rf) &divide; beta         &larr; systematic
+CAPM     = rf + &beta;(Rm &minus; rf)
+Alpha    = actual &minus; CAPM expected
+Current  = CA &divide; CL
+Quick    = (CA &minus; inventory) &divide; CL
+D/E      = total debt &divide; total equity
+P/E      = price &divide; EPS
+P/B      = price &divide; book/share
+CY       = annual income &divide; market price
+Rule 72  = 72 &divide; rate = yrs to double
+
+Time-weighted  = judges the MANAGER
+Dollar-weighted = judges the CLIENT (is an IRR)
+  </div>
+
+  <h2>Block 7 &mdash; Ownership &amp; RMD
+    <span class="tag neutral">Topic III &middot; <span data-bind="exam.topIIIWeight"></span></span></h2>
+  <div class="formula">
+JTWROS ....... survivor, no probate
+TIC .......... estate, probate
+TBE .......... spouses, creditor protection
+CPWROS ....... community property states
+TOD/POD ...... beneficiary, no probate
+
+RMD age 73 (75 in 2033)
+Roth IRA: no lifetime RMD
+Roth 401(k): no RMD (SECURE 2.0)
+Non-spouse inherited: 10-year rule
+  </div>
+</section>
+
+<!-- ============ 6 · CLAUDE PASTE ============ -->
+<section class="tab" id="tab-paste" role="tabpanel" aria-labelledby="t-paste">
+  <p class="lead">This page is static and has no backend, so it cannot call a model itself.
+    Instead it builds a complete briefing you paste into a fresh Claude conversation &mdash;
+    your whole picture in one shot, no server and no API key sitting in a public repo.</p>
+
+  <div class="rowsel" id="paste-variants">
+    <button data-variant="full"    aria-pressed="true">Full briefing</button>
+    <button data-variant="delta"   aria-pressed="false">Delta since last sync</button>
+    <button data-variant="focused" aria-pressed="false">Focused</button>
+    <button data-variant="quiz"    aria-pressed="false">Quiz me</button>
+  </div>
+  <p id="paste-blurb" class="fig-sub"></p>
+
+  <div class="paste-bar">
+    <button class="copybtn" id="paste-copy">Copy to clipboard</button>
+    <span class="count" id="paste-count"></span>
+  </div>
+  <small class="note" id="paste-built"></small>
+  <pre class="paste" id="paste-body"></pre>
+</section>
+
+<footer class="foot">
+  <p>Every figure on this page is injected from the data arrays at render time &mdash;
+    no number is typed into the HTML. Built
+    <span data-bind="meta.lastVerified"></span> from <span data-bind="meta.source"></span>.
+    Pass line <span data-bind="exam.passLine"></span>, target average
+    <span data-bind="exam.targetAvg"></span>.</p>
+</footer>
 </div>
+<script>
+"use strict";
+/* ==========================================================================
+   SERIES 66 DASHBOARD
+   --------------------------------------------------------------------------
+   THE RULE: every figure shown anywhere on this page - including inside
+   hand-written prose - is injected from the arrays below at render time.
+   No number is ever typed into the HTML. If you find yourself hand-editing a
+   value, the binding is missing: add the binding instead.
 
-<script src="data/exam.js"></script>
-<script src="data/progress.js"></script>
-<script src="assets/sample.js"></script>
-<script src="assets/dashboard.js"></script>
+   Exam-rule constants (AUM thresholds, statute periods) on the Reference and
+   Dump tabs are static regulatory facts, not performance data, and are typed.
+   ========================================================================== */
+
+/* ---------- NASAA blueprint -------------------------------------------------
+   Verified against Series-66-Outline-June-2023.pdf, fetched directly from
+   nasaa.org. Effective 12 June 2023. Several prep vendors publish 5/20/30/45;
+   that is wrong. These are NASAA's own numbers.
+   -------------------------------------------------------------------------- */
+const nasaaData = {
+  source: "NASAA Series-66-Outline-June-2023.pdf",
+  effective: "2023-06-12",
+  verifiedOn: "2026-09-17",
+  topics: [
+    { id: "I",   name: "Economic Factors and Business Information",
+      short: "Economic factors",    weight: 8,  questions: 8  },
+    { id: "II",  name: "Investment Vehicle Characteristics",
+      short: "Investment vehicles", weight: 17, questions: 17 },
+    { id: "III", name: "Client/Customer Investment Recommendations and Strategies",
+      short: "Recommendations",     weight: 30, questions: 30 },
+    { id: "IV",  name: "Laws, Regulations and Guidelines, incl. Prohibition on Unethical Business Practice",
+      short: "Laws & ethics",       weight: 45, questions: 45 }
+  ]
+};
+
+const EXAM = {
+  name: "Series 66 - Uniform Combined State Law Examination",
+  scored: 100,
+  pretest: 10,
+  minutes: 150,
+  PASS_LINE: 73,   // NASAA: 73 of 100 scored. Not the Series 7's 72.
+  TARGET_AVG: 81   // 8 points of buffer over the pass line. Adjustable; don't move casually.
+};
+
+/* ---------- run metadata ----------------------------------------------------
+   lastVerified is the date Kaplan was actually READ. If a run cannot reach
+   Kaplan it must not move this date - that is the whole point of the field.
+   -------------------------------------------------------------------------- */
+const META = {
+  lastVerified:          null,   // ISO date of the last successful Kaplan read
+  lastRunAttempted:      null,   // ISO date of the last sync attempt, successful or not
+  source:                null,   // "kaplan" once real data lands; null while empty
+  examDate:              null,   // null = NOT BOOKED. Do not invent one.
+  noDataRuns:            0,      // consecutive runs that reached a login page / read nothing
+  lastActivityDate:      null,   // most recent dated activity found in Kaplan
+  courseActivitiesDone:  null,
+  courseActivitiesTotal: null,
+  studyPlanPct:          null,
+  kaplanExamAvg:         null,   // Kaplan's own headline, for cross-check only
+  kaplanQBankAvg:        null,
+  unreadReason:          "No Kaplan read has run yet. This container cannot reach a logged-in "
+                       + "Kaplan session; the sync must run from a machine with the live session."
+};
+
+/* ---------- Kaplan unit -> NASAA topic map ----------------------------------
+   MUST be derived from Kaplan's actual unit list and learning objectives, then
+   confirmed by Austin BEFORE anything weighted is built on it. Where a unit
+   spans two topics it is split, and the split is stored - never forced into one
+   bucket. Split weights for a unit must sum to exactly 1.
+     { id, name, split: { IV: 0.7, III: 0.3 }, note: "why it splits" }
+   Empty until the Kaplan unit list has been read.
+   -------------------------------------------------------------------------- */
+const UNIT_TOPIC_MAP = [];
+
+/* ---------- per-unit performance -------------------------------------------
+   Canonical source is the Performance Tracker Breakdown table. Those figures
+   are cumulative and authoritative: they OVERRIDE any older single-quiz score.
+     { id, name,
+       qbankAnswered, qbankCorrect,   <- in the pool
+       examAnswered,  examCorrect,    <- in the pool
+       mixedAnswered, mixedCorrect }  <- counterweight only, NOT pooled
+   -------------------------------------------------------------------------- */
+const unitData = [];
+
+/* Mixed / cumulative review quizzes. Drawn from the QBank, so already inside
+   the QBank counts. Reported alongside the pooled score, never added into it. */
+const mixedQuizzes = [];
+
+/* Individual QBank sittings, for the trend line. */
+const kaplanQBank = [];
+
+/* Simulated and practice exams. Adding one must be a one-line append.
+     { name, date, score, total, timeUsed, timeAllowed,
+       byUnit: {unitId: {answered, correct}},
+       byTopic: {I|II|III|IV: {answered, correct}},
+       segments: [{label:"1-25", missed:n}, ...],
+       missCats: {"misread the question": n, ...} }                            */
+const simExams = [];
+
+/* Derived narrative anchors, written by the sync job from the real data. */
+const weakSpots = [];
+const strongSpots = [];
+
+/* Question-by-question decomposition. The most valuable payload on the page.
+     { id, source, date, unitId, topic, lo, question,
+       myAnswer, correctAnswer, correct: false,
+       rationale, explanation }
+   Correct answers carry a one-line `note` instead of `explanation`.           */
+const missedQuestions = [];
+const answeredCorrect = [];
+
+/* Recurring error patterns. A rule missed twice belongs here.
+     { rule, count, occurrences: [questionId], topic, note }                   */
+const errorPatterns = [];
+
+/* Snapshot of the previous sync, so the delta briefing is computed rather than
+   reconstructed. The sync job overwrites this with the CURRENT state at the end
+   of every run that produced a briefing. null = no prior snapshot yet.        */
+const PRIOR_SNAPSHOT = null;
+
+/* ==========================================================================
+   DERIVATION
+   ========================================================================== */
+const EM = "—";                       // em dash, used for "no data"
+const hasData = () => unitData.length > 0;
+
+function pct(correct, answered) {
+  if (!answered) return null;
+  return (correct / answered) * 100;
+}
+function fmtPct(v, dp) {
+  if (v === null || v === undefined || !isFinite(v)) return EM;
+  return v.toFixed(dp === undefined ? 1 : dp) + "%";
+}
+function fmtNum(v) {
+  if (v === null || v === undefined || !isFinite(v)) return EM;
+  return String(Math.round(v));
+}
+function fmtSigned(v, dp) {
+  if (v === null || v === undefined || !isFinite(v)) return EM;
+  const d = dp === undefined ? 1 : dp;
+  return (v > 0 ? "+" : "") + v.toFixed(d);
+}
+function fmtDate(iso) {
+  if (!iso) return EM;
+  const d = new Date(iso + (iso.length === 10 ? "T12:00:00Z" : ""));
+  if (isNaN(d)) return EM;
+  return d.toLocaleDateString("en-US", { year: "numeric", month: "short", day: "numeric", timeZone: "UTC" });
+}
+function todayISO() { return new Date().toISOString().slice(0, 10); }
+function daysBetween(aISO, bISO) {
+  if (!aISO || !bISO) return null;
+  const a = new Date(aISO + "T12:00:00Z"), b = new Date(bISO + "T12:00:00Z");
+  if (isNaN(a) || isNaN(b)) return null;
+  return Math.round((b - a) / 86400000);
+}
+
+/* ---- the headline: a TRUE pooled average -----------------------------------
+   Every question counted exactly once. QBank + course Exams only.
+   Mixed/cumulative quizzes and simulated exams are drawn FROM the QBank, so
+   adding them here would double-count. They are a counterweight column.
+   -------------------------------------------------------------------------- */
+function unitPool(u) {
+  return {
+    answered: (u.qbankAnswered || 0) + (u.examAnswered || 0),
+    correct:  (u.qbankCorrect  || 0) + (u.examCorrect  || 0)
+  };
+}
+function pooledTotals() {
+  let answered = 0, correct = 0;
+  for (const u of unitData) { const p = unitPool(u); answered += p.answered; correct += p.correct; }
+  return { answered, correct, pct: pct(correct, answered) };
+}
+function mixedTotals() {
+  let answered = 0, correct = 0;
+  for (const u of unitData) { answered += (u.mixedAnswered || 0); correct += (u.mixedCorrect || 0); }
+  for (const q of mixedQuizzes) { if (q.answered) { answered += q.answered; correct += q.correct || 0; } }
+  return { answered, correct, pct: pct(correct, answered) };
+}
+
+/* ---- unit -> topic rollup, honouring splits -------------------------------- */
+function topicIdList() { return nasaaData.topics.map(t => t.id); }
+function mapForUnit(unitId) { return UNIT_TOPIC_MAP.find(m => m.id === unitId) || null; }
+
+function topicTotals() {
+  const out = {};
+  for (const t of nasaaData.topics) out[t.id] = { answered: 0, correct: 0, pct: null, units: [] };
+  for (const u of unitData) {
+    const m = mapForUnit(u.id);
+    if (!m) continue;                       // unmapped units are excluded, and flagged elsewhere
+    const p = unitPool(u);
+    for (const [tid, w] of Object.entries(m.split)) {
+      if (!out[tid]) continue;
+      out[tid].answered += p.answered * w;
+      out[tid].correct  += p.correct  * w;
+      out[tid].units.push(u.id);
+    }
+  }
+  for (const tid of Object.keys(out)) out[tid].pct = pct(out[tid].correct, out[tid].answered);
+  return out;
+}
+
+/* reweighted = 0.08xT1 + 0.17xT2 + 0.30xT3 + 0.45xT4
+   Only defined when every topic has data; a partial reweight would be a lie. */
+function reweightedScore() {
+  const tt = topicTotals();
+  let sum = 0, weightCovered = 0;
+  for (const t of nasaaData.topics) {
+    const p = tt[t.id].pct;
+    if (p === null) continue;
+    sum += (t.weight / 100) * p;
+    weightCovered += t.weight;
+  }
+  if (weightCovered === 0) return { pct: null, coverage: 0 };
+  // Scale up to a full-blueprint estimate only when coverage is complete.
+  return { pct: weightCovered === 100 ? sum : (sum / weightCovered) * 100, coverage: weightCovered };
+}
+
+/* ---- questions attributable to each unit, for the priority ordering -------- */
+function unitExamQuestions(unitId) {
+  const m = mapForUnit(unitId);
+  if (!m) return 0;
+  let q = 0;
+  for (const [tid, w] of Object.entries(m.split)) {
+    const topic = nasaaData.topics.find(t => t.id === tid);
+    if (!topic) continue;
+    let denom = 0;
+    for (const other of UNIT_TOPIC_MAP) denom += (other.split[tid] || 0);
+    if (!denom) continue;
+    q += topic.questions * (w / denom);
+  }
+  return q;
+}
+
+/* Priority = expected scored questions lost. Weight x miss rate. Derived,
+   never typed - a unit worth 45 questions at 70% costs more than one worth 8. */
+function priorityOrder() {
+  return unitData.map(u => {
+    const p = unitPool(u);
+    const acc = pct(p.correct, p.answered);
+    const q = unitExamQuestions(u.id);
+    return {
+      id: u.id, name: u.name, pct: acc, answered: p.answered,
+      examQuestions: q,
+      lost: acc === null ? null : q * (1 - acc / 100)
+    };
+  })
+  .filter(r => r.lost !== null)
+  .sort((a, b) => b.lost - a.lost);
+}
+function topicPriorityOrder() {
+  const tt = topicTotals();
+  return nasaaData.topics.map(t => ({
+    id: t.id, name: t.name, short: t.short, weight: t.weight, questions: t.questions,
+    pct: tt[t.id].pct,
+    lost: tt[t.id].pct === null ? null : t.questions * (1 - tt[t.id].pct / 100)
+  })).filter(r => r.lost !== null).sort((a, b) => b.lost - a.lost);
+}
+
+function unitsBelowLine() {
+  return unitData
+    .map(u => { const p = unitPool(u); return { id: u.id, name: u.name, pct: pct(p.correct, p.answered) }; })
+    .filter(r => r.pct !== null && r.pct < EXAM.PASS_LINE)
+    .sort((a, b) => a.pct - b.pct);
+}
+function unmappedUnits() { return unitData.filter(u => !mapForUnit(u.id)); }
+
+function daysUntilExam() {
+  if (!META.examDate) return null;
+  return daysBetween(todayISO(), META.examDate);
+}
+function daysSinceActivity() {
+  if (!META.lastActivityDate) return null;
+  return daysBetween(META.lastActivityDate, todayISO());
+}
+function latestExam() { return simExams.length ? simExams[simExams.length - 1] : null; }
+
+/* ==========================================================================
+   BINDINGS - every data-bind key on the page resolves through here.
+   bindAll() runs on load and after any data change. An unresolved key is a
+   defect: it renders a dash, warns, and the sanity check fails the build.
+   ========================================================================== */
+function buildBindings() {
+  const P  = pooledTotals();
+  const MX = mixedTotals();
+  const RW = reweightedScore();
+  const below = unitsBelowLine();
+  const prio  = priorityOrder();
+  const days  = daysUntilExam();
+  const since = daysSinceActivity();
+  const last  = latestExam();
+  const T = {};
+  for (const t of nasaaData.topics) T[t.id] = t;
+
+  const b = {
+    /* exam blueprint */
+    "exam.name":               EXAM.name,
+    "exam.scored":             String(EXAM.scored),
+    "exam.pretest":            String(EXAM.pretest),
+    "exam.total":              String(EXAM.scored + EXAM.pretest),
+    "exam.minutes":            String(EXAM.minutes),
+    "exam.passLine":           EXAM.PASS_LINE + "%",
+    "exam.passLineNum":        String(EXAM.PASS_LINE),
+    "exam.targetAvg":          EXAM.TARGET_AVG + "%",
+    "exam.targetAvgNum":       String(EXAM.TARGET_AVG),
+    "exam.secondsPerQuestion": String(Math.round(EXAM.minutes * 60 / (EXAM.scored + EXAM.pretest))),
+    "exam.weightString":       nasaaData.topics.map(t => t.weight).join("/"),
+    "exam.blueprintSource":    nasaaData.source,
+    "exam.blueprintVerified":  fmtDate(nasaaData.verifiedOn),
+
+    /* run metadata */
+    "meta.lastVerified":   META.lastVerified ? fmtDate(META.lastVerified) : "never - no Kaplan read yet",
+    "meta.lastRun":        META.lastRunAttempted ? fmtDate(META.lastRunAttempted) : EM,
+    "meta.source":         META.source || "no data yet",
+    "meta.noDataRuns":     String(META.noDataRuns),
+    "meta.examDate":       META.examDate ? fmtDate(META.examDate) : "not booked",
+    "meta.daysUntilExam":  days === null ? "no date booked" : String(days),
+    "meta.lastActivity":   META.lastActivityDate ? fmtDate(META.lastActivityDate) : EM,
+    "meta.daysSinceActivity": since === null ? EM : String(since),
+    "meta.activitiesDone":  META.courseActivitiesDone === null ? EM : String(META.courseActivitiesDone),
+    "meta.activitiesTotal": META.courseActivitiesTotal === null ? EM : String(META.courseActivitiesTotal),
+    "meta.activitiesStr":   (META.courseActivitiesDone === null || META.courseActivitiesTotal === null)
+                              ? EM : META.courseActivitiesDone + " / " + META.courseActivitiesTotal,
+    "meta.studyPlanPct":    fmtPct(META.studyPlanPct, 0),
+
+    /* the headline */
+    "pooled.pct":       fmtPct(P.pct),
+    "pooled.correct":   P.answered ? String(P.correct) : EM,
+    "pooled.answered":  P.answered ? String(P.answered) : EM,
+    "pooled.fraction":  P.answered ? (P.correct + " of " + P.answered) : EM,
+    "pooled.gapToPass": P.pct === null ? EM : fmtSigned(P.pct - EXAM.PASS_LINE),
+    "pooled.gapToTarget": P.pct === null ? EM : fmtSigned(P.pct - EXAM.TARGET_AVG),
+
+    "mixed.pct":        fmtPct(MX.pct),
+    "mixed.fraction":   MX.answered ? (MX.correct + " of " + MX.answered) : EM,
+
+    "reweighted.pct":      fmtPct(RW.pct),
+    "reweighted.coverage": RW.coverage ? RW.coverage + "%" : EM,
+
+    /* counts */
+    "counts.units":        String(unitData.length),
+    "counts.unitsMapped":  String(UNIT_TOPIC_MAP.length),
+    "counts.unitsBelow":   hasData() ? String(below.length) : EM,
+    "counts.unitsUnmapped": String(unmappedUnits().length),
+    "counts.exams":        String(simExams.length),
+    "counts.quizzes":      String(kaplanQBank.length),
+    "counts.mixed":        String(mixedQuizzes.length),
+    "counts.misses":       String(missedQuestions.length),
+    "counts.patterns":     String(errorPatterns.length),
+    "counts.repeatedRules": String(errorPatterns.filter(p => (p.count || 0) >= 2).length),
+
+    /* latest exam */
+    "latest.name":  last ? last.name : EM,
+    "latest.date":  last ? fmtDate(last.date) : EM,
+    "latest.pct":   last ? fmtPct(pct(last.score, last.total)) : EM,
+    "latest.score": last ? (last.score + " of " + last.total) : EM,
+
+    /* derived claims */
+    "weakest.name": prio.length ? prio[0].name : EM,
+    "weakest.pct":  prio.length ? fmtPct(prio[0].pct) : EM,
+    "belowList":    below.length ? below.map(u => u.name).join(", ") : (hasData() ? "none" : EM)
+  };
+
+  /* per-topic keys */
+  const roman = { I: "topI", II: "topII", III: "topIII", IV: "topIV" };
+  const tt = topicTotals();
+  for (const t of nasaaData.topics) {
+    const k = roman[t.id];
+    b["exam." + k + "Weight"]    = t.weight + "%";
+    b["exam." + k + "Questions"] = String(t.questions);
+    b["exam." + k + "Name"]      = t.name;
+    b["topic." + t.id + ".pct"]  = fmtPct(tt[t.id].pct);
+    b["topic." + t.id + ".gap"]  = tt[t.id].pct === null ? EM : fmtSigned(tt[t.id].pct - EXAM.PASS_LINE);
+  }
+
+  /* per-unit keys, so generated prose can bind to a specific unit */
+  for (const u of unitData) {
+    const p = unitPool(u);
+    b["unit." + u.id + ".pooled"]   = fmtPct(pct(p.correct, p.answered));
+    b["unit." + u.id + ".name"]     = u.name;
+    b["unit." + u.id + ".answered"] = String(p.answered);
+    b["unit." + u.id + ".qbank"]    = fmtPct(pct(u.qbankCorrect, u.qbankAnswered));
+    b["unit." + u.id + ".exam"]     = fmtPct(pct(u.examCorrect, u.examAnswered));
+  }
+  return b;
+}
+
+let BINDINGS = {};
+const MISSING_BINDS = [];
+function bindAll() {
+  BINDINGS = buildBindings();
+  MISSING_BINDS.length = 0;
+  const nodes = document.querySelectorAll("[data-bind]");
+  for (const el of nodes) {
+    const key = el.getAttribute("data-bind");
+    if (Object.prototype.hasOwnProperty.call(BINDINGS, key)) {
+      el.textContent = BINDINGS[key];
+      el.removeAttribute("data-bind-missing");
+    } else {
+      el.textContent = EM;
+      el.setAttribute("data-bind-missing", "1");
+      MISSING_BINDS.push(key);
+      if (typeof console !== "undefined" && console.warn) console.warn("unresolved data-bind:", key);
+    }
+  }
+  return MISSING_BINDS;
+}
+/* Shorthand for generated markup: bound(key) emits a live binding node. */
+function bound(key) { return '<span data-bind="' + key + '"></span>'; }
+function esc(s) {
+  return String(s === null || s === undefined ? "" : s)
+    .replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;");
+}
+
+/* ==========================================================================
+   RENDER
+   Every renderer assigns innerHTML. None of them append. Calling any of them
+   repeatedly must produce an identical DOM - the sanity check enforces this.
+   ========================================================================== */
+function $(id) { return document.getElementById(id); }
+function setHTML(id, html) { const el = $(id); if (el) el.innerHTML = html; return el; }
+
+function emptyBlock(what) {
+  return '<div class="empty">'
+    + '<h3>No data yet ' + EM + ' ' + esc(what) + '</h3>'
+    + '<p>Nothing here is a placeholder. The arrays are genuinely empty because Kaplan '
+    + 'has not been read yet, and an empty dashboard is the correct state: a populated '
+    + 'fake one would be impossible to spot as fake weeks from now.</p>'
+    + '<p><b>Last verified:</b> ' + bound("meta.lastVerified")
+    + ' &nbsp;<b>Source:</b> ' + bound("meta.source") + '</p>'
+    + '<p>' + esc(META.unreadReason || "") + '</p>'
+    + '</div>';
+}
+
+/* ---------- stat cards ---------------------------------------------------- */
+function statCard(label, valueKey, metaHTML, flag) {
+  return '<div class="stat' + (flag ? ' flag' : '') + '">'
+    + '<div class="label">' + esc(label) + '</div>'
+    + '<div class="value">' + bound(valueKey) + '</div>'
+    + (metaHTML ? '<div class="meta">' + metaHTML + '</div>' : '')
+    + '</div>';
+}
+function renderStatCards() {
+  const P = pooledTotals();
+  const below = unitsBelowLine();
+  const days = daysUntilExam();
+
+  let examCard;
+  if (META.examDate === null) {
+    examCard = '<div class="stat">'
+      + '<div class="label">Days until exam</div>'
+      + '<div class="value none">No date booked</div>'
+      + '<div class="meta">Booking it is the standing top action.</div>'
+      + '</div>';
+  } else {
+    examCard = statCard("Days until exam", "meta.daysUntilExam",
+      bound("meta.examDate"), days !== null && days < 14);
+  }
+
+  setHTML("stat-cards",
+      statCard("Pooled score", "pooled.pct",
+        bound("pooled.fraction") + " correct", P.pct !== null && P.pct < EXAM.PASS_LINE)
+    + statCard("Study plan progress", "meta.studyPlanPct", "Kaplan's own figure")
+    + statCard("Activities complete", "meta.activitiesStr", "From the course dashboard")
+    + statCard("Latest exam", "latest.pct", bound("latest.name"))
+    + statCard("Target average", "exam.targetAvg",
+        bound("pooled.gapToTarget") + " from target")
+    + examCard
+    + statCard("Units below the line", "counts.unitsBelow",
+        "Below " + bound("exam.passLine"), below.length > 0)
+    + statCard("Reweighted score", "reweighted.pct",
+        "Blueprint " + bound("exam.weightString"))
+  );
+}
+
+/* ---------- unit table ---------------------------------------------------- */
+function renderUnitTable() {
+  if (!unitData.length) {
+    setHTML("unit-table", '<table class="narrow"><tbody><tr class="empty-row"><td>'
+      + 'No Kaplan units read yet. The unit list must come from Kaplan '
+      + EM + ' it is never hardcoded.</td></tr></tbody></table>');
+    return;
+  }
+  const P = pooledTotals(), MX = mixedTotals();
+  let rows = "";
+  for (const u of unitData) {
+    const p = unitPool(u);
+    const pooledPct = pct(p.correct, p.answered);
+    const qb = pct(u.qbankCorrect, u.qbankAnswered);
+    const ex = pct(u.examCorrect, u.examAnswered);
+    const mx = pct(u.mixedCorrect, u.mixedAnswered);
+    const diff = (qb !== null && ex !== null) ? ex - qb : null;
+    const low = pooledPct !== null && pooledPct < EXAM.PASS_LINE;
+    const m = mapForUnit(u.id);
+    const topics = m ? Object.keys(m.split).join(" / ")
+                     : '<span class="tag warn">unmapped</span>';
+    rows += '<tr' + (low ? ' class="below"' : '') + '>'
+      + '<td>' + esc(u.name) + '</td>'
+      + '<td>' + topics + '</td>'
+      + '<td class="num">' + fmtPct(pooledPct) + '</td>'
+      + '<td class="num">' + (p.answered || EM) + '</td>'
+      + '<td class="num">' + fmtPct(qb) + '</td>'
+      + '<td class="num">' + fmtPct(ex) + '</td>'
+      + '<td class="num">' + fmtPct(mx) + '</td>'
+      + '<td class="' + (diff === null ? "delta-flat" : diff > 0 ? "delta-up" : diff < 0 ? "delta-down" : "delta-flat") + '">'
+      + (diff === null ? EM : fmtSigned(diff)) + '</td>'
+      + '<td>' + (low ? '<span class="tag bad">below</span>' : '<span class="tag ok">ok</span>') + '</td>'
+      + '</tr>';
+  }
+  setHTML("unit-table",
+    '<table><thead><tr>'
+    + '<th>Kaplan unit</th><th>Topic</th><th>Pooled</th><th>Answered</th>'
+    + '<th>QBank</th><th>Exam</th><th>Mixed</th><th>Exam &minus; QBank</th><th></th>'
+    + '</tr></thead><tbody>' + rows + '</tbody>'
+    + '<tfoot><tr><td>All units</td><td></td>'
+    + '<td class="num">' + fmtPct(P.pct) + '</td>'
+    + '<td class="num">' + (P.answered || EM) + '</td>'
+    + '<td class="num" colspan="2">pooled, each question once</td>'
+    + '<td class="num">' + fmtPct(MX.pct) + '</td>'
+    + '<td colspan="2">mixed sits outside the pool</td>'
+    + '</tr></tfoot></table>');
+}
+
+/* ---------- topic table --------------------------------------------------- */
+function renderTopicTable() {
+  const tt = topicTotals();
+  const anyData = nasaaData.topics.some(t => tt[t.id].pct !== null);
+  let rows = "";
+  for (const t of nasaaData.topics) {
+    const p = tt[t.id].pct;
+    const gap = p === null ? null : p - EXAM.PASS_LINE;
+    const lift = p === null ? null : EXAM.TARGET_AVG - p;
+    const lost = p === null ? null : t.questions * (1 - p / 100);
+    const low = p !== null && p < EXAM.PASS_LINE;
+    rows += '<tr' + (low ? ' class="below"' : '') + '>'
+      + '<td><b>' + t.id + '</b> ' + esc(t.short) + '</td>'
+      + '<td class="num">' + t.weight + '%</td>'
+      + '<td class="num">' + t.questions + '</td>'
+      + '<td class="num">' + fmtPct(p) + '</td>'
+      + '<td class="' + (gap === null ? "delta-flat" : gap >= 0 ? "delta-up" : "delta-down") + '">'
+      + (gap === null ? EM : fmtSigned(gap)) + '</td>'
+      + '<td class="num">' + (lift === null ? EM : (lift <= 0 ? "at target" : fmtSigned(lift))) + '</td>'
+      + '<td class="num">' + (lost === null ? EM : lost.toFixed(1)) + '</td>'
+      + '</tr>';
+  }
+  const RW = reweightedScore();
+  setHTML("topic-table",
+    '<table><thead><tr>'
+    + '<th>NASAA topic</th><th>Weight</th><th>Questions</th><th>Accuracy</th>'
+    + '<th>vs. ' + EXAM.PASS_LINE + '% needed</th><th>Lift for ' + EXAM.TARGET_AVG + '%</th>'
+    + '<th>Est. questions lost</th>'
+    + '</tr></thead><tbody>' + rows + '</tbody>'
+    + '<tfoot><tr><td>Reweighted</td>'
+    + '<td class="num">100%</td><td class="num">' + EXAM.scored + '</td>'
+    + '<td class="num">' + fmtPct(RW.pct) + '</td>'
+    + '<td colspan="3">' + (anyData
+        ? ('coverage ' + (RW.coverage || 0) + '% of the blueprint')
+        : 'no topic data yet') + '</td>'
+    + '</tr></tfoot></table>');
+}
+
+/* ---------- performance tab ----------------------------------------------- */
+function renderPerformance() {
+  setHTML("perf-empty", hasData() ? "" : emptyBlock("performance"));
+  renderStatCards();
+  renderUnitTable();
+  renderTopicTable();
+  const pill = $("pill-nodata");
+  if (pill) pill.hidden = !(META.noDataRuns > 0);
+}
+
+/* ==========================================================================
+   SIMULATED EXAMS
+   renderSimulated(idx) is idempotent: five calls in a row produce an identical
+   DOM and an identical row count.
+   ========================================================================== */
+let currentExam = 0;
+
+function renderExamSelector() {
+  if (!simExams.length) { setHTML("exam-select", ""); return; }
+  let html = "";
+  simExams.forEach((e, i) => {
+    html += '<button data-exam="' + i + '" aria-pressed="' + (i === currentExam) + '">'
+      + esc(e.name) + '</button>';
+  });
+  setHTML("exam-select", html);
+  const box = $("exam-select");
+  if (box) box.querySelectorAll("button").forEach(btn => {
+    btn.addEventListener("click", () => renderSimulated(Number(btn.dataset.exam)));
+  });
+}
+
+function renderSimulated(idx) {
+  if (!simExams.length) {
+    setHTML("exam-detail", "");
+    setHTML("exam-select", "");
+    return;
+  }
+  currentExam = Math.max(0, Math.min(idx | 0, simExams.length - 1));
+  const e = simExams[currentExam];
+  const score = pct(e.score, e.total);
+  const passed = score !== null && score >= EXAM.PASS_LINE;
+  const pace = (e.timeUsed && e.total) ? (e.timeUsed * 60 / e.total) : null;
+
+  /* header card */
+  let html = '<div class="card"><h3>' + esc(e.name) + '</h3>'
+    + '<dl class="kv">'
+    + '<dt>Date</dt><dd>' + fmtDate(e.date) + '</dd>'
+    + '<dt>Score</dt><dd>' + fmtPct(score) + ' (' + e.score + ' of ' + e.total + ') '
+    + (passed ? '<span class="tag ok">above the line</span>'
+              : '<span class="tag bad">below ' + EXAM.PASS_LINE + '%</span>') + '</dd>'
+    + '<dt>Time</dt><dd>' + (e.timeUsed ? (e.timeUsed + ' of ' + (e.timeAllowed || EXAM.minutes) + ' min') : EM)
+    + (pace ? ' &middot; ' + pace.toFixed(0) + 's per question' : '') + '</dd>'
+    + '</dl></div>';
+
+  /* by topic */
+  if (e.byTopic && Object.keys(e.byTopic).length) {
+    let rows = "";
+    for (const t of nasaaData.topics) {
+      const d = e.byTopic[t.id];
+      if (!d) continue;
+      const p = pct(d.correct, d.answered);
+      rows += '<tr' + (p !== null && p < EXAM.PASS_LINE ? ' class="below"' : '') + '>'
+        + '<td><b>' + t.id + '</b> ' + esc(t.short) + '</td>'
+        + '<td class="num">' + d.correct + ' / ' + d.answered + '</td>'
+        + '<td class="num">' + fmtPct(p) + '</td>'
+        + '<td class="num">' + t.weight + '%</td></tr>';
+    }
+    html += '<h3>By NASAA topic</h3><div class="scroller"><table class="narrow"><thead><tr>'
+      + '<th>Topic</th><th>Correct</th><th>Accuracy</th><th>Exam weight</th>'
+      + '</tr></thead><tbody>' + rows + '</tbody></table></div>';
+  }
+
+  /* by unit */
+  if (e.byUnit && Object.keys(e.byUnit).length) {
+    let rows = "";
+    for (const [uid, d] of Object.entries(e.byUnit)) {
+      const u = unitData.find(x => x.id === uid);
+      const p = pct(d.correct, d.answered);
+      rows += '<tr' + (p !== null && p < EXAM.PASS_LINE ? ' class="below"' : '') + '>'
+        + '<td>' + esc(u ? u.name : uid) + '</td>'
+        + '<td class="num">' + d.correct + ' / ' + d.answered + '</td>'
+        + '<td class="num">' + fmtPct(p) + '</td></tr>';
+    }
+    html += '<h3>By Kaplan unit</h3><div class="scroller"><table class="narrow"><thead><tr>'
+      + '<th>Unit</th><th>Correct</th><th>Accuracy</th>'
+      + '</tr></thead><tbody>' + rows + '</tbody></table></div>';
+  }
+
+  /* pacing across quarters - stamina and late-exam fade */
+  if (e.segments && e.segments.length) {
+    let rows = "", worst = null;
+    for (const s of e.segments) {
+      if (worst === null || s.missed > worst.missed) worst = s;
+    }
+    for (const s of e.segments) {
+      const flag = worst && s === worst && e.segments.length > 1;
+      rows += '<tr' + (flag ? ' class="below"' : '') + '>'
+        + '<td>Questions ' + esc(s.label) + '</td>'
+        + '<td class="num">' + s.missed + '</td>'
+        + '<td>' + (flag ? '<span class="tag bad">worst quarter</span>' : '') + '</td></tr>';
+    }
+    const first = e.segments[0], lastSeg = e.segments[e.segments.length - 1];
+    const fade = (first && lastSeg && lastSeg.missed > first.missed);
+    html += '<h3>Pacing and stamina</h3><div class="scroller"><table class="narrow"><thead><tr>'
+      + '<th>Segment</th><th>Missed</th><th></th></tr></thead><tbody>' + rows + '</tbody></table></div>'
+      + (fade ? '<p><span class="tag warn">late-exam fade</span> More missed in the closing '
+                + 'stretch than the opening one. Worth watching across the next sitting.</p>' : '');
+  }
+
+  /* miss categories */
+  if (e.missCats && Object.keys(e.missCats).length) {
+    const cats = Object.entries(e.missCats).sort((a, b) => b[1] - a[1]);
+    let rows = "";
+    for (const [cat, n] of cats) {
+      rows += '<tr><td>' + esc(cat) + '</td><td class="num">' + n + '</td></tr>';
+    }
+    html += '<h3>Kind of error</h3><div class="scroller"><table class="narrow"><thead><tr>'
+      + '<th>Category</th><th>Count</th></tr></thead><tbody>' + rows + '</tbody></table></div>';
+  }
+
+  setHTML("exam-detail", html);
+  renderExamSelector();
+  bindAll();
+}
+
+/* exam-over-exam delta, including "did not move at all" detection */
+function renderExamDelta() {
+  if (simExams.length < 2) {
+    setHTML("exam-delta", '<table class="narrow"><tbody><tr class="empty-row"><td>'
+      + (simExams.length === 1
+          ? 'One exam logged. A second one is what makes this table useful.'
+          : 'No exams logged yet.')
+      + '</td></tr></tbody></table>');
+    setHTML("exam-stuck", "");
+    return;
+  }
+  const ids = new Set();
+  simExams.forEach(e => Object.keys(e.byTopic || {}).forEach(k => ids.add(k)));
+  let rows = "";
+  const stuck = [];
+  for (const tid of nasaaData.topics.map(t => t.id)) {
+    if (!ids.has(tid)) continue;
+    const t = nasaaData.topics.find(x => x.id === tid);
+    let cells = "", series = [];
+    for (const e of simExams) {
+      const d = (e.byTopic || {})[tid];
+      const p = d ? pct(d.correct, d.answered) : null;
+      series.push(p);
+      cells += '<td class="num">' + fmtPct(p) + '</td>';
+    }
+    const first = series.find(v => v !== null);
+    const lastV = [...series].reverse().find(v => v !== null);
+    const move = (first !== undefined && lastV !== undefined) ? lastV - first : null;
+    /* did not move at all: below the line in consecutive exams, no improvement */
+    const consecLow = series.length >= 2
+      && series.slice(-2).every(v => v !== null && v < EXAM.PASS_LINE)
+      && (series[series.length - 1] - series[series.length - 2]) <= 0.5;
+    if (consecLow) stuck.push({ id: tid, name: t.name, pct: series[series.length - 1] });
+    rows += '<tr' + (consecLow ? ' class="below"' : '') + '>'
+      + '<td><b>' + tid + '</b> ' + esc(t.short) + '</td>' + cells
+      + '<td class="' + (move === null ? "delta-flat" : move > 0.5 ? "delta-up" : move < -0.5 ? "delta-down" : "delta-flat") + '">'
+      + (move === null ? EM : fmtSigned(move)) + '</td>'
+      + '<td>' + (consecLow ? '<span class="tag bad">has not moved</span>' : '') + '</td>'
+      + '</tr>';
+  }
+  setHTML("exam-delta",
+    '<table><thead><tr><th>Topic</th>'
+    + simExams.map(e => '<th>' + esc(e.name) + '</th>').join("")
+    + '<th>Move</th><th></th></tr></thead><tbody>' + rows + '</tbody></table>');
+
+  setHTML("exam-stuck", stuck.length
+    ? '<div class="card"><h3>Gaps that have not moved</h3><p>'
+      + stuck.map(s => '<b>Topic ' + s.id + ' ' + esc(s.name) + '</b> at ' + fmtPct(s.pct)).join("; ")
+      + ' &mdash; below the line on consecutive exams with no improvement. A weakness that '
+      + 'survives a second sitting is not noise, and re-reading the same material has '
+      + 'already been tried once.</p></div>'
+    : "");
+}
+
+function renderExams() {
+  setHTML("exam-empty", simExams.length ? "" : emptyBlock("practice and simulated exams"));
+  renderSimulated(currentExam);
+  renderExamDelta();
+}
+
+/* ==========================================================================
+   STUDY GUIDE
+   Prose is hand-written; every figure inside it is bound. Where a CLAIM
+   depends on a number ("this is your weakest unit"), the claim is derived too.
+   ========================================================================== */
+function renderStanding() {
+  if (!hasData()) {
+    setHTML("guide-standing",
+      '<p>No standing to report yet. Once the Performance Tracker has been read, this '
+      + 'section states the pooled score, the gap to the pass line, and how many units '
+      + 'sit below it ' + EM + ' all derived, so it cannot drift.</p>');
+    return;
+  }
+  const P = pooledTotals();
+  const below = unitsBelowLine();
+  const gap = P.pct - EXAM.PASS_LINE;
+  const verdict = gap >= (EXAM.TARGET_AVG - EXAM.PASS_LINE)
+      ? "comfortably clear of the line"
+    : gap >= 0
+      ? "over the line, but inside the margin where a bad morning costs you the exam"
+      : "below the line";
+  setHTML("guide-standing",
+    '<p class="lead">Pooled, you are at ' + bound("pooled.pct") + ' on '
+    + bound("pooled.answered") + ' questions ' + EM + ' ' + esc(verdict)
+    + '. That is ' + bound("pooled.gapToPass") + ' against the '
+    + bound("exam.passLine") + ' you need and ' + bound("pooled.gapToTarget")
+    + ' against the ' + bound("exam.targetAvg") + ' target.</p>'
+    + '<p>' + (below.length
+        ? ('Units currently below the line: <b>' + esc(below.map(u => u.name).join(", ")) + '</b>.')
+        : 'Every unit with data is currently at or above the pass line.')
+      + ' Mixed and cumulative quizzes sit at ' + bound("mixed.pct")
+      + ' as a counterweight ' + EM + ' they are drawn from the QBank, so they are '
+      + 'reported beside the pooled figure rather than inside it.</p>');
+}
+
+function renderPriority() {
+  const tp = topicPriorityOrder();
+  const up = priorityOrder();
+  if (!tp.length && !up.length) {
+    setHTML("guide-priority",
+      '<p>Priority ordering is computed from expected scored questions lost, so it '
+      + 'appears as soon as there is data to rank. Nothing is typed here.</p>');
+    return;
+  }
+  let html = '<div class="scroller"><table class="narrow"><thead><tr>'
+    + '<th>#</th><th>Topic</th><th>Accuracy</th><th>Weight</th><th>Est. questions lost</th>'
+    + '</tr></thead><tbody>';
+  tp.forEach((r, i) => {
+    html += '<tr' + (i === 0 ? ' class="below"' : '') + '>'
+      + '<td>' + (i + 1) + '</td>'
+      + '<td><b>' + r.id + '</b> ' + esc(r.short) + '</td>'
+      + '<td class="num">' + fmtPct(r.pct) + '</td>'
+      + '<td class="num">' + r.weight + '%</td>'
+      + '<td class="num">' + r.lost.toFixed(1) + '</td></tr>';
+  });
+  html += '</tbody></table></div>';
+
+  if (up.length) {
+    html += '<h3>By Kaplan unit</h3><div class="scroller"><table class="narrow"><thead><tr>'
+      + '<th>#</th><th>Unit</th><th>Pooled</th><th>Exam questions</th><th>Est. lost</th>'
+      + '</tr></thead><tbody>';
+    up.slice(0, 12).forEach((r, i) => {
+      html += '<tr' + (i === 0 ? ' class="below"' : '') + '>'
+        + '<td>' + (i + 1) + '</td><td>' + esc(r.name) + '</td>'
+        + '<td class="num">' + fmtPct(r.pct) + '</td>'
+        + '<td class="num">' + r.examQuestions.toFixed(1) + '</td>'
+        + '<td class="num">' + r.lost.toFixed(1) + '</td></tr>';
+    });
+    html += '</tbody></table></div>';
+    html += '<p>Top of the list is <b>' + esc(up[0].name) + '</b> at '
+      + bound("unit." + up[0].id + ".pooled") + '. It leads not because it is the lowest '
+      + 'percentage but because weight times miss rate puts the most scored questions at '
+      + 'risk there.</p>';
+  }
+  setHTML("guide-priority", html);
+}
+
+function renderMapTable() {
+  if (!UNIT_TOPIC_MAP.length) {
+    setHTML("map-table", '<table class="narrow"><tbody><tr class="empty-row"><td>'
+      + 'Not built yet. It must be derived from Kaplan\'s real unit list and each unit\'s '
+      + 'learning objectives, then confirmed before anything weighted is built on it.'
+      + '</td></tr></tbody></table>');
+    setHTML("map-status",
+      '<div class="empty"><h3>Mapping not yet confirmed</h3>'
+      + '<p>Every weighted number on this page ' + EM + ' the topic rollup, the reweighted '
+      + 'score, the priority ordering, the dump sheet cut order ' + EM + ' computes from this '
+      + 'table. If it is wrong, all of them are wrong.</p>'
+      + '<p>So it gets built from Kaplan first and confirmed by you before anything is '
+      + 'stacked on top of it.</p></div>');
+    return;
+  }
+  let rows = "";
+  for (const m of UNIT_TOPIC_MAP) {
+    const parts = Object.entries(m.split)
+      .map(([t, w]) => '<b>' + t + '</b> ' + Math.round(w * 100) + '%').join(" &middot; ");
+    const sum = Object.values(m.split).reduce((a, b) => a + b, 0);
+    const bad = Math.abs(sum - 1) > 1e-9;
+    rows += '<tr' + (bad ? ' class="below"' : '') + '>'
+      + '<td>' + esc(m.name) + '</td><td>' + parts + '</td>'
+      + '<td>' + esc(m.note || "") + '</td>'
+      + '<td>' + (bad ? '<span class="tag bad">split &ne; 100%</span>' : '') + '</td></tr>';
+  }
+  setHTML("map-table",
+    '<table><thead><tr><th>Kaplan unit</th><th>NASAA topic</th><th>Why</th><th></th>'
+    + '</tr></thead><tbody>' + rows + '</tbody></table>');
+  const unmapped = unmappedUnits();
+  setHTML("map-status", unmapped.length
+    ? '<div class="empty"><h3>' + unmapped.length + ' unit(s) not mapped</h3><p>'
+      + esc(unmapped.map(u => u.name).join(", "))
+      + ' ' + EM + ' excluded from every weighted figure until mapped.</p></div>'
+    : "");
+}
+
+function renderGuideUnits() {
+  if (!unitData.length) {
+    setHTML("guide-units",
+      '<p>One block per Kaplan unit appears here once the unit list has been read '
+      + EM + ' what it covers, its current pooled and exam numbers, and the mistakes that '
+      + 'keep recurring in it.</p>');
+    return;
+  }
+  let html = "";
+  for (const u of unitData) {
+    const p = unitPool(u);
+    const acc = pct(p.correct, p.answered);
+    const qb = pct(u.qbankCorrect, u.qbankAnswered);
+    const ex = pct(u.examCorrect, u.examAnswered);
+    const m = mapForUnit(u.id);
+    const mine = missedQuestions.filter(q => q.unitId === u.id);
+    /* Where exam and QBank diverge, exam-conditions data wins - say so, derived. */
+    let divergence = "";
+    if (qb !== null && ex !== null && Math.abs(ex - qb) >= 5) {
+      divergence = ex < qb
+        ? ' Under exam conditions this drops to ' + bound("unit." + u.id + ".exam")
+          + ' from ' + bound("unit." + u.id + ".qbank") + ' on the QBank. Believe the exam '
+          + 'number: it is the one taken under time pressure with mixed content.'
+        : ' Exam performance here (' + bound("unit." + u.id + ".exam") + ') runs ahead of '
+          + 'the QBank (' + bound("unit." + u.id + ".qbank") + '), which usually means the '
+          + 'QBank number is dragged down by early attempts.';
+    }
+    html += '<div class="card"><h3>' + esc(u.name)
+      + (m ? ' <span class="tag neutral">Topic ' + Object.keys(m.split).join("/") + '</span>' : '')
+      + (acc !== null && acc < EXAM.PASS_LINE ? ' <span class="tag bad">below the line</span>' : '')
+      + '</h3>'
+      + '<p>Pooled ' + bound("unit." + u.id + ".pooled") + ' across '
+      + bound("unit." + u.id + ".answered") + ' questions.' + divergence + '</p>'
+      + (u.covers ? '<p>' + esc(u.covers) + '</p>' : '')
+      + (mine.length
+          ? '<p>' + mine.length + ' missed question'
+            + (mine.length === 1 ? '' : 's') + ' logged here ' + EM
+            + ' written up in full below.</p>'
+          : '')
+      + (u.recurring ? '<p><b>Recurring:</b> ' + esc(u.recurring) + '</p>' : '')
+      + '</div>';
+  }
+  setHTML("guide-units", html);
+}
+
+function renderMisses() {
+  if (!missedQuestions.length && !answeredCorrect.length) {
+    setHTML("guide-misses",
+      '<p>No questions decomposed yet. Every scored activity in My Quizzes gets opened in '
+      + '<b>Review</b> and read question by question ' + EM + ' question text, your answer, '
+      + 'the correct answer, Kaplan\'s rationale and the LO tag. Misses get a full '
+      + 'explanation of the underlying concept; correct answers get a one-line note so a '
+      + 'pattern is still visible later.</p>');
+    return;
+  }
+  let html = "";
+  for (const q of missedQuestions) {
+    const u = unitData.find(x => x.id === q.unitId);
+    html += '<div class="miss">'
+      + '<p class="q">' + esc(q.question) + '</p>'
+      + '<p class="ans">You answered <span class="mine">' + esc(q.myAnswer) + '</span>'
+      + ' &nbsp;&middot;&nbsp; Correct: <span class="right">' + esc(q.correctAnswer) + '</span></p>'
+      + '<p class="ans">' + (u ? esc(u.name) : esc(q.unitId || ""))
+      + (q.topic ? ' &middot; Topic ' + esc(q.topic) : "")
+      + (q.lo ? ' &middot; ' + esc(q.lo) : "")
+      + (q.date ? ' &middot; ' + fmtDate(q.date) : "") + '</p>'
+      + (q.explanation ? '<p class="why">' + esc(q.explanation) + '</p>' : '')
+      + (q.rationale ? '<p class="ans"><i>Kaplan\'s rationale:</i> ' + esc(q.rationale) + '</p>' : '')
+      + '</div>';
+  }
+  if (answeredCorrect.length) {
+    html += '<h3>Answered correctly ' + EM + ' concept notes</h3>';
+    for (const q of answeredCorrect) {
+      html += '<div class="hit"><b>' + esc(q.question) + '</b><br>' + esc(q.note || "") + '</div>';
+    }
+  }
+  setHTML("guide-misses", html);
+}
+
+function renderPatterns() {
+  const repeated = errorPatterns.filter(p => (p.count || 0) >= 2)
+    .sort((a, b) => (b.count || 0) - (a.count || 0));
+  const single = errorPatterns.filter(p => (p.count || 0) < 2);
+  if (!errorPatterns.length) {
+    setHTML("guide-patterns",
+      '<p>Nothing to pattern-match against yet. This section needs at least a couple of '
+      + 'decomposed activities before it says anything real ' + EM + ' and the thing it is '
+      + 'looking for is the same rule missed twice.</p>');
+    return;
+  }
+  let html = "";
+  if (repeated.length) {
+    html += '<div class="card"><h3>Missed more than once</h3>'
+      + '<p>The strongest signal on this page. A rule you have now missed twice is not bad '
+      + 'luck, and re-reading it has already failed once.</p>';
+    for (const p of repeated) {
+      html += '<div class="pattern"><b>' + esc(p.rule) + '</b> '
+        + '<span class="tag warn">' + p.count + '&times;</span>'
+        + (p.topic ? ' <span class="tag neutral">Topic ' + esc(p.topic) + '</span>' : '')
+        + (p.note ? '<p>' + esc(p.note) + '</p>' : '') + '</div>';
+    }
+    html += '</div>';
+  }
+  for (const p of single) {
+    html += '<div class="pattern"><b>' + esc(p.rule) + '</b>'
+      + (p.note ? '<p>' + esc(p.note) + '</p>' : '') + '</div>';
+  }
+  setHTML("guide-patterns", html);
+}
+
+function renderActions() {
+  const items = [];
+  if (META.examDate === null) {
+    items.push('<b>Book the exam date.</b> Everything else on this list is easier to '
+      + 'sequence once there is a date to sequence against, and this page deliberately '
+      + 'refuses to write a dated plan without one. This stays top of the list until it '
+      + 'is done.');
+  }
+  if (!UNIT_TOPIC_MAP.length) {
+    items.push('<b>Build and confirm the Kaplan-unit to NASAA-topic map.</b> Every weighted '
+      + 'figure depends on it.');
+  }
+  const tp = topicPriorityOrder();
+  if (tp.length) {
+    items.push('<b>Drill Topic ' + tp[0].id + ' ' + esc(tp[0].short) + '</b> at '
+      + bound("topic." + tp[0].id + ".pct") + ' ' + EM + ' worth '
+      + tp[0].questions + ' scored questions, currently losing an estimated '
+      + tp[0].lost.toFixed(1) + ' of them.');
+  }
+  const repeated = errorPatterns.filter(p => (p.count || 0) >= 2);
+  if (repeated.length) {
+    items.push('<b>Clear the ' + repeated.length + ' repeated rule'
+      + (repeated.length === 1 ? '' : 's') + '</b> in the patterns section above. Repeated '
+      + 'misses are cheaper to fix than new material is to learn.');
+  }
+  const since = daysSinceActivity();
+  if (since !== null && since >= 3) {
+    items.push('<b>Log some activity.</b> Nothing new has been recorded for '
+      + bound("meta.daysSinceActivity") + ' days.');
+  }
+  if (!hasData()) {
+    items.push('<b>Run a sync against Kaplan</b> from a machine with a live session, so '
+      + 'this page has something real to work from.');
+  }
+  setHTML("guide-actions",
+    '<small class="note">Undated on purpose. '
+    + (META.examDate === null
+        ? 'No exam date is booked, so there is no calendar to hang a day-by-day plan on '
+          + 'and none is invented here.'
+        : 'Exam booked for ' + bound("meta.examDate") + '.')
+    + '</small><ol>' + items.map(i => '<li>' + i + '</li>').join("") + '</ol>');
+}
+
+function renderGuide() {
+  setHTML("guide-empty", hasData() ? "" : emptyBlock("study guide"));
+  renderStanding();
+  renderPriority();
+  renderMapTable();
+  renderGuideUnits();
+  renderMisses();
+  renderPatterns();
+  renderActions();
+}
+
+/* ==========================================================================
+   DUMP SHEET - cut order is computed from exam weight and current weakness
+   ========================================================================== */
+const DUMP_BLOCKS = [
+  { n: 1, name: "Registration thresholds", topic: "IV" },
+  { n: 2, name: "Time limits",             topic: "IV" },
+  { n: 3, name: "Prohibited practices",    topic: "IV" },
+  { n: 4, name: "Discretion & custody",    topic: "IV" },
+  { n: 5, name: "Exempt transactions",     topic: "IV" },
+  { n: 6, name: "Formulas",                topic: "I"  },
+  { n: 7, name: "Ownership & RMD",         topic: "III"}
+];
+function renderCutOrder() {
+  const tt = topicTotals();
+  const scored = DUMP_BLOCKS.map(b => {
+    const topic = nasaaData.topics.find(t => t.id === b.topic);
+    const acc = tt[b.topic] ? tt[b.topic].pct : null;
+    /* keep-value = exam weight x miss rate. No data -> fall back to weight alone. */
+    const value = acc === null ? topic.weight : topic.weight * (1 - acc / 100) * 4;
+    return { ...b, weight: topic.weight, acc, value };
+  }).sort((a, b) => b.value - a.value);
+
+  const anyAcc = scored.some(s => s.acc !== null);
+  let rows = "";
+  scored.forEach((s, i) => {
+    rows += '<tr>'
+      + '<td>' + (i + 1) + '</td>'
+      + '<td>Block ' + s.n + ' ' + EM + ' ' + esc(s.name) + '</td>'
+      + '<td><b>' + s.topic + '</b></td>'
+      + '<td class="num">' + s.weight + '%</td>'
+      + '<td class="num">' + fmtPct(s.acc) + '</td>'
+      + '<td>' + (i >= scored.length - 2 ? '<span class="tag warn">cut first</span>' : '') + '</td>'
+      + '</tr>';
+  });
+  setHTML("dump-cutorder",
+    '<div class="scroller"><table><thead><tr>'
+    + '<th>Keep</th><th>Block</th><th>Topic</th><th>Weight</th><th>Your accuracy</th><th></th>'
+    + '</tr></thead><tbody>' + rows + '</tbody></table></div>'
+    + '<p>' + (anyAcc
+        ? 'Ordered by exam weight against your current accuracy, so the blocks you are '
+          + 'weakest in relative to their weight are the ones worth the ink. This '
+          + 'reorders itself as your numbers move.'
+        : 'No accuracy data yet, so this is currently ordered by exam weight alone. Once '
+          + 'the Performance Tracker has been read it reorders by weight against your '
+          + 'actual weak spots.')
+    + '</p>');
+}
+
+/* ==========================================================================
+   CLAUDE PASTE
+   Generated from the same arrays at render time, so it regenerates after every
+   sync. Never typed. Four variants; each carries an "as of" date.
+   ========================================================================== */
+const PASTE_BUDGET = 46000;   // characters before the degradation ladder kicks in
+
+function asOfLine() {
+  return "AS OF: " + (META.lastVerified ? fmtDate(META.lastVerified) : "no Kaplan read yet")
+       + "  |  generated " + fmtDate(todayISO())
+       + "  |  source: " + (META.source || "none - arrays are empty");
+}
+
+function txtUnitTable() {
+  if (!unitData.length) return "  (no units read from Kaplan yet)\n";
+  let s = "  Unit                                   Pooled   Answered  QBank   Exam\n";
+  for (const u of unitData) {
+    const p = unitPool(u);
+    s += "  " + String(u.name).slice(0, 36).padEnd(38)
+       + fmtPct(pct(p.correct, p.answered)).padStart(6)
+       + String(p.answered).padStart(10)
+       + fmtPct(pct(u.qbankCorrect, u.qbankAnswered)).padStart(8)
+       + fmtPct(pct(u.examCorrect, u.examAnswered)).padStart(7) + "\n";
+  }
+  return s;
+}
+function txtTopicTable() {
+  const tt = topicTotals();
+  let s = "  Topic                          Weight  Questions  Accuracy   vs 73%\n";
+  for (const t of nasaaData.topics) {
+    const p = tt[t.id].pct;
+    s += "  " + (t.id + " " + t.short).slice(0, 29).padEnd(31)
+       + (t.weight + "%").padStart(5)
+       + String(t.questions).padStart(10)
+       + fmtPct(p).padStart(11)
+       + (p === null ? EM : fmtSigned(p - EXAM.PASS_LINE)).padStart(8) + "\n";
+  }
+  return s;
+}
+function txtMiss(q, full) {
+  const u = unitData.find(x => x.id === q.unitId);
+  let s = "- Q: " + q.question + "\n"
+        + "  I answered: " + q.myAnswer + "   |   Correct: " + q.correctAnswer + "\n"
+        + "  " + (u ? u.name : (q.unitId || "")) 
+        + (q.topic ? " | Topic " + q.topic : "")
+        + (q.lo ? " | " + q.lo : "")
+        + (q.date ? " | " + fmtDate(q.date) : "") + "\n";
+  if (full && q.rationale)  s += "  Kaplan's rationale: " + q.rationale + "\n";
+  if (full && q.explanation) s += "  Concept: " + q.explanation + "\n";
+  return s + "\n";
+}
+function txtPatterns() {
+  if (!errorPatterns.length) return "  (none identified yet)\n";
+  let s = "";
+  for (const p of [...errorPatterns].sort((a, b) => (b.count || 0) - (a.count || 0))) {
+    s += "- " + p.rule + "  [missed " + (p.count || 1) + "x"
+       + (p.topic ? ", Topic " + p.topic : "") + "]\n"
+       + (p.note ? "  " + p.note + "\n" : "");
+  }
+  return s;
+}
+function txtPriorities(n) {
+  const tp = topicPriorityOrder();
+  if (!tp.length) return "  (no data to rank yet)\n";
+  return tp.slice(0, n || 3).map((r, i) =>
+    "  " + (i + 1) + ". Topic " + r.id + " " + r.short + " at " + fmtPct(r.pct)
+    + " - worth " + r.questions + " scored questions, losing ~" + r.lost.toFixed(1)
+  ).join("\n") + "\n";
+}
+
+const HOW_TO_HELP =
+  "HOW I WANT TO BE HELPED\n"
++ "- Explain the underlying concept. Never just name the right letter - I can read the\n"
++ "  letter off the screen myself. Tell me what distinction the question is testing and\n"
++ "  what the distractor was built to catch.\n"
++ "- Connect new questions to mistakes I have already made. If I am about to repeat an\n"
++ "  error from the list below, say so explicitly.\n"
++ "- Quiz me rather than lecturing. Ask, wait for my answer, then correct it.\n"
++ "- Tell me when I am wrong directly. Do not soften it. A wrong answer I feel fine\n"
++ "  about is worse than a wrong answer that stings.\n"
++ "- Topic IV is 45% of this exam and has the least overlap with the Series 7 I already\n"
++ "  passed. Weight your attention accordingly unless my data says otherwise.\n";
+
+const EXAM_FACTS =
+  "THE EXAM\n"
++ "- Series 66, NASAA's Uniform Combined State Law Exam, administered by FINRA.\n"
++ "- " + EXAM.scored + " scored questions plus " + EXAM.pretest + " pretest = "
+       + (EXAM.scored + EXAM.pretest) + " total, in " + EXAM.minutes + " minutes.\n"
++ "- Passing is " + EXAM.PASS_LINE + "%. I am targeting " + EXAM.TARGET_AVG + "% for buffer.\n"
++ "- Topic weighting (NASAA's own outline, effective 2023-06-12):\n"
++ nasaaData.topics.map(t => "    " + t.id + ". " + t.name + " - " + t.weight + "% ("
+       + t.questions + " questions)").join("\n") + "\n"
++ "  Note: several prep sites publish 5/20/30/45 for this exam. That is wrong.\n"
++ "- I have already passed the Series 7, which is the co-requisite.\n";
+
+/* ---- variant: full ------------------------------------------------------- */
+function briefFull(budget) {
+  const P = pooledTotals();
+  const below = unitsBelowLine();
+  let trimmed = [];
+
+  const head =
+    "I am studying for the Series 66 and this is my complete performance picture,\n"
+  + "generated from my Kaplan data. Help me learn this material.\n\n"
+  + asOfLine() + "\n\n" + EXAM_FACTS + "\n";
+
+  let standing =
+    "WHERE I STAND\n"
+  + "- Pooled score: " + fmtPct(P.pct)
+  + (P.answered ? " (" + P.correct + " of " + P.answered + " questions, each counted exactly once)."
+                : " - no questions answered yet.") + "\n"
+  + "- That is " + (P.pct === null ? EM : fmtSigned(P.pct - EXAM.PASS_LINE))
+  + " against the " + EXAM.PASS_LINE + "% pass line.\n"
+  + "- Units below the pass line: "
+  + (below.length ? below.map(u => u.name + " (" + fmtPct(u.pct) + ")").join(", ")
+                  : (hasData() ? "none" : "no unit data yet")) + "\n\n"
+  + "PER UNIT\n" + txtUnitTable() + "\n"
+  + "PER NASAA TOPIC\n" + txtTopicTable() + "\n"
+  + "TOP PRIORITIES (weight x miss rate)\n" + txtPriorities(3) + "\n";
+
+  const patterns = "RECURRING ERROR PATTERNS\n"
+    + "The most important section here. A rule I have missed more than once is a rule\n"
+    + "re-reading has already failed to fix.\n" + txtPatterns() + "\n";
+
+  let strong = "";
+  if (strongSpots.length) {
+    strong = "WHAT IS SOLID - do not spend my time re-teaching these\n"
+      + strongSpots.map(s => "- " + (s.name || s) + (s.pct ? " (" + fmtPct(s.pct) + ")" : "")).join("\n")
+      + "\n\n";
+  }
+
+  /* misses: newest first, so the degradation ladder drops the oldest */
+  const ordered = [...missedQuestions].sort((a, b) =>
+    String(b.date || "").localeCompare(String(a.date || "")));
+  let missBlock = "EVERY QUESTION I HAVE MISSED\n"
+    + (ordered.length ? "" : "  (nothing decomposed yet)\n");
+  let correctBlock = "";
+  if (answeredCorrect.length) {
+    correctBlock = "CORRECT ANSWERS - concept notes\n"
+      + answeredCorrect.map(q => "- " + q.question + "\n  " + (q.note || "")).join("\n") + "\n\n";
+  }
+
+  const assemble = (misses, includeStrong, includeCorrect) =>
+    head + standing
+    + (includeStrong ? strong : "")
+    + missBlock + misses.map(q => txtMiss(q, true)).join("")
+    + "\n" + patterns
+    + (includeCorrect ? correctBlock : "")
+    + HOW_TO_HELP;
+
+  const cap = budget || PASTE_BUDGET;
+  let out = assemble(ordered, true, true);
+  if (out.length > cap && strong) { trimmed.push("strong-unit detail"); out = assemble(ordered, false, true); }
+  if (out.length > cap && correctBlock) { trimmed.push("correct-answer notes"); out = assemble(ordered, false, false); }
+  let keep = ordered.slice();
+  while (out.length > cap && keep.length > 1) {
+    keep = keep.slice(0, keep.length - 1);            // drop the oldest miss
+    out = assemble(keep, false, false);
+  }
+  if (keep.length < ordered.length) {
+    trimmed.push((ordered.length - keep.length) + " older missed question(s)");
+  }
+  if (trimmed.length) {
+    out += "\n[TRIMMED TO FIT: this briefing left out " + trimmed.join(", ")
+         + ". Recent misses and the error-pattern section are never trimmed. Ask me for\n"
+         + "the omitted detail if you need it.]\n";
+  }
+  return out;
+}
+
+/* ---- variant: delta ------------------------------------------------------ */
+function briefDelta() {
+  if (!PRIOR_SNAPSHOT) {
+    return "NO PRIOR SNAPSHOT EXISTS, so there is nothing real to diff against and I am not\n"
+         + "going to reconstruct one from memory. Full briefing follows instead.\n"
+         + "".padEnd(3, "\n")
+         + briefFull();
+  }
+  const P = pooledTotals();
+  const below = unitsBelowLine();
+  const prev = PRIOR_SNAPSHOT;
+
+  let s =
+    "THIS SUPERSEDES ALL EARLIER FIGURES IN THIS CONVERSATION. Where anything here\n"
+  + "conflicts with something stated earlier, this is correct and the earlier version\n"
+  + "is out of date.\n\n"
+  + asOfLine() + "\n"
+  + "DELTA FROM: " + fmtDate(prev.asOf) + "\n\n";
+
+  /* Always restated, even when unchanged - earlier pastes in this conversation
+     contain stale versions of exactly these numbers. */
+  s += "CURRENT HEADLINE FIGURES (restated in full every time)\n"
+     + "- Pooled score: " + fmtPct(P.pct)
+     + (prev.pooledPct != null && P.pct != null
+         ? "  (was " + fmtPct(prev.pooledPct) + ", " + fmtSigned(P.pct - prev.pooledPct) + ")" : "")
+     + "\n"
+     + "- Below the " + EXAM.PASS_LINE + "% line right now: "
+     + (below.length ? below.map(u => u.name + " " + fmtPct(u.pct)).join(", ") : "none") + "\n"
+     + "- Top three priorities right now:\n" + txtPriorities(3) + "\n";
+
+  /* what actually changed */
+  const prevUnits = prev.units || {};
+  const moved = [], crossed = [];
+  for (const u of unitData) {
+    const p = unitPool(u);
+    const now = pct(p.correct, p.answered);
+    const was = prevUnits[u.id];
+    if (now === null || was === null || was === undefined) continue;
+    if (Math.abs(now - was) >= 0.5) moved.push({ name: u.name, was, now });
+    const wasBelow = was < EXAM.PASS_LINE, nowBelow = now < EXAM.PASS_LINE;
+    if (wasBelow !== nowBelow) crossed.push({ name: u.name, now, dir: nowBelow ? "fell below" : "rose above" });
+  }
+  s += "WHAT CHANGED\n";
+  if (crossed.length) {
+    s += "- Crossed the " + EXAM.PASS_LINE + "% line:\n"
+       + crossed.map(c => "    " + c.name + " " + c.dir + " (" + fmtPct(c.now) + ")").join("\n") + "\n";
+  }
+  if (moved.length) {
+    s += "- Units that moved:\n"
+       + moved.map(m => "    " + m.name + ": " + fmtPct(m.was) + " -> " + fmtPct(m.now)
+                        + " (" + fmtSigned(m.now - m.was) + ")").join("\n") + "\n";
+  }
+  const prevIds = new Set(prev.missIds || []);
+  const newMisses = missedQuestions.filter(q => !prevIds.has(q.id));
+  const prevActivities = prev.activityIds ? new Set(prev.activityIds) : null;
+  const newActivities = prevActivities
+    ? simExams.filter(e => !prevActivities.has(e.name))
+        .map(e => e.name).concat(kaplanQBank.filter(q => !prevActivities.has(q.label || q.name))
+        .map(q => q.label || q.name))
+    : [];
+  if (newActivities.length) s += "- New activities completed: " + newActivities.join(", ") + "\n";
+  if (!crossed.length && !moved.length && !newMisses.length && !newActivities.length) {
+    s += "- Nothing. No new activity was logged since the previous sync.\n";
+  }
+  s += "\n";
+
+  if (newMisses.length) {
+    s += "NEWLY MISSED QUESTIONS (" + newMisses.length + ")\n";
+    for (const q of newMisses) s += txtMiss(q, true);
+    s += "\n";
+  }
+
+  const prevPatterns = new Set(prev.patternRules || []);
+  const newlyRepeated = errorPatterns.filter(p => (p.count || 0) >= 2 && !prevPatterns.has(p.rule));
+  if (newlyRepeated.length) {
+    s += "ERROR PATTERNS THAT NEWLY REPEATED\n"
+       + newlyRepeated.map(p => "- " + p.rule + " [now " + p.count + "x]"
+           + (p.note ? "\n  " + p.note : "")).join("\n") + "\n\n";
+  }
+  s += HOW_TO_HELP;
+  return s;
+}
+
+/* ---- variant: focused ---------------------------------------------------- */
+function briefFocused() {
+  const below = unitsBelowLine();
+  const weakIds = new Set(below.map(u => u.id));
+  const recent = [...missedQuestions]
+    .sort((a, b) => String(b.date || "").localeCompare(String(a.date || "")))
+    .slice(0, 25);
+  let s =
+    "Drilling one area of my Series 66 prep. Weak units and recent misses only -\n"
+  + "the material I am already solid on has been stripped out deliberately.\n\n"
+  + asOfLine() + "\n\n"
+  + "WEAK UNITS (below the " + EXAM.PASS_LINE + "% pass line)\n"
+  + (below.length
+      ? below.map(u => "- " + u.name + " at " + fmtPct(u.pct)).join("\n") + "\n"
+      : "  (none below the line, or no data yet)\n")
+  + "\nTOP PRIORITIES\n" + txtPriorities(3) + "\n"
+  + "RECENT MISSES\n"
+  + (recent.length ? recent.map(q => txtMiss(q, true)).join("") : "  (none decomposed yet)\n")
+  + "\nRECURRING ERROR PATTERNS\n" + txtPatterns() + "\n"
+  + HOW_TO_HELP;
+  return s;
+}
+
+/* ---- variant: quiz me ---------------------------------------------------- */
+function briefQuiz() {
+  const below = unitsBelowLine();
+  const tp = topicPriorityOrder();
+  return "Quiz me on the Series 66. Generate practice questions in NASAA's style and at\n"
+  + "NASAA's weighting, targeting my specific weak spots and known error patterns.\n\n"
+  + asOfLine() + "\n\n"
+  + "RULES FOR THIS SESSION\n"
+  + "- Ask one question at a time. Four options, NASAA phrasing, exam-realistic\n"
+  + "  distractors - including the 'except' and 'least likely' constructions.\n"
+  + "- Do NOT reveal the answer until I have committed to one. No hints in the wording.\n"
+  + "- After I answer: tell me right or wrong directly, then explain the concept the\n"
+  + "  question was testing and what each distractor was designed to catch.\n"
+  + "- If I miss something from my known-error list below, say so explicitly.\n"
+  + "- Keep a running score and tell me at the end where I am still weak.\n\n"
+  + "WEIGHT THE QUESTIONS LIKE THE REAL EXAM\n"
+  + nasaaData.topics.map(t => "  " + t.id + ". " + t.short + " - " + t.weight + "%").join("\n") + "\n"
+  + "  ...but bias toward my weak areas below rather than sampling evenly.\n\n"
+  + "MY WEAK AREAS\n"
+  + (below.length ? below.map(u => "- " + u.name + " (" + fmtPct(u.pct) + ")").join("\n") + "\n"
+                  : "  (no unit data yet - weight by the blueprint above)\n")
+  + (tp.length ? "\nBY TOPIC\n" + txtPriorities(4) : "")
+  + "\nRULES I HAVE ALREADY MISSED - build questions that probe these\n" + txtPatterns()
+  + "\nPooled score as of this paste: " + fmtPct(pooledTotals().pct)
+  + ", pass line " + EXAM.PASS_LINE + "%.\n";
+}
+
+const PASTE_BLURBS = {
+  full:    "Everything below. Use this to start a fresh tutoring conversation.",
+  delta:   "Only what has changed since the last sync, with current headline figures "
+         + "restated and an explicit supersede line. The one to drop into a conversation "
+         + "that is already running.",
+  focused: "Weak units and recent misses only, strong-unit detail stripped. For drilling "
+         + "one area.",
+  quiz:    "Tells Claude to generate practice questions against your weak spots and known "
+         + "error patterns, without revealing answers until you commit."
+};
+
+let pasteVariant = "full";
+function buildPaste(v) {
+  switch (v) {
+    case "delta":   return briefDelta();
+    case "focused": return briefFocused();
+    case "quiz":    return briefQuiz();
+    default:        return briefFull();
+  }
+}
+function renderPaste() {
+  const text = buildPaste(pasteVariant);
+  const pre = $("paste-body");
+  if (pre) pre.textContent = text;
+  const chars = text.length;
+  const tokens = Math.round(chars / 4);
+  const cnt = $("paste-count");
+  if (cnt) cnt.textContent = chars.toLocaleString() + " characters  ~"
+    + tokens.toLocaleString() + " tokens";
+  const blurb = $("paste-blurb");
+  if (blurb) blurb.textContent = PASTE_BLURBS[pasteVariant] || "";
+  const built = $("paste-built");
+  if (built) {
+    built.textContent = "Built " + fmtDate(todayISO())
+      + " from data last verified " + (META.lastVerified ? fmtDate(META.lastVerified) : "never")
+      + (pasteVariant === "delta" && PRIOR_SNAPSHOT
+          ? "  |  delta from " + fmtDate(PRIOR_SNAPSHOT.asOf)
+          : pasteVariant === "delta" ? "  |  no prior snapshot - falling back to the full briefing" : "");
+  }
+  const box = $("paste-variants");
+  if (box) box.querySelectorAll("button").forEach(b =>
+    b.setAttribute("aria-pressed", String(b.dataset.variant === pasteVariant)));
+}
+
+/* ==========================================================================
+   CHARTS
+   Chart.js is loaded defensively at the very bottom of this script, never as a
+   blocking <script src> in <head>. If the CDN is unreachable the dashboard
+   still renders readable tables - that matters more now it is served over the
+   network rather than opened from disk.
+   ========================================================================== */
+const CHART_COLORS = {
+  s1: "#3987e5", s2: "#d95926", s3: "#199e70",
+  pass: "#fab219", target: "#0ca30c",
+  grid: "#2c2c2a", axis: "#383835", ink: "#c3c2b7", muted: "#898781",
+  critical: "#d03b3b"
+};
+let chartsAvailable = false;
+const chartRegistry = {};
+
+/* the trend series, derived - each scored sitting in date order */
+function trendSeries() {
+  const pts = [];
+  for (const q of kaplanQBank) {
+    const p = pct(q.correct, q.answered);
+    if (p !== null && q.date) pts.push({ date: q.date, pct: p, label: q.label || q.name || "QBank", kind: "qbank" });
+  }
+  for (const e of simExams) {
+    const p = pct(e.score, e.total);
+    if (p !== null && e.date) pts.push({ date: e.date, pct: p, label: e.name, kind: "exam" });
+  }
+  pts.sort((a, b) => String(a.date).localeCompare(String(b.date)));
+  return pts;
+}
+
+function tableFallback(targetId, headers, rows, msg) {
+  const box = $(targetId);
+  if (!box) return;
+  if (!rows.length) {
+    box.innerHTML = '<div class="scroller"><table class="narrow"><tbody>'
+      + '<tr class="empty-row"><td>' + esc(msg || "No data yet.")
+      + '</td></tr></tbody></table></div>';
+    box.hidden = false;
+    return;
+  }
+  box.innerHTML = '<div class="scroller"><table class="narrow"><thead><tr>'
+    + headers.map(h => '<th>' + esc(h) + '</th>').join("")
+    + '</tr></thead><tbody>'
+    + rows.map(r => '<tr>' + r.map((c, i) =>
+        '<td' + (i ? ' class="num"' : '') + '>' + c + '</td>').join("") + '</tr>').join("")
+    + '</tbody></table></div>';
+}
+
+function renderTrendChart() {
+  const pts = trendSeries();
+  tableFallback("table-trend",
+    ["Sitting", "Date", "Score"],
+    pts.map(p => [esc(p.label), fmtDate(p.date), fmtPct(p.pct)]),
+    "No scored sittings yet. Every quiz and exam with a result appears here in date order.");
+
+  const legend = $("legend-trend");
+  if (legend) {
+    legend.innerHTML =
+        '<span><i class="swatch line" style="background:' + CHART_COLORS.s1 + '"></i>QBank quizzes</span>'
+      + '<span><i class="swatch line" style="background:' + CHART_COLORS.s2 + '"></i>Simulated exams</span>'
+      + '<span style="color:' + CHART_COLORS.pass + '"><i class="swatch dash"></i>Pass line '
+        + EXAM.PASS_LINE + '%</span>'
+      + '<span style="color:' + CHART_COLORS.target + '"><i class="swatch dash"></i>Target '
+        + EXAM.TARGET_AVG + '%</span>';
+  }
+
+  const box = $("box-trend"), tbl = $("table-trend");
+  if (!chartsAvailable || !pts.length) {
+    if (box) box.style.display = "none";
+    if (tbl) tbl.hidden = false;
+    if (legend && !pts.length) legend.innerHTML = "";
+    return;
+  }
+  if (box) box.style.display = "";
+  if (tbl) tbl.hidden = true;
+
+  const canvas = $("chart-trend");
+  if (!canvas || !canvas.getContext) return;
+  if (chartRegistry.trend) { chartRegistry.trend.destroy(); chartRegistry.trend = null; }
+
+  const refLine = (val, color, label) => ({
+    label, data: pts.map(() => val), borderColor: color, borderWidth: 2,
+    borderDash: [5, 4], pointRadius: 0, fill: false, tension: 0, order: 9
+  });
+  chartRegistry.trend = new Chart(canvas.getContext("2d"), {
+    type: "line",
+    data: {
+      labels: pts.map(p => fmtDate(p.date)),
+      datasets: [
+        { label: "Score", data: pts.map(p => p.pct),
+          borderColor: CHART_COLORS.s1, borderWidth: 2, tension: 0.25, fill: false,
+          pointRadius: 5, pointHoverRadius: 8, pointBorderWidth: 2,
+          pointBorderColor: "#1a1a19",
+          pointBackgroundColor: pts.map(p => p.kind === "exam" ? CHART_COLORS.s2 : CHART_COLORS.s1) },
+        refLine(EXAM.PASS_LINE, CHART_COLORS.pass, "Pass " + EXAM.PASS_LINE + "%"),
+        refLine(EXAM.TARGET_AVG, CHART_COLORS.target, "Target " + EXAM.TARGET_AVG + "%")
+      ]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      interaction: { mode: "index", intersect: false },
+      scales: {
+        y: { min: 0, max: 100, ticks: { color: CHART_COLORS.muted, callback: v => v + "%" },
+             grid: { color: CHART_COLORS.grid }, border: { color: CHART_COLORS.axis } },
+        x: { ticks: { color: CHART_COLORS.muted, maxRotation: 0, autoSkipPadding: 18 },
+             grid: { display: false }, border: { color: CHART_COLORS.axis } }
+      },
+      plugins: {
+        legend: { display: false },
+        tooltip: {
+          backgroundColor: "#211f1e", borderColor: "rgba(255,255,255,.12)", borderWidth: 1,
+          titleColor: "#fff", bodyColor: "#c3c2b7", padding: 10, displayColors: false,
+          filter: item => item.datasetIndex === 0,
+          callbacks: {
+            title: items => items.length ? pts[items[0].dataIndex].label : "",
+            label: item => fmtPct(item.parsed.y) + "  on " + fmtDate(pts[item.dataIndex].date)
+          }
+        }
+      }
+    }
+  });
+}
+
+function renderTopicChart() {
+  const tt = topicTotals();
+  const rows = nasaaData.topics
+    .filter(t => tt[t.id].pct !== null)
+    .map(t => ({ id: t.id, short: t.short, pct: tt[t.id].pct, weight: t.weight }));
+
+  tableFallback("table-topic",
+    ["Topic", "Weight", "Accuracy", "vs " + EXAM.PASS_LINE + "%"],
+    nasaaData.topics.map(t => [
+      "<b>" + t.id + "</b> " + esc(t.short), t.weight + "%",
+      fmtPct(tt[t.id].pct),
+      tt[t.id].pct === null ? EM : fmtSigned(tt[t.id].pct - EXAM.PASS_LINE)
+    ]),
+    "No topic data yet. This fills in once the unit-to-topic map is confirmed.");
+
+  const legend = $("legend-topic");
+  if (legend) {
+    legend.innerHTML = rows.length
+      ? '<span style="color:' + CHART_COLORS.pass + '"><i class="swatch dash"></i>Pass line '
+        + EXAM.PASS_LINE + '%</span>'
+        + '<span><i class="swatch" style="background:' + CHART_COLORS.critical + '"></i>Below the line</span>'
+        + '<span><i class="swatch" style="background:' + CHART_COLORS.s1 + '"></i>At or above</span>'
+      : "";
+  }
+
+  const box = $("box-topic"), tbl = $("table-topic");
+  if (!chartsAvailable || !rows.length) {
+    if (box) box.style.display = "none";
+    if (tbl) tbl.hidden = false;
+    return;
+  }
+  if (box) box.style.display = "";
+  if (tbl) tbl.hidden = true;
+
+  const canvas = $("chart-topic");
+  if (!canvas || !canvas.getContext) return;
+  if (chartRegistry.topic) { chartRegistry.topic.destroy(); chartRegistry.topic = null; }
+
+  chartRegistry.topic = new Chart(canvas.getContext("2d"), {
+    type: "bar",
+    data: {
+      labels: rows.map(r => r.id + " " + r.short),
+      datasets: [
+        { label: "Accuracy", data: rows.map(r => r.pct),
+          backgroundColor: rows.map(r => r.pct < EXAM.PASS_LINE ? CHART_COLORS.critical : CHART_COLORS.s1),
+          borderRadius: 4, borderSkipped: false, barPercentage: 0.7, categoryPercentage: 0.8 },
+        { label: "Pass line", type: "line", data: rows.map(() => EXAM.PASS_LINE),
+          borderColor: CHART_COLORS.pass, borderWidth: 2, borderDash: [5, 4],
+          pointRadius: 0, fill: false, order: 9 }
+      ]
+    },
+    options: {
+      indexAxis: "y",
+      responsive: true, maintainAspectRatio: false,
+      scales: {
+        x: { min: 0, max: 100, ticks: { color: CHART_COLORS.muted, callback: v => v + "%" },
+             grid: { color: CHART_COLORS.grid }, border: { color: CHART_COLORS.axis } },
+        y: { ticks: { color: CHART_COLORS.ink }, grid: { display: false },
+             border: { color: CHART_COLORS.axis } }
+      },
+      plugins: {
+        legend: { display: false },
+        tooltip: {
+          backgroundColor: "#211f1e", borderColor: "rgba(255,255,255,.12)", borderWidth: 1,
+          titleColor: "#fff", bodyColor: "#c3c2b7", padding: 10, displayColors: false,
+          filter: item => item.datasetIndex === 0,
+          callbacks: {
+            label: item => fmtPct(item.parsed.x) + "  ("
+              + rows[item.dataIndex].weight + "% of the exam)"
+          }
+        }
+      }
+    }
+  });
+}
+
+function renderCharts() { renderTrendChart(); renderTopicChart(); }
+
+/* ==========================================================================
+   UI WIRING
+   ========================================================================== */
+function initTabs() {
+  const buttons = Array.from(document.querySelectorAll('nav.tabs button'));
+  function show(id) {
+    buttons.forEach(b => {
+      const on = b.getAttribute("aria-controls") === id;
+      b.setAttribute("aria-selected", String(on));
+    });
+    document.querySelectorAll("section.tab").forEach(s =>
+      s.classList.toggle("active", s.id === id));
+    try { localStorage.setItem("s66.tab", id); } catch (e) { /* never required for correctness */ }
+    if (id === "tab-paste") renderPaste();
+    if (id === "tab-perf") renderCharts();
+  }
+  buttons.forEach(b => b.addEventListener("click", () => show(b.getAttribute("aria-controls"))));
+  let start = "tab-perf";
+  try {
+    const saved = localStorage.getItem("s66.tab");
+    if (saved && document.getElementById(saved)) start = saved;
+  } catch (e) { /* cold open in a browser that has never seen this file must still work */ }
+  show(start);
+}
+
+function initTableToggles() {
+  document.querySelectorAll("[data-table-for]").forEach(btn => {
+    btn.addEventListener("click", () => {
+      const id = btn.getAttribute("data-table-for");
+      const tbl = $("table-" + id.replace("chart-", ""));
+      const box = $("box-" + id.replace("chart-", ""));
+      if (!tbl) return;
+      const showing = !tbl.hidden;
+      tbl.hidden = showing;
+      if (box && chartsAvailable) box.style.display = showing ? "" : "none";
+      btn.textContent = showing ? "Table" : "Chart";
+    });
+  });
+}
+
+function initCopy() {
+  const btn = $("paste-copy");
+  if (!btn) return;
+  btn.addEventListener("click", async () => {
+    const text = $("paste-body") ? $("paste-body").textContent : "";
+    let ok = false;
+    try {
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        await navigator.clipboard.writeText(text);
+        ok = true;
+      }
+    } catch (e) { ok = false; }
+    if (!ok) {
+      /* clipboard API blocked - select the <pre> so a manual copy is one keystroke */
+      try {
+        const pre = $("paste-body");
+        const range = document.createRange();
+        range.selectNodeContents(pre);
+        const sel = window.getSelection();
+        sel.removeAllRanges(); sel.addRange(range);
+      } catch (e) { /* nothing more to do */ }
+    }
+    btn.textContent = ok ? "Copied" : "Selected - press Cmd/Ctrl+C";
+    btn.classList.toggle("done", ok);
+    setTimeout(() => { btn.textContent = "Copy to clipboard"; btn.classList.remove("done"); }, 2600);
+  });
+  const box = $("paste-variants");
+  if (box) box.querySelectorAll("button").forEach(b =>
+    b.addEventListener("click", () => { pasteVariant = b.dataset.variant; renderPaste(); }));
+}
+
+/* ==========================================================================
+   BOOT
+   ========================================================================== */
+function renderAll() {
+  renderPerformance();
+  renderExams();
+  renderGuide();
+  renderCutOrder();
+  renderPaste();
+  renderCharts();
+  bindAll();          // last: generated markup contributes data-bind nodes too
+}
+
+function boot() {
+  initTabs();
+  initTableToggles();
+  initCopy();
+  renderAll();
+}
+
+if (typeof document !== "undefined" && document.addEventListener) {
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", boot);
+  else boot();
+}
+
+/* ---- Chart.js, loaded last and defensively ---------------------------------
+   Never a blocking <script src> in <head>. If it fails or times out the tables
+   are already on screen and stay there.
+   -------------------------------------------------------------------------- */
+(function loadChartJs() {
+  if (typeof document === "undefined" || !document.createElement) return;
+  if (typeof window !== "undefined" && window.Chart) {
+    chartsAvailable = true; renderCharts(); return;
+  }
+  let settled = false;
+  const done = ok => {
+    if (settled) return;
+    settled = true;
+    chartsAvailable = !!ok && typeof window !== "undefined" && !!window.Chart;
+    try { renderCharts(); } catch (e) { chartsAvailable = false; }
+  };
+  const s = document.createElement("script");
+  s.src = "https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js";
+  s.async = true;
+  s.onload  = () => done(true);
+  s.onerror = () => done(false);
+  setTimeout(() => done(typeof window !== "undefined" && !!window.Chart), 6000);
+  (document.body || document.documentElement).appendChild(s);
+})();
+</script>
 </body>
 </html>
