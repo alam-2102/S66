@@ -287,6 +287,19 @@ function rowCount(html) { return (String(html).match(/<tr/g) || []).length; }
   const delta = X.buildPaste("delta");
   assert(/SUPERSEDES ALL EARLIER FIGURES|NO PRIOR SNAPSHOT/.test(delta),
     "delta briefing opens with a supersede line, or says no snapshot exists");
+  /* The tutoring variants must NOT tell Claude to quiz him. That chat is a place to
+     bring questions, not a quiz machine; only the 'quiz' variant quizzes. This is a
+     stated preference, so guard it rather than trusting it not to drift back. */
+  for (const v of ["full", "delta", "focused"]) {
+    const t = X.buildPaste(v);
+    const tellsToQuiz = /quiz me rather than|^\s*-?\s*quiz me\b/im.test(t);
+    const saysNotTo = /not a quiz session|do not quiz me|do not start\s*\n?\s*quizzing/i.test(t);
+    assert(!tellsToQuiz, "'" + v + "' briefing does not instruct Claude to quiz him");
+    assert(saysNotTo, "'" + v + "' briefing says not to quiz unprompted");
+  }
+  assert(/Quiz me on the Series 66/.test(X.buildPaste("quiz")),
+    "the 'quiz' variant is still the one that asks for questions");
+
   /* every miss must reach the full briefing - it is the highest-value payload */
   const missed = X.missedQuestions.length;
   const inBrief = (full.match(/^- Q: /gm) || []).length;

@@ -2586,17 +2586,30 @@ function txtPriorities(n) {
 }
 
 const HOW_TO_HELP =
-  "HOW I WANT TO BE HELPED\n"
+  "WHAT THIS CONVERSATION IS FOR\n"
++ "This is a standing conversation I come back to as I work through the Kaplan\n"
++ "chapters. It is where I bring things I am confused about and we talk them through.\n"
++ "I will paste an updated version of this briefing as I get further along.\n"
++ "\n"
++ "It is NOT a quiz session. Do not open with practice questions, and do not start\n"
++ "quizzing me unless I ask you to - I have a separate prompt for that. Wait for my\n"
++ "question and answer the one I actually asked.\n"
++ "\n"
++ "HOW I WANT TO BE HELPED\n"
 + "- Explain the underlying concept. Never just name the right letter - I can read the\n"
-+ "  letter off the screen myself. Tell me what distinction the question is testing and\n"
-+ "  what the distractor was built to catch.\n"
-+ "- Connect new questions to mistakes I have already made. If I am about to repeat an\n"
-+ "  error from the list below, say so explicitly.\n"
-+ "- Quiz me rather than lecturing. Ask, wait for my answer, then correct it.\n"
-+ "- Tell me when I am wrong directly. Do not soften it. A wrong answer I feel fine\n"
-+ "  about is worse than a wrong answer that stings.\n"
++ "  letter off the screen myself. Tell me what distinction is being tested and what\n"
++ "  the distractor was built to catch.\n"
++ "- Let me drive. I will tell you what I am stuck on. Follow my thread rather than\n"
++ "  redirecting me to what you think I should be working on.\n"
++ "- Connect what I ask about to mistakes I have already made. If something I say\n"
++ "  repeats an error from the list above, point at it directly.\n"
++ "- Tell me when I am wrong, plainly and immediately. Do not soften it. A wrong idea\n"
++ "  I feel fine about is worse than one that stings.\n"
++ "- Checking my understanding inside an explanation is welcome - a question back to\n"
++ "  see if it landed. That is different from running a quiz at me.\n"
++ "- Keep answers tight. I am studying, not reading an essay. Go deeper when I ask.\n"
 + "- Topic IV is 45% of this exam and has the least overlap with the Series 7 I already\n"
-+ "  passed. Weight your attention accordingly unless my data says otherwise.\n";
++ "  passed. Assume that is where my gaps are unless my data says otherwise.\n";
 
 const EXAM_FACTS =
   "THE EXAM\n"
@@ -2616,10 +2629,24 @@ function briefFull(budget) {
   const below = unitsBelowLine();
   let trimmed = [];
 
+  const started = unitData.filter(u => unitPool(u).answered > 0);
+  const untouched = unitData.filter(u => unitPool(u).answered === 0);
   const head =
-    "I am studying for the Series 66 and this is my complete performance picture,\n"
-  + "generated from my Kaplan data. Help me learn this material.\n\n"
-  + asOfLine() + "\n\n" + EXAM_FACTS + "\n";
+    "I am studying for the Series 66. Below is my complete picture, generated from my\n"
+  + "real Kaplan data. I will come back to this conversation with questions as I work\n"
+  + "through the chapters.\n\n"
+  + asOfLine() + "\n\n" + EXAM_FACTS + "\n"
+  + "CHAPTERS I HAVE ACTUALLY WORKED THROUGH\n"
+  + (started.length
+      ? started.map(u => "  - " + u.name + (u.covers ? "\n      " + u.covers : "")).join("\n") + "\n"
+      : "  (none yet)\n")
+  + (untouched.length
+      ? "\nNOT STARTED YET (" + untouched.length + " of " + unitData.length + " units). I have not\n"
+        + "read this material, so do not assume I know it - but do not pre-teach it either\n"
+        + "unless I ask:\n"
+        + untouched.map(u => "  - " + u.name).join("\n") + "\n"
+      : "")
+  + "\n";
 
   let standing =
     "WHERE I STAND\n"
@@ -2776,8 +2803,9 @@ function briefFocused() {
     .sort((a, b) => String(b.date || "").localeCompare(String(a.date || "")))
     .slice(0, 25);
   let s =
-    "Drilling one area of my Series 66 prep. Weak units and recent misses only -\n"
-  + "the material I am already solid on has been stripped out deliberately.\n\n"
+    "Working on one area of my Series 66 prep. Weak units and recent misses only -\n"
+  + "the material I am already solid on has been stripped out deliberately.\n"
+  + "I will bring you questions about this material; do not quiz me unprompted.\n\n"
   + asOfLine() + "\n\n"
   + "WEAK UNITS (below the " + EXAM.PASS_LINE + "% pass line)\n"
   + (below.length
@@ -2819,14 +2847,16 @@ function briefQuiz() {
 }
 
 const PASTE_BLURBS = {
-  full:    "Everything below. Use this to start a fresh tutoring conversation.",
+  full:    "Everything below. Use this to open the conversation you come back to with "
+         + "questions as you work through chapters. It tells Claude not to quiz you.",
   delta:   "Only what has changed since the last sync, with current headline figures "
          + "restated and an explicit supersede line. The one to drop into a conversation "
          + "that is already running.",
   focused: "Weak units and recent misses only, strong-unit detail stripped. For drilling "
          + "one area.",
-  quiz:    "Tells Claude to generate practice questions against your weak spots and known "
-         + "error patterns, without revealing answers until you commit."
+  quiz:    "The only variant that quizzes you. Generates practice questions against your "
+         + "weak spots and error patterns, no answers until you commit. Use a separate "
+         + "chat for this so it does not turn your tutoring conversation into a quiz."
 };
 
 let pasteVariant = "full";
