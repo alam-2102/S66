@@ -42,7 +42,7 @@ try {
 /* ------------------------------------------------------------------ shape */
 const KEYS = ["meta", "unitTopicMap", "unitData", "mixedQuizzes", "kaplanQBank",
   "simExams", "weakSpots", "strongSpots", "missedQuestions", "answeredCorrect",
-  "errorPatterns", "quickTips", "priorSnapshot"];
+  "errorPatterns", "quickTips", "checkpointExams", "priorSnapshot"];
 const ARRAYS = KEYS.filter(k => k !== "meta" && k !== "priorSnapshot");
 
 const errors = [], warnings = [];
@@ -107,9 +107,26 @@ for (const u of payload.unitData) {
   if ((u.qbankCorrect || 0) > (u.qbankAnswered || 0)) errors.push(u.id + ": qbankCorrect exceeds qbankAnswered");
   if ((u.examCorrect || 0) > (u.examAnswered || 0)) errors.push(u.id + ": examCorrect exceeds examAnswered");
 }
+const FULL_LENGTH_MIN = 90;
 for (const e of payload.simExams) {
   if (e.score > e.total) errors.push("exam '" + e.name + "': score exceeds total");
   if (!isISO(e.date)) errors.push("exam '" + e.name + "': date must be YYYY-MM-DD");
+  /* simExams is reserved for the end-of-course full-length exams. A unit
+     checkpoint landing here would drive the readiness cards off a 12-question
+     sitting, which is how this went wrong once already. */
+  if ((e.total || 0) < FULL_LENGTH_MIN) {
+    errors.push("exam '" + e.name + "' has only " + e.total + " questions - simExams is for "
+      + "FULL-LENGTH end-of-course exams (>= " + FULL_LENGTH_MIN + "). Put unit checkpoint "
+      + "exams in checkpointExams instead.");
+  }
+}
+for (const e of payload.checkpointExams) {
+  if (e.score > e.total) errors.push("checkpoint '" + e.name + "': score exceeds total");
+  if (!isISO(e.date)) errors.push("checkpoint '" + e.name + "': date must be YYYY-MM-DD");
+  if ((e.total || 0) >= FULL_LENGTH_MIN) {
+    warnings.push("checkpoint '" + e.name + "' has " + e.total + " questions - if this is a "
+      + "full-length end-of-course exam it belongs in simExams");
+  }
 }
 for (const t of payload.quickTips) {
   for (const f of ["trigger", "move"]) {

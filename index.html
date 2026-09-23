@@ -307,10 +307,17 @@ reweighted = 0.08&times;T1 + 0.17&times;T2 + 0.30&times;T3 + 0.45&times;T4
   <div id="exam-detail"></div>
 
   <h2>Exam over exam</h2>
-  <small class="note">Gaps that appear in consecutive exams without improving are flagged
-    &mdash; a repeated weakness that has not moved is the strongest signal here.</small>
+  <small class="note">Gaps that appear in consecutive full-length exams without improving are
+    flagged &mdash; a repeated weakness that has not moved is the strongest signal here.</small>
   <div class="scroller" id="exam-delta"></div>
   <div id="exam-stuck"></div>
+
+  <h2>Unit checkpoint exams</h2>
+  <small class="note">Kaplan's end-of-unit exams. Real exam-conditions data and part of the
+    pooled score, but single-unit and short &mdash; not a readiness signal, and deliberately
+    kept out of the section above.</small>
+  <div class="scroller" id="checkpoint-table"></div>
+  <div id="checkpoint-note"></div>
 </section>
 <!-- ============ 3 · QUICK TIPS ============ -->
 <section class="tab" id="tab-tips" role="tabpanel" aria-labelledby="t-tips">
@@ -921,6 +928,7 @@ const EXAM = {
   pretest: 10,
   minutes: 150,
   PASS_LINE: 73,   // NASAA: 73 of 100 scored. Not the Series 7's 72.
+  FULL_LENGTH_MIN: 90, // below this a sitting is not a full-length exam
   TARGET_AVG: 81   // 8 points of buffer over the pass line. Adjustable; don't move casually.
 };
 
@@ -1432,49 +1440,7 @@ const SYNC = {
       "correct": 5
     }
   ],
-  "simExams": [
-    {
-      "name": "Unit 1 Checkpoint Exam (Test 410671140)",
-      "date": "2026-09-17",
-      "score": 7,
-      "total": 12,
-      "timeUsed": 27.73,
-      "timeAllowed": null,
-      "byTopic": {
-        "IV": {
-          "answered": 12,
-          "correct": 7
-        }
-      },
-      "byUnit": {
-        "U1": {
-          "answered": 12,
-          "correct": 7
-        }
-      },
-      "segments": [
-        {
-          "label": "1-3",
-          "missed": 0
-        },
-        {
-          "label": "4-6",
-          "missed": 2
-        },
-        {
-          "label": "7-9",
-          "missed": 1
-        },
-        {
-          "label": "10-12",
-          "missed": 2
-        }
-      ],
-      "missCats": {
-        "did not know the rule": 5
-      }
-    }
-  ],
+  "simExams": [],
   "weakSpots": [
     "U1 (Topic IV): which client types create an exemption and whether the rule is federal or state, incl. insurance companies and banks (Quiz 2 Q3, Quiz 2 Q11, Exam Q6)",
     "U1 (Topic IV): applying exclusion vs exemption, especially the publisher exclusion in both directions (Exam Q11, Exam Q12)",
@@ -1929,6 +1895,49 @@ const SYNC = {
       "why": "Missed twice on Sep 16. The identical IA-1092 question came back on Sep 17 and you got it right, along with the other two IA-1092 questions on that test. Treating this as cleared."
     }
   ],
+  "checkpointExams": [
+    {
+      "name": "Unit 1 Checkpoint Exam (Test 410671140)",
+      "date": "2026-09-17",
+      "score": 7,
+      "total": 12,
+      "timeUsed": 27.73,
+      "timeAllowed": null,
+      "byTopic": {
+        "IV": {
+          "answered": 12,
+          "correct": 7
+        }
+      },
+      "byUnit": {
+        "U1": {
+          "answered": 12,
+          "correct": 7
+        }
+      },
+      "segments": [
+        {
+          "label": "1-3",
+          "missed": 0
+        },
+        {
+          "label": "4-6",
+          "missed": 2
+        },
+        {
+          "label": "7-9",
+          "missed": 1
+        },
+        {
+          "label": "10-12",
+          "missed": 2
+        }
+      ],
+      "missCats": {
+        "did not know the rule": 5
+      }
+    }
+  ],
   "priorSnapshot": {
     "asOf": "2026-09-16",
     "pooledPct": 72.7273,
@@ -1992,13 +2001,22 @@ const mixedQuizzes = SYNC.mixedQuizzes;
 /* Individual QBank sittings, for the trend line. */
 const kaplanQBank = SYNC.kaplanQBank;
 
-/* Simulated and practice exams. Adding one must be a one-line append.
+/* FULL-LENGTH simulated exams ONLY - the end-of-course exams that cover every
+   chapter at real exam length (see EXAM.FULL_LENGTH_MIN). Unit checkpoint exams
+   do NOT belong here; they go in `checkpointExams` below. This tab is the
+   readiness signal, and a 12-question unit checkpoint is not one.
+   Adding one must be a one-line append.
      { name, date, score, total, timeUsed, timeAllowed,
        byUnit: {unitId: {answered, correct}},
        byTopic: {I|II|III|IV: {answered, correct}},
        segments: [{label:"1-25", missed:n}, ...],
        missCats: {"misread the question": n, ...} }                            */
 const simExams = SYNC.simExams;
+
+/* Unit checkpoint exams - Kaplan's end-of-unit exams. Same shape as simExams but
+   single-unit and short. Real data and part of the pooled score via unitData's
+   exam columns; just not a full-length readiness signal. */
+const checkpointExams = SYNC.checkpointExams || [];
 
 /* Derived narrative anchors, written by the sync job from the real data. */
 const weakSpots = SYNC.weakSpots;
@@ -2184,6 +2202,11 @@ function daysSinceActivity() {
   return daysBetween(META.lastActivityDate, todayISO());
 }
 function latestExam() { return simExams.length ? simExams[simExams.length - 1] : null; }
+function checkpointTotals() {
+  let score = 0, total = 0;
+  for (const e of checkpointExams) { score += (e.score || 0); total += (e.total || 0); }
+  return { score, total, pct: pct(score, total) };
+}
 
 /* ==========================================================================
    BINDINGS - every data-bind key on the page resolves through here.
@@ -2260,6 +2283,12 @@ function buildBindings() {
     "counts.repeatedRules": String(errorPatterns.filter(p => (p.count || 0) >= 2).length),
 
     /* latest exam */
+    "checkpoint.pct":      fmtPct(checkpointTotals().pct),
+    "checkpoint.fraction":  checkpointTotals().total
+                              ? (checkpointTotals().score + " of " + checkpointTotals().total) : EM,
+    "counts.checkpoints":  String(checkpointExams.length),
+    "exam.fullLengthMin":  String(EXAM.FULL_LENGTH_MIN),
+
     "latest.name":  last ? last.name : EM,
     "latest.date":  last ? fmtDate(last.date) : EM,
     "latest.pct":   last ? fmtPct(pct(last.score, last.total)) : EM,
@@ -2373,7 +2402,13 @@ function renderStatCards() {
         bound("pooled.fraction") + " correct", P.pct !== null && P.pct < EXAM.PASS_LINE)
     + statCard("Study plan progress", "meta.studyPlanPct", "Kaplan's own figure")
     + statCard("Activities complete", "meta.activitiesStr", "From the course dashboard")
-    + statCard("Latest exam", "latest.pct", bound("latest.name"))
+    + (simExams.length
+        ? statCard("Latest full-length exam", "latest.pct", bound("latest.name"))
+        : '<div class="stat"><div class="label">Latest full-length exam</div>'
+          + '<div class="value none">None yet</div>'
+          + '<div class="meta">End-of-course exams, all chapters</div></div>')
+    + statCard("Unit checkpoint exams", "checkpoint.pct",
+        bound("checkpoint.fraction") + " across " + bound("counts.checkpoints"))
     + statCard("Target average", "exam.targetAvg",
         bound("pooled.gapToTarget") + " from target")
     + examCard
@@ -2649,10 +2684,71 @@ function renderExamDelta() {
     : "");
 }
 
+function renderCheckpointExams() {
+  if (!checkpointExams.length) {
+    setHTML("checkpoint-table", '<table class="narrow"><tbody><tr class="empty-row"><td>'
+      + 'No unit checkpoint exams logged yet.</td></tr></tbody></table>');
+    setHTML("checkpoint-note", "");
+    return;
+  }
+  const T = checkpointTotals();
+  let rows = "";
+  for (const e of checkpointExams) {
+    const p = pct(e.score, e.total);
+    const low = p !== null && p < EXAM.PASS_LINE;
+    const unitId = Object.keys(e.byUnit || {})[0];
+    const u = unitData.find(x => x.id === unitId);
+    const qb = u ? pct(u.qbankCorrect, u.qbankAnswered) : null;
+    const gap = (p !== null && qb !== null) ? p - qb : null;
+    rows += '<tr' + (low ? ' class="below"' : '') + '>'
+      + '<td>' + esc(u ? u.name : e.name) + '</td>'
+      + '<td class="num">' + fmtDate(e.date) + '</td>'
+      + '<td class="num">' + e.score + ' / ' + e.total + '</td>'
+      + '<td class="num">' + fmtPct(p) + '</td>'
+      + '<td class="num">' + fmtPct(qb) + '</td>'
+      + '<td class="' + (gap === null ? "delta-flat" : gap > 0 ? "delta-up" : "delta-down") + '">'
+      + (gap === null ? EM : fmtSigned(gap)) + '</td>'
+      + '<td>' + (low ? '<span class="tag bad">below</span>' : '<span class="tag ok">ok</span>') + '</td>'
+      + '</tr>';
+  }
+  setHTML("checkpoint-table",
+    '<table><thead><tr><th>Unit</th><th>Date</th><th>Score</th><th>Exam %</th>'
+    + '<th>QBank %</th><th>Exam &minus; QBank</th><th></th></tr></thead><tbody>' + rows + '</tbody>'
+    + '<tfoot><tr><td>All checkpoints</td><td></td>'
+    + '<td class="num">' + T.score + ' / ' + T.total + '</td>'
+    + '<td class="num">' + fmtPct(T.pct) + '</td>'
+    + '<td colspan="3">exam-conditions data wins where the two diverge</td>'
+    + '</tr></tfoot></table>');
+
+  /* Where checkpoints run well below the QBank, say so - it is the most useful
+     thing this table produces, and it is derived rather than asserted. */
+  const diverging = checkpointExams.map(e => {
+    const unitId = Object.keys(e.byUnit || {})[0];
+    const u = unitData.find(x => x.id === unitId);
+    const p = pct(e.score, e.total);
+    const qb = u ? pct(u.qbankCorrect, u.qbankAnswered) : null;
+    return (p !== null && qb !== null && qb - p >= 10) ? { u, p, qb } : null;
+  }).filter(Boolean);
+  setHTML("checkpoint-note", diverging.length
+    ? '<div class="card"><h3>Quiz score is flattering you here</h3><p>'
+      + diverging.map(d => '<b>' + esc(d.u.name.replace(/:.*$/, "")) + '</b> scores '
+          + fmtPct(d.qb) + ' on the QBank but ' + fmtPct(d.p) + ' under exam conditions').join("; ")
+      + '. Believe the exam number: it is the one taken under time pressure with mixed content. '
+      + 'A large gap usually means the material is recognised rather than known.</p></div>'
+    : "");
+}
+
 function renderExams() {
-  setHTML("exam-empty", simExams.length ? "" : emptyBlock("practice and simulated exams"));
+  setHTML("exam-empty", simExams.length ? ""
+    : '<div class="empty"><h3>No full-length exams yet</h3>'
+      + '<p>This section is reserved for the end-of-course simulated exams &mdash; every '
+      + 'chapter, real exam length (' + bound("exam.scored") + ' scored questions in '
+      + bound("exam.minutes") + ' minutes). Those are the only sittings that measure '
+      + 'readiness, so nothing shorter is counted here.</p>'
+      + '<p>Unit checkpoint exams are logged further down this tab.</p></div>');
   renderSimulated(currentExam);
   renderExamDelta();
+  renderCheckpointExams();
 }
 
 /* ==========================================================================
@@ -3190,6 +3286,14 @@ function briefFull(budget) {
                 : " - no questions answered yet.") + "\n"
   + "- That is " + (P.pct === null ? EM : fmtSigned(P.pct - EXAM.PASS_LINE))
   + " against the " + EXAM.PASS_LINE + "% pass line.\n"
+  + "- Exam-conditions data: "
+  + (simExams.length
+      ? simExams.length + " full-length exam(s), latest " + fmtPct(pct(simExams[simExams.length-1].score, simExams[simExams.length-1].total))
+      : "no full-length end-of-course exam taken yet")
+  + (checkpointExams.length
+      ? "; " + checkpointExams.length + " unit checkpoint exam(s) at "
+        + fmtPct(checkpointTotals().pct) + " (short, single-unit - not a readiness measure)"
+      : "") + "\n"
   + "- Units below the pass line: "
   + (below.length ? below.map(u => u.name + " (" + fmtPct(u.pct) + ")").join(", ")
                   : (hasData() ? "none" : "no unit data yet")) + "\n\n"
@@ -3309,9 +3413,10 @@ function briefDelta() {
   const newMisses = missedQuestions.filter(q => !prevIds.has(q.id));
   const prevActivities = prev.activityIds ? new Set(prev.activityIds) : null;
   const newActivities = prevActivities
-    ? simExams.filter(e => !prevActivities.has(e.name))
-        .map(e => e.name).concat(kaplanQBank.filter(q => !prevActivities.has(q.label || q.name))
-        .map(q => q.label || q.name))
+    ? simExams.filter(e => !prevActivities.has(e.name)).map(e => e.name)
+        .concat(checkpointExams.filter(e => !prevActivities.has(e.name)).map(e => e.name))
+        .concat(kaplanQBank.filter(q => !prevActivities.has(q.label || q.name))
+          .map(q => q.label || q.name))
     : [];
   if (newActivities.length) s += "- New activities completed: " + newActivities.join(", ") + "\n";
   if (!crossed.length && !moved.length && !newMisses.length && !newActivities.length) {
@@ -3524,6 +3629,10 @@ function trendSeries() {
     const p = pct(e.score, e.total);
     if (p !== null && e.date) pts.push({ date: e.date, pct: p, label: e.name, kind: "exam" });
   }
+  for (const e of checkpointExams) {
+    const p = pct(e.score, e.total);
+    if (p !== null && e.date) pts.push({ date: e.date, pct: p, label: e.name, kind: "checkpoint" });
+  }
   pts.sort((a, b) => String(a.date).localeCompare(String(b.date)));
   return pts;
 }
@@ -3557,7 +3666,8 @@ function renderTrendChart() {
   if (legend) {
     legend.innerHTML =
         '<span><i class="swatch line" style="background:' + CHART_COLORS.s1 + '"></i>QBank quizzes</span>'
-      + '<span><i class="swatch line" style="background:' + CHART_COLORS.s2 + '"></i>Simulated exams</span>'
+      + '<span><i class="swatch line" style="background:' + CHART_COLORS.s3 + '"></i>Unit checkpoint exams</span>'
+      + '<span><i class="swatch line" style="background:' + CHART_COLORS.s2 + '"></i>Full-length sim exams</span>'
       + '<span style="color:' + CHART_COLORS.pass + '"><i class="swatch dash"></i>Pass line '
         + EXAM.PASS_LINE + '%</span>'
       + '<span style="color:' + CHART_COLORS.target + '"><i class="swatch dash"></i>Target '
@@ -3587,7 +3697,8 @@ function renderTrendChart() {
           borderColor: CHART_COLORS.s1, borderWidth: 2, tension: 0.25, fill: false,
           pointRadius: 5, pointHoverRadius: 8, pointBorderWidth: 2,
           pointBorderColor: "#1a1a19",
-          pointBackgroundColor: pts.map(p => p.kind === "exam" ? CHART_COLORS.s2 : CHART_COLORS.s1) },
+          pointBackgroundColor: pts.map(p => p.kind === "exam" ? CHART_COLORS.s2
+                                  : p.kind === "checkpoint" ? CHART_COLORS.s3 : CHART_COLORS.s1) },
       ]
     },
     plugins: [REF_LINES],

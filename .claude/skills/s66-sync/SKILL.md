@@ -145,8 +145,25 @@ Then write it up:
 - **Correct** -> a one-line note on the concept tested, enough to spot a pattern
   later. Goes in `answeredCorrect` with a `note` field.
 
+### Which array an exam goes in
+
+**`simExams` is reserved for the FULL-LENGTH end-of-course simulated exams** - every
+chapter, real exam length (100 scored questions in 150 minutes). Those are the only
+sittings that measure readiness, and the Practice & Sim Exams tab is built around
+them.
+
+**Unit checkpoint exams go in `checkpointExams`**, same shape. They are real
+exam-conditions data and they belong in the unit's `examAnswered`/`examCorrect`
+columns (so they do count toward the pooled score), but a 12-question single-unit
+sitting is not a readiness signal and must not drive the headline cards.
+
+`apply-payload.js` rejects anything under 90 questions in `simExams` and warns on
+anything at or above 90 in `checkpointExams`. This went wrong once: the Unit 1
+Checkpoint Exam was filed as a simulated exam and drove the "latest exam" card off
+12 questions.
+
 ### Full-length exams - extra capture
-For any simulated or practice exam also capture:
+For any full-length simulated exam also capture:
 - **Per-question topic tags**, so `byTopic` can be built
 - **Miss categories** - what kind of error each miss was (`missCats`)
 - **Per-quarter miss counts** (1-25, 26-50, 51-75, 76-100) as `segments`, so stamina
@@ -281,7 +298,7 @@ has `correct` exceeding `answered`, or leaves a unit unmapped. It writes the
   ],
   "mixedQuizzes": [ { "date": "2026-09-12", "label": "...", "answered": 25, "correct": 18 } ],
   "kaplanQBank":  [ { "date": "2026-09-10", "label": "...", "answered": 40, "correct": 26 } ],
-  "simExams": [
+  "simExams": [ /* FULL-LENGTH end-of-course exams only, >= 90 questions */
     { "name": "Exam 1", "date": "2026-09-15", "score": 68, "total": 100,
       "timeUsed": 141, "timeAllowed": 150,
       "byTopic": { "I": { "answered": 8, "correct": 5 }, "IV": { "answered": 45, "correct": 28 } },
@@ -289,6 +306,13 @@ has `correct` exceeding `answered`, or leaves a unit unmapped. It writes the
       "segments": [ { "label": "1-25", "missed": 6 }, { "label": "26-50", "missed": 7 },
                     { "label": "51-75", "missed": 8 }, { "label": "76-100", "missed": 11 } ],
       "missCats": { "misread the question": 5, "did not know the rule": 12 } }
+  ],
+  "checkpointExams": [ /* unit checkpoint exams, same shape, short and single-unit */
+    { "name": "Unit 1 Checkpoint Exam", "date": "2026-09-17", "score": 7, "total": 12,
+      "timeUsed": 27.7, "timeAllowed": null,
+      "byTopic": { "IV": { "answered": 12, "correct": 7 } },
+      "byUnit":  { "U1": { "answered": 12, "correct": 7 } },
+      "segments": [], "missCats": { "did not know the rule": 5 } }
   ],
   "weakSpots": [], "strongSpots": [],
   "missedQuestions": [

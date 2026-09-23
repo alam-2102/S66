@@ -200,13 +200,20 @@ schema. Nothing else after it.
   "mixedQuizzes": [ { "date": "YYYY-MM-DD", "label": "name", "answered": 0, "correct": 0 } ],
   "kaplanQBank":  [ { "date": "YYYY-MM-DD", "label": "name", "answered": 0, "correct": 0 } ],
   "simExams": [
-    { "name": "Exam 1", "date": "YYYY-MM-DD", "score": 0, "total": 100,
+    { "name": "Full-length Exam 1", "date": "YYYY-MM-DD", "score": 0, "total": 100,
       "timeUsed": 0, "timeAllowed": 150,
       "byTopic": { "I": { "answered": 0, "correct": 0 }, "IV": { "answered": 0, "correct": 0 } },
       "byUnit":  { "U1": { "answered": 0, "correct": 0 } },
       "segments": [ { "label": "1-25", "missed": 0 }, { "label": "26-50", "missed": 0 },
                     { "label": "51-75", "missed": 0 }, { "label": "76-100", "missed": 0 } ],
       "missCats": { "misread the question": 0, "did not know the rule": 0 } }
+  ],
+  "checkpointExams": [
+    { "name": "Unit 1 Checkpoint Exam", "date": "YYYY-MM-DD", "score": 0, "total": 12,
+      "timeUsed": 0, "timeAllowed": null,
+      "byTopic": { "IV": { "answered": 0, "correct": 0 } },
+      "byUnit":  { "U1": { "answered": 0, "correct": 0 } },
+      "segments": [], "missCats": { "did not know the rule": 0 } }
   ],
   "weakSpots": [], "strongSpots": [],
   "missedQuestions": [
@@ -230,6 +237,10 @@ schema. Nothing else after it.
 
 Rules for the payload:
 
+- **`simExams` is ONLY for the full-length end-of-course exams** - every chapter, real
+  exam length (100 scored questions, 150 minutes). Kaplan's end-of-unit checkpoint
+  exams go in `checkpointExams` instead. A checkpoint filed as a simulated exam will
+  be rejected, because it would drive my readiness cards off a 12-question sitting.
 - Dates are `YYYY-MM-DD`. Unit ids are yours to assign (`U1`, `U2`, …) but must
   be consistent across `unitData`, `unitTopicMap` and `byUnit`.
 - **Every entry in `missedQuestions` must have an `explanation`.** It is the

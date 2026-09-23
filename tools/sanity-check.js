@@ -126,6 +126,7 @@ const EXPORTS = `
 ;globalThis.__X__ = {
   nasaaData, EXAM, META, unitData, mixedQuizzes, kaplanQBank, simExams,
   UNIT_TOPIC_MAP, missedQuestions, errorPatterns, quickTips, answeredCorrect,
+  checkpointExams,
   PRIOR_SNAPSHOT,
   pooledTotals, topicTotals, unitPool, buildBindings, bindAll, renderAll,
   renderSimulated, renderPerformance, buildPaste, MISSING_BINDS
@@ -212,6 +213,29 @@ console.log("\nSeries 66 dashboard sanity check\n");
   assert(new Set(ids).size === ids.length, "unit ids are unique");
   const mapIds = X.UNIT_TOPIC_MAP.map(u => u.id);
   assert(new Set(mapIds).size === mapIds.length, "unit-topic map has no duplicate entries");
+}
+
+/* ----------------------- 3b. simExams is full-length exams only ------------- */
+{
+  const short = X.simExams.filter(e => (e.total || 0) < X.EXAM.FULL_LENGTH_MIN);
+  assert(short.length === 0,
+    "simExams holds only full-length exams (>= " + X.EXAM.FULL_LENGTH_MIN + " questions)",
+    short.length ? short.map(e => e.name + " (" + e.total + "q)").join(", ")
+                 : "(" + X.simExams.length + " full-length, "
+                   + (X.checkpointExams || []).length + " checkpoints)");
+  const cp = X.checkpointExams || [];
+  const longCp = cp.filter(e => (e.total || 0) >= X.EXAM.FULL_LENGTH_MIN);
+  assert(longCp.length === 0, "no full-length exam is filed as a unit checkpoint",
+    longCp.map(e => e.name).join(", "));
+  /* Checkpoint exam scores must reconcile with the unit's exam columns, which are
+     what the pooled score actually uses. */
+  let cpScore = 0, cpTotal = 0;
+  for (const e of cp) { cpScore += (e.score || 0); cpTotal += (e.total || 0); }
+  let unitExamC = 0, unitExamA = 0;
+  for (const u of X.unitData) { unitExamC += (u.examCorrect || 0); unitExamA += (u.examAnswered || 0); }
+  assert(cpTotal <= unitExamA,
+    "checkpoint questions are accounted for in the units' exam columns",
+    cpScore + "/" + cpTotal + " checkpoints vs " + unitExamC + "/" + unitExamA + " unit exam");
 }
 
 /* ------------------------------------------ 4. renderSimulated is idempotent */
