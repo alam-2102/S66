@@ -359,9 +359,18 @@ function rowCount(html) { return (String(html).match(/<tr/g) || []).length; }
   /* every miss must reach the full briefing - it is the highest-value payload */
   const missed = X.missedQuestions.length;
   const inBrief = (full.match(/^- Q: /gm) || []).length;
-  assert(missed === 0 || inBrief === missed,
-    "every missed question reaches the full briefing",
-    inBrief + " of " + missed);
+  /* The ladder may trim older misses once the briefing outgrows its budget, but
+     it must SAY so - a briefing that silently drops misses is the failure mode
+     this whole page exists to prevent. */
+  const saysTrimmed = /TRIMMED TO FIT/.test(full);
+  assert(missed === 0 || inBrief === missed || saysTrimmed,
+    "every missed question reaches the full briefing, or it says it was trimmed",
+    inBrief + " of " + missed + (saysTrimmed ? " (trimmed, and declared)" : ""));
+  assert(inBrief >= Math.min(missed, 20),
+    "the full briefing keeps at least the 20 most recent misses", inBrief + " kept");
+  /* The delta must stay small enough to drop into a running conversation. */
+  assert(delta.length <= 70000,
+    "delta stays pasteable", delta.length + " chars (~" + Math.round(delta.length/4) + " tokens)");
 }
 
 /* ------------------------------------------------ 8. empty means empty */
