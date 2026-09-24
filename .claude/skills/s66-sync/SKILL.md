@@ -97,6 +97,13 @@ exactly what the pooled score requires. Summing raw attempts double-counts repea
 and drags the score down (74.4% vs 72.5% on this run). When the two disagree,
 look for a repeated question before assuming something was missed.
 
+**Mixed and cumulative review quizzes land inside the tracker's QBank counts too.**
+Confirmed 23 Sep 2026: twelve activities decomposed to 135 attempts, the tracker read
+131, and the difference was the Review quiz's repeats being deduped. This is exactly
+why `mixedQuizzes` is reported beside the pooled score and never added into it -
+its questions are already counted once, in `unitData`. Adding them again would
+double-count.
+
 ### Finding the quizzes - Study Tools menu
 **Coordinate clicks on the header menu miss.** The screenshot coordinate frame is
 scaled relative to the real viewport, so a click aimed at "Study Tools" lands on the
