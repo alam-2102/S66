@@ -942,17 +942,17 @@ const EXAM = {
    ========================================================================== */
 const SYNC = {
   "meta": {
-    "lastVerified": "2026-09-23",
-    "lastRunAttempted": "2026-09-23",
+    "lastVerified": "2026-09-26",
+    "lastRunAttempted": "2026-09-26",
     "source": "kaplan",
     "examDate": null,
     "noDataRuns": 0,
-    "lastActivityDate": "2026-09-23",
-    "courseActivitiesDone": 18,
+    "lastActivityDate": "2026-09-26",
+    "courseActivitiesDone": 23,
     "courseActivitiesTotal": 137,
-    "studyPlanPct": 7.2,
-    "kaplanExamAvg": 62.79,
-    "kaplanQBankAvg": 72.73,
+    "studyPlanPct": 9.8,
+    "kaplanExamAvg": 67.24,
+    "kaplanQBankAvg": 73.23,
     "unreadReason": ""
   },
   "unitTopicMap": [
@@ -1157,8 +1157,8 @@ const SYNC = {
     {
       "id": "U2",
       "name": "Unit 2: Registration Requirements for Investment Advisers and Their Representatives",
-      "qbankAnswered": 39,
-      "qbankCorrect": 25,
+      "qbankAnswered": 43,
+      "qbankCorrect": 27,
       "examAnswered": 19,
       "examCorrect": 11,
       "mixedAnswered": 0,
@@ -1169,8 +1169,8 @@ const SYNC = {
     {
       "id": "U3",
       "name": "Unit 3: Regulation of Broker-Dealers and Their Agents",
-      "qbankAnswered": 18,
-      "qbankCorrect": 13,
+      "qbankAnswered": 24,
+      "qbankCorrect": 18,
       "examAnswered": 12,
       "examCorrect": 9,
       "mixedAnswered": 0,
@@ -1181,14 +1181,14 @@ const SYNC = {
     {
       "id": "U4",
       "name": "Unit 4: Regulation of Securities and Issuers",
-      "qbankAnswered": 0,
-      "qbankCorrect": 0,
-      "examAnswered": 0,
-      "examCorrect": 0,
+      "qbankAnswered": 29,
+      "qbankCorrect": 22,
+      "examAnswered": 15,
+      "examCorrect": 12,
       "mixedAnswered": 0,
       "mixedCorrect": 0,
       "covers": "Securities and issuer terms, the securities registration process, registration exemptions",
-      "recurring": ""
+      "recurring": "Exempt transactions vs exempt securities: unsolicited orders are the most common EXEMPT TRANSACTION (missed twice in one sitting), a transaction with an ordinary operating company is not exempt, and private placements are capped at 10 retail purchasers. Conditions attached to security exemptions: a savings institution or insurer must be authorized in the state, a railroad must be rate-regulated, commercial paper needs a $50,000 denomination."
     },
     {
       "id": "U5",
@@ -1425,6 +1425,12 @@ const SYNC = {
       "label": "Unit 1-2 Review Quiz (Test 411496521)",
       "answered": 10,
       "correct": 7
+    },
+    {
+      "date": "2026-09-24",
+      "label": "Unit 1-3 Review Quiz (Test 411666032)",
+      "answered": 10,
+      "correct": 7
     }
   ],
   "kaplanQBank": [
@@ -1475,22 +1481,34 @@ const SYNC = {
       "label": "Unit 3 Quiz 2 (Test 411511007)",
       "answered": 9,
       "correct": 7
+    },
+    {
+      "date": "2026-09-26",
+      "label": "Unit 4 Quiz 1 (Test 411892876)",
+      "answered": 15,
+      "correct": 11
+    },
+    {
+      "date": "2026-09-26",
+      "label": "Unit 4 Quiz 2 (Test 411894414)",
+      "answered": 15,
+      "correct": 12
     }
   ],
   "simExams": [],
   "weakSpots": [
+    "U4 (Topic IV): exempt transactions, especially unsolicited orders (missed twice in one sitting) and which buyers count as institutional",
+    "U4 (Topic IV): the conditions attached to exempt securities (in-state authorization, rate regulation, $50,000 commercial paper denomination)",
+    "U2 (Topic IV): financial-disclosure triggers and the $500 state vs $1,200 federal prepayment thresholds (4 misses)",
     "U2 (Topic IV): who notifies the Administrator on IAR hire/termination, state vs federal covered (3 misses)",
-    "U2 (Topic IV): supervised and associated persons, incl. solicitors, outside auditors, parent companies and clerical staff (4 misses)",
-    "U2 (Topic IV): what creates a place of business for an IAR of a covered adviser, and keeping client counts out of that test (3 misses)",
-    "U2 (Topic IV): NASAA financial thresholds ($35,000 custody vs $10,000 discretion, substantial prepayment) and the financial-disclosure triggers (3 misses)",
-    "U2 (Topic IV): Form ADV parts by filing level, and record retention periods (4 misses across two pairs)",
-    "U1 (Topic IV): reading whether a private fund question is federal or state before choosing an investor standard (2 misses, opposite directions)"
+    "U2 (Topic IV): supervised and associated persons (4 misses)",
+    "U3 (Topic IV): broker-dealer and agent registration reach - no de minimis, residents vs visitors (3 misses)"
   ],
   "strongSpots": [
-    "U2 (Topic IV): the AUM ladder for adviser registration - under $100M state, $100M-$110M optional, $110M+ SEC, below $90M on the annual amendment means 180 days back to the states",
-    "U2 (Topic IV): consent to service of process in all its wordings",
-    "U2 (Topic IV): who is an IAR by function - solicitors, wrap fee agents, supervisors of IARs, automatic registration of partners and officers",
-    "U1 (Topic IV): de minimis and institutional-client exemptions, and the IA-1092 business and compensation tests, both now holding up on repeat questions"
+    "U4 (Topic IV): what counts as an offer or sale - mergers, splits, pledges, gifts of nonassessable stock, beneficial ownership",
+    "U4 (Topic IV): the burden of proof for exemptions and the Administrator's role",
+    "U4 (Topic IV): Regulation D mechanics - 506(b) vs 506(c), Form D timing, accredited investors",
+    "U3/U2 (Topic IV): the agent and IAR definitions by function, and the AUM ladder, both holding up on repeat questions"
   ],
   "missedQuestions": [
     {
@@ -1996,6 +2014,162 @@ const SYNC = {
       "correctAnswer": "A) must register as an agent if sales-related compensation will be received by the employee, either directly or indirectly.",
       "rationale": "Under the USA, an individual employed by the issuer is an agent when effecting transactions with the issuer's existing employees if sales-related compensation is paid. As a practical matter, the employee would be on straight salary.",
       "explanation": "Sales-related compensation is what turns an issuer's employee into an agent. An employee who simply processes paperwork for a company stock purchase plan on a straight salary is exempt; add a commission or any indirect sales-based payment and registration is required. Your answer dropped the compensation condition, which is the one thing the exemption depends on. Note how this differs from the broker-dealer side, where an agent selling for a BD registers regardless of how he is paid. Also note choice B is the trap in reverse, since receiving commissions is precisely what would require registration."
+    },
+    {
+      "id": "u4q1-q03",
+      "date": "2026-09-26",
+      "unitId": "U4",
+      "topic": "IV",
+      "lo": "LO 4.k",
+      "question": "Which of the following securities are not subject to state registration under the Uniform Securities Act? I. Equipment trust certificates issued by a railroad subject to federal regulation. II. Preferred stock of a bank holding company listed on the New York Stock Exchange. III. Subordinated convertible debentures issued by a Canadian public utility regulated by the Canadian federal government. IV. Shares of a savings and loan association authorized to do business in the state.",
+      "myAnswer": "B) I only",
+      "correctAnswer": "D) I, II, III, and IV",
+      "rationale": "Securities exempt under the USA include bank issues, savings and loan issues, and common carriers or public utilities regulated by the U.S. or Canadian federal government. Securities issued by bank holding companies that trade on SEC-regulated exchanges are federal covered securities and are not subject to state registration.",
+      "explanation": "Two different routes get a security out of state registration, and this question uses both. Three of the items are EXEMPT SECURITIES under the USA: the rate-regulated railroad's equipment trust certificates, the Canadian federally regulated utility's debentures, and the authorized savings and loan's shares. The fourth, the NYSE-listed bank holding company stock, escapes by a different door: anything listed on a national exchange is a FEDERAL COVERED security, and states cannot require its registration. You kept only the railroad, which suggests you were working from the exempt-securities list alone. When a question asks what is 'not subject to state registration', run each item past both lists: is it exempt under the USA, or is it federal covered? Either one is enough."
+    },
+    {
+      "id": "u4q1-q12",
+      "date": "2026-09-26",
+      "unitId": "U4",
+      "topic": "IV",
+      "lo": "LO 4.n",
+      "question": "Which of the following transactions are not exempt from registration?",
+      "myAnswer": "A) Transactions with pension or profit-sharing trusts",
+      "correctAnswer": "C) Transactions with intrastate manufacturing companies",
+      "rationale": "A transaction with a corporation that is not a financial institution is neither an exempt transaction nor exempt from the registration rules.",
+      "explanation": "The institutional list is specific, and an ordinary operating company is not on it. Pension and profit-sharing trusts ARE institutions, so transactions with them are exempt; so are isolated nonissuer transactions and unsolicited ones. A manufacturer, however large or local, is just a corporate customer, and selling to it is an ordinary retail transaction. The word 'intrastate' is decoration here, since it suggests a different exemption (the intrastate offering) that has nothing to do with who the buyer is. Build the institutional list once: banks, savings institutions, trust companies, insurance companies, investment companies, pension and profit-sharing trusts, broker-dealers, and other financial institutions. If a buyer isn't on it, the transaction isn't exempt for being institutional."
+    },
+    {
+      "id": "u4q1-q14",
+      "date": "2026-09-26",
+      "unitId": "U4",
+      "topic": "IV",
+      "lo": "LO 4.n",
+      "question": "When the Uniform Securities Act refers to unsolicited orders, which of the following is true?",
+      "myAnswer": "C) Under certain conditions, an Administrator may prohibit a broker-dealer registered in the state from accepting any unsolicited orders.",
+      "correctAnswer": "A) Unsolicited orders are defined as exempt transactions under the USA.",
+      "rationale": "Customers have the right to buy or sell whatever they may desire. The issue becomes who initiates the trade. An unsolicited transaction may be executed by an agent if it is the client who asks for the trade. The trade ticket should be marked as unsolicited. The state securities Administrator has the right to seek verification from the client that the order was in fact unsolicited.",
+      "explanation": "Start from the definition: an unsolicited order is THE classic exempt transaction, the one that lets a client buy something an agent may not recommend. The Administrator cannot switch that off; a client's right to initiate a trade is the point of the exemption. What the Administrator can do is verify the claim, which is why the order ticket is marked and why a client acknowledgment may be requested. Your answer gave the Administrator a power the act doesn't grant. Keep two ideas apart: the Administrator may restrict what a firm SOLICITS, but not what a client asks for on their own."
+    },
+    {
+      "id": "u4q1-q15",
+      "date": "2026-09-26",
+      "unitId": "U4",
+      "topic": "IV",
+      "lo": "LO 4.e",
+      "question": "Which of the following describe indications of interest secured during the 20-day cooling-off period? I. Binding on the customer. II. Nonbinding on the customer. III. Binding on the broker-dealer. IV. Nonbinding on the broker-dealer.",
+      "myAnswer": "A) II and III",
+      "correctAnswer": "B) II and IV",
+      "rationale": "Indications of interest are not binding on either party.",
+      "explanation": "An indication of interest binds nobody. During the cooling-off period nothing can legally be sold, so there is no contract to bind anyone: the customer can walk away, and the firm is under no obligation to deliver shares if the deal is oversubscribed. You had the customer half right and then made the broker-dealer side binding, which would require an enforceable agreement that securities law says cannot exist yet. Remember what else the cooling-off period forbids: no sales, no money, no advertising other than a tombstone, and only a preliminary prospectus (red herring) may circulate."
+    },
+    {
+      "id": "u4q2-q02",
+      "date": "2026-09-26",
+      "unitId": "U4",
+      "topic": "IV",
+      "lo": "LO 4.n",
+      "question": "All of the following securities transactions are exempt under the Uniform Securities Act except",
+      "myAnswer": "A) a sale of stock to a pension trust.",
+      "correctAnswer": "D) a sale of private placement securities to 25 noninstitutional investors in a state.",
+      "rationale": "Private placements are exempt under the USA if they are offered to no more than 10 general public (retail) investors in a 12-month period. Institutional investors are not included in the numerical limitations.",
+      "explanation": "The state private placement number is 10 RETAIL purchasers in 12 months, and institutions don't count toward it, so 25 noninstitutional investors blows the limit. The number is worth isolating because this material has several: 10 retail purchasers for the USA private placement, 10 subscribers for preorganization certificates, and 35 nonaccredited investors under federal Rule 506(b). Mixing the federal 35 into a state question is the easy error here. Note also that the pension trust answer you chose is the same institutional-buyer exemption you missed from the other side on Quiz 1 Q12: there the ordinary corporation was NOT exempt, here the pension trust IS."
+    },
+    {
+      "id": "u4q2-q10",
+      "date": "2026-09-26",
+      "unitId": "U4",
+      "topic": "IV",
+      "lo": "LO 4.n",
+      "question": "Which of the following statements regarding unsolicited orders is true?",
+      "myAnswer": "D) Unsolicited orders are nonexempt transactions under the Uniform Securities Act.",
+      "correctAnswer": "C) A client may purchase, at his own initiative, securities trading in the secondary market through an agent who otherwise is prohibited from soliciting the order.",
+      "rationale": "If a client requests the purchase of a security that an agent is prohibited from soliciting, the agent can accept the order and mark the order unsolicited. This is the most common of the exempt transactions.",
+      "explanation": "This is the same rule you missed on Quiz 1 Q14 seventeen minutes earlier, and this time you stated the opposite of the definition outright: unsolicited orders are exempt transactions, and Kaplan calls them the most common one. The practical version is the sentence in the correct answer, and it is worth memorizing as a sentence: a client may buy on his own initiative through an agent who could not have recommended it. Two misses on one rule in one sitting usually means the phrase 'exempt transaction' hasn't been anchored to a concrete example yet. Anchor it to this one."
+    },
+    {
+      "id": "u4q2-q12",
+      "date": "2026-09-26",
+      "unitId": "U4",
+      "topic": "IV",
+      "lo": "LO 4.k",
+      "question": "The Uniform Securities Act grants exemptions to the securities of a number of issuers. If you were the Administrator, which of the following securities would not be eligible for an exemption in your state?",
+      "myAnswer": "B) Common stock issued by the XYZ Trust Company, organized under the laws of a neighboring state but not authorized to do business in this state",
+      "correctAnswer": "A) Debt securities issued by the ABC Savings and Loan Association, organized under the laws of a neighboring state but not authorized to do business in your state",
+      "rationale": "Banks, savings institutions, and trust company securities are exempt as long as they are organized under the laws of the United States or any state. However, a savings and loan must also be authorized to do business in this state for the exemption to apply.",
+      "explanation": "Banks and trust companies get the exemption on organization alone: chartered under U.S. or any state law and they're exempt anywhere. Savings and loans carry an extra condition, they must also be AUTHORIZED TO DO BUSINESS IN THE STATE where the exemption is claimed. Both answer choices described an out-of-state institution not authorized locally; only the S&L loses its exemption for it. This joins a small family of conditional exemptions worth listing together: S&Ls need in-state authorization, insurance company stock needs the insurer to be authorized in the state, railroads need rate regulation, and commercial paper needs a $50,000 denomination."
+    },
+    {
+      "id": "rev13-q07",
+      "date": "2026-09-24",
+      "unitId": "U2",
+      "topic": "IV",
+      "lo": "LO 2.k",
+      "question": "The Uniform Securities Act empowers the Administrator to begin proceedings to revoke the registration of an investment adviser when certain violations are suspected. Which of the following is considered serious enough to warrant a revocation?",
+      "myAnswer": "D) Being charged with commission of a felony involving a nonfinancial matter",
+      "correctAnswer": "C) Failure to supervise the activities of investment adviser representatives",
+      "rationale": "Among the many violations justifying a revocation is failure to supervise. Maintaining custody of customer funds or securities requires notification to the Administrator, not approval. It is only a conviction, not being charged of a crime, that would be cause for revocation.",
+      "explanation": "Being CHARGED is not being CONVICTED, and the act is built on convictions. A pending charge, however serious sounding, is not a statutory basis for revocation. Failure to supervise is, and it is one of the most heavily tested violations in this material because the firm is responsible for the people registered through it. The custody distractor is also worth keeping: custody requires notice to the Administrator, not the Administrator's approval. Two words to watch in these questions, then: charged versus convicted, and notice versus approval."
+    },
+    {
+      "id": "rev13-q08",
+      "date": "2026-09-24",
+      "unitId": "U3",
+      "topic": "IV",
+      "lo": "LO 3.h",
+      "question": "Under the USA, all the following statements regarding the registration of agents are true except",
+      "myAnswer": "C) if an agent resigns and affiliates with another broker-dealer, both firms and the agent must notify the Administrator.",
+      "correctAnswer": "B) if a broker-dealer's registration is revoked by a state, it has no effect on the agent's registration.",
+      "rationale": "If a broker-dealer's (or investment adviser's) registration is revoked by a state, the registrations of all its agents (or IARs) are suspended. Those individuals can no longer function in a registered capacity until they register with another active firm.",
+      "explanation": "An agent's registration hangs off the firm's. Revoke the broker-dealer and every agent's registration is suspended on the spot, because there is no longer a registered firm to be an agent of; the individual has to affiliate with an active firm to work again. Your pick, the three-way notice when an agent changes firms, is a true statement for broker-dealer agents, which is why it wasn't the exception. That three-way notice is also the interesting contrast with the Unit 2 rule you've now missed three times: for agents of broker-dealers, old firm, new firm and the agent all notify; for IARs it depends on whether the adviser is state-registered or federal covered."
+    },
+    {
+      "id": "rev13-q10",
+      "date": "2026-09-24",
+      "unitId": "U2",
+      "topic": "IV",
+      "lo": "LO 2.h",
+      "question": "Under the Investment Advisers Act of 1940, in which of the following cases has an investment adviser acted improperly by not making appropriate disclosures to clients? I. An adviser requiring prepayment of $1,000 nine months in advance has liabilities exceeding assets and does not disclose it. II. An adviser with investment discretion cannot meet its financial obligations and does not disclose it. III. An adviser with no prepayment, discretion or custody has been found by a state court to have violated an SEC rule and does not disclose it.",
+      "myAnswer": "D) I, II, and III",
+      "correctAnswer": "A) II and III",
+      "rationale": "An adviser's financial impairment must be disclosed if the adviser has discretion, has custody, or requires prepayment of more than $1,200 in fees, six or more months in advance. Legal or disciplinary action taken against an adviser within the past 10 years must be disclosed in any case.",
+      "explanation": "The question is federal, so the prepayment threshold is $1,200, not the state's $500. Statement I has $1,000 nine months in advance, which clears the time test and fails the dollar test, so that adviser's financial trouble needs no disclosure. Statement II is a discretion adviser with real financial trouble, which triggers disclosure, and statement III is a disciplinary action, which must be disclosed for ten years no matter what the adviser's arrangements are. You answered all three, which is the same over-inclusion you made on the federal-vs-state prepayment figure before. Keep the pair on one card: state $500, federal $1,200, both with the six-month clock."
+    },
+    {
+      "id": "u4exam-q01",
+      "date": "2026-09-26",
+      "unitId": "U4",
+      "topic": "IV",
+      "lo": "LO 4.h",
+      "question": "When a security is being registered under coordination, all of the following are required except",
+      "myAnswer": "D) none of these are exceptions.",
+      "correctAnswer": "A) filing with the administrator a statement of the maximum and minimum proposed offering price and maximum underwriting discounts or commissions concurrently with the filing of the registration statement with the SEC.",
+      "rationale": "The statement of the maximum and minimum proposed offering prices and the maximum underwriting compensation must be filed at least two full business days before the effective date, not with the initial filing.",
+      "explanation": "Everything in choice A is genuinely required under coordination; only the TIMING is wrong. The price range and maximum underwriting compensation are filed at least two full business days before the effective date, not alongside the initial SEC filing, because those numbers aren't settled until shortly before pricing. Answering 'none of these are exceptions' means the timing detail slipped past. That two-business-day rule is a favorite because it is the one moving part in a registration method that otherwise just mirrors the federal filing. Coordination in one line: file with the SEC and the state together, send the state every amendment promptly, and get the price and compensation statement in two full business days before effectiveness."
+    },
+    {
+      "id": "u4exam-q04",
+      "date": "2026-09-26",
+      "unitId": "U4",
+      "topic": "IV",
+      "lo": "LO 4.d",
+      "question": "A broker-dealer sends an email to all of its clients stating that anyone purchasing at least 100 shares of an IPO that has just become effective will receive, at no additional cost, a bonus of 10 shares of a Nasdaq-traded stock. Under the Uniform Securities Act, delivery of this stock to a qualifying client would represent",
+      "myAnswer": "D) a gift.",
+      "correctAnswer": "B) a sale.",
+      "rationale": "The USA states that any security given or delivered with, or as a bonus on account of, any purchase of securities or any other thing is considered part of the subject of the purchase and to have been offered and sold for value.",
+      "explanation": "'At no additional cost' is what makes it look like a gift, and the act closes that door explicitly: a security given as a bonus with a purchase was offered and sold for value. The client did pay, just not separately, and the bonus is part of what the purchase bought. This matters because if it's a sale, both securities must be registered or exempt and all the antifraud rules attach. Contrast with the true gift rule you answered correctly on Quiz 2 Q8: a gift of ASSESSABLE stock is a sale, a gift of nonassessable stock is not, and a bonus tied to a purchase is always a sale."
+    },
+    {
+      "id": "u4exam-q11",
+      "date": "2026-09-26",
+      "unitId": "U4",
+      "topic": "IV",
+      "lo": "LO 4.k",
+      "question": "The primary purpose of the securities registration requirements of the Uniform Securities Act is to ensure that proper disclosure is made available to potential investors. However, not all securities are required to register. Which of the following qualify for an exemption from registration under the act?",
+      "myAnswer": "B) Commercial paper with no more than nine months to maturity that is in one of the three highest ratings by a nationally recognized rating agency and in a minimum denomination of $10,000",
+      "correctAnswer": "A) Common stock issued by life insurance companies authorized to conduct insurance sales in that state",
+      "rationale": "A security issued by a life insurance company issuing stock in a state in which the company is authorized to conduct its insurance business is exempt. Railroads under the jurisdiction of other state or federal regulators carry an exemption for their equipment trust certificates; if the railroad is not regulated the exemption does not apply. The commercial paper would qualify if the denomination was $50,000 instead of $10,000. Debt obligations issued by a country (not a city) with which the United States has diplomatic relations are exempt.",
+      "explanation": "Your choice had three of the four commercial paper conditions right, which is exactly how this question is built: nine months or less, top three ratings, and a $50,000 minimum denomination. The $10,000 figure fails the last one. Every wrong answer here breaks one condition of a real exemption: the railroad isn't rate-regulated, and the foreign bond is issued by a city rather than a country. The correct answer, insurance company stock, meets its own condition, since the insurer is authorized in that state. Same lesson as Quiz 2 Q12 the same evening: for exempt securities, the conditions attached to the exemption are what get tested, not the category name."
     }
   ],
   "answeredCorrect": [
@@ -2463,9 +2637,266 @@ const SYNC = {
       "id": "u3exam-q11",
       "question": "A Canadian broker-dealer is registered in Province Q. The firm has clients who vacation in several New England states.",
       "note": "Limited registration lets a Canadian BD continue serving existing clients temporarily in a state."
+    },
+    {
+      "id": "u4q1-q01",
+      "question": "Under the Uniform Securities Act, an offer to sell would not include which of these?",
+      "note": "Stock received through a merger isn't an offer; issuing warrants, convertibles or rights is."
+    },
+    {
+      "id": "u4q1-q02",
+      "question": "Which statements regarding the differences between Rule 506(b) and Rule 506(c) of Regulation D are true?",
+      "note": "506(c) may be advertised but is limited to accredited investors with verification; 506(b) allows up to 35 nonaccredited but no general solicitation."
+    },
+    {
+      "id": "u4q1-q04",
+      "question": "One method of securities registration is qualification. When that method is used, which statement is correct?",
+      "note": "Qualification is effective when the Administrator says so, and registrations run one year from the effective date."
+    },
+    {
+      "id": "u4q1-q05",
+      "question": "(Unit 4 Quiz 1, question 5)",
+      "note": "Answered correctly."
+    },
+    {
+      "id": "u4q1-q06",
+      "question": "Under the Securities Act of 1933, each of the following may be distributed if an issuer has applied for registration but is not yet cleared for sale except",
+      "note": "During the cooling-off period a red herring and tombstone are allowed; taking a down payment is not."
+    },
+    {
+      "id": "u4q1-q07",
+      "question": "The registration requirements of the Securities Act of 1933 would not apply to which of the following?",
+      "note": "Fixed insurance products aren't securities; exchange-listed stock and insurance company stocks and bonds are covered."
+    },
+    {
+      "id": "u4q1-q08",
+      "question": "The Uniform Securities Act requires that a consent to service of process be filed by each of the following except",
+      "note": "Registrants and issuers offering securities file consents; the Administrator does not."
+    },
+    {
+      "id": "u4q1-q09",
+      "question": "(Unit 4 Quiz 1, question 9)",
+      "note": "Answered correctly."
+    },
+    {
+      "id": "u4q1-q10",
+      "question": "An issuer wishing to comply with Regulation D must file Form D with the SEC",
+      "note": "No later than 15 days after the first sale."
+    },
+    {
+      "id": "u4q1-q11",
+      "question": "Under the Securities Act of 1933, which of the following is not required to be included in a registration statement?",
+      "note": "Holders of 10% or more, officers and directors go in the registration statement; smaller holders don't."
+    },
+    {
+      "id": "u4q1-q13",
+      "question": "Under the Uniform Securities Act, which person is responsible for proving that a securities issue is exempt from registration?",
+      "note": "The burden of proof sits with the person claiming the exemption - the issuer."
+    },
+    {
+      "id": "u4q2-q01",
+      "question": "The registration requirements of the Securities Act of 1933 would not apply to which of the following?",
+      "note": "Fixed annuities and fixed insurance contracts aren't securities."
+    },
+    {
+      "id": "u4q2-q03",
+      "question": "The Administrator is not empowered to deny an exemption to which of these?",
+      "note": "The Administrator cannot deny the exemption for U.S. government securities."
+    },
+    {
+      "id": "u4q2-q04",
+      "question": "Which of the following are issuers of securities?",
+      "note": "Anyone who sells its own securities to raise capital is an issuer, including a company mid-IPO."
+    },
+    {
+      "id": "u4q2-q05",
+      "question": "Under the Uniform Securities Act, it is not considered an offer or sale when...",
+      "note": "Bona fide pledges, mergers and certain corporate actions aren't offers or sales."
+    },
+    {
+      "id": "u4q2-q06",
+      "question": "DMF broker-dealer is advertising securities through direct mail. Which is considered an offer to sell securities in this state?",
+      "note": "An offer is made in the state where it is directed and received."
+    },
+    {
+      "id": "u4q2-q07",
+      "question": "Alpha Electronics has been advised that registration is unnecessary because the issue is exempt. Should Alpha be served with an order...",
+      "note": "The person claiming the exemption carries the burden of proof."
+    },
+    {
+      "id": "u4q2-q08",
+      "question": "As defined in the Uniform Securities Act, the term offer to sell would include",
+      "note": "A gift of assessable stock is a sale; a gift of nonassessable stock is not."
+    },
+    {
+      "id": "u4q2-q09",
+      "question": "A securities transaction where there is no beneficial change of ownership...",
+      "note": "No change in beneficial ownership means no sale."
+    },
+    {
+      "id": "u4q2-q11",
+      "question": "An adviser with over $250 million in AUM is accused of violating the antifraud provisions of the Uniform Securities Act.",
+      "note": "Federal covered status doesn't shield an adviser from state antifraud jurisdiction."
+    },
+    {
+      "id": "u4q2-q13",
+      "question": "Under the Uniform Securities Act, the definition of issuer includes",
+      "note": "A person proposing to issue a security is an issuer; market makers and specialists are not."
+    },
+    {
+      "id": "u4q2-q14",
+      "question": "If a nonexempt company has authorized a stock split giving each shareholder two shares for one without charge, this action",
+      "note": "A stock split involves no consideration, so it isn't a sale and needs no registration."
+    },
+    {
+      "id": "u4q2-q15",
+      "question": "Ways in which offerings under Rule 506(c) differ from 506(b)",
+      "note": "506(c) permits general solicitation but requires all purchasers to be verified accredited investors."
+    },
+    {
+      "id": "rev13-q01",
+      "question": "When is an investment adviser required to measure its AUM for purposes of determining whether to register with the SEC or the state(s)?",
+      "note": "AUM is measured on the annual updating amendment, within 90 days of fiscal year-end."
+    },
+    {
+      "id": "rev13-q02",
+      "question": "A publicly traded corporation offers employees shares directly from the issuer; a designated employee processes orders.",
+      "note": "Repeat of the Unit 2 exam question: the issuer's employee is an agent only if sales-related compensation is involved. Answered correctly this time."
+    },
+    {
+      "id": "rev13-q03",
+      "question": "Which federal act regulates the activities of broker-dealers and their associated persons?",
+      "note": "The Securities Exchange Act of 1934."
+    },
+    {
+      "id": "rev13-q04",
+      "question": "Which statements referring to renewal of a broker-dealer's registration under the USA are correct?",
+      "note": "All registrations expire December 31 regardless of when filed, and renewals need the fee."
+    },
+    {
+      "id": "rev13-q05",
+      "question": "Any partner, officer, or director of a registered investment adviser is an IAR if that individual does which of the following?",
+      "note": "Giving advice, managing accounts, soliciting or supervising those who do makes a person an IAR."
+    },
+    {
+      "id": "rev13-q06",
+      "question": "An agent registered in one state may transact business in another state in which he is not registered with which of the following?",
+      "note": "An existing client temporarily visiting is fine (snowbird); a client who has moved there is not."
+    },
+    {
+      "id": "rev13-q09",
+      "question": "An individual may not act as an agent for more than one broker-dealer...",
+      "note": "Multiple affiliations are restricted unless the firms are affiliated and the Administrator permits it."
+    },
+    {
+      "id": "u4exam-q02",
+      "question": "As referred to in the NSMIA, the term federal covered security would apply to which of the following?",
+      "note": "Exchange-listed securities and their senior issues, plus municipal issues outside their home state, are federal covered."
+    },
+    {
+      "id": "u4exam-q03",
+      "question": "The Administrator may require that a prospectus for a security registered under qualification be sent to each person to whom an offer is made",
+      "note": "Before the sale."
+    },
+    {
+      "id": "u4exam-q05",
+      "question": "Which of the following would be considered an issuer transaction as defined in the Uniform Securities Act?",
+      "note": "An issuer transaction is one where the proceeds go to the issuer."
+    },
+    {
+      "id": "u4exam-q06",
+      "question": "All of the following must be specified in the state registration statement except...",
+      "note": "The registration statement covers amounts, states, and use of proceeds, not every detail of the offering."
+    },
+    {
+      "id": "u4exam-q07",
+      "question": "A closed-end investment company whose shares trade on Nasdaq would qualify their shares for sale in the state using",
+      "note": "Notice filing - registered investment company shares are federal covered."
+    },
+    {
+      "id": "u4exam-q08",
+      "question": "XYZ Brick Company wishes to raise capital by issuing securities in its home state; the burden of proving the exemption falls on",
+      "note": "The person claiming the exemption."
+    },
+    {
+      "id": "u4exam-q09",
+      "question": "Which of the following is responsible for the administration of the Uniform Securities Act in a state?",
+      "note": "The Administrator."
+    },
+    {
+      "id": "u4exam-q10",
+      "question": "The U.S. Supreme Court case resulting in the definition of a security",
+      "note": "Howey: an investment of money in a common enterprise with an expectation of profits from the efforts of others."
+    },
+    {
+      "id": "u4exam-q12",
+      "question": "An agent would not be exempt from the antifraud provisions of the USA if the product being offered was a",
+      "note": "Antifraud provisions reach federal covered securities too; the Administrator's other powers do not."
+    },
+    {
+      "id": "u4exam-q13",
+      "question": "A customer asks her agent to circle the important information in a mutual fund prospectus...",
+      "note": "Marking or altering a prospectus is prohibited under any circumstances."
+    },
+    {
+      "id": "u4exam-q14",
+      "question": "An exemption from registration under the Securities Act of 1933 is available to securities that are",
+      "note": "The intrastate exemption (Rule 147) covers securities sold only to residents of one state by an in-state issuer."
+    },
+    {
+      "id": "u4exam-q15",
+      "question": "Which of the following is not an accredited investor?",
+      "note": "Accredited status comes from income, net worth or professional status thresholds, not from being an active trader."
     }
   ],
   "errorPatterns": [
+    {
+      "rule": "Exempt TRANSACTIONS under the USA: unsolicited orders are the most common one and the Administrator cannot forbid a client's own initiative; institutional buyers (pension trusts, financial institutions) qualify but ordinary operating companies do not; private placements are capped at 10 retail purchasers in 12 months",
+      "count": 4,
+      "topic": "IV",
+      "occurrences": [
+        "u4q1-q12",
+        "u4q1-q14",
+        "u4q2-q02",
+        "u4q2-q10"
+      ],
+      "note": "Four misses in one sitting, including the same unsolicited-order rule twice seventeen minutes apart - once by giving the Administrator a power it lacks, once by calling the transaction nonexempt outright."
+    },
+    {
+      "rule": "Who is a supervised or associated person of an adviser: employees and anyone registered through the firm are in, purely clerical staff and genuinely outside parties are out, a parent company is in, and a solicitor is out federally but in under the USA",
+      "count": 4,
+      "topic": "IV",
+      "occurrences": [
+        "u2q1-q03",
+        "u2q3-q03",
+        "u2exam-q09",
+        "rev12-q01"
+      ],
+      "note": "Each miss came from reading job titles instead of duties and control relationships."
+    },
+    {
+      "rule": "The NASAA financial thresholds, and keeping the state and federal figures apart: $35,000 net worth with custody, $10,000 with discretion only, substantial prepayment over $500 six or more months ahead at STATE level but over $1,200 at FEDERAL level, and the disclosure triggers (custody, discretion, prepayments) that exclude performance-based fees",
+      "count": 4,
+      "topic": "IV",
+      "occurrences": [
+        "u2q2-q05",
+        "rev12-q10",
+        "u2exam-q07",
+        "rev13-q10"
+      ],
+      "note": "The newest miss applied the state $500 figure to a federal question, so the state/federal pair itself is the gap rather than either number."
+    },
+    {
+      "rule": "Exempt SECURITIES carry conditions, and the conditions are what get tested: an S&L or insurer must be authorized in the state, a railroad must be rate-regulated, commercial paper needs a $50,000 denomination and a top-three rating within nine months; and exchange-listed issues escape state registration as FEDERAL COVERED rather than as exempt securities",
+      "count": 3,
+      "topic": "IV",
+      "occurrences": [
+        "u4q1-q03",
+        "u4q2-q12",
+        "u4exam-q11"
+      ],
+      "note": "Each miss came from accepting or rejecting a category without checking the condition attached to it, or from working off the exempt list alone and forgetting the federal covered door."
+    },
     {
       "rule": "Importing a rule from the adviser chapters into the broker-dealer chapters: de minimis client counts, institutional-client exclusions and place-of-business tests do not transfer",
       "count": 3,
@@ -2475,29 +2906,7 @@ const SYNC = {
         "u3q1-q06",
         "u3q1-q08"
       ],
-      "note": "The single most useful finding this run, because it explains misses in two different units. A rule learned for IAs and IARs gets reapplied to BDs and agents, where it either does not exist or works differently."
-    },
-    {
-      "rule": "Over-correcting after a miss: swinging to the opposite rule on the next question of the same family instead of re-reading the conditions",
-      "count": 2,
-      "topic": "IV",
-      "occurrences": [
-        "u3exam-q09",
-        "rev12-q03"
-      ],
-      "note": "Twice now the correction from one miss directly caused the next. De minimis miss then over-registering on the snowbird question two hours later; qualified-client miss then answering qualified client when the law had changed to federal."
-    },
-    {
-      "rule": "Who is a supervised or associated person of an adviser: employees and anyone registered through the firm are in, purely clerical staff and genuinely outside parties (an executing broker-dealer, the independent auditor) are out, a parent company is in, and a solicitor is out federally but in under the USA",
-      "count": 4,
-      "topic": "IV",
-      "occurrences": [
-        "u2q1-q03",
-        "u2q3-q03",
-        "u2exam-q09",
-        "rev12-q01"
-      ],
-      "note": "Most frequently missed family. Each miss came from reading job titles instead of duties and control relationships."
+      "note": "One habit explaining misses in two different units."
     },
     {
       "rule": "Registration reach for broker-dealers and agents: no de minimis exemption, a single resident client requires registration, an agent must be registered where the client is domiciled even on unsolicited or institutional orders, but the snowbird exemption covers a firm with no office serving existing clients temporarily in a state",
@@ -2508,10 +2917,10 @@ const SYNC = {
         "u3q1-q08",
         "u3exam-q09"
       ],
-      "note": "Missed in both directions within two hours: first by importing the adviser de minimis exemption, then by over-correcting to 'one client means register' on the snowbird question."
+      "note": "Missed in both directions within two hours. The Sep 24 Review Quiz (Q6) asked it again and was answered correctly, so this is improving."
     },
     {
-      "rule": "Who notifies the state Administrator when an IAR is hired or terminated: a STATE-registered adviser notifies for its IARs; an IAR of a FEDERAL COVERED adviser notifies for himself; the SEC is never notified",
+      "rule": "Who notifies the state Administrator when an IAR is hired or terminated: a STATE-registered adviser notifies for its IARs; an IAR of a FEDERAL COVERED adviser notifies for himself; the SEC is never notified. For AGENTS of broker-dealers it is different again - old firm, new firm and the agent all notify",
       "count": 3,
       "topic": "IV",
       "occurrences": [
@@ -2519,7 +2928,7 @@ const SYNC = {
         "u2q3-q02",
         "u2exam-q15"
       ],
-      "note": "Missed from all three angles in one week, including once where the firm's type was hidden behind an AUM figure."
+      "note": "The Sep 24 Review Quiz added the agent contrast (Q8), which is the piece that makes the adviser rule easier to hold."
     },
     {
       "rule": "An IAR of a federal covered adviser registers only where he has a PLACE OF BUSINESS; client counts never matter, and regular recurring presence at a fixed location creates a place of business",
@@ -2530,21 +2939,20 @@ const SYNC = {
         "u2exam-q01",
         "u2exam-q11"
       ],
-      "note": "The de minimis client count leaking from the Unit 1 firm rules into the Unit 2 IAR rules."
+      "note": ""
     },
     {
-      "rule": "The dollar and time thresholds in the NASAA financial rules: $35,000 net worth with custody, $10,000 with discretion only, substantial prepayment over $500 six or more months ahead at the state level ($1,200 federal), and the disclosure triggers that exclude performance-based fees",
-      "count": 3,
+      "rule": "Over-correcting after a miss: swinging to the opposite rule on the next question of the same family instead of re-reading the conditions",
+      "count": 2,
       "topic": "IV",
       "occurrences": [
-        "u2q2-q05",
-        "rev12-q10",
-        "u2exam-q07"
+        "u3exam-q09",
+        "rev12-q03"
       ],
-      "note": "He has produced each of these numbers correctly somewhere else, so this is pairing and recall under pressure."
+      "note": "Twice the correction from one miss directly caused the next."
     },
     {
-      "rule": "Which clients earn an adviser an exemption, and whether the rule is federal or state: insurance-company clients are a federal exemption (not a state one and not an exclusion); bank-only clients are neither; a bank acting AS the adviser is excluded",
+      "rule": "Which clients earn an adviser an exemption, and whether the rule is federal or state: insurance-company clients are a federal exemption; bank-only clients are neither; a bank acting AS the adviser is excluded",
       "count": 3,
       "topic": "IV",
       "occurrences": [
@@ -2552,7 +2960,7 @@ const SYNC = {
         "u1qz2-q11",
         "u1exam-q06"
       ],
-      "note": "Sep 17 pattern. Retested correctly on the Sep 23 Review Quiz, so improving."
+      "note": "Sep 17 pattern, retested correctly on Sep 23. Improving."
     },
     {
       "rule": "Exclusion (not an investment adviser at all) vs exemption (an adviser who need not register), and how a professional or publisher loses an exclusion by holding out, charging separately, or personalizing the advice",
@@ -2563,7 +2971,18 @@ const SYNC = {
         "u1exam-q11",
         "u1exam-q12"
       ],
-      "note": "Sep 17 pattern. Review Quiz Q2 and Q4 tested the professional side again and both were correct."
+      "note": "Sep 17 pattern, retested correctly twice on Sep 23. Improving."
+    },
+    {
+      "rule": "Record retention and whose records they are: five years from the END OF THE FISCAL YEAR for ordinary records, three years after termination for organizational documents, and no recordkeeping duty at all for IARs or agents",
+      "count": 3,
+      "topic": "IV",
+      "occurrences": [
+        "u2q2-q01",
+        "u2exam-q17",
+        "u3exam-q07"
+      ],
+      "note": ""
     },
     {
       "rule": "Which parts of Form ADV go where: 1A everyone files, 1B state only, 2A everyone files, 2B filed with the state but only kept on hand by SEC advisers",
@@ -2573,18 +2992,7 @@ const SYNC = {
         "u2q2-q07",
         "u2exam-q05"
       ],
-      "note": "Both halves of the same grid missed in the same week."
-    },
-    {
-      "rule": "Record retention: five years from the END OF THE FISCAL YEAR for ordinary records, three years after termination for organizational documents, and no recordkeeping duty at all for IARs or agents",
-      "count": 3,
-      "topic": "IV",
-      "occurrences": [
-        "u2q2-q01",
-        "u2exam-q17",
-        "u3exam-q07"
-      ],
-      "note": "Now spans two units: the Unit 3 miss was the same principle, that financial records belong to firms and not to individuals."
+      "note": ""
     },
     {
       "rule": "Reading which law the question names before answering, especially on private fund investor standards: federal 3(c)(1) means accredited investors, state means qualified clients, 3(c)(7) means qualified purchasers",
@@ -2594,7 +3002,7 @@ const SYNC = {
         "u1qz1-q03",
         "rev12-q03"
       ],
-      "note": "Missed in both directions a week apart. The correction from the first miss caused the second."
+      "note": "Missed in both directions a week apart."
     },
     {
       "rule": "The 'in the business' element of the investment adviser definition: regular advice, compensation for the advice (not for transactions), and, under IA-1092, holding out as an adviser",
@@ -2604,38 +3012,25 @@ const SYNC = {
         "u1qz1-q04",
         "u1qz1-q07"
       ],
-      "note": "Sep 16 misses, fixed: the identical questions came back on Sep 17 and Sep 23 and were answered correctly both times."
+      "note": "Fixed: the identical questions came back on Sep 17 and Sep 23 and were answered correctly both times."
     }
   ],
   "quickTips": [
     {
       "topic": "IV",
-      "unitId": "U3",
-      "kind": "technique",
-      "id": "t-wrong-chapter",
-      "count": 3,
+      "unitId": "U4",
+      "kind": "rule",
+      "id": "t-exempt-transactions",
+      "count": 4,
       "fromMisses": [
-        "u2q1-q01",
-        "u3q1-q06",
-        "u3q1-q08"
+        "u4q1-q12",
+        "u4q1-q14",
+        "u4q2-q02",
+        "u4q2-q10"
       ],
-      "trigger": "a registration question and a rule from another chapter springing to mind",
-      "move": "Name which side you are on FIRST - adviser/IAR or broker-dealer/agent - then apply only that side's rule. De minimis client counts, institutional-client exclusions and place-of-business tests are ADVISER rules. On the BD/agent side there is no de minimis at all.",
-      "why": "The single most useful finding this run: it explains misses in two different units. You keep reaching for a rule you genuinely know, from the wrong chapter."
-    },
-    {
-      "topic": "IV",
-      "unitId": "U3",
-      "kind": "technique",
-      "id": "t-dont-overcorrect",
-      "count": 2,
-      "fromMisses": [
-        "u3exam-q09",
-        "rev12-q03"
-      ],
-      "trigger": "a question from the same family as one you recently got wrong",
-      "move": "Do not apply the correction as a new blanket rule. Re-read the CONDITIONS: resident or visitor, federal or state, office or no office. The fix to the last question is usually a condition, not a direction.",
-      "why": "Twice now the correction from one miss caused the next. De minimis miss, then over-registering on the snowbird question two hours later; qualified-client miss, then qualified client again when the law had switched to federal."
+      "trigger": "a question about whether a TRANSACTION is exempt",
+      "move": "Anchor to the unsolicited order: it is THE most common exempt transaction, and the Administrator cannot forbid a client's own initiative (it can only verify the ticket was marked unsolicited). Institutional buyers count - banks, insurers, investment companies, pension and profit-sharing trusts, BDs. An ordinary operating company does NOT, however large or local. Private placement cap is 10 RETAIL purchasers in 12 months; institutions don't count toward it.",
+      "why": "Four misses in one sitting, including this exact rule twice seventeen minutes apart. The phrase 'exempt transaction' has not been anchored to a concrete example yet - anchor it to the unsolicited order."
     },
     {
       "topic": "IV",
@@ -2651,7 +3046,53 @@ const SYNC = {
       ],
       "trigger": "a list of people and a question about who is supervised by, or associated with, an adviser",
       "move": "Ignore job titles; read duties and control. IN: employees, anyone registered THROUGH the firm, a parent company, clerical staff who actually analyse. OUT: an outside executing broker-dealer, the independent auditor, purely clerical staff. Solicitors are OUT federally, IN under the USA.",
-      "why": "Still the most-missed family. Every miss came from reading the title instead of the duty."
+      "why": "Every miss came from reading the title instead of the duty."
+    },
+    {
+      "topic": "IV",
+      "unitId": "U2",
+      "kind": "rule",
+      "id": "t-state-vs-federal-numbers",
+      "count": 4,
+      "fromMisses": [
+        "u2q2-q05",
+        "rev12-q10",
+        "u2exam-q07",
+        "rev13-q10"
+      ],
+      "trigger": "a NASAA net worth or prepayment figure, or a question about disclosing financial impairment",
+      "move": "Name the government FIRST, then the number. Substantial prepayment: over $500 (state) / over $1,200 (federal), both six months or more ahead - it is an AND test. Net worth: custody $35,000, discretion only $10,000. Impairment disclosure triggers are custody, discretion, prepayments; performance fees are NOT one.",
+      "why": "Four misses now, and the newest applied the state $500 to a federal question. The state/federal PAIR is the gap, not either number."
+    },
+    {
+      "topic": "IV",
+      "unitId": "U4",
+      "kind": "rule",
+      "id": "t-exempt-securities-conditions",
+      "count": 3,
+      "fromMisses": [
+        "u4q1-q03",
+        "u4q2-q12",
+        "u4exam-q11"
+      ],
+      "trigger": "a question asking whether a SECURITY is exempt or not subject to state registration",
+      "move": "Two doors, check both: is it an exempt security under the USA, or is it FEDERAL COVERED (anything exchange-listed)? Either is enough. Then check the condition attached, because that is what gets tested: S&L and insurer must be AUTHORIZED IN THE STATE, railroad must be RATE-REGULATED, commercial paper needs $50,000 denomination + top-three rating + nine months or less, foreign bonds must be from a COUNTRY not a city. Banks and trust companies need only be chartered under U.S. or state law.",
+      "why": "Three misses, each from accepting or rejecting a category without checking its condition - or from working off the exempt list alone and forgetting the federal covered door."
+    },
+    {
+      "topic": "IV",
+      "unitId": "U3",
+      "kind": "technique",
+      "id": "t-wrong-chapter",
+      "count": 3,
+      "fromMisses": [
+        "u2q1-q01",
+        "u3q1-q06",
+        "u3q1-q08"
+      ],
+      "trigger": "a registration question and a rule from another chapter springing to mind",
+      "move": "Name which side you are on FIRST - adviser/IAR or broker-dealer/agent - then apply only that side's rule. De minimis client counts, institutional-client exclusions and place-of-business tests are ADVISER rules. On the BD/agent side there is no de minimis at all.",
+      "why": "One habit explaining misses in two different units."
     },
     {
       "topic": "IV",
@@ -2665,8 +3106,8 @@ const SYNC = {
         "u3exam-q09"
       ],
       "trigger": "a broker-dealer or agent and a client who is somewhere other than the home state",
-      "move": "Three questions in order: does the firm have an office in the state? Is the client a RESIDENT or only temporarily there? Is this an existing client? Resident = register, even for one. Existing client merely visiting + no office = snowbird exemption, and it covers any business, not just unsolicited orders. An AGENT must be registered where the client is domiciled, whatever the order type.",
-      "why": "Missed in both directions within two hours - first under-registering, then over-registering."
+      "move": "Three questions in order: does the firm have an office in the state? Is the client a RESIDENT or only temporarily there? Is this an existing client? Resident = register, even for one. Existing client merely visiting + no office = snowbird exemption, covering any business, not just unsolicited orders. An AGENT must be registered where the client is domiciled, whatever the order type.",
+      "why": "Missed in both directions within two hours. Retested correctly on the Sep 24 Review Quiz, so improving."
     },
     {
       "topic": "IV",
@@ -2679,9 +3120,9 @@ const SYNC = {
         "u2q3-q02",
         "u2exam-q15"
       ],
-      "trigger": "an IAR being hired or terminated and a question about who notifies the Administrator",
-      "move": "STATE-registered adviser: the FIRM notifies. FEDERAL COVERED adviser: the IAR notifies. The SEC is never notified. If given AUM instead of firm type, convert first: over $110M = federal covered.",
-      "why": "Missed from all three angles in one week, including once where the firm type was hidden behind a dollar figure."
+      "trigger": "someone being hired or terminated and a question about who notifies the Administrator",
+      "move": "IAR + STATE-registered adviser: the FIRM notifies. IAR + FEDERAL COVERED adviser: the IAR notifies. AGENT of a broker-dealer: old firm, new firm AND the agent all notify. The SEC is never notified about either. Given AUM instead of firm type, convert first: over $110M = federal covered.",
+      "why": "Three misses from three angles. The agent contrast from the Sep 24 Review Quiz is what makes the adviser rule stick."
     },
     {
       "topic": "IV",
@@ -2695,23 +3136,8 @@ const SYNC = {
         "u2exam-q11"
       ],
       "trigger": "an IAR of a federal covered adviser with clients scattered across states",
-      "move": "Count OFFICES, never clients. And regular recurring presence at a fixed location makes an office: one day a week, or a quarterly seminar at the same venue.",
-      "why": "Client counts are irrelevant to an IAR of a covered adviser - 25 clients in a state with no office there needs nothing."
-    },
-    {
-      "topic": "IV",
-      "unitId": "U2",
-      "kind": "rule",
-      "id": "t-nasaa-thresholds",
-      "count": 3,
-      "fromMisses": [
-        "u2q2-q05",
-        "rev12-q10",
-        "u2exam-q07"
-      ],
-      "trigger": "a NASAA net worth or prepayment figure, or a question about disclosing financial impairment",
-      "move": "Custody $35,000; discretion only $10,000. Substantial prepayment is an AND test: MORE than $500 AND six months or more ahead ($1,200 federal). Impairment disclosure triggers are custody, discretion, prepayments - performance fees are NOT one.",
-      "why": "You have produced every one of these numbers correctly elsewhere, so this is pairing under pressure."
+      "move": "Count OFFICES, never clients. Regular recurring presence at a fixed location makes an office: one day a week, or a quarterly seminar at the same venue.",
+      "why": "Client counts are irrelevant to an IAR of a covered adviser."
     },
     {
       "topic": "IV",
@@ -2724,9 +3150,9 @@ const SYNC = {
         "u2exam-q17",
         "u3exam-q07"
       ],
-      "trigger": "a recordkeeping period, or a question about whose records can be examined",
+      "trigger": "a record retention period, or a question about whose records can be examined",
       "move": "Records belong to FIRMS. Agents and IARs have no recordkeeping duty and nothing to inspect. Five years from the END OF THE FISCAL YEAR for ordinary records; three years after the business terminates for organizational papers.",
-      "why": "Now spans two units. The clock starting at fiscal year end, not the document's own date, is what caught you first."
+      "why": "The clock starting at fiscal year end, not the document's own date, is what caught you first."
     },
     {
       "topic": "IV",
@@ -2741,7 +3167,7 @@ const SYNC = {
       ],
       "trigger": "an answer choice about an adviser whose only clients are one type",
       "move": "Ask two things. (1) Is this about the adviser itself or about its clients? (2) Federal or state? Insurance-company clients = FEDERAL exemption only. Bank clients = nothing, either level. A bank AS the adviser = excluded from the definition entirely.",
-      "why": "Three misses on Sep 17, retested correctly on Sep 23. Improving, not yet cleared."
+      "why": "Three misses on Sep 17, retested correctly on Sep 23. Improving."
     },
     {
       "topic": "IV",
@@ -2756,7 +3182,70 @@ const SYNC = {
       ],
       "trigger": "\"excluded from the definition\" versus \"exempt from registration\"",
       "move": "Excluded = not an adviser at all. Exempt = an adviser who need not register, antifraud still applies. Then check whether the professional or publisher broke their own exclusion by holding out, charging separately, or personalising the advice.",
-      "why": "Three misses on Sep 17, tested twice again on Sep 23 and both right. Improving, not yet cleared."
+      "why": "Three misses on Sep 17, tested twice again on Sep 23 and both right. Improving."
+    },
+    {
+      "topic": "IV",
+      "unitId": "U4",
+      "kind": "technique",
+      "id": "t-roman-numerals",
+      "count": 8,
+      "fromMisses": [
+        "u1qz1-q04",
+        "u1qz1-q07",
+        "u2q1-q13",
+        "u2q2-q04",
+        "u3q1-q03",
+        "u3q2-q09",
+        "u4q1-q03",
+        "u4q1-q15"
+      ],
+      "trigger": "a Roman-numeral question (I, II, III) asking which items belong to a rule",
+      "move": "Write your own yes/no on each numeral BEFORE reading the lettered choices. Underline a stem that says 'are NOT true'. When the list is Administrator POWERS, the default is that it can do all of them. When it is a list of securities, run each past BOTH the exempt list and the federal covered list.",
+      "why": "Eight misses now, by far your largest group and present in every unit. Most are under-inclusion: dropping a true numeral because it sounds odd."
+    },
+    {
+      "topic": "IV",
+      "unitId": "U3",
+      "kind": "technique",
+      "id": "t-dont-overcorrect",
+      "count": 2,
+      "fromMisses": [
+        "u3exam-q09",
+        "rev12-q03"
+      ],
+      "trigger": "a question from the same family as one you recently got wrong",
+      "move": "Do not apply the correction as a new blanket rule. Re-read the CONDITIONS: resident or visitor, federal or state, office or no office. The fix to the last question is usually a condition, not a direction.",
+      "why": "Twice the correction from one miss caused the next."
+    },
+    {
+      "topic": "IV",
+      "unitId": "U4",
+      "kind": "technique",
+      "id": "t-except-questions",
+      "count": 3,
+      "fromMisses": [
+        "u2exam-q07",
+        "u2exam-q17",
+        "u4exam-q01"
+      ],
+      "trigger": "a question ending in EXCEPT, or asking which statement is NOT correct",
+      "move": "Name what the other three have in common before choosing. The answer differs in KIND, not in strength - and sometimes only in TIMING. If your pick is a true statement, you have answered the opposite question. Never choose 'none of these are exceptions' without checking each one's timing detail.",
+      "why": "Three misses now. On the coordination question the answer was right in substance and wrong only on when it gets filed."
+    },
+    {
+      "topic": "IV",
+      "unitId": "U1",
+      "kind": "rule",
+      "id": "t-which-law-first",
+      "count": 2,
+      "fromMisses": [
+        "u1qz1-q03",
+        "rev12-q03"
+      ],
+      "trigger": "a private fund question naming 3(c)(1) or 3(c)(7)",
+      "move": "Read the LAW in the stem before the answer choices. Federal 3(c)(1): accredited investors, max 100, no bad actors. State (USA) 3(c)(1): qualified clients. Either law's 3(c)(7): qualified purchasers.",
+      "why": "Missed in both directions a week apart."
     },
     {
       "topic": "IV",
@@ -2774,49 +3263,68 @@ const SYNC = {
     },
     {
       "topic": "IV",
-      "unitId": "U1",
+      "unitId": "U4",
       "kind": "rule",
-      "id": "t-which-law-first",
-      "count": 2,
+      "id": "t-bonus-is-a-sale",
+      "count": 1,
       "fromMisses": [
-        "u1qz1-q03",
-        "rev12-q03"
+        "u4exam-q04"
       ],
-      "trigger": "a private fund question naming 3(c)(1) or 3(c)(7)",
-      "move": "Read the LAW in the stem before the answer choices. Federal 3(c)(1): accredited investors, max 100, no bad actors. State (USA) 3(c)(1): qualified clients. Either law's 3(c)(7): qualified purchasers.",
-      "why": "Missed in both directions a week apart, and the correction from the first caused the second."
-    },
-    {
-      "topic": "IV",
-      "unitId": "U3",
-      "kind": "technique",
-      "id": "t-roman-numerals",
-      "count": 6,
-      "fromMisses": [
-        "u1qz1-q04",
-        "u1qz1-q07",
-        "u2q1-q13",
-        "u2q2-q04",
-        "u3q1-q03",
-        "u3q2-q09"
-      ],
-      "trigger": "a Roman-numeral question (I, II, III) asking which items belong to a rule",
-      "move": "Write your own yes/no on each numeral BEFORE reading the lettered choices. Watch for a stem that says 'are NOT true' - underline it. And when the list is Administrator POWERS, the default is that it can do all of them; look for the statement that adds a hard limit.",
-      "why": "Six misses now, the largest single group. Both directions: once picking all of them, four times dropping a true one."
+      "trigger": "a security given away free, as a bonus, or as a gift",
+      "move": "A security given as a BONUS with a purchase was sold for value - the act says so explicitly. A gift of ASSESSABLE stock is a sale. A gift of NONASSESSABLE stock is not. A stock split or a transaction with no change in beneficial ownership is not.",
+      "why": "'At no additional cost' is what makes a bonus look like a gift. It isn't; the client paid, just not separately."
     },
     {
       "topic": "IV",
       "unitId": "U2",
-      "kind": "technique",
-      "id": "t-except-questions",
-      "count": 2,
+      "kind": "rule",
+      "id": "t-charged-vs-convicted",
+      "count": 1,
       "fromMisses": [
-        "u2exam-q07",
-        "u2exam-q17"
+        "rev13-q07"
       ],
-      "trigger": "a question ending in EXCEPT, or asking which statement is NOT correct",
-      "move": "Name what the other three have in common before choosing. The answer differs in KIND, not in strength. If your pick is a true statement, you have answered the opposite question.",
-      "why": "Both misses were EXCEPT questions where you picked something true."
+      "trigger": "grounds for denial, suspension or revocation of a registration",
+      "move": "CONVICTED, not charged - a pending charge is never a statutory basis. And NOTICE, not approval - custody requires notifying the Administrator, not getting permission. Failure to supervise IS grounds, and is heavily tested.",
+      "why": "Two word-pairs decide most of these questions: charged/convicted and notice/approval."
+    },
+    {
+      "topic": "IV",
+      "unitId": "U3",
+      "kind": "rule",
+      "id": "t-agent-hangs-off-the-firm",
+      "count": 1,
+      "fromMisses": [
+        "rev13-q08"
+      ],
+      "trigger": "a broker-dealer or adviser losing its registration",
+      "move": "An agent's or IAR's registration hangs off the firm's. Revoke the firm and every one of its people is suspended on the spot - they cannot work until they affiliate with an active firm.",
+      "why": "There is no such thing as a registered agent without a registered firm to be an agent of."
+    },
+    {
+      "topic": "IV",
+      "unitId": "U4",
+      "kind": "rule",
+      "id": "t-coordination-two-days",
+      "count": 1,
+      "fromMisses": [
+        "u4exam-q01"
+      ],
+      "trigger": "registration by coordination",
+      "move": "File with the SEC and the state together, send the state every amendment promptly, and get the price range and maximum underwriting compensation in at least TWO FULL BUSINESS DAYS before the effective date - not with the initial filing.",
+      "why": "The two-business-day timing is the one moving part in a method that otherwise just mirrors the federal filing."
+    },
+    {
+      "topic": "IV",
+      "unitId": "U4",
+      "kind": "rule",
+      "id": "t-indications-bind-nobody",
+      "count": 1,
+      "fromMisses": [
+        "u4q1-q15"
+      ],
+      "trigger": "indications of interest during the cooling-off period",
+      "move": "They bind NOBODY - not the customer, not the broker-dealer. Nothing can be sold yet, so no contract exists. During cooling off: no sales, no money, tombstone advertising only, red herring may circulate.",
+      "why": "You had the customer half right and then made the firm's side binding, which would need an agreement the law says cannot exist yet."
     },
     {
       "topic": "IV",
@@ -2841,7 +3349,7 @@ const SYNC = {
         "u3exam-q12"
       ],
       "trigger": "an employee of an issuer selling the company's own stock to other employees",
-      "move": "Sales-related COMPENSATION is the switch. Straight salary and processing paperwork = not an agent. Any commission, direct or indirect = agent. Contrast the BD side, where an agent registers regardless of how he is paid.",
+      "move": "Sales-related COMPENSATION is the switch. Straight salary and processing paperwork = not an agent. Any commission, direct or indirect = agent.",
       "why": "You dropped the compensation condition, which is the only thing the exemption depends on."
     },
     {
@@ -3036,14 +3544,56 @@ const SYNC = {
       "missCats": {
         "did not know the rule": 3
       }
+    },
+    {
+      "name": "Unit 4 Checkpoint Exam (Test 411896093)",
+      "date": "2026-09-26",
+      "score": 12,
+      "total": 15,
+      "timeUsed": 12,
+      "timeAllowed": null,
+      "byTopic": {
+        "IV": {
+          "answered": 15,
+          "correct": 12
+        }
+      },
+      "byUnit": {
+        "U4": {
+          "answered": 15,
+          "correct": 12
+        }
+      },
+      "segments": [
+        {
+          "label": "1-4",
+          "missed": 2
+        },
+        {
+          "label": "5-8",
+          "missed": 0
+        },
+        {
+          "label": "9-12",
+          "missed": 1
+        },
+        {
+          "label": "13-15",
+          "missed": 0
+        }
+      ],
+      "missCats": {
+        "did not know the rule": 3
+      }
     }
   ],
   "priorSnapshot": {
     "asOf": "2026-09-23",
-    "pooledPct": 68.3168,
+    "pooledPct": 69.4656,
     "units": {
       "U1": 76.7442,
-      "U2": 62.069
+      "U2": 62.069,
+      "U3": 73.3333
     },
     "missIds": [
       "u1qz1-q03",
@@ -3079,7 +3629,15 @@ const SYNC = {
       "u2exam-q11",
       "u2exam-q12",
       "u2exam-q15",
-      "u2exam-q17"
+      "u2exam-q17",
+      "u3q1-q03",
+      "u3q1-q06",
+      "u3q1-q08",
+      "u3q2-q07",
+      "u3q2-q09",
+      "u3exam-q07",
+      "u3exam-q09",
+      "u3exam-q12"
     ],
     "correctIds": [
       "u1qz1-q01",
@@ -3152,17 +3710,42 @@ const SYNC = {
       "u2exam-q14",
       "u2exam-q16",
       "u2exam-q18",
-      "u2exam-q19"
+      "u2exam-q19",
+      "u3q1-q01",
+      "u3q1-q02",
+      "u3q1-q04",
+      "u3q1-q05",
+      "u3q1-q07",
+      "u3q1-q09",
+      "u3q2-q01",
+      "u3q2-q02",
+      "u3q2-q03",
+      "u3q2-q04",
+      "u3q2-q05",
+      "u3q2-q06",
+      "u3q2-q08",
+      "u3exam-q01",
+      "u3exam-q02",
+      "u3exam-q03",
+      "u3exam-q04",
+      "u3exam-q05",
+      "u3exam-q06",
+      "u3exam-q08",
+      "u3exam-q10",
+      "u3exam-q11"
     ],
     "patternRules": [
+      "Importing a rule from the adviser chapters into the broker-dealer chapters: de minimis client counts, institutional-client exclusions and place-of-business tests do not transfer",
+      "Over-correcting after a miss: swinging to the opposite rule on the next question of the same family instead of re-reading the conditions",
       "Who is a supervised or associated person of an adviser: employees and anyone registered through the firm are in, purely clerical staff and genuinely outside parties (an executing broker-dealer, the independent auditor) are out, a parent company is in, and a solicitor is out federally but in under the USA",
+      "Registration reach for broker-dealers and agents: no de minimis exemption, a single resident client requires registration, an agent must be registered where the client is domiciled even on unsolicited or institutional orders, but the snowbird exemption covers a firm with no office serving existing clients temporarily in a state",
       "Who notifies the state Administrator when an IAR is hired or terminated: a STATE-registered adviser notifies for its IARs; an IAR of a FEDERAL COVERED adviser notifies for himself; the SEC is never notified",
-      "An IAR of a federal covered adviser registers only where he has a PLACE OF BUSINESS; client counts never matter, and regular recurring presence at a fixed location (one day a week, a quarterly seminar) creates a place of business",
-      "The dollar and time thresholds in the NASAA financial rules: $35,000 net worth with custody, $10,000 with discretion only, substantial prepayment over $500 six or more months ahead at the state level ($1,200 federal), and the disclosure triggers (custody, discretion, prepayments) that exclude performance-based fees",
+      "An IAR of a federal covered adviser registers only where he has a PLACE OF BUSINESS; client counts never matter, and regular recurring presence at a fixed location creates a place of business",
+      "The dollar and time thresholds in the NASAA financial rules: $35,000 net worth with custody, $10,000 with discretion only, substantial prepayment over $500 six or more months ahead at the state level ($1,200 federal), and the disclosure triggers that exclude performance-based fees",
       "Which clients earn an adviser an exemption, and whether the rule is federal or state: insurance-company clients are a federal exemption (not a state one and not an exclusion); bank-only clients are neither; a bank acting AS the adviser is excluded",
       "Exclusion (not an investment adviser at all) vs exemption (an adviser who need not register), and how a professional or publisher loses an exclusion by holding out, charging separately, or personalizing the advice",
       "Which parts of Form ADV go where: 1A everyone files, 1B state only, 2A everyone files, 2B filed with the state but only kept on hand by SEC advisers",
-      "Record retention: five years from the END OF THE FISCAL YEAR for ordinary records incl. advertisements and emails, three years after termination for organizational documents, and no recordkeeping duty at all for IARs",
+      "Record retention: five years from the END OF THE FISCAL YEAR for ordinary records, three years after termination for organizational documents, and no recordkeeping duty at all for IARs or agents",
       "Reading which law the question names before answering, especially on private fund investor standards: federal 3(c)(1) means accredited investors, state means qualified clients, 3(c)(7) means qualified purchasers",
       "The 'in the business' element of the investment adviser definition: regular advice, compensation for the advice (not for transactions), and, under IA-1092, holding out as an adviser"
     ],
@@ -3173,8 +3756,11 @@ const SYNC = {
       "Unit 2 Quiz 1 (Test 410818116)",
       "Unit 2 Quiz 2 (Test 411148871)",
       "U2 (Test 411159782)",
+      "Unit 3 Quiz 1 (Test 411509877)",
+      "Unit 3 Quiz 2 (Test 411511007)",
       "Unit 1 Checkpoint Exam (Test 410671140)",
       "Unit 2 Checkpoint Exam (Test 411154210)",
+      "Unit 3 Checkpoint Exam (Test 411516480)",
       "Unit 1-2 Review Quiz (Test 411496521)"
     ]
   }
