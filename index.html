@@ -942,17 +942,17 @@ const EXAM = {
    ========================================================================== */
 const SYNC = {
   "meta": {
-    "lastVerified": "2026-09-29",
-    "lastRunAttempted": "2026-09-29",
+    "lastVerified": "2026-10-06",
+    "lastRunAttempted": "2026-10-06",
     "source": "kaplan",
     "examDate": null,
     "noDataRuns": 0,
-    "lastActivityDate": "2026-09-29",
-    "courseActivitiesDone": 28,
+    "lastActivityDate": "2026-10-05",
+    "courseActivitiesDone": 34,
     "courseActivitiesTotal": 137,
-    "studyPlanPct": 12.4,
-    "kaplanExamAvg": 63.51,
-    "kaplanQBankAvg": 75.31,
+    "studyPlanPct": 16.1,
+    "kaplanExamAvg": 64.44,
+    "kaplanQBankAvg": 74.55,
     "unreadReason": ""
   },
   "unitTopicMap": [
@@ -1145,8 +1145,8 @@ const SYNC = {
     {
       "id": "U1",
       "name": "Unit 1: Regulation of Investment Advisers and Investment Adviser Representatives",
-      "qbankAnswered": 31,
-      "qbankCorrect": 26,
+      "qbankAnswered": 33,
+      "qbankCorrect": 28,
       "examAnswered": 12,
       "examCorrect": 7,
       "mixedAnswered": 0,
@@ -1169,8 +1169,8 @@ const SYNC = {
     {
       "id": "U3",
       "name": "Unit 3: Regulation of Broker-Dealers and Their Agents",
-      "qbankAnswered": 27,
-      "qbankCorrect": 22,
+      "qbankAnswered": 31,
+      "qbankCorrect": 24,
       "examAnswered": 12,
       "examCorrect": 9,
       "mixedAnswered": 0,
@@ -1181,8 +1181,8 @@ const SYNC = {
     {
       "id": "U4",
       "name": "Unit 4: Regulation of Securities and Issuers",
-      "qbankAnswered": 35,
-      "qbankCorrect": 25,
+      "qbankAnswered": 40,
+      "qbankCorrect": 29,
       "examAnswered": 15,
       "examCorrect": 12,
       "mixedAnswered": 0,
@@ -1193,8 +1193,8 @@ const SYNC = {
     {
       "id": "U5",
       "name": "Unit 5: Remedies and Administrative Provisions",
-      "qbankAnswered": 26,
-      "qbankCorrect": 22,
+      "qbankAnswered": 34,
+      "qbankCorrect": 28,
       "examAnswered": 16,
       "examCorrect": 8,
       "mixedAnswered": 0,
@@ -1205,14 +1205,14 @@ const SYNC = {
     {
       "id": "U6",
       "name": "Unit 6: Communications with Clients and Prospects",
-      "qbankAnswered": 0,
-      "qbankCorrect": 0,
-      "examAnswered": 0,
-      "examCorrect": 0,
+      "qbankAnswered": 39,
+      "qbankCorrect": 28,
+      "examAnswered": 16,
+      "examCorrect": 11,
       "mixedAnswered": 0,
       "mixedCorrect": 0,
       "covers": "Disclosure, misrepresentations and guarantees, advisory contracts, the IA brochure, advertising, social media",
-      "recurring": ""
+      "recurring": "Brochure delivery: 48 hours BEFORE the contract, or at signing with a 5-business-day penalty-free cancellation (keeping a proportionate fee); annual update within 120 days of fiscal year-end only if there are material changes; only two delivery exemptions (registered investment company clients; impersonal advice under $500/yr); the brochure itself is Part 2A. Missed five times. Principal vs agency cross: buying from or selling to an advisory client out of the firm's own account is PRINCIPAL and needs written disclosure and consent before completion; an agency cross means the firm is the agent for both sides. Missed three times, including the same concept twice on Oct 5."
     },
     {
       "id": "U7",
@@ -1437,6 +1437,18 @@ const SYNC = {
       "label": "Unit 1-4 Review Quiz (Test 412336495)",
       "answered": 10,
       "correct": 7
+    },
+    {
+      "date": "2026-10-05",
+      "label": "Unit 1-5 Review Quiz (Test 413096084)",
+      "answered": 10,
+      "correct": 7
+    },
+    {
+      "date": "2026-10-05",
+      "label": "Unit 1-6 Review Quiz (Test 413099969)",
+      "answered": 20,
+      "correct": 15
     }
   ],
   "kaplanQBank": [
@@ -1511,23 +1523,34 @@ const SYNC = {
       "label": "Unit 5 Quiz 2 (Test 412343632)",
       "answered": 13,
       "correct": 10
+    },
+    {
+      "date": "2026-10-03",
+      "label": "Unit 6 Quiz 1 (Test 412864425)",
+      "answered": 15,
+      "correct": 11
+    },
+    {
+      "date": "2026-10-03",
+      "label": "Unit 6 Quiz 2 (Test 412865472)",
+      "answered": 15,
+      "correct": 11
     }
   ],
   "simExams": [],
   "weakSpots": [
-    "U5 (Topic IV): cancellation vs revocation (3 misses in one day)",
-    "U5 (Topic IV): statute-of-limitations, penalty and appeal numbers — civil 2/3, criminal 5, $5,000 and 3 years, 60 days (4 misses)",
-    "U5 (Topic IV): jurisdiction over offers — cell phones, travel, newspapers (2 misses)",
-    "U4 (Topic IV): exempt transactions (unsolicited orders) and conditions on exempt/federal covered securities",
-    "U2 (Topic IV): financial-disclosure triggers and $500 state vs $1,200 federal prepayment thresholds (4 misses)",
-    "U2 (Topic IV): IAR notice rule and supervised persons (still the lowest checkpoint score at 58%, untouched since Sep 21)"
+    "U6 (Topic IV): brochure delivery timing, cancellation rights, annual update and exemptions (5 misses in three days)",
+    "U6 (Topic IV): principal vs agency cross capacity (3 misses, same concept twice in 20 minutes)",
+    "U4 (Topic IV): recognising an unsolicited order when the stem describes it without naming it (3 misses on this rule)",
+    "U2/U6 (Topic IV): Form ADV parts — 2A brochure vs 2B supplement, 1B state-only (3 misses)",
+    "U2/U3 (Topic IV): who notifies the Administrator on termination — BD agents both notify; IARs depend on adviser type (4 misses)",
+    "U2 and U5 checkpoint exams still at 58% and 50% with no retake"
   ],
   "strongSpots": [
-    "U5 (Topic IV): the Administrator's powers — subpoenas, summary orders, investigations in and out of state, what only courts can do (Quiz 1 Q1/Q2/Q3/Q8/Q10/Q12, Exam Q6/Q7/Q16)",
-    "U5 (Topic IV): civil remedies and rescission offers (Quiz 2 Q6/Q11, Exam Q2)",
-    "U4 (Topic IV): what counts as an offer or sale, burden of proof, Regulation D mechanics",
-    "U3/U2 (Topic IV): the agent and IAR definitions by function, and the AUM ladder",
-    "Repeat questions: every previously-missed question that came back has now been answered correctly (IA-1092 twice, 1807041, issuer-employee agent rule)"
+    "U6 (Topic IV): social media and fraud red flags, guarantees, fee disclosure, wrap fee issues (Quiz 1 Q7/Q10/Q11, Quiz 2 Q10/Q13, Exam Q7/Q13/Q15)",
+    "U5 (Topic IV): the penalty and statute-of-limitations numbers now holding up on review quizzes",
+    "U4 (Topic IV): commercial paper exemption conditions, fixed on Oct 5",
+    "U3/U2 (Topic IV): agent and IAR definitions by function, the AUM ladder"
   ],
   "missedQuestions": [
     {
@@ -2369,6 +2392,258 @@ const SYNC = {
       "correctAnswer": "A) 60 days",
       "rationale": "An agent may appeal a final order of the state administrator, but a written petition must be filed with the appropriate court within 60 days of entry of the administrator's order.",
       "explanation": "Sixty days to petition a court to review a final order. The 90 you chose comes from Unit 2, where it's the deadline for the annual Form ADV amendment, and you've swapped similar day counts before (the 90 vs 180 miss on Unit 2 Quiz 1 Q6). Unit 5 adds its own set: 15 days to request a hearing after a summary order, the hearing within 15 days of the request, 30 days for a withdrawal to take effect, and 60 days to appeal to court. Worth writing all of these with the units they come from on one card, since the numbers themselves are easy — keeping them apart is the hard part."
+    },
+    {
+      "id": "u6q1-q01",
+      "date": "2026-10-03",
+      "unitId": "U6",
+      "topic": "IV",
+      "lo": "LO 6.f",
+      "question": "Which of the following actions by an investment adviser registered in three states is permitted?",
+      "myAnswer": "C) Delivering the brochure within 48 hours after signing of the contract, as long as there is a 5-day, penalty-free withdrawal provision",
+      "correctAnswer": "B) As long as the firm's brochure indicates that fees are negotiable, announcing that the first 50 new clients to sign up will receive a 25% discount on their fees for the first year",
+      "rationale": "This is not considered discrimination, because the discount applies equally to all (if they are among the first 50). The regulators consider this to be a negotiated fee. Fee reimbursement or waivers are not permitted. The five-day withdrawal provision applies to state-registered investment advisers when the brochure is not delivered at least 48 hours prior to (not after) the signing of the contract.",
+      "explanation": "The brochure rule has two acceptable timings, and 'after signing' is neither. Deliver it at least 48 hours BEFORE the contract, or deliver it AT signing and give the client five business days to cancel without penalty. Your answer moved the 48 hours to the wrong side of the signature. The correct answer looks suspicious because it sounds like a promotion, but a discount offered equally to everyone who qualifies, with fees disclosed as negotiable, is just a negotiated fee. What advisers can't do is guarantee returns or promise to refund or waive fees based on performance, which kills A and D."
+    },
+    {
+      "id": "u6q1-q02",
+      "date": "2026-10-03",
+      "unitId": "U6",
+      "topic": "IV",
+      "lo": "LO 6.e",
+      "question": "Which of the following are prohibited practices? I. An investment advisory firm organized as a partnership fails to inform its clients of the departure of a partner with a very small interest in the partnership. II. An investment advisory firm charges an annual fee equal to 2% of the first $250,000 in AUM; 1% of the next $500,000; and 0.5% for everything in excess of $750,000. III. The majority stockholder of a registered investment adviser pledges his stock as collateral for a loan taken out by the firm to expand its services without obtaining client consent for assignment of their contracts. IV. An investment advisory firm engages in agency cross transactions.",
+      "myAnswer": "C) I, II, III, and IV",
+      "correctAnswer": "B) I and III",
+      "rationale": "Any change in the ownership of an investment advisory firm organized as a partnership, no matter how small, requires notification to all clients within a reasonable amount of time. If the firm is structured as a corporation, pledging a controlling interest in the company's stock is viewed as an assignment of the contracts. This requires the consent of the clients. Agency cross transactions—that is, where the adviser represents both sides of the trade—are permitted as long as the adviser makes the proper written disclosures and does not make the buy-sell recommendations to both parties. Choice II is an example of a graduated fee schedule where the management fee is reduced as the size of the account increases—there is nothing prohibited about this very common practice in the industry.",
+      "explanation": "Two of these are ordinary industry practice. A graduated fee schedule, where the percentage falls as the account grows, is how most advisers price; nothing wrong with it. Agency cross transactions are allowed with written disclosure and consent, as long as the adviser doesn't recommend both sides — you answered exactly that correctly as Q3 of this same quiz. The two real violations are contract-related: a partnership must tell clients about ANY change in partners, however small the interest, and pledging a controlling block of stock counts as an assignment, which needs client consent. 'All of the above' on a Roman-numeral ethics question is rarely right; check each practice against whether it's simply common business."
+    },
+    {
+      "id": "u6q1-q13",
+      "date": "2026-10-03",
+      "unitId": "U6",
+      "topic": "IV",
+      "lo": "LO 6.i",
+      "question": "Under the NASAA brochure rule requirements for investment advisers, an investment adviser (unless qualifying for an exemption) must deliver,",
+      "myAnswer": "A) at least 48 hours in advance of entering into the advisory contract, a copy of the adviser's brochure.",
+      "correctAnswer": "C) within 120 days of the end of its fiscal year, a free, updated brochure and related brochure supplements that include or are accompanied by a summary of material changes.",
+      "rationale": "The rule calls for delivery within 120 days of the end of the fiscal year. The 48-hour rule is not mandatory; if the adviser waits until the signing of the advisory contract, there is a five-day penalty-free withdrawal privilege granted to the customer. If there are no material changes, delivery of an annual brochure is not required.",
+      "explanation": "The word 'must' is what decides this. Delivering 48 hours ahead is one of two permitted options, not a requirement, because the adviser can deliver at signing and give the five-day cancellation right instead. The annual piece IS mandatory: an updated brochure, or a summary of material changes, within 120 days of fiscal year-end. And only when there ARE material changes, which is why D fails. Put 120 next to the other year-end deadlines you know: 90 days for the annual Form ADV updating amendment, 120 days for the annual brochure delivery to clients."
+    },
+    {
+      "id": "u6q1-q14",
+      "date": "2026-10-03",
+      "unitId": "U6",
+      "topic": "IV",
+      "lo": "LO 6.a",
+      "question": "When opening an account at a broker-dealer, if the most recent copy of the firm's fee schedule is not available, NASAA recommends that the client",
+      "myAnswer": "A) promptly notify the Administrator of the firm's failure to comply.",
+      "correctAnswer": "C) not place any assets in the account until it is provided.",
+      "rationale": "It is proper for fees to be disclosed at the time a customer account is opened. If not presented, clients should ask for the fee schedule and make sure it's up to date. If it is not readily available, clients should not place any assets into the account until it is provided. NASAA believes that clients have the right to know the fees in advance.",
+      "explanation": "NASAA's investor guidance here is practical, not regulatory: fees should be known before money moves, so the client holds the assets back until the schedule arrives. Reporting the firm to the Administrator is out of proportion to a missing document; switching firms or trading carefully are both workarounds rather than the principle. The principle is the one to carry: clients have a right to know fees in advance, so the protective step is to not fund the account until they do."
+    },
+    {
+      "id": "u6q2-q02",
+      "date": "2026-10-03",
+      "unitId": "U6",
+      "topic": "IV",
+      "lo": "LO 6.b",
+      "question": "Consent of the client before completion of a trade made between the firm and a client must be made when",
+      "myAnswer": "A) a broker-dealer will be acting as a contra party to the trade.",
+      "correctAnswer": "D) an investment adviser will be acting in the capacity of a principal.",
+      "rationale": "In those uncommon cases where an investment adviser acts in the capacity of a principal (or agent) with an advisory client, consent of the client before completion of the transaction is required. In the case of broker-dealers, disclosure of capacity on the trade confirmation, but not consent, is needed.",
+      "explanation": "The fiduciary is the one who needs permission. When an investment adviser trades with its own advisory client as principal, the adviser is on the other side of a client it owes undivided loyalty to, so it must disclose that in writing and get the client's consent before the trade completes. A broker-dealer acting as principal (or contra party) only has to disclose its capacity on the trade confirmation; no consent required. Choices A and B are the same thing in different words, which is a clue that neither is the answer. Adviser as principal: written disclosure plus consent before completion. Broker-dealer as principal: disclosure on the confirmation."
+    },
+    {
+      "id": "u6q2-q05",
+      "date": "2026-10-03",
+      "unitId": "U6",
+      "topic": "IV",
+      "lo": "LO 6.a",
+      "question": "Your client maintains a small cash account at the firm. One typical broker-dealer fee that would not be charged to this client is",
+      "myAnswer": "D) an account maintenance charge.",
+      "correctAnswer": "B) margin interest on the debit balance.",
+      "rationale": "In a cash account, you can't have margin activity, so there can't be a margin interest charge.",
+      "explanation": "A cash account can't borrow, so it can never carry a debit balance and there's never margin interest to charge. Account maintenance fees, by contrast, are common and are often aimed at precisely the small accounts the stem mentions. 'Small' was there to make the maintenance fee look unfair, but the question asks what WOULDN'T be charged, not what's unpleasant. When a question names the account type, check each fee against what that account can actually do."
+    },
+    {
+      "id": "u6q2-q08",
+      "date": "2026-10-03",
+      "unitId": "U6",
+      "topic": "IV",
+      "lo": "LO 6.b",
+      "question": "Under the antifraud provisions of the Investment Advisers Act of 1940, an investment adviser must disclose to clients",
+      "myAnswer": "D) that any transactions made on the adviser's own account are consistent with the advice given to clients.",
+      "correctAnswer": "A) the association between the investment adviser and the broker-dealer with whom the overall investment plan will be implemented.",
+      "rationale": "Advisers must disclose to clients any outside interests or potential conflicts of interest involved in their recommendations or transactions for those clients. Failure to disclose additional compensation related to the advisory function would be considered fraudulent. If an advisory firm is also a broker-dealer and will enjoy transaction-related compensation if the advisory client acts on the adviser's recommendation, this must be disclosed in writing and the client must consent. There is no requirement that an adviser disclose to its clients the number of its other clients. The adviser is required to disclose disciplinary actions taken by regulatory authorities but not the absence of such actions. The adviser is not required to disclose its consistent transactions but must make disclosure if its transactions are not consistent with the advice given.",
+      "explanation": "Disclosure follows conflicts, and only conflicts. An affiliation with the broker-dealer that will execute the plan is a conflict, because the adviser's side benefits when the client acts. Your choice described the absence of a conflict — the adviser trading consistently with its own advice — and nobody must disclose that they're NOT conflicted. It's the inconsistent trading that has to be disclosed. The same logic disposes of the others: an adviser discloses disciplinary history but not a clean record, and the number of clients isn't a conflict at all. Ask of each choice, does this put the adviser's interest against the client's?"
+    },
+    {
+      "id": "u6q2-q14",
+      "date": "2026-10-03",
+      "unitId": "U6",
+      "topic": "IV",
+      "lo": "LO 6.i",
+      "question": "Jim contracts with XYZ Advisory Services for the design of a financial plan and investment advice. He pays an up-front fee when the contract is signed and receives XYZ's disclosure brochure at that time. After three days, Jim decides to cancel the investment advisory service with XYZ. According to the Uniform Securities Act, which of the following statements is true?",
+      "myAnswer": "B) The advisory firm must cancel the contract and return all fees collected.",
+      "correctAnswer": "C) The advisory firm must cancel the contract but can keep a proportionate amount of the fee as compensation for services performed by the cancellation date.",
+      "rationale": "Because the brochure was delivered at the time of the signing of the contract, the client may cancel without penalty within five business days. The firm must return all the up-front fees collected except for an amount that is proportionate to the time advisory services were rendered. This is commonly known as the 48-hour rule because anytime the client does not receive the adviser's brochure at least 48 hours prior to entering into the contract, this refund right is in effect.",
+      "explanation": "You had the cancellation right correct; only the refund amount was off. 'Without penalty' means no cancellation charge, but the adviser may still keep a fee proportionate to services already performed — three days of work isn't free. Brochure at signing gives five business days to cancel, so Jim is inside the window. Fourth brochure miss this run, so it's worth writing the whole rule once: 48 hours before, OR at signing plus five business days to cancel; cancellation refunds everything except a pro-rated amount for services rendered; annual brochure update within 120 days if material changes."
+    },
+    {
+      "id": "rev15-q07",
+      "date": "2026-10-05",
+      "unitId": "U5",
+      "topic": "IV",
+      "lo": "LO 5.k",
+      "question": "Under the Uniform Securities Act (USA), requirements for registration as an investment adviser in a state include which of the following? I. Included in the registration requirements is the filing of Form ADV Part 1B. II. There are minimum financial requirements for federal covered advisers with a place of business in the state who have custody of customer funds and/or securities, or have discretionary authority over customer accounts. III. For those needing a surety bond, it must provide that any customer who can prove a violation is entitled to collect against the bond.",
+      "myAnswer": "B) I, II, and III",
+      "correctAnswer": "A) I and III",
+      "rationale": "Unlike registration for federal covered investment advisers, state registration includes the filing of Form ADV Part 1B. The Administrator may not impose any financial requirements upon federal covered advisers (other than to pay a fee when notice filing). The USA has specific wording requiring that customers who can prove they were the subject of a violation by the IA are entitled to collect against the bond.",
+      "explanation": "States can't put financial requirements on federal covered advisers. That's what NSMIA did: the SEC sets those rules, and the state's role shrinks to notice filing and a fee. The net worth figures you know ($35,000 custody, $10,000 discretion) apply only to STATE-registered advisers. Statement II tried to sneak a federal covered adviser into the state's financial rules by giving it a place of business in the state, but a place of business only means it notice files there. Statements I (Part 1B is state-only) and III (customers can collect against the surety bond) are both true."
+    },
+    {
+      "id": "rev15-q08",
+      "date": "2026-10-05",
+      "unitId": "U4",
+      "topic": "IV",
+      "lo": "LO 4.n",
+      "question": "A client of a broker-dealer calls his agent and submits an order to purchase 1,000 shares of a Peruvian copper mining company. As the order ticket is being prepared, the agent notices that this is a nonexempt unregistered stock. The agent should",
+      "myAnswer": "B) inform the client that no orders for this stock may be accepted until it is properly registered in the state.",
+      "correctAnswer": "D) continue to process the order because this is an exempt transaction.",
+      "rationale": "Transactions resulting from unsolicited orders are exempt under the USA. Therefore, this order may be taken as placed.",
+      "explanation": "Third time on this rule, and the question hid the word 'unsolicited' entirely — the client called and placed the order himself, which IS an unsolicited order. That makes it an exempt transaction, and an exempt transaction can involve a nonexempt, unregistered security. Choice A is the trap that sounds close, but the security isn't exempt; the transaction is. Here's the encouraging part: thirty minutes later, on the Unit 1-6 Review Quiz (Q9), you got the same rule right when the stem said 'unsolicited' out loud. So you know it when it's named. The work now is recognizing it when the stem only describes it: the client initiated the call, so the order is unsolicited."
+    },
+    {
+      "id": "rev15-q10",
+      "date": "2026-10-05",
+      "unitId": "U5",
+      "topic": "IV",
+      "lo": "LO 5.e",
+      "question": "An Administrator may suspend the registration of a broker-dealer if the broker-dealer has: I. liabilities that exceed assets. II. an officer who has been recently convicted of committing fraud. III. terminated all agents without cause.",
+      "myAnswer": "B) I, II and III.",
+      "correctAnswer": "D) I and II.",
+      "rationale": "If an investigation determines that a firm is insolvent or an officer or partner has been convicted of a felony, the Administrator may suspend or revoke the firm's registration. Termination of agents is a decision in the hands of the employer.",
+      "explanation": "Insolvency and an officer's fraud conviction are both statutory grounds for action against a firm. Firing every agent isn't; who a firm employs is the firm's business, and an unfortunate decision isn't a violation. Same lesson as the Unit 5 cancellation/revocation misses: the Administrator acts on statutory grounds, financial failure or wrongdoing, not on business choices it might dislike. When a list of possible grounds includes an ordinary management decision, that's usually the one to strike."
+    },
+    {
+      "id": "rev16-q03",
+      "date": "2026-10-05",
+      "unitId": "U6",
+      "topic": "IV",
+      "lo": "LO 6.i",
+      "question": "Which of the following are not exempt from the delivery requirements of the NASAA Model Brochure Rule Requirements for Investment Advisers?",
+      "myAnswer": "A) An adviser who provides only impersonal advisory services at an annual charge of less than $500",
+      "correctAnswer": "D) An adviser who deals with qualified clients only",
+      "rationale": "There are only two exemptions from NASAA's (and the SEC's) brochure delivery rule. They are when the client is a registered investment company and when the adviser's clients receive only impersonal advice and pay less than $500 in fees per year. Qualified clients, those with at least $1.1 million in assets with the investment adviser or a net worth of at least $2.2 million, may be charged performance fees, but that has nothing to do with brochure delivery.",
+      "explanation": "Only two kinds of client relieve an adviser from delivering a brochure: registered investment companies (ETFs and closed-end funds are both RICs, so B and C are exempt) and clients who get only impersonal advice for under $500 a year, which is the answer you chose as NOT exempt. Qualified clients are the odd one out: that term is about who may be charged performance fees, which you know well from the 3(c)(1) questions. Wealth doesn't excuse brochure delivery. Note the double negative in 'not exempt', the third time a negation has tipped a question this month."
+    },
+    {
+      "id": "rev16-q05",
+      "date": "2026-10-05",
+      "unitId": "U6",
+      "topic": "IV",
+      "lo": "LO 6.b",
+      "question": "Under NASAA's Model Rule dealing with Unethical Business Practices..., an investment adviser would have to disclose that the firm was acting in a principal capacity when",
+      "myAnswer": "C) engaging in an agency cross transaction.",
+      "correctAnswer": "D) purchasing shares from advisory clients that were originally acquired as a result of the adviser's previous buy recommendation.",
+      "rationale": "There are two principals in every securities trade: the buyer and the seller. In this case, buying shares directly from clients who own those shares places the IA in the position of being one of the principals. This is an action that must be disclosed in writing to the client no later than completion of the transaction. In an agency cross transaction, the firm is acting as an agent—that's the reason for the term.",
+      "explanation": "The name tells you: in an AGENCY cross the firm is an agent for both the buyer and the seller, so it's never a principal. Principal means the firm itself is one side of the trade, which is what happens when the adviser buys shares straight out of a client's account. You took this exact question as Q2 of the Unit 6 Checkpoint Exam seventeen minutes earlier and chose agency cross both times. So the definitions themselves are what need fixing: principal = the firm is the buyer or seller; agent = the firm brings two other parties together. Agency cross = agent for both sides at once."
+    },
+    {
+      "id": "rev16-q16",
+      "date": "2026-10-05",
+      "unitId": "U3",
+      "topic": "IV",
+      "lo": "LO 3.h",
+      "question": "Andrew voluntarily leaves his position as an agent with Gibraltar Securities. Which of the following best describes the reporting requirements relative to this termination?",
+      "myAnswer": "A) Only the firm must notify the Administrator, and it must do so within 30 days of Andrew's resignation.",
+      "correctAnswer": "C) Both Andrew and the firm must notify the Administrator of Andrew's resignation promptly.",
+      "rationale": "On termination of an agent from a firm with which he is registered, both the agent and the firm must notify the Administrator of such termination promptly.",
+      "explanation": "For broker-dealer agents the rule is simple: both the agent and the firm notify, promptly, no matter why the agent left. The Unit 2 rule you've missed several times is the IAR version, which splits by the type of adviser: state-registered firm notifies, federal covered firm's IAR notifies. The agent rule has no such split. Write the two side by side and they stop competing: BD agent = both notify promptly; IAR = depends on whether the adviser is state or federal covered. The '30 days' in your answer doesn't belong to either rule."
+    },
+    {
+      "id": "rev16-q19",
+      "date": "2026-10-05",
+      "unitId": "U6",
+      "topic": "IV",
+      "lo": "LO 6.l",
+      "question": "If an unaffiliated person acts on behalf of an investment adviser in an attempt to solicit or refer new investment advisory clients, which of the following conditions is not required by the Investment Advisers Act of 1940 for the investment adviser to pay the solicitor a fee of $100 per month for this service?",
+      "myAnswer": "C) The investment adviser must be registered as an investment adviser.",
+      "correctAnswer": "D) The solicitor must be registered as an investment adviser.",
+      "rationale": "An unaffiliated (nonemployee or third party) solicitor is usually not required to register as an investment adviser or investment adviser representative under the Investment Advisers Act of 1940 as long as certain stipulations are met. The solicitor is not under the control of the SEC. There must be a written agreement between the solicitor and the investment adviser for whom she solicits clients when the compensation agreement calls for payment in excess of $1,000 over a 12-month period. The solicitor cannot have a disciplinary item in her background that would prohibit that solicitor from registering as an adviser or adviser representative.",
+      "explanation": "Under federal law a third-party solicitor doesn't register; the paying adviser is the registered one, and that's a requirement the rule takes for granted. What the rule does require: a written agreement once payments exceed $1,000 over 12 months, and no disqualifying disciplinary history for the solicitor. You've met the federal/state split on solicitors before (U2 quiz Q3, Sep 21): federal law doesn't treat an outside promoter as a supervised person, while the USA treats solicitors as IARs who must register. This question said Investment Advisers Act of 1940, so the federal answer controls."
+    },
+    {
+      "id": "rev16-q20",
+      "date": "2026-10-05",
+      "unitId": "U3",
+      "topic": "IV",
+      "lo": "LO 3.e",
+      "question": "Which of the following would be agents as the term is defined in the Uniform Securities Act? I. An individual representing a registered broker-dealer in the sale of securities to the general public. II. An assistant to the president of a broker-dealer who accepts orders from clients on behalf of the senior partners. III. A subsidiary of a major commercial bank registered as a broker-dealer that sells securities to the public. IV. An issuer of nonexempt securities registered in the state and sold to the general public.",
+      "myAnswer": "D) I, II, and III",
+      "correctAnswer": "A) I and II",
+      "rationale": "Under the USA, only individuals can be agents. A person who sells securities for a broker-dealer is an agent. An administrative person, such as the assistant to the president of a broker-dealer, is considered an agent if he takes securities orders from clients. Corporate entities are excluded from the definition of an agent. Broker-dealers and issuers are not agents.",
+      "explanation": "Only individuals can be agents. A bank subsidiary registered as a broker-dealer is a broker-dealer, an entity, so it can't also be an agent; an issuer is an issuer. That's the same distinction as Unit 3 Quiz 2 Q9: agents and IARs are always natural persons, while broker-dealers and advisers can be either. The assistant in statement II is the interesting one, and you got it right: taking orders from clients makes him an agent no matter what his title is. First check whether the item names a person or a firm; a firm is out before you read anything else."
+    },
+    {
+      "id": "u6exam-q02",
+      "date": "2026-10-05",
+      "unitId": "U6",
+      "topic": "IV",
+      "lo": "LO 6.b",
+      "question": "Under NASAA's Model Rule dealing with Unethical Business Practices..., an investment adviser would have to disclose that the firm was acting in a principal capacity when",
+      "myAnswer": "A) engaging in an agency cross transaction.",
+      "correctAnswer": "C) shares held in the account of an advisory client are purchased by the investment adviser.",
+      "rationale": "There are two principals in every securities trade: the buyer and the seller. In this case, buying shares directly from the client who owns them places the investment adviser in the position of being one of the principals. This is an action that must be disclosed in writing to the client no later than completion of the transaction. Although not mentioned here, consent of the client is also necessary to act in this fashion. In agency cross transactions, the firm is acting as an agent—that's the reason for the term.",
+      "explanation": "When the adviser buys shares out of a client's account, the adviser is the buyer — one of the two principals in the trade — and it must disclose that in writing and get the client's consent before the transaction completes. In an agency cross transaction the firm stands in the middle as agent for both parties and owns nothing itself, which is why the word 'agency' is in the name. You chose agency cross here and again on the Unit 1-6 Review Quiz right afterward. Fix the vocabulary once: principal = trading from your own inventory against the client; agent = arranging a trade between two others."
+    },
+    {
+      "id": "u6exam-q03",
+      "date": "2026-10-05",
+      "unitId": "U6",
+      "topic": "IV",
+      "lo": "LO 6.i",
+      "question": "An investment adviser prepares a slick advertising piece containing the relevant information from the firm's Form ADV, Part 2. One of the firm's investment adviser representatives (IARs) secures a contract with a new client and presents the brochure at that time. While explaining the terms of their agreement, the IAR mentions that the client may withdraw within the first 48 hours without any penalty. Upon returning to the office, the IAR realizes that he forgot to have the client sign a receipt for the disclosure document. Under the NASAA Model Rule on Unethical Business Practices...,",
+      "myAnswer": "B) there is a violation because the brochure must be delivered at least 48 hours prior to entering into the contract.",
+      "correctAnswer": "A) the IAR has acted in an unethical manner by giving incorrect information regarding the penalty-free withdrawal privilege.",
+      "rationale": "The problem here is that the client has five days to withdraw, not 48 hours. Under Rule 203(b)-1 of the Uniform Securities Act, an investment adviser or an investment adviser representative must deliver the brochure to an advisory client or prospective advisory client not less than 48 hours prior to entering into any investment advisory contract with such client or prospective client or must deliver it at the time of entering into any such contract if the advisory client has a right to terminate the contract without penalty within five business days after entering into the contract. A signed receipt is not necessary, and waivers are never allowed.",
+      "explanation": "Delivering the brochure at signing is fine — the rule allows it. What the IAR got wrong was telling the client he had 48 hours to withdraw when the actual right is five business days, which misstates the client's rights. You picked 'the brochure must be delivered 48 hours before', which treats one permitted option as the only one, the same slip as Unit 6 Quiz 1 Q13. Every brochure question this week comes back to the one rule: 48 hours BEFORE, or AT signing with five business days to cancel. No signed receipt required, and no waivers ever."
+    },
+    {
+      "id": "u6exam-q06",
+      "date": "2026-10-05",
+      "unitId": "U6",
+      "topic": "IV",
+      "lo": "LO 6.n",
+      "question": "When it comes to evaluating the appropriate use of social media, the regulators are primarily concerned with",
+      "myAnswer": "B) personal devices.",
+      "correctAnswer": "A) the content.",
+      "rationale": "In the many conferences held by the regulators to explain their views on social media, one of the points always stressed is that it is not the device or technology that determines if a piece delivered by a securities professional is subject to approval and recordkeeping. Rather, it should always be the content that determines if a piece is subject to approval and recordkeeping.",
+      "explanation": "Regulators look at what was said, not how it was sent. A business communication about securities is subject to approval and recordkeeping whether it went out on a firm laptop or a personal phone, through email or a social post. The device is irrelevant to whether something is an advertisement or correspondence. That principle also explains the static/interactive distinction you got right on this exam (Q7): static content like a banner ad is treated as an advertisement, interactive content like a chat is treated like correspondence. Content decides, every time."
+    },
+    {
+      "id": "u6exam-q08",
+      "date": "2026-10-05",
+      "unitId": "U6",
+      "topic": "IV",
+      "lo": "LO 6.f",
+      "question": "State-registered investment advisers are required to present a brochure to prospective clients. Which of the following can be used to meet that requirement?",
+      "myAnswer": "C) Form ADV Part 2B",
+      "correctAnswer": "B) Form ADV Part 2A",
+      "rationale": "An investment adviser must provide prospective (and existing) clients with a brochure. That requirement can be met by delivering the Form ADV Part 2A. The Part 2B is the brochure supplement which is not required for all IAs. Part 1A is essentially the firm's application and is not client-facing. The same is true of the Part 1B, a form used solely by state-registered advisers.",
+      "explanation": "Part 2A IS the brochure. Part 2B is the brochure SUPPLEMENT, with information about the specific people who advise the client. Third time Form ADV parts have decided a question for you (Unit 2 Quiz 2 Q7, Unit 2 exam Q5). Once more as a grid: 1A = the firm's application, everyone files; 1B = state-only addendum; 2A = the brochure, client-facing, everyone files; 2B = brochure supplement on individual advisers, filed with the state and kept on hand by SEC advisers. Only 2A and 2B go to clients; only 2A is the brochure."
+    },
+    {
+      "id": "u6exam-q16",
+      "date": "2026-10-05",
+      "unitId": "U6",
+      "topic": "IV",
+      "lo": "LO 6.n",
+      "question": "Quick and Fast Executions, Inc., a broker-dealer registered with the administrator, maintains a website describing the services offered by the firm. Which of the following statements would be in compliance with the requirement to maintain certain books and records?",
+      "myAnswer": "D) Retention of any revised design must be kept for a period of at least three years after the initial design's retention period ends.",
+      "correctAnswer": "C) The original website design must be retained for a period of at least three years from initial use.",
+      "rationale": "Websites, like any other advertisement, must be retained for a period of at least three years from initial use. Because they are fluid (frequently changing), each design change must be filed after first use, beginning a new three-year holding period.",
+      "explanation": "A broker-dealer's website is an advertisement, and broker-dealer advertisements are kept three years from first use. Each redesign is a new advertisement with its own three-year clock starting at its own first use, not stacked after the previous one's period ends as your answer said. Note the number too: this is the BROKER-DEALER retention period. Investment advisers keep records five years from the end of the fiscal year, the rule you learned in Unit 2. A BD question with three years and an IA question with five are both correct; check whose records they are."
     }
   ],
   "answeredCorrect": [
@@ -3231,9 +3506,308 @@ const SYNC = {
       "id": "u5exam-q16",
       "question": "The Uniform Securities Act invests the office of the administrator with a number of powers. However, the act does not permit the administrator to",
       "note": "The Administrator can subpoena and require forms but cannot jail anyone or relax antifraud rules."
+    },
+    {
+      "id": "u6q1-q03",
+      "question": "All of the following activities comply with the requirements for agency cross transactions except",
+      "note": "An adviser may not recommend both sides of an agency cross even with written disclosure."
+    },
+    {
+      "id": "u6q1-q04",
+      "question": "A client, who is a famous tennis player, offers to record a testimonial for a covered investment adviser... Under the SEC's Marketing Rule",
+      "note": "SEC Marketing Rule testimonials — answered correctly."
+    },
+    {
+      "id": "u6q1-q05",
+      "question": "According to the Uniform Securities Act, the investment adviser brochure must include the business backgrounds of",
+      "note": "Each member of the investment committee or group that determines general investment advice."
+    },
+    {
+      "id": "u6q1-q06",
+      "question": "An IAR has uncovered an unusual investment opportunity... the client is concerned about the potential of loss...",
+      "note": "Suitability and honest risk disclosure — answered correctly."
+    },
+    {
+      "id": "u6q1-q07",
+      "question": "One of the surest ways to explain to a client that an investment opportunity presented via social media is likely to be a scam is",
+      "note": "Promises of high returns with little or no risk are the classic red flag."
+    },
+    {
+      "id": "u6q1-q08",
+      "question": "A registered investment adviser recommends a stock that will be sold to his client in a principal transaction. The broker-dealer that will sell the stock is also registered as an investment adviser and employs the investment adviser as an agent...",
+      "note": "Principal transactions with advisory clients require disclosure and consent — answered correctly."
+    },
+    {
+      "id": "u6q1-q09",
+      "question": "Under NASAA's Model Rule on Unethical Business Practices..., an investment adviser's fee",
+      "note": "Fees must not be unreasonable relative to services; they need not track time spent."
+    },
+    {
+      "id": "u6q1-q10",
+      "question": "Typical broker-dealer fees that must be disclosed as part of a fee disclosure document would include which of these?",
+      "note": "Certificate issuance, commissions, wiring and maintenance fees all belong in fee disclosure."
+    },
+    {
+      "id": "u6q1-q11",
+      "question": "Under the USA, when one is referring to a security that is guaranteed, the guarantee applies to which of these?",
+      "note": "Guaranteed means a third party guarantees interest/dividends and principal — never capital gains."
+    },
+    {
+      "id": "u6q1-q12",
+      "question": "When a corporation files for bankruptcy, heading the priority for payment would be holders of",
+      "note": "Senior secured debt is paid first."
+    },
+    {
+      "id": "u6q1-q15",
+      "question": "Which of the following situations would present a conflict of interest that an adviser must disclose...",
+      "note": "Disclose interests that could affect advice; unrelated personal assets aren't conflicts."
+    },
+    {
+      "id": "u6q2-q01",
+      "question": "You receive a note... your registration as an agent is effective. At this point, you could not",
+      "note": "Registration doesn't permit claiming regulatory approval or endorsement."
+    },
+    {
+      "id": "u6q2-q03",
+      "question": "An investment adviser is servicing a group of physicians and will offer a discounted fee to the doctors in that particular partnership. In what way would this be considered ethical?",
+      "note": "Discounts are fine when disclosed and available on equal terms to similarly situated clients."
+    },
+    {
+      "id": "u6q2-q04",
+      "question": "An investment adviser executes a transaction for a client... also represents the contra party and is paid a commission...",
+      "note": "That's an agency cross; it needs prior written consent and disclosure, and no recommending both sides."
+    },
+    {
+      "id": "u6q2-q06",
+      "question": "When an agent recommends a proprietary mutual fund to a client, it is considered",
+      "note": "A potential conflict of interest to disclose, not inherently unethical."
+    },
+    {
+      "id": "u6q2-q07",
+      "question": "An IAR with a state-registered investment adviser reads an article about a local company... If the representative's supervisor...",
+      "note": "Acting on public information isn't insider trading — answered correctly."
+    },
+    {
+      "id": "u6q2-q09",
+      "question": "Mary is a bowling buddy of Susan, a covered investment adviser. Mary refers Amanda... If Susan were to give Mary...",
+      "note": "Paying a solicitor requires meeting the solicitor rules — answered correctly."
+    },
+    {
+      "id": "u6q2-q10",
+      "question": "What does the term guaranteed mean when used to describe a security?",
+      "note": "A third party, not the issuer or the SEC, guarantees payment of interest/dividends and principal."
+    },
+    {
+      "id": "u6q2-q11",
+      "question": "Under NASAA's Agency Cross Transactions of Investment Advisers Model Rule, which of the following would be a prohibited practice?",
+      "note": "Failing to obtain prior written consent for agency cross transactions is prohibited."
+    },
+    {
+      "id": "u6q2-q12",
+      "question": "An investment adviser representative is prohibited from",
+      "note": "Outside activities that conflict without disclosure — answered correctly."
+    },
+    {
+      "id": "u6q2-q13",
+      "question": "Social networking sites typically contain both static and interactive content. The difference between these two is that static content",
+      "note": "Static content is an advertisement needing preapproval; interactive is treated like correspondence."
+    },
+    {
+      "id": "u6q2-q15",
+      "question": "Some investment advisers offer technical analysis as a tool... When advertising these systems, the investment adviser promoting the program",
+      "note": "Charting-system ads must disclose limitations and difficulties of using them."
+    },
+    {
+      "id": "rev15-q01",
+      "question": "Included in the Uniform Security Act's definition of an exempt transaction would be any transaction by any of the following except",
+      "note": "Fiduciary transactions (bankruptcy trustee, guardian, marshal, executor) are exempt."
+    },
+    {
+      "id": "rev15-q02",
+      "question": "Which of the following statements regarding the Uniform Securities Act (USA) are true? (criminal penalties)",
+      "note": "Criminal penalties are $5,000 and/or 3 years — the Unit 5 number missed on Sep 29, answered correctly here."
+    },
+    {
+      "id": "rev15-q03",
+      "question": "A client wants to purchase commercial paper. The licensed agent may indicate that the security need not be registered if which of these are true?",
+      "note": "$50,000 minimum denomination, top-three rating, nine months or less — the condition missed on Sep 26, answered correctly here."
+    },
+    {
+      "id": "rev15-q04",
+      "question": "ABCO Materials, Inc., is raising money from the public for the first time. Which of the following must be disclosed in ABCO's registration statement?",
+      "note": "Management backgrounds, use of proceeds and offering terms."
+    },
+    {
+      "id": "rev15-q05",
+      "question": "Under the Uniform Securities Act, when may a civil suit to recover damages not be brought by an advisory client?",
+      "note": "Past 2 years from discovery or 3 years from the violation, or after rejecting a proper rescission offer — the civil SOL missed Sep 29, answered correctly here."
+    },
+    {
+      "id": "rev15-q06",
+      "question": "Under the Uniform Securities Act, which of the following would NOT be considered an exempt transaction?",
+      "note": "A retail sale of a security by an agent isn't an exempt transaction just because the security is exempt."
+    },
+    {
+      "id": "rev15-q09",
+      "question": "Under the USA, the Administrator may take all of the following actions except",
+      "note": "The Administrator can issue cease and desist orders but cannot issue arrest warrants."
+    },
+    {
+      "id": "rev16-q01",
+      "question": "Mary, licensed as an agent in State A, will turn her clients over to Julie, who is licensed only in State B...",
+      "note": "Julie must register in State A to service State A clients."
+    },
+    {
+      "id": "rev16-q02",
+      "question": "An SEC-registered adviser would like to advertise its performance. The SEC Marketing Rule requires that any advertisement showing gross performance must also show",
+      "note": "Net performance with equal prominence, using the same time periods."
+    },
+    {
+      "id": "rev16-q04",
+      "question": "Which of the following must register as an investment adviser under the Investment Advisers Act of 1940?",
+      "note": "Advice about securities for compensation as a business — not coins or other nonsecurities."
+    },
+    {
+      "id": "rev16-q06",
+      "question": "Which of the following situations violates the contractual requirements for investment advisory partnerships under the Uniform Securities Act?",
+      "note": "Partnerships must notify clients of any change in partners, however small."
+    },
+    {
+      "id": "rev16-q07",
+      "question": "One of the surest ways to explain to a client that an investment opportunity presented via social media is likely to be a scam is",
+      "note": "Repeat of Unit 6 Quiz 1 Q7 — promised high returns with little risk. Correct both times."
+    },
+    {
+      "id": "rev16-q08",
+      "question": "Which of the following statements is true? (fraud in U.S. government securities)",
+      "note": "Antifraud provisions apply even to exempt securities like Treasuries."
+    },
+    {
+      "id": "rev16-q09",
+      "question": "Under the Uniform Securities Act, which of these are true regarding the sale of an unregistered nonexempt security?",
+      "note": "Permissible if the order was unsolicited — the rule missed three times, answered correctly here when named outright."
+    },
+    {
+      "id": "rev16-q10",
+      "question": "An applicant for registration as an IAR was convicted four years ago of a non-financially related crime in another state...",
+      "note": "Grounds depend on whether it's a felony within 10 years; non-securities misdemeanors don't count."
+    },
+    {
+      "id": "rev16-q11",
+      "question": "If a person not registered in a state knowingly makes a misleading filing with the Administrator, that person may be",
+      "note": "Fined $5,000 — correct again."
+    },
+    {
+      "id": "rev16-q12",
+      "question": "Both state and federal law will permit an investment adviser to engage in agency cross transactions provided the advisory client executes a written consent...",
+      "note": "Prospective written consent, confirmations disclosing capacity, annual summaries, and revocable at any time."
+    },
+    {
+      "id": "rev16-q13",
+      "question": "A state-registered investment adviser whose only office was in State N would not have to register in State O if its only clients were",
+      "note": "Institutional clients (or de minimis) with no office in State O."
+    },
+    {
+      "id": "rev16-q14",
+      "question": "David is registered as an agent in States H and M with Stanley Securities... He would now like to register in State W. In order to do so, all of the following...",
+      "note": "Registration in a new state requires the firm to be registered there and an application filed; no new exam."
+    },
+    {
+      "id": "rev16-q15",
+      "question": "One of the concerns about social media is the opportunity for affinity fraud. This occurs when",
+      "note": "Fraudsters target members of identifiable groups, exploiting trust within the group."
+    },
+    {
+      "id": "rev16-q17",
+      "question": "Under the rules of the Investment Advisers Act of 1940, which of the following need not be included in an investment advisory contract?",
+      "note": "Federal contracts need no-assignment-without-consent and partnership-change notice terms, not every state-required item."
+    },
+    {
+      "id": "rev16-q18",
+      "question": "Which of the following practices is fraudulent?",
+      "note": "Omitting material facts is fraudulent; disclosed charges aren't fraud by themselves."
+    },
+    {
+      "id": "u6exam-q01",
+      "question": "Strategic Capital Asset Managers (SCAM) is preparing its Form ADV, Part 2B relating to certain individuals. On this form, SCAM must disclose all of the following except",
+      "note": "Part 2B covers the individual's education, business background and disciplinary history — answered correctly."
+    },
+    {
+      "id": "u6exam-q04",
+      "question": "Under the Investment Advisers Act of 1940, an investment adviser that becomes registered may",
+      "note": "Use 'RIA' only after the name if registered, never implying SEC approval."
+    },
+    {
+      "id": "u6exam-q05",
+      "question": "When opening an advisory account for a new retail client, an IAR must present that client with",
+      "note": "The customer relationship summary (Form CRS)."
+    },
+    {
+      "id": "u6exam-q07",
+      "question": "Social media can be static or interactive. Examples of static content include all of the following except",
+      "note": "An online seminar with live Q&A is interactive; banner ads and profiles are static."
+    },
+    {
+      "id": "u6exam-q09",
+      "question": "As long as properly disclosed, a broker-dealer would be permitted to charge a fee for all of these except",
+      "note": "Maintenance and wiring fees are allowed when disclosed; soliciting proxies is not a client charge."
+    },
+    {
+      "id": "u6exam-q10",
+      "question": "An agent has a conservative investor looking for income. The agent recommends a bond of a company the investor has never heard of. To allay the client's fear of loss, the agent states...",
+      "note": "Guarantee claims are misrepresentations unless a third party truly guarantees payment."
+    },
+    {
+      "id": "u6exam-q11",
+      "question": "An investment adviser has devised a charting system and wishes to advertise this fact... the USA would require",
+      "note": "Disclosure of the limitations and difficulties of the system."
+    },
+    {
+      "id": "u6exam-q12",
+      "question": "Contracts under the USA differ from those under the Investment Advisers Act of 1940...",
+      "note": "USA contracts must be in writing with specified terms; federal rules focus on assignment and partnership changes."
+    },
+    {
+      "id": "u6exam-q13",
+      "question": "Regulatory issues regarding broker-dealers offering wrap fee programs to existing customers include",
+      "note": "Reverse churning — clients who'd pay less per trade put in a wrap account."
+    },
+    {
+      "id": "u6exam-q14",
+      "question": "Unless an exemption applies, under the Investment Advisers Act of 1940, an investment adviser is required to",
+      "note": "Deliver the brochure and keep required records — answered correctly."
+    },
+    {
+      "id": "u6exam-q15",
+      "question": "One of your customers sends you an email describing a 'can't miss' investment opportunity. Which of the following would be a red flag?",
+      "note": "Guaranteed high returns, pressure to act fast and unregistered sellers are red flags."
     }
   ],
   "errorPatterns": [
+    {
+      "rule": "Brochure delivery: 48 hours BEFORE the contract, OR at signing with five business days to cancel without penalty (adviser keeps a pro-rated fee for services rendered); annual update or summary of material changes within 120 days of fiscal year-end only when changes are material; only two delivery exemptions (registered investment company clients; impersonal advice under $500/yr); the brochure is Part 2A",
+      "count": 5,
+      "topic": "IV",
+      "occurrences": [
+        "u6q1-q01",
+        "u6q1-q13",
+        "u6q2-q14",
+        "rev16-q03",
+        "u6exam-q03"
+      ],
+      "note": "Five misses in three days on one rule. The most common error is treating '48 hours before' as the only permitted timing, or moving the 48 hours to after signing."
+    },
+    {
+      "rule": "Principal vs agency capacity: the firm is a PRINCIPAL when it is itself the buyer or seller against the client (needs written disclosure and, for an adviser, consent before completion); in an AGENCY CROSS the firm is agent for both other parties; a broker-dealer acting as principal only discloses capacity on the confirmation",
+      "count": 3,
+      "topic": "IV",
+      "occurrences": [
+        "u6q2-q02",
+        "rev16-q05",
+        "u6exam-q02"
+      ],
+      "note": "Chose 'agency cross transaction' as the principal-capacity example on the Unit 6 exam and again on the review quiz twenty minutes later. The definitions themselves are what's missing."
+    },
     {
       "rule": "Cancellation (nonpunitive: mental incompetence, cannot be located / no forwarding address, out of business) vs revocation (punitive: convictions including non-securities felonies, wrongdoing)",
       "count": 3,
@@ -3255,7 +3829,7 @@ const SYNC = {
         "u5exam-q03",
         "u5exam-q15"
       ],
-      "note": "Each miss picked a real number from the neighboring rule (5-year SOL used as a prison term, civil SOL used for a criminal question, 90 days from Unit 2 used for an appeal). He answered the $5,000/3-year penalty correctly twice on the same day, so this is swapping, not ignorance."
+      "note": "Each miss picked a real number from the neighboring rule (5-year SOL used as a prison term, civil SOL used for a criminal question, 90 days from Unit 2 used for an appeal). He answered the $5,000/3-year penalty correctly twice on the same day, so this is swapping, not ignorance. Improving: on Oct 5 he answered the $5,000/3-year penalty (twice) and the civil statute of limitations correctly on review quizzes."
     },
     {
       "rule": "Jurisdiction over an offer: it lies where the offer originates and where it is accepted; a cell phone counts at the owner's home state unless the client acts from elsewhere; an out-of-state newspaper never creates jurisdiction, and an in-state paper escapes only with more than 2/3 of circulation outside the state",
@@ -3269,15 +3843,16 @@ const SYNC = {
     },
     {
       "rule": "Exempt TRANSACTIONS under the USA: unsolicited orders are the most common exempt transaction and the Administrator cannot forbid a client's own initiative; institutional buyers (pension trusts, financial institutions) qualify but ordinary operating companies do not; private placements are capped at 10 retail purchasers in 12 months",
-      "count": 4,
+      "count": 5,
       "topic": "IV",
       "occurrences": [
         "u4q1-q12",
         "u4q1-q14",
         "u4q2-q02",
-        "u4q2-q10"
+        "u4q2-q10",
+        "rev15-q08"
       ],
-      "note": "Four misses in one sitting, including the same unsolicited-order rule twice seventeen minutes apart, once by picking a power the Administrator doesn't have and once by calling the transaction nonexempt outright."
+      "note": "Now five misses, the unsolicited-order rule three times. On Oct 5 he missed it when the stem only DESCRIBED a client-initiated order (Review 1-5 Q8), then got it right 30 minutes later when the stem said 'unsolicited' (Review 1-6 Q9)."
     },
     {
       "rule": "Exempt SECURITIES carry conditions, and the conditions are what get tested: an S&L or insurer must be authorized in the state, a railroad must be rate-regulated, commercial paper needs a $50,000 denomination and top-three rating within nine months, and exchange-listed issues escape state registration as federal covered rather than as exempt securities",
@@ -3289,7 +3864,7 @@ const SYNC = {
         "u4exam-q11",
         "rev14-q06"
       ],
-      "note": "Each miss came from accepting or rejecting a category without checking the condition attached to it. Sep 29 Review Q6 added a fourth: treating federal covered securities as needing state registration rather than notice filing."
+      "note": "Each miss came from accepting or rejecting a category without checking the condition attached to it. Sep 29 Review Q6 added a fourth: treating federal covered securities as needing state registration rather than notice filing. Oct 5 Review Q3 asked the commercial paper conditions again and he got them right."
     },
     {
       "rule": "Registration reach for broker-dealers and agents: no de minimis exemption exists, a resident client (even one) requires registration, an agent must be registered where the client is domiciled even on unsolicited or institutional orders, but the snowbird exemption covers a firm with no office in the state serving existing clients who are only temporarily there",
@@ -3303,15 +3878,16 @@ const SYNC = {
       "note": "Missed in both directions within two hours: first by importing the adviser de minimis exemption into the BD rules, then by over-correcting to 'one client means register' on the snowbird question."
     },
     {
-      "rule": "Who notifies the state Administrator when an IAR is hired or terminated: a STATE-registered adviser notifies for its IARs; an IAR of a FEDERAL COVERED adviser notifies for himself; the SEC is never notified",
-      "count": 3,
+      "rule": "Who notifies the state Administrator when an IAR is hired or terminated: a STATE-registered adviser notifies for its IARs; an IAR of a FEDERAL COVERED adviser notifies for himself; the SEC is never notified; for broker-dealer AGENTS, both the agent and the firm notify promptly",
+      "count": 4,
       "topic": "IV",
       "occurrences": [
         "u2q1-q07",
         "u2q3-q02",
-        "u2exam-q15"
+        "u2exam-q15",
+        "rev16-q16"
       ],
-      "note": "Missed from all three angles in one week: federal covered, state-registered, and once where the firm's type was hidden behind an AUM figure. The highest-value two lines to memorize in Unit 2."
+      "note": "Four misses. The Oct 5 miss was on the agent version (both notify), which has no state/federal split."
     },
     {
       "rule": "An IAR of a federal covered adviser registers only where he has a PLACE OF BUSINESS; client counts never matter, and regular recurring presence at a fixed location (one day a week, a quarterly seminar) creates a place of business",
@@ -3349,14 +3925,15 @@ const SYNC = {
       "note": "Now four misses. The newest one applied the state $500 figure to a federal question, so the pair itself is the gap rather than either number."
     },
     {
-      "rule": "Which parts of Form ADV go where: 1A everyone files, 1B state only, 2A everyone files, 2B filed with the state but only kept on hand by SEC advisers",
-      "count": 2,
+      "rule": "Which parts of Form ADV go where: 1A everyone files, 1B state only, 2A everyone files, 2B filed with the state but only kept on hand by SEC advisers; Part 2A is the brochure, Part 2B the brochure supplement",
+      "count": 3,
       "topic": "IV",
       "occurrences": [
         "u2q2-q07",
-        "u2exam-q05"
+        "u2exam-q05",
+        "u6exam-q08"
       ],
-      "note": "Both halves of the same grid missed in the same week; the 2B is the piece that decides both questions."
+      "note": "Three misses across Units 2 and 6; the 2A/2B line is the recurring confusion."
     },
     {
       "rule": "Record retention: five years from the END OF THE FISCAL YEAR for ordinary records incl. advertisements and emails, three years after termination for organizational documents, and no recordkeeping duty at all for IARs",
@@ -3428,48 +4005,51 @@ const SYNC = {
       "unitId": "U4",
       "kind": "rule",
       "id": "t-exempt-transactions",
-      "count": 4,
+      "count": 5,
       "fromMisses": [
         "u4q1-q12",
         "u4q1-q14",
         "u4q2-q02",
-        "u4q2-q10"
+        "u4q2-q10",
+        "rev15-q08"
       ],
       "trigger": "a question about whether a TRANSACTION is exempt",
-      "move": "Anchor to the unsolicited order: it is THE most common exempt transaction, and the Administrator cannot forbid a client's own initiative (it can only verify the ticket was marked unsolicited). Institutional buyers count - banks, insurers, investment companies, pension and profit-sharing trusts, BDs. An ordinary operating company does NOT, however large or local. Private placement cap is 10 RETAIL purchasers in 12 months; institutions don't count toward it.",
-      "why": "Four misses in one sitting, including this exact rule twice seventeen minutes apart. The phrase 'exempt transaction' has not been anchored to a concrete example yet - anchor it to the unsolicited order."
+      "move": "Anchor to the unsolicited order: it is THE most common exempt transaction, and the Administrator cannot forbid a client's own initiative (it can only verify the ticket was marked unsolicited). The word may never appear: 'the client called and asked to buy' IS unsolicited, and an exempt transaction can involve an unregistered, nonexempt security. Institutional buyers count (banks, insurers, investment companies, pension and profit-sharing trusts, BDs); an ordinary operating company does NOT. Private placement cap is 10 RETAIL purchasers in 12 months.",
+      "why": "Five misses, the unsolicited order three times. On Oct 5 you missed it when the stem only described a client-initiated order, then got it right 30 minutes later when the stem said 'unsolicited'. You know the rule; spot it when it isn't named."
     },
     {
       "topic": "IV",
       "unitId": "U2",
       "kind": "rule",
       "id": "t-supervised-persons",
-      "count": 4,
+      "count": 5,
       "fromMisses": [
         "u2q1-q03",
         "u2q3-q03",
         "u2exam-q09",
-        "rev12-q01"
+        "rev12-q01",
+        "rev16-q19"
       ],
       "trigger": "a list of people and a question about who is supervised by, or associated with, an adviser",
-      "move": "Ignore job titles; read duties and control. IN: employees, anyone registered THROUGH the firm, a parent company, clerical staff who actually analyse. OUT: an outside executing broker-dealer, the independent auditor, purely clerical staff. Solicitors are OUT federally, IN under the USA.",
-      "why": "Every miss came from reading the title instead of the duty."
+      "move": "Ignore job titles; read duties and control. IN: employees, anyone registered THROUGH the firm, a parent company, clerical staff who actually analyse. OUT: an outside executing broker-dealer, the independent auditor, purely clerical staff. Solicitors are OUT federally (no registration; needs a written agreement if paid over $1,000 in 12 months and no disqualifying history), IN under the USA (they register as IARs).",
+      "why": "Five misses. Four came from reading the title instead of the duty; the Oct 5 one was the federal solicitor, who doesn't register."
     },
     {
       "topic": "IV",
       "unitId": "U2",
       "kind": "rule",
       "id": "t-state-vs-federal-numbers",
-      "count": 4,
+      "count": 5,
       "fromMisses": [
         "u2q2-q05",
         "rev12-q10",
         "u2exam-q07",
-        "rev13-q10"
+        "rev13-q10",
+        "rev15-q07"
       ],
       "trigger": "a NASAA net worth or prepayment figure, or a question about disclosing financial impairment",
-      "move": "Name the government FIRST, then the number. Substantial prepayment: over $500 (state) / over $1,200 (federal), both six months or more ahead - it is an AND test. Net worth: custody $35,000, discretion only $10,000. Impairment disclosure triggers are custody, discretion, prepayments; performance fees are NOT one.",
-      "why": "Four misses now, and the newest applied the state $500 to a federal question. The state/federal PAIR is the gap, not either number."
+      "move": "Name the government FIRST, then the number. Substantial prepayment: over $500 (state) / over $1,200 (federal), both six months or more ahead (an AND test). Net worth: custody $35,000, discretion only $10,000, and ONLY for state-registered advisers; a state can't put any financial requirement on a federal covered adviser, even one with an office there (it gets a notice filing and fee). Impairment disclosure triggers are custody, discretion, prepayments; performance fees are NOT one.",
+      "why": "Five misses. On Oct 5 you applied the state net worth rules to a federal covered adviser."
     },
     {
       "topic": "IV",
@@ -3522,15 +4102,16 @@ const SYNC = {
       "unitId": "U2",
       "kind": "rule",
       "id": "t-who-notifies",
-      "count": 3,
+      "count": 4,
       "fromMisses": [
         "u2q1-q07",
         "u2q3-q02",
-        "u2exam-q15"
+        "u2exam-q15",
+        "rev16-q16"
       ],
       "trigger": "someone being hired or terminated and a question about who notifies the Administrator",
-      "move": "IAR + STATE-registered adviser: the FIRM notifies. IAR + FEDERAL COVERED adviser: the IAR notifies. AGENT of a broker-dealer: old firm, new firm AND the agent all notify. The SEC is never notified about either. Given AUM instead of firm type, convert first: over $110M = federal covered.",
-      "why": "Three misses from three angles. The agent contrast from the Sep 24 Review Quiz is what makes the adviser rule stick."
+      "move": "IAR + STATE-registered adviser: the FIRM notifies. IAR + FEDERAL COVERED adviser: the IAR notifies. AGENT of a broker-dealer: the agent AND the firm(s) all notify, PROMPTLY, whatever the reason for leaving. The SEC is never notified about either. Given AUM instead of firm type, convert first: over $110M = federal covered.",
+      "why": "Four misses. The Oct 5 one was the agent version, which has no state/federal split: both notify, promptly, never '30 days'."
     },
     {
       "topic": "IV",
@@ -3552,15 +4133,16 @@ const SYNC = {
       "unitId": "U3",
       "kind": "rule",
       "id": "t-records-belong-to-firms",
-      "count": 3,
+      "count": 4,
       "fromMisses": [
         "u2q2-q01",
         "u2exam-q17",
-        "u3exam-q07"
+        "u3exam-q07",
+        "u6exam-q16"
       ],
       "trigger": "a record retention period, or a question about whose records can be examined",
-      "move": "Records belong to FIRMS. Agents and IARs have no recordkeeping duty and nothing to inspect. Five years from the END OF THE FISCAL YEAR for ordinary records; three years after the business terminates for organizational papers.",
-      "why": "The clock starting at fiscal year end, not the document's own date, is what caught you first."
+      "move": "Records belong to FIRMS; agents and IARs have none to inspect. ADVISER: five years from the END OF THE FISCAL YEAR for ordinary records; three years after the business ends for organizational papers. BROKER-DEALER advertisements (a website too): three years from FIRST USE, and each redesign starts its own three-year clock. Check whose record it is before the number.",
+      "why": "Four misses. The newest mixed up the broker-dealer three years with the adviser five, and stacked a redesign's clock after the old one."
     },
     {
       "topic": "IV",
@@ -3597,7 +4179,7 @@ const SYNC = {
       "unitId": "U4",
       "kind": "technique",
       "id": "t-roman-numerals",
-      "count": 8,
+      "count": 13,
       "fromMisses": [
         "u1qz1-q04",
         "u1qz1-q07",
@@ -3606,11 +4188,16 @@ const SYNC = {
         "u3q1-q03",
         "u3q2-q09",
         "u4q1-q03",
-        "u4q1-q15"
+        "u4q1-q15",
+        "u5exam-q09",
+        "rev15-q07",
+        "rev15-q10",
+        "u6q1-q02",
+        "rev16-q20"
       ],
       "trigger": "a Roman-numeral question (I, II, III) asking which items belong to a rule",
-      "move": "Write your own yes/no on each numeral BEFORE reading the lettered choices. Underline a stem that says 'are NOT true'. When the list is Administrator POWERS, the default is that it can do all of them. When it is a list of securities, run each past BOTH the exempt list and the federal covered list.",
-      "why": "Eight misses now, by far your largest group and present in every unit. Most are under-inclusion: dropping a true numeral because it sounds odd."
+      "move": "Write your own yes/no on each numeral BEFORE reading the lettered choices. Don't pick 'all of them' until you have a reason each one is true; one doubtful numeral usually means it's out. Underline a stem that says 'are NOT true'. When the list is Administrator POWERS, the default is that it can do all of them. When it is a list of securities, run each past BOTH the exempt list and the federal covered list.",
+      "why": "Thirteen misses, in every unit. Through Unit 4 you mostly dropped true numerals. Since Sep 29 it has flipped: five times you picked every numeral when one was false, four of them on Oct 5."
     },
     {
       "topic": "IV",
@@ -3631,16 +4218,17 @@ const SYNC = {
       "unitId": "U4",
       "kind": "technique",
       "id": "t-except-questions",
-      "count": 4,
+      "count": 5,
       "fromMisses": [
         "u2exam-q07",
         "u2exam-q17",
         "u4exam-q01",
-        "rev14-q01"
+        "rev14-q01",
+        "rev16-q03"
       ],
       "trigger": "a question ending in EXCEPT, or asking which statement is NOT correct",
       "move": "Say the stem back as 'which one does NOT...' before reading choices. Name what the other three have in common; the answer differs in KIND (Montreal among U.S. exchanges), not strength, and sometimes only in TIMING. If your pick is a true statement, you answered the opposite question.",
-      "why": "Four misses now. On Sep 29 you picked the NYSE, the most obvious member of the group, which means the EXCEPT dropped out of the stem."
+      "why": "Five misses. Sep 29: you picked the NYSE, the most obvious member of the group. Oct 5: the double negative 'NOT exempt' turned a rule you know into a miss."
     },
     {
       "topic": "IV",
@@ -3661,14 +4249,15 @@ const SYNC = {
       "unitId": "U2",
       "kind": "rule",
       "id": "t-form-adv-grid",
-      "count": 2,
+      "count": 3,
       "fromMisses": [
         "u2q2-q07",
-        "u2exam-q05"
+        "u2exam-q05",
+        "u6exam-q08"
       ],
       "trigger": "any question about which part of Form ADV gets filed",
-      "move": "1A everyone files. 1B state only. 2A everyone files. 2B the state files, the SEC adviser only keeps on hand. SEC filing = 1A + 2A; state filing = 1A + 1B + 2A + 2B.",
-      "why": "You missed both halves of this grid in the same week."
+      "move": "2A IS the brochure. 2B is the brochure SUPPLEMENT (about the individual advisers). 1A everyone files. 1B state only. 2B the state files, the SEC adviser only keeps on hand. SEC filing = 1A + 2A; state filing = 1A + 1B + 2A + 2B.",
+      "why": "Three misses across Units 2 and 6. On Oct 5 you offered 2B as the brochure."
     },
     {
       "topic": "IV",
@@ -3740,13 +4329,14 @@ const SYNC = {
       "unitId": "U3",
       "kind": "rule",
       "id": "t-who-owns-what-is-sold",
-      "count": 1,
+      "count": 2,
       "fromMisses": [
-        "u3q2-q07"
+        "u3q2-q07",
+        "rev16-q20"
       ],
       "trigger": "a question asking whether an entity is a broker-dealer, an issuer or an agent",
       "move": "Sort by who owns what is being sold and whose account the money lands in. Selling your OWN securities = issuer (never a BD). Selling someone else's = broker-dealer. An individual doing it for a firm = agent. Agents and IARs are always individuals; everything else can be a firm or a person.",
-      "why": "An issuer is never a broker-dealer, and a corporation can never be an agent."
+      "why": "Two misses. On Oct 5 you counted a bank-owned broker-dealer as an agent. A firm is never an agent; strike it before reading anything else."
     },
     {
       "topic": "IV",
@@ -3858,7 +4448,7 @@ const SYNC = {
       ],
       "trigger": "a deadline, fine or prison term under the USA",
       "move": "Circle CIVIL or CRIMINAL first. Civil suit: the EARLIER of 3 years from the sale or 2 years from discovery (work out both dates). Criminal: 5 years to prosecute; max $5,000 and/or 3 years in prison. Appeal a final order to court: 60 days. Summary order: 15 days to ask for a hearing. Withdrawal takes effect: 30 days.",
-      "why": "Four misses, and every wrong answer was a real number from the rule next door: the 5-year limit used as a prison term, the civil limit on a criminal question, Unit 2's 90 days for an appeal. You got $5,000/3 years and 60 days right the same day. These are swaps, not gaps."
+      "why": "Four misses, and every wrong answer was a real number from the rule next door: the 5-year limit used as a prison term, the civil limit on a criminal question, Unit 2's 90 days for an appeal. You got $5,000/3 years and 60 days right the same day. These are swaps, not gaps. Improving: on Oct 5 you got the $5,000/3 years penalty and the civil limit right on review quizzes."
     },
     {
       "topic": "IV",
@@ -3925,6 +4515,92 @@ const SYNC = {
       "trigger": "an insurance product and a question whether it is a security",
       "move": "Look for the word VARIABLE. Variable annuity or variable life = security. Index annuity, fixed annuity, modified endowment = not a security.",
       "why": "One miss, after six and a half minutes on a one-word rule. When the rule is one word, don't overthink it."
+    },
+    {
+      "topic": "IV",
+      "kind": "rule",
+      "id": "t-brochure-delivery",
+      "unitId": "U6",
+      "count": 5,
+      "fromMisses": [
+        "u6q1-q01",
+        "u6q1-q13",
+        "u6q2-q14",
+        "rev16-q03",
+        "u6exam-q03"
+      ],
+      "trigger": "the adviser brochure: when it's delivered, how a client cancels, or who is exempt",
+      "move": "Two legal timings: 48 hours BEFORE signing, OR AT signing + 5 BUSINESS DAYS to cancel without penalty (the adviser keeps a pro-rated fee for work already done). '48 hours after' is never right, and '48 hours before' is an option, not a must. The yearly must: updated brochure or summary of material changes within 120 days of fiscal year-end, only if something material changed. Only two exemptions: registered investment company clients, and impersonal advice under $500 a year. No signed receipt needed, no waivers ever.",
+      "why": "Five misses in three days, your biggest new group. Most treated '48 hours before' as the only option, or moved the 48 hours to after signing."
+    },
+    {
+      "topic": "IV",
+      "kind": "rule",
+      "id": "t-principal-vs-agency",
+      "unitId": "U6",
+      "count": 3,
+      "fromMisses": [
+        "u6q2-q02",
+        "rev16-q05",
+        "u6exam-q02"
+      ],
+      "trigger": "principal, agency, or agency cross in a trade with a client",
+      "move": "PRINCIPAL = the firm itself is the buyer or seller (it buys shares out of the client's account, or sells from its own inventory). AGENCY = the firm arranges a trade between two others; an AGENCY CROSS is agent for BOTH sides and is never principal. Adviser as principal: written disclosure + client consent before the trade completes. Broker-dealer as principal: disclosure on the confirmation only.",
+      "why": "Three misses, including the same question twice 20 minutes apart with 'agency cross' as the answer both times. The word 'agency' in the name tells you it isn't principal."
+    },
+    {
+      "topic": "IV",
+      "kind": "rule",
+      "id": "t-ordinary-business",
+      "unitId": "U6",
+      "count": 2,
+      "fromMisses": [
+        "u6q1-q02",
+        "rev15-q10"
+      ],
+      "trigger": "a list of practices or grounds for action that includes an everyday business decision",
+      "move": "Strike the ordinary stuff first: graduated fee schedules, disclosed agency crosses, discounts offered equally, firing staff. Those are just business. Real violations or grounds: a partner change not told to clients, pledging control stock without client consent (that's an assignment), insolvency, convictions.",
+      "why": "Two misses, both from picking every item on the list. The Administrator acts on statutory grounds, not on decisions it might dislike."
+    },
+    {
+      "topic": "IV",
+      "kind": "rule",
+      "id": "t-fees-fit-the-account",
+      "unitId": "U6",
+      "count": 2,
+      "fromMisses": [
+        "u6q2-q05",
+        "u6q1-q14"
+      ],
+      "trigger": "a broker-dealer fee question",
+      "move": "Check each fee against what the account can actually do: a cash account never borrows, so it never pays margin interest; maintenance fees are normal, even on small accounts. Fee schedule missing when opening an account: don't fund the account until you have it (not: report the firm).",
+      "why": "Two misses, both from picking the answer that felt unfair instead of the one that fit the facts."
+    },
+    {
+      "topic": "IV",
+      "kind": "rule",
+      "id": "t-disclose-conflicts-only",
+      "unitId": "U6",
+      "count": 1,
+      "fromMisses": [
+        "u6q2-q08"
+      ],
+      "trigger": "what an adviser MUST disclose to clients",
+      "move": "Disclose conflicts and bad news, never their absence. Affiliation with the executing broker-dealer: disclose. Trading AGAINST its own advice: disclose; trading consistently: no. Disciplinary history: disclose; a clean record: no.",
+      "why": "One miss. You picked a statement describing no conflict at all."
+    },
+    {
+      "topic": "IV",
+      "kind": "rule",
+      "id": "t-content-not-device",
+      "unitId": "U6",
+      "count": 1,
+      "fromMisses": [
+        "u6exam-q06"
+      ],
+      "trigger": "social media, texts or personal devices",
+      "move": "Regulators judge the CONTENT, never the device or platform. Static content (profile, banner ad) = advertisement, needs preapproval. Interactive (chat, live Q&A) = treated like correspondence.",
+      "why": "One miss. You got the static/interactive half right on the same exam."
     }
   ],
   "checkpointExams": [
@@ -4132,16 +4808,58 @@ const SYNC = {
       "missCats": {
         "did not know the rule": 8
       }
+    },
+    {
+      "name": "Unit 6 Checkpoint Exam (Test 413097628)",
+      "date": "2026-10-05",
+      "score": 11,
+      "total": 16,
+      "timeUsed": 17.53,
+      "timeAllowed": null,
+      "byTopic": {
+        "IV": {
+          "answered": 16,
+          "correct": 11
+        }
+      },
+      "byUnit": {
+        "U6": {
+          "answered": 16,
+          "correct": 11
+        }
+      },
+      "segments": [
+        {
+          "label": "1-4",
+          "missed": 2
+        },
+        {
+          "label": "5-8",
+          "missed": 2
+        },
+        {
+          "label": "9-12",
+          "missed": 0
+        },
+        {
+          "label": "13-16",
+          "missed": 1
+        }
+      ],
+      "missCats": {
+        "did not know the rule": 5
+      }
     }
   ],
   "priorSnapshot": {
-    "asOf": "2026-09-26",
-    "pooledPct": 71.3514,
+    "asOf": "2026-09-29",
+    "pooledPct": 71.6102,
     "units": {
       "U1": 76.7442,
       "U2": 61.2903,
-      "U3": 75,
-      "U4": 77.2727
+      "U3": 79.4872,
+      "U4": 74,
+      "U5": 71.4286
     },
     "missIds": [
       "u1qz1-q03",
@@ -4198,7 +4916,22 @@ const SYNC = {
       "rev13-q10",
       "u4exam-q01",
       "u4exam-q04",
-      "u4exam-q11"
+      "u4exam-q11",
+      "rev14-q01",
+      "rev14-q06",
+      "rev14-q07",
+      "u5q1-q05",
+      "u5q2-q03",
+      "u5q2-q08",
+      "u5q2-q13",
+      "u5exam-q01",
+      "u5exam-q03",
+      "u5exam-q04",
+      "u5exam-q05",
+      "u5exam-q09",
+      "u5exam-q10",
+      "u5exam-q13",
+      "u5exam-q15"
     ],
     "correctIds": [
       "u1qz1-q01",
@@ -4335,24 +5068,63 @@ const SYNC = {
       "u4exam-q12",
       "u4exam-q13",
       "u4exam-q14",
-      "u4exam-q15"
+      "u4exam-q15",
+      "rev14-q02",
+      "rev14-q03",
+      "rev14-q04",
+      "rev14-q05",
+      "rev14-q08",
+      "rev14-q09",
+      "rev14-q10",
+      "u5q1-q01",
+      "u5q1-q02",
+      "u5q1-q03",
+      "u5q1-q04",
+      "u5q1-q06",
+      "u5q1-q07",
+      "u5q1-q08",
+      "u5q1-q09",
+      "u5q1-q10",
+      "u5q1-q11",
+      "u5q1-q12",
+      "u5q1-q13",
+      "u5q2-q01",
+      "u5q2-q02",
+      "u5q2-q04",
+      "u5q2-q05",
+      "u5q2-q06",
+      "u5q2-q07",
+      "u5q2-q09",
+      "u5q2-q10",
+      "u5q2-q11",
+      "u5q2-q12",
+      "u5exam-q02",
+      "u5exam-q06",
+      "u5exam-q07",
+      "u5exam-q08",
+      "u5exam-q11",
+      "u5exam-q12",
+      "u5exam-q14",
+      "u5exam-q16"
     ],
     "patternRules": [
-      "Exempt TRANSACTIONS under the USA: unsolicited orders are the most common one and the Administrator cannot forbid a client's own initiative; institutional buyers (pension trusts, financial institutions) qualify but ordinary operating companies do not; private placements are capped at 10 retail purchasers in 12 months",
-      "Who is a supervised or associated person of an adviser: employees and anyone registered through the firm are in, purely clerical staff and genuinely outside parties are out, a parent company is in, and a solicitor is out federally but in under the USA",
-      "The NASAA financial thresholds, and keeping the state and federal figures apart: $35,000 net worth with custody, $10,000 with discretion only, substantial prepayment over $500 six or more months ahead at STATE level but over $1,200 at FEDERAL level, and the disclosure triggers (custody, discretion, prepayments) that exclude performance-based fees",
-      "Exempt SECURITIES carry conditions, and the conditions are what get tested: an S&L or insurer must be authorized in the state, a railroad must be rate-regulated, commercial paper needs a $50,000 denomination and a top-three rating within nine months; and exchange-listed issues escape state registration as FEDERAL COVERED rather than as exempt securities",
-      "Importing a rule from the adviser chapters into the broker-dealer chapters: de minimis client counts, institutional-client exclusions and place-of-business tests do not transfer",
-      "Registration reach for broker-dealers and agents: no de minimis exemption, a single resident client requires registration, an agent must be registered where the client is domiciled even on unsolicited or institutional orders, but the snowbird exemption covers a firm with no office serving existing clients temporarily in a state",
-      "Who notifies the state Administrator when an IAR is hired or terminated: a STATE-registered adviser notifies for its IARs; an IAR of a FEDERAL COVERED adviser notifies for himself; the SEC is never notified. For AGENTS of broker-dealers it is different again - old firm, new firm and the agent all notify",
-      "An IAR of a federal covered adviser registers only where he has a PLACE OF BUSINESS; client counts never matter, and regular recurring presence at a fixed location creates a place of business",
-      "Over-correcting after a miss: swinging to the opposite rule on the next question of the same family instead of re-reading the conditions",
-      "Which clients earn an adviser an exemption, and whether the rule is federal or state: insurance-company clients are a federal exemption; bank-only clients are neither; a bank acting AS the adviser is excluded",
-      "Exclusion (not an investment adviser at all) vs exemption (an adviser who need not register), and how a professional or publisher loses an exclusion by holding out, charging separately, or personalizing the advice",
-      "Record retention and whose records they are: five years from the END OF THE FISCAL YEAR for ordinary records, three years after termination for organizational documents, and no recordkeeping duty at all for IARs or agents",
+      "Cancellation (nonpunitive: mental incompetence, cannot be located / no forwarding address, out of business) vs revocation (punitive: convictions including non-securities felonies, wrongdoing)",
+      "Unit 5 numbers: civil statute of limitations is the EARLIER of 3 years after the sale or 2 years after discovery; criminal statute of limitations is 5 years; maximum criminal penalty is $5,000 and/or 3 years; 60 days to petition a court to review a final order",
+      "Jurisdiction over an offer: it lies where the offer originates and where it is accepted; a cell phone counts at the owner's home state unless the client acts from elsewhere; an out-of-state newspaper never creates jurisdiction, and an in-state paper escapes only with more than 2/3 of circulation outside the state",
+      "Exempt TRANSACTIONS under the USA: unsolicited orders are the most common exempt transaction and the Administrator cannot forbid a client's own initiative; institutional buyers (pension trusts, financial institutions) qualify but ordinary operating companies do not; private placements are capped at 10 retail purchasers in 12 months",
+      "Exempt SECURITIES carry conditions, and the conditions are what get tested: an S&L or insurer must be authorized in the state, a railroad must be rate-regulated, commercial paper needs a $50,000 denomination and top-three rating within nine months, and exchange-listed issues escape state registration as federal covered rather than as exempt securities",
+      "Registration reach for broker-dealers and agents: no de minimis exemption exists, a resident client (even one) requires registration, an agent must be registered where the client is domiciled even on unsolicited or institutional orders, but the snowbird exemption covers a firm with no office in the state serving existing clients who are only temporarily there",
+      "Who notifies the state Administrator when an IAR is hired or terminated: a STATE-registered adviser notifies for its IARs; an IAR of a FEDERAL COVERED adviser notifies for himself; the SEC is never notified",
+      "An IAR of a federal covered adviser registers only where he has a PLACE OF BUSINESS; client counts never matter, and regular recurring presence at a fixed location (one day a week, a quarterly seminar) creates a place of business",
+      "Who is a supervised or associated person of an adviser: employees and anyone registered through the firm are in, purely clerical staff and genuinely outside parties (an executing broker-dealer, the independent auditor) are out, a parent company is in, and a solicitor is out federally but in under the USA",
+      "The dollar and time thresholds in the NASAA financial rules: $35,000 net worth with custody, $10,000 with discretion only, substantial prepayment over $500 six or more months ahead at the state level ($1,200 federal), and the disclosure triggers (custody, discretion, prepayments) that exclude performance-based fees; federal prepayment threshold is $1,200 while the state figure is $500",
       "Which parts of Form ADV go where: 1A everyone files, 1B state only, 2A everyone files, 2B filed with the state but only kept on hand by SEC advisers",
+      "Record retention: five years from the END OF THE FISCAL YEAR for ordinary records incl. advertisements and emails, three years after termination for organizational documents, and no recordkeeping duty at all for IARs",
       "Reading which law the question names before answering, especially on private fund investor standards: federal 3(c)(1) means accredited investors, state means qualified clients, 3(c)(7) means qualified purchasers",
-      "The 'in the business' element of the investment adviser definition: regular advice, compensation for the advice (not for transactions), and, under IA-1092, holding out as an adviser"
+      "Which clients earn an adviser an exemption, and whether the rule is federal or state: insurance-company clients are a federal exemption (not a state one and not an exclusion); bank-only clients are neither; a bank acting AS the adviser is excluded",
+      "Exclusion (not an investment adviser at all) vs exemption (an adviser who need not register), and how a professional or publisher loses an exclusion by holding out, charging separately, or personalizing the advice",
+      "The 'in the business' element of the investment adviser definition: regular advice, compensation for the advice (not for transactions), and, under IA-1092, holding out as an adviser",
+      "Importing a rule from the adviser chapters into the broker-dealer chapters (de minimis client counts, institutional-client exclusions, place-of-business tests)"
     ],
     "activityIds": [
       "Unit 1 Quiz 1 (Test 410528324)",
@@ -4365,12 +5137,16 @@ const SYNC = {
       "Unit 3 Quiz 2 (Test 411511007)",
       "Unit 4 Quiz 1 (Test 411892876)",
       "Unit 4 Quiz 2 (Test 411894414)",
+      "Unit 5 Quiz 1 (Test 412340471)",
+      "Unit 5 Quiz 2 (Test 412343632)",
       "Unit 1 Checkpoint Exam (Test 410671140)",
       "Unit 2 Checkpoint Exam (Test 411154210)",
       "Unit 3 Checkpoint Exam (Test 411516480)",
       "Unit 4 Checkpoint Exam (Test 411896093)",
+      "Unit 5 Checkpoint Exam (Test 412346785)",
       "Unit 1-2 Review Quiz (Test 411496521)",
-      "Unit 1-3 Review Quiz (Test 411666032)"
+      "Unit 1-3 Review Quiz (Test 411666032)",
+      "Unit 1-4 Review Quiz (Test 412336495)"
     ]
   }
 };
