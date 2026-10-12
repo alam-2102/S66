@@ -181,21 +181,112 @@ tfoot td{border-top:1px solid var(--axis);font-weight:600;color:var(--ink);borde
 .cut li{margin-bottom:9px}
 .formula{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12.5px;
   background:var(--surface-2);border:1px solid var(--ring);border-radius:7px;
-  padding:9px 11px;margin:0 0 11px;overflow-x:auto;color:var(--ink-2)}
+  padding:9px 11px;margin:0 0 11px;overflow-x:auto;color:var(--ink-2);white-space:pre-wrap}
 .formula b{color:var(--ink)}
 
 /* ---------- quick tips ---------- */
-.tip{background:var(--surface);border:1px solid var(--ring);border-left:3px solid var(--s1);
-  border-radius:var(--radius);padding:13px 15px;margin:0 0 11px}
-.tip-hot{border-left-color:var(--critical)}
-.tip-done{border-left-color:var(--good);opacity:.72}
-.tip-tags{display:flex;flex-wrap:wrap;gap:5px;margin:0 0 8px}
-.tip-when{margin:0 0 5px;color:var(--ink-2);font-size:14px;line-height:1.5}
-.tip-do{margin:0 0 6px;color:var(--ink);font-size:14.5px;font-weight:550;line-height:1.5}
-.tip-do b{color:var(--s1);font-weight:700;margin-right:3px}
-.tip-hot .tip-do b{color:var(--critical)}
-.tip-why{margin:0;color:var(--muted);font-size:12.5px;line-height:1.5}
-
+.muted{color:var(--muted)}
+.qt-bar{margin:0 0 16px}
+.qt-bar .qt-bn{opacity:.75;font-variant-numeric:tabular-nums;margin-left:3px}
+.qt-group{margin:0 0 18px}
+.qt-gh{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap;margin:0 0 7px;font-size:13px;
+  font-weight:650;color:var(--ink)}
+.qt-gh span{font-weight:500;color:var(--muted);font-size:12.5px}
+.qt-list{background:var(--surface);border:1px solid var(--ring);border-radius:var(--radius);overflow:hidden}
+.qt{border-top:1px solid var(--grid)}
+.qt:first-child{border-top:0}
+.qt>summary,.qt>.qt-s{display:grid;grid-template-columns:34px minmax(0,1fr) 12px;gap:11px;
+  padding:10px 13px;list-style:none}
+.qt>summary{cursor:pointer}
+.qt>summary::-webkit-details-marker{display:none}
+.qt>summary:hover{background:var(--surface-2)}
+.qt>summary:focus-visible{outline:2px solid var(--s1);outline-offset:-2px}
+.qt-n{align-self:start;margin-top:1px;text-align:center;font-size:11.5px;font-weight:700;
+  border-radius:6px;padding:2px 0;background:var(--surface-2);color:var(--muted);
+  font-variant-numeric:tabular-nums}
+.qt.warm .qt-n{background:rgba(236,131,90,.16);color:var(--serious)}
+.qt.hot .qt-n{background:rgba(208,59,59,.2);color:#ff8f8f}
+.qt.done .qt-n{background:rgba(12,163,12,.16);color:var(--good)}
+.qt-main{display:block;min-width:0}
+.qt-when{display:block;font-size:12.5px;color:var(--muted);line-height:1.4;margin:0 0 2px}
+.qt-do{display:block;font-size:14px;color:var(--ink);font-weight:560;line-height:1.45}
+.qt-lines{display:grid;grid-template-columns:fit-content(46%) minmax(0,1fr);gap:4px 14px;
+  margin:7px 0 1px;font-size:13px;line-height:1.4}
+.qt-lines .k{color:var(--muted)}
+.qt-lines .v{color:var(--ink-2)}
+.qt-chev{align-self:start;color:var(--muted);font-size:16px;line-height:1;transition:transform .15s}
+.qt[open] .qt-chev{transform:rotate(90deg)}
+.qt-why{margin:0;padding:0 13px 11px 58px;font-size:12.5px;color:var(--muted)}
+#tips-body[data-filter="repeat"] [data-n="one"],
+#tips-body[data-filter="repeat"] .qt-group:not(.has-rep),
+#tips-body[data-filter="repeat"] .qt-cleared{display:none}
+@media(max-width:560px){
+  .qt>summary,.qt>.qt-s{grid-template-columns:30px minmax(0,1fr) 10px;gap:9px;padding:10px 11px}
+  .qt-lines{grid-template-columns:1fr;gap:0}
+  .qt-lines .k{margin-top:5px;font-size:12px}
+  .qt-why{padding-left:50px}
+}
+/* ---------- folds ---------- */
+details.fold{border-top:1px solid var(--grid);margin-top:10px}
+details.fold>summary{cursor:pointer;list-style:none;padding:9px 0 3px;font-size:13px;
+  font-weight:600;color:var(--s1)}
+details.fold>summary::-webkit-details-marker{display:none}
+details.fold>summary::before{content:"\25B8";display:inline-block;width:14px;transition:transform .15s}
+details.fold[open]>summary::before{transform:rotate(90deg)}
+details.fold.qt-cleared{border-top:0}
+details.fold.qt-cleared .qt-list{margin-top:8px}
+/* ---------- study guide ---------- */
+ol.next{list-style:none;padding:0;margin:0 0 14px}
+ol.next li{display:grid;grid-template-columns:fit-content(38%) minmax(0,1fr);gap:14px;
+  padding:10px 14px;margin:0 0 6px;background:var(--surface);border:1px solid var(--ring);
+  border-radius:8px;font-size:13.5px;color:var(--ink-2)}
+ol.next li .k{font-weight:620;color:var(--ink)}
+@media(max-width:560px){ol.next li{grid-template-columns:1fr;gap:2px}}
+.ucard{background:var(--surface);border:1px solid var(--ring);border-radius:var(--radius);
+  padding:13px 16px 11px;margin:0 0 10px}
+.ucard.below{box-shadow:inset 3px 0 0 var(--critical)}
+.ucard-h{display:flex;align-items:baseline;justify-content:space-between;gap:12px}
+.ucard-h h3{margin:0;font-size:14.5px}
+.ucard-h .ut{font-weight:500;color:var(--ink-2)}
+.ucard-h .big{font-size:20px;font-weight:660;font-variant-numeric:tabular-nums;white-space:nowrap}
+.ucard.below .big{color:var(--critical)}
+.ucard .meta{font-size:12.5px;color:var(--muted);margin:2px 0 8px}
+.ucard .warnline{color:var(--warning)}
+.ucard p.rec{font-size:13.5px;margin:0 0 4px}
+.ucard .miss{margin:12px 0 16px}
+.miss .src{font-size:12px;color:var(--muted);margin:6px 0 0}
+.muted-line{color:var(--muted);font-size:13px;margin:4px 0 14px}
+/* ---------- dump sheet ---------- */
+ol.dump-order{display:flex;flex-wrap:wrap;gap:6px;list-style:none;padding:0;margin:0 0 8px}
+ol.dump-order li{display:inline-flex;align-items:center;gap:7px;margin:0;font-size:12.5px;
+  color:var(--ink-2);background:var(--surface);border:1px solid var(--ring);border-radius:999px;
+  padding:3px 11px 3px 4px}
+ol.dump-order li .n{display:inline-grid;place-items:center;width:20px;height:20px;border-radius:50%;
+  background:var(--s1);color:#fff;font-size:11px;font-weight:700}
+ol.dump-order li.cut{border-style:dashed;color:var(--muted)}
+ol.dump-order li.cut .n{background:var(--surface-2);color:var(--muted)}
+.dump-key{font-size:12.5px;color:var(--muted);margin:0 0 14px}
+.dump-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,430px),1fr));gap:12px}
+.dblock{background:var(--surface);border:1px solid var(--ring);border-radius:var(--radius);overflow:hidden}
+.dblock.is-cut{border-style:dashed}
+.dblock-h{display:flex;align-items:center;gap:10px;padding:11px 14px;border-bottom:1px solid var(--axis);
+  background:var(--surface-2)}
+.dblock-h .n{display:inline-grid;place-items:center;flex:0 0 auto;width:24px;height:24px;border-radius:7px;
+  background:var(--s1);color:#fff;font-size:12.5px;font-weight:700}
+.dblock.is-cut .dblock-h .n{background:var(--axis)}
+.dblock-h h3{margin:0;font-size:14.5px;flex:1 1 auto}
+.drows{margin:0}
+.drow{display:grid;grid-template-columns:minmax(0,44%) minmax(0,1fr);gap:12px;padding:7px 14px;
+  border-top:1px solid var(--grid)}
+.drow:first-child{border-top:0}
+.drow dt{color:var(--ink-2);font-size:13px;line-height:1.4}
+.drow dd{margin:0;color:var(--ink);font-size:13.5px;font-weight:560;line-height:1.4;
+  font-variant-numeric:tabular-nums}
+.drow dd small{color:var(--muted);font-weight:400;font-size:12px}
+.mdot{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--critical);
+  margin:0 7px 1px 0;vertical-align:middle}
+.dblock-f{margin:0;padding:8px 14px 10px;font-size:12.5px;color:var(--warning);border-top:1px solid var(--grid)}
+@media(max-width:400px){.drow{grid-template-columns:1fr;gap:0}.drow dt{font-size:12px;color:var(--muted)}}
 /* ---------- claude paste ---------- */
 .paste-bar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:0 0 12px}
 .copybtn{
@@ -285,16 +376,12 @@ footer.foot{margin-top:40px;padding-top:16px;border-top:1px solid var(--grid);
   <div class="scroller" id="topic-table"></div>
 
   <h2>How the pooled score is built</h2>
-  <div class="formula">
-pooled = (QBank correct + Exam correct) &divide; (QBank answered + Exam answered)
-  </div>
+  <div class="formula">pooled = (QBank correct + Exam correct) &divide; (QBank answered + Exam answered)</div>
   <p>Every question counted exactly once. Not a weighted blend of category averages.
     Mixed and cumulative review quizzes and simulated exams are drawn from the QBank
     pool, so they are reported as a separate counterweight column and never added
     back into the pooled figure.</p>
-  <div class="formula">
-reweighted = 0.08&times;T1 + 0.17&times;T2 + 0.30&times;T3 + 0.45&times;T4
-  </div>
+  <div class="formula">reweighted = 0.08&times;T1 + 0.17&times;T2 + 0.30&times;T3 + 0.45&times;T4</div>
   <p>The Series 66 weighting is flat compared with the Series 7 &mdash; no single block
     dominates &mdash; so reweighting moves the headline number less than it did there.
     Worth computing, not worth building a narrative on.</p>
@@ -321,11 +408,9 @@ reweighted = 0.08&times;T1 + 0.17&times;T2 + 0.30&times;T3 + 0.45&times;T4
 </section>
 <!-- ============ 3 · QUICK TIPS ============ -->
 <section class="tab" id="tab-tips" role="tabpanel" aria-labelledby="t-tips">
-  <p class="lead">The recall-ready version of what you have got wrong so far. Each one is a
-    trigger you will actually see on the exam and the move that answers it.</p>
-  <small class="note">Written from your real misses, not generic advice, and rebuilt every
-    sync. Tips from a rule you have missed more than once lead the list. The full
-    reasoning behind each is on the Study Guide tab.</small>
+  <p class="lead">Your misses, compressed: the cue you'll see, and what to do about it.</p>
+  <small class="note">Rebuilt from your real misses every sync. Red means missed three or more
+    times. Tap a tip to see why it's on the list.</small>
   <div id="tips-body"></div>
 </section>
 
@@ -336,36 +421,21 @@ reweighted = 0.08&times;T1 + 0.17&times;T2 + 0.30&times;T3 + 0.45&times;T4
   <h2>Where you stand</h2>
   <div id="guide-standing"></div>
 
-  <h2>Priority order</h2>
-  <small class="note">Derived from the data, not typed. Ranked by expected scored questions
-    lost &mdash; topic weight &times; miss rate &mdash; so a weak block worth
-    <span data-bind="exam.topIVQuestions"></span> questions outranks a weaker one worth
-    <span data-bind="exam.topIQuestions"></span>.</small>
-  <div id="guide-priority"></div>
+  <h2>Study next</h2>
+  <div id="guide-next"></div>
 
-  <h2>Kaplan unit &rarr; NASAA topic map</h2>
-  <p>Kaplan's unit numbering is its own and does not line up one-to-one with NASAA's four
-    topics. Every weighted number on this page computes from this table, so it is the one
-    thing worth checking by hand. Where a unit spans two topics it is split, with the split
-    shown rather than forced into a single bucket.</p>
-  <div class="scroller" id="map-table"></div>
-  <div id="map-status"></div>
-
-  <h2>Unit by unit</h2>
+  <h2>By unit</h2>
+  <small class="note">Only the units you have started. Open a unit's misses to read why
+    each answer was right.</small>
   <div id="guide-units"></div>
 
-  <h2>Missed questions</h2>
-  <p>The highest-value content here. Every question missed gets the underlying concept
-    explained &mdash; not the letter. Correct answers get a one-line note so a pattern is
-    still visible later.</p>
-  <div id="guide-misses"></div>
-
-  <h2>Patterns across everything so far</h2>
-  <small class="note">The same rule missed twice is the strongest signal this page produces.</small>
-  <div id="guide-patterns"></div>
-
-  <h2>Action list</h2>
-  <div id="guide-actions"></div>
+  <details class="fold" id="map-fold">
+    <summary>How Kaplan units map to NASAA topics</summary>
+    <p>Every weighted number on this dashboard computes from this table, so it is the one
+      thing worth checking by hand.</p>
+    <div class="scroller" id="map-table"></div>
+    <div id="map-status"></div>
+  </details>
 </section>
 
 <!-- ============ 4 · REFERENCE SHEET ============ -->
@@ -634,23 +704,19 @@ reweighted = 0.08&times;T1 + 0.17&times;T2 + 0.30&times;T3 + 0.45&times;T4
     part of the exam and the cheapest block to lose points in. These have to be cold.</p>
 
   <h3>Time value of money</h3>
-  <div class="formula">
-<b>FV</b> = PV &times; (1 + r)<sup>n</sup>
+  <div class="formula"><b>FV</b> = PV &times; (1 + r)<sup>n</sup>
 <b>PV</b> = FV &divide; (1 + r)<sup>n</sup>
 <b>NPV</b> = PV of inflows &minus; cost. Positive NPV &rarr; accept.
-<b>IRR</b> = the discount rate where NPV = 0.
-  </div>
+<b>IRR</b> = the discount rate where NPV = 0.</div>
   <p>For a bond, IRR <i>is</i> yield to maturity. If a bond trades at a discount, IRR
     exceeds the coupon; at a premium, IRR is below it.</p>
 
   <h3>Risk and return</h3>
-  <div class="formula">
-<b>Beta</b> &mdash; volatility vs. the market. Market = 1.0. Beta 1.2 &rarr; 20% more volatile.
+  <div class="formula"><b>Beta</b> &mdash; volatility vs. the market. Market = 1.0. Beta 1.2 &rarr; 20% more volatile.
 <b>Alpha</b> = actual return &minus; expected return
          expected = rf + &beta;(market return &minus; rf)
 <b>Sharpe</b> = (portfolio return &minus; risk-free rate) &divide; standard deviation
-<b>CAPM</b>  = rf + &beta;(market return &minus; rf)
-  </div>
+<b>CAPM</b>  = rf + &beta;(market return &minus; rf)</div>
   <p>Sharpe uses <b>standard deviation</b> (total risk) in the denominator; Treynor uses
     beta (systematic risk). Picking the wrong denominator is the usual miss.</p>
 
@@ -662,26 +728,22 @@ reweighted = 0.08&times;T1 + 0.17&times;T2 + 0.30&times;T3 + 0.45&times;T4
   <p>One standard deviation covers ~68% of outcomes, two ~95%, three ~99.7%.</p>
 
   <h3>Financial ratios</h3>
-  <div class="formula">
-<b>Current ratio</b>     = current assets &divide; current liabilities
+  <div class="formula"><b>Current ratio</b>     = current assets &divide; current liabilities
 <b>Quick ratio</b>       = (current assets &minus; inventory) &divide; current liabilities
 <b>Debt-to-equity</b>    = total debt &divide; total equity
 <b>P/E</b>               = market price &divide; earnings per share
 <b>P/B</b>               = market price &divide; book value per share
-<b>Working capital</b>   = current assets &minus; current liabilities
-  </div>
+<b>Working capital</b>   = current assets &minus; current liabilities</div>
   <p>The quick ratio is the current ratio with inventory stripped out &mdash; the &ldquo;acid
     test&rdquo;. A high P/E signals a growth expectation; a low P/B is the value screen.</p>
 
   <h3>Returns</h3>
-  <div class="formula">
-<b>Current yield</b>        = annual income &divide; current market price
+  <div class="formula"><b>Current yield</b>        = annual income &divide; current market price
 <b>Total return</b>         = (income + capital gain) &divide; beginning value
 <b>Holding period return</b>= (ending value &minus; beginning + income) &divide; beginning
 <b>Real (inflation-adj.)</b>= nominal return &minus; inflation rate
 <b>After-tax return</b>     = nominal &times; (1 &minus; tax rate)
-<b>Risk-free real rate</b>  &asymp; T-bill rate &minus; CPI
-  </div>
+<b>Risk-free real rate</b>  &asymp; T-bill rate &minus; CPI</div>
   <p><b>Time-weighted</b> return measures the manager &mdash; it strips out the effect of
     client deposits and withdrawals. <b>Dollar-weighted</b> (which is an IRR) measures the
     client's actual experience because it includes cash flow timing. Asked which judges a
@@ -739,122 +801,15 @@ reweighted = 0.08&times;T1 + 0.17&times;T2 + 0.30&times;T3 + 0.45&times;T4
 </section>
 <!-- ============ 5 · DUMP SHEET ============ -->
 <section class="tab" id="tab-dump" role="tabpanel" aria-labelledby="t-dump">
-  <p class="lead">What to write down cold in the first five minutes, before the clock
-    starts costing you anything. Blocks are ordered by exam weight.</p>
-  <small class="note">You get <span data-bind="exam.minutes"></span> minutes for
-    <span data-bind="exam.total"></span> questions &mdash;
-    <span data-bind="exam.secondsPerQuestion"></span> seconds each. That is materially
-    tighter than the Series 7, so the dump has to be fast and short. If you cannot write
-    a block in under a minute, it does not belong on the sheet.</small>
-
-  <h2>Cut order</h2>
-  <small class="note">If you are short on time, drop from the bottom up. Computed from exam
-    weight and from which units are currently weakest &mdash; it moves as your data moves.</small>
+  <p class="lead">Write these down cold in the first five minutes. Go in this order, and if
+    time is short, skip the last two.</p>
+  <small class="note"><span data-bind="exam.minutes"></span> minutes for
+    <span data-bind="exam.total"></span> questions is
+    <span data-bind="exam.secondsPerQuestion"></span> seconds each, so the dump has to be
+    fast. The order comes from exam weight against your accuracy, then from how many of a
+    block's lines you have missed, so it moves as your data moves.</small>
   <div id="dump-cutorder"></div>
-
-  <h2>Block 1 &mdash; Registration thresholds
-    <span class="tag warn">Topic IV &middot; <span data-bind="exam.topIVWeight"></span></span></h2>
-  <div class="formula">
-AUM &lt; $100m ...... state
-$100&ndash;110m ......... optional
-&ge; $110m ........... SEC
-&lt; $90m ............ must drop to state
-
-IAR always registers with the STATE
-Federal covered IA: notice file + fee only
-  </div>
-
-  <h2>Block 2 &mdash; Time limits
-    <span class="tag warn">Topic IV</span></h2>
-  <div class="formula">
-30 days ..... registration effective (noon of 30th)
-31 Dec ...... all registrations expire
-2 / 3 yrs ... civil SOL (discovery / act)
-5 yrs ....... criminal SOL
-5 &amp; 3 ....... $5,000 fine / 3 yrs prison
-30 days ..... rescission acceptance window
-5 yrs ....... books and records (2 readily accessible)
-60 days ..... appeal an order
-10 days ..... IA oral discretion grace
-3 bus days .. forward third-party cheque
-  </div>
-
-  <h2>Block 3 &mdash; Prohibited practices
-    <span class="tag warn">Topic IV &middot; H&middot;4</span></h2>
-  <div class="formula">
-NEVER:  guarantee against loss
-        share in losses (IAR: never)
-        loan to/from client (banks &amp; BD lenders excepted)
-        imply registration = approval
-        front-run, churn, sell away, manipulate
-
-Political contributions: 2-yr time-out
-  de minimis $350 (can vote) / $150 (cannot)
-  </div>
-
-  <h2>Block 4 &mdash; Discretion &amp; custody
-    <span class="tag warn">Topic IV</span></h2>
-  <div class="formula">
-Discretion = A A A (Asset / Amount / Action)
-  Time &amp; Price alone = NOT discretion
-  IA: 10 business days oral, then written
-  BD: written BEFORE first trade
-
-Custody triggers: notice, qualified custodian,
-  quarterly statements, annual surprise audit
-  Cheque to third party + 3 days = NOT custody
-  Cheque to adviser = custody
-  </div>
-
-  <h2>Block 5 &mdash; Exempt transactions
-    <span class="tag warn">Topic IV</span></h2>
-  <div class="formula">
-UNSOLICITED order ...... the most-tested one
-Isolated non-issuer
-Private placement ...... &le;10 non-inst. offerees/12mo
-Pre-organization cert .. &le;10 subscribers, no commission
-Fiduciary .............. executor, trustee in bankruptcy
-Financial institutions
-Existing holders, no commission
-
-Antifraud applies to EVERYTHING. No exceptions.
-  </div>
-
-  <h2>Block 6 &mdash; Formulas
-    <span class="tag neutral">Topic I &middot; <span data-bind="exam.topIWeight"></span></span></h2>
-  <small class="note">Small block, high cost per question. Worth the sheet space despite
-    the weight &mdash; these are the questions you either get instantly or lose entirely.</small>
-  <div class="formula">
-Sharpe   = (Rp &minus; rf) &divide; std dev      &larr; total risk
-Treynor  = (Rp &minus; rf) &divide; beta         &larr; systematic
-CAPM     = rf + &beta;(Rm &minus; rf)
-Alpha    = actual &minus; CAPM expected
-Current  = CA &divide; CL
-Quick    = (CA &minus; inventory) &divide; CL
-D/E      = total debt &divide; total equity
-P/E      = price &divide; EPS
-P/B      = price &divide; book/share
-CY       = annual income &divide; market price
-Rule 72  = 72 &divide; rate = yrs to double
-
-Time-weighted  = judges the MANAGER
-Dollar-weighted = judges the CLIENT (is an IRR)
-  </div>
-
-  <h2>Block 7 &mdash; Ownership &amp; RMD
-    <span class="tag neutral">Topic III &middot; <span data-bind="exam.topIIIWeight"></span></span></h2>
-  <div class="formula">
-JTWROS ....... survivor, no probate
-TIC .......... estate, probate
-TBE .......... spouses, creditor protection
-CPWROS ....... community property states
-TOD/POD ...... beneficiary, no probate
-
-RMD age 73 (75 in 2033)
-Roth IRA: no lifetime RMD
-Roth 401(k): no RMD (SECURE 2.0)
-Non-spouse inherited: 10-year rule
-  </div>
+  <div class="dump-grid" id="dump-blocks"></div>
 </section>
 
 <!-- ============ 6 · CLAUDE PASTE ============ -->
@@ -5153,183 +5108,10 @@ const SYNC = {
   ],
   "quickTips": [
     {
-      "topic": "IV",
-      "unitId": "U4",
-      "kind": "rule",
-      "id": "t-exempt-transactions",
-      "count": 5,
-      "fromMisses": [
-        "u4q1-q12",
-        "u4q1-q14",
-        "u4q2-q02",
-        "u4q2-q10",
-        "rev15-q08"
-      ],
-      "trigger": "a question about whether a TRANSACTION is exempt",
-      "move": "Anchor to the unsolicited order: it is THE most common exempt transaction, and the Administrator cannot forbid a client's own initiative (it can only verify the ticket was marked unsolicited). The word may never appear: 'the client called and asked to buy' IS unsolicited, and an exempt transaction can involve an unregistered, nonexempt security. Institutional buyers count (banks, insurers, investment companies, pension and profit-sharing trusts, BDs); an ordinary operating company does NOT. Private placement cap is 10 RETAIL purchasers in 12 months.",
-      "why": "Five misses, the unsolicited order three times. On Oct 5 you missed it when the stem only described a client-initiated order, then got it right 30 minutes later when the stem said 'unsolicited'. You know the rule; spot it when it isn't named."
-    },
-    {
-      "topic": "IV",
-      "unitId": "U2",
-      "kind": "rule",
-      "id": "t-supervised-persons",
-      "count": 5,
-      "fromMisses": [
-        "u2q1-q03",
-        "u2q3-q03",
-        "u2exam-q09",
-        "rev12-q01",
-        "rev16-q19"
-      ],
-      "trigger": "a list of people and a question about who is supervised by, or associated with, an adviser",
-      "move": "Ignore job titles; read duties and control. IN: employees, anyone registered THROUGH the firm, a parent company, clerical staff who actually analyse. OUT: an outside executing broker-dealer, the independent auditor, purely clerical staff. Solicitors are OUT federally (no registration; needs a written agreement if paid over $1,000 in 12 months and no disqualifying history), IN under the USA (they register as IARs).",
-      "why": "Five misses. Four came from reading the title instead of the duty; the Oct 5 one was the federal solicitor, who doesn't register."
-    },
-    {
-      "topic": "IV",
-      "unitId": "U2",
-      "kind": "rule",
-      "id": "t-state-vs-federal-numbers",
-      "count": 5,
-      "fromMisses": [
-        "u2q2-q05",
-        "rev12-q10",
-        "u2exam-q07",
-        "rev13-q10",
-        "rev15-q07"
-      ],
-      "trigger": "a NASAA net worth or prepayment figure, or a question about disclosing financial impairment",
-      "move": "Name the government FIRST, then the number. Substantial prepayment: over $500 (state) / over $1,200 (federal), both six months or more ahead (an AND test). Net worth: custody $35,000, discretion only $10,000, and ONLY for state-registered advisers; a state can't put any financial requirement on a federal covered adviser, even one with an office there (it gets a notice filing and fee). Impairment disclosure triggers are custody, discretion, prepayments; performance fees are NOT one.",
-      "why": "Five misses. On Oct 5 you applied the state net worth rules to a federal covered adviser."
-    },
-    {
-      "topic": "IV",
-      "unitId": "U4",
-      "kind": "rule",
-      "id": "t-exempt-securities-conditions",
-      "count": 3,
-      "fromMisses": [
-        "u4q1-q03",
-        "u4q2-q12",
-        "u4exam-q11"
-      ],
-      "trigger": "a question asking whether a SECURITY is exempt or not subject to state registration",
-      "move": "Two doors, check both: is it an exempt security under the USA, or is it FEDERAL COVERED? Either is enough. Then check the condition attached to the exemption, because that is what gets tested: S&L and insurer must be AUTHORIZED IN THE STATE, railroad must be RATE-REGULATED, commercial paper needs $50,000 denomination + top-three rating + nine months or less, foreign bonds must be from a COUNTRY not a city.",
-      "why": "Three misses on the conditions. The commercial paper conditions came back on Oct 5 and you got them right."
-    },
-    {
-      "topic": "IV",
-      "unitId": "U3",
-      "kind": "technique",
-      "id": "t-wrong-chapter",
-      "count": 3,
-      "fromMisses": [
-        "u2q1-q01",
-        "u3q1-q06",
-        "u3q1-q08"
-      ],
-      "trigger": "a registration question and a rule from another chapter springing to mind",
-      "move": "Name which side you are on FIRST - adviser/IAR or broker-dealer/agent - then apply only that side's rule. De minimis client counts, institutional-client exclusions and place-of-business tests are ADVISER rules. On the BD/agent side there is no de minimis at all.",
-      "why": "One habit explaining misses in two different units."
-    },
-    {
-      "topic": "IV",
-      "unitId": "U3",
-      "kind": "rule",
-      "id": "t-bd-registration-reach",
-      "count": 3,
-      "fromMisses": [
-        "u3q1-q06",
-        "u3q1-q08",
-        "u3exam-q09"
-      ],
-      "trigger": "a broker-dealer or agent and a client who is somewhere other than the home state",
-      "move": "Three questions in order: does the firm have an office in the state? Is the client a RESIDENT or only temporarily there? Is this an existing client? Resident = register, even for one. Existing client merely visiting + no office = snowbird exemption, covering any business, not just unsolicited orders. An AGENT must be registered where the client is domiciled, whatever the order type.",
-      "why": "Missed in both directions within two hours. Retested correctly on the Sep 24 Review Quiz, so improving."
-    },
-    {
-      "topic": "IV",
-      "unitId": "U2",
-      "kind": "rule",
-      "id": "t-who-notifies",
-      "count": 4,
-      "fromMisses": [
-        "u2q1-q07",
-        "u2q3-q02",
-        "u2exam-q15",
-        "rev16-q16"
-      ],
-      "trigger": "someone being hired or terminated and a question about who notifies the Administrator",
-      "move": "IAR + STATE-registered adviser: the FIRM notifies. IAR + FEDERAL COVERED adviser: the IAR notifies. AGENT of a broker-dealer: the agent AND the firm(s) all notify, PROMPTLY, whatever the reason for leaving. The SEC is never notified about either. Given AUM instead of firm type, convert first: over $110M = federal covered.",
-      "why": "Four misses. The Oct 5 one was the agent version, which has no state/federal split: both notify, promptly, never '30 days'."
-    },
-    {
-      "topic": "IV",
-      "unitId": "U2",
-      "kind": "rule",
-      "id": "t-place-of-business",
-      "count": 3,
-      "fromMisses": [
-        "u2q1-q01",
-        "u2exam-q01",
-        "u2exam-q11"
-      ],
-      "trigger": "an IAR of a federal covered adviser with clients scattered across states",
-      "move": "Count OFFICES, never clients. Regular recurring presence at a fixed location makes an office: one day a week, or a quarterly seminar at the same venue.",
-      "why": "Client counts are irrelevant to an IAR of a covered adviser."
-    },
-    {
-      "topic": "IV",
-      "unitId": "U3",
-      "kind": "rule",
-      "id": "t-records-belong-to-firms",
-      "count": 4,
-      "fromMisses": [
-        "u2q2-q01",
-        "u2exam-q17",
-        "u3exam-q07",
-        "u6exam-q16"
-      ],
-      "trigger": "a record retention period, or a question about whose records can be examined",
-      "move": "Records belong to FIRMS; agents and IARs have none to inspect. ADVISER: five years from the END OF THE FISCAL YEAR for ordinary records; three years after the business ends for organizational papers. BROKER-DEALER advertisements (a website too): three years from FIRST USE, and each redesign starts its own three-year clock. Check whose record it is before the number.",
-      "why": "Four misses. The newest mixed up the broker-dealer three years with the adviser five, and stacked a redesign's clock after the old one."
-    },
-    {
-      "topic": "IV",
-      "unitId": "U1",
-      "kind": "rule",
-      "id": "t-client-type-exemption",
-      "count": 3,
-      "fromMisses": [
-        "u1qz2-q03",
-        "u1qz2-q11",
-        "u1exam-q06"
-      ],
-      "trigger": "an answer choice about an adviser whose only clients are one type",
-      "move": "Ask two things. (1) Is this about the adviser itself or about its clients? (2) Federal or state? Insurance-company clients = FEDERAL exemption only. Bank clients = nothing, either level. A bank AS the adviser = excluded from the definition entirely.",
-      "why": "Three misses on Sep 17, retested correctly on Sep 23. Improving."
-    },
-    {
-      "topic": "IV",
-      "unitId": "U1",
-      "kind": "rule",
-      "id": "t-exclusion-vs-exemption",
-      "count": 3,
-      "fromMisses": [
-        "u1qz2-q03",
-        "u1exam-q11",
-        "u1exam-q12"
-      ],
-      "trigger": "\"excluded from the definition\" versus \"exempt from registration\"",
-      "move": "Excluded = not an adviser at all. Exempt = an adviser who need not register, antifraud still applies. Then check whether the professional or publisher broke their own exclusion by holding out, charging separately, or personalising the advice.",
-      "why": "Three misses on Sep 17, tested twice again on Sep 23 and both right. Improving."
-    },
-    {
-      "topic": "IV",
-      "unitId": "U4",
-      "kind": "technique",
       "id": "t-roman-numerals",
+      "kind": "technique",
+      "topic": "IV",
+      "unitId": "U4",
       "count": 15,
       "fromMisses": [
         "u1qz1-q04",
@@ -5348,29 +5130,29 @@ const SYNC = {
         "u7q1-q11",
         "u7q2-q09"
       ],
-      "trigger": "a Roman-numeral question (I, II, III) asking which items belong to a rule",
-      "move": "Write your own yes/no on each numeral BEFORE reading the lettered choices. Don't pick 'all of them' until you have a reason each one is true; one doubtful numeral usually means it's out. Underline a stem that says 'are NOT true'. When the list is Administrator POWERS, the default is that it can do all of them. When it is a list of securities, run each past BOTH the exempt list and the federal covered list.",
-      "why": "Fifteen misses, in every unit, and it runs both ways. Through Unit 4 you mostly dropped a true numeral; since Sep 29 you've mostly added a false one. On Oct 7 you did one of each (added discretion to the custody list, dropped the IRS summons)."
-    },
-    {
-      "topic": "IV",
-      "unitId": "U3",
-      "kind": "technique",
-      "id": "t-dont-overcorrect",
-      "count": 2,
-      "fromMisses": [
-        "u3exam-q09",
-        "rev12-q03"
+      "trigger": "Roman numerals (I, II, III...)",
+      "move": "Mark yes or no on every numeral BEFORE you look at the lettered choices.",
+      "lines": [
+        [
+          "Tempted by 'all of them'?",
+          "Only if each one has a reason. One doubt means it's out."
+        ],
+        [
+          "A list of Administrator powers",
+          "Default: it can do all of them."
+        ],
+        [
+          "A list of securities",
+          "Check the exempt list AND the federal covered list."
+        ]
       ],
-      "trigger": "a question from the same family as one you recently got wrong",
-      "move": "Do not apply the correction as a new blanket rule. Re-read the CONDITIONS: resident or visitor, federal or state, office or no office. The fix to the last question is usually a condition, not a direction.",
-      "why": "Twice the correction from one miss caused the next."
+      "why": "Fifteen misses. You used to drop a true item; since Sep 29 you mostly add a false one."
     },
     {
+      "id": "t-except-questions",
+      "kind": "technique",
       "topic": "IV",
       "unitId": "U4",
-      "kind": "technique",
-      "id": "t-except-questions",
       "count": 10,
       "fromMisses": [
         "u2exam-q07",
@@ -5384,389 +5166,432 @@ const SYNC = {
         "u7exam-q14",
         "u8q2-q03"
       ],
-      "trigger": "a question ending in EXCEPT, or asking which statement is NOT correct",
-      "move": "Underline EXCEPT / NOT before reading the choices, and say the stem back as 'which one is NOT ok?'. Test every choice with 'is this true / allowed?' and expect exactly one odd one out. If your pick is a true or permitted statement, you answered the opposite question. The odd one differs in KIND (Montreal among U.S. exchanges), not strength, and sometimes only in TIMING.",
-      "why": "Ten misses, now in four units. Oct 8: three of the eight review misses were EXCEPT questions, and one of your two misses on the 91.7% checkpoint was a NOT question. Oct 11: a NOT question in Unit 8, where you picked a correct IRR definition. These are the cheapest points left on the table."
+      "trigger": "EXCEPT, NOT, or 'which is not true'",
+      "move": "Underline it. You want the ONE choice that's false or not allowed. If your pick is true, you answered the opposite question.",
+      "why": "Ten misses across four units. The cheapest points left on the table."
     },
     {
+      "id": "t-dont-overcorrect",
+      "kind": "technique",
+      "topic": "IV",
+      "unitId": "U3",
+      "count": 2,
+      "fromMisses": [
+        "u3exam-q09",
+        "rev12-q03"
+      ],
+      "trigger": "A question from a family you just got wrong",
+      "move": "Re-read the conditions (resident or visitor, federal or state, office or not). Don't just flip to the opposite rule.",
+      "why": "Twice the fix for one miss caused the next."
+    },
+    {
+      "id": "t-exclusion-vs-exemption",
+      "kind": "rule",
       "topic": "IV",
       "unitId": "U1",
-      "kind": "rule",
+      "count": 5,
+      "fromMisses": [
+        "u1qz2-q03",
+        "u1qz2-q11",
+        "u1exam-q06",
+        "u1exam-q11",
+        "u1exam-q12"
+      ],
+      "trigger": "Excluded, exempt, or an adviser with one type of client",
+      "move": "Excluded = not an adviser at all. Exempt = still an adviser, just doesn't register.",
+      "lines": [
+        [
+          "Excluded",
+          "Banks; LATE pros and BDs whose advice is incidental; publishers (impersonal)"
+        ],
+        [
+          "Loses the exclusion",
+          "Holds out, charges separately, or personalizes the advice"
+        ],
+        [
+          "Federal exemption",
+          "Insurance-company-only clients, VC funds, private funds under $150M"
+        ],
+        [
+          "State exemption",
+          "No office in the state + institutional clients only (or 5 or fewer retail)"
+        ],
+        [
+          "Bank-only clients",
+          "No exemption at either level"
+        ]
+      ],
+      "why": "Five misses, mostly the right topic through the wrong door."
+    },
+    {
       "id": "t-which-law-first",
+      "kind": "rule",
+      "topic": "IV",
+      "unitId": "U1",
       "count": 2,
       "fromMisses": [
         "u1qz1-q03",
         "rev12-q03"
       ],
-      "trigger": "a private fund question naming 3(c)(1) or 3(c)(7)",
-      "move": "Read the LAW in the stem before the answer choices. Federal 3(c)(1): accredited investors, max 100, no bad actors. State (USA) 3(c)(1): qualified clients. Either law's 3(c)(7): qualified purchasers.",
-      "why": "Missed in both directions a week apart."
+      "trigger": "A private fund: 3(c)(1) or 3(c)(7)",
+      "move": "Read which LAW the stem names before reading the choices.",
+      "lines": [
+        [
+          "Federal 3(c)(1)",
+          "Accredited investors, 100 max"
+        ],
+        [
+          "State 3(c)(1)",
+          "Qualified clients"
+        ],
+        [
+          "3(c)(7), either law",
+          "Qualified purchasers"
+        ]
+      ],
+      "why": "Missed once in each direction."
     },
     {
+      "id": "t-office-before-aum",
+      "kind": "rule",
+      "topic": "IV",
+      "unitId": "U1",
+      "count": 1,
+      "fromMisses": [
+        "u1exam-q05"
+      ],
+      "trigger": "An exemption choice quoting an AUM figure",
+      "move": "An office in the state means state registration, whatever the AUM. $90M is the SEC exit number, not a state test.",
+      "why": "The $90M in the choice was bait."
+    },
+    {
+      "id": "t-exempt-reporting-adviser",
+      "kind": "rule",
+      "topic": "IV",
+      "unitId": "U1",
+      "count": 1,
+      "fromMisses": [
+        "u1exam-q07"
+      ],
+      "trigger": "'Exempt reporting adviser'",
+      "move": "Exempt from registering, still files parts of Form ADV: VC fund advisers and private fund advisers (under $150M)."
+    },
+    {
+      "id": "t-investment-counsel",
+      "kind": "rule",
+      "topic": "IV",
+      "unitId": "U1",
+      "count": 1,
+      "fromMisses": [
+        "u1qz3-q05"
+      ],
+      "trigger": "The title 'investment counsel'",
+      "move": "Allowed only when advice is the firm's PRIMARY business and it provides supervisory services. Nothing to do with lawyers."
+    },
+    {
+      "id": "t-in-the-business",
+      "kind": "rule",
+      "topic": "IV",
+      "unitId": "U1",
+      "count": 2,
+      "fromMisses": [
+        "u1qz1-q04",
+        "u1qz1-q07"
+      ],
+      "trigger": "'In the business' of giving advice",
+      "move": "Regular advice + paid FOR the advice + holds out (IA-1092). Trade commissions don't count.",
+      "why": "Missed twice on Sep 16, right on Sep 17 and Sep 23.",
+      "cleared": true
+    },
+    {
+      "id": "t-where-to-register",
+      "kind": "rule",
       "topic": "IV",
       "unitId": "U2",
+      "count": 6,
+      "fromMisses": [
+        "u2q1-q01",
+        "u2exam-q01",
+        "u2exam-q11",
+        "u3q1-q06",
+        "u3q1-q08",
+        "u3exam-q09"
+      ],
+      "trigger": "Does this person or firm have to register in this state?",
+      "move": "Pick the side first. Adviser rules and broker-dealer rules don't mix.",
+      "lines": [
+        [
+          "IA firm, no office",
+          "Exempt up to 5 retail clients in 12 months (de minimis)"
+        ],
+        [
+          "IAR of a federal covered IA",
+          "Only where it has a place of business. Clients never count."
+        ],
+        [
+          "Place of business",
+          "Any regular presence: one day a week, a quarterly seminar"
+        ],
+        [
+          "BD or agent",
+          "No de minimis. One resident client means register."
+        ],
+        [
+          "Existing client just visiting",
+          "Snowbird: no office in the state, no registration needed"
+        ],
+        [
+          "Agent",
+          "Registered where the client lives, whatever the order type"
+        ]
+      ],
+      "why": "Six misses: the adviser de minimis leaked into BD questions, then you over-corrected."
+    },
+    {
+      "id": "t-supervised-persons",
       "kind": "rule",
+      "topic": "IV",
+      "unitId": "U2",
+      "count": 5,
+      "fromMisses": [
+        "u2q1-q03",
+        "u2q3-q03",
+        "u2exam-q09",
+        "rev12-q01",
+        "rev16-q19"
+      ],
+      "trigger": "Who is supervised by, or associated with, an adviser",
+      "move": "Read duties and control, never job titles.",
+      "lines": [
+        [
+          "In",
+          "Employees, anyone registered through the firm, a parent company, clerical staff who analyze"
+        ],
+        [
+          "Out",
+          "Outside executing BD, the independent auditor, purely clerical staff"
+        ],
+        [
+          "Solicitor",
+          "Federal: out (written agreement if paid over $1,000 a year). State: an IAR."
+        ]
+      ],
+      "why": "Five misses, each from reading the title instead of the duty."
+    },
+    {
+      "id": "t-state-vs-federal-numbers",
+      "kind": "rule",
+      "topic": "IV",
+      "unitId": "U2",
+      "count": 5,
+      "fromMisses": [
+        "u2q2-q05",
+        "rev12-q10",
+        "u2exam-q07",
+        "rev13-q10",
+        "rev15-q07"
+      ],
+      "trigger": "Net worth, prepayment, or financial impairment",
+      "move": "Name the government first, then the number.",
+      "lines": [
+        [
+          "Substantial prepayment",
+          "Over $500 (state) or over $1,200 (federal), AND 6+ months ahead"
+        ],
+        [
+          "Net worth",
+          "$35,000 custody, $10,000 discretion (state-registered advisers only)"
+        ],
+        [
+          "Federal covered IA",
+          "No state financial rules at all, just notice filing + fee"
+        ],
+        [
+          "Disclose impairment if",
+          "Custody, discretion or prepayment. Not performance fees."
+        ]
+      ],
+      "why": "Five misses. The state/federal pair is the gap, not either number."
+    },
+    {
+      "id": "t-who-notifies",
+      "kind": "rule",
+      "topic": "IV",
+      "unitId": "U2",
+      "count": 4,
+      "fromMisses": [
+        "u2q1-q07",
+        "u2q3-q02",
+        "u2exam-q15",
+        "rev16-q16"
+      ],
+      "trigger": "Someone hired or leaving: who tells the Administrator?",
+      "move": "Turn AUM into firm type first (over $110M = federal covered). The SEC is never told.",
+      "lines": [
+        [
+          "IAR, state-registered IA",
+          "The firm"
+        ],
+        [
+          "IAR, federal covered IA",
+          "The IAR"
+        ],
+        [
+          "BD agent",
+          "Agent AND firm, promptly"
+        ]
+      ],
+      "why": "Four misses from four different angles."
+    },
+    {
       "id": "t-form-adv-grid",
+      "kind": "rule",
+      "topic": "IV",
+      "unitId": "U2",
       "count": 3,
       "fromMisses": [
         "u2q2-q07",
         "u2exam-q05",
         "u6exam-q08"
       ],
-      "trigger": "any question about which part of Form ADV gets filed",
-      "move": "2A IS the brochure. 2B is the brochure SUPPLEMENT (about the individual advisers). 1A everyone files. 1B state only. 2B the state files, the SEC adviser only keeps on hand. SEC filing = 1A + 2A; state filing = 1A + 1B + 2A + 2B.",
-      "why": "Three misses across Units 2 and 6. On Oct 5 you offered 2B as the brochure."
-    },
-    {
-      "topic": "IV",
-      "unitId": "U4",
-      "kind": "rule",
-      "id": "t-bonus-is-a-sale",
-      "count": 2,
-      "fromMisses": [
-        "u4exam-q04",
-        "rev17-q07"
+      "trigger": "Which part of Form ADV",
+      "move": "2A IS the brochure. 2B is the supplement about the individual advisers.",
+      "lines": [
+        [
+          "1A",
+          "Everyone files"
+        ],
+        [
+          "1B",
+          "State only"
+        ],
+        [
+          "2A",
+          "Everyone files (the brochure)"
+        ],
+        [
+          "2B",
+          "State files it; SEC adviser keeps it on hand"
+        ]
       ],
-      "trigger": "offer vs sale, or a security given free, as a bonus, or as a gift",
-      "move": "OFFER = any attempt to dispose of a security, or to solicit an offer to buy, for value. SALE = the CONTRACT to dispose of a security for value. A security given as a BONUS with a purchase was sold for value. A gift of ASSESSABLE stock is a sale; NONASSESSABLE is not. If three choices say the same thing in different words, none of them is the answer.",
-      "why": "Two misses. On Oct 8 three of the four choices were versions of the offer definition and you picked one of them."
+      "why": "Three misses across Units 2 and 6."
     },
     {
+      "id": "t-dec-31-renewal",
+      "kind": "rule",
       "topic": "IV",
       "unitId": "U2",
-      "kind": "rule",
-      "id": "t-charged-vs-convicted",
-      "count": 1,
+      "count": 2,
       "fromMisses": [
-        "rev13-q07"
+        "u2q1-q13",
+        "rev17-q16"
       ],
-      "trigger": "grounds for denial, suspension or revocation of a registration",
-      "move": "CONVICTED, not charged - a pending charge is never a statutory basis. And NOTICE, not approval - custody requires notifying the Administrator, not getting permission. Failure to supervise IS grounds, and is heavily tested.",
-      "why": "Two word-pairs decide most of these questions: charged/convicted and notice/approval."
+      "trigger": "A renewal date",
+      "move": "Every registration expires December 31. No anniversaries, and fees aren't prorated.",
+      "why": "The same question, missed twice with opposite wrong answers."
     },
     {
+      "id": "t-records-belong-to-firms",
+      "kind": "rule",
       "topic": "IV",
       "unitId": "U3",
-      "kind": "rule",
-      "id": "t-agent-hangs-off-the-firm",
-      "count": 1,
+      "count": 4,
       "fromMisses": [
-        "rev13-q08"
+        "u2q2-q01",
+        "u2exam-q17",
+        "u3exam-q07",
+        "u6exam-q16"
       ],
-      "trigger": "a broker-dealer or adviser losing its registration",
-      "move": "An agent's or IAR's registration hangs off the firm's. Revoke the firm and every one of its people is suspended on the spot - they cannot work until they affiliate with an active firm.",
-      "why": "There is no such thing as a registered agent without a registered firm to be an agent of."
+      "trigger": "A record-keeping period, or whose books can be examined",
+      "move": "Records belong to firms. Agents and IARs have nothing to inspect.",
+      "lines": [
+        [
+          "Adviser records",
+          "5 years from the END of the fiscal year"
+        ],
+        [
+          "Organizational papers",
+          "3 years after the business ends"
+        ],
+        [
+          "BD ads and website",
+          "3 years from first use; each redesign restarts the clock"
+        ]
+      ],
+      "why": "Four misses. Check whose record it is before picking the number."
     },
     {
-      "topic": "IV",
-      "unitId": "U4",
-      "kind": "rule",
-      "id": "t-coordination-two-days",
-      "count": 1,
-      "fromMisses": [
-        "u4exam-q01"
-      ],
-      "trigger": "registration by coordination",
-      "move": "File with the SEC and the state together, send the state every amendment promptly, and get the price range and maximum underwriting compensation in at least TWO FULL BUSINESS DAYS before the effective date - not with the initial filing.",
-      "why": "The two-business-day timing is the one moving part in a method that otherwise just mirrors the federal filing."
-    },
-    {
-      "topic": "IV",
-      "unitId": "U4",
-      "kind": "rule",
-      "id": "t-indications-bind-nobody",
-      "count": 1,
-      "fromMisses": [
-        "u4q1-q15"
-      ],
-      "trigger": "indications of interest during the cooling-off period",
-      "move": "They bind NOBODY - not the customer, not the broker-dealer. Nothing can be sold yet, so no contract exists. During cooling off: no sales, no money, tombstone advertising only, red herring may circulate.",
-      "why": "You had the customer half right and then made the firm's side binding, which would need an agreement the law says cannot exist yet."
-    },
-    {
-      "topic": "IV",
-      "unitId": "U3",
-      "kind": "rule",
       "id": "t-who-owns-what-is-sold",
+      "kind": "rule",
+      "topic": "IV",
+      "unitId": "U3",
       "count": 2,
       "fromMisses": [
         "u3q2-q07",
         "rev16-q20"
       ],
-      "trigger": "a question asking whether an entity is a broker-dealer, an issuer or an agent",
-      "move": "Sort by who owns what is being sold and whose account the money lands in. Selling your OWN securities = issuer (never a BD). Selling someone else's = broker-dealer. An individual doing it for a firm = agent. Agents and IARs are always individuals; everything else can be a firm or a person.",
-      "why": "Two misses. On Oct 5 you counted a bank-owned broker-dealer as an agent. A firm is never an agent; strike it before reading anything else."
+      "trigger": "Issuer, broker-dealer or agent?",
+      "move": "Selling its own securities = issuer. Someone else's = BD. An individual selling for a firm = agent. A firm is never an agent."
     },
     {
+      "id": "t-agent-hangs-off-the-firm",
+      "kind": "rule",
       "topic": "IV",
       "unitId": "U3",
-      "kind": "rule",
+      "count": 1,
+      "fromMisses": [
+        "rev13-q08"
+      ],
+      "trigger": "A firm loses its registration",
+      "move": "Its agents and IARs are suspended until they join an active firm."
+    },
+    {
       "id": "t-issuer-employee-agent",
+      "kind": "rule",
+      "topic": "IV",
+      "unitId": "U3",
       "count": 1,
       "fromMisses": [
         "u3exam-q12"
       ],
-      "trigger": "an employee of an issuer selling the company's own stock to other employees",
-      "move": "Sales-related COMPENSATION is the switch. Straight salary and processing paperwork = not an agent. Any commission, direct or indirect = agent.",
-      "why": "You dropped the compensation condition, which is the only thing the exemption depends on."
+      "trigger": "An issuer's employee selling company stock to employees",
+      "move": "An agent only if paid sales-related compensation. Straight salary means not an agent."
     },
     {
-      "topic": "IV",
-      "unitId": "U1",
+      "id": "t-exempt-transactions",
       "kind": "rule",
-      "id": "t-office-before-aum",
-      "count": 1,
-      "fromMisses": [
-        "u1exam-q05"
-      ],
-      "trigger": "an exemption choice that quotes a dollar figure of assets under management",
-      "move": "Check for a place of business in the state FIRST. Then the ladder: $100M may choose SEC, $110M must be SEC, below $90M on the annual amendment means 180 days back to the states. A new adviser expecting $100M within 120 days may register with the SEC early.",
-      "why": "The $90M in your chosen answer was real but belonged to a different rule."
-    },
-    {
       "topic": "IV",
-      "unitId": "U1",
-      "kind": "rule",
-      "id": "t-publisher-both-ways",
-      "count": 2,
-      "fromMisses": [
-        "u1exam-q11",
-        "u1exam-q12"
-      ],
-      "trigger": "a publisher, newsletter or subscription-report question",
-      "move": "One test: could this exact issue go to every subscriber unchanged? Yes = publisher, excluded. Written around an individual's objectives = investment adviser.",
-      "why": "Wrong in both directions on the same exam."
-    },
-    {
-      "topic": "IV",
-      "unitId": "U1",
-      "kind": "rule",
-      "id": "t-exempt-reporting-adviser",
-      "count": 1,
-      "fromMisses": [
-        "u1exam-q07"
-      ],
-      "trigger": "the term \"exempt reporting adviser\"",
-      "move": "Read the name literally: EXEMPT from registering, still REPORTING. Only two routes in - venture capital fund adviser, or private fund adviser under $150M.",
-      "why": "Anything describing a registered adviser fails on the first word."
-    },
-    {
-      "topic": "IV",
-      "unitId": "U1",
-      "kind": "rule",
-      "id": "t-investment-counsel",
-      "count": 1,
-      "fromMisses": [
-        "u1qz3-q05"
-      ],
-      "trigger": "the title \"investment counsel\"",
-      "move": "Two tests, neither about lawyers: advice is the firm's PRIMARY business, and it provides investment supervisory services.",
-      "why": "\"Counsel\" has nothing to do with the bar."
-    },
-    {
-      "topic": "IV",
-      "unitId": "U1",
-      "kind": "rule",
-      "id": "t-in-the-business",
-      "count": 2,
-      "cleared": true,
-      "fromMisses": [
-        "u1qz1-q04",
-        "u1qz1-q07"
-      ],
-      "trigger": "a question asking which criteria make someone \"in the business\" of giving investment advice",
-      "move": "Count exactly three: gives advice regularly + is paid FOR THE ADVICE + (under IA-1092) holds himself out. Strike anything about earnings from executing transactions.",
-      "why": "Missed twice on Sep 16, then right on Sep 17 and again on Sep 23. Cleared."
-    },
-    {
-      "topic": "IV",
-      "kind": "rule",
-      "id": "t-cancel-vs-revoke",
-      "unitId": "U5",
-      "count": 3,
-      "fromMisses": [
-        "u5q2-q03",
-        "u5exam-q04",
-        "u5exam-q13"
-      ],
-      "trigger": "an Administrator ending a registration: cancel, revoke, suspend or withdraw",
-      "move": "Ask one thing: did someone DO something wrong? No, so CANCEL (housekeeping): mentally incompetent, can't be located / mail comes back 'no forwarding address', out of business. Yes, so REVOKE: any felony conviction (securities-related or not), fraud, failure to supervise. 'Public interest' alone justifies neither. WITHDRAW is the registrant's own request, effective in 30 days if nothing is pending.",
-      "why": "Three misses in one afternoon. Quiz 2 taught that incompetence matters, then you paired it with 'revoke' twice on the exam. Learn the pair, not the word: incompetence goes with cancel."
-    },
-    {
-      "topic": "IV",
-      "kind": "rule",
-      "id": "t-unit5-numbers",
-      "unitId": "U5",
-      "count": 4,
-      "fromMisses": [
-        "u5q2-q13",
-        "u5exam-q01",
-        "u5exam-q03",
-        "u5exam-q15"
-      ],
-      "trigger": "a deadline, fine or prison term under the USA",
-      "move": "Circle CIVIL or CRIMINAL first. Civil suit: the EARLIER of 3 years from the sale or 2 years from discovery (work out both dates). Criminal: 5 years to prosecute; max $5,000 and/or 3 years in prison. Appeal a final order to court: 60 days. Summary order: 15 days to ask for a hearing. Withdrawal takes effect: 30 days.",
-      "why": "Four misses, and every wrong answer was a real number from the rule next door: the 5-year limit used as a prison term, the civil limit on a criminal question, Unit 2's 90 days for an appeal. You got $5,000/3 years and 60 days right the same day. These are swaps, not gaps. Improving: on Oct 5 you got the $5,000/3 years penalty and the civil limit right on review quizzes."
-    },
-    {
-      "topic": "IV",
-      "kind": "rule",
-      "id": "t-jurisdiction",
-      "unitId": "U5",
-      "count": 2,
-      "fromMisses": [
-        "u5q1-q05",
-        "u5exam-q10"
-      ],
-      "trigger": "an offer by phone, mail or newspaper and a question about which state has jurisdiction",
-      "move": "Jurisdiction = where the offer STARTS + where it's ACCEPTED. A cell phone counts at the owner's home state unless the client accepts from somewhere else. Paperwork afterward (where a certificate was mailed from) never counts. Newspaper published OUT of state: never an offer in the state. Published IN state: excluded only if more than 2/3 of circulation is outside the state.",
-      "why": "Both misses put the offer where it was physically received or seen, not where it legally happened. You got the phone version right on Quiz 2 Q5."
-    },
-    {
-      "topic": "IV",
-      "kind": "rule",
-      "id": "t-rule-vs-order",
-      "unitId": "U5",
-      "count": 1,
-      "fromMisses": [
-        "u5q2-q08"
-      ],
-      "trigger": "an Administrator action and a question whether it is a rule, an order or a law",
-      "move": "Applies to EVERYONE (a fee, a filing requirement) = RULE. Aimed at ONE person or firm (a suspension, a stop order) = ORDER. Law = the legislature only. Orders are what can be appealed (60 days).",
-      "why": "One miss. You called both actions rules because both touched securities professionals. The test is who the action is aimed at."
-    },
-    {
-      "topic": "IV",
-      "kind": "rule",
-      "id": "t-disclosure-not-merit",
-      "unitId": "U5",
-      "count": 1,
-      "fromMisses": [
-        "u5exam-q09"
-      ],
-      "trigger": "grounds to deny, suspend or revoke a securities ISSUE's registration",
-      "move": "The USA is a disclosure law, not a merit test. A prospectus that honestly says the business will probably fail is fine. A misstatement of NONMATERIAL information is not grounds. Grounds: another state's revocation, an officer's securities-related conviction, incomplete filing, unreasonable underwriting pay, unpaid fees.",
-      "why": "One miss, from adding too much this time: you counted a nonmaterial misstatement as grounds."
-    },
-    {
-      "topic": "IV",
-      "kind": "rule",
-      "id": "t-inexperience-condition",
-      "unitId": "U5",
-      "count": 1,
-      "fromMisses": [
-        "u5exam-q05"
-      ],
-      "trigger": "an applicant with no experience in the role they are registering for",
-      "move": "Inexperience ALONE is never grounds to deny. What the Administrator CAN do is register a broker-dealer on the CONDITION that it stays out of the advisory business in the state, if it isn't qualified as an adviser.",
-      "why": "One miss. 'No experience' looks like a denial reason and never is."
-    },
-    {
-      "topic": "IV",
-      "kind": "rule",
-      "id": "t-variable-is-security",
       "unitId": "U4",
-      "count": 1,
-      "fromMisses": [
-        "rev14-q07"
-      ],
-      "trigger": "an insurance product and a question whether it is a security",
-      "move": "Look for the word VARIABLE. Variable annuity or variable life = security. Index annuity, fixed annuity, modified endowment = not a security.",
-      "why": "One miss, after six and a half minutes on a one-word rule. When the rule is one word, don't overthink it."
-    },
-    {
-      "topic": "IV",
-      "kind": "rule",
-      "id": "t-brochure-delivery",
-      "unitId": "U6",
       "count": 5,
       "fromMisses": [
-        "u6q1-q01",
-        "u6q1-q13",
-        "u6q2-q14",
-        "rev16-q03",
-        "u6exam-q03"
+        "u4q1-q12",
+        "u4q1-q14",
+        "u4q2-q02",
+        "u4q2-q10",
+        "rev15-q08"
       ],
-      "trigger": "the adviser brochure: when it's delivered, how a client cancels, or who is exempt",
-      "move": "Two legal timings: 48 hours BEFORE signing, OR AT signing + 5 BUSINESS DAYS to cancel without penalty (the adviser keeps a pro-rated fee for work already done). '48 hours after' is never right, and '48 hours before' is an option, not a must. The yearly must: updated brochure or summary of material changes within 120 days of fiscal year-end, only if something material changed. Only two exemptions: registered investment company clients, and impersonal advice under $500 a year. No signed receipt needed, no waivers ever.",
-      "why": "Five misses in three days, your biggest new group. Most treated '48 hours before' as the only option, or moved the 48 hours to after signing."
+      "trigger": "Is the TRANSACTION exempt?",
+      "move": "Client called and asked = unsolicited = exempt, even for an unregistered stock.",
+      "lines": [
+        [
+          "Exempt",
+          "Unsolicited, isolated nonissuer, institutional buyers, private placement to 10 or fewer retail in 12 months"
+        ],
+        [
+          "Not exempt",
+          "A sale to an ordinary operating company"
+        ],
+        [
+          "Administrator",
+          "Can't ban unsolicited orders, only verify them"
+        ]
+      ],
+      "why": "Five misses. You get it when the stem says 'unsolicited' and miss it when it only describes one."
     },
     {
-      "topic": "IV",
-      "kind": "rule",
-      "id": "t-principal-vs-agency",
-      "unitId": "U6",
-      "count": 3,
-      "fromMisses": [
-        "u6q2-q02",
-        "rev16-q05",
-        "u6exam-q02"
-      ],
-      "trigger": "principal, agency, or agency cross in a trade with a client",
-      "move": "PRINCIPAL = the firm itself is the buyer or seller (it buys shares out of the client's account, or sells from its own inventory). AGENCY = the firm arranges a trade between two others; an AGENCY CROSS is agent for BOTH sides and is never principal. Adviser as principal: written disclosure + client consent before the trade completes. Broker-dealer as principal: disclosure on the confirmation only.",
-      "why": "Three misses, including the same question twice 20 minutes apart with 'agency cross' as the answer both times. The word 'agency' in the name tells you it isn't principal."
-    },
-    {
-      "topic": "IV",
-      "kind": "rule",
-      "id": "t-ordinary-business",
-      "unitId": "U6",
-      "count": 2,
-      "fromMisses": [
-        "u6q1-q02",
-        "rev15-q10"
-      ],
-      "trigger": "a list of practices or grounds for action that includes an everyday business decision",
-      "move": "Strike the ordinary stuff first: graduated fee schedules, disclosed agency crosses, discounts offered equally, firing staff. Those are just business. Real violations or grounds: a partner change not told to clients, pledging control stock without client consent (that's an assignment), insolvency, convictions.",
-      "why": "Two misses, both from picking every item on the list. The Administrator acts on statutory grounds, not on decisions it might dislike."
-    },
-    {
-      "topic": "IV",
-      "kind": "rule",
-      "id": "t-fees-fit-the-account",
-      "unitId": "U6",
-      "count": 2,
-      "fromMisses": [
-        "u6q2-q05",
-        "u6q1-q14"
-      ],
-      "trigger": "a broker-dealer fee question",
-      "move": "Check each fee against what the account can actually do: a cash account never borrows, so it never pays margin interest; maintenance fees are normal, even on small accounts. Fee schedule missing when opening an account: don't fund the account until you have it (not: report the firm).",
-      "why": "Two misses, both from picking the answer that felt unfair instead of the one that fit the facts."
-    },
-    {
-      "topic": "IV",
-      "kind": "rule",
-      "id": "t-disclose-conflicts-only",
-      "unitId": "U6",
-      "count": 1,
-      "fromMisses": [
-        "u6q2-q08"
-      ],
-      "trigger": "what an adviser MUST disclose to clients",
-      "move": "Disclose conflicts and bad news, never their absence. Affiliation with the executing broker-dealer: disclose. Trading AGAINST its own advice: disclose; trading consistently: no. Disciplinary history: disclose; a clean record: no.",
-      "why": "One miss. You picked a statement describing no conflict at all."
-    },
-    {
-      "topic": "IV",
-      "kind": "rule",
-      "id": "t-content-not-device",
-      "unitId": "U6",
-      "count": 3,
-      "fromMisses": [
-        "u6exam-q06",
-        "rev17-q06",
-        "rev17-q20"
-      ],
-      "trigger": "social media, a firm website, or linking to someone else's content",
-      "move": "Regulators judge the CONTENT, never the device or platform. STATIC (profile, banner ad, posted article) = advertisement, approved BEFORE it goes up. INTERACTIVE (live chat, real-time replies) = correspondence, supervised after. Linking to or endorsing someone else's content = ADOPTION; helping write or edit it = ENTANGLEMENT. Either one makes the firm responsible for it.",
-      "why": "Three misses. You had static vs interactive right on Oct 3 and reversed the approval rule on Oct 8, so this is fading since Unit 6, not new."
-    },
-    {
-      "topic": "IV",
-      "kind": "rule",
       "id": "t-federal-covered",
+      "kind": "rule",
+      "topic": "IV",
       "unitId": "U4",
       "count": 5,
       "fromMisses": [
@@ -5776,121 +5601,499 @@ const SYNC = {
         "rev17-q11",
         "rev17-q14"
       ],
-      "trigger": "'federal covered', or how a security can lawfully be sold in a state",
-      "move": "Four routes to a lawful sale in a state: registered WITH THE STATE, exempt security, exempt transaction, or federal covered. 'Registered with the SEC' is NOT one of them. Federal covered is a category, not a registration: registered investment company shares (mutual funds, UITs, closed-end funds), anything listed on a U.S. national exchange plus everything senior to it, Rule 506 offerings, and munis EXCEPT a muni sold in its own state. The state gets a notice filing and fee, never registration.",
-      "why": "Five misses. The same question twice (Sep 29, Oct 8) with a different wrong answer each time, both treating 'federal covered' as a kind of registration."
+      "trigger": "'Federal covered', or how a sale becomes lawful in a state",
+      "move": "A category, not a registration. The state gets a notice filing and fee, never registration.",
+      "lines": [
+        [
+          "Lawful sale needs one of",
+          "State-registered, exempt security, exempt transaction, federal covered (NOT 'SEC-registered')"
+        ],
+        [
+          "Federal covered",
+          "Mutual funds, UITs, closed-end funds; U.S. exchange-listed and anything senior; Rule 506; out-of-state munis"
+        ],
+        [
+          "Not federal covered",
+          "A muni sold in its own state; Montreal or Toronto listings"
+        ]
+      ],
+      "why": "The same question missed twice, both times treating federal covered as a registration."
     },
     {
-      "topic": "IV",
+      "id": "t-exempt-securities-conditions",
       "kind": "rule",
-      "id": "t-dec-31-renewal",
-      "unitId": "U2",
+      "topic": "IV",
+      "unitId": "U4",
+      "count": 3,
+      "fromMisses": [
+        "u4q1-q03",
+        "u4q2-q12",
+        "u4exam-q11"
+      ],
+      "trigger": "Is the SECURITY exempt?",
+      "move": "Check the condition attached. That's what gets tested.",
+      "lines": [
+        [
+          "S&L, insurer",
+          "Authorized in the state"
+        ],
+        [
+          "Railroad",
+          "Rate-regulated"
+        ],
+        [
+          "Commercial paper",
+          "$50,000+, top-3 rating, 9 months or less"
+        ],
+        [
+          "Foreign bonds",
+          "Issued by a country, not a city"
+        ]
+      ],
+      "why": "Three misses on conditions; commercial paper was right on the Oct 5 retest."
+    },
+    {
+      "id": "t-bonus-is-a-sale",
+      "kind": "rule",
+      "topic": "IV",
+      "unitId": "U4",
       "count": 2,
       "fromMisses": [
-        "u2q1-q13",
-        "rev17-q16"
+        "u4exam-q04",
+        "rev17-q07"
       ],
-      "trigger": "a registration renewal date or 'was this renewal timely?'",
-      "move": "Every registration under the USA (BD, agent, IA, IAR) expires DECEMBER 31, whenever it was granted. No anniversaries, and the fee isn't prorated.",
-      "why": "The identical question missed Sep 18 and Oct 8 with opposite wrong answers. Both times you gave someone an anniversary date."
+      "trigger": "Offer vs sale, or a 'free' bonus security",
+      "move": "Offer = the attempt. Sale = the contract for value. A bonus share given with a purchase is part of the sale.",
+      "why": "If three choices say the same thing in different words, none of them is the answer."
     },
     {
-      "topic": "IV",
+      "id": "t-coordination-two-days",
       "kind": "rule",
+      "topic": "IV",
+      "unitId": "U4",
+      "count": 1,
+      "fromMisses": [
+        "u4exam-q01"
+      ],
+      "trigger": "Registration by coordination",
+      "move": "Price range and max underwriting pay are due 2 full business days before it's effective, not with the first filing."
+    },
+    {
+      "id": "t-indications-bind-nobody",
+      "kind": "rule",
+      "topic": "IV",
+      "unitId": "U4",
+      "count": 1,
+      "fromMisses": [
+        "u4q1-q15"
+      ],
+      "trigger": "Indications of interest in the cooling-off period",
+      "move": "They bind nobody, customer or BD. No sales, no money; red herring and tombstone only."
+    },
+    {
+      "id": "t-variable-is-security",
+      "kind": "rule",
+      "topic": "IV",
+      "unitId": "U4",
+      "count": 1,
+      "fromMisses": [
+        "rev14-q07"
+      ],
+      "trigger": "Is this insurance product a security?",
+      "move": "Only if it says VARIABLE."
+    },
+    {
+      "id": "t-unit5-numbers",
+      "kind": "rule",
+      "topic": "IV",
+      "unitId": "U5",
+      "count": 4,
+      "fromMisses": [
+        "u5q2-q13",
+        "u5exam-q01",
+        "u5exam-q03",
+        "u5exam-q15"
+      ],
+      "trigger": "A deadline, fine or prison term",
+      "move": "Circle CIVIL or CRIMINAL first.",
+      "lines": [
+        [
+          "Civil suit",
+          "Earlier of 2 years from discovery or 3 years from the sale"
+        ],
+        [
+          "Criminal",
+          "5 years to prosecute"
+        ],
+        [
+          "Max penalty",
+          "$5,000 and/or 3 years"
+        ],
+        [
+          "Appeal an order",
+          "60 days"
+        ],
+        [
+          "Summary order",
+          "Hearing within 15 days of a request"
+        ],
+        [
+          "Withdrawal",
+          "Effective in 30 days"
+        ]
+      ],
+      "why": "Four misses, each a real number from the rule next door. Holding up on review since Oct 5."
+    },
+    {
+      "id": "t-cancel-vs-revoke",
+      "kind": "rule",
+      "topic": "IV",
+      "unitId": "U5",
+      "count": 6,
+      "fromMisses": [
+        "u5q2-q03",
+        "u5exam-q04",
+        "u5exam-q13",
+        "rev13-q07",
+        "u5exam-q05",
+        "u5exam-q09"
+      ],
+      "trigger": "Cancel, revoke, deny: what are the grounds?",
+      "move": "Wrongdoing or insolvency means revoke or suspend. Can't function means cancel.",
+      "lines": [
+        [
+          "Revoke / suspend / deny",
+          "Conviction (any felony), fraud, failure to supervise, insolvency"
+        ],
+        [
+          "Cancel",
+          "Mentally incompetent, can't be located, out of business"
+        ],
+        [
+          "Withdraw",
+          "The registrant asks; effective in 30 days"
+        ],
+        [
+          "Never enough on its own",
+          "Being charged, inexperience (may condition instead), public interest"
+        ],
+        [
+          "A securities issue",
+          "Disclosure law: an honest 'likely to fail' is fine; nonmaterial errors aren't grounds"
+        ]
+      ],
+      "why": "Six misses. Incompetence goes with CANCEL; charged isn't convicted."
+    },
+    {
+      "id": "t-jurisdiction",
+      "kind": "rule",
+      "topic": "IV",
+      "unitId": "U5",
+      "count": 2,
+      "fromMisses": [
+        "u5q1-q05",
+        "u5exam-q10"
+      ],
+      "trigger": "Which state has jurisdiction over an offer?",
+      "move": "Where the offer starts plus where it's accepted. A cell phone counts at the owner's home.",
+      "lines": [
+        [
+          "Out-of-state newspaper",
+          "Never creates jurisdiction"
+        ],
+        [
+          "In-state newspaper",
+          "Excluded if more than 2/3 circulates outside the state"
+        ],
+        [
+          "Mailed paperwork afterward",
+          "Doesn't count"
+        ]
+      ]
+    },
+    {
+      "id": "t-rule-vs-order",
+      "kind": "rule",
+      "topic": "IV",
+      "unitId": "U5",
+      "count": 1,
+      "fromMisses": [
+        "u5q2-q08"
+      ],
+      "trigger": "Rule, order or law?",
+      "move": "Applies to everyone = rule. Aimed at one person = order (appealable within 60 days). Law = legislature only."
+    },
+    {
+      "id": "t-brochure-delivery",
+      "kind": "rule",
+      "topic": "IV",
+      "unitId": "U6",
+      "count": 5,
+      "fromMisses": [
+        "u6q1-q01",
+        "u6q1-q13",
+        "u6q2-q14",
+        "rev16-q03",
+        "u6exam-q03"
+      ],
+      "trigger": "Brochure timing, cancellation or exemptions",
+      "move": "Two legal timings. '48 hours before' is an option, not a must.",
+      "lines": [
+        [
+          "Option 1",
+          "48 hours BEFORE signing"
+        ],
+        [
+          "Option 2",
+          "AT signing + 5 business days to cancel (pro-rated fee kept)"
+        ],
+        [
+          "Every year",
+          "Within 120 days of fiscal year-end, only if something material changed"
+        ],
+        [
+          "Exempt",
+          "Registered investment company clients; impersonal advice under $500 a year"
+        ],
+        [
+          "Never",
+          "Delivery after signing, or a waiver. No signed receipt needed."
+        ]
+      ],
+      "why": "Five misses in three days, none since."
+    },
+    {
+      "id": "t-principal-vs-agency",
+      "kind": "rule",
+      "topic": "IV",
+      "unitId": "U6",
+      "count": 3,
+      "fromMisses": [
+        "u6q2-q02",
+        "rev16-q05",
+        "u6exam-q02"
+      ],
+      "trigger": "Principal, agency, agency cross",
+      "move": "Principal = the firm IS the buyer or seller. Agency cross = agent for both sides, never principal.",
+      "lines": [
+        [
+          "IA as principal",
+          "Written disclosure + client consent before completion"
+        ],
+        [
+          "BD as principal",
+          "Disclosed on the confirmation"
+        ]
+      ],
+      "why": "Same question missed twice in 20 minutes; none since."
+    },
+    {
+      "id": "t-content-not-device",
+      "kind": "rule",
+      "topic": "IV",
+      "unitId": "U6",
+      "count": 3,
+      "fromMisses": [
+        "u6exam-q06",
+        "rev17-q06",
+        "rev17-q20"
+      ],
+      "trigger": "Social media, websites, linked content",
+      "move": "Content decides, never the device.",
+      "lines": [
+        [
+          "Static (profile, ad)",
+          "Approved BEFORE posting"
+        ],
+        [
+          "Interactive (chat)",
+          "Supervised after, like correspondence"
+        ],
+        [
+          "Links to or endorses it",
+          "Adoption"
+        ],
+        [
+          "Helped write it",
+          "Entanglement"
+        ]
+      ],
+      "why": "Right on Oct 3, reversed on Oct 8."
+    },
+    {
+      "id": "t-ordinary-business",
+      "kind": "rule",
+      "topic": "IV",
+      "unitId": "U6",
+      "count": 2,
+      "fromMisses": [
+        "u6q1-q02",
+        "rev15-q10"
+      ],
+      "trigger": "A list of practices that includes normal business",
+      "move": "Strike the normal stuff first: graduated fees, disclosed agency crosses, firing staff. Not telling clients about a partner change is a violation."
+    },
+    {
+      "id": "t-fees-fit-the-account",
+      "kind": "rule",
+      "topic": "IV",
+      "unitId": "U6",
+      "count": 2,
+      "fromMisses": [
+        "u6q2-q05",
+        "u6q1-q14"
+      ],
+      "trigger": "A broker-dealer fee question",
+      "move": "Match the fee to what the account can do: a cash account never pays margin interest. No fee schedule yet? Don't fund the account."
+    },
+    {
+      "id": "t-disclose-conflicts-only",
+      "kind": "rule",
+      "topic": "IV",
+      "unitId": "U6",
+      "count": 1,
+      "fromMisses": [
+        "u6q2-q08"
+      ],
+      "trigger": "What an adviser MUST disclose",
+      "move": "Conflicts and bad news only, never their absence (a clean record, trading in line with the advice)."
+    },
+    {
       "id": "t-code-of-ethics-clock",
+      "kind": "rule",
+      "topic": "IV",
       "unitId": "U7",
       "count": 2,
       "fromMisses": [
         "u7q1-q09",
         "u7q2-q11"
       ],
-      "trigger": "a compliance or code-of-ethics deadline",
-      "move": "CCO reviews the policies: ANNUALLY. Access person: initial holdings report within 10 days, holdings annually, transaction report within 30 days after each QUARTER. Form 13F ($100M+): quarterly, within 45 days. The firm's internal report (30) is due before the public SEC filing (45).",
-      "why": "Two misses, each borrowing a real number from the neighboring rule, the same swap habit as the Unit 5 numbers. You got 13F right on the checkpoint."
+      "trigger": "A compliance deadline",
+      "move": "The internal report (30 days) comes before the public filing (45 days).",
+      "lines": [
+        [
+          "CCO reviews policies",
+          "Annually"
+        ],
+        [
+          "Access person holdings",
+          "Within 10 days, then annually"
+        ],
+        [
+          "Access person trades",
+          "30 days after each quarter"
+        ],
+        [
+          "Form 13F",
+          "45 days after each quarter"
+        ]
+      ]
     },
     {
-      "topic": "IV",
-      "kind": "rule",
       "id": "t-custody",
+      "kind": "rule",
+      "topic": "IV",
       "unitId": "U7",
       "count": 2,
       "fromMisses": [
         "u7q1-q11",
         "u7exam-q14"
       ],
-      "trigger": "whether an adviser has custody, or when custody is allowed",
-      "move": "Custody = control over the CLIENT's assets. IS custody: holding certificates, passwords that can move money, deducting fees straight from the account. NOT custody: a fee check made out to the adviser (that's the adviser's money). Legal under the USA if no Administrator rule forbids it + the adviser notifies the Administrator. Discretion doesn't affect the right to custody; it only changes the net worth: $35,000 custody, $10,000 discretion only.",
-      "why": "Two misses: one on the conditions, one on what counts (and that one was a NOT question). The misdelivered-certificates question came up on the Oct 11 review and you got it right."
+      "trigger": "Does the adviser have custody?",
+      "move": "Custody = control over the CLIENT's assets.",
+      "lines": [
+        [
+          "Custody",
+          "Holding certificates, passwords that can move money, deducting fees"
+        ],
+        [
+          "Not custody",
+          "A fee check payable to the adviser; a third-party check forwarded within 3 business days"
+        ],
+        [
+          "Allowed if",
+          "No Administrator rule against it + notice to the Administrator"
+        ]
+      ],
+      "why": "Two misses; the misdelivered-certificates retest on Oct 11 was right."
     },
     {
-      "topic": "IV",
-      "kind": "rule",
       "id": "t-discretion-who",
+      "kind": "rule",
+      "topic": "IV",
       "unitId": "U7",
       "count": 1,
       "fromMisses": [
         "u7exam-q02"
       ],
-      "trigger": "discretionary authority and a trade made before the paperwork came back",
-      "move": "Spot the actor first. BD or agent: WRITTEN authority BEFORE the first discretionary trade. IA or IAR: ORAL authority is good for 10 business days after the first discretionary trade; the written form must arrive by then.",
-      "why": "One miss, from applying the broker-dealer rule to an IAR. You went 9 for 9 on discretion questions in the quizzes, so this is the one distinction to lock. Three more discretion questions were right on the Oct 11 review."
+      "trigger": "Discretion before the paperwork arrives",
+      "move": "IA or IAR: oral is fine for 10 business days after the first trade. BD agent: written BEFORE the first trade."
     },
     {
-      "topic": "IV",
+      "id": "t-suitability",
       "kind": "rule",
-      "id": "t-no-waivers",
+      "topic": "IV",
       "unitId": "U7",
-      "count": 1,
+      "count": 2,
       "fromMisses": [
-        "u7q1-q05"
+        "rev18-q15",
+        "rev18-q19"
       ],
-      "trigger": "a contract clause that limits the adviser's liability",
-      "move": "A client can never waive his rights or the adviser's fiduciary duty, even in writing with full disclosure. Exculpatory clause = always prohibited. A hedge clause covering events outside the firm's control (a tornado) = allowed.",
-      "why": "One miss. Disclosure plus consent fixes a lot in this course, which is why the wrong answer felt right; it can't fix a waiver."
+      "trigger": "One stock for every client, or an unsuitable pick",
+      "move": "A blanket recommendation is unethical even with disclosure. Unsuitable = Administrator action against the agent, not rescission."
     },
     {
-      "topic": "IV",
-      "kind": "rule",
-      "id": "t-confidentiality-exits",
-      "unitId": "U7",
-      "count": 1,
-      "fromMisses": [
-        "u7q2-q09"
-      ],
-      "trigger": "when an adviser may reveal client information",
-      "move": "Two exits, each enough on its own: the client consents, OR the law requires it (IRS summons, subpoena, regulator). A marketing campaign is neither.",
-      "why": "One miss: you required client consent even where the law already compelled disclosure."
-    },
-    {
-      "topic": "IV",
-      "kind": "rule",
-      "id": "t-commission-sharing",
-      "unitId": "U7",
-      "count": 1,
-      "fromMisses": [
-        "u7q2-q02"
-      ],
-      "trigger": "two agents sharing commissions",
-      "move": "Two tests: same (or affiliated) broker-dealer, AND each agent registered in the state where the trade happened. They can share only in states where both are registered.",
-      "why": "One miss. You applied the first test and skipped the second."
-    },
-    {
-      "topic": "IV",
-      "kind": "rule",
       "id": "t-fraud-gain-and-intent",
+      "kind": "rule",
+      "topic": "IV",
       "unitId": "U7",
       "count": 2,
       "fromMisses": [
         "u7q1-q06",
         "u7q2-q17"
       ],
-      "trigger": "identity theft, market manipulation or other fraud",
-      "move": "Ask two things. What does the wrongdoer GAIN? An identity thief borrows and spends in your name; he never lends. Was it DELIBERATE? Manipulation is fraud, so intent decides it, not the size of the trade, the security or the market.",
-      "why": "Two misses: one from reading 'lending' too fast, one from picking scope over intent."
+      "trigger": "Identity theft or manipulation",
+      "move": "Intent decides manipulation, not size. Identity thieves borrow in your name; they never lend."
     },
     {
+      "id": "t-no-waivers",
       "kind": "rule",
+      "topic": "IV",
+      "unitId": "U7",
+      "count": 1,
+      "fromMisses": [
+        "u7q1-q05"
+      ],
+      "trigger": "A clause limiting the adviser's liability",
+      "move": "Exculpatory (client waives rights): never. A hedge clause for events outside the firm's control: fine."
+    },
+    {
+      "id": "t-confidentiality-exits",
+      "kind": "rule",
+      "topic": "IV",
+      "unitId": "U7",
+      "count": 1,
+      "fromMisses": [
+        "u7q2-q09"
+      ],
+      "trigger": "Releasing client information",
+      "move": "Client consent OR legal compulsion (IRS summons, subpoena). Either one alone is enough."
+    },
+    {
+      "id": "t-commission-sharing",
+      "kind": "rule",
+      "topic": "IV",
+      "unitId": "U7",
+      "count": 1,
+      "fromMisses": [
+        "u7q2-q02"
+      ],
+      "trigger": "Agents sharing commissions",
+      "move": "Same or affiliated BD, AND both registered in the state where the trade happened."
+    },
+    {
       "id": "t-tvm-direction",
+      "kind": "rule",
       "topic": "I",
       "unitId": "U8",
       "count": 6,
@@ -5902,13 +6105,31 @@ const SYNC = {
         "rev18-q18",
         "u8exam-q16"
       ],
-      "trigger": "present value, a discount rate, NPV or IRR",
-      "move": "Rate and present value sit on a SEESAW: lower rate, higher PV (you need more today), same as bond prices and yields. In a PV problem the future amount is fixed; only today's number moves. Future to today = DISCOUNT rate; today to future = compounding. NPV = PV of cash flows minus cost: positive = buy, zero = fair, negative = overpaying. IRR above the required return = positive NPV. IRR assumes reinvestment AT the IRR; NPV at the discount (market) rate. It's net PRESENT value, so 'future value' in an NPV definition is the false word.",
-      "why": "Six misses in one afternoon, while you got NPV right several times the same day (Quiz 1 Q16, Quiz 2 Q10 and Q11, Exam Q8 and Q10). The concepts are there; the direction and the vocabulary slip."
+      "trigger": "PV, discount rate, NPV, IRR",
+      "move": "Rate and PV move in opposite directions, like a seesaw. NPV above zero = buy.",
+      "lines": [
+        [
+          "Future to today",
+          "Discount rate"
+        ],
+        [
+          "IRR vs required return",
+          "IRR higher means NPV positive"
+        ],
+        [
+          "Reinvestment assumed",
+          "IRR at the IRR; NPV at the discount rate"
+        ],
+        [
+          "NPV",
+          "PRESENT value of the cash flows minus cost"
+        ]
+      ],
+      "why": "Six misses in one afternoon while getting NPV right elsewhere: direction and vocabulary, not the concept."
     },
     {
-      "kind": "rule",
       "id": "t-financial-statements",
+      "kind": "rule",
       "topic": "I",
       "unitId": "U8",
       "count": 5,
@@ -5919,13 +6140,35 @@ const SYNC = {
         "u8exam-q09",
         "u8exam-q11"
       ],
-      "trigger": "a financial-statement or ratio question",
-      "move": "Write the formula first, then pull only the inputs it names; extra numbers are bait. Net profit margin = net profit / sales (net profit is already after interest and taxes). Current ratio = CURRENT assets / CURRENT liabilities; one non-current item (equipment, long-term debt, equity) kills the choice. Only expenses and losses reduce net income; dividends are paid OUT OF it. Cash basis books a sale when paid, accrual when it happens. For dividend income, compute the dollars (payout ratio x EPS) before comparing.",
-      "why": "Five misses on Oct 11, and the slowest questions were the statement-reading ones. On the P/E question you got the ratio right and missed that the dividend stayed $1.00."
+      "trigger": "Ratios and financial statements",
+      "move": "Write the formula first; take only the inputs it names.",
+      "lines": [
+        [
+          "Net margin",
+          "Net profit / sales (already after interest)"
+        ],
+        [
+          "Current ratio",
+          "Current items only"
+        ],
+        [
+          "Net income",
+          "Cut by expenses and losses, never by dividends"
+        ],
+        [
+          "Cash vs accrual",
+          "When it's paid vs when it happens"
+        ],
+        [
+          "Dividend income",
+          "Work out the dollars: payout ratio x EPS"
+        ]
+      ],
+      "why": "Five misses; the slowest questions of the day."
     },
     {
-      "kind": "rule",
       "id": "t-sd-and-risk",
+      "kind": "rule",
       "topic": "I",
       "unitId": "U8",
       "count": 2,
@@ -5933,23 +6176,18 @@ const SYNC = {
         "u8q2-q17",
         "u8exam-q02"
       ],
-      "trigger": "standard deviation, a '95% of the time' range, or types of risk",
-      "move": "Find the percentage first: 68% = 1 SD, 95% = 2 SD, 99.7% = 3 SD; add and subtract that many SDs from the mean. Total risk = systematic (market) + unsystematic (company-specific). Unsystematic is unique to ONE company and diversifies away; systematic hits everything and only moves with beta.",
-      "why": "Two misses: one used 1 SD for a 95% range, one treated company risk as an industry trait. Beta, correlation and the Sharpe ratio were all right."
-    },
-    {
-      "kind": "rule",
-      "id": "t-suitability",
-      "topic": "IV",
-      "unitId": "U7",
-      "count": 2,
-      "fromMisses": [
-        "rev18-q15",
-        "rev18-q19"
-      ],
-      "trigger": "one recommendation to every client, or an unsuitable recommendation",
-      "move": "One security pitched to ALL clients = blanket recommendation = unethical, and disclosure doesn't fix it (disclosure cures conflicts, not unsuitability). An unsuitable recommendation brings Administrator action against the agent (after notice and a hearing). Rescission is the seller's offer to unwind a sale that broke the Act, not what the Administrator does here.",
-      "why": "Two misses on the Oct 11 review; the blanket-recommendation question took over eight minutes."
+      "trigger": "Standard deviation or types of risk",
+      "move": "68% = 1 SD, 95% = 2 SD, 99.7% = 3 SD. Add and subtract from the mean.",
+      "lines": [
+        [
+          "Total risk",
+          "Systematic + unsystematic"
+        ],
+        [
+          "Diversifies away",
+          "Unsystematic (one company) only"
+        ]
+      ]
     }
   ],
   "checkpointExams": [
@@ -7541,94 +7779,203 @@ function renderExams() {
 
 /* ==========================================================================
    STUDY GUIDE
-   Prose is hand-written; every figure inside it is bound. Where a CLAIM
-   depends on a number ("this is your weakest unit"), the claim is derived too.
+   Kept to the essentials: where you stand, what to study next, and one card per
+   unit you have actually studied. Every figure is bound or derived; the long
+   per-question write-ups sit folded inside their unit so the page stays short.
    ========================================================================== */
+const unitShort = name => String(name || "").replace(/:.*$/, "");
+const unitTitle = name => String(name || "").replace(/^Unit \d+:\s*/, "");
+function unitName(id) { const u = unitData.find(x => x.id === id); return u ? u.name : id; }
+
+function statTile(label, value, meta) {
+  return '<div class="stat"><div class="label">' + label + '</div>'
+    + '<div class="value">' + value + '</div>'
+    + (meta ? '<div class="meta">' + meta + '</div>' : '') + '</div>';
+}
+
 function renderStanding() {
   if (!hasData()) {
     setHTML("guide-standing",
       '<p>No standing to report yet. Once the Performance Tracker has been read, this '
-      + 'section states the pooled score, the gap to the pass line, and how many units '
-      + 'sit below it ' + EM + ' all derived, so it cannot drift.</p>');
+      + 'shows the pooled score against the pass line, all derived.</p>');
     return;
   }
   const P = pooledTotals();
   const below = unitsBelowLine();
   const gap = P.pct - EXAM.PASS_LINE;
   const verdict = gap >= (EXAM.TARGET_AVG - EXAM.PASS_LINE)
-      ? "comfortably clear of the line"
+      ? "Comfortably clear of the line."
     : gap >= 0
-      ? "over the line, but inside the margin where a bad morning costs you the exam"
-      : "below the line";
+      ? "Over the line, but not yet clear of it."
+      : "Below the line.";
   setHTML("guide-standing",
-    '<p class="lead">Pooled, you are at ' + bound("pooled.pct") + ' on '
-    + bound("pooled.answered") + ' questions ' + EM + ' ' + esc(verdict)
-    + '. That is ' + bound("pooled.gapToPass") + ' against the '
-    + bound("exam.passLine") + ' you need and ' + bound("pooled.gapToTarget")
-    + ' against the ' + bound("exam.targetAvg") + ' target.</p>'
-    + '<p>' + (below.length
-        ? ('Units currently below the line: <b>' + esc(below.map(u => u.name).join(", ")) + '</b>.')
-        : 'Every unit with data is currently at or above the pass line.')
-      + ' Mixed and cumulative quizzes sit at ' + bound("mixed.pct")
-      + ' as a counterweight ' + EM + ' they are drawn from the QBank, so they are '
-      + 'reported beside the pooled figure rather than inside it.</p>');
+    '<div class="stats">'
+    + statTile("Pooled", bound("pooled.pct"), bound("pooled.fraction"))
+    + statTile("vs pass line", bound("pooled.gapToPass"), "need " + bound("exam.passLine"))
+    + statTile("vs target", bound("pooled.gapToTarget"), "aim for " + bound("exam.targetAvg"))
+    + statTile("Exam covered", bound("reweighted.coverage"), "of the blueprint studied")
+    + '</div>'
+    + '<p>' + verdict + ' '
+    + (below.length
+        ? 'Below the line: <b>' + esc(below.map(u => unitShort(u.name)).join(", ")) + '</b>.'
+        : 'Every unit you have studied is at or above the line.')
+    + '</p>');
 }
 
-function renderPriority() {
-  const tp = topicPriorityOrder();
-  const up = priorityOrder();
-  if (!tp.length && !up.length) {
-    setHTML("guide-priority",
-      '<p>Priority ordering is computed from expected scored questions lost, so it '
-      + 'appears as soon as there is data to rank. Nothing is typed here.</p>');
+/* Latest checkpoint attempt per unit, so a retake replaces the old score. */
+function latestCheckpointByUnit() {
+  const latest = {};
+  for (const e of checkpointExams) {
+    const uid = Object.keys(e.byUnit || {})[0];
+    if (!uid) continue;
+    if (!latest[uid] || String(e.date) >= String(latest[uid].date)) latest[uid] = e;
+  }
+  return latest;
+}
+
+function renderNext() {
+  const items = [];
+  if (!hasData()) {
+    items.push(['Run a sync', 'Nothing to rank until Kaplan has been read.']);
+  }
+  if (META.examDate === null) {
+    items.push(['Book the exam date', 'A plan is easier to pace against a real date.']);
+  }
+  const latest = latestCheckpointByUnit();
+  const retake = Object.keys(latest)
+    .map(uid => ({ uid, p: pct(latest[uid].score, latest[uid].total) }))
+    .filter(r => r.p !== null && r.p < EXAM.PASS_LINE)
+    .sort((a, b) => a.p - b.p);
+  if (retake.length) {
+    items.push(['Retake ' + (retake.length === 1 ? 'a checkpoint' : retake.length + ' checkpoints'),
+      retake.map(r => esc(unitShort(unitName(r.uid))) + ' at ' + fmtPct(r.p, 0)).join(', ')
+      + ' ' + EM + ' latest attempt is under the line.']);
+  }
+  const up = priorityOrder().slice(0, 3);
+  if (up.length) {
+    items.push(['Biggest point leaks',
+      up.map(r => '<b>' + esc(unitShort(r.name)) + '</b> ' + fmtPct(r.pct)
+        + ' <span class="muted">(~' + r.lost.toFixed(1) + ' exam questions at risk)</span>')
+        .join(', ')]);
+  }
+  const rep = quickTips.filter(t => !t.cleared && (t.count || 1) >= 2).length;
+  if (rep) {
+    items.push(['Drill your repeat misses', rep + ' tips you have missed twice or more '
+      + EM + ' Quick Tips, filter "Missed 2+".']);
+  }
+  const since = daysSinceActivity();
+  if (since !== null && since >= 3) {
+    items.push(['Log some activity', 'Nothing new for ' + bound("meta.daysSinceActivity") + ' days.']);
+  }
+
+  const tt = topicTotals();
+  let rows = "";
+  for (const t of nasaaData.topics) {
+    const acc = tt[t.id] ? tt[t.id].pct : null;
+    rows += '<tr' + (acc !== null && acc < EXAM.PASS_LINE ? ' class="below"' : '') + '>'
+      + '<td><b>' + t.id + '</b> ' + esc(t.short) + '</td>'
+      + '<td class="num">' + t.weight + '%</td>'
+      + '<td class="num">' + (acc === null ? '<span class="muted">not started</span>'
+                                          : bound("topic." + t.id + ".pct")) + '</td></tr>';
+  }
+  setHTML("guide-next",
+    (items.length
+      ? '<ol class="next">' + items.map(([k, v]) =>
+          '<li><span class="k">' + k + '</span><span class="v">' + v + '</span></li>').join("") + '</ol>'
+      : '')
+    + '<div class="scroller"><table class="narrow"><thead><tr><th>NASAA topic</th>'
+    + '<th>Exam weight</th><th>You</th></tr></thead><tbody>' + rows + '</tbody></table></div>');
+}
+
+function missHTML(q) {
+  return '<div class="miss">'
+    + '<p class="q">' + esc(q.question) + '</p>'
+    + '<p class="ans"><span class="mine">&#10007; ' + esc(q.myAnswer) + '</span><br>'
+    + '<span class="right">&#10003; ' + esc(q.correctAnswer) + '</span></p>'
+    + (q.explanation ? '<p class="why">' + esc(q.explanation) + '</p>'
+       : q.rationale ? '<p class="why">' + esc(q.rationale) + '</p>' : '')
+    + '<p class="src">' + [q.lo ? esc(q.lo) : "", q.date ? fmtDate(q.date) : ""]
+        .filter(Boolean).join(' &middot; ') + '</p>'
+    + '</div>';
+}
+
+/* "Units 9-23" style list of not-yet-started units. */
+function unitRangeText(units) {
+  const nums = units.map(u => Number((String(u.name).match(/Unit (\d+)/) || [])[1]))
+    .filter(n => !isNaN(n)).sort((a, b) => a - b);
+  if (!nums.length) return units.map(u => esc(unitShort(u.name))).join(", ");
+  const parts = [];
+  let start = nums[0], prev = nums[0];
+  for (const n of nums.slice(1).concat([NaN])) {
+    if (n === prev + 1) { prev = n; continue; }
+    parts.push(start === prev ? String(start) : start + '&ndash;' + prev);
+    start = prev = n;
+  }
+  return (nums.length === 1 ? 'Unit ' : 'Units ') + parts.join(", ");
+}
+
+function renderGuideUnits() {
+  if (!unitData.length) {
+    setHTML("guide-units",
+      '<p>One card per Kaplan unit appears here once the unit list has been read.</p>');
     return;
   }
-  let html = '<div class="scroller"><table class="narrow"><thead><tr>'
-    + '<th>#</th><th>Topic</th><th>Accuracy</th><th>Weight</th><th>Est. questions lost</th>'
-    + '</tr></thead><tbody>';
-  tp.forEach((r, i) => {
-    html += '<tr' + (i === 0 ? ' class="below"' : '') + '>'
-      + '<td>' + (i + 1) + '</td>'
-      + '<td><b>' + r.id + '</b> ' + esc(r.short) + '</td>'
-      + '<td class="num">' + fmtPct(r.pct) + '</td>'
-      + '<td class="num">' + r.weight + '%</td>'
-      + '<td class="num">' + r.lost.toFixed(1) + '</td></tr>';
-  });
-  html += '</tbody></table></div>';
-
-  if (up.length) {
-    html += '<h3>By Kaplan unit</h3><div class="scroller"><table class="narrow"><thead><tr>'
-      + '<th>#</th><th>Unit</th><th>Pooled</th><th>Exam questions</th><th>Est. lost</th>'
-      + '</tr></thead><tbody>';
-    up.slice(0, 12).forEach((r, i) => {
-      html += '<tr' + (i === 0 ? ' class="below"' : '') + '>'
-        + '<td>' + (i + 1) + '</td><td>' + esc(r.name) + '</td>'
-        + '<td class="num">' + fmtPct(r.pct) + '</td>'
-        + '<td class="num">' + r.examQuestions.toFixed(1) + '</td>'
-        + '<td class="num">' + r.lost.toFixed(1) + '</td></tr>';
-    });
-    html += '</tbody></table></div>';
-    html += '<p>Top of the list is <b>' + esc(up[0].name) + '</b> at '
-      + bound("unit." + up[0].id + ".pooled") + '. It leads not because it is the lowest '
-      + 'percentage but because weight times miss rate puts the most scored questions at '
-      + 'risk there.</p>';
+  const missesFor = id => missedQuestions.filter(q => q.unitId === id);
+  const started = unitData.filter(u => unitPool(u).answered > 0 || missesFor(u.id).length);
+  const notStarted = unitData.filter(u => !started.includes(u));
+  let html = "";
+  for (const u of started) {
+    const p = unitPool(u);
+    const acc = pct(p.correct, p.answered);
+    const qb = pct(u.qbankCorrect, u.qbankAnswered);
+    const ex = pct(u.examCorrect, u.examAnswered);
+    const m = mapForUnit(u.id);
+    const mine = missesFor(u.id);
+    const meta = [];
+    if (m) meta.push('Topic ' + Object.keys(m.split).join("/"));
+    if (qb !== null) meta.push('QBank ' + bound("unit." + u.id + ".qbank"));
+    if (ex !== null) meta.push('Checkpoint ' + bound("unit." + u.id + ".exam"));
+    if (qb !== null && ex !== null && qb - ex >= 5) {
+      meta.push('<span class="warnline">trust the checkpoint</span>');
+    }
+    html += '<div class="ucard' + (acc !== null && acc < EXAM.PASS_LINE ? ' below' : '') + '">'
+      + '<div class="ucard-h"><h3>' + esc(unitShort(u.name))
+      + ' <span class="ut">' + esc(unitTitle(u.name)) + '</span></h3>'
+      + '<span class="big">' + bound("unit." + u.id + ".pooled") + '</span></div>'
+      + '<p class="meta">' + meta.join(' &middot; ') + '</p>'
+      + (u.recurring ? '<p class="rec">' + esc(u.recurring) + '</p>' : '')
+      + (mine.length
+          ? '<details class="fold"><summary>' + mine.length + ' missed question'
+            + (mine.length === 1 ? '' : 's') + ', explained</summary>'
+            + mine.map(missHTML).join("") + '</details>'
+          : '')
+      + '</div>';
   }
-  setHTML("guide-priority", html);
+  const known = new Set(unitData.map(u => u.id));
+  const orphans = missedQuestions.filter(q => !known.has(q.unitId));
+  if (orphans.length) {
+    html += '<div class="ucard"><div class="ucard-h"><h3>Other</h3></div>'
+      + '<details class="fold"><summary>' + orphans.length + ' missed, explained</summary>'
+      + orphans.map(missHTML).join("") + '</details></div>';
+  }
+  if (notStarted.length) {
+    html += '<p class="muted-line">Not started yet: ' + unitRangeText(notStarted) + '.</p>';
+  }
+  setHTML("guide-units", html);
 }
 
 function renderMapTable() {
+  const fold = $("map-fold");
   if (!UNIT_TOPIC_MAP.length) {
+    if (fold) fold.open = true;
     setHTML("map-table", '<table class="narrow"><tbody><tr class="empty-row"><td>'
       + 'Not built yet. It must be derived from Kaplan\'s real unit list and each unit\'s '
       + 'learning objectives, then confirmed before anything weighted is built on it.'
       + '</td></tr></tbody></table>');
     setHTML("map-status",
       '<div class="empty"><h3>Mapping not yet confirmed</h3>'
-      + '<p>Every weighted number on this page ' + EM + ' the topic rollup, the reweighted '
-      + 'score, the priority ordering, the dump sheet cut order ' + EM + ' computes from this '
-      + 'table. If it is wrong, all of them are wrong.</p>'
-      + '<p>So it gets built from Kaplan first and confirmed by you before anything is '
-      + 'stacked on top of it.</p></div>');
+      + '<p>Every weighted number on this page computes from this table. If it is wrong, '
+      + 'all of them are wrong.</p></div>');
     return;
   }
   let rows = "";
@@ -7646,6 +7993,7 @@ function renderMapTable() {
     '<table><thead><tr><th>Kaplan unit</th><th>NASAA topic</th><th>Why</th><th></th>'
     + '</tr></thead><tbody>' + rows + '</tbody></table>');
   const unmapped = unmappedUnits();
+  if (unmapped.length && fold) fold.open = true;
   setHTML("map-status", unmapped.length
     ? '<div class="empty"><h3>' + unmapped.length + ' unit(s) not mapped</h3><p>'
       + esc(unmapped.map(u => u.name).join(", "))
@@ -7653,273 +8001,261 @@ function renderMapTable() {
     : "");
 }
 
-function renderGuideUnits() {
-  if (!unitData.length) {
-    setHTML("guide-units",
-      '<p>One block per Kaplan unit appears here once the unit list has been read '
-      + EM + ' what it covers, its current pooled and exam numbers, and the mistakes that '
-      + 'keep recurring in it.</p>');
-    return;
-  }
-  let html = "";
-  for (const u of unitData) {
-    const p = unitPool(u);
-    const acc = pct(p.correct, p.answered);
-    const qb = pct(u.qbankCorrect, u.qbankAnswered);
-    const ex = pct(u.examCorrect, u.examAnswered);
-    const m = mapForUnit(u.id);
-    const mine = missedQuestions.filter(q => q.unitId === u.id);
-    /* Where exam and QBank diverge, exam-conditions data wins - say so, derived. */
-    let divergence = "";
-    if (qb !== null && ex !== null && Math.abs(ex - qb) >= 5) {
-      divergence = ex < qb
-        ? ' Under exam conditions this drops to ' + bound("unit." + u.id + ".exam")
-          + ' from ' + bound("unit." + u.id + ".qbank") + ' on the QBank. Believe the exam '
-          + 'number: it is the one taken under time pressure with mixed content.'
-        : ' Exam performance here (' + bound("unit." + u.id + ".exam") + ') runs ahead of '
-          + 'the QBank (' + bound("unit." + u.id + ".qbank") + '), which usually means the '
-          + 'QBank number is dragged down by early attempts.';
-    }
-    html += '<div class="card"><h3>' + esc(u.name)
-      + (m ? ' <span class="tag neutral">Topic ' + Object.keys(m.split).join("/") + '</span>' : '')
-      + (acc !== null && acc < EXAM.PASS_LINE ? ' <span class="tag bad">below the line</span>' : '')
-      + '</h3>'
-      + '<p>Pooled ' + bound("unit." + u.id + ".pooled") + ' across '
-      + bound("unit." + u.id + ".answered") + ' questions.' + divergence + '</p>'
-      + (u.covers ? '<p>' + esc(u.covers) + '</p>' : '')
-      + (mine.length
-          ? '<p>' + mine.length + ' missed question'
-            + (mine.length === 1 ? '' : 's') + ' logged here ' + EM
-            + ' written up in full below.</p>'
-          : '')
-      + (u.recurring ? '<p><b>Recurring:</b> ' + esc(u.recurring) + '</p>' : '')
-      + '</div>';
-  }
-  setHTML("guide-units", html);
-}
-
-function renderMisses() {
-  if (!missedQuestions.length && !answeredCorrect.length) {
-    setHTML("guide-misses",
-      '<p>No questions decomposed yet. Every scored activity in My Quizzes gets opened in '
-      + '<b>Review</b> and read question by question ' + EM + ' question text, your answer, '
-      + 'the correct answer, Kaplan\'s rationale and the LO tag. Misses get a full '
-      + 'explanation of the underlying concept; correct answers get a one-line note so a '
-      + 'pattern is still visible later.</p>');
-    return;
-  }
-  let html = "";
-  for (const q of missedQuestions) {
-    const u = unitData.find(x => x.id === q.unitId);
-    html += '<div class="miss">'
-      + '<p class="q">' + esc(q.question) + '</p>'
-      + '<p class="ans">You answered <span class="mine">' + esc(q.myAnswer) + '</span>'
-      + ' &nbsp;&middot;&nbsp; Correct: <span class="right">' + esc(q.correctAnswer) + '</span></p>'
-      + '<p class="ans">' + (u ? esc(u.name) : esc(q.unitId || ""))
-      + (q.topic ? ' &middot; Topic ' + esc(q.topic) : "")
-      + (q.lo ? ' &middot; ' + esc(q.lo) : "")
-      + (q.date ? ' &middot; ' + fmtDate(q.date) : "") + '</p>'
-      + (q.explanation ? '<p class="why">' + esc(q.explanation) + '</p>' : '')
-      + (q.rationale ? '<p class="ans"><i>Kaplan\'s rationale:</i> ' + esc(q.rationale) + '</p>' : '')
-      + '</div>';
-  }
-  if (answeredCorrect.length) {
-    html += '<h3>Answered correctly ' + EM + ' concept notes</h3>';
-    for (const q of answeredCorrect) {
-      html += '<div class="hit"><b>' + esc(q.question) + '</b><br>' + esc(q.note || "") + '</div>';
-    }
-  }
-  setHTML("guide-misses", html);
-}
-
-function renderPatterns() {
-  const repeated = errorPatterns.filter(p => (p.count || 0) >= 2)
-    .sort((a, b) => (b.count || 0) - (a.count || 0));
-  const single = errorPatterns.filter(p => (p.count || 0) < 2);
-  if (!errorPatterns.length) {
-    setHTML("guide-patterns",
-      '<p>Nothing to pattern-match against yet. This section needs at least a couple of '
-      + 'decomposed activities before it says anything real ' + EM + ' and the thing it is '
-      + 'looking for is the same rule missed twice.</p>');
-    return;
-  }
-  let html = "";
-  if (repeated.length) {
-    html += '<div class="card"><h3>Missed more than once</h3>'
-      + '<p>The strongest signal on this page. A rule you have now missed twice is not bad '
-      + 'luck, and re-reading it has already failed once.</p>';
-    for (const p of repeated) {
-      html += '<div class="pattern"><b>' + esc(p.rule) + '</b> '
-        + '<span class="tag warn">' + p.count + '&times;</span>'
-        + (p.topic ? ' <span class="tag neutral">Topic ' + esc(p.topic) + '</span>' : '')
-        + (p.note ? '<p>' + esc(p.note) + '</p>' : '') + '</div>';
-    }
-    html += '</div>';
-  }
-  for (const p of single) {
-    html += '<div class="pattern"><b>' + esc(p.rule) + '</b>'
-      + (p.note ? '<p>' + esc(p.note) + '</p>' : '') + '</div>';
-  }
-  setHTML("guide-patterns", html);
-}
-
-function renderActions() {
-  const items = [];
-  if (META.examDate === null) {
-    items.push('<b>Book the exam date.</b> Everything else on this list is easier to '
-      + 'sequence once there is a date to sequence against, and this page deliberately '
-      + 'refuses to write a dated plan without one. This stays top of the list until it '
-      + 'is done.');
-  }
-  if (!UNIT_TOPIC_MAP.length) {
-    items.push('<b>Build and confirm the Kaplan-unit to NASAA-topic map.</b> Every weighted '
-      + 'figure depends on it.');
-  }
-  const tp = topicPriorityOrder();
-  if (tp.length) {
-    items.push('<b>Drill Topic ' + tp[0].id + ' ' + esc(tp[0].short) + '</b> at '
-      + bound("topic." + tp[0].id + ".pct") + ' ' + EM + ' worth '
-      + tp[0].questions + ' scored questions, currently losing an estimated '
-      + tp[0].lost.toFixed(1) + ' of them.');
-  }
-  const repeated = errorPatterns.filter(p => (p.count || 0) >= 2);
-  if (repeated.length) {
-    items.push('<b>Clear the ' + repeated.length + ' repeated rule'
-      + (repeated.length === 1 ? '' : 's') + '</b> in the patterns section above. Repeated '
-      + 'misses are cheaper to fix than new material is to learn.');
-  }
-  const since = daysSinceActivity();
-  if (since !== null && since >= 3) {
-    items.push('<b>Log some activity.</b> Nothing new has been recorded for '
-      + bound("meta.daysSinceActivity") + ' days.');
-  }
-  if (!hasData()) {
-    items.push('<b>Run a sync against Kaplan</b> from a machine with a live session, so '
-      + 'this page has something real to work from.');
-  }
-  setHTML("guide-actions",
-    '<small class="note">Undated on purpose. '
-    + (META.examDate === null
-        ? 'No exam date is booked, so there is no calendar to hang a day-by-day plan on '
-          + 'and none is invented here.'
-        : 'Exam booked for ' + bound("meta.examDate") + '.')
-    + '</small><ol>' + items.map(i => '<li>' + i + '</li>').join("") + '</ol>');
-}
-
 function renderGuide() {
   setHTML("guide-empty", hasData() ? "" : emptyBlock("study guide"));
   renderStanding();
-  renderPriority();
-  renderMapTable();
+  renderNext();
   renderGuideUnits();
-  renderMisses();
-  renderPatterns();
-  renderActions();
+  renderMapTable();
 }
 
 /* ==========================================================================
    QUICK TIPS
+   One line per tip: the cue he sees, the move that answers it, and a small
+   lookup table only where the rule really is a table. Why it is on the list
+   sits behind a tap. Grouped by unit; reading-habit tips lead.
    ========================================================================== */
+let tipFilter = "all";
+
+function tipRow(t) {
+  const n = t.count || 1;
+  const cls = 'qt' + (t.cleared ? ' done' : n >= 3 ? ' hot' : n === 2 ? ' warm' : '');
+  const chip = '<span class="qt-n" title="' + (t.cleared ? 'cleared on retest'
+      : 'missed ' + n + ' time' + (n === 1 ? '' : 's')) + '">'
+    + (t.cleared ? '&#10003;' : n + '&times;') + '</span>';
+  const body = chip
+    + '<span class="qt-main"><span class="qt-when">' + esc(t.trigger) + '</span>'
+    + '<span class="qt-do">' + esc(t.move) + '</span>'
+    + (t.lines && t.lines.length
+        ? '<span class="qt-lines">' + t.lines.map(l =>
+            '<span class="k">' + esc(l[0]) + '</span><span class="v">' + esc(l[1]) + '</span>').join("")
+          + '</span>'
+        : '')
+    + '</span>';
+  const attrs = ' data-n="' + (n >= 2 ? 'rep' : 'one') + '"';
+  return t.why
+    ? '<details class="' + cls + '"' + attrs + '><summary>' + body
+      + '<span class="qt-chev" aria-hidden="true">&rsaquo;</span></summary>'
+      + '<p class="qt-why">' + esc(t.why) + '</p></details>'
+    : '<div class="' + cls + '"' + attrs + '><div class="qt-s">' + body + '</div></div>';
+}
+
+function applyTipFilter() {
+  const root = $("tips-body");
+  if (!root) return;
+  if (root.setAttribute) root.setAttribute("data-filter", tipFilter);
+  if (root.querySelectorAll) {
+    root.querySelectorAll("[data-tipfilter]").forEach(b =>
+      b.setAttribute("aria-pressed", String(b.getAttribute("data-tipfilter") === tipFilter)));
+  }
+}
+
+function initTipFilter() {
+  try {
+    const s = localStorage.getItem("s66.tipFilter");
+    if (s === "all" || s === "repeat") tipFilter = s;
+  } catch (e) { /* a per-viewer convenience only */ }
+  const root = $("tips-body");
+  if (!root || !root.addEventListener) return;
+  root.addEventListener("click", ev => {
+    const b = ev.target && ev.target.closest ? ev.target.closest("[data-tipfilter]") : null;
+    if (!b) return;
+    tipFilter = b.getAttribute("data-tipfilter");
+    try { localStorage.setItem("s66.tipFilter", tipFilter); } catch (e) { /* optional */ }
+    applyTipFilter();
+  });
+}
+
 function renderQuickTips() {
   if (!quickTips.length) {
     setHTML("tips-body",
       '<div class="empty"><h3>No tips yet</h3>'
       + '<p>These are written from questions you have actually missed, so there is nothing '
-      + 'to write until some are decomposed. Generic exam advice does not go here '
-      + EM + ' it would be indistinguishable from the Reference Sheet and you would stop '
-      + 'reading it.</p></div>');
+      + 'to write until some are decomposed.</p></div>');
     return;
   }
+  const byCount = (a, b) => (b.count || 1) - (a.count || 1);
   const live = quickTips.filter(t => !t.cleared);
-  const repeated = live.filter(t => (t.count || 1) >= 2)
-    .sort((a, b) => (b.count || 1) - (a.count || 1));
-  const rest = live.filter(t => (t.count || 1) < 2);
   const cleared = quickTips.filter(t => t.cleared);
-
-  const card = t => {
-    const u = unitData.find(x => x.id === t.unitId);
-    return '<div class="tip' + (t.cleared ? ' tip-done'
-             : (t.count || 1) >= 2 ? ' tip-hot' : '') + '">'
-      + '<div class="tip-tags">'
-      + (t.topic ? '<span class="tag neutral">Topic ' + esc(t.topic) + '</span>' : '')
-      + (u ? '<span class="tag neutral">' + esc(u.name.replace(/:.*$/, "")) + '</span>' : '')
-      + ((t.count || 1) >= 2 && !t.cleared
-          ? '<span class="tag bad">missed ' + t.count + '&times;</span>' : '')
-      + (t.cleared ? '<span class="tag ok">cleared on retest</span>' : '')
-      + (t.kind === "technique" ? '<span class="tag warn">technique</span>' : '')
-      + '</div>'
-      + '<p class="tip-when"><b>When you see</b> ' + esc(t.trigger) + '</p>'
-      + '<p class="tip-do"><b>&rarr;</b> ' + esc(t.move) + '</p>'
-      + (t.why ? '<p class="tip-why">' + esc(t.why) + '</p>' : '')
-      + '</div>';
-  };
-
-  let html = "";
-  if (repeated.length) {
-    html += '<h2>Missed more than once</h2>'
-      + '<small class="note">Worth more than anything else on this tab. Re-reading these '
-      + 'has already failed at least once, so the tip is the intervention.</small>'
-      + repeated.map(card).join("");
+  const groups = [];
+  const tech = live.filter(t => t.kind === "technique").sort(byCount);
+  if (tech.length) groups.push({ title: "How you read questions", sub: "every unit", tips: tech });
+  const rules = live.filter(t => t.kind !== "technique");
+  const seen = new Set();
+  for (const u of unitData) {
+    const mine = rules.filter(t => t.unitId === u.id).sort(byCount);
+    if (!mine.length) continue;
+    mine.forEach(t => seen.add(t));
+    groups.push({ title: unitShort(u.name), sub: unitTitle(u.name), tips: mine });
   }
-  if (rest.length) {
-    html += '<h2>' + (repeated.length ? 'Everything else' : 'Your tips') + '</h2>'
-      + rest.map(card).join("");
+  const other = rules.filter(t => !seen.has(t)).sort(byCount);
+  if (other.length) groups.push({ title: "Other", sub: "", tips: other });
+
+  const repCount = live.filter(t => (t.count || 1) >= 2).length;
+  let html = '<div class="rowsel qt-bar" role="group" aria-label="Filter tips">'
+    + '<button type="button" data-tipfilter="all" aria-pressed="true">All '
+    + '<span class="qt-bn">' + live.length + '</span></button>'
+    + '<button type="button" data-tipfilter="repeat" aria-pressed="false">Missed 2+ '
+    + '<span class="qt-bn">' + repCount + '</span></button></div>';
+  for (const g of groups) {
+    const hasRep = g.tips.some(t => (t.count || 1) >= 2);
+    html += '<section class="qt-group' + (hasRep ? ' has-rep' : '') + '">'
+      + '<h3 class="qt-gh">' + esc(g.title)
+      + (g.sub ? ' <span>' + esc(g.sub) + '</span>' : '') + '</h3>'
+      + '<div class="qt-list">' + g.tips.map(tipRow).join("") + '</div></section>';
   }
   if (cleared.length) {
-    html += '<h2>Cleared</h2>'
-      + '<small class="note">You have since answered these correctly under test conditions. '
-      + 'Kept for reference, but do not spend time here.</small>'
-      + cleared.map(card).join("");
+    html += '<details class="fold qt-cleared"><summary>Cleared on retest (' + cleared.length
+      + ')</summary><div class="qt-list">' + cleared.map(tipRow).join("") + '</div></details>';
   }
   setHTML("tips-body", html);
+  applyTipFilter();
 }
 
 /* ==========================================================================
-   DUMP SHEET - cut order is computed from exam weight and current weakness
+   DUMP SHEET
+   What to write cold in the first five minutes. The facts are rules, not his
+   data; what is derived is the ORDER (exam weight against his accuracy) and the
+   red dot on any line that matches a Quick Tip he has missed.
    ========================================================================== */
 const DUMP_BLOCKS = [
-  { n: 1, name: "Registration thresholds", topic: "IV" },
-  { n: 2, name: "Time limits",             topic: "IV" },
-  { n: 3, name: "Prohibited practices",    topic: "IV" },
-  { n: 4, name: "Discretion & custody",    topic: "IV" },
-  { n: 5, name: "Exempt transactions",     topic: "IV" },
-  { n: 6, name: "Formulas",                topic: "I"  },
-  { n: 7, name: "Ownership & RMD",         topic: "III"}
+  { key: "reg", name: "Who registers where", topic: "IV", rows: [
+    { k: "AUM under $100M", v: "State" },
+    { k: "$100M to $110M", v: "May choose the SEC" },
+    { k: "$110M or more", v: "SEC (must)" },
+    { k: "SEC adviser falls under $90M", v: "Back to the state within 180 days" },
+    { k: "IA, no office in the state", v: "Exempt up to 5 retail clients in 12 months", tip: "t-where-to-register" },
+    { k: "BD or agent", v: "No de minimis: one resident client = register", tip: "t-where-to-register" },
+    { k: "IAR", v: "Registers with the state, never the SEC" },
+    { k: "IAR of a federal covered IA", v: "Only where it has a place of business", tip: "t-where-to-register" },
+    { k: "Federal covered IA", v: "Notice filing + fee only" },
+    { k: "Every registration", v: "Expires December 31", tip: "t-dec-31-renewal" }
+  ]},
+  { key: "clock", name: "Filing clock", topic: "IV", rows: [
+    { k: "Registration effective", v: "Noon on the 30th day after filing" },
+    { k: "Form ADV annual update", v: "90 days after fiscal year-end" },
+    { k: "Brochure annual update", v: "120 days after FYE, only if material changes", tip: "t-brochure-delivery" },
+    { k: "Withdrawal", v: "Effective in 30 days" },
+    { k: "Access person holdings", v: "Within 10 days, then annually", tip: "t-code-of-ethics-clock" },
+    { k: "Access person trades", v: "30 days after each quarter", tip: "t-code-of-ethics-clock" },
+    { k: "Form 13F", v: "45 days after each quarter", tip: "t-code-of-ethics-clock" },
+    { k: "Adviser records", v: "5 years from end of fiscal year (2 in office)", tip: "t-records-belong-to-firms" },
+    { k: "BD ads and website", v: "3 years from first use", tip: "t-records-belong-to-firms" }
+  ]},
+  { key: "money", name: "Penalties & money", topic: "IV", rows: [
+    { k: "Civil suit", v: "Earlier of 2 yrs from discovery or 3 yrs from sale", tip: "t-unit5-numbers" },
+    { k: "Criminal", v: "5 years to prosecute", tip: "t-unit5-numbers" },
+    { k: "Max penalty", v: "$5,000 and/or 3 years", tip: "t-unit5-numbers" },
+    { k: "Appeal an order", v: "60 days", tip: "t-unit5-numbers" },
+    { k: "Summary order", v: "Hearing within 15 days of a request", tip: "t-unit5-numbers" },
+    { k: "Rescission offer", v: "30 days to accept" },
+    { k: "Net worth", v: "$35,000 custody, $10,000 discretion", tip: "t-state-vs-federal-numbers" },
+    { k: "Substantial prepayment", v: "Over $500 state, over $1,200 federal, 6+ months", tip: "t-state-vs-federal-numbers" },
+    { k: "Political contributions", v: "$350 if can vote, $150 if not; 2-year time-out" }
+  ]},
+  { key: "never", name: "Never allowed", topic: "IV", rows: [
+    { k: "Guarantee against loss", v: "Never" },
+    { k: "Imply registration = approval", v: "Never" },
+    { k: "Exculpatory clause", v: "Never (a hedge clause for disasters is fine)", tip: "t-no-waivers" },
+    { k: "Blanket recommendation", v: "Never, even with disclosure", tip: "t-suitability" },
+    { k: "Borrow from a client", v: "Only from a lending institution, BD or affiliate" },
+    { k: "Front-run, churn, sell away", v: "Never; manipulation turns on intent", tip: "t-fraud-gain-and-intent" },
+    { k: "Agents sharing commissions", v: "Same BD + both registered in the trade's state", tip: "t-commission-sharing" },
+    { k: "Releasing client info", v: "Only with consent or legal compulsion", tip: "t-confidentiality-exits" }
+  ]},
+  { key: "disc", name: "Discretion & custody", topic: "IV", rows: [
+    { k: "Discretion means", v: "Choosing the asset, amount or action" },
+    { k: "Time and price only", v: "Not discretion" },
+    { k: "IA or IAR", v: "Oral OK for 10 business days after first trade", tip: "t-discretion-who" },
+    { k: "BD agent", v: "Written BEFORE the first trade", tip: "t-discretion-who" },
+    { k: "Is custody", v: "Certificates, passwords that move money, fee deduction", tip: "t-custody" },
+    { k: "Not custody", v: "Fee check to the adviser; 3rd-party check sent on in 3 days", tip: "t-custody" },
+    { k: "Custody allowed if", v: "No rule against it + notice to the Administrator", tip: "t-custody" },
+    { k: "With custody", v: "Qualified custodian, quarterly statements, surprise audit" }
+  ]},
+  { key: "exempt", name: "Exempt transactions", topic: "IV",
+    foot: "Antifraud applies to everything, exempt or not.", rows: [
+    { k: "Unsolicited order", v: "Client asked = exempt, even an unregistered stock", tip: "t-exempt-transactions" },
+    { k: "Isolated nonissuer", v: "Exempt" },
+    { k: "Private placement", v: "10 or fewer retail offerees in 12 months" },
+    { k: "Preorganization certificates", v: "10 or fewer subscribers, no commission" },
+    { k: "Fiduciaries", v: "Executor, trustee in bankruptcy, guardian" },
+    { k: "Institutional buyers", v: "Banks, insurers, pension trusts, BDs (not ordinary companies)", tip: "t-exempt-transactions" },
+    { k: "Existing holders", v: "No commission paid" },
+    { k: "A lawful sale needs one of", v: "State-registered, exempt security, exempt transaction, federal covered", tip: "t-federal-covered" }
+  ]},
+  { key: "formulas", name: "Formulas", topic: "I", rows: [
+    { k: "Sharpe", v: "(Rp − rf) ÷ std dev", note: "total risk" },
+    { k: "Treynor", v: "(Rp − rf) ÷ beta", note: "systematic risk" },
+    { k: "CAPM", v: "rf + β(Rm − rf)" },
+    { k: "Alpha", v: "Actual − CAPM expected" },
+    { k: "Current ratio", v: "Current assets ÷ current liabilities", tip: "t-financial-statements" },
+    { k: "Quick ratio", v: "(CA − inventory) ÷ CL" },
+    { k: "Debt to equity", v: "Total debt ÷ total equity" },
+    { k: "Net margin", v: "Net income ÷ sales", tip: "t-financial-statements" },
+    { k: "P/E", v: "Price ÷ EPS" },
+    { k: "P/B", v: "Price ÷ book value per share" },
+    { k: "Current yield", v: "Annual income ÷ market price" },
+    { k: "Rule of 72", v: "72 ÷ rate = years to double" },
+    { k: "Standard deviation", v: "1 SD 68%, 2 SD 95%, 3 SD 99.7%", tip: "t-sd-and-risk" },
+    { k: "NPV", v: "Above zero = buy; IRR > required means NPV > 0", tip: "t-tvm-direction" },
+    { k: "Time-weighted", v: "Judges the manager" },
+    { k: "Dollar-weighted", v: "Judges the client (it's an IRR)" }
+  ]},
+  { key: "own", name: "Ownership & RMDs", topic: "III", rows: [
+    { k: "JTWROS", v: "Goes to the survivor, no probate" },
+    { k: "TIC", v: "Goes to the estate, through probate" },
+    { k: "TBE", v: "Spouses only, creditor protection" },
+    { k: "CPWROS", v: "Community property states, passes to the survivor" },
+    { k: "TOD / POD", v: "Named beneficiary, no probate" },
+    { k: "RMD age", v: "73 (75 from 2033)" },
+    { k: "Roth IRA / Roth 401(k)", v: "No lifetime RMD" },
+    { k: "Inherited, non-spouse", v: "10-year rule" }
+  ]}
 ];
-function renderCutOrder() {
+
+function dumpMissed(tipId) {
+  const t = tipId ? quickTips.find(x => x.id === tipId && !x.cleared) : null;
+  return t ? (t.count || 1) : 0;
+}
+
+/* Keep-value = exam weight x miss rate (weight alone with no data); ties broken by
+   how many lines in the block he has personally missed. Bottom two are cut first. */
+function dumpOrder() {
   const tt = topicTotals();
-  const scored = DUMP_BLOCKS.map(b => {
+  return DUMP_BLOCKS.map((b, i) => {
     const topic = nasaaData.topics.find(t => t.id === b.topic);
     const acc = tt[b.topic] ? tt[b.topic].pct : null;
-    /* keep-value = exam weight x miss rate. No data -> fall back to weight alone. */
     const value = acc === null ? topic.weight : topic.weight * (1 - acc / 100) * 4;
-    return { ...b, weight: topic.weight, acc, value };
-  }).sort((a, b) => b.value - a.value);
+    const missed = b.rows.filter(r => dumpMissed(r.tip)).length;
+    return { ...b, i, weight: topic.weight, acc, value, missed };
+  }).sort((a, b) => b.value - a.value || b.missed - a.missed || a.i - b.i);
+}
 
-  const anyAcc = scored.some(s => s.acc !== null);
-  let rows = "";
-  scored.forEach((s, i) => {
-    rows += '<tr>'
-      + '<td>' + (i + 1) + '</td>'
-      + '<td>Block ' + s.n + ' ' + EM + ' ' + esc(s.name) + '</td>'
-      + '<td><b>' + s.topic + '</b></td>'
-      + '<td class="num">' + s.weight + '%</td>'
-      + '<td class="num">' + fmtPct(s.acc) + '</td>'
-      + '<td>' + (i >= scored.length - 2 ? '<span class="tag warn">cut first</span>' : '') + '</td>'
-      + '</tr>';
-  });
+function renderDump() {
+  const order = dumpOrder();
+  const cutFrom = order.length - 2;
   setHTML("dump-cutorder",
-    '<div class="scroller"><table><thead><tr>'
-    + '<th>Keep</th><th>Block</th><th>Topic</th><th>Weight</th><th>Your accuracy</th><th></th>'
-    + '</tr></thead><tbody>' + rows + '</tbody></table></div>'
-    + '<p>' + (anyAcc
-        ? 'Ordered by exam weight against your current accuracy, so the blocks you are '
-          + 'weakest in relative to their weight are the ones worth the ink. This '
-          + 'reorders itself as your numbers move.'
-        : 'No accuracy data yet, so this is currently ordered by exam weight alone. Once '
-          + 'the Performance Tracker has been read it reorders by weight against your '
-          + 'actual weak spots.')
-    + '</p>');
+    '<ol class="dump-order">' + order.map((b, i) =>
+      '<li' + (i >= cutFrom ? ' class="cut" title="Cut first if short on time"' : '') + '>'
+      + '<span class="n">' + (i + 1) + '</span>' + esc(b.name) + '</li>').join("") + '</ol>'
+    + '<p class="dump-key"><span class="mdot"></span> a line you have missed '
+    + '(it has a Quick Tip) &middot; dashed = cut first if short on time</p>');
+
+  setHTML("dump-blocks", order.map((b, i) =>
+    '<article class="dblock' + (i >= cutFrom ? ' is-cut' : '') + '">'
+    + '<header class="dblock-h"><span class="n">' + (i + 1) + '</span>'
+    + '<h3>' + esc(b.name) + '</h3>'
+    + '<span class="tag neutral">Topic ' + b.topic + ' &middot; ' + b.weight + '%</span></header>'
+    + '<dl class="drows">' + b.rows.map(r => {
+        const c = dumpMissed(r.tip);
+        return '<div class="drow"><dt>'
+          + (c ? '<span class="mdot" title="Missed ' + c + '&times; ' + EM + ' see Quick Tips"></span>' : '')
+          + esc(r.k) + '</dt><dd>' + esc(r.v)
+          + (r.note ? ' <small>' + esc(r.note) + '</small>' : '') + '</dd></div>';
+      }).join("") + '</dl>'
+    + (b.foot ? '<p class="dblock-f">' + esc(b.foot) + '</p>' : '')
+    + '</article>').join(""));
 }
 
 /* ==========================================================================
@@ -7995,8 +8331,9 @@ function txtTips() {
     .sort((a, b) => (b.count || 1) - (a.count || 1));
   if (!ordered.length) return "  (all cleared on retest)\n";
   return ordered.map(t =>
-    "- When you see " + t.trigger + "\n"
+    "- When you see: " + t.trigger + "\n"
     + "  -> " + t.move + "\n"
+    + (t.lines || []).map(l => "     " + l[0] + ": " + l[1] + "\n").join("")
     + ((t.count || 1) >= 2 ? "  [this has caught me " + t.count + " times]\n" : "")
   ).join("");
 }
@@ -8700,7 +9037,7 @@ function renderAll() {
   renderExams();
   renderGuide();
   renderQuickTips();
-  renderCutOrder();
+  renderDump();
   renderPaste();
   renderCharts();
   bindAll();          // last: generated markup contributes data-bind nodes too
@@ -8710,6 +9047,7 @@ function boot() {
   initTabs();
   initTableToggles();
   initCopy();
+  initTipFilter();
   renderAll();
 }
 

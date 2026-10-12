@@ -126,7 +126,7 @@ const EXPORTS = `
 ;globalThis.__X__ = {
   nasaaData, EXAM, META, unitData, mixedQuizzes, kaplanQBank, simExams,
   UNIT_TOPIC_MAP, missedQuestions, errorPatterns, quickTips, answeredCorrect,
-  checkpointExams,
+  checkpointExams, DUMP_BLOCKS,
   PRIOR_SNAPSHOT,
   pooledTotals, topicTotals, unitPool, buildBindings, bindAll, renderAll,
   renderSimulated, renderPerformance, buildPaste, MISSING_BINDS
@@ -341,6 +341,23 @@ function rowCount(html) { return (String(html).match(/<tr/g) || []).length; }
       assert(/When you see/.test(X.buildPaste("full")),
         "quick tips reach the full briefing");
     }
+    /* The tab exists to be read in thirty seconds. Long prose belongs in the
+       missed-question write-ups, not here. */
+    const long = tips.filter(t => String(t.move).length > 160 || String(t.trigger).length > 80
+      || (t.lines || []).length > 6
+      || (t.lines || []).some(l => !Array.isArray(l) || l.length !== 2 || String(l[1]).length > 120)
+      || String(t.why || "").length > 160);
+    assert(long.length === 0, "quick tips stay quick (move <=160, trigger <=80, <=6 lines, why <=160)",
+      long.map(t => t.id).join(", ") || tips.length + " tips");
+  }
+  /* Dump-sheet red dots point at Quick Tips by id; a merged or renamed tip must not
+     leave a dot pointing at nothing. */
+  {
+    const ids = new Set((X.quickTips || []).map(t => t.id));
+    const dangling = [];
+    for (const b of X.DUMP_BLOCKS) for (const r of b.rows) if (r.tip && !ids.has(r.tip)) dangling.push(b.key + ":" + r.tip);
+    assert(!(X.quickTips || []).length || dangling.length === 0,
+      "every dump-sheet line that flags a miss points at a real Quick Tip", dangling.join(", "));
   }
 
   /* The tutoring variants must NOT tell Claude to quiz him. That chat is a place to

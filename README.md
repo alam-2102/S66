@@ -14,8 +14,8 @@ where hard-refreshing is awkward. The query string is ignored for file lookup.
 bundler, no npm dependencies at runtime. Chart.js loads from a CDN at the bottom of
 the script and the page falls back to readable tables if it is unreachable.
 
-Six tabs: Performance, Practice & Sim Exams, Study Guide, Reference Sheet, Dump
-Sheet, Claude Paste.
+Seven tabs: Performance, Practice & Sim Exams, Quick Tips, Study Guide, Reference
+Sheet, Dump Sheet, Claude Paste.
 
 ## The two rules the architecture enforces
 
