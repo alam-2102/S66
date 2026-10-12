@@ -897,17 +897,17 @@ const EXAM = {
    ========================================================================== */
 const SYNC = {
   "meta": {
-    "lastVerified": "2026-10-11",
-    "lastRunAttempted": "2026-10-11",
+    "lastVerified": "2026-10-12",
+    "lastRunAttempted": "2026-10-12",
     "source": "kaplan",
     "examDate": null,
     "noDataRuns": 0,
-    "lastActivityDate": "2026-10-11",
-    "courseActivitiesDone": 44,
+    "lastActivityDate": "2026-10-12",
+    "courseActivitiesDone": 48,
     "courseActivitiesTotal": 137,
-    "studyPlanPct": 23.7,
-    "kaplanExamAvg": 71.21,
-    "kaplanQBankAvg": 74.61,
+    "studyPlanPct": 25.3,
+    "kaplanExamAvg": 72.73,
+    "kaplanQBankAvg": 75.6,
     "unreadReason": ""
   },
   "unitTopicMap": [
@@ -1196,14 +1196,14 @@ const SYNC = {
     {
       "id": "U9",
       "name": "Unit 9: Equity Securities",
-      "qbankAnswered": 0,
-      "qbankCorrect": 0,
-      "examAnswered": 0,
-      "examCorrect": 0,
+      "qbankAnswered": 17,
+      "qbankCorrect": 16,
+      "examAnswered": 11,
+      "examCorrect": 10,
       "mixedAnswered": 0,
       "mixedCorrect": 0,
       "covers": "Equity securities, international investing, fundamental and technical analysis, equity public offerings",
-      "recurring": ""
+      "recurring": "Rule 144: the holding period applies to UNREGISTERED (restricted) stock no matter who owns it; control stock always has volume limits but no holding period if it isn't restricted (Quiz 1 Q9). ADRs are issued by U.S. depositary banks (Exam Q6)."
     },
     {
       "id": "U10",
@@ -1526,6 +1526,18 @@ const SYNC = {
       "label": "Unit 8 Quiz 2 (Test 413827604)",
       "answered": 17,
       "correct": 13
+    },
+    {
+      "date": "2026-10-12",
+      "label": "Unit 9 Quiz 1 (Test 413998040)",
+      "answered": 9,
+      "correct": 8
+    },
+    {
+      "date": "2026-10-12",
+      "label": "Unit 9 Quiz 2 (Test 413999160)",
+      "answered": 9,
+      "correct": 9
     }
   ],
   "simExams": [],
@@ -1534,10 +1546,11 @@ const SYNC = {
     "U8 (Topic I): reading financial statements: current ratio, net income vs dividends, cash vs accrual (5 misses)",
     "Reading negative stems (EXCEPT / NOT): now 6 misses across Units 4, 6, 7 and 8",
     "U4 (Topic IV): federal covered securities and the four lawful-sale routes (5 misses, one question missed twice)",
-    "Taking the checkpoint immediately after the quizzes again (Unit 8 exam started the minute Quiz 2 ended); passed this time at 77.8%",
-    "U2 and U5 checkpoint exams still at 58% and 50% with no retake"
+    "U2 and U5 checkpoint exams still at 58% and 50% with no retake",
+    "Checkpoints still taken the minute Quiz 2 ends (Units 5, 8 and 9); fine on Unit 9's short exam, riskier on long ones"
   ],
   "strongSpots": [
+    "U9 (Topic II): Unit 9 at 94% QBank (16/17) and 10/11 on the checkpoint: preferred stock, Rule 144 volume limits, NQSO taxation, technical vs fundamental analysis, SPAC units, dividend discount model, price-for-target-yield math",
     "U8 (Topic I): beta and alpha (all correct: 1.1 beta x 10% market, aggressive = high beta, market timing, positive alpha), median/mode/range/mean (7 of 7), correlation and diversification, Sharpe ratio, quick ratio, Rule of 72",
     "U7 (Topic IV): held up on the Unit 1-8 Review, 9 of 11 including discretion, block-trade allocation and the misdelivered stock certificates (custody)",
     "U5 (Topic IV): Administrator powers and registration-denial grounds, 3 of 3 on review",
@@ -3031,6 +3044,30 @@ const SYNC = {
       "correctAnswer": "B) present value would be higher.",
       "rationale": "Present value is how much must be deposited now to reach a future goal. If the earnings rate turns out lower than anticipated, more must be deposited now: a lower rate means a higher present value.",
       "explanation": "In a present value problem the future amount is the fixed goal, so it doesn't move; that rules out your answer. What moves is how much you need today. If your money grows more slowly (a lower rate), you have to start with more, so the present value goes up. Kaplan's example: $100,000 in 18 years needs about $25,000 today at 8%, but about twice that at 4%. Rate and present value always move in opposite directions, the same seesaw as bond prices and yields."
+    },
+    {
+      "id": "u9q1-q09",
+      "date": "2026-10-12",
+      "unitId": "U9",
+      "topic": "II",
+      "lo": "LO 9.b",
+      "question": "Which of the following are subject to the holding period requirements of Rule 144? I. Registered securities held by a control person II. Unregistered securities held by a noncontrol person III. Registered securities held by a noncontrol person IV. Unregistered securities held by a control person",
+      "myAnswer": "C) I and IV",
+      "correctAnswer": "B) II and IV",
+      "rationale": "The holding period requirement of Rule 144 applies to unregistered securities, no matter who the owner is. Do not confuse this with control stock, which always has a volume limitation but, if not restricted, has no holding period requirement.",
+      "explanation": "Rule 144 has two separate tests, and you merged them. The HOLDING PERIOD follows the security: if it's unregistered (restricted) stock, anyone who owns it has to hold it first, insider or not. VOLUME LIMITS follow the person: a control person (officer, director, 10% holder) is always limited in how much they can sell, even registered stock bought in the open market, but that stock has no holding period. So the holding period applies to II and IV, the two unregistered lines. You got the flip side right on the checkpoint (Q2: an officer who buys listed stock can sell right away, subject to volume limits)."
+    },
+    {
+      "id": "u9exam-q06",
+      "date": "2026-10-12",
+      "unitId": "U9",
+      "topic": "II",
+      "lo": "LO 9.d",
+      "question": "The issuer of an ADR is",
+      "myAnswer": "B) a domestic branch of a foreign bank.",
+      "correctAnswer": "A) a U.S. depositary bank.",
+      "rationale": "Most foreign companies' stocks that trade in U.S. markets trade as American depositary receipts (ADRs), issued by U.S. depositary banks. Each ADR represents one or more shares (or a fraction of a share) of the foreign stock, and the holder can obtain the underlying shares.",
+      "explanation": "The 'A' in ADR is the clue: it's an AMERICAN depositary receipt, issued by a U.S. bank that holds the foreign shares on deposit and issues dollar-denominated receipts against them. A U.S. branch of a foreign bank sounds close, but the depositary is a U.S. bank. One-liner: foreign stock, U.S. bank, dollar trading."
     }
   ],
   "answeredCorrect": [
@@ -4763,6 +4800,141 @@ const SYNC = {
       "id": "u8exam-q18",
       "question": "A portfolio manager who is successful at market timing will",
       "note": "Correct: A) increase the beta of the portfolio in advance of a rising market. (Kaplan Q 1818254, LO 8.i)"
+    },
+    {
+      "id": "u9q1-q01",
+      "question": "Which of the following statements best describes cumulative preferred stock?",
+      "note": "Correct: B) Owners have a continuing claim to their dividends, and all arrears must be paid before any dividends can be paid to common (Kaplan Q 1808633, LO 9.a)"
+    },
+    {
+      "id": "u9q1-q02",
+      "question": "All of the following represent ownership in a corporation except",
+      "note": "Correct: D) mortgage bonds. (Kaplan Q 1808644, LO 9.a)"
+    },
+    {
+      "id": "u9q1-q03",
+      "question": "Kellie is a senior equity analyst who primarily uses fundamental analysis techniques to pick stocks...",
+      "note": "Correct: C) She may review the company's stock 200-day moving average. (Kaplan Q 1808701, LO 9.g)"
+    },
+    {
+      "id": "u9q1-q04",
+      "question": "A customer owns cumulative preferred stock ($100 par) paying an 8% dividend. The dividend has not been paid this year or for the two previous years...",
+      "note": "Correct: A) $24 (Kaplan Q 1808636, LO 9.a)"
+    },
+    {
+      "id": "u9q1-q05",
+      "question": "Which of the following analyze corporate financial statements and trends in sales and income?",
+      "note": "Correct: D) Fundamentalists (Kaplan Q 1808683, LO 9.f)"
+    },
+    {
+      "id": "u9q1-q06",
+      "question": "In the technical analysis of the value of securities, which of the following items is not important?",
+      "note": "Correct: B) The amount of a company's past earnings (Kaplan Q 1808707, LO 9.g)"
+    },
+    {
+      "id": "u9q1-q07",
+      "question": "Rule 144 applies to the sale of all of the following except",
+      "note": "Correct: D) registered securities by a nonaffiliated shareholder of the issuer. (Kaplan Q 1808649, LO 9.b)"
+    },
+    {
+      "id": "u9q1-q08",
+      "question": "Three years ago, an investor purchased 1,000 shares of Equity Protective Life Insurance Company (EPLIC) at $53 per share...",
+      "note": "Correct: D) no tax is owed by the investor. (Kaplan Q 1808645, LO 9.a)"
+    },
+    {
+      "id": "u9q2-q01",
+      "question": "A company that has issued cumulative preferred stock",
+      "note": "Correct: A) pays past and current preferred dividends before paying dividends on common stock. (Kaplan Q 1808625, LO 9.a)"
+    },
+    {
+      "id": "u9q2-q02",
+      "question": "A client asks the IAR to find a preferred stock that will offer a 6% ... (price for a target yield)",
+      "note": "Correct: A) $18.67. (Kaplan Q 1808690, LO 9.f)"
+    },
+    {
+      "id": "u9q2-q03",
+      "question": "When analyzing the business cycle, you would expect which phase to occur following the trough?",
+      "note": "Correct: C) Expansion (Kaplan Q 1817423, LO 9.f)"
+    },
+    {
+      "id": "u9q2-q04",
+      "question": "Investing in emerging market stocks is least likely to expose your client to which of the following risks?",
+      "note": "Correct: B) Interest rate (Kaplan Q 1808668, LO 9.e)"
+    },
+    {
+      "id": "u9q2-q05",
+      "question": "Which of the following has the least exposure to inflation risk?",
+      "note": "Correct: B) Common stock (Kaplan Q 1808627, LO 9.a)"
+    },
+    {
+      "id": "u9q2-q06",
+      "question": "Kellie is a senior equity analyst who primarily uses fundamental analysis... (repeat of Quiz 1 Q3)",
+      "note": "Correct: A) She may review the company's stock 200-day moving average. (Kaplan Q 1808701, LO 9.g)"
+    },
+    {
+      "id": "u9q2-q07",
+      "question": "Which of the following statements regarding international investing is not correct?",
+      "note": "Correct: B) An emerging market is a market in a highly developed foreign economy with stable political and social institutions. (Kaplan Q 1808672, LO 9.e)"
+    },
+    {
+      "id": "u9q2-q08",
+      "question": "Investments in which of the following offer the best long-term protection against inflation?",
+      "note": "Correct: D) Common stocks (Kaplan Q 1808623, LO 9.a)"
+    },
+    {
+      "id": "u9q2-q09",
+      "question": "The primary defining characteristic of an equity security is",
+      "note": "Correct: D) it represents ownership in a corporation. (Kaplan Q 1808635, LO 9.a)"
+    },
+    {
+      "id": "u9exam-q01",
+      "question": "Investing in emerging market stocks is least likely to expose your client to which of the following risks?",
+      "note": "Correct: B) Interest rate (Kaplan Q 1808668, LO 9.e)"
+    },
+    {
+      "id": "u9exam-q02",
+      "question": "KAPCO common stock is listed on the NYSE. If an executive vice president of the company buys 400 shares of the company's stock in the open market, the officer",
+      "note": "Correct: A) may sell immediately subject to Rule 144 volume limitations. (Kaplan Q 1818269, LO 9.b)"
+    },
+    {
+      "id": "u9exam-q03",
+      "question": "The dividend discount model is",
+      "note": "Correct: C) an analytical tool used to value a common stock using the present value of future dividends. (Kaplan Q 1818272, LO 9.f)"
+    },
+    {
+      "id": "u9exam-q04",
+      "question": "In a portfolio containing common stock, straight preferred, convertible preferred and adjustable-rate preferred, changes in interest rates would most affect",
+      "note": "Correct: B) straight preferred stock. (Kaplan Q 1818268, LO 9.a)"
+    },
+    {
+      "id": "u9exam-q05",
+      "question": "Which of the following statements regarding nonqualified stock options (NQSOs) is correct?",
+      "note": "Correct: C) The NQSO is taxable to the recipient at the time of exercise to the extent of the difference between the fair market value and the exercise price. (Kaplan Q 1818270, LO 9.c)"
+    },
+    {
+      "id": "u9exam-q07",
+      "question": "Technical analysts believe that high trading volume alongside rising stock prices is",
+      "note": "Correct: A) a bullish signal. (Kaplan Q 1825084, LO 9.g)"
+    },
+    {
+      "id": "u9exam-q08",
+      "question": "One of your clients wishes to invest $10,000 in an initial offering of a SPAC. In almost all cases, that would result in the purchase of",
+      "note": "Correct: C) 1,000 shares (units). (Kaplan Q 1825085, LO 9.i)"
+    },
+    {
+      "id": "u9exam-q09",
+      "question": "Proponents of which of the following technical theories assume that small investors are usually wrong?",
+      "note": "Correct: D) Odd lot (Kaplan Q 1818275, LO 9.h)"
+    },
+    {
+      "id": "u9exam-q10",
+      "question": "One difference between common stock and preferred stock is that common stockholders",
+      "note": "Correct: C) have voting rights. (Kaplan Q 1818267, LO 9.a)"
+    },
+    {
+      "id": "u9exam-q11",
+      "question": "Your client wants preferred stock dividend income with a 6% current return target... (price for target yield)",
+      "note": "Correct: C) $35.33. (Kaplan Q 1818273, LO 9.f)"
     }
   ],
   "errorPatterns": [
@@ -6188,6 +6360,45 @@ const SYNC = {
           "Unsystematic (one company) only"
         ]
       ]
+    },
+    {
+      "id": "t-rule-144",
+      "kind": "rule",
+      "topic": "II",
+      "unitId": "U9",
+      "count": 1,
+      "fromMisses": [
+        "u9q1-q09"
+      ],
+      "trigger": "Rule 144: holding period or volume limit",
+      "move": "Holding period follows the STOCK. Volume limit follows the PERSON.",
+      "lines": [
+        [
+          "Unregistered (restricted), any owner",
+          "Holding period"
+        ],
+        [
+          "Control person, any stock",
+          "Volume limit, always"
+        ],
+        [
+          "Control person, open-market stock",
+          "Volume limit, no holding period"
+        ]
+      ],
+      "why": "You picked the control-person lines. The flip side was right on the checkpoint: an officer who buys listed stock can sell right away, under volume limits."
+    },
+    {
+      "id": "t-adr",
+      "kind": "rule",
+      "topic": "II",
+      "unitId": "U9",
+      "count": 1,
+      "fromMisses": [
+        "u9exam-q06"
+      ],
+      "trigger": "Who issues an ADR",
+      "move": "A U.S. depositary bank. It holds the foreign shares and issues dollar receipts; not a U.S. branch of a foreign bank."
     }
   ],
   "checkpointExams": [
@@ -6516,19 +6727,57 @@ const SYNC = {
         "concept or calculation error": 3,
         "did not know the rule": 1
       }
+    },
+    {
+      "name": "Unit 9 Checkpoint Exam (Test 414000301)",
+      "date": "2026-10-12",
+      "score": 10,
+      "total": 11,
+      "timeUsed": 6.6,
+      "timeAllowed": null,
+      "byTopic": {
+        "II": {
+          "answered": 11,
+          "correct": 10
+        }
+      },
+      "byUnit": {
+        "U9": {
+          "answered": 11,
+          "correct": 10
+        }
+      },
+      "segments": [
+        {
+          "label": "1-4",
+          "missed": 0
+        },
+        {
+          "label": "5-8",
+          "missed": 1
+        },
+        {
+          "label": "9-11",
+          "missed": 0
+        }
+      ],
+      "missCats": {
+        "did not know the rule": 1
+      }
     }
   ],
   "priorSnapshot": {
-    "asOf": "2026-10-08",
-    "pooledPct": 72.9167,
+    "asOf": "2026-10-11",
+    "pooledPct": 73.6142,
     "units": {
       "U1": 77.7778,
       "U2": 62.5,
       "U3": 76.7442,
       "U4": 72.1311,
-      "U5": 72,
+      "U5": 73.5849,
       "U6": 68.3333,
-      "U7": 83.6066
+      "U7": 83.0986,
+      "U8": 75.9259
     },
     "missIds": [
       "u1qz1-q03",
@@ -6639,7 +6888,22 @@ const SYNC = {
       "rev17-q16",
       "rev17-q20",
       "u7exam-q02",
-      "u7exam-q14"
+      "u7exam-q14",
+      "u8q1-q08",
+      "u8q1-q09",
+      "u8q1-q12",
+      "u8q1-q15",
+      "u8q2-q03",
+      "u8q2-q12",
+      "u8q2-q13",
+      "u8q2-q17",
+      "rev18-q15",
+      "rev18-q18",
+      "rev18-q19",
+      "u8exam-q02",
+      "u8exam-q09",
+      "u8exam-q11",
+      "u8exam-q16"
     ],
     "correctIds": [
       "u1qz1-q01",
@@ -6930,9 +7194,70 @@ const SYNC = {
       "rev17-q15",
       "rev17-q17",
       "rev17-q18",
-      "rev17-q19"
+      "rev17-q19",
+      "u8q1-q01",
+      "u8q1-q02",
+      "u8q1-q03",
+      "u8q1-q04",
+      "u8q1-q05",
+      "u8q1-q06",
+      "u8q1-q07",
+      "u8q1-q10",
+      "u8q1-q11",
+      "u8q1-q13",
+      "u8q1-q14",
+      "u8q1-q16",
+      "u8q1-q17",
+      "u8q2-q01",
+      "u8q2-q02",
+      "u8q2-q04",
+      "u8q2-q05",
+      "u8q2-q06",
+      "u8q2-q07",
+      "u8q2-q08",
+      "u8q2-q09",
+      "u8q2-q10",
+      "u8q2-q11",
+      "u8q2-q14",
+      "u8q2-q15",
+      "u8q2-q16",
+      "rev18-q01",
+      "rev18-q02",
+      "rev18-q03",
+      "rev18-q04",
+      "rev18-q05",
+      "rev18-q06",
+      "rev18-q07",
+      "rev18-q08",
+      "rev18-q09",
+      "rev18-q10",
+      "rev18-q11",
+      "rev18-q12",
+      "rev18-q13",
+      "rev18-q14",
+      "rev18-q16",
+      "rev18-q17",
+      "rev18-q20",
+      "u8exam-q01",
+      "u8exam-q03",
+      "u8exam-q04",
+      "u8exam-q05",
+      "u8exam-q06",
+      "u8exam-q07",
+      "u8exam-q08",
+      "u8exam-q10",
+      "u8exam-q12",
+      "u8exam-q13",
+      "u8exam-q14",
+      "u8exam-q15",
+      "u8exam-q17",
+      "u8exam-q18"
     ],
     "patternRules": [
+      "Time value of money direction: present value and the discount rate move in opposite directions (lower rate, higher PV); NPV = PV of cash flows minus cost, positive when IRR exceeds the required return (a buy), zero when equal; IRR assumes reinvestment at the IRR, NPV at the discount/market rate; the rate used to bring a future amount back to today is the discount rate",
+      "Reading financial statements: current ratio uses only current assets and current liabilities; net profit is already after interest and taxes; dividends are paid out of net income and don't reduce it; cash accounting books a sale when paid, accrual when it happens; for dividend income, compute the dollars (payout ratio x EPS) rather than reading the ratio",
+      "Suitability: one security recommended to all clients is a blanket recommendation and is unethical even with full disclosure; an unsuitable recommendation brings Administrator action against the agent (after a hearing), not a forced rescission",
+      "Standard deviation and risk: 1 SD covers about 68% of outcomes, 2 SD about 95%, 3 SD about 99.7%; total risk = systematic (market) + unsystematic (company-specific); only unsystematic risk diversifies away",
       "Negative stems (EXCEPT / NOT): the question wants the one choice that is FALSE or NOT allowed, and he picks a true or permitted one. Underline EXCEPT/NOT and test each choice with 'is this OK?', expecting exactly one 'no' (or one 'yes' when it asks what is permitted)",
       "Federal covered securities and the four lawful routes: a security may be sold in a state if it is registered with the state, an exempt security, sold in an exempt transaction, or federal covered. 'Federal covered' is a NSMIA category (registered investment company shares, exchange-listed stock and anything senior to it, Rule 506 offerings, most munis but NOT a muni sold in its own state), not a registration status; the state may require only a notice filing. SEC registration by itself is not one of the routes",
       "Social media and communications: static content (profiles, posted ads) needs approval BEFORE use; interactive content (live posts, chat) is supervised like correspondence; linking to or endorsing third-party content is ADOPTION, helping prepare it is ENTANGLEMENT; regulators care about the content, not the platform",
@@ -6977,6 +7302,8 @@ const SYNC = {
       "Unit 6 Quiz 2 (Test 412865472)",
       "Unit 7 Quiz 1 (Test 413412818)",
       "Unit 7 Quiz 2 (Test 413420469)",
+      "Unit 8 Quiz 1 (Test 413823411)",
+      "Unit 8 Quiz 2 (Test 413827604)",
       "Unit 1 Checkpoint Exam (Test 410671140)",
       "Unit 2 Checkpoint Exam (Test 411154210)",
       "Unit 3 Checkpoint Exam (Test 411516480)",
@@ -6984,12 +7311,14 @@ const SYNC = {
       "Unit 5 Checkpoint Exam (Test 412346785)",
       "Unit 6 Checkpoint Exam (Test 413097628)",
       "Unit 7 Checkpoint Exam (Test 413549890)",
+      "Unit 8 Checkpoint Exam (Test 413830336)",
       "Unit 1-2 Review Quiz (Test 411496521)",
       "Unit 1-3 Review Quiz (Test 411666032)",
       "Unit 1-4 Review Quiz (Test 412336495)",
       "Unit 1-5 Review Quiz (Test 413096084)",
       "Unit 1-6 Review Quiz (Test 413099969)",
-      "Unit 1-7 Review Quiz (Test 413552641)"
+      "Unit 1-7 Review Quiz (Test 413552641)",
+      "Unit 1-8 Review Quiz (Test 413832542)"
     ]
   }
 };
