@@ -903,11 +903,11 @@ const SYNC = {
     "examDate": null,
     "noDataRuns": 0,
     "lastActivityDate": "2026-10-18",
-    "courseActivitiesDone": 59,
+    "courseActivitiesDone": 64,
     "courseActivitiesTotal": 137,
-    "studyPlanPct": 32.3,
-    "kaplanExamAvg": 74.72,
-    "kaplanQBankAvg": 75.91,
+    "studyPlanPct": 34.4,
+    "kaplanExamAvg": 75,
+    "kaplanQBankAvg": 77.59,
     "unreadReason": ""
   },
   "unitTopicMap": [
@@ -1196,8 +1196,8 @@ const SYNC = {
     {
       "id": "U9",
       "name": "Unit 9: Equity Securities",
-      "qbankAnswered": 20,
-      "qbankCorrect": 19,
+      "qbankAnswered": 25,
+      "qbankCorrect": 23,
       "examAnswered": 11,
       "examCorrect": 10,
       "mixedAnswered": 0,
@@ -1208,8 +1208,8 @@ const SYNC = {
     {
       "id": "U10",
       "name": "Unit 10: Debt Securities",
-      "qbankAnswered": 29,
-      "qbankCorrect": 23,
+      "qbankAnswered": 31,
+      "qbankCorrect": 26,
       "examAnswered": 17,
       "examCorrect": 13,
       "mixedAnswered": 0,
@@ -1220,8 +1220,8 @@ const SYNC = {
     {
       "id": "U11",
       "name": "Unit 11: Pooled Investments",
-      "qbankAnswered": 39,
-      "qbankCorrect": 29,
+      "qbankAnswered": 47,
+      "qbankCorrect": 37,
       "examAnswered": 18,
       "examCorrect": 16,
       "mixedAnswered": 0,
@@ -1232,14 +1232,14 @@ const SYNC = {
     {
       "id": "U12",
       "name": "Unit 12: Derivatives",
-      "qbankAnswered": 0,
-      "qbankCorrect": 0,
-      "examAnswered": 0,
-      "examCorrect": 0,
+      "qbankAnswered": 18,
+      "qbankCorrect": 18,
+      "examAnswered": 10,
+      "examCorrect": 8,
       "mixedAnswered": 0,
       "mixedCorrect": 0,
       "covers": "Derivative securities, uses/costs/benefits/risks of options, forwards and futures",
-      "recurring": ""
+      "recurring": "Option buyer vs writer: buyers get rights, writers take on obligations (a put WRITER may have to BUY stock); a protective put sets a sale floor while keeping the stock's upside (Exam Q1, Q8). Perfect 16/16 on the two quizzes."
     },
     {
       "id": "U13",
@@ -1434,6 +1434,12 @@ const SYNC = {
       "label": "Unit 1-11 Review Quiz (Test 414770815)",
       "answered": 20,
       "correct": 15
+    },
+    {
+      "date": "2026-10-18",
+      "label": "Unit 1-12 Review Quiz (Test 414781189)",
+      "answered": 20,
+      "correct": 19
     }
   ],
   "kaplanQBank": [
@@ -1580,6 +1586,18 @@ const SYNC = {
       "label": "Unit 11 Quiz 2 (Test 414768562)",
       "answered": 16,
       "correct": 10
+    },
+    {
+      "date": "2026-10-18",
+      "label": "Unit 12 Quiz 1 (Test 414779597)",
+      "answered": 8,
+      "correct": 8
+    },
+    {
+      "date": "2026-10-18",
+      "label": "Unit 12 Quiz 2 (Test 414780206)",
+      "answered": 8,
+      "correct": 8
     }
   ],
   "simExams": [],
@@ -1592,6 +1610,7 @@ const SYNC = {
     "U2 and U5 checkpoint exams still at 58% and 50% with no retake"
   ],
   "strongSpots": [
+    "Oct 18 evening: Unit 12 quizzes 16/16, Unit 1-12 Review 19/20 (95%, best review yet), Unit 12 checkpoint 8/10; the duration question missed Oct 13 now right",
     "Checkpoints: Unit 11 16/18 (89%), Unit 10 13/17 (76%); the checkpoint average is now 74.7%, above the 73% bar",
     "U5 (Topic IV): 6 of 6 remedies and Administrator-power questions on the Unit 1-10 Review, including cancellation for mental incompetence (a past error pattern)",
     "U11 (Topic II): REITs, hedge funds, ETFs vs mutual funds, closed-end vs open-end capitalization, private fund definitions",
@@ -3493,6 +3512,42 @@ const SYNC = {
       "correctAnswer": "C) He would have the benefit of the portfolio managers picking the stocks instead of having to rely on his own efforts.",
       "rationale": "The two primary benefits of any mutual fund are professional management and diversification. An international fund holds no domestic securities (that would be a global fund), so there is no foreign/domestic mix. There are no special tax breaks for foreign securities through a fund.",
       "explanation": "An international fund holds ONLY foreign stocks; a fund that mixes foreign and domestic is a global fund, so your answer described the wrong product. The benefit that applies to any mutual fund, including international, is professional management, which matters most in foreign markets where research is hard for an individual. There's no special tax break for foreign stocks through a fund."
+    },
+    {
+      "id": "u12exam-q01",
+      "date": "2026-10-18",
+      "unitId": "U12",
+      "topic": "II",
+      "lo": "LO 12.d",
+      "question": "Buying a put option on a security one currently owns allows an investor to",
+      "myAnswer": "C) increase his profit if the security declines in price.",
+      "correctAnswer": "A) participate in additional gains if the security continues to increase in price.",
+      "rationale": "This is a protective put: buying a put on a stock the investor already owns locks in a sale price (the strike). If the stock keeps rising, the investor doesn't exercise; the put expires and the stock, with its gains, remains in the account.",
+      "explanation": "A put you buy on stock you already own is a protective put, which is insurance, not a bet on the decline. It guarantees you can sell at the strike if the stock falls, which limits the loss, but you don't make extra money on the way down; the put's gain only offsets the stock's loss. Its real benefit is that if the stock keeps rising you let the put expire and keep all the upside. Protective put = floor below, upside intact."
+    },
+    {
+      "id": "u12exam-q08",
+      "date": "2026-10-18",
+      "unitId": "U12",
+      "topic": "II",
+      "lo": "LO 12.b",
+      "question": "Options positions can create either rights or obligations. In which option position has the investor created the possible obligation to purchase stock?",
+      "myAnswer": "B) Selling a call",
+      "correctAnswer": "A) Selling a put",
+      "rationale": "When you sell (write) an option, you create an obligation. A put writer is obligated to purchase stock put to him; a call writer is obligated to sell stock called away. Option buyers have rights, not obligations.",
+      "explanation": "Buyers get rights; writers (sellers) take on obligations. The writer of a PUT promised to BUY the stock if the holder puts it to him, so selling a put creates the possible obligation to purchase. Selling a call creates the opposite obligation, to sell (deliver) the stock if it's called away. You had the two writer obligations swapped. Quick check: a put lets the holder sell, so the writer on the other side has to buy."
+    },
+    {
+      "id": "rev112-q13",
+      "date": "2026-10-18",
+      "unitId": "U9",
+      "topic": "II",
+      "lo": "LO 9.f",
+      "question": "The type of analysis that attempts to value securities by examining general economic trends and the growth potential and productivity of individual companies is",
+      "myAnswer": "B) technical analysis",
+      "correctAnswer": "C) fundamental analysis",
+      "rationale": "There are two main approaches to valuing securities. Fundamental analysis takes the approach described in this question. Technical analysis relies on charts of past performance to forecast future price movements.",
+      "explanation": "Fundamental analysis looks at the economy, the industry and the company itself: earnings, growth potential, management, productivity. Technical analysis ignores all that and studies price and volume charts to predict where the stock goes next. The stem's 'general economic trends' and 'growth potential and productivity of individual companies' are textbook fundamental language. You got this split right on Unit 9 Quiz 1 (Q5, Q6) and on this quiz (Q16), so this one looks like a quick misread rather than a gap."
     }
   ],
   "answeredCorrect": [
@@ -5945,6 +6000,221 @@ const SYNC = {
       "id": "u11exam-q18",
       "question": "A feature available in ETFs that is not found in mutual funds is the ability to",
       "note": "Correct: A) be bought and sold at a profit the same day. (Kaplan Q 1818304, LO 11.g)"
+    },
+    {
+      "id": "u12q1-q01",
+      "question": "Included in the definition of derivative would be all of the following except",
+      "note": "Correct: A) leveraged ETFs. (Kaplan Q 1809229, LO 12.f)"
+    },
+    {
+      "id": "u12q1-q02",
+      "question": "Braydon has received preemptive rights from one of the stocks in his portfolio. Which of the following is not an alternative?",
+      "note": "Correct: D) Redeeming them from the issuer for cash (Kaplan Q 1809224, LO 12.e)"
+    },
+    {
+      "id": "u12q1-q03",
+      "question": "A soybean farmer worried prices may fall before harvest enters into a contract to sell... (hedging instrument)",
+      "note": "Correct: A) A forward contract, because it is customized and commonly used by producers to hedge (Kaplan Q 1817491, LO 12.h)"
+    },
+    {
+      "id": "u12q1-q04",
+      "question": "All of the following statements regarding futures contracts are correct except",
+      "note": "Correct: C) completing a futures contract requires the delivery of the commodity. (Kaplan Q 1809237, LO 12.g)"
+    },
+    {
+      "id": "u12q1-q05",
+      "question": "Which of the following is a correct statement about exchange-traded futures?",
+      "note": "Correct: D) Clearing firms guarantee the trades by acting as the buyer to every seller and the seller to every buyer (Kaplan Q 1826443, LO 12.h)"
+    },
+    {
+      "id": "u12q1-q06",
+      "question": "A financial instrument whose value depends upon the value of another asset is known as",
+      "note": "Correct: A) a derivative. (Kaplan Q 1809172, LO 12.a)"
+    },
+    {
+      "id": "u12q1-q07",
+      "question": "An investor purchased a put with a strike price of $105. If the stock is $115 at expiration, the value of the put is",
+      "note": "Correct: C) $0. (Kaplan Q 1809207, LO 12.d)"
+    },
+    {
+      "id": "u12q1-q08",
+      "question": "One of the differences between call options, rights, and warrants is that",
+      "note": "Correct: B) a corporation can't issue call options on its own stock. (Kaplan Q 1809222, LO 12.e)"
+    },
+    {
+      "id": "u12q2-q01",
+      "question": "Investors with a bearish outlook on a particular stock can use several strategies; the one with limited risk is",
+      "note": "Correct: C) a long put (Kaplan Q 1826442, LO 12.d)"
+    },
+    {
+      "id": "u12q2-q02",
+      "question": "Which of the following would not be considered derivatives?",
+      "note": "Correct: C) ETFs (Kaplan Q 1809249, LO 12.g)"
+    },
+    {
+      "id": "u12q2-q03",
+      "question": "Which one of the following option positions would generally command the greatest time value?",
+      "note": "Correct: C) LEAPS (Kaplan Q 1809166, LO 12.a)"
+    },
+    {
+      "id": "u12q2-q04",
+      "question": "The long party to a put option contract has",
+      "note": "Correct: B) the right to sell the underlying asset. (Kaplan Q 1809178, LO 12.b)"
+    },
+    {
+      "id": "u12q2-q05",
+      "question": "Which of the following is a multi-option strategy?",
+      "note": "Correct: D) Straddle (Kaplan Q 1809208, LO 12.d)"
+    },
+    {
+      "id": "u12q2-q06",
+      "question": "A client is long 400 shares of ABC at $150 and believes the market will trade flat; to generate income the client could",
+      "note": "Correct: B) Write four ABC 150 call options (Kaplan Q 1809194, LO 12.c)"
+    },
+    {
+      "id": "u12q2-q07",
+      "question": "Included in the definition of derivative would be all of the following except (repeat of Quiz 1 Q1)",
+      "note": "Correct: B) leveraged ETFs. (Kaplan Q 1809229, LO 12.f)"
+    },
+    {
+      "id": "u12q2-q08",
+      "question": "A client long XYZ stock wants income and believes the stock will trade sideways. What would you recommend?",
+      "note": "Correct: D) Write covered calls on the XYZ stock (Kaplan Q 1826441, LO 12.c)"
+    },
+    {
+      "id": "u12exam-q02",
+      "question": "Which of the following statements is true?",
+      "note": "Correct: B) A futures contract has standardized terms. (Kaplan Q 1818320, LO 12.g)"
+    },
+    {
+      "id": "u12exam-q03",
+      "question": "Which of the following is not traded on any exchange?",
+      "note": "Correct: D) Forward contracts (Kaplan Q 1818318, LO 12.f)"
+    },
+    {
+      "id": "u12exam-q04",
+      "question": "Many investors with a long stock position write call options on the underlying stock for the purpose of",
+      "note": "Correct: C) generating income. (Kaplan Q 1818314, LO 12.c)"
+    },
+    {
+      "id": "u12exam-q05",
+      "question": "Exercise of which of the following would not result in a change on the issuer's balance sheet?",
+      "note": "Correct: D) A call option (Kaplan Q 1818317, LO 12.e)"
+    },
+    {
+      "id": "u12exam-q06",
+      "question": "A speculator buys a 1,000-bushel wheat futures contract at $0.50 per bushel; settlement is $0.45 per bushel. The speculator",
+      "note": "Correct: A) has a $50 loss. (Kaplan Q 1818319, LO 12.g)"
+    },
+    {
+      "id": "u12exam-q07",
+      "question": "Which of the following statements is most accurate when describing equity straddle options?",
+      "note": "Correct: A) I and IV (Kaplan Q 1818315, LO 12.d)"
+    },
+    {
+      "id": "u12exam-q09",
+      "question": "In general, the value of a derivative is primarily determined by which of the following?",
+      "note": "Correct: C) I and III (Kaplan Q 1818312, LO 12.a)"
+    },
+    {
+      "id": "u12exam-q10",
+      "question": "Trading in futures contracts is regulated by",
+      "note": "Correct: A) the CFTC. (Kaplan Q 1825086, LO 12.h)"
+    },
+    {
+      "id": "rev112-q01",
+      "question": "Several of your clients wish to invest in a fund of hedge funds. You could tell them that",
+      "note": "Correct: C) expenses for these funds tend to be higher than those for other funds. (Kaplan Q 1809029, LO 11.f)"
+    },
+    {
+      "id": "rev112-q02",
+      "question": "An investor owns a debenture convertible into 20 shares. After a 2-for-1 stock split, the terms adjust because of",
+      "note": "Correct: A) an antidilution clause. (Kaplan Q 1808912, LO 10.g)"
+    },
+    {
+      "id": "rev112-q03",
+      "question": "Under the NASAA Statement of Policy on unethical practices of BDs and agents, an agent who failed to tell the client that adding a small amount would reach a breakpoint",
+      "note": "Correct: C) violated those ethical standards by failing to disclose the breakpoint (Kaplan Q 1809090, LO 11.j)"
+    },
+    {
+      "id": "rev112-q04",
+      "question": "Which of these are included in the term management investment company?",
+      "note": "Correct: A) III and IV (Kaplan Q 1808943, LO 11.a)"
+    },
+    {
+      "id": "rev112-q05",
+      "question": "The offering document for a fund states that the minimum initial investment is $500,000. This is most likely what type of fund?",
+      "note": "Correct: D) Hedge (Kaplan Q 1809030, LO 11.f)"
+    },
+    {
+      "id": "rev112-q06",
+      "question": "All of the following are standardized parts of an exchange-traded futures contract except",
+      "note": "Correct: D) the market price. (Kaplan Q 1809241, LO 12.g)"
+    },
+    {
+      "id": "rev112-q07",
+      "question": "The most common form of organizational structure for venture capital investment is the",
+      "note": "Correct: A) limited partnership. (Kaplan Q 1809024, LO 11.f)"
+    },
+    {
+      "id": "rev112-q08",
+      "question": "When an agent explains mutual funds to a prospective investor, which statement may be made?",
+      "note": "Correct: C) The redemption value of mutual fund shares fluctuates according to the fund's portfolio value. (Kaplan Q 1809111, LO 11.k)"
+    },
+    {
+      "id": "rev112-q09",
+      "question": "Forms of DCF used for the valuation of common stock include which of these?",
+      "note": "Correct: B) II and IV (Kaplan Q 1808687, LO 9.f)"
+    },
+    {
+      "id": "rev112-q10",
+      "question": "Charlie Mindel, a bond fund manager, expects interest rates to fall. He would (repeat of Unit 10 Quiz 2 Q9, missed Oct 13)",
+      "note": "Correct: C) increase the average duration of the portfolio (Kaplan Q 1808853, LO 10.e)"
+    },
+    {
+      "id": "rev112-q11",
+      "question": "In contrast with a typical forwards contract, futures contracts have",
+      "note": "Correct: C) standardized terms. (Kaplan Q 1809240, LO 12.g)"
+    },
+    {
+      "id": "rev112-q12",
+      "question": "An option that may be exercised before its expiration date is said to be",
+      "note": "Correct: C) American style. (Kaplan Q 1809184, LO 12.c)"
+    },
+    {
+      "id": "rev112-q14",
+      "question": "XYZ Mutual Fund has an expense ratio of 1.85% including a 12b-1 fee of 0.30%. Which statements are true?",
+      "note": "Correct: B) I and IV (Kaplan Q 1809087, LO 11.i)"
+    },
+    {
+      "id": "rev112-q15",
+      "question": "Which of the following statements regarding ADRs are true?",
+      "note": "Correct: B) I and III (Kaplan Q 1808664, LO 9.d)"
+    },
+    {
+      "id": "rev112-q16",
+      "question": "All the following factors support fundamental analysis while assessing qualitative factors except",
+      "note": "Correct: A) the company's stock price trend. (Kaplan Q 1808677, LO 9.f)"
+    },
+    {
+      "id": "rev112-q17",
+      "question": "An investor owns 15 GAC 3.75% first mortgage bonds bought in the underwriting three years ago... (gain/loss calculation)",
+      "note": "Correct: C) a profit of $356.25. (Kaplan Q 1817432, LO 10.c)"
+    },
+    {
+      "id": "rev112-q18",
+      "question": "A financial instrument whose value depends upon the value of another asset is known as",
+      "note": "Correct: C) a derivative. (Kaplan Q 1809172, LO 12.a)"
+    },
+    {
+      "id": "rev112-q19",
+      "question": "The dividend discount model works best for",
+      "note": "Correct: C) a company with a long history of regular dividend payments (Kaplan Q 1808694, LO 9.f)"
+    },
+    {
+      "id": "rev112-q20",
+      "question": "All of the following statements regarding a closed-end investment company are true except",
+      "note": "Correct: C) it may redeem its own shares. (Kaplan Q 1809110, LO 11.k)"
     }
   ],
   "errorPatterns": [
@@ -5982,7 +6252,7 @@ const SYNC = {
         "u10exam-q16",
         "rev110-q09"
       ],
-      "note": "Each miss reversed a direction (shorten vs lengthen, direct vs inverse, zero first vs last)."
+      "note": "Each miss reversed a direction (shorten vs lengthen, direct vs inverse, zero first vs last). Oct 18: answered the same 'rates falling, lengthen duration' question (1808853) correctly on the Unit 1-12 Review."
     },
     {
       "rule": "Choosing a mutual fund: when a fund is sold on past performance, check manager tenure first; NAV per share is irrelevant; Class A has the lowest ongoing asset-based charge (B and C higher); switching fund families while a deferred load applies is unsuitable",
@@ -5995,6 +6265,16 @@ const SYNC = {
         "u11q2-q14"
       ],
       "note": "All four on Unit 11 Quiz 2 (Oct 18, 10/16); two were fixed within 15 minutes on the checkpoint (tenure, Class A)."
+    },
+    {
+      "rule": "Options rights vs obligations: buyers (long) have rights, writers (short) have obligations; a put writer may have to BUY, a call writer may have to SELL; a protective put on owned stock sets a floor and keeps the upside, it doesn't profit from a decline",
+      "count": 2,
+      "topic": "II",
+      "occurrences": [
+        "u12exam-q01",
+        "u12exam-q08"
+      ],
+      "note": "Both on the Unit 12 checkpoint (Oct 18) after 16/16 on the quizzes."
     },
     {
       "rule": "Time value of money direction: present value and the discount rate move in opposite directions (lower rate, higher PV); NPV = PV of cash flows minus cost, positive when IRR exceeds the required return (a buy), zero when equal; IRR assumes reinvestment at the IRR, NPV at the discount/market rate; the rate used to bring a future amount back to today is the discount rate",
@@ -7582,7 +7862,7 @@ const SYNC = {
           "Highest coupon above the discount rate, for the longest time"
         ]
       ],
-      "why": "Four misses, each one a reversed direction.",
+      "why": "Four misses, each a reversed direction. The 'rates falling' one was right on the Oct 18 review.",
       "count": 4
     },
     {
@@ -7672,6 +7952,39 @@ const SYNC = {
         ]
       ],
       "count": 3
+    },
+    {
+      "id": "t-options",
+      "kind": "rule",
+      "topic": "II",
+      "unitId": "U12",
+      "fromMisses": [
+        "u12exam-q01",
+        "u12exam-q08"
+      ],
+      "trigger": "Options: who has the right, who has the obligation",
+      "move": "Buyers have rights; writers have obligations. A put WRITER may have to BUY; a call writer may have to SELL.",
+      "lines": [
+        [
+          "Protective put (own the stock, buy a put)",
+          "A floor below and the upside kept. It doesn't profit from a drop."
+        ]
+      ],
+      "why": "Both on the checkpoint, right after 16/16 on the quizzes.",
+      "count": 2
+    },
+    {
+      "id": "t-fundamental-vs-technical",
+      "kind": "rule",
+      "topic": "II",
+      "unitId": "U9",
+      "fromMisses": [
+        "rev112-q13"
+      ],
+      "trigger": "Fundamental or technical analysis",
+      "move": "Economy, industry, earnings, growth = fundamental. Price and volume charts = technical.",
+      "why": "A misread: you've had this split right three other times.",
+      "count": 1
     }
   ],
   "checkpointExams": [
@@ -8112,21 +8425,56 @@ const SYNC = {
       "missCats": {
         "did not know the rule": 2
       }
+    },
+    {
+      "name": "Unit 12 Checkpoint Exam (Test 414780517)",
+      "date": "2026-10-18",
+      "score": 8,
+      "total": 10,
+      "timeUsed": 4.93,
+      "timeAllowed": null,
+      "byTopic": {
+        "II": {
+          "answered": 10,
+          "correct": 8
+        }
+      },
+      "byUnit": {
+        "U12": {
+          "answered": 10,
+          "correct": 8
+        }
+      },
+      "segments": [
+        {
+          "label": "1-5",
+          "missed": 1
+        },
+        {
+          "label": "6-10",
+          "missed": 1
+        }
+      ],
+      "missCats": {
+        "concept or calculation error": 2
+      }
     }
   ],
   "priorSnapshot": {
-    "asOf": "2026-10-12",
-    "pooledPct": 74.739,
+    "asOf": "2026-10-18",
+    "pooledPct": 75.5663,
     "units": {
       "U1": 77.7778,
       "U2": 62.5,
       "U3": 76.7442,
-      "U4": 72.1311,
-      "U5": 73.5849,
-      "U6": 68.3333,
+      "U4": 72.7273,
+      "U5": 77.193,
+      "U6": 68.75,
       "U7": 83.0986,
-      "U8": 75.9259,
-      "U9": 92.8571
+      "U8": 74.1379,
+      "U9": 93.5484,
+      "U10": 78.2609,
+      "U11": 78.9474
     },
     "missIds": [
       "u1qz1-q03",
@@ -8254,7 +8602,39 @@ const SYNC = {
       "u8exam-q11",
       "u8exam-q16",
       "u9q1-q09",
-      "u9exam-q06"
+      "u9exam-q06",
+      "u10q1-q03",
+      "u10q1-q06",
+      "u10q2-q06",
+      "u10q2-q09",
+      "u10exam-q03",
+      "u10exam-q10",
+      "u10exam-q12",
+      "u10exam-q16",
+      "rev19-q02",
+      "rev19-q03",
+      "rev19-q10",
+      "rev19-q13",
+      "rev19-q16",
+      "rev110-q04",
+      "rev110-q09",
+      "rev110-q11",
+      "rev110-q16",
+      "u11q1-q03",
+      "u11q1-q10",
+      "u11q2-q01",
+      "u11q2-q04",
+      "u11q2-q09",
+      "u11q2-q10",
+      "u11q2-q14",
+      "u11q2-q15",
+      "rev111-q01",
+      "rev111-q06",
+      "rev111-q11",
+      "rev111-q13",
+      "rev111-q17",
+      "u11exam-q07",
+      "u11exam-q13"
     ],
     "correctIds": [
       "u1qz1-q01",
@@ -8629,13 +9009,134 @@ const SYNC = {
       "u9exam-q08",
       "u9exam-q09",
       "u9exam-q10",
-      "u9exam-q11"
+      "u9exam-q11",
+      "u10q1-q01",
+      "u10q1-q02",
+      "u10q1-q04",
+      "u10q1-q05",
+      "u10q1-q07",
+      "u10q1-q08",
+      "u10q1-q09",
+      "u10q1-q10",
+      "u10q1-q11",
+      "u10q2-q01",
+      "u10q2-q02",
+      "u10q2-q03",
+      "u10q2-q04",
+      "u10q2-q05",
+      "u10q2-q07",
+      "u10q2-q08",
+      "u10q2-q10",
+      "u10q2-q11",
+      "u10exam-q01",
+      "u10exam-q02",
+      "u10exam-q04",
+      "u10exam-q05",
+      "u10exam-q06",
+      "u10exam-q07",
+      "u10exam-q08",
+      "u10exam-q09",
+      "u10exam-q11",
+      "u10exam-q13",
+      "u10exam-q14",
+      "u10exam-q15",
+      "u10exam-q17",
+      "rev19-q01",
+      "rev19-q04",
+      "rev19-q05",
+      "rev19-q06",
+      "rev19-q07",
+      "rev19-q08",
+      "rev19-q09",
+      "rev19-q11",
+      "rev19-q12",
+      "rev19-q14",
+      "rev19-q15",
+      "rev19-q17",
+      "rev19-q18",
+      "rev19-q19",
+      "rev19-q20",
+      "rev110-q01",
+      "rev110-q02",
+      "rev110-q03",
+      "rev110-q05",
+      "rev110-q06",
+      "rev110-q07",
+      "rev110-q08",
+      "rev110-q10",
+      "rev110-q12",
+      "rev110-q13",
+      "rev110-q14",
+      "rev110-q15",
+      "rev110-q17",
+      "rev110-q18",
+      "rev110-q19",
+      "rev110-q20",
+      "u11q1-q01",
+      "u11q1-q02",
+      "u11q1-q04",
+      "u11q1-q05",
+      "u11q1-q06",
+      "u11q1-q07",
+      "u11q1-q08",
+      "u11q1-q09",
+      "u11q1-q11",
+      "u11q1-q12",
+      "u11q1-q13",
+      "u11q1-q14",
+      "u11q1-q15",
+      "u11q1-q16",
+      "u11q2-q02",
+      "u11q2-q03",
+      "u11q2-q05",
+      "u11q2-q06",
+      "u11q2-q07",
+      "u11q2-q08",
+      "u11q2-q11",
+      "u11q2-q12",
+      "u11q2-q13",
+      "u11q2-q16",
+      "rev111-q02",
+      "rev111-q03",
+      "rev111-q04",
+      "rev111-q05",
+      "rev111-q07",
+      "rev111-q08",
+      "rev111-q09",
+      "rev111-q10",
+      "rev111-q12",
+      "rev111-q14",
+      "rev111-q15",
+      "rev111-q16",
+      "rev111-q18",
+      "rev111-q19",
+      "rev111-q20",
+      "u11exam-q01",
+      "u11exam-q02",
+      "u11exam-q03",
+      "u11exam-q04",
+      "u11exam-q05",
+      "u11exam-q06",
+      "u11exam-q08",
+      "u11exam-q09",
+      "u11exam-q10",
+      "u11exam-q11",
+      "u11exam-q12",
+      "u11exam-q14",
+      "u11exam-q15",
+      "u11exam-q16",
+      "u11exam-q17",
+      "u11exam-q18"
     ],
     "patternRules": [
+      "Investment Company Act of 1940 rules: $100,000 minimum capital before a public offering; no more than 3% of another investment company's voting shares; no joint trading accounts or short sales; shares can't be bought on margin; a majority shareholder vote to change fundamental policy; the adviser's contract must be written, 2 years initially then renewed annually",
+      "Bond arithmetic: a quote is a percent of $1,000 (each point $10, so 102 = $1,020 and 102 1/4 = $1,022.50) and the total multiplies by the number of bonds; yield to call counts periods to the call date and ends at the call price; current yield = annual income / current price (dividend, not earnings, for stock)",
+      "Duration: rises with maturity, falls as coupon or yield rises (inverse to YTM); a zero's duration equals its maturity (always longest); lengthen duration when rates are expected to fall; at a given discount rate, the highest coupon above market for the longest time carries the biggest premium",
+      "Choosing a mutual fund: when a fund is sold on past performance, check manager tenure first; NAV per share is irrelevant; Class A has the lowest ongoing asset-based charge (B and C higher); switching fund families while a deferred load applies is unsuitable",
       "Time value of money direction: present value and the discount rate move in opposite directions (lower rate, higher PV); NPV = PV of cash flows minus cost, positive when IRR exceeds the required return (a buy), zero when equal; IRR assumes reinvestment at the IRR, NPV at the discount/market rate; the rate used to bring a future amount back to today is the discount rate",
       "Reading financial statements: current ratio uses only current assets and current liabilities; net profit is already after interest and taxes; dividends are paid out of net income and don't reduce it; cash accounting books a sale when paid, accrual when it happens; for dividend income, compute the dollars (payout ratio x EPS) rather than reading the ratio",
       "Suitability: one security recommended to all clients is a blanket recommendation and is unethical even with full disclosure; an unsuitable recommendation brings Administrator action against the agent (after a hearing), not a forced rescission",
-      "Standard deviation and risk: 1 SD covers about 68% of outcomes, 2 SD about 95%, 3 SD about 99.7%; total risk = systematic (market) + unsystematic (company-specific); only unsystematic risk diversifies away",
+      "Standard deviation and risk: 1 SD covers about 68% of outcomes, 2 SD about 95%, 3 SD about 99.7%; total risk = systematic (market) + unsystematic (company-specific); only unsystematic risk diversifies away; a beta of zero means no stock-market sensitivity (the 91-day T-bill)",
       "Negative stems (EXCEPT / NOT): the question wants the one choice that is FALSE or NOT allowed, and he picks a true or permitted one. Underline EXCEPT/NOT and test each choice with 'is this OK?', expecting exactly one 'no' (or one 'yes' when it asks what is permitted)",
       "Federal covered securities and the four lawful routes: a security may be sold in a state if it is registered with the state, an exempt security, sold in an exempt transaction, or federal covered. 'Federal covered' is a NSMIA category (registered investment company shares, exchange-listed stock and anything senior to it, Rule 506 offerings, most munis but NOT a muni sold in its own state), not a registration status; the state may require only a notice filing. SEC registration by itself is not one of the routes",
       "Social media and communications: static content (profiles, posted ads) needs approval BEFORE use; interactive content (live posts, chat) is supervised like correspondence; linking to or endorsing third-party content is ADOPTION, helping prepare it is ENTANGLEMENT; regulators care about the content, not the platform",
@@ -8684,6 +9185,10 @@ const SYNC = {
       "Unit 8 Quiz 2 (Test 413827604)",
       "Unit 9 Quiz 1 (Test 413998040)",
       "Unit 9 Quiz 2 (Test 413999160)",
+      "Unit 10 Quiz 1 (Test 414054339)",
+      "Unit 10 Quiz 2 (Test 414054823)",
+      "Unit 11 Quiz 1 (Test 414494328)",
+      "Unit 11 Quiz 2 (Test 414768562)",
       "Unit 1 Checkpoint Exam (Test 410671140)",
       "Unit 2 Checkpoint Exam (Test 411154210)",
       "Unit 3 Checkpoint Exam (Test 411516480)",
@@ -8693,13 +9198,18 @@ const SYNC = {
       "Unit 7 Checkpoint Exam (Test 413549890)",
       "Unit 8 Checkpoint Exam (Test 413830336)",
       "Unit 9 Checkpoint Exam (Test 414000301)",
+      "Unit 10 Checkpoint Exam (Test 414335768)",
+      "Unit 11 Checkpoint Exam (Test 414769885)",
       "Unit 1-2 Review Quiz (Test 411496521)",
       "Unit 1-3 Review Quiz (Test 411666032)",
       "Unit 1-4 Review Quiz (Test 412336495)",
       "Unit 1-5 Review Quiz (Test 413096084)",
       "Unit 1-6 Review Quiz (Test 413099969)",
       "Unit 1-7 Review Quiz (Test 413552641)",
-      "Unit 1-8 Review Quiz (Test 413832542)"
+      "Unit 1-8 Review Quiz (Test 413832542)",
+      "Unit 1-9 Review Quiz (Test 414489862)",
+      "Unit 1-10 Review Quiz (Test 414492385)",
+      "Unit 1-11 Review Quiz (Test 414770815)"
     ]
   }
 };
@@ -9894,7 +10404,7 @@ const DUMP_BLOCKS = [
     { k: "Existing holders", v: "No commission paid" },
     { k: "A lawful sale needs one of", v: "State-registered, exempt security, exempt transaction, federal covered", tip: "t-federal-covered" }
   ]},
-  { key: "bonds", name: "Bonds & funds", topic: "II", rows: [
+  { key: "bonds", name: "Bonds, funds & options", topic: "II", rows: [
     { k: "Bond quote", v: "% of $1,000; 1 point = $10 (102 = $1,020)", tip: "t-bond-math" },
     { k: "Yield to call", v: "Periods to the call, ends at the call price", tip: "t-bond-math" },
     { k: "Muni vs taxable", v: "Taxable × (1 − bracket), then compare", tip: "t-bond-math" },
@@ -9903,7 +10413,8 @@ const DUMP_BLOCKS = [
     { k: "1940 Act", v: "$100,000 to start; max 3% of another fund", tip: "t-1940-act" },
     { k: "Fund redemption", v: "Paid within 7 days" },
     { k: "Lowest 12b-1", v: "Class A", tip: "t-fund-selection" },
-    { k: "Rule 144", v: "Holding period: restricted stock; volume limit: control persons", tip: "t-rule-144" }
+    { k: "Rule 144", v: "Holding period: restricted stock; volume limit: control persons", tip: "t-rule-144" },
+    { k: "Options", v: "Buyer = right, writer = obligation (a put writer buys)", tip: "t-options" }
   ]},
   { key: "formulas", name: "Formulas", topic: "I", rows: [
     { k: "Sharpe", v: "(Rp − rf) ÷ std dev", note: "total risk" },
