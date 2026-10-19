@@ -903,11 +903,11 @@ const SYNC = {
     "examDate": null,
     "noDataRuns": 0,
     "lastActivityDate": "2026-10-18",
-    "courseActivitiesDone": 64,
+    "courseActivitiesDone": 70,
     "courseActivitiesTotal": 137,
-    "studyPlanPct": 34.4,
-    "kaplanExamAvg": 75,
-    "kaplanQBankAvg": 77.59,
+    "studyPlanPct": 36.9,
+    "kaplanExamAvg": 76.26,
+    "kaplanQBankAvg": 77.58,
     "unreadReason": ""
   },
   "unitTopicMap": [
@@ -1244,26 +1244,26 @@ const SYNC = {
     {
       "id": "U13",
       "name": "Unit 13: Alternative Investments",
-      "qbankAnswered": 0,
-      "qbankCorrect": 0,
-      "examAnswered": 0,
-      "examCorrect": 0,
+      "qbankAnswered": 8,
+      "qbankCorrect": 8,
+      "examAnswered": 10,
+      "examCorrect": 10,
       "mixedAnswered": 0,
       "mixedCorrect": 0,
       "covers": "Alternative investment funds, plus investment real estate and commodities",
-      "recurring": ""
+      "recurring": "Perfect so far: 8/8 on quizzes and 10/10 on the checkpoint (leveraged and inverse funds, ETNs, structured products, life settlements)."
     },
     {
       "id": "U14",
       "name": "Unit 14: Other Investment Products",
-      "qbankAnswered": 0,
-      "qbankCorrect": 0,
+      "qbankAnswered": 14,
+      "qbankCorrect": 9,
       "examAnswered": 0,
       "examCorrect": 0,
       "mixedAnswered": 0,
       "mixedCorrect": 0,
       "covers": "Insurance-based products, annuity purchases and withdrawals, life insurance as an investment, other assets incl. digital assets",
-      "recurring": ""
+      "recurring": "Variable insurance details: VLI can convert to whole life within 24 months using the ORIGINAL age and health; the VLI death benefit is recalculated annually and a scheduled-premium policy has a fixed premium; the VA death benefit guarantees at least the premiums paid, and gains above basis are taxable (Quiz 1 Q6/Q7/Q11). DPP limited partners can lose only what they invested (Quiz 1 Q1). Digital assets: no underlying cash flows, decentralized ledgers (Quiz 1 Q12)."
     },
     {
       "id": "U15",
@@ -1598,10 +1598,29 @@ const SYNC = {
       "label": "Unit 12 Quiz 2 (Test 414780206)",
       "answered": 8,
       "correct": 8
+    },
+    {
+      "date": "2026-10-18",
+      "label": "Unit 13 Quiz 1 (Test 414789462)",
+      "answered": 4,
+      "correct": 4
+    },
+    {
+      "date": "2026-10-18",
+      "label": "Unit 13 Quiz 2 (Test 414789889)",
+      "answered": 4,
+      "correct": 4
+    },
+    {
+      "date": "2026-10-18",
+      "label": "Unit 14 Quiz 1 (Test 414801761)",
+      "answered": 14,
+      "correct": 9
     }
   ],
   "simExams": [],
   "weakSpots": [
+    "U14 (Topic II): variable life and variable annuity mechanics (3 misses on Quiz 1, 9/14)",
     "Reading negative stems (EXCEPT / NOT / not true): now 9 misses across Units 4, 6, 7, 8 and 11; three more this week, all picking a true statement",
     "Time value of money direction (U8/U10): 9 misses, including the identical Bond X / Bond Y question missed twice with the same wrong answer",
     "U11 (Topic II): Investment Company Act numbers ($100,000, 3%) and fund-selection rules; Unit 11 Quiz 2 was 10/16",
@@ -1610,6 +1629,7 @@ const SYNC = {
     "U2 and U5 checkpoint exams still at 58% and 50% with no retake"
   ],
   "strongSpots": [
+    "U13 (Topic II): perfect unit, quizzes 8/8 and checkpoint 10/10, including the leveraged-ETF compounding math and both EXCEPT/NOT questions on the checkpoint",
     "Oct 18 evening: Unit 12 quizzes 16/16, Unit 1-12 Review 19/20 (95%, best review yet), Unit 12 checkpoint 8/10; the duration question missed Oct 13 now right",
     "Checkpoints: Unit 11 16/18 (89%), Unit 10 13/17 (76%); the checkpoint average is now 74.7%, above the 73% bar",
     "U5 (Topic IV): 6 of 6 remedies and Administrator-power questions on the Unit 1-10 Review, including cancellation for mental incompetence (a past error pattern)",
@@ -3548,6 +3568,66 @@ const SYNC = {
       "correctAnswer": "C) fundamental analysis",
       "rationale": "There are two main approaches to valuing securities. Fundamental analysis takes the approach described in this question. Technical analysis relies on charts of past performance to forecast future price movements.",
       "explanation": "Fundamental analysis looks at the economy, the industry and the company itself: earnings, growth potential, management, productivity. Technical analysis ignores all that and studies price and volume charts to predict where the stock goes next. The stem's 'general economic trends' and 'growth potential and productivity of individual companies' are textbook fundamental language. You got this split right on Unit 9 Quiz 1 (Q5, Q6) and on this quiz (Q16), so this one looks like a quick misread rather than a gap."
+    },
+    {
+      "id": "u14q1-q01",
+      "date": "2026-10-18",
+      "unitId": "U14",
+      "topic": "II",
+      "lo": "LO 14.m",
+      "question": "A client invests $100,000 in a commercial real estate venture taking a 10% interest as a limited partner. The partnership is unable to meet the mortgage payments; the end result is foreclosure with a net loss of $2 million. This would have the effect of:",
+      "myAnswer": "A) giving the client a passive loss of $200,000.",
+      "correctAnswer": "D) giving the client a passive loss of $100,000.",
+      "rationale": "The most the client can lose is the amount of the investment, $100,000. Because DPPs are passive investments, the loss may only be deducted against passive income. As a limited partner, the loss is limited to the original investment.",
+      "explanation": "A limited partner's loss is limited to what he put in. His 10% share of the $2 million loss would be $200,000 on paper, but he only invested $100,000, so $100,000 is his maximum loss, and it's a passive loss that can only offset passive income. The creditors can't come after a limited partner personally; that's the point of 'limited.' Only the general partner has unlimited liability, which you answered correctly on Q14 of this quiz."
+    },
+    {
+      "id": "u14q1-q06",
+      "date": "2026-10-18",
+      "unitId": "U14",
+      "topic": "II",
+      "lo": "LO 14.b",
+      "question": "Which of the following best describes the death benefit provision of a variable annuity?",
+      "myAnswer": "A) If death should occur before age 59½, the 10% early withdrawal penalty does not apply.",
+      "correctAnswer": "C) The principal amount at death is the greater of the total of premium payments or the current market value.",
+      "rationale": "The death benefit ensures the investor's estate never receives back less than the amount contributed. Unlike life insurance proceeds, anything above cost basis in an annuity is taxed as ordinary income. A lump sum is only one of the options available to a beneficiary.",
+      "explanation": "The variable annuity death benefit is a guarantee: if the owner dies during the accumulation phase, the beneficiary gets at least the total premiums paid, or the account value if that's higher. That protects the heirs from a market drop. Your choice mixed it up with the 10% penalty rule. Death is an exception to the penalty, but that isn't what the 'death benefit provision' means. Also, unlike life insurance, annuity gains above cost basis are taxable to the beneficiary as ordinary income."
+    },
+    {
+      "id": "u14q1-q07",
+      "date": "2026-10-18",
+      "unitId": "U14",
+      "topic": "II",
+      "lo": "LO 14.j",
+      "question": "When discussing the purchase of a scheduled premium variable life insurance policy with a client, it would be correct to state that",
+      "myAnswer": "C) you will receive a statement of your death benefit no less frequently than semiannually",
+      "correctAnswer": "A) by surrendering the policy, its cash value may be obtained",
+      "rationale": "Surrender requires the insurer to pay out the cash value. The death benefit is calculated annually (not semiannually) and the cash value monthly. There is no 10-day requirement to remedy a deficiency. Scheduled premium means a fixed premium; it is the cash value and death benefit that vary.",
+      "explanation": "On a scheduled-premium variable life policy, the premium is fixed; what varies is the cash value (calculated monthly) and the death benefit (recalculated at least annually, not semiannually). The one statement that's simply true is that surrendering the policy gets you its cash value. You picked a semiannual statement, which was a reasonable-sounding guess, but the timing is wrong."
+    },
+    {
+      "id": "u14q1-q11",
+      "date": "2026-10-18",
+      "unitId": "U14",
+      "topic": "II",
+      "lo": "LO 14.j",
+      "question": "A client who purchased a variable life insurance policy 15 months ago has suffered a stroke, developed adult onset diabetes, and been diagnosed with lung cancer. He wants to convert his variable policy to a whole life policy. Which statements are correct? I. He will not be able to convert because his health has deteriorated. II. The new policy will bear the same issue date and age as the original policy. III. The face amount must remain the same. IV. The premium will be rated because his health has taken a marked turn for the worse.",
+      "myAnswer": "C) II, III, and IV",
+      "correctAnswer": "D) II and III",
+      "rationale": "Variable life offers a unique conversion right: any time during the first 24 months after issue, the policy may be exchanged for whole life using the age and medical condition at issue, regardless of current health.",
+      "explanation": "Variable life has a special conversion right: for the first 24 months, the owner can switch to a fixed (whole life) policy using the ORIGINAL issue date, age and health rating, with the face amount the same and no new medical underwriting. He's at 15 months, so his stroke, diabetes and cancer don't matter: II and III are true, IV (a rated premium) is false. You treated it like a new application; the whole point of the rule is that it isn't one."
+    },
+    {
+      "id": "u14q1-q12",
+      "date": "2026-10-18",
+      "unitId": "U14",
+      "topic": "II",
+      "lo": "LO 14.l",
+      "question": "In contrast to traditional asset classes, digital assets most likely",
+      "myAnswer": "B) are recorded on private ledgers maintained by central intermediaries.",
+      "correctAnswer": "A) are not backed by underlying asset cash flows.",
+      "rationale": "Most digital assets are not backed by underlying assets or the cash flows they generate. They lack well-developed regulatory standards and are typically recorded on decentralized digital ledgers. Their volatility is generally higher than stocks and bonds.",
+      "explanation": "Digital assets (crypto) generally have no underlying cash flows: no earnings, no interest. That's why they're hard to value and so volatile. They're recorded on DECENTRALIZED ledgers (the blockchain), not private ledgers run by a central intermediary, which is the opposite of your choice. Regulation is still thin and volatility is higher than stocks and bonds, so C and D are reversed too."
     }
   ],
   "answeredCorrect": [
@@ -6215,6 +6295,141 @@ const SYNC = {
       "id": "rev112-q20",
       "question": "All of the following statements regarding a closed-end investment company are true except",
       "note": "Correct: C) it may redeem its own shares. (Kaplan Q 1809110, LO 11.k)"
+    },
+    {
+      "id": "u13q1-q01",
+      "question": "One alternative investment, a synthetic investment instrument... is",
+      "note": "Correct: B) a structured product. (Kaplan Q 1809282, LO 13.c)"
+    },
+    {
+      "id": "u13q1-q02",
+      "question": "If an investor expected the market to have a bad day, to maximize gains you might recommend",
+      "note": "Correct: B) an inverse leveraged ETF. (Kaplan Q 1809257, LO 13.a)"
+    },
+    {
+      "id": "u13q1-q03",
+      "question": "Which of the following is true regarding ETNs?",
+      "note": "Correct: C) Their value can be impacted by changes in the issuer's credit rating. (Kaplan Q 1809278, LO 13.b)"
+    },
+    {
+      "id": "u13q1-q04",
+      "question": "An alternative investment vehicle managed to perform contrary to a benchmark index such as the S&P 500 is",
+      "note": "Correct: C) an inverse exchange-traded fund. (Kaplan Q 1809262, LO 13.a)"
+    },
+    {
+      "id": "u13q2-q01",
+      "question": "Which statement best explains the primary risk of investing in a principal-protected note (PPN)?",
+      "note": "Correct: A) The principal protection depends on the financial strength of the issuing company (Kaplan Q 1817497, LO 13.c)"
+    },
+    {
+      "id": "u13q2-q02",
+      "question": "Investors turning to structured notes for higher returns need to be aware that",
+      "note": "Correct: D) I and III (Kaplan Q 1809283, LO 13.c)"
+    },
+    {
+      "id": "u13q2-q03",
+      "question": "Which of the following is NOT registered with the SEC under the Investment Company Act of 1940?",
+      "note": "Correct: B) Exchange-traded notes (Kaplan Q 1809274, LO 13.b)"
+    },
+    {
+      "id": "u13q2-q04",
+      "question": "A 70-year-old client has a $500,000 whole life policy purchased 25 years ago with modest cash value... you could suggest",
+      "note": "Correct: A) engaging in a life settlement. (Kaplan Q 1809289, LO 13.d)"
+    },
+    {
+      "id": "u13exam-q01",
+      "question": "A customer makes several statements about leveraged funds. All of the statements are correct except",
+      "note": "Correct: B) there are no unusual risks associated with these funds other than those one would incur with any fund (Kaplan Q 1818323, LO 13.a)"
+    },
+    {
+      "id": "u13exam-q02",
+      "question": "An investor buys a 2x leveraged ETF tracking the S&P 500; the index declines 3% the next session. Which outcome is expected?",
+      "note": "Correct: B) The ETF should decline by approximately 6% for that day's trading. (Kaplan Q 1818324, LO 13.a)"
+    },
+    {
+      "id": "u13exam-q03",
+      "question": "A 2x leveraged fund priced at $50.00 tracks an index that is up 2% one day and down 2% the next. After these two days, the fund is",
+      "note": "Correct: A) $49.92. (Kaplan Q 1825087, LO 13.a)"
+    },
+    {
+      "id": "u13exam-q04",
+      "question": "A customer asks whether ETFs or ETNs might be suitable... which statement is accurate?",
+      "note": "Correct: B) ETNs are issued by financial institutions; therefore, I should be concerned about the credit risk of the issuer (Kaplan Q 1818327, LO 13.b)"
+    },
+    {
+      "id": "u13exam-q05",
+      "question": "An investor buys a 2x inverse mutual fund tracking the Nasdaq-100. If the index falls 1.8% in a day, the NAV should",
+      "note": "Correct: D) The NAV should rise by approximately 3.6%. (Kaplan Q 1818326, LO 13.a)"
+    },
+    {
+      "id": "u13exam-q06",
+      "question": "For a customer interested in buying an inverse ETF tracking the S&P 500, which outlook would NOT apply?",
+      "note": "Correct: B) Bullish (Kaplan Q 1818322, LO 13.a)"
+    },
+    {
+      "id": "u13exam-q07",
+      "question": "Structured products are created to meet specific investment needs. This process allows for",
+      "note": "Correct: A) market completeness. (Kaplan Q 1825089, LO 13.c)"
+    },
+    {
+      "id": "u13exam-q08",
+      "question": "Among the differences between mutual funds and exchange-traded products such as ETNs is that",
+      "note": "Correct: C) exchange-traded products compute an indicative NAV approximately every 15 seconds (Kaplan Q 1825088, LO 13.b)"
+    },
+    {
+      "id": "u13exam-q09",
+      "question": "An equity-linked note (ELN) is",
+      "note": "Correct: D) a senior, unsecured debt obligation issued by financial institutions. (Kaplan Q 1818329, LO 13.b)"
+    },
+    {
+      "id": "u13exam-q10",
+      "question": "Two clients consider selling their life insurance policies (Client 1 is 68 years old...)",
+      "note": "Correct: C) Client 1 would elect the life settlement, while Client 2 would choose a viatical settlement (Kaplan Q 1818331, LO 13.d)"
+    },
+    {
+      "id": "u14q1-q02",
+      "question": "Which of the following statements are true of a variable annuity? (number of annuity units fixed at payout...)",
+      "note": "Correct: C) I and III (Kaplan Q 1809329, LO 14.e)"
+    },
+    {
+      "id": "u14q1-q03",
+      "question": "A client wishing to purchase a policy with a level death benefit and level premium for life would purchase",
+      "note": "Correct: C) a whole life policy. (Kaplan Q 1809358, LO 14.g)"
+    },
+    {
+      "id": "u14q1-q04",
+      "question": "A life insurance policy that allows the policyholder to \"overfund\" the premium payments is called",
+      "note": "Correct: D) a universal life insurance policy. (Kaplan Q 1809364, LO 14.h)"
+    },
+    {
+      "id": "u14q1-q05",
+      "question": "A risk faced by many seniors is longevity risk. What security would be most appropriate to protect against that risk?",
+      "note": "Correct: D) Variable annuity (Kaplan Q 1809295, LO 14.a)"
+    },
+    {
+      "id": "u14q1-q08",
+      "question": "The term digital assets would include all of the following except",
+      "note": "Correct: A) electronic communications such as email. (Kaplan Q 1809407, LO 14.l)"
+    },
+    {
+      "id": "u14q1-q09",
+      "question": "A life insurance policy with benefits tied to a separate account that allows the policyholder to skip premium payments is",
+      "note": "Correct: C) a flexible premium variable life insurance policy. (Kaplan Q 1817509, LO n/a)"
+    },
+    {
+      "id": "u14q1-q10",
+      "question": "Lisa owns stocks, bonds, and money market securities and is considering gold. Relative to her existing portfolio, gold offers",
+      "note": "Correct: D) low correlation between traditional asset returns and gold. (Kaplan Q 1809435, LO 14.n)"
+    },
+    {
+      "id": "u14q1-q13",
+      "question": "Among the special characteristics of a universal life insurance policy is",
+      "note": "Correct: D) the policy may be overfunded (Kaplan Q 1809372, LO 14.h)"
+    },
+    {
+      "id": "u14q1-q14",
+      "question": "In a DPP, a general partner is all of the following except",
+      "note": "Correct: B) one who has limited liability. (Kaplan Q 1809421, LO 14.m)"
     }
   ],
   "errorPatterns": [
@@ -6275,6 +6490,17 @@ const SYNC = {
         "u12exam-q08"
       ],
       "note": "Both on the Unit 12 checkpoint (Oct 18) after 16/16 on the quizzes."
+    },
+    {
+      "rule": "Variable insurance product rules: VLI may convert to whole life within 24 months at the ORIGINAL age and health; scheduled-premium VLI has a fixed premium, cash value figured monthly, death benefit at least annually; the VA death benefit guarantees at least premiums paid (gains above basis taxable to the beneficiary)",
+      "count": 3,
+      "topic": "II",
+      "occurrences": [
+        "u14q1-q06",
+        "u14q1-q07",
+        "u14q1-q11"
+      ],
+      "note": "Three misses on Unit 14 Quiz 1 (Oct 18 evening, 9/14), all on variable insurance mechanics."
     },
     {
       "rule": "Time value of money direction: present value and the discount rate move in opposite directions (lower rate, higher PV); NPV = PV of cash flows minus cost, positive when IRR exceeds the required return (a buy), zero when equal; IRR assumes reinvestment at the IRR, NPV at the discount/market rate; the rate used to bring a future amount back to today is the discount rate",
@@ -6698,7 +6924,7 @@ const SYNC = {
       ],
       "trigger": "EXCEPT, NOT, or 'which is not true'",
       "move": "Underline it. You want the ONE choice that's false or not allowed. If your pick is true, you answered the opposite question.",
-      "why": "Thirteen misses in five units. Three more in Unit 11, and each time you picked a true statement."
+      "why": "Thirteen misses, each a true statement picked. Both NOT questions on the Unit 13 checkpoint were right."
     },
     {
       "id": "t-dont-overcorrect",
@@ -7985,6 +8211,63 @@ const SYNC = {
       "move": "Economy, industry, earnings, growth = fundamental. Price and volume charts = technical.",
       "why": "A misread: you've had this split right three other times.",
       "count": 1
+    },
+    {
+      "kind": "rule",
+      "topic": "II",
+      "unitId": "U14",
+      "id": "t-variable-insurance",
+      "fromMisses": [
+        "u14q1-q06",
+        "u14q1-q07",
+        "u14q1-q11"
+      ],
+      "trigger": "Variable life or variable annuity mechanics",
+      "move": "VLI converts to whole life within 24 months at the ORIGINAL age and health. No new underwriting.",
+      "lines": [
+        [
+          "Scheduled-premium VLI",
+          "Premium fixed; cash value figured monthly, death benefit at least annually"
+        ],
+        [
+          "VA death benefit",
+          "At least the premiums paid (or the account value, if higher)"
+        ],
+        [
+          "Gains above basis",
+          "Taxable to the beneficiary as ordinary income"
+        ],
+        [
+          "Surrender",
+          "You get the cash value"
+        ]
+      ],
+      "why": "Three misses on Unit 14 Quiz 1 (9/14).",
+      "count": 3
+    },
+    {
+      "kind": "rule",
+      "topic": "II",
+      "unitId": "U14",
+      "id": "t-limited-partner",
+      "fromMisses": [
+        "u14q1-q01"
+      ],
+      "trigger": "A limited partner's loss in a DPP",
+      "move": "Capped at what they invested, and it's passive (offsets passive income only). Only the general partner has unlimited liability.",
+      "count": 1
+    },
+    {
+      "kind": "rule",
+      "topic": "II",
+      "unitId": "U14",
+      "id": "t-digital-assets",
+      "fromMisses": [
+        "u14q1-q12"
+      ],
+      "trigger": "Digital assets vs traditional assets",
+      "move": "No underlying cash flows, decentralized ledgers, thin regulation, higher volatility.",
+      "count": 1
     }
   ],
   "checkpointExams": [
@@ -8458,11 +8741,42 @@ const SYNC = {
       "missCats": {
         "concept or calculation error": 2
       }
+    },
+    {
+      "name": "Unit 13 Checkpoint Exam (Test 414790487)",
+      "date": "2026-10-18",
+      "score": 10,
+      "total": 10,
+      "timeUsed": 9.27,
+      "timeAllowed": null,
+      "byTopic": {
+        "II": {
+          "answered": 10,
+          "correct": 10
+        }
+      },
+      "byUnit": {
+        "U13": {
+          "answered": 10,
+          "correct": 10
+        }
+      },
+      "segments": [
+        {
+          "label": "1-5",
+          "missed": 0
+        },
+        {
+          "label": "6-10",
+          "missed": 0
+        }
+      ],
+      "missCats": {}
     }
   ],
   "priorSnapshot": {
     "asOf": "2026-10-18",
-    "pooledPct": 75.5663,
+    "pooledPct": 76.8533,
     "units": {
       "U1": 77.7778,
       "U2": 62.5,
@@ -8472,9 +8786,10 @@ const SYNC = {
       "U6": 68.75,
       "U7": 83.0986,
       "U8": 74.1379,
-      "U9": 93.5484,
-      "U10": 78.2609,
-      "U11": 78.9474
+      "U9": 91.6667,
+      "U10": 81.25,
+      "U11": 81.5385,
+      "U12": 92.8571
     },
     "missIds": [
       "u1qz1-q03",
@@ -8634,7 +8949,10 @@ const SYNC = {
       "rev111-q13",
       "rev111-q17",
       "u11exam-q07",
-      "u11exam-q13"
+      "u11exam-q13",
+      "u12exam-q01",
+      "u12exam-q08",
+      "rev112-q13"
     ],
     "correctIds": [
       "u1qz1-q01",
@@ -9126,13 +9444,57 @@ const SYNC = {
       "u11exam-q15",
       "u11exam-q16",
       "u11exam-q17",
-      "u11exam-q18"
+      "u11exam-q18",
+      "u12q1-q01",
+      "u12q1-q02",
+      "u12q1-q03",
+      "u12q1-q04",
+      "u12q1-q05",
+      "u12q1-q06",
+      "u12q1-q07",
+      "u12q1-q08",
+      "u12q2-q01",
+      "u12q2-q02",
+      "u12q2-q03",
+      "u12q2-q04",
+      "u12q2-q05",
+      "u12q2-q06",
+      "u12q2-q07",
+      "u12q2-q08",
+      "u12exam-q02",
+      "u12exam-q03",
+      "u12exam-q04",
+      "u12exam-q05",
+      "u12exam-q06",
+      "u12exam-q07",
+      "u12exam-q09",
+      "u12exam-q10",
+      "rev112-q01",
+      "rev112-q02",
+      "rev112-q03",
+      "rev112-q04",
+      "rev112-q05",
+      "rev112-q06",
+      "rev112-q07",
+      "rev112-q08",
+      "rev112-q09",
+      "rev112-q10",
+      "rev112-q11",
+      "rev112-q12",
+      "rev112-q14",
+      "rev112-q15",
+      "rev112-q16",
+      "rev112-q17",
+      "rev112-q18",
+      "rev112-q19",
+      "rev112-q20"
     ],
     "patternRules": [
       "Investment Company Act of 1940 rules: $100,000 minimum capital before a public offering; no more than 3% of another investment company's voting shares; no joint trading accounts or short sales; shares can't be bought on margin; a majority shareholder vote to change fundamental policy; the adviser's contract must be written, 2 years initially then renewed annually",
       "Bond arithmetic: a quote is a percent of $1,000 (each point $10, so 102 = $1,020 and 102 1/4 = $1,022.50) and the total multiplies by the number of bonds; yield to call counts periods to the call date and ends at the call price; current yield = annual income / current price (dividend, not earnings, for stock)",
       "Duration: rises with maturity, falls as coupon or yield rises (inverse to YTM); a zero's duration equals its maturity (always longest); lengthen duration when rates are expected to fall; at a given discount rate, the highest coupon above market for the longest time carries the biggest premium",
       "Choosing a mutual fund: when a fund is sold on past performance, check manager tenure first; NAV per share is irrelevant; Class A has the lowest ongoing asset-based charge (B and C higher); switching fund families while a deferred load applies is unsuitable",
+      "Options rights vs obligations: buyers (long) have rights, writers (short) have obligations; a put writer may have to BUY, a call writer may have to SELL; a protective put on owned stock sets a floor and keeps the upside, it doesn't profit from a decline",
       "Time value of money direction: present value and the discount rate move in opposite directions (lower rate, higher PV); NPV = PV of cash flows minus cost, positive when IRR exceeds the required return (a buy), zero when equal; IRR assumes reinvestment at the IRR, NPV at the discount/market rate; the rate used to bring a future amount back to today is the discount rate",
       "Reading financial statements: current ratio uses only current assets and current liabilities; net profit is already after interest and taxes; dividends are paid out of net income and don't reduce it; cash accounting books a sale when paid, accrual when it happens; for dividend income, compute the dollars (payout ratio x EPS) rather than reading the ratio",
       "Suitability: one security recommended to all clients is a blanket recommendation and is unethical even with full disclosure; an unsuitable recommendation brings Administrator action against the agent (after a hearing), not a forced rescission",
@@ -9189,6 +9551,8 @@ const SYNC = {
       "Unit 10 Quiz 2 (Test 414054823)",
       "Unit 11 Quiz 1 (Test 414494328)",
       "Unit 11 Quiz 2 (Test 414768562)",
+      "Unit 12 Quiz 1 (Test 414779597)",
+      "Unit 12 Quiz 2 (Test 414780206)",
       "Unit 1 Checkpoint Exam (Test 410671140)",
       "Unit 2 Checkpoint Exam (Test 411154210)",
       "Unit 3 Checkpoint Exam (Test 411516480)",
@@ -9200,6 +9564,7 @@ const SYNC = {
       "Unit 9 Checkpoint Exam (Test 414000301)",
       "Unit 10 Checkpoint Exam (Test 414335768)",
       "Unit 11 Checkpoint Exam (Test 414769885)",
+      "Unit 12 Checkpoint Exam (Test 414780517)",
       "Unit 1-2 Review Quiz (Test 411496521)",
       "Unit 1-3 Review Quiz (Test 411666032)",
       "Unit 1-4 Review Quiz (Test 412336495)",
@@ -9209,7 +9574,8 @@ const SYNC = {
       "Unit 1-8 Review Quiz (Test 413832542)",
       "Unit 1-9 Review Quiz (Test 414489862)",
       "Unit 1-10 Review Quiz (Test 414492385)",
-      "Unit 1-11 Review Quiz (Test 414770815)"
+      "Unit 1-11 Review Quiz (Test 414770815)",
+      "Unit 1-12 Review Quiz (Test 414781189)"
     ]
   }
 };
@@ -10404,7 +10770,7 @@ const DUMP_BLOCKS = [
     { k: "Existing holders", v: "No commission paid" },
     { k: "A lawful sale needs one of", v: "State-registered, exempt security, exempt transaction, federal covered", tip: "t-federal-covered" }
   ]},
-  { key: "bonds", name: "Bonds, funds & options", topic: "II", rows: [
+  { key: "bonds", name: "Investment vehicles", topic: "II", rows: [
     { k: "Bond quote", v: "% of $1,000; 1 point = $10 (102 = $1,020)", tip: "t-bond-math" },
     { k: "Yield to call", v: "Periods to the call, ends at the call price", tip: "t-bond-math" },
     { k: "Muni vs taxable", v: "Taxable × (1 − bracket), then compare", tip: "t-bond-math" },
@@ -10414,7 +10780,8 @@ const DUMP_BLOCKS = [
     { k: "Fund redemption", v: "Paid within 7 days" },
     { k: "Lowest 12b-1", v: "Class A", tip: "t-fund-selection" },
     { k: "Rule 144", v: "Holding period: restricted stock; volume limit: control persons", tip: "t-rule-144" },
-    { k: "Options", v: "Buyer = right, writer = obligation (a put writer buys)", tip: "t-options" }
+    { k: "Options", v: "Buyer = right, writer = obligation (a put writer buys)", tip: "t-options" },
+    { k: "VLI to whole life", v: "Within 24 months, at the original age and health", tip: "t-variable-insurance" }
   ]},
   { key: "formulas", name: "Formulas", topic: "I", rows: [
     { k: "Sharpe", v: "(Rp − rf) ÷ std dev", note: "total risk" },
