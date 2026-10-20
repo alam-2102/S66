@@ -196,6 +196,13 @@ Everything weighted depends on this being right.
 Do not hardcode a unit count. The Series 66 course is smaller than the Series 7's 21
 units; derive the real number from Kaplan.
 
+Each unit's share of the 100 scored questions is Kaplan's "~N exam questions" from the
+unit intro. Keep it in the unit's map note, and keep `KAPLAN_UNIT_QUESTIONS` in
+`index.html` in step with it: topic scores, priorities, the below-the-line list and the
+reweighted score all weight units by it. The sanity check fails if a mapped unit has no
+count, if a topic's counts don't add up to NASAA's 8/17/30/45, or if a count disagrees
+with its note. Units 9 and 16 state no figure; theirs is the topic remainder.
+
 ---
 
 ## Quick Tips

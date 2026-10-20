@@ -382,9 +382,11 @@ footer.foot{margin-top:40px;padding-top:16px;border-top:1px solid var(--grid);
     pool, so they are reported as a separate counterweight column and never added
     back into the pooled figure.</p>
   <div class="formula">reweighted = 0.08&times;T1 + 0.17&times;T2 + 0.30&times;T3 + 0.45&times;T4</div>
-  <p>The Series 66 weighting is flat compared with the Series 7 &mdash; no single block
-    dominates &mdash; so reweighting moves the headline number less than it did there.
-    Worth computing, not worth building a narrative on.</p>
+  <p>Each topic score weights its units by Kaplan's own count of exam questions per
+    unit (the Exam Qs column), so a two-question unit you've drilled hard can't drag a
+    topic the way a fourteen-question one can. The pooled score above still counts
+    every answer once. Until every unit has data, the reweighted score covers only the
+    units studied so far; coverage says how many of the 100 that is.</p>
 </section>
 
 <!-- ============ 2 · PRACTICE & SIM EXAMS ============ -->
@@ -875,6 +877,18 @@ const nasaaData = {
     { id: "IV",  name: "Laws, Regulations and Guidelines, incl. Prohibition on Unethical Business Practice",
       short: "Laws & ethics",       weight: 45, questions: 45 }
   ]
+};
+
+/* Kaplan's share of the 100 scored questions for each unit, from the "~N exam
+   questions" line in each unit's intro (also kept in the unit map notes). Units 9
+   and 16 state no figure, so theirs is the remainder that brings the topic to
+   NASAA's total (17 and 30). The sanity check holds every topic's sum to
+   nasaaData and every stated figure to its note. Course facts, not performance. */
+const KAPLAN_UNIT_QUESTIONS = {
+  U1: 7, U2: 5, U3: 4, U4: 2, U5: 2, U6: 11, U7: 14,          // Topic IV = 45
+  U8: 8,                                                       // Topic I  = 8
+  U9: 3, U10: 5, U11: 3, U12: 1, U13: 3, U14: 2,               // Topic II = 17
+  U15: 5, U16: 5, U17: 5, U18: 2, U19: 4, U20: 2, U21: 2, U22: 3, U23: 2  // Topic III = 30
 };
 
 const EXAM = {
@@ -9722,44 +9736,66 @@ function mixedTotals() {
 function topicIdList() { return nasaaData.topics.map(t => t.id); }
 function mapForUnit(unitId) { return UNIT_TOPIC_MAP.find(m => m.id === unitId) || null; }
 
+/* A topic's accuracy weights each unit by its exam questions, not by how many
+   practice questions it happens to have, so a heavily drilled two-question unit
+   can't drag a topic the way a fourteen-question one can. pooledPct keeps the
+   plain count-every-answer figure for reference. */
 function topicTotals() {
   const out = {};
-  for (const t of nasaaData.topics) out[t.id] = { answered: 0, correct: 0, pct: null, units: [] };
+  for (const t of nasaaData.topics) {
+    out[t.id] = { answered: 0, correct: 0, pct: null, pooledPct: null, examQs: 0, units: [] };
+  }
+  const weighted = {};
   for (const u of unitData) {
     const m = mapForUnit(u.id);
     if (!m) continue;                       // unmapped units are excluded, and flagged elsewhere
     const p = unitPool(u);
+    const acc = pct(p.correct, p.answered);
+    const q = unitExamQuestions(u.id);
     for (const [tid, w] of Object.entries(m.split)) {
       if (!out[tid]) continue;
       out[tid].answered += p.answered * w;
       out[tid].correct  += p.correct  * w;
       out[tid].units.push(u.id);
+      if (acc !== null && q > 0) {
+        out[tid].examQs += q * w;
+        weighted[tid] = (weighted[tid] || 0) + q * w * acc;
+      }
     }
   }
-  for (const tid of Object.keys(out)) out[tid].pct = pct(out[tid].correct, out[tid].answered);
+  for (const tid of Object.keys(out)) {
+    const o = out[tid];
+    o.pooledPct = pct(o.correct, o.answered);
+    o.pct = o.examQs > 0 ? weighted[tid] / o.examQs : o.pooledPct;
+  }
   return out;
 }
 
-/* reweighted = 0.08xT1 + 0.17xT2 + 0.30xT3 + 0.45xT4
-   Only defined when every topic has data; a partial reweight would be a lie. */
+/* reweighted = 0.08xT1 + 0.17xT2 + 0.30xT3 + 0.45xT4, with each topic score
+   weighting its units by exam questions. Until every unit has data it covers the
+   units studied so far; coverage is how many of the 100 scored questions that is. */
 function reweightedScore() {
-  const tt = topicTotals();
-  let sum = 0, weightCovered = 0;
-  for (const t of nasaaData.topics) {
-    const p = tt[t.id].pct;
-    if (p === null) continue;
-    sum += (t.weight / 100) * p;
-    weightCovered += t.weight;
+  let sum = 0, covered = 0;
+  for (const u of unitData) {
+    if (!mapForUnit(u.id)) continue;
+    const p = unitPool(u);
+    const acc = pct(p.correct, p.answered);
+    const q = unitExamQuestions(u.id);
+    if (acc === null || !q) continue;
+    sum += q * acc;
+    covered += q;
   }
-  if (weightCovered === 0) return { pct: null, coverage: 0 };
-  // Scale up to a full-blueprint estimate only when coverage is complete.
-  return { pct: weightCovered === 100 ? sum : (sum / weightCovered) * 100, coverage: weightCovered };
+  if (!covered) return { pct: null, coverage: 0 };
+  return { pct: sum / covered, coverage: Math.round(covered) };
 }
 
-/* ---- questions attributable to each unit, for the priority ordering -------- */
+/* ---- questions attributable to each unit -----------------------------------
+   Kaplan's own per-unit count. Only a unit missing from KAPLAN_UNIT_QUESTIONS
+   falls back to an even share of its topic. */
 function unitExamQuestions(unitId) {
   const m = mapForUnit(unitId);
   if (!m) return 0;
+  if (KAPLAN_UNIT_QUESTIONS[unitId] != null) return KAPLAN_UNIT_QUESTIONS[unitId];
   let q = 0;
   for (const [tid, w] of Object.entries(m.split)) {
     const topic = nasaaData.topics.find(t => t.id === tid);
@@ -9797,12 +9833,22 @@ function topicPriorityOrder() {
   })).filter(r => r.lost !== null).sort((a, b) => b.lost - a.lost);
 }
 
+/* Sorted by exam questions at risk, not by raw accuracy: a weak two-question
+   unit lists after a weak eleven-question one. */
 function unitsBelowLine() {
   return unitData
-    .map(u => { const p = unitPool(u); return { id: u.id, name: u.name, pct: pct(p.correct, p.answered) }; })
+    .map(u => {
+      const p = unitPool(u);
+      const acc = pct(p.correct, p.answered);
+      const q = unitExamQuestions(u.id);
+      return { id: u.id, name: u.name, pct: acc, examQuestions: q,
+               lost: acc === null ? null : q * (1 - acc / 100) };
+    })
     .filter(r => r.pct !== null && r.pct < EXAM.PASS_LINE)
-    .sort((a, b) => a.pct - b.pct);
+    .sort((a, b) => b.lost - a.lost || a.pct - b.pct);
 }
+function fmtExamQs(q) { return (Number.isInteger(q) ? String(q) : q.toFixed(1)); }
+function examWeightNote(u) { return "~" + fmtExamQs(u.examQuestions) + " of " + EXAM.scored + " exam questions"; }
 function unmappedUnits() { return unitData.filter(u => !mapForUnit(u.id)); }
 
 function daysUntilExam() {
@@ -10055,6 +10101,7 @@ function renderUnitTable() {
     rows += '<tr' + (low ? ' class="below"' : '') + '>'
       + '<td>' + esc(u.name) + '</td>'
       + '<td>' + topics + '</td>'
+      + '<td class="num">' + (m ? '~' + fmtExamQs(unitExamQuestions(u.id)) : EM) + '</td>'
       + '<td class="num">' + fmtPct(pooledPct) + '</td>'
       + '<td class="num">' + (p.answered || EM) + '</td>'
       + '<td class="num">' + fmtPct(qb) + '</td>'
@@ -10067,10 +10114,11 @@ function renderUnitTable() {
   }
   setHTML("unit-table",
     '<table><thead><tr>'
-    + '<th>Kaplan unit</th><th>Topic</th><th>Pooled</th><th>Answered</th>'
+    + '<th>Kaplan unit</th><th>Topic</th><th>Exam Qs</th><th>Pooled</th><th>Answered</th>'
     + '<th>QBank</th><th>Exam</th><th>Mixed</th><th>Exam &minus; QBank</th><th></th>'
     + '</tr></thead><tbody>' + rows + '</tbody>'
     + '<tfoot><tr><td>All units</td><td></td>'
+    + '<td class="num">' + fmtExamQs(unitData.reduce((s, u) => s + unitExamQuestions(u.id), 0)) + '</td>'
     + '<td class="num">' + fmtPct(P.pct) + '</td>'
     + '<td class="num">' + (P.answered || EM) + '</td>'
     + '<td class="num" colspan="2">pooled, each question once</td>'
@@ -10403,7 +10451,8 @@ function renderStanding() {
     + '</div>'
     + '<p>' + verdict + ' '
     + (below.length
-        ? 'Below the line: <b>' + esc(below.map(u => unitShort(u.name)).join(", ")) + '</b>.'
+        ? 'Below the line: ' + below.map(u => '<b>' + esc(unitShort(u.name)) + '</b>'
+            + ' <span class="muted">(' + esc(examWeightNote(u)) + ')</span>').join(", ") + '.'
         : 'Every unit you have studied is at or above the line.')
     + '</p>');
 }
@@ -10428,14 +10477,16 @@ function renderNext() {
     items.push(['Book the exam date', 'A plan is easier to pace against a real date.']);
   }
   const latest = latestCheckpointByUnit();
+  /* Most exam questions at stake first, so a 2-question unit's retake waits. */
   const retake = Object.keys(latest)
-    .map(uid => ({ uid, p: pct(latest[uid].score, latest[uid].total) }))
+    .map(uid => ({ uid, p: pct(latest[uid].score, latest[uid].total), q: unitExamQuestions(uid) }))
     .filter(r => r.p !== null && r.p < EXAM.PASS_LINE)
-    .sort((a, b) => a.p - b.p);
+    .sort((a, b) => b.q * (100 - b.p) - a.q * (100 - a.p) || a.p - b.p);
   if (retake.length) {
     items.push(['Retake ' + (retake.length === 1 ? 'a checkpoint' : retake.length + ' checkpoints'),
-      retake.map(r => esc(unitShort(unitName(r.uid))) + ' at ' + fmtPct(r.p, 0)).join(', ')
-      + ' ' + EM + ' latest attempt is under the line.']);
+      retake.map(r => esc(unitShort(unitName(r.uid))) + ' at ' + fmtPct(r.p, 0)
+        + ' <span class="muted">(~' + fmtExamQs(r.q) + ' exam Qs)</span>').join(', ')
+      + ' ' + EM + ' latest attempt is under the line; biggest first.']);
   }
   const up = priorityOrder().slice(0, 3);
   if (up.length) {
@@ -11024,7 +11075,7 @@ function briefFull(budget) {
         + fmtPct(checkpointTotals().pct) + " (short, single-unit - not a readiness measure)"
       : "") + "\n"
   + "- Units below the pass line: "
-  + (below.length ? below.map(u => u.name + " (" + fmtPct(u.pct) + ")").join(", ")
+  + (below.length ? below.map(u => u.name + " (" + fmtPct(u.pct) + ", " + examWeightNote(u) + ")").join(", ")
                   : (hasData() ? "none" : "no unit data yet")) + "\n\n"
   + "PER UNIT\n" + txtUnitTable() + "\n"
   + "PER NASAA TOPIC\n" + txtTopicTable() + "\n"
@@ -11113,7 +11164,7 @@ function briefDelta() {
          ? "  (was " + fmtPct(prev.pooledPct) + ", " + fmtSigned(P.pct - prev.pooledPct) + ")" : "")
      + "\n"
      + "- Below the " + EXAM.PASS_LINE + "% line right now: "
-     + (below.length ? below.map(u => u.name + " " + fmtPct(u.pct)).join(", ") : "none") + "\n"
+     + (below.length ? below.map(u => u.name + " " + fmtPct(u.pct) + " (" + examWeightNote(u) + ")").join(", ") : "none") + "\n"
      + "- Top three priorities right now:\n" + txtPriorities(3) + "\n";
 
   /* what actually changed */
@@ -11241,7 +11292,7 @@ function briefFocused() {
   + asOfLine() + "\n\n"
   + "WEAK UNITS (below the " + EXAM.PASS_LINE + "% pass line)\n"
   + (below.length
-      ? below.map(u => "- " + u.name + " at " + fmtPct(u.pct)).join("\n") + "\n"
+      ? below.map(u => "- " + u.name + " at " + fmtPct(u.pct) + " (" + examWeightNote(u) + ")").join("\n") + "\n"
       : "  (none below the line, or no data yet)\n")
   + "\nTOP PRIORITIES\n" + txtPriorities(3) + "\n"
   + "RECENT MISSES\n"
@@ -11271,7 +11322,7 @@ function briefQuiz() {
   + nasaaData.topics.map(t => "  " + t.id + ". " + t.short + " - " + t.weight + "%").join("\n") + "\n"
   + "  ...but bias toward my weak areas below rather than sampling evenly.\n\n"
   + "MY WEAK AREAS\n"
-  + (below.length ? below.map(u => "- " + u.name + " (" + fmtPct(u.pct) + ")").join("\n") + "\n"
+  + (below.length ? below.map(u => "- " + u.name + " (" + fmtPct(u.pct) + ", " + examWeightNote(u) + ")").join("\n") + "\n"
                   : "  (no unit data yet - weight by the blueprint above)\n")
   + (tp.length ? "\nBY TOPIC\n" + txtPriorities(4) : "")
   + "\nRULES I HAVE ALREADY MISSED - build questions that probe these\n" + txtPatterns()

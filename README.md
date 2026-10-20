@@ -50,6 +50,11 @@ Reweighted against the blueprint:
 0.08×T1 + 0.17×T2 + 0.30×T3 + 0.45×T4
 ```
 
+Each topic score T weights its units by Kaplan's own count of exam questions per unit
+(`KAPLAN_UNIT_QUESTIONS` in `index.html`; Unit 7 ~14, Unit 14 ~2), so a heavily drilled
+small unit can't drag a topic. The same counts rank the priorities and the units below
+the line. The pooled score still counts every answer once.
+
 ## The exam
 
 Written by NASAA, administered by FINRA. 100 scored questions plus 10 pretest = 110

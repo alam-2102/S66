@@ -126,9 +126,10 @@ const EXPORTS = `
 ;globalThis.__X__ = {
   nasaaData, EXAM, META, unitData, mixedQuizzes, kaplanQBank, simExams,
   UNIT_TOPIC_MAP, missedQuestions, errorPatterns, quickTips, answeredCorrect,
-  checkpointExams, DUMP_BLOCKS,
+  checkpointExams, DUMP_BLOCKS, KAPLAN_UNIT_QUESTIONS,
   PRIOR_SNAPSHOT,
-  pooledTotals, topicTotals, unitPool, buildBindings, bindAll, renderAll,
+  pooledTotals, topicTotals, unitPool, unitExamQuestions, reweightedScore,
+  buildBindings, bindAll, renderAll,
   renderSimulated, renderPerformance, buildPaste, MISSING_BINDS
 };`;
 
@@ -213,6 +214,43 @@ console.log("\nSeries 66 dashboard sanity check\n");
   assert(new Set(ids).size === ids.length, "unit ids are unique");
   const mapIds = X.UNIT_TOPIC_MAP.map(u => u.id);
   assert(new Set(mapIds).size === mapIds.length, "unit-topic map has no duplicate entries");
+}
+
+/* ------------------- 3a. per-unit exam weights match Kaplan and NASAA ------- */
+{
+  /* Unit and topic weights drive every priority and the reweighted score. An
+     even split across a topic's units once ranked a 2-question unit like a
+     6-question one, so hold Kaplan's per-unit counts to the blueprint. */
+  const K = X.KAPLAN_UNIT_QUESTIONS;
+  const missing = X.UNIT_TOPIC_MAP.filter(m => K[m.id] == null).map(m => m.id);
+  assert(missing.length === 0,
+    "every mapped unit has Kaplan's exam-question count (no even-split fallback)",
+    missing.length ? "missing: " + missing.join(", ") : "(" + X.UNIT_TOPIC_MAP.length + " units)");
+
+  const byTopic = {};
+  for (const m of X.UNIT_TOPIC_MAP) {
+    for (const [tid, w] of Object.entries(m.split)) byTopic[tid] = (byTopic[tid] || 0) + (K[m.id] || 0) * w;
+  }
+  const off = X.nasaaData.topics
+    .filter(t => Math.abs((byTopic[t.id] || 0) - t.questions) > 1e-9)
+    .map(t => t.id + " " + (byTopic[t.id] || 0) + " vs " + t.questions);
+  assert(off.length === 0,
+    "Kaplan's per-unit exam questions add up to each NASAA topic (8/17/30/45)",
+    off.join(", "));
+
+  const disagree = [];
+  for (const m of X.UNIT_TOPIC_MAP) {
+    const hit = String(m.note || "").match(/~\s*(\d+)\s+exam questions/);
+    if (hit && Number(hit[1]) !== K[m.id]) disagree.push(m.id + " note ~" + hit[1] + " vs " + K[m.id]);
+  }
+  assert(disagree.length === 0,
+    "per-unit exam questions agree with the '~N exam questions' in the unit map notes",
+    disagree.join(", "));
+
+  const rw = X.reweightedScore();
+  assert(rw.coverage <= 100 && (rw.pct === null || (rw.pct >= 0 && rw.pct <= 100)),
+    "reweighted score and coverage stay in range",
+    "pct " + rw.pct + ", coverage " + rw.coverage);
 }
 
 /* ----------------------- 3b. simExams is full-length exams only ------------- */
