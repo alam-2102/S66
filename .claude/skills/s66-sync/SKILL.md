@@ -202,8 +202,9 @@ unit intro. Keep it in the unit's map note, and keep `KAPLAN_UNIT_QUESTIONS` in
 reweighted score all weight units by it. The sanity check fails if a mapped unit has no
 count, if a topic's counts don't add up to NASAA's 8/17/30/45, or if a count disagrees
 with its note. Kaplan's portal notes for Units 9 and 16 carried no figure; Austin
-confirmed them from the book on Oct 20 (~3 and ~5). If a payload's map notes for those
-units drop the figure again, keep the confirmed notes.
+confirmed them from the book on Oct 20 (~3 and ~5). From the Oct 20 run Cowork's notes
+carry the figure too; keep "(confirmed from the book Oct 20)" after it. If a payload's
+notes for those units drop the figure again, keep the confirmed notes.
 
 ---
 
