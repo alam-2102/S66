@@ -201,7 +201,9 @@ unit intro. Keep it in the unit's map note, and keep `KAPLAN_UNIT_QUESTIONS` in
 `index.html` in step with it: topic scores, priorities, the below-the-line list and the
 reweighted score all weight units by it. The sanity check fails if a mapped unit has no
 count, if a topic's counts don't add up to NASAA's 8/17/30/45, or if a count disagrees
-with its note. Units 9 and 16 state no figure; theirs is the topic remainder.
+with its note. Kaplan's portal notes for Units 9 and 16 carried no figure; Austin
+confirmed them from the book on Oct 20 (~3 and ~5). If a payload's map notes for those
+units drop the figure again, keep the confirmed notes.
 
 ---
 
