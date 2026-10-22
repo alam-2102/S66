@@ -407,6 +407,12 @@ footer.foot{margin-top:40px;padding-top:16px;border-top:1px solid var(--grid);
     kept out of the section above.</small>
   <div class="scroller" id="checkpoint-table"></div>
   <div id="checkpoint-note"></div>
+
+  <h2>Multi-unit exams</h2>
+  <small class="note">Kaplan's Midterm and anything else that mixes units. Longer and closer to
+    the real thing than a checkpoint, but still short of full length and only covers the units
+    you had reached. Part of the pooled score through each unit's exam column.</small>
+  <div id="mixed-exams"></div>
 </section>
 <!-- ============ 3 · QUICK TIPS ============ -->
 <section class="tab" id="tab-tips" role="tabpanel" aria-labelledby="t-tips">
@@ -911,18 +917,19 @@ const EXAM = {
    ========================================================================== */
 const SYNC = {
   "meta": {
-    "lastVerified": "2026-10-20",
-    "lastRunAttempted": "2026-10-20",
+    "lastVerified": "2026-10-21",
+    "lastRunAttempted": "2026-10-21",
     "source": "kaplan",
     "examDate": null,
     "noDataRuns": 0,
-    "lastActivityDate": "2026-10-20",
-    "courseActivitiesDone": 73,
+    "lastActivityDate": "2026-10-21",
+    "courseActivitiesDone": 79,
     "courseActivitiesTotal": 137,
-    "studyPlanPct": 38.2,
-    "kaplanExamAvg": 76.15,
-    "kaplanQBankAvg": 77.17,
-    "unreadReason": ""
+    "studyPlanPct": 42.4,
+    "kaplanExamAvg": 72.44,
+    "kaplanQBankAvg": 76.04,
+    "unreadReason": "",
+    "dataNotes": "Oct 21: Kaplan's QBank tracker counts 25 of the 30 Unit 1-13 Review questions (U1 +6 of 8, U3 +6 of 8, U12 +2 of 3); the five uncounted ones appear to be questions seen before. unitData follows Kaplan's tracker; the review quiz itself is recorded at 21/30 in mixedQuizzes. The Midterm's 55 questions match the exam tracker exactly."
   },
   "unitTopicMap": [
     {
@@ -1114,118 +1121,118 @@ const SYNC = {
     {
       "id": "U1",
       "name": "Unit 1: Regulation of Investment Advisers and Investment Adviser Representatives",
-      "qbankAnswered": 33,
-      "qbankCorrect": 28,
-      "examAnswered": 12,
+      "qbankAnswered": 39,
+      "qbankCorrect": 32,
+      "examAnswered": 14,
       "examCorrect": 7,
       "mixedAnswered": 0,
       "mixedCorrect": 0,
       "covers": "Who is and is not an investment adviser/IAR, SEC Release IA-1092, exclusions, private fund advisers",
-      "recurring": "Which client types create an exemption, and whether a rule is federal or state: insurance-company clients are a federal exemption but not a state one, and bank-only clients are neither (Quiz 2 Q3, Quiz 2 Q11, Exam Q6). Exclusion vs exemption, especially for publishers and professionals (Exam Q11, Exam Q12, Quiz 2 Q3). The 'in the business' test tripped him on Sep 16 (Quiz 1 Q4, Q7) but he re-answered the identical IA-1092 question correctly on Sep 17."
+      "recurring": "Which client types create an exemption, and whether a rule is federal or state: insurance-company clients are a federal exemption but not a state one, and bank-only clients are neither (Quiz 2 Q3, Quiz 2 Q11, Exam Q6). Exclusion vs exemption, especially for publishers and professionals (Exam Q11, Exam Q12, Quiz 2 Q3). The 'in the business' test tripped him on Sep 16 (Quiz 1 Q4, Q7) but he re-answered the identical IA-1092 question correctly on Sep 17. Oct 21: Midterm 0/2 (who must register when clients are individuals vs a registered investment company, Q28; one private-fund client ends the federal intrastate exemption, Q36); review quiz misses on 'investment counsel' (discretion not required) and exclusions vs the insurance-company exemption."
     },
     {
       "id": "U2",
       "name": "Unit 2: Registration Requirements for Investment Advisers and Their Representatives",
       "qbankAnswered": 45,
       "qbankCorrect": 29,
-      "examAnswered": 19,
-      "examCorrect": 11,
+      "examAnswered": 28,
+      "examCorrect": 16,
       "mixedAnswered": 0,
       "mixedCorrect": 0,
       "covers": "NSMIA's impact on IAs, IA registration and post-registration requirements, IAR regulation",
-      "recurring": "Who notifies the Administrator when an IAR is hired or terminated: state-registered adviser means the FIRM notifies, federal covered means the IAR notifies (Quiz 1 Q7, U2 quiz Q2, Exam Q15). What counts as a place of business for an IAR of a covered adviser (Quiz 1 Q1, Exam Q1, Exam Q11). Who is a supervised or associated person (Quiz 1 Q3, U2 quiz Q3, Exam Q9, Review Q1). The dollar and time thresholds in the NASAA financial rules (Quiz 2 Q5, Review Q10, Exam Q7)."
+      "recurring": "Who notifies the Administrator when an IAR is hired or terminated: state-registered adviser means the FIRM notifies, federal covered means the IAR notifies (Quiz 1 Q7, U2 quiz Q2, Exam Q15). What counts as a place of business for an IAR of a covered adviser (Quiz 1 Q1, Exam Q1, Exam Q11). Who is a supervised or associated person (Quiz 1 Q3, U2 quiz Q3, Exam Q9, Review Q1). The dollar and time thresholds in the NASAA financial rules (Quiz 2 Q5, Review Q10, Exam Q7). Oct 21: Midterm 5/9, the most-tested unit. Misses: federal covered IAR notifies for himself (Q27), a limited partnership can't be an IAR (Q47), financial-impairment disclosure triggers (Q49, NOT question), and associated persons (Q1, NOT question)."
     },
     {
       "id": "U3",
       "name": "Unit 3: Regulation of Broker-Dealers and Their Agents",
-      "qbankAnswered": 31,
-      "qbankCorrect": 24,
-      "examAnswered": 12,
-      "examCorrect": 9,
+      "qbankAnswered": 37,
+      "qbankCorrect": 27,
+      "examAnswered": 16,
+      "examCorrect": 10,
       "mixedAnswered": 0,
       "mixedCorrect": 0,
       "covers": "Who is and is not a broker-dealer or agent; their registration and post-registration requirements",
-      "recurring": "Registration reach for broker-dealers and agents: there is NO de minimis exemption, an agent must be registered where the client is domiciled even on an unsolicited or institutional order, but a BD with no office in the state that only serves existing clients temporarily there (snowbird) is exempt. Missed in both directions: under-registering on Quiz 1 Q6/Q8, then over-registering on Exam Q9."
+      "recurring": "Registration reach for broker-dealers and agents: there is NO de minimis exemption, an agent must be registered where the client is domiciled even on an unsolicited or institutional order, but a BD with no office in the state that only serves existing clients temporarily there (snowbird) is exempt. Missed in both directions: under-registering on Quiz 1 Q6/Q8, then over-registering on Exam Q9. Oct 21: Midterm 1/4 and Review 1-13 4/8. BD reach with no office (institutions, issuers, BDs only; no de minimis), snowbird 30-day rule for agents, multi-state BD records follow the SEC (NSMIA), U4 disclosure of liens, agents suspended when the BD is revoked."
     },
     {
       "id": "U4",
       "name": "Unit 4: Regulation of Securities and Issuers",
       "qbankAnswered": 51,
       "qbankCorrect": 36,
-      "examAnswered": 15,
+      "examAnswered": 16,
       "examCorrect": 12,
       "mixedAnswered": 0,
       "mixedCorrect": 0,
       "covers": "Securities and issuer terms, the securities registration process, registration exemptions",
-      "recurring": "Exempt transactions vs exempt securities: unsolicited orders are the most common EXEMPT TRANSACTION (missed twice in one sitting), a transaction with an ordinary operating company is not exempt, and private placements are capped at 10 retail purchasers. Conditions attached to security exemptions: a savings institution or insurer must be authorized in the state, a railroad must be rate-regulated, commercial paper needs a $50,000 denomination. Federal covered securities: which exchanges qualify (US exchanges, not Montreal) and that federal covered means notice filing, not state registration (Review Q1, Q6). Oct 8 review: federal covered securities again (Q3, the same question missed on Sep 29, and Q11, in-state munis are NOT federal covered), what makes a sale lawful in a state (Q14: SEC registration is not one of the four routes), and sale vs offer (Q7)."
+      "recurring": "Exempt transactions vs exempt securities: unsolicited orders are the most common EXEMPT TRANSACTION (missed twice in one sitting), a transaction with an ordinary operating company is not exempt, and private placements are capped at 10 retail purchasers. Conditions attached to security exemptions: a savings institution or insurer must be authorized in the state, a railroad must be rate-regulated, commercial paper needs a $50,000 denomination. Federal covered securities: which exchanges qualify (US exchanges, not Montreal) and that federal covered means notice filing, not state registration (Review Q1, Q6). Oct 8 review: federal covered securities again (Q3, the same question missed on Sep 29, and Q11, in-state munis are NOT federal covered), what makes a sale lawful in a state (Q14: SEC registration is not one of the four routes), and sale vs offer (Q7). Oct 21: Midterm 0/1, unsolicited-order acknowledgment by RULE, not ORDER."
     },
     {
       "id": "U5",
       "name": "Unit 5: Remedies and Administrative Provisions",
-      "qbankAnswered": 41,
-      "qbankCorrect": 36,
-      "examAnswered": 16,
-      "examCorrect": 8,
+      "qbankAnswered": 46,
+      "qbankCorrect": 39,
+      "examAnswered": 18,
+      "examCorrect": 9,
       "mixedAnswered": 0,
       "mixedCorrect": 0,
       "covers": "Administrator's administrative and disciplinary powers, other penalties and liabilities",
-      "recurring": "Cancellation vs revocation: mental incompetence, no forwarding address and going out of business mean CANCELLATION (nonpunitive); convictions and wrongdoing mean REVOCATION. Picked 'revoke' for incompetence twice. The time limits and penalty numbers: civil statute of limitations is the earlier of 3 years after the sale or 2 years after discovery, criminal is 5 years, maximum penalty $5,000 and/or 3 years, 60 days to appeal an order. Jurisdiction: an offer is made where it originates and where it is accepted, a cell phone call counts at the owner's home state unless the client acts from elsewhere, and an out-of-state newspaper never creates jurisdiction."
+      "recurring": "Cancellation vs revocation: mental incompetence, no forwarding address and going out of business mean CANCELLATION (nonpunitive); convictions and wrongdoing mean REVOCATION. Picked 'revoke' for incompetence twice. The time limits and penalty numbers: civil statute of limitations is the earlier of 3 years after the sale or 2 years after discovery, criminal is 5 years, maximum penalty $5,000 and/or 3 years, 60 days to appeal an order. Jurisdiction: an offer is made where it originates and where it is accepted, a cell phone call counts at the owner's home state unless the client acts from elsewhere, and an out-of-state newspaper never creates jurisdiction. Oct 21: Review 1-13 Q16 (summary suspension of a pending registration; cancellation is not revocation) and Q19 (civil recovery includes interest, costs and fees); Midterm Q3 EXCEPT on where the Administrator can examine records."
     },
     {
       "id": "U6",
       "name": "Unit 6: Communications with Clients and Prospects",
       "qbankAnswered": 64,
       "qbankCorrect": 44,
-      "examAnswered": 16,
-      "examCorrect": 11,
+      "examAnswered": 24,
+      "examCorrect": 17,
       "mixedAnswered": 0,
       "mixedCorrect": 0,
       "covers": "Disclosure, misrepresentations and guarantees, advisory contracts, the IA brochure, advertising, social media",
-      "recurring": "Brochure delivery: 48 hours BEFORE the contract, or at signing with a 5-business-day penalty-free cancellation (keeping a proportionate fee); annual update within 120 days of fiscal year-end only if there are material changes; only two delivery exemptions (registered investment company clients; impersonal advice under $500/yr); the brochure itself is Part 2A. Missed five times. Principal vs agency cross: buying from or selling to an advisory client out of the firm's own account is PRINCIPAL and needs written disclosure and consent before completion; an agency cross means the firm is the agent for both sides. Missed three times, including the same concept twice on Oct 5. Social media: adoption (linking or endorsing third-party content) vs entanglement (helping prepare it), and static content needs prior approval while interactive does not (Review 1-7 Q6, Q20)."
+      "recurring": "Brochure delivery: 48 hours BEFORE the contract, or at signing with a 5-business-day penalty-free cancellation (keeping a proportionate fee); annual update within 120 days of fiscal year-end only if there are material changes; only two delivery exemptions (registered investment company clients; impersonal advice under $500/yr); the brochure itself is Part 2A. Missed five times. Principal vs agency cross: buying from or selling to an advisory client out of the firm's own account is PRINCIPAL and needs written disclosure and consent before completion; an agency cross means the firm is the agent for both sides. Missed three times, including the same concept twice on Oct 5. Social media: adoption (linking or endorsing third-party content) vs entanglement (helping prepare it), and static content needs prior approval while interactive does not (Review 1-7 Q6, Q20). Oct 21: Midterm 6/8. Misses: Form CRS triggers for a broker-dealer (EXCEPT), brochure exemptions (investment company and impersonal advice under $500 only)."
     },
     {
       "id": "U7",
       "name": "Unit 7: Ethical Practices and Fiduciary Obligations",
       "qbankAnswered": 47,
       "qbankCorrect": 37,
-      "examAnswered": 24,
-      "examCorrect": 22,
+      "examAnswered": 34,
+      "examCorrect": 26,
       "mixedAnswered": 0,
       "mixedCorrect": 0,
       "covers": "Fiduciary duty, IA compensation, custody, discretion and BSA, ethics for IAs/IARs and BDs/agents, criminal activity, data protection, business continuity",
-      "recurring": "Compliance and code-of-ethics numbers: the CCO reviews written policies at least ANNUALLY; access persons report transactions within 30 days after each quarter (not 45, which is Form 13F) (Quiz 1 Q9, Quiz 2 Q11). Custody: what counts as custody (a fee check payable to the adviser does not; password access that can move money does) and what it requires (no Administrator rule against it, plus notice to the Administrator; discretion is irrelevant) (Quiz 1 Q11, Exam Q14). Adviser discretion: oral authority is good for 10 business days after the first discretionary trade for IAs/IARs, while a broker-dealer agent needs written authority before the first one (Exam Q2)."
+      "recurring": "Compliance and code-of-ethics numbers: the CCO reviews written policies at least ANNUALLY; access persons report transactions within 30 days after each quarter (not 45, which is Form 13F) (Quiz 1 Q9, Quiz 2 Q11). Custody: what counts as custody (a fee check payable to the adviser does not; password access that can move money does) and what it requires (no Administrator rule against it, plus notice to the Administrator; discretion is irrelevant) (Quiz 1 Q11, Exam Q14). Adviser discretion: oral authority is good for 10 business days after the first discretionary trade for IAs/IARs, while a broker-dealer agent needs written authority before the first one (Exam Q2). Oct 21: Midterm 4/10, lowest-scoring big unit. Access persons (EXCEPT), custody with third-party checks (EXCEPT), IPO withholding, wash trades as manipulation, IARs never share in profits, cybersecurity vs business continuity."
     },
     {
       "id": "U8",
       "name": "Unit 8: Analytical Methods",
       "qbankAnswered": 40,
       "qbankCorrect": 29,
-      "examAnswered": 18,
-      "examCorrect": 14,
+      "examAnswered": 20,
+      "examCorrect": 15,
       "mixedAnswered": 0,
       "mixedCorrect": 0,
       "covers": "Time value of money, NPV, descriptive statistics, other analytical tools, financial and valuation ratios",
-      "recurring": "Time value of money direction: PV and the discount rate move opposite ways; NPV is positive (a buy) when IRR is above the required return; IRR assumes reinvestment at the IRR, NPV at the market/discount rate (6 misses on Oct 11: Quiz 1 Q8/Q12, Quiz 2 Q3/Q12, Review Q18, Exam Q16). Reading financial statements: current ratio uses current items only, net profit is already after interest, dividends don't reduce net income, cash vs accrual accounting, compute dividend dollars rather than reading the payout ratio (Quiz 1 Q9/Q15, Quiz 2 Q13, Exam Q9/Q11). Standard deviation: 2 SDs covers 95% of outcomes; total risk = systematic + unsystematic (Quiz 2 Q17, Exam Q2)."
+      "recurring": "Time value of money direction: PV and the discount rate move opposite ways; NPV is positive (a buy) when IRR is above the required return; IRR assumes reinvestment at the IRR, NPV at the market/discount rate (6 misses on Oct 11: Quiz 1 Q8/Q12, Quiz 2 Q3/Q12, Review Q18, Exam Q16). Reading financial statements: current ratio uses current items only, net profit is already after interest, dividends don't reduce net income, cash vs accrual accounting, compute dividend dollars rather than reading the payout ratio (Quiz 1 Q9/Q15, Quiz 2 Q13, Exam Q9/Q11). Standard deviation: 2 SDs covers 95% of outcomes; total risk = systematic + unsystematic (Quiz 2 Q17, Exam Q2). Oct 21: Midterm 1/2, gross margin = revenue minus COGS."
     },
     {
       "id": "U9",
       "name": "Unit 9: Equity Securities",
-      "qbankAnswered": 25,
-      "qbankCorrect": 23,
-      "examAnswered": 11,
-      "examCorrect": 10,
+      "qbankAnswered": 29,
+      "qbankCorrect": 26,
+      "examAnswered": 15,
+      "examCorrect": 12,
       "mixedAnswered": 0,
       "mixedCorrect": 0,
       "covers": "Equity securities, international investing, fundamental and technical analysis, equity public offerings",
-      "recurring": "Rule 144: the holding period applies to UNREGISTERED (restricted) stock no matter who owns it; control stock always has volume limits but no holding period if it isn't restricted (Quiz 1 Q9). ADRs are issued by U.S. depositary banks (Exam Q6)."
+      "recurring": "Rule 144: the holding period applies to UNREGISTERED (restricted) stock no matter who owns it; control stock always has volume limits but no holding period if it isn't restricted (Quiz 1 Q9). ADRs are issued by U.S. depositary banks (Exam Q6). Oct 21: Midterm 2/4 (SPAC vs blind pool; ISO vs NSO EXCEPT); Review 1-13 3/4 (growth companies rarely pay cash dividends)."
     },
     {
       "id": "U10",
       "name": "Unit 10: Debt Securities",
       "qbankAnswered": 31,
       "qbankCorrect": 26,
-      "examAnswered": 17,
-      "examCorrect": 13,
+      "examAnswered": 21,
+      "examCorrect": 17,
       "mixedAnswered": 0,
       "mixedCorrect": 0,
       "covers": "Fixed-income valuation, bond yields, duration and discounted cash flow, other bond price factors, cash equivalents",
@@ -1236,20 +1243,20 @@ const SYNC = {
       "name": "Unit 11: Pooled Investments",
       "qbankAnswered": 47,
       "qbankCorrect": 37,
-      "examAnswered": 18,
-      "examCorrect": 16,
+      "examAnswered": 22,
+      "examCorrect": 19,
       "mixedAnswered": 0,
       "mixedCorrect": 0,
       "covers": "Types of pooled investments, investment company capitalization, ETFs and REITs, comparing pooled products",
-      "recurring": "Investment Company Act of 1940 rules: $100,000 minimum capital, max 3% of another fund, no joint accounts or short sales, shareholder vote to change fundamental policy, adviser contract in writing (2 years, then annual) (Quiz 2 Q10/Q15, Review 1-11 Q1/Q17). Fund selection and share classes: manager tenure first when a fund is sold on past performance, NAV per share is irrelevant, Class A has the lowest asset-based charge, switching families during a deferred load is unsuitable (Quiz 2 Q1/Q4/Q9/Q14). Fund types: UITs have no management fee; an international fund holds no domestic stock (Quiz 1 Q10, Exam Q13)."
+      "recurring": "Investment Company Act of 1940 rules: $100,000 minimum capital, max 3% of another fund, no joint accounts or short sales, shareholder vote to change fundamental policy, adviser contract in writing (2 years, then annual) (Quiz 2 Q10/Q15, Review 1-11 Q1/Q17). Fund selection and share classes: manager tenure first when a fund is sold on past performance, NAV per share is irrelevant, Class A has the lowest asset-based charge, switching families during a deferred load is unsuitable (Quiz 2 Q1/Q4/Q9/Q14). Fund types: UITs have no management fee; an international fund holds no domestic stock (Quiz 1 Q10, Exam Q13). Oct 21: Midterm 3/4; REITs are never redeemed by the issuer (EXCEPT)."
     },
     {
       "id": "U12",
       "name": "Unit 12: Derivatives",
-      "qbankAnswered": 18,
-      "qbankCorrect": 18,
-      "examAnswered": 10,
-      "examCorrect": 8,
+      "qbankAnswered": 20,
+      "qbankCorrect": 20,
+      "examAnswered": 11,
+      "examCorrect": 9,
       "mixedAnswered": 0,
       "mixedCorrect": 0,
       "covers": "Derivative securities, uses/costs/benefits/risks of options, forwards and futures",
@@ -1258,10 +1265,10 @@ const SYNC = {
     {
       "id": "U13",
       "name": "Unit 13: Alternative Investments",
-      "qbankAnswered": 8,
-      "qbankCorrect": 8,
-      "examAnswered": 10,
-      "examCorrect": 10,
+      "qbankAnswered": 10,
+      "qbankCorrect": 10,
+      "examAnswered": 11,
+      "examCorrect": 11,
       "mixedAnswered": 0,
       "mixedCorrect": 0,
       "covers": "Alternative investment funds, plus investment real estate and commodities",
@@ -1272,24 +1279,24 @@ const SYNC = {
       "name": "Unit 14: Other Investment Products",
       "qbankAnswered": 27,
       "qbankCorrect": 17,
-      "examAnswered": 20,
-      "examCorrect": 15,
+      "examAnswered": 23,
+      "examCorrect": 16,
       "mixedAnswered": 0,
       "mixedCorrect": 0,
       "covers": "Insurance-based products, annuity purchases and withdrawals, life insurance as an investment, other assets incl. digital assets",
-      "recurring": "Variable insurance details: VLI can convert to whole life within 24 months using the ORIGINAL age and health; the VLI death benefit is recalculated annually and a scheduled-premium policy has a fixed premium; the VA death benefit guarantees at least the premiums paid, and gains above basis are taxable (Quiz 1 Q6/Q7/Q11). DPP limited partners can lose only what they invested (Quiz 1 Q1). Digital assets: no underlying cash flows, decentralized ledgers (Quiz 1 Q12). Oct 20: VA death benefit missed again (same question, 1809309); VLI valuation timing (unit values daily, cash value monthly, death benefit annually); VLI death benefit = face (or minimum) less loans; life with 10-year certain pays for life; index annuity math (cap first, no losses in down years); VA withdrawals are LIFO, earnings first plus the 10% penalty before 59½."
+      "recurring": "Variable insurance details: VLI can convert to whole life within 24 months using the ORIGINAL age and health; the VLI death benefit is recalculated annually and a scheduled-premium policy has a fixed premium; the VA death benefit guarantees at least the premiums paid, and gains above basis are taxable (Quiz 1 Q6/Q7/Q11). DPP limited partners can lose only what they invested (Quiz 1 Q1). Digital assets: no underlying cash flows, decentralized ledgers (Quiz 1 Q12). Oct 20: VA death benefit missed again (same question, 1809309); VLI valuation timing (unit values daily, cash value monthly, death benefit annually); VLI death benefit = face (or minimum) less loans; life with 10-year certain pays for life; index annuity math (cap first, no losses in down years); VA withdrawals are LIFO, earnings first plus the 10% penalty before 59½. Oct 21: Midterm 1/3, precious metals (palladium; second miss on precious metals) and crypto value driver (appreciation, no cash flows)."
     },
     {
       "id": "U15",
       "name": "Unit 15: Types of Clients or Customers",
-      "qbankAnswered": 0,
-      "qbankCorrect": 0,
-      "examAnswered": 0,
-      "examCorrect": 0,
+      "qbankAnswered": 22,
+      "qbankCorrect": 13,
+      "examAnswered": 10,
+      "examCorrect": 9,
       "mixedAnswered": 0,
       "mixedCorrect": 0,
       "covers": "Natural and nonnatural person accounts, fiduciary and trust accounts, foundations and charities",
-      "recurring": ""
+      "recurring": "Business entity structures (LO 15.d/e): S corp 100-shareholder cap and flow-through of losses, LLC owners are members, corporations transfer most easily, sole proprietorship taxed on the owner's return, general partnership suitability is collective (6 misses across the two quizzes). Living trust avoids probate only; trust accounts follow the trustees; SRI = socially responsible investing. Checkpoint 9/10 after 13/22 on the quizzes."
     },
     {
       "id": "U16",
@@ -1454,6 +1461,12 @@ const SYNC = {
       "label": "Unit 1-12 Review Quiz (Test 414781189)",
       "answered": 20,
       "correct": 19
+    },
+    {
+      "date": "2026-10-21",
+      "label": "Unit 1-13 Review Quiz (Test 415240355)",
+      "answered": 30,
+      "correct": 21
     }
   ],
   "kaplanQBank": [
@@ -1636,26 +1649,39 @@ const SYNC = {
       "label": "Unit 14 Quiz 2 (Test 415087365)",
       "answered": 14,
       "correct": 8
+    },
+    {
+      "date": "2026-10-21",
+      "label": "Unit 15 Quiz 1 (Test 415149156)",
+      "answered": 11,
+      "correct": 6
+    },
+    {
+      "date": "2026-10-21",
+      "label": "Unit 15 Quiz 2 (Test 415149631)",
+      "answered": 11,
+      "correct": 7
     }
   ],
   "simExams": [],
   "weakSpots": [
-    "U14 (Topic II): variable life and variable annuity mechanics (11 misses across two quizzes and the checkpoint; the VA death-benefit question missed twice)",
-    "Reading negative stems (EXCEPT / NOT / not true): now 11 misses across Units 4, 6, 7, 8, 11 and 14; the two newest, on the Unit 14 checkpoint, each picked an item that belongs on the list",
-    "Time value of money direction (U8/U10): 9 misses, including the identical Bond X / Bond Y question missed twice with the same wrong answer",
-    "U11 (Topic II): Investment Company Act numbers ($100,000, 3%) and fund-selection rules; Unit 11 Quiz 2 was 10/16",
-    "U10 (Topic II): duration direction and bond arithmetic (8 misses, mostly finishing or direction errors)",
-    "Old Topic IV rules resurfacing on reviews: unsolicited orders (4th miss), brochure 5-day right (6th miss), social media rules (4th), $1,200 federal prepayment",
+    "Reading negative stems (EXCEPT / NOT / not true): 8 of 10 missed on the Oct 21 Midterm, now 20 misses in all; each time a true statement was picked",
+    "Midterm stamina: 25/42 on the first 42 questions, 5/13 on the last 13 after 70+ questions in a row, with answers in 12-14 seconds near the end",
+    "U7 (Topic IV): 4/10 on the Midterm (access persons, custody, IPO withholding, wash trades, IAR profit sharing, cybersecurity)",
+    "U3 (Topic IV): broker-dealer and agent registration reach (no office = institutions/BDs/issuers only; snowbird 30 days; multi-state BD records follow the SEC); 1/4 on the Midterm",
+    "U15 (Topic III): business entity features (S corp 100-owner cap and loss flow-through, LLC members, which entities pay tax); 13/22 on the quizzes",
+    "Old Topic IV rules resurfacing: who notifies on IAR changes (6 misses), brochure exemptions (7th miss), unsolicited-order acknowledgment by rule",
+    "Time value of money direction (U8/U10) and variable insurance (U14) remain open from last week",
     "U2 and U5 checkpoint exams still at 58% and 50% with no retake"
   ],
   "strongSpots": [
+    "U15 (Topic III): checkpoint 9/10 in just over 7 minutes, including all three business-entity questions that were missed on the quizzes an hour earlier",
+    "Midterm Topic II: 12/17, with U10 4/4, U11 3/4, U12 and U13 1/1; bonds, ETFs and closed-end funds held up",
+    "Midterm U6 (Topic IV): 6/8, including principal vs agency cross (twice), the marketing rule and Form ADV Part 2B",
     "U14 (Topic II): fixed the VLI death-benefit and exchange-right questions on the checkpoint minutes after missing them; DPP flow-through and general vs limited partners all correct",
     "U13 (Topic II): perfect unit, quizzes 8/8 and checkpoint 10/10, including the leveraged-ETF compounding math and both EXCEPT/NOT questions on the checkpoint",
     "Oct 18 evening: Unit 12 quizzes 16/16, Unit 1-12 Review 19/20 (95%, best review yet), Unit 12 checkpoint 8/10; the duration question missed Oct 13 now right",
-    "Checkpoints: Unit 11 16/18 (89%), Unit 10 13/17 (76%); the checkpoint average is now 76.1% (166 of 218), above the 73% bar",
-    "U5 (Topic IV): 6 of 6 remedies and Administrator-power questions on the Unit 1-10 Review, including cancellation for mental incompetence (a past error pattern)",
-    "U11 (Topic II): REITs, hedge funds, ETFs vs mutual funds, closed-end vs open-end capitalization, private fund definitions",
-    "U9/U10 (Topic II): ADRs (fixed after the Unit 9 checkpoint miss), bankruptcy priority, convertible math, Treasury note gains, money market instruments"
+    "Checkpoints: Unit 11 16/18 (89%), Unit 10 13/17 (76%); the unit checkpoint average is 76.8% (175 of 228), above the 73% bar"
   ],
   "missedQuestions": [
     {
@@ -3781,6 +3807,534 @@ const SYNC = {
       "correctAnswer": "C) lead.",
       "rationale": "Lead is not considered a precious metal.",
       "explanation": "Another EXCEPT question where you picked an item that belongs on the list: platinum IS a precious metal, along with gold and silver. Lead is an industrial (base) metal. On EXCEPT questions, cross off each choice that fits and choose what's left."
+    },
+    {
+      "id": "rev113-q04",
+      "date": "2026-10-21",
+      "unitId": "U3",
+      "topic": "IV",
+      "lo": "LO 3.b",
+      "question": "Which of the following must register as a broker-dealer under the USA?",
+      "myAnswer": "B) A broker-dealer with no place of business in the state that has directed offers to clients who have more than 30 days' temporary residency in the state",
+      "correctAnswer": "D) A broker-dealer with a place of business in the state that effects transactions exclusively with broker-dealers registered in other states",
+      "rationale": "If a broker-dealer has an office in the state, it must register with the state, regardless of what types of clientele it serves. The term broker-dealer excludes anyone without a place of business in the state who effects transactions exclusively with issuers, other broker-dealers, or institutions, or who directs an offer in the state to an existing customer who temporarily resides in the state where the offer is received, regardless of the length of time. As long as the broker-dealer is properly registered in the vacationer's state of permanent residence and does not maintain an office in the state being visited, it is not defined as a broker-dealer.",
+      "explanation": "A firm with an office in the state must register there, whoever its clients are. The carve-outs (dealing only with issuers, other broker-dealers or institutions, or with existing clients who are only visiting) apply only to firms with NO place of business in the state. For vacationers the exam never counts days, so choice B is still excluded. D is the only firm with an office, so D registers."
+    },
+    {
+      "id": "rev113-q07",
+      "date": "2026-10-21",
+      "unitId": "U1",
+      "topic": "IV",
+      "lo": "LO 1.e",
+      "question": "When can an investment adviser registered with the SEC use the term investment counsel?\n\nIts principal business consists of rendering investment advice.\nA substantial portion of its business involves investment supervisory services.\nIt must maintain full investment discretion.",
+      "myAnswer": "A) I, II, and III",
+      "correctAnswer": "B) I and II",
+      "rationale": "These are the two requirements for use of the term investment counsel. Although it can be a factor, exercising discretion is not a requirement of the definition. Many investment advisers exercise discretionary power over client accounts but do not meet the two principal requirements for use of the term investment counsel.",
+      "explanation": "Using the term 'investment counsel' takes two things: the firm's principal business is giving investment advice, and a substantial part of it is investment supervisory services. Discretion isn't required; plenty of discretionary advisers can't use the title. Statements I and II only."
+    },
+    {
+      "id": "rev113-q13",
+      "date": "2026-10-21",
+      "unitId": "U3",
+      "topic": "IV",
+      "lo": "LO 3.b",
+      "question": "Under the Uniform Securities Act, an agent registered in one state may transact business in another state in which he is not registered with which of the following?\n\nAn existing client visiting the state for a 2-week period\nAn existing client who moved to the state 6 months ago\nAn existing client who moved to the state less than 30 days prior\nAn acquaintance from another state who requests that the agent execute transactions on his behalf",
+      "myAnswer": "C) I and IV",
+      "correctAnswer": "A) I and III",
+      "rationale": "This question is dealing with the snowbird exemption. An agent may conduct business in a state in which he is not registered if an existing client is visiting in that state or if the client has moved to the state for a 30-day period. The person who moved six months ago is considerably past the 30-day limit. When it comes to vacationers, the exam never considers a time limit. The only requirement is that they have not changed their legal residence to this state. Agents can't deal with friends or family members in a state in which that agent is not registered.",
+      "explanation": "Snowbird rule for agents: an EXISTING client who is just visiting (no time limit for vacationers), or an existing client who moved to the state within the last 30 days. The six-month move is past the window, and an acquaintance isn't an existing client. Friends and family get no special exemption. I and III."
+    },
+    {
+      "id": "rev113-q16",
+      "date": "2026-10-21",
+      "unitId": "U5",
+      "topic": "IV",
+      "lo": "LO 5.h",
+      "question": "Which of the following statements is true?\n\nAn Administrator can suspend a pending registration on a summary basis.\nAn Administrator may not issue a stop order without prior notice and opportunity for a hearing.\nAn Administrator may cancel a registration for the same reasons he revoked or suspended a registration.",
+      "myAnswer": "C) III only",
+      "correctAnswer": "B) I and II",
+      "rationale": "An Administrator can, on a summary basis, suspend a pending registration but may not issue a stop order without a prior notice and an opportunity for a hearing. Cancellation is different from revocation and is not a result of disciplinary action; it occurs when a registrant no longer exists, ceases to do business, is declared mentally incompetent, or cannot be located.",
+      "explanation": "Statements I and II are true: the Administrator can summarily suspend a PENDING registration, but a stop order needs prior notice and a chance for a hearing. III is false because cancellation is nonpunitive (out of business, can't be located, mental incompetence) and doesn't use revocation's grounds. This is the cancellation-vs-revocation mix-up from Unit 5 again."
+    },
+    {
+      "id": "rev113-q17",
+      "date": "2026-10-21",
+      "unitId": "U1",
+      "topic": "IV",
+      "lo": "LO 1.h",
+      "question": "The Investment Advisers Act of 1940 excludes from the definition of \"investment adviser\" persons whose advice:\n\nrelates solely to municipal issues.\nrelates solely to issues issued by or guaranteed by the U.S. Treasury.\nis solely incidental to their professional practice as an aeronautical engineer.\nis limited to insurance companies only.",
+      "myAnswer": "A) III and IV.",
+      "correctAnswer": "C) II and III.",
+      "rationale": "Among the exclusions from the definition of\" investment adviser \"under both state and federal regulations is the case where certain professionals, including engineers, render the advice in a manner solely incidental to the practice of their professions. Unique to the federal law is the exclusion granted to those persons whose advice deals exclusively with federal government issued or guaranteed issues. Advice to solely insurance companies qualifies one for an exemption from registration, but does not exclude the person from the definition of IA.",
+      "explanation": "Federal exclusions from the definition of investment adviser include advice only about U.S. government securities (II) and professionals whose advice is solely incidental to their practice (III). Municipal-only advice isn't excluded. Advising only insurance companies is an EXEMPTION from SEC registration; the adviser is still an adviser. You put the exemption in the exclusion list."
+    },
+    {
+      "id": "rev113-q19",
+      "date": "2026-10-21",
+      "unitId": "U5",
+      "topic": "IV",
+      "lo": "LO 5.i",
+      "question": "The Uniform Securities Act provides for civil penalties in the event of illegal activities of agents. Under the act, what is the maximum that a purchaser would be entitled to claim?\n\nThe original consideration paid for the security\nInterest at the state's legal rate\nAttorney's fees\nCourt costs",
+      "myAnswer": "D) I, III, and IV",
+      "correctAnswer": "A) I, II, III, and IV",
+      "rationale": "In the event of a civil judgment, the purchaser is able to claim a return of the original investment plus interest at the state's legal rate. This interest is reduced, however, by any income received on that security. In addition, the agent is liable for court costs and attorney's fees.",
+      "explanation": "A buyer who wins a civil suit under the USA gets the purchase price back plus interest at the state's legal rate (less any income received), plus court costs and attorney's fees. All four. You left out the interest."
+    },
+    {
+      "id": "rev113-q22",
+      "date": "2026-10-21",
+      "unitId": "U9",
+      "topic": "II",
+      "lo": "LO 9.f",
+      "question": "Which of the following statements is true?",
+      "myAnswer": "C) A growth company would be more likely to pay a cash dividend than a stock dividend.",
+      "correctAnswer": "A) Dividends have a significant influence on the value of the corporation's stock.",
+      "rationale": "Dividends play a large role in what someone is willing to pay for the stock. For example, the dividend discount model (DDM) values a stock as the discounted present value of future dividends. A company is not required to pay dividends. A growth company will tend to pay no cash dividends but rather use the money for expansion.",
+      "explanation": "Dividends drive a lot of what investors will pay for a stock; the dividend discount model is built on them. Growth companies usually keep cash for expansion, so they're LESS likely to pay cash dividends. No company is required to pay a dividend, and a split doesn't change anyone's ownership share."
+    },
+    {
+      "id": "rev113-q26",
+      "date": "2026-10-21",
+      "unitId": "U3",
+      "topic": "IV",
+      "lo": "LO 3.h",
+      "question": "Under the USA, all the following statements regarding the registration of agents are true except",
+      "myAnswer": "C) if an agent resigns and affiliates with another broker-dealer, both firms and the agent must notify the Administrator.",
+      "correctAnswer": "B) if a broker-dealer's registration is revoked by a state, it has no effect on the agent's registration.",
+      "rationale": "If a broker-dealer's (or investment adviser's) registration is revoked by a state, the registrations of all its agents (or IARs) are suspended. That is, those individuals can no longer function in a registered capacity until they register with another active firm.",
+      "explanation": "EXCEPT question. When a state revokes a broker-dealer's registration, its agents' registrations are suspended until they join another registered firm, so 'no effect on the agent' is the false statement. Your pick, C, is true: when an agent changes firms, the agent and both firms notify the Administrator."
+    },
+    {
+      "id": "rev113-q27",
+      "date": "2026-10-21",
+      "unitId": "U3",
+      "topic": "IV",
+      "lo": "LO 3.h",
+      "question": "When applying for registration as an agent, which of the following must be disclosed?",
+      "myAnswer": "A) Highest educational level achieved and the institution attended",
+      "correctAnswer": "C) Certain financial information such as any unsatisfied judgments or liens against the applicant",
+      "rationale": "This question probably contains more detailed information than will be covered on the exam. Negative financial information, such as unsatisfied judgments or liens and bankruptcy filings, must be disclosed. Employment history for the past 10 years and residential history for the past 5 years must be shown. If, during the past 10 years, the applicant was a full-time student, then that must be shown, but that is the extent of educational information required.",
+      "explanation": "The agent application (Form U4) asks for negative financial events such as unsatisfied judgments, liens and bankruptcies. It wants 10 years of employment and 5 years of residence, not 5 and 3. Education comes up only if you were a full-time student in the last 10 years."
+    },
+    {
+      "id": "u15q2-q02",
+      "date": "2026-10-21",
+      "unitId": "U15",
+      "topic": "III",
+      "lo": "LO 15.e",
+      "question": "A business organized as which of the following pays federal income tax on its income?",
+      "myAnswer": "C) S Corporation",
+      "correctAnswer": "B) Sole proprietorship",
+      "rationale": "The income generated by a sole proprietorship is reported on Schedule C of the Form 1040 of the individual owner. The IRS considers that business as a taxable entity. In the case of the other three choices, their income flows-through to the owners (members, shareholders, or partners, respectively) of the business itself, pays no tax.",
+      "explanation": "Kaplan's answer: a sole proprietorship's income goes on the owner's own Form 1040 (Schedule C), and Kaplan treats that business as the taxable one. Partnerships, S corporations and LLCs are flow-throughs that pay no federal income tax at the entity level. The S corp you picked is the classic flow-through."
+    },
+    {
+      "id": "u15q2-q07",
+      "date": "2026-10-21",
+      "unitId": "U15",
+      "topic": "III",
+      "lo": "LO 15.a",
+      "question": "Which of the following pieces of customer information must an agent attempt to obtain when opening a new account?\n\nEmergency contact person\nFinancial condition\nInvestment objective\nEducation",
+      "myAnswer": "A) I and IV",
+      "correctAnswer": "C) II and III",
+      "rationale": "When opening a new account, the agent normally would request information about the customer's financial condition, investment objectives, and other relevant personal information.",
+      "explanation": "When opening an account, the agent must try to get the suitability basics: financial condition and investment objectives. An emergency contact and education aren't on that required list. II and III."
+    },
+    {
+      "id": "u15q2-q08",
+      "date": "2026-10-21",
+      "unitId": "U15",
+      "topic": "III",
+      "lo": "LO 15.d",
+      "question": "For which of the following business entities would suitability be based on the objectives of all the owners on a collective basis?",
+      "myAnswer": "C) Sole proprietorship",
+      "correctAnswer": "A) General partnership",
+      "rationale": "Because all the partners in a general partnership share collective liability, the investment policy to be followed in the business's account is based on the collective suitability of all partners. Although the suitability is based on the owner of a sole proprietorship, there is only one owner, so a question asking about collective suitability doesn't ring true for that.",
+      "explanation": "General partners share liability for the business, so the account's investment policy is based on the collective suitability of all the partners. A sole proprietorship has only one owner, so 'all the owners collectively' doesn't fit it."
+    },
+    {
+      "id": "u15q2-q11",
+      "date": "2026-10-21",
+      "unitId": "U15",
+      "topic": "III",
+      "lo": "LO 15.k",
+      "question": "A trust document's investment policy emphasizes that the fiduciary must follow SRI. When you are asked by the trustee to explain what that means, you would reply,",
+      "myAnswer": "C) safe responsible investing.",
+      "correctAnswer": "B) socially responsible investing.",
+      "rationale": "Socially responsible investing (SRI) is an impact investment strategy which seeks to consider both financial return and social good. In general, socially responsible investors encourage corporate practices that promote environmental stewardship, consumer protection, human rights, and diversity. You might also see SRI referred to as sustainable responsible (not reasonable) investing.",
+      "explanation": "SRI stands for socially responsible investing: weighing social good (environment, consumer protection, human rights, diversity) alongside return. You'll sometimes see 'sustainable responsible investing,' but never 'safe.'"
+    },
+    {
+      "id": "u15q1-q02",
+      "date": "2026-10-21",
+      "unitId": "U15",
+      "topic": "III",
+      "lo": "LO 15.d",
+      "question": "In which one of these business entities does the term member refer to the owners?",
+      "myAnswer": "D) Limited partnership.",
+      "correctAnswer": "C) Limited liability company.",
+      "rationale": "Owners of LLCs are called members.",
+      "explanation": "LLC owners are called members. A limited partnership has general partners and limited partners, not members."
+    },
+    {
+      "id": "u15q1-q03",
+      "date": "2026-10-21",
+      "unitId": "U15",
+      "topic": "III",
+      "lo": "LO 15.i",
+      "question": "One of the characteristics of a living trust is",
+      "myAnswer": "A) the terms of the trust can be altered with the permission of the beneficiary",
+      "correctAnswer": "B) probate can be avoided",
+      "rationale": "Living (revocable) trusts will generally avoid probate, but not estate or income tax. Because these are revocable, the terms of the trust can be altered solely at the grantor's discretion.",
+      "explanation": "A living (revocable) trust avoids probate. It doesn't avoid estate tax or income tax, and only the grantor can change its terms, without the beneficiary's permission."
+    },
+    {
+      "id": "u15q1-q08",
+      "date": "2026-10-21",
+      "unitId": "U15",
+      "topic": "III",
+      "lo": "LO 15.d",
+      "question": "Businesses can be organized under several different structures. Which of the following places a limit of 100 owners?",
+      "myAnswer": "B) LLC",
+      "correctAnswer": "C) S corporation",
+      "rationale": "One of the limitations placed on an S corporation is that it may not have more than 100 shareholders, none of whom may be a nonresident alien. None of the others have statutory limits.",
+      "explanation": "The S corporation is the one capped at 100 shareholders, and none can be nonresident aliens. LLCs, partnerships and C corporations have no statutory owner limit."
+    },
+    {
+      "id": "u15q1-q10",
+      "date": "2026-10-21",
+      "unitId": "U15",
+      "topic": "III",
+      "lo": "LO 15.d",
+      "question": "Suzie McQueen has a very successful interior design shop she has run as a sole proprietorship. She has just celebrated her 60th birthday and has been giving thought to an eventual sale of the business. She wants your opinion on whether she should incorporate or change to a partnership. You might respond that",
+      "myAnswer": "B) the partnership form of business structure would be the easiest for ultimate transfer of ownership",
+      "correctAnswer": "D) the corporate form of business structure would be the easiest for ultimate transfer of ownership",
+      "rationale": "In general, the corporate form of business leads to the easiest transfer of ownership. Because Suzie would probably own 100% of the stock, all she would have to do is sell that stock to a new purchaser and the corporation could continue just as before. If Suzie wanted to reorganize as a partnership, she would have to bring in at least one additional individual, ending her total ownership of the business. Even then, a partnership interest is not as easy to sell as stock.",
+      "explanation": "The corporate form makes ownership easiest to hand off: she sells her stock and the company carries on unchanged. A partnership needs at least one more partner, which ends her sole ownership, and partnership interests are harder to sell than stock."
+    },
+    {
+      "id": "u15q1-q11",
+      "date": "2026-10-21",
+      "unitId": "U15",
+      "topic": "III",
+      "lo": "LO 15.e",
+      "question": "Among the advantages of forming an S corporation rather than a C corporation for a new business enterprise is",
+      "myAnswer": "D) shareholders’ losses are limited to the amount of their investment.",
+      "correctAnswer": "A) any losses flow through to the investors.",
+      "rationale": "An S corporation offers the benefit of flow-through of both income and losses (losses being a particular benefit for a start-up because they usually take some time to become profitable). It is the S corporation rather than the C corporation that is limited to 100 investors. Both offer the benefit of limited liability. The C corporation is superior for raising large amounts of capital.",
+      "explanation": "The S corp's edge over a C corp is flow-through: income AND losses pass to the shareholders, which helps a start-up that loses money early. Limited liability is true of both, so it isn't an advantage of one over the other. (Choice C had the 100-owner cap on the wrong entity, which is Q8's rule.)"
+    },
+    {
+      "id": "u15exam-q04",
+      "date": "2026-10-21",
+      "unitId": "U15",
+      "topic": "III",
+      "lo": "LO 15.h",
+      "question": "A deceased individual with two surviving children and a spouse had established a trust for his family. The trust document appointed both children as cotrustees. The surviving spouse is to receive current income, and his two children will receive equal shares of the remaining principal upon the spouse's death. As the adviser to the account, you",
+      "myAnswer": "C) attempt to generate reasonable income while keeping the principal intact for the children.",
+      "correctAnswer": "D) follow the instructions of the trustees.",
+      "rationale": "The responsibility of following the trust's instructions is that of the trustees. Should they attempt to deviate from that, the adviser should inform them that they face potential liability under trust law. However, in all cases, the adviser must follow the direction of the trustees. As a practical matter (not tested), if the trustees appear to violate the trust's instructions, many advisers would terminate their relationship to avoid any potential liability.",
+      "explanation": "In a trust account the adviser takes direction from the trustees. Balancing income for the spouse against principal for the children is the trustees' job under the trust document. If they stray, the adviser warns them about their liability, but still follows their instructions."
+    },
+    {
+      "id": "mid-q01",
+      "date": "2026-10-21",
+      "unitId": "U2",
+      "topic": "IV",
+      "lo": "LO 2.m",
+      "question": "Under the Investment Advisers Act of 1940, which of the following would not meet the criteria of persons associated with an investment adviser?",
+      "myAnswer": "B) An individual whose only connection to the firm is a position on the board of directors",
+      "correctAnswer": "D) An individual whose only function is posting trades to client accounts",
+      "rationale": "Persons associated with an investment adviser include members of the board of directors, officers, partners, or managers of an investment advisory firm. Sales representatives and other employees whose duties are not limited to clerical or ministerial functions are included as well. In most, but not all, cases, associated persons are required to register as investment adviser representatives.",
+      "explanation": "NOT question. Persons associated with an adviser include directors, officers, partners, supervisors and salespeople. Someone whose only job is posting trades is purely clerical, so that person is the one who is NOT associated. A board member IS associated, so B was a true statement."
+    },
+    {
+      "id": "mid-q02",
+      "date": "2026-10-21",
+      "unitId": "U7",
+      "topic": "IV",
+      "lo": "LO 7.k",
+      "question": "SEC Rule 204A-1 requires every investment adviser registered with the commission to prepare and maintain a code of ethics. One of the terms in that code is access person. All of the following are considered access persons except",
+      "myAnswer": "A) all of the directors, officers, and partners if they are providing investment advice as the firm’s primary business.",
+      "correctAnswer": "C) any supervised person of an investment adviser.",
+      "rationale": "The key concept in the definition of access person is that there must be some kind of access to information. Supervised persons include any employee. However, many of those employees, especially in clerical and administrative positions, do not have access to information that is nonpublic.",
+      "explanation": "EXCEPT question. An access person is a supervised person who has access to nonpublic information about client trades, holdings or recommendations; directors, officers and partners are presumed to be access persons when advice is the firm's main business. 'Any supervised person' is too broad because clerical staff without that access aren't included. Your pick, A, is true."
+    },
+    {
+      "id": "mid-q03",
+      "date": "2026-10-21",
+      "unitId": "U5",
+      "topic": "IV",
+      "lo": "LO 5.c",
+      "question": "XYZ Securities, Inc., a FINRA member broker-dealer, is registered in all 50 states. XYZ has its principal office in State C and a branch office in State A. If the State U Administrator wishes to examine certain financial records of XYZ's, the Administrator would be able to do all of the following except",
+      "myAnswer": "D) do so during normal business hours without prior notice.",
+      "correctAnswer": "C) examine those records located in State U.",
+      "rationale": "This broker-dealer does not have a place of business in State U, so there are no records located there. How can an Administrator examine records that don't exist? All records are kept in the principal office, and those pertaining to branch operations are kept in the branch office. If a broker-dealer is registered in her state, the Administrator can examine that firm's books and records during normal business hours without prior notice. To minimize expenses, Administrators usually ask the Administrator of the state in which the broker-dealer has its principal office to ask on their behalf. Alternatively, the Administrator may call on a self-regulatory organization (SRO) like FINRA to examine one of its member firms on behalf of the Administrator.",
+      "explanation": "EXCEPT question. The Administrator can examine a registered firm's records during business hours without notice, or ask the home-state Administrator or FINRA to do it. What it can't do is examine records 'located in State U,' because XYZ has no office there, so there are no records there. You picked D, which is something the Administrator CAN do."
+    },
+    {
+      "id": "mid-q09",
+      "date": "2026-10-21",
+      "unitId": "U6",
+      "topic": "IV",
+      "lo": "LO 6.b",
+      "question": "Senescent Retirement Planning (SRP) is registered as a broker-dealer with the SEC and a number of states. As such, the client relationship summary (Form CRS) must be delivered to each retail investor before or at the earliest of any of these except",
+      "myAnswer": "C) placing an order for the retail investor.",
+      "correctAnswer": "B) entrance into an investment advisory contract with the retail investor.",
+      "rationale": "This is an example of how important it is to read the question carefully. The word except in this question means you are looking for the untrue statement. Although Form CRS must be delivered to an advisory client as stated, that does not apply here because SRP is a broker-dealer and not an investment adviser. The other choices accurately describe the delivery requirements for broker-dealers.",
+      "explanation": "EXCEPT question, and you have to notice the firm type. SRP is a broker-dealer, so it delivers Form CRS at the earliest of a recommendation, placing an order, or opening an account. 'Entering an advisory contract' is the adviser's trigger, so it doesn't apply to SRP. Placing an order (your pick) is a real broker-dealer trigger."
+    },
+    {
+      "id": "mid-q11",
+      "date": "2026-10-21",
+      "unitId": "U3",
+      "topic": "IV",
+      "lo": "LO 3.h",
+      "question": "Which of the following statements are true?\n\nWhen an investment adviser representative begins or terminates employment with an adviser registered under the Uniform Securities Act, only the investment adviser must notify the Administrator.\nWhen an investment adviser representative begins or terminates employment with a federal covered adviser, only the investment adviser representative must notify the Administrator.\nWhen an agent of a broker-dealer leaves the firm, only the broker-dealer must notify the Administrator.\nWhen an investment adviser representative or a registered agent of a broker-dealer terminates employment, notice must be given to the Securities and Exchange Commission.",
+      "myAnswer": "B) I and III",
+      "correctAnswer": "A) I and II",
+      "rationale": "When an investment adviser representative (IAR) begins or terminates employment with a state registered investment adviser (IA), the employing IA must promptly notify the Administrator. In the case of a federal covered IA, only the IAR gives notice to the Administrator. However, when an agent of a broker-dealer begins or terminates employment, both the agent and the broker-dealer must promptly notify the Administrator. Notice to the SEC is not required.",
+      "explanation": "I true: a state-registered adviser notifies for its IARs. II true: an IAR of a federal covered adviser notifies for himself. III false: for broker-dealer agents, BOTH the agent and the firm notify. IV false: the SEC is never notified. This is the fifth miss on who notifies."
+    },
+    {
+      "id": "mid-q23",
+      "date": "2026-10-21",
+      "unitId": "U4",
+      "topic": "IV",
+      "lo": "LO 4.n",
+      "question": "Which of the following statements is correct regarding an unsolicited trade in an unregistered, nonexempt security?",
+      "myAnswer": "D) The Administrator may, by order, require that the customer acknowledge, upon a specified form, that the sale was unsolicited and that a signed copy of each such form be preserved by the broker-dealer for a specified period.",
+      "correctAnswer": "A) The Administrator may, by rule, require that the customer acknowledge, upon a specified form, that the sale was unsolicited and that a signed copy of each such form be preserved by the broker-dealer for a specified period.",
+      "rationale": "The USA specifically grants the Administrator the authority to make a rule requiring written acknowledgment of unsolicited orders be recorded on a designated form. It is important for you to understand the difference between a rule and an order. Rules apply to everyone; orders apply to a specific broker-dealer. The Administrator could not require one broker-dealer to keep these forms but not another.",
+      "explanation": "Rule vs order. The USA lets the Administrator require a signed acknowledgment of unsolicited orders by RULE, which applies to every firm. An ORDER targets one firm, and the Administrator can't single out one broker-dealer for this. A and D are identical except for that one word."
+    },
+    {
+      "id": "mid-q25",
+      "date": "2026-10-21",
+      "unitId": "U7",
+      "topic": "IV",
+      "lo": "LO 7.f",
+      "question": "Centripetal Investment Advisers (CIA) has its principal office in State X and is also registered in States Y and Z. CIA would be considered to be maintaining custody of client assets in all of the following cases except",
+      "myAnswer": "B) CIA’s advisory contract calls for the automatic deduction of advisory fees.",
+      "correctAnswer": "D) checks made out to third parties are forwarded within three business days.",
+      "rationale": "When a check made payable to a third party is received by the investment adviser, it will not be deemed to be in custody under the Uniform Securities Act if the check is forwarded within three business days. When a check is made payable to the investment adviser that really should have been payable to the broker-dealer executing the trade, the check must be returned to the sender within three business days or the investment adviser will be considered to be maintaining custody. Authority to withdraw funds or securities from the custodian or automatic deduction for fee payments are forms of custody.",
+      "explanation": "EXCEPT question on custody. Third-party checks forwarded within three business days are NOT custody, so D is the answer. Automatic fee deduction IS custody (you thought it wasn't), and so is authority to withdraw from the custodian. A check made out to the adviser that should have gone to the broker-dealer has to be returned to the sender within three business days; depositing it is custody."
+    },
+    {
+      "id": "mid-q26",
+      "date": "2026-10-21",
+      "unitId": "U7",
+      "topic": "IV",
+      "lo": "LO 7.l",
+      "question": "MT Securities is a broker-dealer registered in 42 states. MT Securities makes a market in over 100 different stocks and participates in the underwriting of approximately 22 IPOs per year. Which of the following actions would be prohibited under NASAA's Statement of Policy on Dishonest and Unethical Business Practices of Broker-Dealers and Agents?",
+      "myAnswer": "C) Purchasing shares of an IPO from the issuer and then reselling those shares to the public at a higher price",
+      "correctAnswer": "D) Acquiring shares of an IPO as part of the underwriting syndicate and holding a small portion for the firm's investment account, hoping to gain from market appreciation",
+      "rationale": "Members of the underwriting syndicate on an IPO are prohibited from withholding shares of that issue in their own accounts; they must make a bona fide public offering. As a market maker, the firm is permitted to adjust the size of its inventory to take advantage of market conditions. All underwriters purchase new issue shares at one price and then resell them at the public offering price. (That is their underwriting compensation.) Market makers buy at the bid and sell at the ask, earning the spread.",
+      "explanation": "An underwriter has to make a bona fide public offering of an IPO, so holding back shares for its own account is prohibited. Buying from the issuer and reselling at the public offering price is how every underwriter earns its spread, and a market maker can build inventory and resell at a markup."
+    },
+    {
+      "id": "mid-q27",
+      "date": "2026-10-21",
+      "unitId": "U2",
+      "topic": "IV",
+      "lo": "LO 2.n",
+      "question": "Prosperity Financial Investments (PFI) is a registered investment adviser with $85 million in total assets under management. PFI also manages the PFI Growth Fund, a registered open-end investment company with assets of $30 million. If one of PFI's investment adviser representatives (IARs) voluntarily terminates registration, the notification procedure would be which of the following?",
+      "myAnswer": "C) PFI and the IAR must notify the Administrators of the states in which the individual is registered.",
+      "correctAnswer": "D) The IAR must notify the Administrators of the states in which the individual is registered.",
+      "rationale": "As stated in the question, PFI has total assets under management (AUM) of $85 million. The $30 million in the PFI Growth Fund is included in the total. However, because PFI is managing a registered investment company, it is a federal covered adviser, regardless of the AUM. As such, when an IAR terminates, only the IAR sends notice of the termination to the appropriate Administrators. If PFI was a state-registered investment advisor, it would send the notification.",
+      "explanation": "PFI manages a registered investment company, so it's federal covered no matter its AUM. For a federal covered adviser, the departing IAR notifies the states himself; the firm doesn't. Same rule as Q11, missed twice on one exam."
+    },
+    {
+      "id": "mid-q28",
+      "date": "2026-10-21",
+      "unitId": "U1",
+      "topic": "IV",
+      "lo": "LO 1.i",
+      "question": "The Uniform Securities Act considers which of the following to be investment advisers subject to registration in the state?\n\nAn adviser with no place of business in the state who advises wealthy customers in the state on a fee basis only\nAn adviser with a place of business in the state whose total fee income in the state amounts to $150\nAn adviser with no place of business in a state who provides advice on only fixed annuities\nAn adviser with a place of business in the state who provides advice only to open-end investment management companies registered under the Investment Company Act of 1940",
+      "myAnswer": "A) I, II, and IV",
+      "correctAnswer": "D) I and II",
+      "rationale": "Unless the adviser is federal covered, any adviser with a place of business in the state, no matter to whom the advice is sold, is required to register with the state. An adviser with no place of business in the state is exempt only if the advice is given to certain institutional-type clients, such as insurance companies and banks, not individuals, wealthy or not. Since fixed annuities are not securities, advising on them does not require registration. Remember, if any of your clients are registered investment companies, you must be a federal covered adviser, making registration with the state nonapplicable.",
+      "explanation": "I: no office and individual clients (wealthy or not) means the no-office exemption doesn't apply; it covers institutions, not people. II: any place of business in the state means register, whatever the fee income. III: fixed annuities aren't securities. IV: advising a registered investment company makes it federal covered, so it doesn't register with the state. You included IV."
+    },
+    {
+      "id": "mid-q30",
+      "date": "2026-10-21",
+      "unitId": "U11",
+      "topic": "II",
+      "lo": "LO 11.h",
+      "question": "If a customer holds certificates of beneficial interest in a real estate investment trust (REIT), all of the following statements regarding this investment are true except",
+      "myAnswer": "B) the certificates are publicly traded.",
+      "correctAnswer": "C) the issuer must redeem certificates on shareholder request.",
+      "rationale": "REITs are not redeemed by the issuer. REITS are publicly traded units that represent either an interest in pooled capital for real estate financing (mortgage REIT) or an ownership interest in real property (equity REIT) that pass through at least 90% of their taxable income to investors. Investors who wish to liquidate their interests must sell them in the secondary market. For exam purposes, a REIT is always publicly traded unless the question indicates otherwise.",
+      "explanation": "EXCEPT question. REITs are publicly traded, and investors get out by selling in the secondary market. The issuer never redeems them; redemption is a mutual fund feature. You picked 'publicly traded,' which is true."
+    },
+    {
+      "id": "mid-q32",
+      "date": "2026-10-21",
+      "unitId": "U7",
+      "topic": "IV",
+      "lo": "LO 7.n",
+      "question": "Federal and state securities laws deem certain conduct by investment professionals to be criminal in nature. Included in those activities are certain practices designed to manipulate the market prices of securities. An activity that would fall within the spectrum of the prohibitions would be",
+      "myAnswer": "C) front running.",
+      "correctAnswer": "D) wash trades.",
+      "rationale": "Performing wash trades involves the simultaneous or near-simultaneous selling and repurchasing of the same security for the purpose of generating the appearance of trading activity and increasing the price. This is one of the most common forms of market manipulation. Churning, front running, and guaranteeing customers against loss, although prohibited practices, are not considered market manipulation nor are they subject to criminal sanctions.",
+      "explanation": "Market manipulation means faking price or trading activity, and wash trades do exactly that: buying and selling the same security to make it look active. Front running is prohibited, but Kaplan doesn't classify it as manipulation; it's trading ahead of a client's order."
+    },
+    {
+      "id": "mid-q35",
+      "date": "2026-10-21",
+      "unitId": "U7",
+      "topic": "IV",
+      "lo": "LO 7.m",
+      "question": "An investment adviser representative may share in the profits and losses of a customer's account",
+      "myAnswer": "C) as long as both the customer and the representative's employer give written consent.",
+      "correctAnswer": "A) under no conditions.",
+      "rationale": "Investment adviser representatives are not allowed to share in the capital appreciation or depreciation of their customers' accounts in the same manner as agents.",
+      "explanation": "An IAR can never share in a client's profits or losses. The 'written consent from the client and the firm' version is the broker-dealer AGENT rule from Unit 7 (shares proportionate to what each contributed). You brought an agent rule over to an IAR question."
+    },
+    {
+      "id": "mid-q36",
+      "date": "2026-10-21",
+      "unitId": "U1",
+      "topic": "IV",
+      "lo": "LO 1.h",
+      "question": "The Investment Advisers Act of 1940 provides for an exemption from registration to investment advisers whose clients are residents of the state in which the adviser has its principal office and only place of business and who do not give advice dealing with securities listed on any national exchange (e.g., New York Stock Exchange). This exemption is denied to any investment adviser meeting all of the requirements but having as a client",
+      "myAnswer": "B) an accredited investor.",
+      "correctAnswer": "A) a private fund.",
+      "rationale": "The intrastate exemption offered under the Investment Advisers Act of 1940 does not apply to an investment adviser (IA) with even a single private fund as a client. What about the insurance company exemption? First of all, that applies only when all of the IA's clients are insurance companies. Second, the question is asking about the intrastate exemption, not exemptions in general. Another point is that although there are cases where an investment adviser without a place of business in a state whose only clients are institutions like banks and insurance companies qualifies for an exemption under state law, this question deals with federal law. In addition, the question points out that this particular exemption (intrastate exemption) applies only when the client resides in the same state as the IA's principal office.",
+      "explanation": "The federal intrastate exemption is lost if the adviser has even one private fund as a client. Accredited investors don't affect it, and the insurance-company and bank answers belong to other exemptions."
+    },
+    {
+      "id": "mid-q39",
+      "date": "2026-10-21",
+      "unitId": "U14",
+      "topic": "II",
+      "lo": "LO 14.k",
+      "question": "You have a client who has shown an interest in investing in precious metals. Which of the following could be an appropriate recommendation?",
+      "myAnswer": "D) Lead",
+      "correctAnswer": "B) Palladium",
+      "rationale": "Once in a while, the correct answer choice might be something with which you are not familiar. You may not know, for example, that U.S. minted palladium coins are about the same price as platinum ones. What you do in a case like this is use the process of elimination. First of all, while diamonds are very precious, they are not a metal. Tin and lead are metals, but they are not considered precious from an investment standpoint. Furthermore, we don't typically find tin or lead items in a jewelry store.",
+      "explanation": "Palladium is a precious metal, along with gold, silver and platinum. Lead and tin are base metals, and diamonds aren't metals at all. This is the second precious-metals miss in two days (the Unit 14 checkpoint asked about lead), and you spent 14 seconds on this one."
+    },
+    {
+      "id": "mid-q40",
+      "date": "2026-10-21",
+      "unitId": "U9",
+      "topic": "II",
+      "lo": "LO 9.i",
+      "question": "One of your clients who is interested in a hedge fund notes that the fund invests in blank-check companies. He seems uncertain what blank-check companies are, so you explain that they are sometimes known as special purpose acquisition companies (SPACs) and are unique in that",
+      "myAnswer": "D) they are synonymous with blind-pool companies that sell shares to investors without telling them what the specific use of the funds raised will be or what industry or sector might be targeted.",
+      "correctAnswer": "A) they have no business operations but instead raise money for the sole purpose of seeking out a business to engage in.",
+      "rationale": "Blank-check companies, sometimes known as special purpose acquisition companies (SPACs), are unique in that they have no business operations. Instead, they raise money for the sole purpose of seeking out a business to engage in. Once businesses are targeted, proposals will be presented to shareholders who can vote to approve or not. While a blank-check company doesn't indicate what industry or sectors might be targeted, blind-pool companies generally do.",
+      "explanation": "A blank-check company (SPAC) has no business operations; it raises money to go find a business, and shareholders vote on the deal it proposes. It isn't the same thing as a blind pool, which doesn't tell investors how the money will be used. The two terms aren't synonyms."
+    },
+    {
+      "id": "mid-q41",
+      "date": "2026-10-21",
+      "unitId": "U14",
+      "topic": "II",
+      "lo": "LO 14.l",
+      "question": "The main driver of cryptocurrency values is",
+      "myAnswer": "D) lack of fungibility.",
+      "correctAnswer": "B) asset appreciation.",
+      "rationale": "Cryptocurrency values are based largely on asset appreciation because these digital assets have no underlying cash flows. The supply of several cryptocurrencies is limited, which is a key driver of price increases. Cryptocurrencies exhibit extreme price volatility, which reflects investor uncertainty with this asset class. Unlike NFTs, cryptocurrencies are fungible.",
+      "explanation": "Crypto has no cash flows, so its value comes mostly from price appreciation. Supply is often capped, not unlimited, which pushes prices up. Volatility is extreme, not low. Cryptocurrencies are fungible; NFTs are the ones that aren't."
+    },
+    {
+      "id": "mid-q43",
+      "date": "2026-10-21",
+      "unitId": "U7",
+      "topic": "IV",
+      "lo": "LO 7.o",
+      "question": "The term used to describe the processes and policies followed by a financial institution to protect firm and customer data in electronic form from criminal or unauthorized use is",
+      "myAnswer": "D) business continuity planning.",
+      "correctAnswer": "A) cybersecurity.",
+      "rationale": "From the smallest to the largest, investment advisory firms have confidential information relating to their clients. As today's recordkeeping procedures are more likely to be in electronic form, threats from the outside are increasing at a rapid rate. The role of cybersecurity is to protect against those threats. Protecting against identity theft is a part of the cybersecurity program, and one of the tools used to protect electronic data is antivirus software.",
+      "explanation": "Cybersecurity is the policies and processes that protect firm and client data in electronic form. Business continuity planning is about staying in operation through a disaster or disruption. That's a different plan."
+    },
+    {
+      "id": "mid-q44",
+      "date": "2026-10-21",
+      "unitId": "U3",
+      "topic": "IV",
+      "lo": "LO 3.d",
+      "question": "A broker-dealer registered in multiple states must meet the record retention requirements of",
+      "myAnswer": "D) the state where the principal office of the broker-dealer is located.",
+      "correctAnswer": "B) the SEC.",
+      "rationale": "One of the effects of the National Securities Markets Improvement Act of 1996 (NSMIA) was to establish the preemption of federal law over state law. A broker-dealer registered in multiple states is going to be registered with the SEC as well. NSMIA amended the Securities Exchange Act of 1934 to add Section 15(h)(1), which reads as follows:\n\nNo law, rule, regulation, or order, or other administrative action of any State or political subdivision thereof shall establish capital, custody, margin, financial responsibility, making and keeping records, bonding, or financial or operational reporting requirements for brokers, dealers, municipal securities dealers, government securities brokers, or government securities dealers that differ from, or are in addition to, the requirements in those areas established under this title.\n\nHowever, had this question been dealing with an investment adviser registered on the state level, the answer would have been the requirements of the state where the principal office of the adviser is located.",
+      "explanation": "A broker-dealer registered in several states is also SEC-registered, and NSMIA bars states from adding recordkeeping (or capital, custody, margin) rules beyond the SEC's. So it follows the SEC. 'The state where the principal office is' is the rule for a STATE-registered adviser. You spent 12 seconds here."
+    },
+    {
+      "id": "mid-q45",
+      "date": "2026-10-21",
+      "unitId": "U3",
+      "topic": "IV",
+      "lo": "LO 3.b",
+      "question": "ABC Securities is a broker-dealer registered with the SEC and domiciled in State M. ABC Securities is not be defined as a broker-dealer in State N under the Uniform Securities Act if it has no offices in State N and if which of the following are true?\n\nIts only clients are insurance companies.\nIt has contact with fewer than six State N residents in any 12-month period.\nIts only solicitation of State N residents is through radio advertisements originating in State M but received in State N.\nIt occasionally engages in firm commitment underwriting with issuers based in State N.",
+      "myAnswer": "D) I and II",
+      "correctAnswer": "C) I and IV",
+      "rationale": "A broker-dealer with no office in the state is not defined as a broker-dealer in that state if its only business is with institutions, other broker-dealers, and issuers when engaged in underwriting their securities. There is no de minimis exemption. Any solicitation of individuals into the state, whether in person or by radio, television, or any publication, requires registration in the state.",
+      "explanation": "A broker-dealer with no office in a state isn't a broker-dealer there if it deals only with institutions like insurance companies (I), other broker-dealers, or issuers when underwriting their securities (IV). There's no de minimis count for broker-dealers (II), and radio ads aimed into the state are solicitation that requires registration (III)."
+    },
+    {
+      "id": "mid-q47",
+      "date": "2026-10-21",
+      "unitId": "U2",
+      "topic": "IV",
+      "lo": "LO 2.l",
+      "question": "What procedure would a limited partnership follow to register with the state as an investment adviser representative (IAR)?",
+      "myAnswer": "A) A limited partnership would submit the initial application for registration on Form U4.",
+      "correctAnswer": "D) A limited partnership cannot register as an investment adviser representative.",
+      "rationale": "Registration as an IAR is limited to natural persons (individuals); a business structure such as a partnership may not register as an IAR. If the limited partnership was registering as an investment adviser, it would use Form ADV Parts 1A and 1B (the 1B because the registration is with the state, not the SEC). If an individual was registering as an IAR, Form U4 would be used; it is the most commonly submitted application. The Series 65 or the Series 66 is required for final registration.",
+      "explanation": "Only natural persons can register as IARs. A limited partnership can register as an investment adviser (Form ADV) but never as an IAR. Form U4 is the individual's application, so it can't apply to a partnership."
+    },
+    {
+      "id": "mid-q49",
+      "date": "2026-10-21",
+      "unitId": "U2",
+      "topic": "IV",
+      "lo": "LO 2.h",
+      "question": "One area of paramount importance to state Administrators is seeing that investment advisers make all material disclosures to their advisory clients. An example of a failure to disclose is when the adviser has a financial condition that is reasonably likely to impair the ability of the adviser to meet contractual commitments to those clients. That disclosure would not need to be made in the case where the investment adviser",
+      "myAnswer": "A) accepts prepayment of more than $500 six or more months in advance.",
+      "correctAnswer": "D) engages in agency cross transactions.",
+      "rationale": "Numerous disclosures are required when an investment adviser (IA) engages in agency cross transactions, but this is not one of them. The potential impairment must be disclosed if the IA maintains custody, exercises discretion, or accepts a substantial prepayment of fees. For state-registered advisers, that is more than $500 six or more months in advance. For federal covered advisers, the dollar amount is more than $1,200. How do we know this question is about state-registered investment advisers? The question refers to Administrators, not the SEC.",
+      "explanation": "Negative stem ('would NOT need'). The financial-impairment disclosure is required when the adviser has custody, has discretion, or takes prepayments over $500 six or more months ahead (state level). Agency cross transactions require other disclosures, but not this one. Your pick, the $500 prepayment, is one of the triggers."
+    },
+    {
+      "id": "mid-q50",
+      "date": "2026-10-21",
+      "unitId": "U8",
+      "topic": "I",
+      "lo": "LO 8.p",
+      "question": "An investment adviser representative is examining the financial statements of several corporations in an effort to find a suitable investment for certain clients. While reviewing the income statements, subtracting the cost of goods sold (COGS) from the revenues reveals each company's",
+      "myAnswer": "B) earnings before interest and taxes (EBIT).",
+      "correctAnswer": "D) gross margin.",
+      "rationale": "Subtracting COGS from revenues (or sales) shows the gross operating profit or gross margin. This gross margin is usually divided by the net sales or revenues and is shown as a percentage, sometimes referred to as the margin of profit. When operating costs like rent, insurance, and utilities are subtracted from the gross margin, the result is EBIT. Pretax income is figured by subtracting interest from EBIT, and net income is the bottom line after taxes have been paid.",
+      "explanation": "Revenue minus cost of goods sold = gross margin (gross profit). Subtract operating costs to get EBIT, then interest to get pretax income, then taxes to get net income."
+    },
+    {
+      "id": "mid-q51",
+      "date": "2026-10-21",
+      "unitId": "U9",
+      "topic": "II",
+      "lo": "LO 9.c",
+      "question": "Corporations have found that one way to increase employee motivation is to grant options to purchase stock in the company. Incentive (qualified) options differ from nonqualified options in all of the following respects except",
+      "myAnswer": "C) there is a maximum 10-year limit for exercising an ISO; no such time limit exists for an NSO.",
+      "correctAnswer": "D) at the time of the grant, the recipient of the grant of the ISO has no income tax consequences while the recipient of the NSO treats the bargain element as compensation.",
+      "rationale": "Whether the grant is of an ISO (qualified) or an NSO (nonqualified), there are no tax consequences to the recipient at the time of the grant. It is only after exercise (NSO) and sale after exercise (ISO) that the recipient of the grant has tax consequences. Each of the other choices represents a difference. . One of the differences is that ISOs are not used as often as NSOs; they are less common. With an ISO, capital gain (loss) treatment is available upon the sale of the stock if the recipient holds the stock purchased through exercise at least one year from the date of exercise and at least two years from the date of the grant. With an NSO, the recipient can only have ordinary income (loss) based on the difference between the exercise price and the market value when the option is exercised. Finally, if the recipient of an ISO does not exercise the option within 10 years of the grant, it is treated as an NSO for tax purposes.",
+      "explanation": "EXCEPT question. Neither an ISO nor an NSO is taxed at grant, so D is NOT a difference. Each of the others is a real difference, including your pick: the 10-year exercise limit applies to ISOs only."
+    },
+    {
+      "id": "mid-q53",
+      "date": "2026-10-21",
+      "unitId": "U6",
+      "topic": "IV",
+      "lo": "LO 6.i",
+      "question": "The Investment Advisers Act of 1940 requires that investment advisers make certain disclosures to their customers through the delivery of the adviser's brochure. However, the act grants an exemption if the client is which of the following?\n\nA broker-dealer\nAn insurance company\nAn investment company\nA person receiving impersonal advice for which the annual fee is less than $500",
+      "myAnswer": "A) I and II",
+      "correctAnswer": "D) III and IV",
+      "rationale": "There are two exemptions to the brochure rule. The first is if the client is an investment company. The other is if the advice being rendered is impersonal and the charge is less than $500 ($500 as well under the USA) per year.",
+      "explanation": "There are only two brochure-delivery exemptions: investment company clients, and impersonal advice under $500 a year. Broker-dealers and insurance companies still get the brochure. This is the seventh brochure-rule miss."
     }
   ],
   "answeredCorrect": [
@@ -6698,6 +7252,371 @@ const SYNC = {
       "id": "u14exam-q20",
       "question": "Once a nonqualified variable annuity is annuitized, monthly payments to the customer are",
       "note": "Correct: B) partially a tax-free return of capital and partially taxable. (Kaplan Q 1818341, LO 14.f)"
+    },
+    {
+      "id": "rev113-q01",
+      "question": "An investor wishing to add some diversification to his portfolio wants to purchase 200 shares of an ADR for a Japanese electronics manufacturer. The ADR is listed on the NYSE. Which of the following risks should be of most concern to this investor?\n\nBusiness\nCurrency\nInflation\nLiquidity",
+      "note": "Correct: B) I and II (LO 9.d)"
+    },
+    {
+      "id": "rev113-q02",
+      "question": "The Administrator may do which of these?\n\nDeny a registration if the registrant does not have sufficient experience to function as an agent.\nLimit a registrant's functions to that of a broker-dealer if, in the initial application for registration as an investment adviser, the registrant is not qualified to act as an adviser.\nTake into consideration that the registrant will work under the supervision of a registered investment adviser or broker-dealer in approving a registration.\nDeny a registration, if it is prudent in view of a change in the state's political composition.",
+      "note": "Correct: A) II and III (LO 5.f)"
+    },
+    {
+      "id": "rev113-q03",
+      "question": "Which of the following parties is most likely to be considered an investment adviser under the Investment Advisers Act of 1940?",
+      "note": "Correct: A) A CPA who manages investment accounts for 50 clients and charges hourly fees for the service (LO 1.g)"
+    },
+    {
+      "id": "rev113-q05",
+      "question": "It has been a great year at Capital Funding, Inc., an SEC-registered broker-dealer that is also registered in 22 states. The company decides to share its good fortune with employees by paying a year-end bonus equal to 31% of annual salary. In order for clerical personnel to receive this bonus,",
+      "note": "Correct: B) they must be employees of the broker-dealer. (LO 3.f)"
+    },
+    {
+      "id": "rev113-q06",
+      "question": "An investment adviser who is discussing forward contracts with a client would most likely be referring to an investment in",
+      "note": "Correct: B) an agricultural commodity. (LO 12.f)"
+    },
+    {
+      "id": "rev113-q08",
+      "question": "Rank the following securities from the same issuer from most suitable to least suitable for a client whose primary objective is income.\n\nCumulative preferred stock\nConvertible preferred stock\nCommon stock\nWarrant",
+      "note": "Correct: D) I, II, III, IV (LO 12.e)"
+    },
+    {
+      "id": "rev113-q09",
+      "question": "Which of the following have equity positions in a corporation?\n\nCommon stockholders\nPreferred stockholders\nConvertible bondholders\nMortgage bondholders",
+      "note": "Correct: A) I and II (LO 9.a)"
+    },
+    {
+      "id": "rev113-q10",
+      "question": "Both state and federal law have recordkeeping requirements for broker-dealers. When it comes to email correspondence, the requirements are",
+      "note": "Correct: A) the same as they would be for written correspondence. (LO 3.d)"
+    },
+    {
+      "id": "rev113-q11",
+      "question": "Prosperity Financial Investments (PFI), a broker-dealer with its principal office in State A, just applied for registration in State C. Which of the following individuals registered as agents in State A will be automatically registered as agents in State C?",
+      "note": "Correct: C) An individual serving as an officer of PFI (LO 3.d)"
+    },
+    {
+      "id": "rev113-q12",
+      "question": "Among the characteristics of exchange-traded notes (ETNs) is that they are",
+      "note": "Correct: A) unsecured debt (LO 13.b)"
+    },
+    {
+      "id": "rev113-q14",
+      "question": "A fundamental analyst researching a stock is concerned with all of the following except",
+      "note": "Correct: B) volume of shares traded (LO 9.f)"
+    },
+    {
+      "id": "rev113-q15",
+      "question": "Under the Uniform Securities Act, which of the following concerning the withdrawal of an agent's registration is not true?",
+      "note": "Correct: B) Absent any disciplinary proceedings, withdrawal is effective 60 days after application. (LO 5.h)"
+    },
+    {
+      "id": "rev113-q18",
+      "question": "A financial instrument whose value depends upon the value of another asset is known as",
+      "note": "Correct: C) a derivative. (LO 12.a)"
+    },
+    {
+      "id": "rev113-q20",
+      "question": "An investment adviser need not register in a state if it has",
+      "note": "Correct: D) no place of business in the state and only advises three insurance companies located in the state. (LO 1.i)"
+    },
+    {
+      "id": "rev113-q21",
+      "question": "As defined in the Uniform Securities Act, an investment adviser",
+      "note": "Correct: D) is any person who, for compensation, engages in the business of advising others as to the value of securities. (LO 1.b)"
+    },
+    {
+      "id": "rev113-q23",
+      "question": "Which of the following clients may a Canadian broker-dealer with limited registration legally transact business within the U.S.?",
+      "note": "Correct: B) A Canadian citizen temporarily residing in the U.S. who was already a client before moving. (LO 3.i)"
+    },
+    {
+      "id": "rev113-q24",
+      "question": "Out-of-state investment advisers with no office in this state are not required to be registered if only advising",
+      "note": "Correct: A) insurance companies. (LO 1.i)"
+    },
+    {
+      "id": "rev113-q25",
+      "question": "Which of the following would have to register as an investment adviser under the Uniform Securities Act?",
+      "note": "Correct: B) A retired aeronautical engineer who charges a nominal fee for holding seminars on opportunities in aerospace stocks (LO 1.f)"
+    },
+    {
+      "id": "rev113-q28",
+      "question": "An investor owns an inverse ETF. If the underlying index should decrease in value,",
+      "note": "Correct: C) the fund shares will increase in value. (LO 13.a)"
+    },
+    {
+      "id": "rev113-q29",
+      "question": "Form PF must be filed by",
+      "note": "Correct: C) SEC-registered advisers with at least $150 million in private fund assets under management. (LO 1.j)"
+    },
+    {
+      "id": "rev113-q30",
+      "question": "Which of the following is true regarding a state Administrator's authority?",
+      "note": "Correct: B) With certain limited exceptions, the Administrator has authority over any transaction made in the state where officiating. (LO 5.a)"
+    },
+    {
+      "id": "u15q2-q01",
+      "question": "Your advisory client is an 86-year-old woman who is presently in the hospital, unable to communicate due to a severe stroke. For the past 6 years, she has followed the practice of making annual gifts of stock to her children and grandchildren on her birthday. Because her 87th is coming up later this month, her oldest son approaches you and asks you to continue the policy.",
+      "note": "Correct: B) Without a proper durable power of attorney being produced, you cannot do anything. (LO 15.g)"
+    },
+    {
+      "id": "u15q2-q03",
+      "question": "A professional tennis player comes to you seeking advice on setting up a trust. She is interested in giving to charity and also wants discretion as to when income is distributed to the beneficiaries, her parents. Which trust do you advise she use?",
+      "note": "Correct: C) Complex trust (LO 15.i)"
+    },
+    {
+      "id": "u15q2-q04",
+      "question": "Because a trust account is managed for the beneficial interest of the beneficiary, the investment adviser representative handling the account can",
+      "note": "Correct: C) have a check drawn on the account payable to the trustee for trustee expenses. (LO 15.f)"
+    },
+    {
+      "id": "u15q2-q05",
+      "question": "Richard, Tim, Sam, and Fred have a regular golf foursome every weekend. During one of their outings, they decide it is time they did something constructive with their money by opening an account with a brokerage firm. If the account is opened tenants in common, suitability information would be required on",
+      "note": "Correct: C) each of the four individuals (LO 15.b)"
+    },
+    {
+      "id": "u15q2-q06",
+      "question": "If a customer who has granted a durable power of attorney to her son dies, which of the following statements regarding the power of attorney is true?",
+      "note": "Correct: A) It is canceled on the death of either principal. (LO 15.g)"
+    },
+    {
+      "id": "u15q2-q09",
+      "question": "John and his sister, Alice, open a margin account as JTWROS. John contributes $50,000, and Alice contributes $25,000. They have agreed that Alice will trade the account, and they will share in the profits and losses equally. As their agent, you would gather information regarding suitability for",
+      "note": "Correct: C) both, because information regarding all owners is relevant. (LO 15.b)"
+    },
+    {
+      "id": "u15q2-q10",
+      "question": "One of the portions of the USA PATRIOT Act of 2001 that affects the opening of an account for a new customer is",
+      "note": "Correct: B) the customer identification program. (LO 15.c)"
+    },
+    {
+      "id": "u15q1-q01",
+      "question": "An estate account is opened with Family Asset Protectors (FAP) a registered investment adviser. Management decisions regarding the account must be made at the direction of the",
+      "note": "Correct: A) estate’s executor or administrator. (LO 15.f)"
+    },
+    {
+      "id": "u15q1-q04",
+      "question": "If the goal of a business is to raise substantial amounts of capital, it will probably be organized as",
+      "note": "Correct: B) a C corporation. (LO 15.d)"
+    },
+    {
+      "id": "u15q1-q05",
+      "question": "There are many different legal ways to structure a new business entity. One of these is the general partnership. Among the benefits of using this structure would be",
+      "note": "Correct: A) ease of formation (LO 15.d)"
+    },
+    {
+      "id": "u15q1-q06",
+      "question": "When does a customer have to receive the OCC Options Disclosure Document?",
+      "note": "Correct: D) At or prior to accepting the customer’s first order to trade options covered by the ODD (LO 15.c)"
+    },
+    {
+      "id": "u15q1-q07",
+      "question": "Which of the following is not a characteristic of a corporation?",
+      "note": "Correct: B) Existence terminates when an owner dies. (LO 15.d)"
+    },
+    {
+      "id": "u15q1-q09",
+      "question": "One of your longtime advisory clients has been critically injured in an automobile accident. The client is in the ICU at the local hospital, unable to communicate. You would be able to accept orders for the account",
+      "note": "Correct: C) from a person who has a written durable power of attorney over the account. (LO 15.g)"
+    },
+    {
+      "id": "u15exam-q01",
+      "question": "A married couple wishes to open an account at your firm. Which choice of registration would you recommend if they insist that no trading be done without the consent of both of them?",
+      "note": "Correct: B) Tenants by the entirety (LO 15.b)"
+    },
+    {
+      "id": "u15exam-q02",
+      "question": "When opening an account for a trust, which of the following sets of terms are synonymous?",
+      "note": "Correct: B) Settlor/grantor (LO 15.h)"
+    },
+    {
+      "id": "u15exam-q03",
+      "question": "The president of a business entity opens an account in the name of the business. When determining the suitability of recommendations to the account, knowing the president's personal financial condition is necessary for each of the following forms of business structure except",
+      "note": "Correct: B) a C corporation. (LO 15.d)"
+    },
+    {
+      "id": "u15exam-q05",
+      "question": "Opening a fiduciary account generally requires more legal documentation than an individual account. One common fiduciary account that does not require additional legal documents is",
+      "note": "Correct: C) an UTMA account. (LO 15.f)"
+    },
+    {
+      "id": "u15exam-q06",
+      "question": "One of your high net worth clients is interested in simplifying the paperwork regarding charitable giving. In addition to giving to various charitable organizations, the client wants to be able to offer grants to individuals engaged in worthy endeavors while still receiving a tax deduction. The best choice would be",
+      "note": "Correct: C) establishing a charitable foundation. (LO 15.j)"
+    },
+    {
+      "id": "u15exam-q07",
+      "question": "A client of an investment adviser wants to grant a power of attorney to an adult child. The client wants the power to remain in effect even after the client's death. You would reply",
+      "note": "Correct: C) any power of attorney is cancelled upon the death of either principal to the power. (LO 15.g)"
+    },
+    {
+      "id": "u15exam-q08",
+      "question": "Several years ago, Nunzio retired from his job as shop foreman for the Mobilia Woodworks Corporation. During his retirement, he produced several handmade items such as coffee tables, desks, and bookcases for family and friends. After hearing nothing but raves for his workmanship, and missing the joy of creating articles of beauty, Nunzio has decided to use his garage as a formal woodworking shop and open up his own business. In general, based on this information, the most appropriate legal structure for this business is",
+      "note": "Correct: C) sole proprietorship. (LO 15.e)"
+    },
+    {
+      "id": "u15exam-q09",
+      "question": "The USA PATRIOT Act of 2001 requires financial institutions, including broker-dealers and investment advisers, to obtain certain information related to new customers. The program, known as the Customer Identification Program (CIP), requires that the customer provide",
+      "note": "Correct: B) date of birth. (LO 15.c)"
+    },
+    {
+      "id": "u15exam-q10",
+      "question": "Which of the following statements about S corporations is not correct?",
+      "note": "Correct: C) S corporation status offers greater opportunity for raising additional capital than do other forms of business structure. (LO 15.d)"
+    },
+    {
+      "id": "mid-q04",
+      "question": "One of your clients purchased several units in a real estate limited partnership offering. If the enterprise in unsuccessful and files for bankruptcy, which of the following have a claim on the entity's assets ahead of your client?\n\nI. Fellow limited partners\n\nII. The bank that holds the mortgage on the property\n\nIII. The bank that holds the unsecured loans on the property\n\nIV. The general partner",
+      "note": "Correct: B) II and III (LO 14.m)"
+    },
+    {
+      "id": "mid-q05",
+      "question": "Investors in exchange-traded funds (ETFs) find they offer several attractive advantages over mutual funds. All of the following would be advantages that ETFs typically have over mutual funds except",
+      "note": "Correct: B) dividends are rarely paid more frequently than semiannually.. (LO 11.g)"
+    },
+    {
+      "id": "mid-q06",
+      "question": "An investment adviser may borrow from all of the following clients except",
+      "note": "Correct: A) a mortgage broker who helped the adviser negotiate mortgage terms for its office building. (LO 7.j)"
+    },
+    {
+      "id": "mid-q07",
+      "question": "An investment adviser that has custody of customer funds and securities discovers that its net worth has dropped below the required minimum under the rules of the state Administrator. Under NASAA rules, the adviser must do which of the following?\n\nNotify the Administrator by the close of business on the day after discovery\nFile a report of its financial condition with the Administrator no later than the close of business on the day after notification\nCease doing business",
+      "note": "Correct: B) I and II (LO 2.j)"
+    },
+    {
+      "id": "mid-q08",
+      "question": "An agent employed at First XYZ Securities produces his own research reports and provides them to a select group of personal clients. The agent has written permission from his employer to engage in this activity, provided the time spent on the project is conducted after working hours. Under the Investment Advisers Act of 1940, if the agent does not charge fees for the research but receives commissions from his employing broker-dealer for trades executed through the firm,",
+      "note": "Correct: A) neither the agent nor his employing broker-dealer need register as an investment adviser. (LO 2.m)"
+    },
+    {
+      "id": "mid-q10",
+      "question": "Seven years ago, Sarah Smith was convicted of possession of a controlled substance in a state where that violation is considered a felony. Sarah has just filed an application for registration as an agent with Kapco Securities, a registered broker-dealer in a state where that violation is only considered a misdemeanor. When viewing this agent's application, the Administrator will",
+      "note": "Correct: C) treat the crime as any felony. (LO 5.e)"
+    },
+    {
+      "id": "mid-q12",
+      "question": "A commodities speculator purchased a single wheat futures contract at $7.50 per bushel. The contract size represents 5,000 bushels. Shortly before expiration, the speculator closes the position and receives a net $7.45 per bushel. This investor",
+      "note": "Correct: B) has a $250 loss.   (LO 12.g)"
+    },
+    {
+      "id": "mid-q13",
+      "question": "Which of the following statements best explains an agency cross transaction for an advisory client?",
+      "note": "Correct: D) A transaction in which an investment adviser or an investment adviser representative acts in a brokerage capacity for both the advisory client and another person on the other side of the transaction (LO 6.b)"
+    },
+    {
+      "id": "mid-q14",
+      "question": "The Uniform Securities Act requires that investment advisers maintain certain records relating to their business operations. If the firm wishes to upgrade to a modern system, such as disk storage,",
+      "note": "Correct: A) it can do so if the system meets certain requirements, including that the information on the disk cannot be altered. (LO 2.i)"
+    },
+    {
+      "id": "mid-q15",
+      "question": "A bond has a conversion price of $100 and is currently selling at 145. What is the parity price of the common stock?",
+      "note": "Correct: B) $145.00 per share (LO 10.g)"
+    },
+    {
+      "id": "mid-q16",
+      "question": "Which of the following persons is required to register with the SEC as a federal covered adviser?",
+      "note": "Correct: C) An adviser who gives advice only to registered investment companies (LO 2.a)"
+    },
+    {
+      "id": "mid-q17",
+      "question": "Under the SEC's marketing rule for investment advisers,",
+      "note": "Correct: A) testimonials are given by clients while endorsements are given by promoters. (LO 6.l)"
+    },
+    {
+      "id": "mid-q18",
+      "question": "NASAA has a Model Rule dealing with investment adviser brochures. If an advisory client wanted information about each individual providing investment advice and having direct contact with clients in the state, that information would be found in",
+      "note": "Correct: D) Form ADV Part 2B. (LO 6.g)"
+    },
+    {
+      "id": "mid-q19",
+      "question": "A bond has a positive NPV when",
+      "note": "Correct: A) the internal rate of return exceeds the discount rate (LO 8.d)"
+    },
+    {
+      "id": "mid-q20",
+      "question": "HKBH Creations is a global manufacturing company that has issued common and preferred stock. Among the differences between the two securities is that the preferred stock",
+      "note": "Correct: B) may be convertible. (LO 9.a)"
+    },
+    {
+      "id": "mid-q21",
+      "question": "Several years ago, an investor purchased $100,000 of U.S. Treasury bonds bearing a 2.80% coupon. Because of economic conditions, those bonds are now yielding 3.5% in the secondary markets. Therefore, the investor's semiannual income will",
+      "note": "Correct: B) stay the same. (LO 10.a)"
+    },
+    {
+      "id": "mid-q22",
+      "question": "When plotted on a graph, the difference between short- and long-term interest rates typically reflects an upward-sloping line known as the yield curve. When it is an upward-sloping curve, it is a positive or normal yield curve. Long-term interest rates are typically higher than short-term rates for a number of reasons. Among those reasons are all of the following except",
+      "note": "Correct: D) the increased buying power of money resulting from inflation. (LO 10.d)"
+    },
+    {
+      "id": "mid-q24",
+      "question": "An investment adviser structured as a partnership lends money to a customer to buy recommended securities. Under NASAA's Model Rule on Unethical Business Practices of Investment Advisers, Investment Adviser Representatives, and Federal Covered Advisers, this activity is",
+      "note": "Correct: D) unethical. (LO 7.j)"
+    },
+    {
+      "id": "mid-q29",
+      "question": "Which of the following types of investments requires the longest commitment and has the least short-term liquidity?",
+      "note": "Correct: A) Private equity fund (LO 11.f)"
+    },
+    {
+      "id": "mid-q31",
+      "question": "Following the rules of the Uniform Securities Act, an investment adviser ensures that all clients receive a written contract prior to the firm engaging in advisory activities in their accounts. The contract clearly states all of the account details, including the services to be provided, the fees to be charged, and the procedure for handling early terminations. Because the investment adviser (IA) has a tendency to pursue some rather unorthodox methods of analysis, the contract provides that the clients waive their right to sue in the event that the IA violates any provision of the Uniform Securities Act. Under the NASAA Model Rule on Unethical Business Practices of Investment Advisers, Investment Adviser Representatives, and Federal Covered Advisers,",
+      "note": "Correct: B) waivers of this type are never permitted. (LO 6.e)"
+    },
+    {
+      "id": "mid-q33",
+      "question": "Inverse ETFs are suitable primarily for investors",
+      "note": "Correct: A) who have a very short time horizon. (LO 13.a)"
+    },
+    {
+      "id": "mid-q34",
+      "question": "Which of the following pooled investment vehicles trades on the secondary markets at a price that is generally unrelated to its underlying value?",
+      "note": "Correct: A) A closed-end fund (LO 11.k)"
+    },
+    {
+      "id": "mid-q37",
+      "question": "A client calls to discuss purchasing a specific security that he has been following. The agent handling the account recognizes that a potential conflict of interest exists. The best course of action would be to",
+      "note": "Correct: D) disclose the conflict of interest and proceed if the client wishes. (LO 6.b)"
+    },
+    {
+      "id": "mid-q38",
+      "question": "A preferred stock with which one of the following features would be most likely to maintain a relatively stable market price when interest rates are rising?",
+      "note": "Correct: D) Adjustable rate (LO 9.a)"
+    },
+    {
+      "id": "mid-q42",
+      "question": "Investors looking for current income may find that bonds and preferred stock provide that. One of the differences between these two investments is which of these?",
+      "note": "Correct: D) Income from preferred stock is generally received quarterly while that from bonds is received semiannually. (LO 10.b)"
+    },
+    {
+      "id": "mid-q46",
+      "question": "A consent to service of process allows the Administrator to",
+      "note": "Correct: C) be the registrant's attorney to receive service of any lawful process in any noncriminal suit, action, or proceeding against the registrant or the registrant's successor. (LO 2.e)"
+    },
+    {
+      "id": "mid-q48",
+      "question": "An agent of a broker-dealer is currently doing business in one state and would like to conduct business in another state. When checking with the firm's compliance department, the agent would be told which of the following?",
+      "note": "Correct: C) If the agent is a partner, officer, or director and held that position at the time the broker-dealer was registered in that other state, the individual need not register separately. (LO 3.d)"
+    },
+    {
+      "id": "mid-q52",
+      "question": "Under the NASAA Model Custody Rule, an investment adviser (IA) would be permitted to take or have custody of any securities or funds of any client if",
+      "note": "Correct: D) notification was given to the Administrator that he has or may have custody and custody was not prohibited by that state’s rules. (LO 7.f)"
+    },
+    {
+      "id": "mid-q54",
+      "question": "A transaction in which an investment adviser acts on behalf of both the advisory client and another person on the other side of the transaction is known as",
+      "note": "Correct: C) an agency cross transaction. (LO 6.b)"
+    },
+    {
+      "id": "mid-q55",
+      "question": "Which of the following qualifies under the Section 28(e) safe harbor provisions for soft dollar compensation?",
+      "note": "Correct: C) Clearance and settlement services provided by the broker-dealer (LO 7.d)"
     }
   ],
   "errorPatterns": [
@@ -6796,17 +7715,18 @@ const SYNC = {
       "note": "Six misses in one afternoon on Unit 8 (Oct 11), against several correct NPV calls the same day, so the concepts are partly there and the direction/vocabulary is what slips. Oct 15 he missed the identical Bond X / Bond Y question (1808424) with the identical wrong answer as on Oct 11. Oct 14 he summed a future value into a DCF price."
     },
     {
-      "rule": "Reading financial statements: current ratio uses only current assets and current liabilities; net profit is already after interest and taxes; dividends are paid out of net income and don't reduce it; cash accounting books a sale when paid, accrual when it happens; for dividend income, compute the dollars (payout ratio x EPS) rather than reading the ratio",
-      "count": 5,
+      "rule": "Reading financial statements: current ratio uses only current assets and current liabilities; net profit is already after interest and taxes; dividends are paid out of net income and don't reduce it; cash accounting books a sale when paid, accrual when it happens; for dividend income, compute the dollars (payout ratio x EPS) rather than reading the ratio; revenue minus COGS = gross margin, minus operating costs = EBIT",
+      "count": 6,
       "topic": "I",
       "occurrences": [
         "u8q1-q09",
         "u8q1-q15",
         "u8q2-q13",
         "u8exam-q09",
-        "u8exam-q11"
+        "u8exam-q11",
+        "mid-q50"
       ],
-      "note": "Five misses on Oct 11; the slow ones (Quiz 2 Q13 at 4:16, Quiz 1 Q9 at 2:43) were the statement-reading questions."
+      "note": "Five misses on Oct 11; the slow ones (Quiz 2 Q13 at 4:16, Quiz 1 Q9 at 2:43) were the statement-reading questions. Oct 21: Midterm Q50, revenue minus COGS is gross margin, not EBIT."
     },
     {
       "rule": "Suitability: one security recommended to all clients is a blanket recommendation and is unethical even with full disclosure; an unsuitable recommendation brings Administrator action against the agent (after a hearing), not a forced rescission",
@@ -6831,7 +7751,7 @@ const SYNC = {
     },
     {
       "rule": "Negative stems (EXCEPT / NOT): the question wants the one choice that is FALSE or NOT allowed, and he picks a true or permitted one. Underline EXCEPT/NOT and test each choice with 'is this OK?', expecting exactly one 'no' (or one 'yes' when it asks what is permitted)",
-      "count": 11,
+      "count": 20,
       "topic": "IV",
       "occurrences": [
         "rev14-q01",
@@ -6844,9 +7764,18 @@ const SYNC = {
         "u11q2-q04",
         "rev111-q01",
         "u14exam-q05",
-        "u14exam-q15"
+        "u14exam-q15",
+        "rev113-q26",
+        "mid-q01",
+        "mid-q02",
+        "mid-q03",
+        "mid-q09",
+        "mid-q25",
+        "mid-q30",
+        "mid-q49",
+        "mid-q51"
       ],
-      "note": "Three of the eight misses on the Oct 8 Unit 1-7 Review were EXCEPT questions, and one of the two misses on the 91.7% Unit 7 checkpoint was a NOT question. This is a reading habit, not a content gap, and it is the cheapest points to win back. Oct 11: Unit 8 Quiz 2 Q3 was a NOT question and he again picked a true statement (a correct IRR definition). Oct 15-18: three more, all in Unit 11 (Quiz 1 Q3, Quiz 2 Q4, Review 1-11 Q1); each time he chose a true statement. Oct 20: two more on the Unit 14 checkpoint (commodities, precious metals), each time choosing an item that belongs on the list; two other EXCEPT questions on the same exam were right."
+      "note": "Three of the eight misses on the Oct 8 Unit 1-7 Review were EXCEPT questions, and one of the two misses on the 91.7% Unit 7 checkpoint was a NOT question. This is a reading habit, not a content gap, and it is the cheapest points to win back. Oct 11: Unit 8 Quiz 2 Q3 was a NOT question and he again picked a true statement (a correct IRR definition). Oct 15-18: three more, all in Unit 11 (Quiz 1 Q3, Quiz 2 Q4, Review 1-11 Q1); each time he chose a true statement. Oct 20: two more on the Unit 14 checkpoint (commodities, precious metals), each time choosing an item that belongs on the list; two other EXCEPT questions on the same exam were right. Oct 21: the Midterm had 10 negative-stem questions and he missed 8 of them (Q1, 2, 3, 9, 25, 30, 49, 51), each time picking a true statement; plus one more on the Unit 1-13 Review (Q26). This is now the single biggest source of lost points."
     },
     {
       "rule": "Federal covered securities and the four lawful routes: a security may be sold in a state if it is registered with the state, an exempt security, sold in an exempt transaction, or federal covered. 'Federal covered' is a NSMIA category (registered investment company shares, exchange-listed stock and anything senior to it, Rule 506 offerings, most munis but NOT a muni sold in its own state), not a registration status; the state may require only a notice filing. SEC registration by itself is not one of the routes",
@@ -6894,14 +7823,15 @@ const SYNC = {
       "note": "Both misses borrowed a real number from a neighboring rule (quarterly from the transaction report; 45 days from 13F). The Unit 7 checkpoint then got 13F right."
     },
     {
-      "rule": "Custody: legal under the USA if no Administrator rule prohibits it and the adviser notifies the Administrator; discretion doesn't affect the right to custody (only the net worth number: $35,000 custody vs $10,000 discretion). A fee check payable to the adviser is not custody; password access that can move client money is",
-      "count": 2,
+      "rule": "Custody: legal under the USA if no Administrator rule prohibits it and the adviser notifies the Administrator; discretion doesn't affect the right to custody (only the net worth number: $35,000 custody vs $10,000 discretion). A fee check payable to the adviser is not custody; password access that can move client money is; automatic fee deduction and authority to withdraw are custody, third-party checks forwarded within three business days are not",
+      "count": 3,
       "topic": "IV",
       "occurrences": [
         "u7q1-q11",
-        "u7exam-q14"
+        "u7exam-q14",
+        "mid-q25"
       ],
-      "note": "One miss on the conditions, one on what counts; the second was also a negative stem."
+      "note": "One miss on the conditions, one on what counts; the second was also a negative stem. Oct 21: Midterm Q25, automatic fee deduction IS custody; third-party checks forwarded within three business days are not."
     },
     {
       "rule": "Offer vs sale under the USA: an OFFER is any attempt to dispose of, or solicitation of an offer to buy, a security for value; a SALE is the contract to dispose of a security for value; a 'free' bonus security given with a purchase is part of a sale",
@@ -6915,7 +7845,7 @@ const SYNC = {
     },
     {
       "rule": "Brochure delivery: 48 hours BEFORE the contract, OR at signing with five business days to cancel without penalty (adviser keeps a pro-rated fee for services rendered); annual update or summary of material changes within 120 days of fiscal year-end only when changes are material; only two delivery exemptions (registered investment company clients; impersonal advice under $500/yr); the brochure is Part 2A",
-      "count": 6,
+      "count": 7,
       "topic": "IV",
       "occurrences": [
         "u6q1-q01",
@@ -6923,9 +7853,10 @@ const SYNC = {
         "u6q2-q14",
         "rev16-q03",
         "u6exam-q03",
-        "rev110-q04"
+        "rev110-q04",
+        "mid-q53"
       ],
-      "note": "Five misses in three days on one rule. The most common error is treating '48 hours before' as the only permitted timing, or moving the 48 hours to after signing. Oct 15: treated delivery at signing as a violation again; it's legal and triggers the 5-day cancellation right."
+      "note": "Five misses in three days on one rule. The most common error is treating '48 hours before' as the only permitted timing, or moving the 48 hours to after signing. Oct 15: treated delivery at signing as a violation again; it's legal and triggers the 5-day cancellation right. Oct 21: Midterm Q53, only two exemptions (investment company clients; impersonal advice under $500/yr), and he picked broker-dealer and insurance-company clients."
     },
     {
       "rule": "Principal vs agency capacity: the firm is a PRINCIPAL when it is itself the buyer or seller against the client (needs written disclosure and, for an adviser, consent before completion); in an AGENCY CROSS the firm is agent for both other parties; a broker-dealer acting as principal only discloses capacity on the confirmation",
@@ -6941,14 +7872,15 @@ const SYNC = {
     },
     {
       "rule": "Cancellation (nonpunitive: mental incompetence, cannot be located / no forwarding address, out of business) vs revocation (punitive: convictions including non-securities felonies, wrongdoing)",
-      "count": 3,
+      "count": 4,
       "topic": "IV",
       "occurrences": [
         "u5q2-q03",
         "u5exam-q04",
-        "u5exam-q13"
+        "u5exam-q13",
+        "rev113-q16"
       ],
-      "note": "Three misses in one afternoon. After the quiz taught that incompetence matters, he attached it to 'revoke' twice on the exam. The trigger was learned; the verb wasn't."
+      "note": "Three misses in one afternoon. After the quiz taught that incompetence matters, he attached it to 'revoke' twice on the exam. The trigger was learned; the verb wasn't. Oct 21: Review Q16, treated cancellation as having revocation's grounds again."
     },
     {
       "rule": "Unit 5 numbers: civil statute of limitations is the EARLIER of 3 years after the sale or 2 years after discovery; criminal statute of limitations is 5 years; maximum criminal penalty is $5,000 and/or 3 years; 60 days to petition a court to review a final order",
@@ -6974,7 +7906,7 @@ const SYNC = {
     },
     {
       "rule": "Exempt TRANSACTIONS under the USA: unsolicited orders are the most common exempt transaction and the Administrator cannot forbid a client's own initiative; institutional buyers (pension trusts, financial institutions) qualify but ordinary operating companies do not; private placements are capped at 10 retail purchasers in 12 months",
-      "count": 6,
+      "count": 7,
       "topic": "IV",
       "occurrences": [
         "u4q1-q12",
@@ -6982,9 +7914,10 @@ const SYNC = {
         "u4q2-q02",
         "u4q2-q10",
         "rev15-q08",
-        "rev19-q13"
+        "rev19-q13",
+        "mid-q23"
       ],
-      "note": "Now five misses, the unsolicited-order rule three times. On Oct 5 he missed it when the stem only DESCRIBED a client-initiated order (Review 1-5 Q8), then got it right 30 minutes later when the stem said 'unsolicited' (Review 1-6 Q9). Oct 15: missed the unsolicited order for a fourth time, again when the stem described a client-initiated trade without the word 'unsolicited'."
+      "note": "Now five misses, the unsolicited-order rule three times. On Oct 5 he missed it when the stem only DESCRIBED a client-initiated order (Review 1-5 Q8), then got it right 30 minutes later when the stem said 'unsolicited' (Review 1-6 Q9). Oct 15: missed the unsolicited order for a fourth time, again when the stem described a client-initiated trade without the word 'unsolicited'. Oct 21: Midterm Q23, the Administrator can require the unsolicited-order acknowledgment by RULE, not by ORDER."
     },
     {
       "rule": "Exempt SECURITIES carry conditions, and the conditions are what get tested: an S&L or insurer must be authorized in the state, a railroad must be rate-regulated, commercial paper needs a $50,000 denomination and top-three rating within nine months, and exchange-listed issues escape state registration as federal covered rather than as exempt securities",
@@ -7000,26 +7933,31 @@ const SYNC = {
     },
     {
       "rule": "Registration reach for broker-dealers and agents: no de minimis exemption exists, a resident client (even one) requires registration, an agent must be registered where the client is domiciled even on unsolicited or institutional orders, but the snowbird exemption covers a firm with no office in the state serving existing clients who are only temporarily there",
-      "count": 3,
+      "count": 6,
       "topic": "IV",
       "occurrences": [
         "u3q1-q06",
         "u3q1-q08",
-        "u3exam-q09"
+        "u3exam-q09",
+        "rev113-q04",
+        "rev113-q13",
+        "mid-q45"
       ],
-      "note": "Missed in both directions within two hours: first by importing the adviser de minimis exemption into the BD rules, then by over-correcting to 'one client means register' on the snowbird question."
+      "note": "Missed in both directions within two hours: first by importing the adviser de minimis exemption into the BD rules, then by over-correcting to 'one client means register' on the snowbird question. Oct 21: three more, a firm with an in-state office must register (Review Q4), the agent snowbird 30-day limit (Review Q13), and no-office carve-outs limited to institutions, BDs and issuers (Midterm Q45)."
     },
     {
       "rule": "Who notifies the state Administrator when an IAR is hired or terminated: a STATE-registered adviser notifies for its IARs; an IAR of a FEDERAL COVERED adviser notifies for himself; the SEC is never notified; for broker-dealer AGENTS, both the agent and the firm notify promptly",
-      "count": 4,
+      "count": 6,
       "topic": "IV",
       "occurrences": [
         "u2q1-q07",
         "u2q3-q02",
         "u2exam-q15",
-        "rev16-q16"
+        "rev16-q16",
+        "mid-q11",
+        "mid-q27"
       ],
-      "note": "Four misses. The Oct 5 miss was on the agent version (both notify), which has no state/federal split."
+      "note": "Four misses. The Oct 5 miss was on the agent version (both notify), which has no state/federal split. Oct 21: missed twice on the Midterm (Q11 the full four-statement version, Q27 the federal covered IAR who notifies for himself)."
     },
     {
       "rule": "An IAR of a federal covered adviser registers only where he has a PLACE OF BUSINESS; client counts never matter, and regular recurring presence at a fixed location (one day a week, a quarterly seminar) creates a place of business",
@@ -7034,28 +7972,31 @@ const SYNC = {
     },
     {
       "rule": "Who is a supervised or associated person of an adviser: employees and anyone registered through the firm are in, purely clerical staff and genuinely outside parties (an executing broker-dealer, the independent auditor) are out, a parent company is in, and a solicitor is out federally but in under the USA",
-      "count": 4,
+      "count": 6,
       "topic": "IV",
       "occurrences": [
         "u2q1-q03",
         "u2q3-q03",
         "u2exam-q09",
-        "rev12-q01"
+        "rev12-q01",
+        "mid-q01",
+        "mid-q02"
       ],
-      "note": "The most frequently missed family this run. Each miss came from reading job titles instead of duties and control relationships."
+      "note": "The most frequently missed family this run. Each miss came from reading job titles instead of duties and control relationships. Oct 21: Midterm Q1 (board member IS associated; posting trades is clerical) and Q2 (not every supervised person is an access person)."
     },
     {
       "rule": "The dollar and time thresholds in the NASAA financial rules: $35,000 net worth with custody, $10,000 with discretion only, substantial prepayment over $500 six or more months ahead at the state level ($1,200 federal), and the disclosure triggers (custody, discretion, prepayments) that exclude performance-based fees; federal prepayment threshold is $1,200 while the state figure is $500",
-      "count": 5,
+      "count": 6,
       "topic": "IV",
       "occurrences": [
         "u2q2-q05",
         "rev12-q10",
         "u2exam-q07",
         "rev13-q10",
-        "rev19-q10"
+        "rev19-q10",
+        "mid-q49"
       ],
-      "note": "Now four misses. The newest one applied the state $500 figure to a federal question, so the pair itself is the gap rather than either number. Oct 8: the custody conditions miss (Unit 7 Quiz 1 Q11) is a close cousin; the $35,000 custody / $10,000 discretion line is where discretion matters. Oct 15: chose $1,500 for three months as a substantial federal prepayment; it needs MORE than $1,200 AND six months."
+      "note": "Now four misses. The newest one applied the state $500 figure to a federal question, so the pair itself is the gap rather than either number. Oct 8: the custody conditions miss (Unit 7 Quiz 1 Q11) is a close cousin; the $35,000 custody / $10,000 discretion line is where discretion matters. Oct 15: chose $1,500 for three months as a substantial federal prepayment; it needs MORE than $1,200 AND six months. Oct 21: Midterm Q49 picked the $500 prepayment, one of the financial-impairment disclosure triggers, on a NOT question."
     },
     {
       "rule": "Which parts of Form ADV go where: 1A everyone files, 1B state only, 2A everyone files, 2B filed with the state but only kept on hand by SEC advisers; Part 2A is the brochure, Part 2B the brochure supplement",
@@ -7069,14 +8010,15 @@ const SYNC = {
       "note": "Three misses across Units 2 and 6; the 2A/2B line is the recurring confusion."
     },
     {
-      "rule": "Record retention: five years from the END OF THE FISCAL YEAR for ordinary records incl. advertisements and emails, three years after termination for organizational documents, and no recordkeeping duty at all for IARs",
-      "count": 2,
+      "rule": "Record retention: five years from the END OF THE FISCAL YEAR for ordinary records incl. advertisements and emails, three years after termination for organizational documents, and no recordkeeping duty at all for IARs; a broker-dealer registered in several states follows the SEC's record rules (NSMIA), while a state-registered adviser follows its home state's",
+      "count": 3,
       "topic": "IV",
       "occurrences": [
         "u2q2-q01",
-        "u2exam-q17"
+        "u2exam-q17",
+        "mid-q44"
       ],
-      "note": "One miss on where the five-year clock starts, one on the three-year organizational rule."
+      "note": "One miss on where the five-year clock starts, one on the three-year organizational rule. Oct 21: Midterm Q44, a multi-state broker-dealer follows SEC record rules (NSMIA preemption), answered in 12 seconds."
     },
     {
       "rule": "Reading which law the question names before answering, especially on private fund investor standards: federal 3(c)(1) means accredited investors, state means qualified clients, 3(c)(7) means qualified purchasers",
@@ -7091,25 +8033,28 @@ const SYNC = {
     },
     {
       "rule": "Which clients earn an adviser an exemption, and whether the rule is federal or state: insurance-company clients are a federal exemption (not a state one and not an exclusion); bank-only clients are neither; a bank acting AS the adviser is excluded",
-      "count": 3,
+      "count": 5,
       "topic": "IV",
       "occurrences": [
         "u1qz2-q03",
         "u1qz2-q11",
-        "u1exam-q06"
+        "u1exam-q06",
+        "mid-q28",
+        "mid-q36"
       ],
-      "note": "Sep 17 pattern. The Sep 23 Review Quiz asked it again (Q9, insurance-company clients plus an in-state office) and he answered correctly, so this one is improving."
+      "note": "Sep 17 pattern. The Sep 23 Review Quiz asked it again (Q9, insurance-company clients plus an in-state office) and he answered correctly, so this one is improving. Oct 21: wealthy individuals don't earn the no-office exemption (Midterm Q28); one private-fund client kills the federal intrastate exemption (Q36)."
     },
     {
       "rule": "Exclusion (not an investment adviser at all) vs exemption (an adviser who need not register), and how a professional or publisher loses an exclusion by holding out, charging separately, or personalizing the advice",
-      "count": 3,
+      "count": 4,
       "topic": "IV",
       "occurrences": [
         "u1qz2-q03",
         "u1exam-q11",
-        "u1exam-q12"
+        "u1exam-q12",
+        "rev113-q17"
       ],
-      "note": "Sep 17 pattern. Review Quiz Q2 and Q4 tested the professional side again and both were correct."
+      "note": "Sep 17 pattern. Review Quiz Q2 and Q4 tested the professional side again and both were correct. Oct 21: put the insurance-company exemption in the federal exclusion list (Review Q17)."
     },
     {
       "rule": "The 'in the business' element of the investment adviser definition: regular advice, compensation for the advice (not for transactions), and, under IA-1092, holding out as an adviser",
@@ -7122,15 +8067,40 @@ const SYNC = {
       "note": "Sep 16 misses, now looking fixed: the identical questions came back on Sep 17 (Quiz 2 Q7) and Sep 23 (Review Q6) and were answered correctly both times."
     },
     {
-      "rule": "Importing a rule from the adviser chapters into the broker-dealer chapters (de minimis client counts, institutional-client exclusions, place-of-business tests)",
-      "count": 3,
+      "rule": "Importing a rule from the adviser chapters into the broker-dealer chapters (de minimis client counts, institutional-client exclusions, place-of-business tests); and the reverse, broker-dealer agent rules such as profit sharing with written consent applied to IARs",
+      "count": 4,
       "topic": "IV",
       "occurrences": [
         "u2q1-q01",
         "u3q1-q06",
-        "u3q1-q08"
+        "u3q1-q08",
+        "mid-q35"
       ],
-      "note": "Same underlying habit across two units: a rule learned for IAs/IARs gets applied to BDs/agents, where it does not exist."
+      "note": "Same underlying habit across two units: a rule learned for IAs/IARs gets applied to BDs/agents, where it does not exist. Oct 21: reverse direction on Midterm Q35, the agent's profit-sharing permission (with written consent) applied to an IAR, who may never share."
+    },
+    {
+      "rule": "Business entity structures (Unit 15): S corporations are capped at 100 shareholders (no nonresident aliens) and pass both income and losses through; LLC owners are members; a C corporation is best for raising capital and the corporate form transfers ownership most easily; partnerships, S corps and LLCs pay no entity-level federal income tax; general partnership suitability is the partners' collective suitability",
+      "count": 6,
+      "topic": "III",
+      "occurrences": [
+        "u15q1-q02",
+        "u15q1-q08",
+        "u15q1-q10",
+        "u15q1-q11",
+        "u15q2-q02",
+        "u15q2-q08"
+      ],
+      "note": "Oct 21 morning: six misses across the two Unit 15 quizzes, often putting a feature on the wrong entity (the 100-owner cap on LLCs, limited liability as an S-corp-only advantage). The checkpoint's entity questions (Q3, Q8, Q10) were all right an hour later."
+    },
+    {
+      "rule": "Precious metals: gold, silver, platinum and palladium; lead and tin are base metals and diamonds aren't metals",
+      "count": 2,
+      "topic": "II",
+      "occurrences": [
+        "u14exam-q15",
+        "mid-q39"
+      ],
+      "note": "Missed on consecutive days, once as an EXCEPT question and once in 14 seconds on the Midterm."
     }
   ],
   "quickTips": [
@@ -7184,7 +8154,7 @@ const SYNC = {
       "kind": "technique",
       "topic": "IV",
       "unitId": "U4",
-      "count": 15,
+      "count": 24,
       "fromMisses": [
         "u2exam-q07",
         "u2exam-q17",
@@ -7200,11 +8170,20 @@ const SYNC = {
         "u11q2-q04",
         "rev111-q01",
         "u14exam-q05",
-        "u14exam-q15"
+        "u14exam-q15",
+        "rev113-q26",
+        "mid-q01",
+        "mid-q02",
+        "mid-q03",
+        "mid-q09",
+        "mid-q25",
+        "mid-q30",
+        "mid-q49",
+        "mid-q51"
       ],
       "trigger": "EXCEPT, NOT, or 'which is not true'",
       "move": "Underline it. You want the ONE choice that's false or not allowed. If your pick is true, you answered the opposite question.",
-      "why": "Fifteen misses, each a true statement picked; two more on the Unit 14 checkpoint (animals, platinum). Two other EXCEPTs there were right."
+      "why": "Twenty-four misses, each a true statement picked. The Midterm had 10 negative stems and you missed 8."
     },
     {
       "id": "t-dont-overcorrect",
@@ -7225,20 +8204,23 @@ const SYNC = {
       "kind": "rule",
       "topic": "IV",
       "unitId": "U1",
-      "count": 5,
+      "count": 8,
       "fromMisses": [
         "u1qz2-q03",
         "u1qz2-q11",
         "u1exam-q06",
         "u1exam-q11",
-        "u1exam-q12"
+        "u1exam-q12",
+        "rev113-q17",
+        "mid-q28",
+        "mid-q36"
       ],
       "trigger": "Excluded, exempt, or an adviser with one type of client",
       "move": "Excluded = not an adviser at all. Exempt = still an adviser, just doesn't register.",
       "lines": [
         [
           "Excluded",
-          "Banks; LATE pros and BDs whose advice is incidental; publishers (impersonal)"
+          "Banks; incidental LATE pros and BDs; impersonal publishers; advice only on U.S. government securities"
         ],
         [
           "Loses the exclusion",
@@ -7246,18 +8228,22 @@ const SYNC = {
         ],
         [
           "Federal exemption",
-          "Insurance-company-only clients, VC funds, private funds under $150M"
+          "Insurance-company-only clients, VC funds, private funds under $150M; intrastate with no private fund client"
         ],
         [
           "State exemption",
-          "No office in the state + institutional clients only (or 5 or fewer retail)"
+          "No office in the state + institutional clients only (or 5 or fewer retail). Wealthy people are still retail."
         ],
         [
           "Bank-only clients",
           "No exemption at either level"
+        ],
+        [
+          "Advises a registered investment company",
+          "Federal covered at any AUM, so never state-registered"
         ]
       ],
-      "why": "Five misses, mostly the right topic through the wrong door."
+      "why": "Eight misses. Oct 21: insurance-only clients put in the exclusion list, and one private fund client ends the intrastate exemption."
     },
     {
       "id": "t-which-law-first",
@@ -7318,12 +8304,14 @@ const SYNC = {
       "kind": "rule",
       "topic": "IV",
       "unitId": "U1",
-      "count": 1,
+      "count": 2,
       "fromMisses": [
-        "u1qz3-q05"
+        "u1qz3-q05",
+        "rev113-q07"
       ],
       "trigger": "The title 'investment counsel'",
-      "move": "Allowed only when advice is the firm's PRIMARY business and it provides supervisory services. Nothing to do with lawyers."
+      "move": "Allowed only when advice is the firm's PRIMARY business and it provides supervisory services. Discretion isn't required; neither is a law degree.",
+      "why": "Sep 17 you added 'attorney'; Oct 21 you added 'discretion'. Neither is part of the test."
     },
     {
       "id": "t-in-the-business",
@@ -7345,14 +8333,17 @@ const SYNC = {
       "kind": "rule",
       "topic": "IV",
       "unitId": "U2",
-      "count": 6,
+      "count": 9,
       "fromMisses": [
         "u2q1-q01",
         "u2exam-q01",
         "u2exam-q11",
         "u3q1-q06",
         "u3q1-q08",
-        "u3exam-q09"
+        "u3exam-q09",
+        "rev113-q04",
+        "rev113-q13",
+        "mid-q45"
       ],
       "trigger": "Does this person or firm have to register in this state?",
       "move": "Pick the side first. Adviser rules and broker-dealer rules don't mix.",
@@ -7370,64 +8361,71 @@ const SYNC = {
           "Any regular presence: one day a week, a quarterly seminar"
         ],
         [
-          "BD or agent",
-          "No de minimis. One resident client means register."
+          "Broker-dealer",
+          "Office in the state = register. No office = exempt only with institutions, other BDs, issuers. No de minimis."
         ],
         [
-          "Existing client just visiting",
-          "Snowbird: no office in the state, no registration needed"
+          "Existing client in another state",
+          "Visiting (no time limit) or moved within 30 days: no registration. Friends don't count."
         ],
         [
           "Agent",
           "Registered where the client lives, whatever the order type"
         ]
       ],
-      "why": "Six misses: the adviser de minimis leaked into BD questions, then you over-corrected."
+      "why": "Nine misses. Oct 21 added three: an office means register, the 30-day move, and the no-office carve-outs."
     },
     {
       "id": "t-supervised-persons",
       "kind": "rule",
       "topic": "IV",
       "unitId": "U2",
-      "count": 5,
+      "count": 7,
       "fromMisses": [
         "u2q1-q03",
         "u2q3-q03",
         "u2exam-q09",
         "rev12-q01",
-        "rev16-q19"
+        "rev16-q19",
+        "mid-q01",
+        "mid-q02"
       ],
       "trigger": "Who is supervised by, or associated with, an adviser",
       "move": "Read duties and control, never job titles.",
       "lines": [
         [
           "In",
-          "Employees, anyone registered through the firm, a parent company, clerical staff who analyze"
+          "Employees, anyone registered through the firm, a parent company, directors, clerical staff who analyze"
         ],
         [
           "Out",
-          "Outside executing BD, the independent auditor, purely clerical staff"
+          "Outside executing BD, the independent auditor, purely clerical staff (posting trades)"
+        ],
+        [
+          "Access person",
+          "A supervised person WITH access to nonpublic client information; not every employee"
         ],
         [
           "Solicitor",
           "Federal: out (written agreement if paid over $1,000 a year). State: an IAR."
         ]
       ],
-      "why": "Five misses, each from reading the title instead of the duty."
+      "why": "Seven misses, each from reading the title instead of the duty. Both Midterm ones were NOT questions."
     },
     {
       "id": "t-state-vs-federal-numbers",
       "kind": "rule",
       "topic": "IV",
       "unitId": "U2",
-      "count": 6,
+      "count": 7,
       "fromMisses": [
         "u2q2-q05",
         "rev12-q10",
         "u2exam-q07",
         "rev13-q10",
         "rev15-q07",
-        "rev19-q10"
+        "rev19-q10",
+        "mid-q49"
       ],
       "trigger": "Net worth, prepayment, or financial impairment",
       "move": "Name the government first, then the number.",
@@ -7446,22 +8444,24 @@ const SYNC = {
         ],
         [
           "Disclose impairment if",
-          "Custody, discretion or prepayment. Not performance fees."
+          "Custody, discretion or substantial prepayment. Not performance fees or agency crosses."
         ]
       ],
-      "why": "Six misses. Oct 15: $1,500 for three months isn't substantial; it needs the dollars AND six months."
+      "why": "Seven misses. The Midterm one was a NOT question: you picked a real trigger."
     },
     {
       "id": "t-who-notifies",
       "kind": "rule",
       "topic": "IV",
       "unitId": "U2",
-      "count": 4,
+      "count": 6,
       "fromMisses": [
         "u2q1-q07",
         "u2q3-q02",
         "u2exam-q15",
-        "rev16-q16"
+        "rev16-q16",
+        "mid-q11",
+        "mid-q27"
       ],
       "trigger": "Someone hired or leaving: who tells the Administrator?",
       "move": "Turn AUM into firm type first (over $110M = federal covered). The SEC is never told.",
@@ -7477,9 +8477,13 @@ const SYNC = {
         [
           "BD agent",
           "Agent AND firm, promptly"
+        ],
+        [
+          "Manages a registered investment company",
+          "Federal covered at any AUM, so the IAR notifies"
         ]
       ],
-      "why": "Four misses from four different angles."
+      "why": "Six misses; two more on the Midterm, including the four-statement version."
     },
     {
       "id": "t-form-adv-grid",
@@ -7533,12 +8537,14 @@ const SYNC = {
       "kind": "rule",
       "topic": "IV",
       "unitId": "U3",
-      "count": 4,
+      "count": 6,
       "fromMisses": [
         "u2q2-q01",
         "u2exam-q17",
         "u3exam-q07",
-        "u6exam-q16"
+        "u6exam-q16",
+        "mid-q03",
+        "mid-q44"
       ],
       "trigger": "A record-keeping period, or whose books can be examined",
       "move": "Records belong to firms. Agents and IARs have nothing to inspect.",
@@ -7554,34 +8560,45 @@ const SYNC = {
         [
           "BD ads and website",
           "3 years from first use; each redesign restarts the clock"
+        ],
+        [
+          "BD registered in several states",
+          "SEC record rules (NSMIA); states can't add to them"
+        ],
+        [
+          "Administrator exams",
+          "Any time, no notice needed, but only where the records actually are"
         ]
       ],
-      "why": "Four misses. Check whose record it is before picking the number."
+      "why": "Six misses. Check whose record it is, and which regulator sets the rule, before picking the number."
     },
     {
       "id": "t-who-owns-what-is-sold",
       "kind": "rule",
       "topic": "IV",
       "unitId": "U3",
-      "count": 2,
+      "count": 3,
       "fromMisses": [
         "u3q2-q07",
-        "rev16-q20"
+        "rev16-q20",
+        "mid-q47"
       ],
-      "trigger": "Issuer, broker-dealer or agent?",
-      "move": "Selling its own securities = issuer. Someone else's = BD. An individual selling for a firm = agent. A firm is never an agent."
+      "trigger": "Issuer, broker-dealer, agent or IAR?",
+      "move": "Selling its own securities = issuer. Someone else's = BD. An individual selling for a firm = agent. A firm is never an agent or an IAR."
     },
     {
       "id": "t-agent-hangs-off-the-firm",
       "kind": "rule",
       "topic": "IV",
       "unitId": "U3",
-      "count": 1,
+      "count": 2,
       "fromMisses": [
-        "rev13-q08"
+        "rev13-q08",
+        "rev113-q26"
       ],
       "trigger": "A firm loses its registration",
-      "move": "Its agents and IARs are suspended until they join an active firm."
+      "move": "Its agents and IARs are suspended until they join an active firm.",
+      "why": "The same EXCEPT question, missed Sep 24 and Oct 21 with the same answer."
     },
     {
       "id": "t-issuer-employee-agent",
@@ -7594,6 +8611,18 @@ const SYNC = {
       ],
       "trigger": "An issuer's employee selling company stock to employees",
       "move": "An agent only if paid sales-related compensation. Straight salary means not an agent."
+    },
+    {
+      "kind": "rule",
+      "topic": "IV",
+      "id": "t-u4-disclosure",
+      "unitId": "U3",
+      "fromMisses": [
+        "rev113-q27"
+      ],
+      "trigger": "What an agent's application (Form U4) asks",
+      "move": "Liens, unsatisfied judgments and bankruptcies; 10 years of jobs, 5 of addresses. Education only if a full-time student.",
+      "count": 1
     },
     {
       "id": "t-exempt-transactions",
@@ -7750,14 +8779,15 @@ const SYNC = {
       "kind": "rule",
       "topic": "IV",
       "unitId": "U5",
-      "count": 4,
+      "count": 5,
       "fromMisses": [
         "u5q2-q13",
         "u5exam-q01",
         "u5exam-q03",
-        "u5exam-q15"
+        "u5exam-q15",
+        "rev113-q19"
       ],
-      "trigger": "A deadline, fine or prison term",
+      "trigger": "A deadline, penalty, or what a winning client recovers",
       "move": "Circle CIVIL or CRIMINAL first.",
       "lines": [
         [
@@ -7781,8 +8811,8 @@ const SYNC = {
           "Hearing within 15 days of a request"
         ],
         [
-          "Withdrawal",
-          "Effective in 30 days"
+          "Civil recovery",
+          "Price paid + interest, less income received, + court costs and attorney's fees"
         ]
       ],
       "why": "Four misses, each a real number from the rule next door. Holding up on review since Oct 5."
@@ -7792,14 +8822,15 @@ const SYNC = {
       "kind": "rule",
       "topic": "IV",
       "unitId": "U5",
-      "count": 6,
+      "count": 7,
       "fromMisses": [
         "u5q2-q03",
         "u5exam-q04",
         "u5exam-q13",
         "rev13-q07",
         "u5exam-q05",
-        "u5exam-q09"
+        "u5exam-q09",
+        "rev113-q16"
       ],
       "trigger": "Cancel, revoke, deny: what are the grounds?",
       "move": "Wrongdoing or insolvency means revoke or suspend. Can't function means cancel.",
@@ -7813,8 +8844,8 @@ const SYNC = {
           "Mentally incompetent, can't be located, out of business"
         ],
         [
-          "Withdraw",
-          "The registrant asks; effective in 30 days"
+          "Summary action",
+          "Can suspend a PENDING registration at once; a stop order needs notice and a hearing first"
         ],
         [
           "Never enough on its own",
@@ -7825,7 +8856,7 @@ const SYNC = {
           "Disclosure law: an honest 'likely to fail' is fine; nonmaterial errors aren't grounds"
         ]
       ],
-      "why": "Six misses, then all six Unit 5 questions right on the Oct 15 review."
+      "why": "Seven misses. Oct 21: cancellation borrowed revocation's grounds again."
     },
     {
       "id": "t-jurisdiction",
@@ -7859,26 +8890,35 @@ const SYNC = {
       "kind": "rule",
       "topic": "IV",
       "unitId": "U5",
-      "count": 1,
+      "count": 2,
       "fromMisses": [
-        "u5q2-q08"
+        "u5q2-q08",
+        "mid-q23"
       ],
       "trigger": "Rule, order or law?",
-      "move": "Applies to everyone = rule. Aimed at one person = order (appealable within 60 days). Law = legislature only."
+      "move": "Applies to everyone = rule. Aimed at one person = order (appealable within 60 days). Law = legislature only.",
+      "lines": [
+        [
+          "Unsolicited-order acknowledgment form",
+          "Required by RULE (every firm), never by order on one firm"
+        ]
+      ],
+      "why": "Two choices identical except rule vs order on the Midterm."
     },
     {
       "id": "t-brochure-delivery",
       "kind": "rule",
       "topic": "IV",
       "unitId": "U6",
-      "count": 6,
+      "count": 7,
       "fromMisses": [
         "u6q1-q01",
         "u6q1-q13",
         "u6q2-q14",
         "rev16-q03",
         "u6exam-q03",
-        "rev110-q04"
+        "rev110-q04",
+        "mid-q53"
       ],
       "trigger": "Brochure timing, cancellation or exemptions",
       "move": "Two legal timings. '48 hours before' is an option, not a must.",
@@ -7904,7 +8944,7 @@ const SYNC = {
           "Delivery after signing, or a waiver. No signed receipt needed."
         ]
       ],
-      "why": "Six misses. Oct 15: delivering at signing is legal; it just starts the 5-day clock."
+      "why": "Seven misses. Oct 21: broker-dealer and insurance-company clients picked as exempt; only the two below are."
     },
     {
       "id": "t-principal-vs-agency",
@@ -8019,6 +9059,18 @@ const SYNC = {
       ]
     },
     {
+      "kind": "rule",
+      "topic": "IV",
+      "id": "t-form-crs",
+      "unitId": "U6",
+      "fromMisses": [
+        "mid-q09"
+      ],
+      "trigger": "When Form CRS is due",
+      "move": "Read the firm type first. BD: by the first recommendation, order or account opening. IA: by the advisory contract.",
+      "count": 1
+    },
+    {
       "id": "t-code-of-ethics-clock",
       "kind": "rule",
       "topic": "IV",
@@ -8054,10 +9106,11 @@ const SYNC = {
       "kind": "rule",
       "topic": "IV",
       "unitId": "U7",
-      "count": 2,
+      "count": 3,
       "fromMisses": [
         "u7q1-q11",
-        "u7exam-q14"
+        "u7exam-q14",
+        "mid-q25"
       ],
       "trigger": "Does the adviser have custody?",
       "move": "Custody = control over the CLIENT's assets.",
@@ -8075,7 +9128,7 @@ const SYNC = {
           "No Administrator rule against it + notice to the Administrator"
         ]
       ],
-      "why": "Two misses; the misdelivered-certificates retest on Oct 11 was right."
+      "why": "Three misses. The Midterm asked the exact lines below and you picked fee deduction as not custody."
     },
     {
       "id": "t-discretion-who",
@@ -8107,13 +9160,25 @@ const SYNC = {
       "kind": "rule",
       "topic": "IV",
       "unitId": "U7",
-      "count": 2,
+      "count": 4,
       "fromMisses": [
         "u7q1-q06",
-        "u7q2-q17"
+        "u7q2-q17",
+        "mid-q26",
+        "mid-q32"
       ],
-      "trigger": "Identity theft or manipulation",
-      "move": "Intent decides manipulation, not size. Identity thieves borrow in your name; they never lend."
+      "trigger": "Manipulation, IPO allocation, or identity theft",
+      "move": "Intent decides manipulation, not size. Identity thieves borrow in your name; they never lend.",
+      "lines": [
+        [
+          "Manipulation",
+          "Wash trades and matched orders fake activity. Front running and churning are prohibited, not manipulation."
+        ],
+        [
+          "Underwriting an IPO",
+          "A bona fide public offering; holding shares back for the firm is prohibited"
+        ]
+      ]
     },
     {
       "id": "t-no-waivers",
@@ -8144,12 +9209,36 @@ const SYNC = {
       "kind": "rule",
       "topic": "IV",
       "unitId": "U7",
-      "count": 1,
+      "count": 2,
       "fromMisses": [
-        "u7q2-q02"
+        "u7q2-q02",
+        "mid-q35"
       ],
-      "trigger": "Agents sharing commissions",
-      "move": "Same or affiliated BD, AND both registered in the state where the trade happened."
+      "trigger": "Agents sharing commissions, or anyone sharing a client's profits",
+      "move": "Same or affiliated BD, AND both registered in the state where the trade happened.",
+      "lines": [
+        [
+          "IAR sharing a client's profits or losses",
+          "Never"
+        ],
+        [
+          "BD agent sharing in a client account",
+          "Written consent from the client and the firm, in proportion to what each put in"
+        ]
+      ],
+      "why": "Oct 21: the agent's permission carried over to an IAR, who can never share."
+    },
+    {
+      "kind": "rule",
+      "topic": "IV",
+      "id": "t-cyber-vs-bcp",
+      "unitId": "U7",
+      "fromMisses": [
+        "mid-q43"
+      ],
+      "trigger": "Protecting data vs staying in business",
+      "move": "Protecting electronic firm and client data = cybersecurity. Keeping operations running through a disruption = business continuity.",
+      "count": 1
     },
     {
       "id": "t-tvm-direction",
@@ -8203,13 +9292,14 @@ const SYNC = {
       "kind": "rule",
       "topic": "I",
       "unitId": "U8",
-      "count": 5,
+      "count": 6,
       "fromMisses": [
         "u8q1-q09",
         "u8q1-q15",
         "u8q2-q13",
         "u8exam-q09",
-        "u8exam-q11"
+        "u8exam-q11",
+        "mid-q50"
       ],
       "trigger": "Ratios and financial statements",
       "move": "Write the formula first; take only the inputs it names.",
@@ -8233,9 +9323,13 @@ const SYNC = {
         [
           "Dividend income",
           "Work out the dollars: payout ratio x EPS"
+        ],
+        [
+          "Revenue − COGS",
+          "Gross margin; minus operating costs = EBIT; minus interest = pretax; minus tax = net"
         ]
       ],
-      "why": "Five misses; the slowest questions of the day."
+      "why": "Six misses; the slowest questions of the day on Oct 11."
     },
     {
       "id": "t-sd-and-risk",
@@ -8439,7 +9533,8 @@ const SYNC = {
       "fromMisses": [
         "u11q1-q10",
         "u11exam-q13",
-        "u11q1-q03"
+        "u11q1-q03",
+        "mid-q30"
       ],
       "trigger": "Which kind of fund: UIT, open-end, closed-end, international",
       "move": "Only managed funds (open- and closed-end) charge a management fee. A UIT holds a fixed portfolio.",
@@ -8455,9 +9550,13 @@ const SYNC = {
         [
           "International fund",
           "Foreign stocks only (a foreign + U.S. mix is a global fund)"
+        ],
+        [
+          "REIT",
+          "Publicly traded; you sell in the market, the issuer never redeems"
         ]
       ],
-      "count": 3
+      "count": 4
     },
     {
       "id": "t-options",
@@ -8490,6 +9589,48 @@ const SYNC = {
       "trigger": "Fundamental or technical analysis",
       "move": "Economy, industry, earnings, growth = fundamental. Price and volume charts = technical.",
       "why": "A misread: you've had this split right three other times.",
+      "count": 1
+    },
+    {
+      "kind": "rule",
+      "topic": "II",
+      "id": "t-dividends-and-value",
+      "unitId": "U9",
+      "fromMisses": [
+        "rev113-q22"
+      ],
+      "trigger": "Dividends and a stock's value",
+      "move": "Dividends drive value (the dividend discount model). Growth companies keep cash for expansion, so they rarely pay cash dividends.",
+      "count": 1
+    },
+    {
+      "kind": "rule",
+      "topic": "II",
+      "id": "t-spac",
+      "unitId": "U9",
+      "fromMisses": [
+        "mid-q40"
+      ],
+      "trigger": "Blank-check company (SPAC)",
+      "move": "No operations: it raises money to find a business, and shareholders vote on the deal. Not the same as a blind pool.",
+      "count": 1
+    },
+    {
+      "kind": "rule",
+      "topic": "II",
+      "id": "t-stock-options-pay",
+      "unitId": "U9",
+      "fromMisses": [
+        "mid-q51"
+      ],
+      "trigger": "Employee stock options: ISO vs NSO",
+      "move": "Neither is taxed at grant. NSO: ordinary income at exercise. ISO: capital gain if held 1 year from exercise and 2 from grant.",
+      "lines": [
+        [
+          "ISO only",
+          "Must be exercised within 10 years"
+        ]
+      ],
       "count": 1
     },
     {
@@ -8600,10 +9741,136 @@ const SYNC = {
       "unitId": "U14",
       "id": "t-digital-assets",
       "fromMisses": [
-        "u14q1-q12"
+        "u14q1-q12",
+        "mid-q41"
       ],
       "trigger": "Digital assets vs traditional assets",
       "move": "No underlying cash flows, decentralized ledgers, thin regulation, higher volatility.",
+      "count": 2,
+      "lines": [
+        [
+          "Value comes from",
+          "Price appreciation (no cash flows); supply is often capped"
+        ],
+        [
+          "Fungible?",
+          "Cryptocurrency yes; NFTs no"
+        ]
+      ],
+      "why": "Missed on Unit 14 Quiz 1 and again on the Midterm."
+    },
+    {
+      "kind": "rule",
+      "topic": "II",
+      "id": "t-precious-metals",
+      "unitId": "U14",
+      "fromMisses": [
+        "u14exam-q15",
+        "mid-q39"
+      ],
+      "trigger": "Precious metals",
+      "move": "Gold, silver, platinum, palladium. Lead and tin are base metals; diamonds aren't metals.",
+      "why": "Missed on back-to-back days; the Midterm one took 14 seconds.",
+      "count": 2
+    },
+    {
+      "kind": "technique",
+      "topic": "IV",
+      "id": "t-late-exam-pace",
+      "unitId": "U7",
+      "fromMisses": [
+        "mid-q43",
+        "mid-q44",
+        "mid-q45",
+        "mid-q47",
+        "mid-q49",
+        "mid-q50",
+        "mid-q51",
+        "mid-q53"
+      ],
+      "trigger": "Past question 40 of a long sitting",
+      "move": "Hold your pace. On the Midterm you sped up to about 44 seconds a question and got 5 of the last 13. The real exam allows about 80.",
+      "why": "85 questions back to back on Oct 21; the last 13 averaged about 44 seconds, with misses as quick as 12 seconds.",
+      "count": 8
+    },
+    {
+      "kind": "rule",
+      "topic": "III",
+      "id": "t-business-entities",
+      "unitId": "U15",
+      "fromMisses": [
+        "u15q1-q02",
+        "u15q1-q08",
+        "u15q1-q10",
+        "u15q1-q11",
+        "u15q2-q02",
+        "u15q2-q08"
+      ],
+      "trigger": "Which business structure: S corp, C corp, LLC, partnership, sole proprietor",
+      "move": "Put each feature on the right entity before reading the choices.",
+      "lines": [
+        [
+          "S corporation",
+          "100 shareholders max (no nonresident aliens); income AND losses flow through"
+        ],
+        [
+          "C corporation",
+          "Best for raising capital; easiest to hand off (sell the stock)"
+        ],
+        [
+          "LLC",
+          "Owners are members; flow-through"
+        ],
+        [
+          "General partnership",
+          "Suitability is all the partners' collectively"
+        ],
+        [
+          "'Pays tax on its income'",
+          "Kaplan's answer: sole proprietorship (the owner's 1040). The others flow through."
+        ],
+        [
+          "Limited liability",
+          "C and S corps both have it, so it's never the S corp's edge"
+        ]
+      ],
+      "why": "Six misses on the quizzes; all three entity questions right on the checkpoint an hour later.",
+      "count": 6
+    },
+    {
+      "kind": "rule",
+      "topic": "III",
+      "id": "t-trust-accounts",
+      "unitId": "U15",
+      "fromMisses": [
+        "u15q1-q03",
+        "u15exam-q04",
+        "u15q2-q11"
+      ],
+      "trigger": "Trust accounts: who decides, what a living trust does",
+      "move": "The adviser takes direction from the trustees. A living (revocable) trust avoids probate, not estate or income tax.",
+      "lines": [
+        [
+          "Changing a living trust",
+          "The grantor alone"
+        ],
+        [
+          "SRI in a trust's policy",
+          "Socially responsible investing"
+        ]
+      ],
+      "count": 3
+    },
+    {
+      "kind": "rule",
+      "topic": "III",
+      "id": "t-account-opening",
+      "unitId": "U15",
+      "fromMisses": [
+        "u15q2-q07"
+      ],
+      "trigger": "Opening an account: what you must try to get",
+      "move": "The suitability basics: financial condition and investment objectives. Not an emergency contact or education.",
       "count": 1
     }
   ],
@@ -9151,11 +10418,148 @@ const SYNC = {
         "misread a negative (NOT/EXCEPT) stem": 2,
         "concept or calculation error": 3
       }
+    },
+    {
+      "name": "Unit 15 Checkpoint Exam (Test 415150227)",
+      "date": "2026-10-21",
+      "score": 9,
+      "total": 10,
+      "timeUsed": 7.17,
+      "timeAllowed": null,
+      "byTopic": {
+        "III": {
+          "answered": 10,
+          "correct": 9
+        }
+      },
+      "byUnit": {
+        "U15": {
+          "answered": 10,
+          "correct": 9
+        }
+      },
+      "segments": [
+        {
+          "label": "1-5",
+          "missed": 1
+        },
+        {
+          "label": "6-10",
+          "missed": 0
+        }
+      ],
+      "missCats": {
+        "did not know the rule": 1
+      }
+    },
+    {
+      "name": "Midterm Exam (Test 415244720)",
+      "date": "2026-10-21",
+      "score": 30,
+      "total": 55,
+      "timeUsed": 62.98,
+      "timeAllowed": null,
+      "byTopic": {
+        "IV": {
+          "answered": 36,
+          "correct": 17
+        },
+        "II": {
+          "answered": 17,
+          "correct": 12
+        },
+        "I": {
+          "answered": 2,
+          "correct": 1
+        }
+      },
+      "byUnit": {
+        "U1": {
+          "answered": 2,
+          "correct": 0
+        },
+        "U2": {
+          "answered": 9,
+          "correct": 5
+        },
+        "U3": {
+          "answered": 4,
+          "correct": 1
+        },
+        "U4": {
+          "answered": 1,
+          "correct": 0
+        },
+        "U5": {
+          "answered": 2,
+          "correct": 1
+        },
+        "U6": {
+          "answered": 8,
+          "correct": 6
+        },
+        "U7": {
+          "answered": 10,
+          "correct": 4
+        },
+        "U8": {
+          "answered": 2,
+          "correct": 1
+        },
+        "U9": {
+          "answered": 4,
+          "correct": 2
+        },
+        "U10": {
+          "answered": 4,
+          "correct": 4
+        },
+        "U11": {
+          "answered": 4,
+          "correct": 3
+        },
+        "U12": {
+          "answered": 1,
+          "correct": 1
+        },
+        "U13": {
+          "answered": 1,
+          "correct": 1
+        },
+        "U14": {
+          "answered": 3,
+          "correct": 1
+        }
+      },
+      "segments": [
+        {
+          "label": "1-14",
+          "missed": 5
+        },
+        {
+          "label": "15-28",
+          "missed": 5
+        },
+        {
+          "label": "29-42",
+          "missed": 7
+        },
+        {
+          "label": "43-55",
+          "missed": 8
+        }
+      ],
+      "missCats": {
+        "misread a negative (NOT/EXCEPT) stem": 8,
+        "answered too fast (under 40 seconds)": 3,
+        "did not know the rule": 14
+      },
+      "notes": "Started at 4:26 PM, right after the 30-question Unit 1-13 Review (4:00-4:26), so 85 questions back to back. Questions 1-42: 25/42 (60%), about 76 seconds each. Questions 43-55: 5/13 (38%), about 44 seconds each, including misses at 12, 14 and 36 seconds. 8 of the 10 negative-stem questions were missed. Question mix vs the real exam (Kaplan's per-unit counts, scaled to Units 1-14 and 55 questions): Topic IV 36 vs ~35, Topic I (Unit 8) 2 vs ~6, Topic II 17 vs ~13. Within Topic IV, Unit 2 had 9 vs ~4 and Unit 1 had 2 vs ~5.5; Units 4, 12 and 13 had one question each, which matches their small real-exam weight."
     }
   ],
   "priorSnapshot": {
-    "asOf": "2026-10-18",
-    "pooledPct": 77.2006,
+    "asOf": "2026-10-20",
+    "pooledPct": 76.8595,
     "units": {
       "U1": 77.7778,
       "U2": 62.5,
@@ -9170,7 +10574,7 @@ const SYNC = {
       "U11": 81.5385,
       "U12": 92.8571,
       "U13": 100,
-      "U14": 64.2857
+      "U14": 68.0851
     },
     "missIds": [
       "u1qz1-q03",
@@ -9338,7 +10742,18 @@ const SYNC = {
       "u14q1-q06",
       "u14q1-q07",
       "u14q1-q11",
-      "u14q1-q12"
+      "u14q1-q12",
+      "u14q2-q01",
+      "u14q2-q02",
+      "u14q2-q05",
+      "u14q2-q06",
+      "u14q2-q09",
+      "u14q2-q11",
+      "u14exam-q01",
+      "u14exam-q05",
+      "u14exam-q06",
+      "u14exam-q08",
+      "u14exam-q15"
     ],
     "correctIds": [
       "u1qz1-q01",
@@ -9900,7 +11315,30 @@ const SYNC = {
       "u14q1-q09",
       "u14q1-q10",
       "u14q1-q13",
-      "u14q1-q14"
+      "u14q1-q14",
+      "u14q2-q03",
+      "u14q2-q04",
+      "u14q2-q07",
+      "u14q2-q08",
+      "u14q2-q10",
+      "u14q2-q12",
+      "u14q2-q13",
+      "u14q2-q14",
+      "u14exam-q02",
+      "u14exam-q03",
+      "u14exam-q04",
+      "u14exam-q07",
+      "u14exam-q09",
+      "u14exam-q10",
+      "u14exam-q11",
+      "u14exam-q12",
+      "u14exam-q13",
+      "u14exam-q14",
+      "u14exam-q16",
+      "u14exam-q17",
+      "u14exam-q18",
+      "u14exam-q19",
+      "u14exam-q20"
     ],
     "patternRules": [
       "Investment Company Act of 1940 rules: $100,000 minimum capital before a public offering; no more than 3% of another investment company's voting shares; no joint trading accounts or short sales; shares can't be bought on margin; a majority shareholder vote to change fundamental policy; the adviser's contract must be written, 2 years initially then renewed annually",
@@ -9908,7 +11346,7 @@ const SYNC = {
       "Duration: rises with maturity, falls as coupon or yield rises (inverse to YTM); a zero's duration equals its maturity (always longest); lengthen duration when rates are expected to fall; at a given discount rate, the highest coupon above market for the longest time carries the biggest premium",
       "Choosing a mutual fund: when a fund is sold on past performance, check manager tenure first; NAV per share is irrelevant; Class A has the lowest ongoing asset-based charge (B and C higher); switching fund families while a deferred load applies is unsuitable",
       "Options rights vs obligations: buyers (long) have rights, writers (short) have obligations; a put writer may have to BUY, a call writer may have to SELL; a protective put on owned stock sets a floor and keeps the upside, it doesn't profit from a decline",
-      "Variable insurance product rules: VLI may convert to whole life within 24 months at the ORIGINAL age and health; scheduled-premium VLI has a fixed premium, cash value figured monthly, death benefit at least annually; the VA death benefit guarantees at least premiums paid (gains above basis taxable to the beneficiary)",
+      "Variable insurance product rules: VLI may convert to whole life within 24 months at the ORIGINAL age and health; scheduled-premium VLI has a fixed premium, cash value figured monthly, death benefit at least annually; the VA death benefit guarantees at least premiums paid (gains above basis taxable to the beneficiary); VLI death benefit = current face (or minimum) less loans; VLI unit values daily, cash value monthly; life with period certain pays for life; VA withdrawals are LIFO (earnings first, 10% penalty before 59½)",
       "Time value of money direction: present value and the discount rate move in opposite directions (lower rate, higher PV); NPV = PV of cash flows minus cost, positive when IRR exceeds the required return (a buy), zero when equal; IRR assumes reinvestment at the IRR, NPV at the discount/market rate; the rate used to bring a future amount back to today is the discount rate",
       "Reading financial statements: current ratio uses only current assets and current liabilities; net profit is already after interest and taxes; dividends are paid out of net income and don't reduce it; cash accounting books a sale when paid, accrual when it happens; for dividend income, compute the dollars (payout ratio x EPS) rather than reading the ratio",
       "Suitability: one security recommended to all clients is a blanket recommendation and is unethical even with full disclosure; an unsuitable recommendation brings Administrator action against the agent (after a hearing), not a forced rescission",
@@ -9970,6 +11408,7 @@ const SYNC = {
       "Unit 13 Quiz 1 (Test 414789462)",
       "Unit 13 Quiz 2 (Test 414789889)",
       "Unit 14 Quiz 1 (Test 414801761)",
+      "Unit 14 Quiz 2 (Test 415087365)",
       "Unit 1 Checkpoint Exam (Test 410671140)",
       "Unit 2 Checkpoint Exam (Test 411154210)",
       "Unit 3 Checkpoint Exam (Test 411516480)",
@@ -9983,6 +11422,7 @@ const SYNC = {
       "Unit 11 Checkpoint Exam (Test 414769885)",
       "Unit 12 Checkpoint Exam (Test 414780517)",
       "Unit 13 Checkpoint Exam (Test 414790487)",
+      "Unit 14 Checkpoint Exam (Test 415089431)",
       "Unit 1-2 Review Quiz (Test 411496521)",
       "Unit 1-3 Review Quiz (Test 411666032)",
       "Unit 1-4 Review Quiz (Test 412336495)",
@@ -10047,6 +11487,13 @@ const simExams = SYNC.simExams;
    single-unit and short. Real data and part of the pooled score via unitData's
    exam columns; just not a full-length readiness signal. */
 const checkpointExams = SYNC.checkpointExams || [];
+
+/* A checkpoint that spans several units (the Midterm) is exam-conditions data like
+   the rest, but no single unit can stand for it: it never counts as a unit's latest
+   attempt and gets its own section on the exams tab. */
+const isMixedExam = e => Object.keys(e.byUnit || {}).length > 1;
+const unitCheckpoints = checkpointExams.filter(e => !isMixedExam(e));
+const mixedExams = checkpointExams.filter(isMixedExam);
 
 /* Derived narrative anchors, written by the sync job from the real data. */
 const weakSpots = SYNC.weakSpots;
@@ -10266,7 +11713,7 @@ function daysSinceActivity() {
 function latestExam() { return simExams.length ? simExams[simExams.length - 1] : null; }
 function checkpointTotals() {
   let score = 0, total = 0;
-  for (const e of checkpointExams) { score += (e.score || 0); total += (e.total || 0); }
+  for (const e of unitCheckpoints) { score += (e.score || 0); total += (e.total || 0); }
   return { score, total, pct: pct(score, total) };
 }
 
@@ -10348,7 +11795,7 @@ function buildBindings() {
     "checkpoint.pct":      fmtPct(checkpointTotals().pct),
     "checkpoint.fraction":  checkpointTotals().total
                               ? (checkpointTotals().score + " of " + checkpointTotals().total) : EM,
-    "counts.checkpoints":  String(checkpointExams.length),
+    "counts.checkpoints":  String(unitCheckpoints.length),
     "exam.fullLengthMin":  String(EXAM.FULL_LENGTH_MIN),
 
     "latest.name":  last ? last.name : EM,
@@ -10607,10 +12054,19 @@ function renderSimulated(idx) {
     return;
   }
   currentExam = Math.max(0, Math.min(idx | 0, simExams.length - 1));
-  const e = simExams[currentExam];
+  setHTML("exam-detail", examDetailHTML(simExams[currentExam], EXAM.minutes));
+  renderExamSelector();
+  bindAll();
+}
+
+/* One exam's breakdown: header, topics, units, quarters, error kinds. Full-length
+   exams default to the real time limit; a shorter mixed exam passes null and only
+   shows the time used. */
+function examDetailHTML(e, defaultMinutes) {
   const score = pct(e.score, e.total);
   const passed = score !== null && score >= EXAM.PASS_LINE;
   const pace = (e.timeUsed && e.total) ? (e.timeUsed * 60 / e.total) : null;
+  const allowed = e.timeAllowed || defaultMinutes;
 
   /* header card */
   let html = '<div class="card"><h3>' + esc(e.name) + '</h3>'
@@ -10619,9 +12075,12 @@ function renderSimulated(idx) {
     + '<dt>Score</dt><dd>' + fmtPct(score) + ' (' + e.score + ' of ' + e.total + ') '
     + (passed ? '<span class="tag ok">above the line</span>'
               : '<span class="tag bad">below ' + EXAM.PASS_LINE + '%</span>') + '</dd>'
-    + '<dt>Time</dt><dd>' + (e.timeUsed ? (e.timeUsed + ' of ' + (e.timeAllowed || EXAM.minutes) + ' min') : EM)
+    + '<dt>Time</dt><dd>' + (e.timeUsed
+        ? (Math.round(e.timeUsed * 10) / 10) + (allowed ? ' of ' + allowed : '') + ' min' : EM)
     + (pace ? ' &middot; ' + pace.toFixed(0) + 's per question' : '') + '</dd>'
-    + '</dl></div>';
+    + '</dl>'
+    + (e.notes ? '<p>' + esc(e.notes) + '</p>' : '')
+    + '</div>';
 
   /* by topic */
   if (e.byTopic && Object.keys(e.byTopic).length) {
@@ -10688,10 +12147,7 @@ function renderSimulated(idx) {
     html += '<h3>Kind of error</h3><div class="scroller"><table class="narrow"><thead><tr>'
       + '<th>Category</th><th>Count</th></tr></thead><tbody>' + rows + '</tbody></table></div>';
   }
-
-  setHTML("exam-detail", html);
-  renderExamSelector();
-  bindAll();
+  return html;
 }
 
 /* exam-over-exam delta, including "did not move at all" detection */
@@ -10749,7 +12205,11 @@ function renderExamDelta() {
 }
 
 function renderCheckpointExams() {
-  if (!checkpointExams.length) {
+  setHTML("mixed-exams", mixedExams.length
+    ? mixedExams.map(e => examDetailHTML(e, null)).join("")
+    : '<table class="narrow"><tbody><tr class="empty-row"><td>'
+      + 'No multi-unit exams logged yet.</td></tr></tbody></table>');
+  if (!unitCheckpoints.length) {
     setHTML("checkpoint-table", '<table class="narrow"><tbody><tr class="empty-row"><td>'
       + 'No unit checkpoint exams logged yet.</td></tr></tbody></table>');
     setHTML("checkpoint-note", "");
@@ -10757,7 +12217,7 @@ function renderCheckpointExams() {
   }
   const T = checkpointTotals();
   let rows = "";
-  for (const e of checkpointExams) {
+  for (const e of unitCheckpoints) {
     const p = pct(e.score, e.total);
     const low = p !== null && p < EXAM.PASS_LINE;
     const unitId = Object.keys(e.byUnit || {})[0];
@@ -10778,7 +12238,7 @@ function renderCheckpointExams() {
   setHTML("checkpoint-table",
     '<table><thead><tr><th>Unit</th><th>Date</th><th>Score</th><th>Exam %</th>'
     + '<th>QBank %</th><th>Exam &minus; QBank</th><th></th></tr></thead><tbody>' + rows + '</tbody>'
-    + '<tfoot><tr><td>All checkpoints</td><td></td>'
+    + '<tfoot><tr><td>All unit checkpoints</td><td></td>'
     + '<td class="num">' + T.score + ' / ' + T.total + '</td>'
     + '<td class="num">' + fmtPct(T.pct) + '</td>'
     + '<td colspan="3">exam-conditions data wins where the two diverge</td>'
@@ -10786,7 +12246,7 @@ function renderCheckpointExams() {
 
   /* Where checkpoints run well below the QBank, say so - it is the most useful
      thing this table produces, and it is derived rather than asserted. */
-  const diverging = checkpointExams.map(e => {
+  const diverging = unitCheckpoints.map(e => {
     const unitId = Object.keys(e.byUnit || {})[0];
     const u = unitData.find(x => x.id === unitId);
     const p = pct(e.score, e.total);
@@ -10864,7 +12324,7 @@ function renderStanding() {
 /* Latest checkpoint attempt per unit, so a retake replaces the old score. */
 function latestCheckpointByUnit() {
   const latest = {};
-  for (const e of checkpointExams) {
+  for (const e of unitCheckpoints) {
     const uid = Object.keys(e.byUnit || {})[0];
     if (!uid) continue;
     if (!latest[uid] || String(e.date) >= String(latest[uid].date)) latest[uid] = e;
@@ -11189,6 +12649,7 @@ const DUMP_BLOCKS = [
     { k: "Max penalty", v: "$5,000 and/or 3 years", tip: "t-unit5-numbers" },
     { k: "Appeal an order", v: "60 days", tip: "t-unit5-numbers" },
     { k: "Summary order", v: "Hearing within 15 days of a request", tip: "t-unit5-numbers" },
+    { k: "Civil recovery", v: "Price + interest − income, plus costs and fees", tip: "t-unit5-numbers" },
     { k: "Rescission offer", v: "30 days to accept" },
     { k: "Net worth", v: "$35,000 custody, $10,000 discretion", tip: "t-state-vs-federal-numbers" },
     { k: "Substantial prepayment", v: "Over $500 state, over $1,200 federal, 6+ months", tip: "t-state-vs-federal-numbers" },
@@ -11202,6 +12663,8 @@ const DUMP_BLOCKS = [
     { k: "Borrow from a client", v: "Only from a lending institution, BD or affiliate" },
     { k: "Front-run, churn, sell away", v: "Never; manipulation turns on intent", tip: "t-fraud-gain-and-intent" },
     { k: "Agents sharing commissions", v: "Same BD + both registered in the trade's state", tip: "t-commission-sharing" },
+    { k: "IAR sharing a client's profits", v: "Never (a BD agent needs written consent)", tip: "t-commission-sharing" },
+    { k: "Underwriter keeping IPO shares", v: "Never; it must make a bona fide offering", tip: "t-fraud-gain-and-intent" },
     { k: "Releasing client info", v: "Only with consent or legal compulsion", tip: "t-confidentiality-exits" }
   ]},
   { key: "disc", name: "Discretion & custody", topic: "IV", rows: [
@@ -11240,7 +12703,8 @@ const DUMP_BLOCKS = [
     { k: "VLI clocks", v: "Units daily, cash value monthly, death benefit yearly", tip: "t-variable-insurance" },
     { k: "VA death benefit", v: "Greater of premiums paid or current value", tip: "t-annuities" },
     { k: "VA withdrawal", v: "LIFO: earnings first, +10% before 59½", tip: "t-annuities" },
-    { k: "Index annuity", v: "× participation, then the cap; a down year = 0", tip: "t-index-annuity" }
+    { k: "Index annuity", v: "× participation, then the cap; a down year = 0", tip: "t-index-annuity" },
+    { k: "Precious metals", v: "Gold, silver, platinum, palladium", tip: "t-precious-metals" }
   ]},
   { key: "formulas", name: "Formulas", topic: "I", rows: [
     { k: "Sharpe", v: "(Rp − rf) ÷ std dev", note: "total risk" },
@@ -11268,7 +12732,9 @@ const DUMP_BLOCKS = [
     { k: "TOD / POD", v: "Named beneficiary, no probate" },
     { k: "RMD age", v: "73 (75 from 2033)" },
     { k: "Roth IRA / Roth 401(k)", v: "No lifetime RMD" },
-    { k: "Inherited, non-spouse", v: "10-year rule" }
+    { k: "Inherited, non-spouse", v: "10-year rule" },
+    { k: "S corporation", v: "100 owners max; income and losses flow through", tip: "t-business-entities" },
+    { k: "Living trust", v: "Avoids probate, not estate or income tax", tip: "t-trust-accounts" }
   ]}
 ];
 
@@ -11478,10 +12944,13 @@ function briefFull(budget) {
   + (simExams.length
       ? simExams.length + " full-length exam(s), latest " + fmtPct(pct(simExams[simExams.length-1].score, simExams[simExams.length-1].total))
       : "no full-length end-of-course exam taken yet")
-  + (checkpointExams.length
-      ? "; " + checkpointExams.length + " unit checkpoint exam(s) at "
+  + (unitCheckpoints.length
+      ? "; " + unitCheckpoints.length + " unit checkpoint exam(s) at "
         + fmtPct(checkpointTotals().pct) + " (short, single-unit - not a readiness measure)"
-      : "") + "\n"
+      : "")
+  + mixedExams.map(e => "; " + e.name.replace(/\s*\(Test \d+\)$/, "") + " " + e.score + "/" + e.total
+      + " (" + fmtPct(pct(e.score, e.total)) + ", mixed units, " + e.total + " questions)").join("")
+  + "\n"
   + "- Units below the pass line: "
   + (below.length ? below.map(u => u.name + " (" + fmtPct(u.pct) + ", " + examWeightNote(u) + ")").join(", ")
                   : (hasData() ? "none" : "no unit data yet")) + "\n\n"

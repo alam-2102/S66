@@ -126,7 +126,8 @@ const EXPORTS = `
 ;globalThis.__X__ = {
   nasaaData, EXAM, META, unitData, mixedQuizzes, kaplanQBank, simExams,
   UNIT_TOPIC_MAP, missedQuestions, errorPatterns, quickTips, answeredCorrect,
-  checkpointExams, DUMP_BLOCKS, KAPLAN_UNIT_QUESTIONS,
+  checkpointExams, unitCheckpoints, mixedExams, latestCheckpointByUnit,
+  DUMP_BLOCKS, KAPLAN_UNIT_QUESTIONS,
   PRIOR_SNAPSHOT,
   pooledTotals, topicTotals, unitPool, unitExamQuestions, reweightedScore,
   buildBindings, bindAll, renderAll,
@@ -274,6 +275,19 @@ console.log("\nSeries 66 dashboard sanity check\n");
   assert(cpTotal <= unitExamA,
     "checkpoint questions are accounted for in the units' exam columns",
     cpScore + "/" + cpTotal + " checkpoints vs " + unitExamC + "/" + unitExamA + " unit exam");
+  /* A multi-unit exam (the Midterm) must split cleanly across its units and must
+     never stand in for one unit's latest checkpoint. */
+  const badSplit = cp.filter(e => {
+    const d = Object.values(e.byUnit || {});
+    return d.reduce((s, x) => s + x.answered, 0) !== e.total
+        || d.reduce((s, x) => s + x.correct, 0) !== e.score;
+  });
+  assert(badSplit.length === 0, "every checkpoint's byUnit adds up to its score",
+    badSplit.map(e => e.name).join(", ") || (X.mixedExams.length + " multi-unit"));
+  const latest = Object.values(X.latestCheckpointByUnit());
+  assert(latest.every(e => Object.keys(e.byUnit).length === 1),
+    "a multi-unit exam never counts as a unit's latest checkpoint",
+    latest.filter(e => Object.keys(e.byUnit).length !== 1).map(e => e.name).join(", "));
 }
 
 /* ------------------------------------------ 4. renderSimulated is idempotent */

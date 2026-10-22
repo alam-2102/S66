@@ -164,6 +164,12 @@ exam-conditions data and they belong in the unit's `examAnswered`/`examCorrect`
 columns (so they do count toward the pooled score), but a 12-question single-unit
 sitting is not a readiness signal and must not drive the headline cards.
 
+**Multi-unit exams that are not full length (Kaplan's 55-question Midterm) also go in
+`checkpointExams`**, with a complete `byUnit` (it must add up to the score) and any
+pacing `notes`. The page treats a checkpoint with more than one unit as a mixed exam:
+it gets its own "Multi-unit exams" section with topics, units and quarters, and it
+never stands in for a unit's latest checkpoint (the sanity check enforces both).
+
 `apply-payload.js` rejects anything under 90 questions in `simExams` and warns on
 anything at or above 90 in `checkpointExams`. This went wrong once: the Unit 1
 Checkpoint Exam was filed as a simulated exam and drove the "latest exam" card off
@@ -335,7 +341,7 @@ has `correct` exceeding `answered`, or leaves a unit unmapped. It writes the
                     { "label": "51-75", "missed": 8 }, { "label": "76-100", "missed": 11 } ],
       "missCats": { "misread the question": 5, "did not know the rule": 12 } }
   ],
-  "checkpointExams": [ /* unit checkpoint exams, same shape, short and single-unit */
+  "checkpointExams": [ /* unit checkpoints (single-unit) plus any short multi-unit exam such as the Midterm */
     { "name": "Unit 1 Checkpoint Exam", "date": "2026-09-17", "score": 7, "total": 12,
       "timeUsed": 27.7, "timeAllowed": null,
       "byTopic": { "IV": { "answered": 12, "correct": 7 } },
