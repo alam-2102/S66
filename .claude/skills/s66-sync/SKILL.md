@@ -330,7 +330,8 @@ has `correct` exceeding `answered`, or leaves a unit unmapped. It writes the
       "examAnswered": 20, "examCorrect": 12, "mixedAnswered": 10, "mixedCorrect": 7,
       "covers": "optional one-liner", "recurring": "optional" }
   ],
-  "mixedQuizzes": [ { "date": "2026-09-12", "label": "...", "answered": 25, "correct": 18 } ],
+  "mixedQuizzes": [ { "date": "2026-09-12", "label": "...", "answered": 25, "correct": 18,
+                      "notes": "optional: pacing and question mix; shown in the tutor paste" } ],
   "kaplanQBank":  [ { "date": "2026-09-10", "label": "...", "answered": 40, "correct": 26 } ],
   "simExams": [ /* FULL-LENGTH end-of-course exams only, >= 90 questions */
     { "name": "Exam 1", "date": "2026-09-15", "score": 68, "total": 100,
