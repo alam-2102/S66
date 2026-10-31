@@ -917,19 +917,19 @@ const EXAM = {
    ========================================================================== */
 const SYNC = {
   "meta": {
-    "lastVerified": "2026-10-26",
-    "lastRunAttempted": "2026-10-26",
+    "lastVerified": "2026-10-30",
+    "lastRunAttempted": "2026-10-30",
     "source": "kaplan",
     "examDate": null,
     "noDataRuns": 0,
-    "lastActivityDate": "2026-10-26",
-    "courseActivitiesDone": 89,
+    "lastActivityDate": "2026-10-30",
+    "courseActivitiesDone": 100,
     "courseActivitiesTotal": 137,
-    "studyPlanPct": 49.2,
-    "kaplanExamAvg": 71.61,
-    "kaplanQBankAvg": 76.12,
+    "studyPlanPct": 54.1,
+    "kaplanExamAvg": 73.12,
+    "kaplanQBankAvg": 76.3,
     "unreadReason": "",
-    "dataNotes": "Oct 21: Kaplan's QBank tracker counts 25 of the 30 Unit 1-13 Review questions (U1 +6 of 8, U3 +6 of 8, U12 +2 of 3); the five uncounted ones appear to be questions seen before. unitData follows Kaplan's tracker; the review quiz itself is recorded at 21/30 in mixedQuizzes. The Midterm's 55 questions match the exam tracker exactly. Oct 22: the tracker again counts 25 of the 30 Unit 1-15 Review questions, and Unit 8 shows +5 correct on +4 answered, so Kaplan appears to count each unique question once and keep the latest answer. Kaplan does not show the Unit 16 reading as complete. Oct 26: the two Units 1-7 custom quizzes (Oct 23) are named '1-7' and '1-7 pt 2' in Kaplan. Unit 16 Quiz 2 Q7 has no LO tag in Kaplan; it is counted under Unit 16. The tracker again counts fewer questions than were answered on the review quiz (repeats). Oct 26 evening: Unit 17 Quiz 1 Q11 (market cap) has no LO tag; counted under Unit 17. The extra Unit 17 custom quiz is named '17' in Kaplan."
+    "dataNotes": "Oct 21: Kaplan's QBank tracker counts 25 of the 30 Unit 1-13 Review questions (U1 +6 of 8, U3 +6 of 8, U12 +2 of 3); the five uncounted ones appear to be questions seen before. unitData follows Kaplan's tracker; the review quiz itself is recorded at 21/30 in mixedQuizzes. The Midterm's 55 questions match the exam tracker exactly. Oct 22: the tracker again counts 25 of the 30 Unit 1-15 Review questions, and Unit 8 shows +5 correct on +4 answered, so Kaplan appears to count each unique question once and keep the latest answer. Kaplan does not show the Unit 16 reading as complete. Oct 26: the two Units 1-7 custom quizzes (Oct 23) are named '1-7' and '1-7 pt 2' in Kaplan. Unit 16 Quiz 2 Q7 has no LO tag in Kaplan; it is counted under Unit 16. The tracker again counts fewer questions than were answered on the review quiz (repeats). Oct 26 evening: Unit 17 Quiz 1 Q11 (market cap) has no LO tag; counted under Unit 17. The extra Unit 17 custom quiz is named '17' in Kaplan. Oct 30: two Unit 20 custom quizzes are both named '20' in Kaplan (Tests 416509222 and 416509611). Kaplan's tracker counts 19 of the 20 Unit 18 quiz questions and 23 of the 24 Unit 19 quiz questions (one repeated question each). Kaplan's dashboard now shows a Ready Date of Nov 7."
   },
   "unitTopicMap": [
     {
@@ -1325,38 +1325,38 @@ const SYNC = {
     {
       "id": "U18",
       "name": "Unit 18: Tax Considerations",
-      "qbankAnswered": 0,
-      "qbankCorrect": 0,
-      "examAnswered": 0,
-      "examCorrect": 0,
+      "qbankAnswered": 19,
+      "qbankCorrect": 15,
+      "examAnswered": 15,
+      "examCorrect": 13,
       "mixedAnswered": 0,
       "mixedCorrect": 0,
       "covers": "Individual taxation, taxation of nonnatural entities, taxation of wealth transfers",
-      "recurring": ""
+      "recurring": "Oct 28: quizzes 7/10 and 8/10, checkpoint 13/15. Misses: marginal vs effective rate, rental income is passive (not earned) for IRA purposes, cost basis for gifts (donor's basis) vs inheritances (step-up), closed-end funds priced at bid not NAV, the corporate 50% dividend exclusion, head of household status, simple trust with an irrevocable beneficiary."
     },
     {
       "id": "U19",
       "name": "Unit 19: Retirement Plans, Including ERISA",
-      "qbankAnswered": 0,
-      "qbankCorrect": 0,
-      "examAnswered": 0,
-      "examCorrect": 0,
+      "qbankAnswered": 23,
+      "qbankCorrect": 20,
+      "examAnswered": 14,
+      "examCorrect": 13,
       "mixedAnswered": 0,
       "mixedCorrect": 0,
       "covers": "IRAs, employer-sponsored plans, ERISA issues",
-      "recurring": ""
+      "recurring": "Oct 30: quizzes 10/12 and 11/12, checkpoint 13/14 (93%). Misses: ERISA covers private plans only, deferred comp forfeiture risk, solo 401(k) $250,000 filing threshold, nonelective safe harbor contributions."
     },
     {
       "id": "U20",
       "name": "Unit 20: Special Types of Accounts",
-      "qbankAnswered": 0,
-      "qbankCorrect": 0,
+      "qbankAnswered": 18,
+      "qbankCorrect": 12,
       "examAnswered": 0,
       "examCorrect": 0,
       "mixedAnswered": 0,
       "mixedCorrect": 0,
       "covers": "Education accounts (529, Coverdell, UTMA/UGMA), special employee benefit plans",
-      "recurring": ""
+      "recurring": "Oct 30: quizzes 2/3 and 2/3, then two extra 6-question quizzes at 4/6 each; checkpoint not yet taken. Misses: Coverdell funds used by age 30 and excess earnings taxed to the beneficiary, UTMA can't pay for parental obligations, 529 five-year front-loading, HSA doesn't cover disability premiums, kiddie tax is unearned income only."
     },
     {
       "id": "U21",
@@ -1719,26 +1719,73 @@ const SYNC = {
       "label": "Custom quiz '17', Unit 17 (Test 415879793)",
       "answered": 10,
       "correct": 8
+    },
+    {
+      "date": "2026-10-28",
+      "label": "Unit 18 Quiz 1 (Test 416204284)",
+      "answered": 10,
+      "correct": 7
+    },
+    {
+      "date": "2026-10-28",
+      "label": "Unit 18 Quiz 2 (Test 416206693)",
+      "answered": 10,
+      "correct": 8
+    },
+    {
+      "date": "2026-10-30",
+      "label": "Unit 19 Quiz 1 (Test 416492496)",
+      "answered": 12,
+      "correct": 10
+    },
+    {
+      "date": "2026-10-30",
+      "label": "Unit 19 Quiz 2 (Test 416493641)",
+      "answered": 12,
+      "correct": 11
+    },
+    {
+      "date": "2026-10-30",
+      "label": "Unit 20 Quiz 1 (Test 416508684)",
+      "answered": 3,
+      "correct": 2
+    },
+    {
+      "date": "2026-10-30",
+      "label": "Unit 20 Quiz 2 (Test 416508919)",
+      "answered": 3,
+      "correct": 2
+    },
+    {
+      "date": "2026-10-30",
+      "label": "Custom quiz '20' #1, Unit 20 (Test 416509222)",
+      "answered": 6,
+      "correct": 4
+    },
+    {
+      "date": "2026-10-30",
+      "label": "Custom quiz '20' #2, Unit 20 (Test 416509611)",
+      "answered": 6,
+      "correct": 4
     }
   ],
   "simExams": [],
   "weakSpots": [
+    "U20 (Topic III): education and custodial account rules (Coverdell age 30, UTMA limits, 529 front-loading, HSA scope); 12/18 so far, checkpoint not yet taken",
+    "Units 1-7 (Topic IV, 45% of the exam): 67% across the last three Units 1-7 checks; no Units 1-7 practice since Oct 26",
     "U17 (Topic III, about 5 exam questions): checkpoint 13/24 (54%), second-lowest after Unit 5; EMH forms, investment styles, which risks fit which assets, bond strategies",
-    "Units 1-7 (Topic IV, 45% of the exam): 34/51 (67%) across the two custom quizzes and Review 1-16, up from 17/36 on the Midterm but still below the 73% line",
     "The NASAA dollar and time thresholds: $35,000 custody, $1,200 federal prepayment, qualified-client test (9 misses now)",
     "U2/U3 registration reach: who registers where (federal covered IAR = place of business only; agents register where they offer; Canadian renewal Dec 1)",
     "Brochure rules (8 misses) and IAR profit sharing (never; missed twice in three days)",
-    "U4 issuer vs nonissuer transactions and which exemptions the Administrator can revoke",
-    "Time value of money direction (U8/U10) and variable insurance (U14) remain open"
+    "U4 issuer vs nonissuer transactions and which exemptions the Administrator can revoke"
   ],
   "strongSpots": [
+    "U19 (Topic III): quizzes 10/12 and 11/12, checkpoint 13/14 (93%)",
+    "U18 (Topic III): checkpoint 13/15 (87%) after quizzes of 7/10 and 8/10",
+    "NOT/EXCEPT questions: 39 of 48 right since Oct 22, including 21 of 24 on Units 18-20 (all 7 on the Unit 19 checkpoint), after 2 of 10 on the Midterm",
     "U17 recovery: Quiz 2 12/14 and the custom Unit 17 quiz 8/10, both after a 9/14 first quiz",
-    "NOT/EXCEPT questions: 18 of 24 right since Oct 22 (6 of 9 on Unit 17), after 2 of 10 on the Midterm",
     "U16 (Topic III): quizzes 8/9 and 8/9, checkpoint 9/10, and 6/6 on Review 1-16",
-    "U5 (Topic IV): 5/5 on the two Units 1-7 quizzes (cease and desist orders, statute of limitations, Administrator powers)",
-    "Oct 22 Unit 1-15 Review 24/30 (80%), up from 70% on Review 1-13: Unit 8 7/7, Units 1-7 4/4, Unit 15 2/2",
-    "U15 (Topic III): checkpoint 9/10 in just over 7 minutes, including all three business-entity questions that were missed on the quizzes an hour earlier",
-    "Midterm Topic II: 12/17, with U10 4/4, U11 3/4, U12 and U13 1/1; bonds, ETFs and closed-end funds held up"
+    "U5 (Topic IV): 5/5 on the two Units 1-7 quizzes (cease and desist orders, statute of limitations, Administrator powers)"
   ],
   "missedQuestions": [
     {
@@ -4956,6 +5003,210 @@ const SYNC = {
       "correctAnswer": "D) Interest rate",
       "rationale": "With 15 years to maturity, even an investment-grade bond is subject to interest rate risk. This is particularly true during the early years because price fluctuations are greater when duration is longer. Credit risk is not a concern with AA bonds over a period of only one year, and AA bonds generally possess better than average liquidity. For this exam, market risk usually applies to equity securities rather than debt.",
       "explanation": "For a 15-year AA bond, the main near-term risk is interest rate risk: the long duration means big price swings when rates move. Credit risk over one year is small for AA, AA bonds trade reasonably well, and on this exam market risk usually refers to stocks."
+    },
+    {
+      "id": "u18q1-q01",
+      "date": "2026-10-28",
+      "unitId": "U18",
+      "topic": "III",
+      "lo": "LO 18.a",
+      "question": "Using industry jargon, the tax on the last dollar of income is at",
+      "myAnswer": "D) the effective rate.",
+      "correctAnswer": "A) the marginal rate.",
+      "rationale": "The IRS defines marginal tax rate as \"the highest rate that you will pay on your income.\" Basically, as you make more money, you pay tax at a higher rate incrementally. The effective tax rate is the average that you pay on all of your income.",
+      "explanation": "The tax on your last dollar of income is at your marginal rate, your top bracket. The effective rate is the average across all your income."
+    },
+    {
+      "id": "u18q1-q02",
+      "date": "2026-10-28",
+      "unitId": "U18",
+      "topic": "III",
+      "lo": "LO 18.c",
+      "question": "Maria owns a rental property that generates $20,000 of net rental income annually. She also works part-time as a consultant and earns $5,000 in consulting fees. Maria wants to contribute the maximum amount to her IRA and asks you if she can use her rental income to qualify. You should respond",
+      "myAnswer": "A) the rental income qualifies as earned income only if Maria actively manages tenant selection and repairs.",
+      "correctAnswer": "B) only the $5,000 from consulting counts as earned income for IRA purposes; rental income is passive and cannot be used to qualify.",
+      "rationale": "Unless taking an active role (not stated so it can't be assumed), rental income is considered passive, not earned, even if taxed at ordinary income rates. The $5,000 from consulting is earned income and counts for IRA contributions. Based on the IRA contribution maximum at the time of authoring this question, your response to Maria would indicate that she cannot contribute up to the maximum because her earned income falls short. However, she could contribute the entire $5,000 of consulting income and take the tax deduction.",
+      "explanation": "IRA contributions need earned income. Rental income is passive unless she actively runs the property, and the question doesn't say she does, so only the $5,000 of consulting counts. She can contribute up to $5,000, not the full maximum."
+    },
+    {
+      "id": "u18q1-q06",
+      "date": "2026-10-28",
+      "unitId": "U18",
+      "topic": "III",
+      "lo": "LO 18.j",
+      "question": "An investor inherits 1,000 shares of the ABC Global Growth Fund when the NAV is $9.50, the bid price is $9.00, and the ask price is $9.15. Two years later, the investor sells all shares when the NAV is $14.25, the bid is $14.50, and the ask is $14.60. What are the tax consequences of this sale?",
+      "myAnswer": "A) Long-term capital gain of $4,750",
+      "correctAnswer": "C) Long-term capital gain of $5,500",
+      "rationale": "Upon death, the beneficiary inherits closed-end funds at their bid price (what the estate could have sold them for), or $9.00 per share. The sale two years later takes place at the bid ($14.50) for a profit of $5.50 per share (times 1,000 shares). Remember, in the case of a closed-end fund, the NAV does not figure into any computations; prices are based on supply and demand and have a bid and ask price, the same as any stock. How did you know this was a closed-end company? Only in the case of a closed-end company can the ask price be lower than the NAV (ask = $9.15, NAV = $9.50).",
+      "explanation": "Two clues make this a closed-end fund: it has a bid and ask, and the ask is below NAV, which can't happen with an open-end fund. Closed-end shares trade like stock, so the heir's basis is the bid at death ($9.00) and the sale is at the bid ($14.50): $5.50 x 1,000 = $5,500. You used NAV, which plays no part for closed-end funds."
+    },
+    {
+      "id": "u18q2-q07",
+      "date": "2026-10-28",
+      "unitId": "U18",
+      "topic": "III",
+      "lo": "LO 18.j",
+      "question": "A client purchases 1,000 shares of the ABC Global Growth Fund when the NAV is $8.75 and the POP is $9.21. Three years later, the client makes a gift to her daughter when NAV is $9.50 and POP is $10.00, and the daughter elects to receive all distributions in cash. Two years later, she sells all shares when the NAV is $14.25 and POP is $15.00. What are the tax consequences of this sale?",
+      "myAnswer": "D) Long-term capital gain of $5,500",
+      "correctAnswer": "B) Long-term capital gain of $5,040",
+      "rationale": "In the case of a gift of securities, the donee acquires the donor's cost basis, $9.21 per share. Sale (redemption) takes place at the NAV ($14.25) for a profit of $5.04 per share (times 1,000 shares).",
+      "explanation": "A gift carries over the donor's cost basis, the $9.21 offering price she paid. Open-end shares are redeemed at NAV ($14.25), so the gain is $5.04 x 1,000 = $5,040. Inherited shares (Q6) step up to the value at death instead."
+    },
+    {
+      "id": "u18q2-q09",
+      "date": "2026-10-28",
+      "unitId": "U18",
+      "topic": "III",
+      "lo": "LO 18.g",
+      "question": "XYZ, Inc. is a C corporation in the 21% federal income tax bracket. Which of the following investments offers the company the highest after-tax return?",
+      "myAnswer": "B) Corporate bond with a 6.75% coupon",
+      "correctAnswer": "D) ABCD, Inc. preferred stock paying a 6% dividend",
+      "rationale": "The key to this answer is that corporations have a 50% dividend exclusion on dividends received from other companies. The math looks like this:\n\nOnly half of the 6% dividend is taxable. That means 3% per year is tax free and the other 3% is subject to tax at the 21% rate. So, we have 3% + 79% of the taxable 3% = 3% + 2.37% = 5.37% after-tax return. The municipal bond is not taxed, but that only produces 5% after tax. The corporate bond is subject to 21% tax so the corporation gets to retain the other 79%. That computes to 6.75 x 79% = 5.33%, just a bit less than the preferred stock. In most cases, dividends paid to corporations by REITs are fully taxable. That makes the after-tax return on the 6.5% dividend only 5.14%.",
+      "explanation": "A corporation can exclude 50% of the dividends it receives from other companies. Half of the 6% preferred dividend is tax-free and the other half is taxed at 21%: 3% + 2.37% = 5.37%. The 6.75% corporate bond nets 5.33%, the muni 5%, and the REIT dividend, fully taxable, 5.14%."
+    },
+    {
+      "id": "u18exam-q04",
+      "date": "2026-10-28",
+      "unitId": "U18",
+      "topic": "III",
+      "lo": "LO 18.a",
+      "question": "You are working with a client who received her divorce earlier this year. She has two young children, ages four and seven, who both live with her. In general, it would be most advantageous for the client to file her federal income tax claiming what status?",
+      "myAnswer": "A) Joint",
+      "correctAnswer": "C) Head of Household",
+      "rationale": "Taxpayers claiming the Head of Household (HH) filing status benefit from a higher standard deduction and lower tax rates than single taxpayers. There are several requirements that must be met to qualify for HH status. Some of them include the following:\n\nThe taxpayer is unmarried or is considered unmarried on the last day of the year.\nA qualifying person lived in the home with the taxpayer for more than half the year (except for temporary absences, such as school). This is generally the taxpayer's child or children.\n\nBecause she is divorced, your client can't claim either joint or married but separated status. As stated above, filing as HH offers many tax advantages over filing as single.",
+      "explanation": "She's divorced, so joint and married-separate filing are out. A single parent whose children live with her more than half the year files as head of household, which gets a bigger standard deduction and lower rates than single."
+    },
+    {
+      "id": "u18exam-q15",
+      "date": "2026-10-28",
+      "unitId": "U18",
+      "topic": "III",
+      "lo": "LO 18.i",
+      "question": "Gloria wishes to set up a trust where income must be annually distributed to her daughter. Gloria wants her daughter to pay any income taxes because her daughter is in a lower tax bracket. What should Gloria do?",
+      "myAnswer": "D) Use a complex trust with her daughter as irrevocable beneficiary",
+      "correctAnswer": "C) Use a simple trust with her daughter as irrevocable beneficiary",
+      "rationale": "Simple trusts must annually distribute income to the beneficiaries. Complex trusts do not. If Gloria makes the beneficiary revocable, the trust is subject to grantor trust rules and the income will be taxed to Gloria.",
+      "explanation": "A simple trust must distribute its income every year, so the daughter is taxed on it. The beneficiary has to be irrevocable; if Gloria can revoke it, grantor trust rules tax the income to Gloria. A complex trust doesn't have to distribute income."
+    },
+    {
+      "id": "u19q1-q03",
+      "date": "2026-10-30",
+      "unitId": "U19",
+      "topic": "III",
+      "lo": "LO 19.i",
+      "question": "ERISA regulation does not apply to\n\npublic school district retirement plans\npublicly traded utility company retirement plans\nfederal government employee retirement plans",
+      "myAnswer": "B) I only",
+      "correctAnswer": "A) I and III only",
+      "rationale": "ERISA rules only apply to private sector plans. Government or public sector plans are not subject to the Employees Retirement Income Security Act of 1974.",
+      "explanation": "ERISA covers private-sector plans only. A public school district and the federal government are public employers, so both are outside it (I and III). A publicly traded utility is a private company, so its plan is covered."
+    },
+    {
+      "id": "u19q1-q10",
+      "date": "2026-10-30",
+      "unitId": "U19",
+      "topic": "III",
+      "lo": "LO 19.h",
+      "question": "A 42 year-old executive with a major software company is offered an attractive deferred compensation package rather than a raise in salary. Which of the following would probably be a reason to turn the offer down?",
+      "myAnswer": "D) When received, the deferred compensation will be taxed as ordinary income.",
+      "correctAnswer": "B) The package is forfeited if the executive should leave and obtain employment with a competitor.",
+      "rationale": "It is very common for deferred compensation packages to have forfeiture provisions if the employee leaves to go work for a competitor. The software industry is one where turnover at the executive level tends to be higher than, for example, the manufacturing business. That could be a problem for this individual if a better job offer appears because the deferred compensation funds would be lost. Taxation as ordinary income is the usual treatment of deferred compensation; the employee hopes that the tax at retirement will be at a lower rate. Most deferred comp packages are not funded; the benefits are paid out of current cash flow. That is a risk that comes with the program and most accept that. If the present value of the compensation is greater than the proposed salary increase alternative, it would seem to be a pro, not a con.",
+      "explanation": "The real drawback is forfeiture: many deferred comp plans are lost if he leaves for a competitor, and software executives change jobs often. Ordinary income tax at payout is the normal treatment, not a reason to turn it down."
+    },
+    {
+      "id": "u19q2-q12",
+      "date": "2026-10-30",
+      "unitId": "U19",
+      "topic": "III",
+      "lo": "LO 19.e",
+      "question": "Which of the following statements is correct regarding a solo 401(k)?",
+      "myAnswer": "C) The plan has to file a report with the IRS if assets are greater than $100,000 at the end of the year.",
+      "correctAnswer": "D) The plan has to file a report with the IRS if assets are greater than $250,000 at the end of the year.",
+      "rationale": "Once a solo 401(k) plan (no employees other than the owner and spouse) has assets in excess of $250,000 at year's end, a Form 5500EZ must be filed by July 31. We don't expect the form number and filing date are testable, but we've heard the $250,000 is.",
+      "explanation": "A solo 401(k) has to file a report with the IRS (Form 5500-EZ) once plan assets top $250,000 at year-end. Kaplan says the $250,000 is the testable number."
+    },
+    {
+      "id": "u19exam-q10",
+      "date": "2026-10-30",
+      "unitId": "U19",
+      "topic": "III",
+      "lo": "LO 19.k",
+      "question": "Which of the following is a benefit to an employee of a business offering a safe harbor 401(k) using a nonelective formula?",
+      "myAnswer": "B) The employees are guaranteed the ability to consult an investment adviser.",
+      "correctAnswer": "A) The employer is required to contribute on the employee's behalf even if the employee does not contribute to the plan.",
+      "rationale": "A safe harbor 401(k) with a nonelective formula is one in which the employer must contribute a minimum of 3% of each employee's earnings, whether or not the employee participates in the plan. Furthermore, those contributions are immediately vested. As a result, these plans offer a safe harbor from being tested for being top-heavy, but this is a benefit for the employer, not the employee.",
+      "explanation": "In a nonelective safe harbor 401(k), the employer contributes at least 3% of pay for every eligible employee, whether or not the employee contributes, and it vests immediately. Escaping top-heavy testing benefits the employer, and nothing guarantees access to an adviser."
+    },
+    {
+      "id": "u20q1-q01",
+      "date": "2026-10-30",
+      "unitId": "U20",
+      "topic": "III",
+      "lo": "LO 20.a",
+      "question": "One of your clients asks about a Coverdell Education Savings Account for college savings. To avoid income taxation and penalties, your advice is that these funds must be used before the student reaches age",
+      "myAnswer": "B) 25.",
+      "correctAnswer": "A) 30.",
+      "rationale": "All funds within a CESA must be used before the student reaches 30 years of age. Any funds remaining must be distributed within 30 days of the birthday and earnings in the account are subject to ordinary income tax plus a 10% penalty. There is an exception for a special needs beneficiary and that would have to be mentioned in the question to apply.",
+      "explanation": "Coverdell money has to be used by the time the student turns 30, unless the beneficiary has special needs. Anything left is paid out within 30 days, with the earnings taxed as ordinary income plus a 10% penalty."
+    },
+    {
+      "id": "u20q2-q01",
+      "date": "2026-10-30",
+      "unitId": "U20",
+      "topic": "III",
+      "lo": "LO 20.b",
+      "question": "One of your clients is a single mom whose position has recently been terminated. Several years ago, an UTMA account was established for her only child. The account currently has a balance of $8,257. Considering that your client currently has no income, it would be permitted to withdraw funds from the UTMA account to pay for the child's",
+      "myAnswer": "D) medical expenses",
+      "correctAnswer": "C) piano lessons",
+      "rationale": "UTMA funds must be used for the benefit of the child. However, those expenses which are normally the responsibility of the parent, such as food, clothing, and medical care, may not be taken from the UTMA (even when the parent is destitute). Piano lessons, summer camp, even vacations are allowable withdrawals.",
+      "explanation": "UTMA money must benefit the child, but it can't pay for what the parent is already obligated to provide (food, clothing, medical care), even if the parent has no income. Extras like piano lessons, camp or a vacation are fine."
+    },
+    {
+      "id": "cq20a-q03",
+      "date": "2026-10-30",
+      "unitId": "U20",
+      "topic": "III",
+      "lo": "LO 20.a",
+      "question": "Your customer opens a Coverdell ESA for his niece. In order to meet qualified education expenses of $9,000, she takes a distribution of $10,000. The amount of the distribution in excess of her education expenses that represents earnings in the account will be",
+      "myAnswer": "C) taxable to the uncle, the donor to the plan",
+      "correctAnswer": "B) taxable to the niece, the beneficiary of the plan",
+      "rationale": "Any excess distribution representing earnings that is not used to meet qualified education expenses is taxable to the beneficiary who took the distribution.",
+      "explanation": "Earnings in a Coverdell distribution that isn't used for education are taxed to the person who received it: the niece, the beneficiary. The uncle who contributed owes nothing."
+    },
+    {
+      "id": "cq20a-q05",
+      "date": "2026-10-30",
+      "unitId": "U20",
+      "topic": "III",
+      "lo": "LO 20.c",
+      "question": "Health savings accounts (HSAs) offer the opportunity for employees to use pretax funds to pay for a wide range of medical expenses. Medical expenses included are all of the following except",
+      "myAnswer": "B) Medicare premiums for those age 65 or older.",
+      "correctAnswer": "A) <p>long-term disability insurance premiums. </p>",
+      "rationale": "If an HSA may be used to pay long-term care (LTC) premiums, why can't it be used for long-term disability premiums? The answer is in the first word of the name: health. Disability insurance is not health insurance. It is used to replace the income lost when one is unable to perform the labor required for their occupation.",
+      "explanation": "EXCEPT question. An HSA can pay long-term care premiums, COBRA coverage and Medicare premiums after 65. Long-term disability premiums don't qualify, because disability coverage replaces income; it isn't health insurance."
+    },
+    {
+      "id": "cq20b-q01",
+      "date": "2026-10-30",
+      "unitId": "U20",
+      "topic": "III",
+      "lo": "LO 20.a",
+      "question": "A widower wants to fund a Section 529 plan for his daughter. What is the maximum amount he may initially contribute in 2023 without having to pay gift taxes?",
+      "myAnswer": "B) An unlimited amount because a gift occurs only when he irrevocably changes the beneficiary",
+      "correctAnswer": "A) $85,000",
+      "rationale": "A special rule under Section 529 allows the donor to load front-end load contributions and avoid paying gift taxes. Five years' worth may be used under this method (5 × $17,000 = $85,000). If he remarries, his wife may also consent to gift split, thereby doubling this amount to $170,000. Please note: The annual exclusion was increased to $17,000 effective January 1, 2023.",
+      "explanation": "A 529 lets a donor front-load five years of annual gift exclusions at once. With the 2023 exclusion of $17,000 that the question asks about, that's 5 x $17,000 = $85,000, and gift splitting with a spouse doubles it. A 529 contribution is a gift when it's made."
+    },
+    {
+      "id": "cq20b-q05",
+      "date": "2026-10-30",
+      "unitId": "U20",
+      "topic": "III",
+      "lo": "LO 20.b",
+      "question": "Which of the following statements are not true?\n\nThe kiddie tax applies to any income received by a child under the age of 19.\nIRAs have advantages over other estate assets when left to charity.\nSimple trusts have to distribute income annually.\nFor U.S. citizens, there is an unlimited marital estate tax deduction.",
+      "myAnswer": "C) II, III, and IV",
+      "correctAnswer": "D) I and II",
+      "rationale": "The kiddie tax applies to unearned income only such as that received in an UTMA account. Leaving IRA assets to a charity offers the same estate tax benefits as any other asset. Simple trusts must distribute income annually, and there is an unlimited marital estate tax deduction between spouses who are U.S. citizens.",
+      "explanation": "Negative stem (NOT true). I is false: the kiddie tax applies only to a child's unearned income. II is false per Kaplan: an IRA left to charity gets the same estate tax treatment as any other asset. III and IV are true: simple trusts distribute income annually, and spouses who are U.S. citizens get an unlimited marital deduction."
     }
   ],
   "answeredCorrect": [
@@ -8903,6 +9154,376 @@ const SYNC = {
       "id": "cq17u-q10",
       "question": "Jim Cantore is a 45-year-old client with a $ 3.0 million portfolio that is heavily weighted toward equities. Cantore will continue working for the next 20 years and has a substantial retirement portfolio through his current employer. Cantore's three children are now nearing college age and will all attend premiere universities in the U.S. which each cost $ 90,000 per year to attend. All college expenses will be paid out of Cantore's portfolio. Cantore should",
       "note": "Correct: B) rebalance his portfolio toward high quality, intermediate-term debt instruments to service the expected liquidity needs of his portfolio. (LO 17.f)"
+    },
+    {
+      "id": "u18q1-q03",
+      "question": "A customer who sold a bond at a loss must wait how long before he can buy back a substantially identical bond and not have the sale classified as a wash sale?",
+      "note": "Correct: C) 31 days (LO 18.e)"
+    },
+    {
+      "id": "u18q1-q04",
+      "question": "Which of the following is not included in taxable income on an individual's federal income tax return?",
+      "note": "Correct: C) Receipt of stock dividends (LO 18.e)"
+    },
+    {
+      "id": "u18q1-q05",
+      "question": "In projecting future cash requirements, one of the tools is a capital needs analysis. When doing one, all of the following would be considered capital needs except",
+      "note": "Correct: C) rolling over a 401(k) into an IRA (LO 18.i)"
+    },
+    {
+      "id": "u18q1-q07",
+      "question": "A deceased client's trust account has over 90% of its value invested in a single common stock whose recent performance has been outstanding, resulting in a very large unrealized capital gain at the time of death. What action would most likely be recommended by the investment adviser handling this account?",
+      "note": "Correct: A) Liquidating a portion of that stock to take advantage of the tax savings offered by the stepped-up basis at death (LO 18.j)"
+    },
+    {
+      "id": "u18q1-q08",
+      "question": "A client owns a taxable bond with a coupon rate of 5%. His marginal tax rate is 28%. What is the after-tax yield he will receive on this investment?",
+      "note": "Correct: D) 3.60% (LO 18.b)"
+    },
+    {
+      "id": "u18q1-q09",
+      "question": "All of the following are progressive taxes except",
+      "note": "Correct: C) excise taxes on cigarettes. (LO 18.a)"
+    },
+    {
+      "id": "u18q1-q10",
+      "question": "A Schedule K-1 would be received by an individual with an ownership interest in all of the following except",
+      "note": "Correct: D) a C corporation. (LO 18.g)"
+    },
+    {
+      "id": "u18q2-q01",
+      "question": "If your client has a $21,000 net capital loss this year and he plans to apply the maximum deduction toward his ordinary income for the year, next year he",
+      "note": "Correct: B) will have an $18,000 net capital loss carryover (LO 18.e)"
+    },
+    {
+      "id": "u18q2-q02",
+      "question": "Grandma has decided to give her grandson some stock that she bought many years ago. When the grandson sells the stock, how is the tax liability figured?",
+      "note": "Correct: D) Her cost basis and date of purchase is used. (LO 18.j)"
+    },
+    {
+      "id": "u18q2-q03",
+      "question": "Many different investments offer the opportunity to reinvest income. If one were to compare the difference between interest-on-interest reinvestment plans and dividend and capital gain reinvestment plans,",
+      "note": "Correct: A) in both plans, all income is taxable in the year received, whether reinvested or not. (LO 18.d)"
+    },
+    {
+      "id": "u18q2-q04",
+      "question": "Tax filing dates vary based on the type of business structure employed. For example, David owns a single-member LLC, and his brother owns an S corporation with a December 31 year-end. Which of the following correctly states their tax filing deadlines?",
+      "note": "Correct: B) David files Schedule C with his Form 1040 by April 15, while his brother’s S corporation must file Form 1120S by March 15. (LO 18.h)"
+    },
+    {
+      "id": "u18q2-q05",
+      "question": "An investor inherits 1,000 shares of the ABC Global Growth Fund when the NAV is $9.50, the bid price is $9.00, and the ask price is $9.15. Two years later, the investor sells all shares when the NAV is $14.25, the bid is $14.50, and the ask is $14.60. What are the tax consequences of this sale?",
+      "note": "Correct: A) Long-term capital gain of $5,500 (LO 18.j)"
+    },
+    {
+      "id": "u18q2-q06",
+      "question": "An investor inherits 1,000 shares of the ABC Global Growth Fund when NAV is $9.50 and POP is $10.00 and elects to receive all distributions in cash. Two years later, sells all when NAV is $14.25 and POP is $15.00. What are the tax consequences of this sale?",
+      "note": "Correct: D) Long-term capital gain of $4,750 (LO 18.j)"
+    },
+    {
+      "id": "u18q2-q08",
+      "question": "An investment adviser using an insurance approach to capital needs analysis would",
+      "note": "Correct: A) determine the insurance coverage needed to complete the customer's financial objective should the customer die before the objective is met (LO 18.i)"
+    },
+    {
+      "id": "u18q2-q10",
+      "question": "During the previous fiscal year, The Kaplan Family Trust received $24,000 in dividends and $35,000 in interest from corporate bonds. Securities transactions during the year resulted in long-term capital gains of $48,000, $20,000 of which were reinvested in the corpus. The DNI for the Kaplan Family Trust is",
+      "note": "Correct: C) $87,000 (LO 18.i)"
+    },
+    {
+      "id": "u18exam-q01",
+      "question": "One of your customers purchased a variable life insurance contract through your firm. After 14 years, he had deposited $15,000 in premiums, and his death benefit had grown to $80,000. Shortly after taking out a loan against cash value of $10,000, he was killed in an automobile accident. What will be the income tax consequences of this situation to the death benefit?",
+      "note": "Correct: B) His beneficiary need not pay taxes on the death benefit. (LO 18.i)"
+    },
+    {
+      "id": "u18exam-q02",
+      "question": "A Schedule K-1 would not be used for tax reporting to the owners by which of the following business entities?",
+      "note": "Correct: D) Sole proprietorship (LO 18.g)"
+    },
+    {
+      "id": "u18exam-q03",
+      "question": "An investor has made the following purchases, all in the same calendar year: 100 ABC at $20 on January 15; 200 ABC at $25 on April 4; and 100 ABC at $30 on July 23. With ABC currently selling at $22, if this investor needed to sell 200 ABC, the best decision from a tax standpoint would probably be to",
+      "note": "Correct: A) use LIFO. (LO 18.e)"
+    },
+    {
+      "id": "u18exam-q05",
+      "question": "Which of the following statements regarding taxation is not true?",
+      "note": "Correct: B) Earned income includes salary, bonus, and income as an owner of a limited partnership. (LO 18.c)"
+    },
+    {
+      "id": "u18exam-q06",
+      "question": "If an investor is in the highest federal income tax bracket and is subject to the alternative minimum tax, which of the following securities should an agent recommend?",
+      "note": "Correct: D) General obligation bond (LO 18.f)"
+    },
+    {
+      "id": "u18exam-q07",
+      "question": "When comparing the tax treatment of C corporations, S corporations, and LLCs, it would be correct to state that",
+      "note": "Correct: D) the C corporation is the only one that pays taxes. (LO 18.h)"
+    },
+    {
+      "id": "u18exam-q08",
+      "question": "An example of an interest-on-interest reinvestment program is",
+      "note": "Correct: A) interest left to compound on a bank-insured certificate of deposit. (LO 18.d)"
+    },
+    {
+      "id": "u18exam-q09",
+      "question": "The term earned income would include",
+      "note": "Correct: A) a bonus paid as a result of your division exceeding its goals. (LO 18.c)"
+    },
+    {
+      "id": "u18exam-q10",
+      "question": "J.B. Rich founded Rich, Inc., and he owns a substantial block of stock with a very low cost basis. Which of the following statements are true regarding the disposition of J.B.'s stock?\n\nIf it is given away, the recipient of the gift assumes J.B.'s cost basis.\nIf it is given away, the recipient of the gift receives a stepped-up basis to the market value as of the date of the gift.\nIf it is inherited, the beneficiary assumes J.B.'s cost basis.\nIf it is inherited, the beneficiary receives a stepped-up basis to the market value as of the date of J.B.'s death.",
+      "note": "Correct: D) I and IV (LO 18.j)"
+    },
+    {
+      "id": "u18exam-q11",
+      "question": "Portfolio income would include",
+      "note": "Correct: C) increases to the principal value on a TIPS bond. (LO 18.b)"
+    },
+    {
+      "id": "u18exam-q12",
+      "question": "An investor purchases 100 shares of ABCE common stock at $70 per share. Thirteen months later, the stock is sold when the market price is $50 per share. Which of the following activities made 20 days after the sale of the stock at $50 per share would not violate the wash sale rule?",
+      "note": "Correct: C) Purchasing an ABCE put option (LO 18.e)"
+    },
+    {
+      "id": "u18exam-q13",
+      "question": "A number of corporations offer dividend reinvestment plans (DRIPs) where the client's dividends are automatically reinvested in additional shares of the issuer. In the case of a company that pays dividends with some degree of regularity, if the market price per share has declined over the year and assuming no splits, an investor participating in one of these plans would find which of the following to be true?",
+      "note": "Correct: B) There are more shares in the investor's account. (LO 18.d)"
+    },
+    {
+      "id": "u18exam-q14",
+      "question": "Using industry jargon, the tax on the last dollar of income is at",
+      "note": "Correct: B) the marginal rate. (LO 18.a)"
+    },
+    {
+      "id": "u19q1-q01",
+      "question": "Under ERISA, which of the following activities may a fiduciary employ for a corporate retirement plan?",
+      "note": "Correct: D) Employ third-party pension consultants to advise the plan on the purchase of complex financial instruments. (LO 19.i)"
+    },
+    {
+      "id": "u19q1-q02",
+      "question": "Gail's minimum required distribution this year from her IRA is $5,000. If she takes $8,000, the penalty will be",
+      "note": "Correct: C) $0 (LO 19.d)"
+    },
+    {
+      "id": "u19q1-q04",
+      "question": "Which of the following securities is most suitable for an investment adviser representative to recommend to a 26-year-old customer opening an IRA?",
+      "note": "Correct: D) Growth stock mutual fund (LO 19.d)"
+    },
+    {
+      "id": "u19q1-q05",
+      "question": "Which of the following investments would be permitted in a client's IRA?",
+      "note": "Correct: A) Municipal bonds (LO 19.d)"
+    },
+    {
+      "id": "u19q1-q06",
+      "question": "GEMCO Manufacturing Co. has appointed the company's CFO as the trustee for their employee retirement plan. You are an IAR and you advise a substantial portion of the plan's assets. You are contacted by the CFO requesting a short-term loan from the plan assets for which he will pay the plan prime + 2%. Your best course of action would be to",
+      "note": "Correct: C) refuse to allow this to happen because it would be a violation of your fiduciary responsibility (LO 19.k)"
+    },
+    {
+      "id": "u19q1-q07",
+      "question": "To comply with the safe harbor requirements of Section 404(c) of ERISA, the trustee of a 401(k) plan must\n\noffer plan participants at least three different investment alternatives\nensure that plan participants are insulated from control over their portfolios\nallow plan participants to change their investment options no less frequently than quarterly\nallow plan participants to purchase U.S. Treasury securities",
+      "note": "Correct: C) I and III (LO 19.j)"
+    },
+    {
+      "id": "u19q1-q08",
+      "question": "Which of the following statements describes an advantage of a Roth IRA over a traditional IRA?",
+      "note": "Correct: C) Qualifying distributions are received free of income tax if a holding period and age requirement is met. (LO 19.b)"
+    },
+    {
+      "id": "u19q1-q09",
+      "question": "An employer whose 401(k) plan complies with ERISA Section 404 is placing investment risk with the",
+      "note": "Correct: B) plan participant (LO 19.j)"
+    },
+    {
+      "id": "u19q1-q11",
+      "question": "If a 41-year-old investor who earns $26,000 this year overcontributes to his IRA, how much will be subject to the 6% penalty?",
+      "note": "Correct: B) The amount by which he over contributed (LO 19.a)"
+    },
+    {
+      "id": "u19q1-q12",
+      "question": "Which of the following is an allowable early withdrawal from a traditional IRA without a tax penalty?",
+      "note": "Correct: C) <p>A single person adopts a child and withdraws $5,000 from their IRA to pay the adoption expenses.</p> (LO 19.d)"
+    },
+    {
+      "id": "u19q2-q01",
+      "question": "Probably the most significant benefit of saving for retirement using a Roth IRA is",
+      "note": "Correct: B) tax-free treatment at withdrawal (LO 19.b)"
+    },
+    {
+      "id": "u19q2-q02",
+      "question": "Qualified annuity plans offered under Section 403(b) of the Internal Revenue Code, referred to as tax-sheltered annuities (TSAs), are not available to",
+      "note": "Correct: B) a student at a nonprofit college (LO 19.f)"
+    },
+    {
+      "id": "u19q2-q03",
+      "question": "Although not required by DOL regulations, if a plan administrator prepared a written investment policy statement meeting ERISA requirements, you would expect to find all of the following except",
+      "note": "Correct: B) the identity of the specific securities to be chosen for the portfolio (LO 19.k)"
+    },
+    {
+      "id": "u19q2-q04",
+      "question": "All of the following investments are eligible for a traditional IRA except",
+      "note": "Correct: D) works of art (LO 19.d)"
+    },
+    {
+      "id": "u19q2-q05",
+      "question": "A pension plan administrator hires an investment adviser to oversee the investment decisions of the plan. The adviser's primary responsibility is to which of the following?",
+      "note": "Correct: D) The plan (LO 19.i)"
+    },
+    {
+      "id": "u19q2-q06",
+      "question": "All of the following are general principles of the prudent investor standard except",
+      "note": "Correct: C) profit guarantees (LO 19.j)"
+    },
+    {
+      "id": "u19q2-q07",
+      "question": "Which of the following sources of income is eligible for funding an IRA?",
+      "note": "Correct: D) Income received as a sole proprietor (LO 19.a)"
+    },
+    {
+      "id": "u19q2-q08",
+      "question": "Gail's minimum required distribution this year from her IRA is $5,000. If she takes $8,000, the penalty will be",
+      "note": "Correct: B) $0 (LO 19.d)"
+    },
+    {
+      "id": "u19q2-q09",
+      "question": "Which of the following would not constitute a conflict of interest between the plan and a fiduciary?",
+      "note": "Correct: A) The fiduciary receives fees for acting as a trustee to the plan. (LO 19.k)"
+    },
+    {
+      "id": "u19q2-q10",
+      "question": "An unfunded pension liability is generally associated with which type of employer-sponsored retirement plan?",
+      "note": "Correct: C) Defined benefit (LO 19.e)"
+    },
+    {
+      "id": "u19q2-q11",
+      "question": "A client is covered by a noncontributory pension plan. If his employer has terminated the pension plan and made lump-sum distributions, which of the following actions should the client take?",
+      "note": "Correct: B) Roll over the distribution into an IRA within 60 days to maintain tax-deferred status (LO 19.d)"
+    },
+    {
+      "id": "u19exam-q01",
+      "question": "All of the following statements concerning IRA contributions are true except",
+      "note": "Correct: B) contributions for the past year may be made after April 15, provided an extension has been filed on a timely basis (LO 19.a)"
+    },
+    {
+      "id": "u19exam-q02",
+      "question": "Which of the following retirement plans would be appropriate for a highly compensated government employee?",
+      "note": "Correct: A) 457(b) (LO 19.g)"
+    },
+    {
+      "id": "u19exam-q03",
+      "question": "If the administrator of a corporate 401(k) plan ensures that a wide variety of investment alternatives are available to employees along with the ability for the employees to monitor their accounts and make frequent changes as needed, ERISA",
+      "note": "Correct: A) shifts the responsibility for account performance to the employee. (LO 19.j)"
+    },
+    {
+      "id": "u19exam-q04",
+      "question": "If your customer works as a nurse in a public school and wants to know more about participating in the school's 403(b) plan, it would be accurate to make each of the following statements except",
+      "note": "Correct: C) she is not eligible to participate. (LO 19.f)"
+    },
+    {
+      "id": "u19exam-q05",
+      "question": "Which of the following is not an example of a nonqualified retirement plan?",
+      "note": "Correct: C) A SIMPLE plan (LO 19.h)"
+    },
+    {
+      "id": "u19exam-q06",
+      "question": "Which of the following statements about Simplified Employee Pension SEP-IRAs is false?",
+      "note": "Correct: D) Employees can make additional elective deferrals to their SEP IRAs beyond the employer's contributions, similar to 401(k) plans. (LO 19.c)"
+    },
+    {
+      "id": "u19exam-q07",
+      "question": "Withdrawals during retirement from which of the following accounts would most likely be subject to the greatest amount of taxation?",
+      "note": "Correct: A) Qualified variable annuity (LO 19.f)"
+    },
+    {
+      "id": "u19exam-q08",
+      "question": "Jill's bank, where she has her traditional deductible contributory IRA, is recommending that she roll over her IRA into a Roth IRA to benefit from the tax-free status of the withdrawals when she retires. (Jill is now 32 years old.) Which of the following is a consequence if Jill follows the bank's recommendations?",
+      "note": "Correct: D) The entire amount rolled over must be declared as income. (LO 19.b)"
+    },
+    {
+      "id": "u19exam-q09",
+      "question": "All of the following statements regarding qualified corporate retirement plans are true except",
+      "note": "Correct: A) with defined benefit plans, the employee bears the investment risk. (LO 19.e)"
+    },
+    {
+      "id": "u19exam-q11",
+      "question": "All of the following are advantages of a 401(k) plan except",
+      "note": "Correct: C) the employer may make unlimited contributions, which generate unlimited tax deductions for the business. (LO 19.e)"
+    },
+    {
+      "id": "u19exam-q12",
+      "question": "Those individuals who are considered parties in interest due to handling the assets of a corporate retirement plans are",
+      "note": "Correct: D) not permitted to use those funds to acquire company assets in an amount beyond the allowable limits. (LO 19.k)"
+    },
+    {
+      "id": "u19exam-q13",
+      "question": "Martha passed away in November 2024 at the age of 87. Among the assets in her estate was an IRA with a value of $150,000. Martha's son, Jerome, a successful 52-year-old surgeon and a client of yours, was named as the beneficiary of the IRA. From a tax standpoint, which of the following options would you recommend to Jerome?",
+      "note": "Correct: B) Jerome should use the 10-year cash-out option. (LO 19.d)"
+    },
+    {
+      "id": "u19exam-q14",
+      "question": "An individual has a substantial vested interest in his 401(k) plan at work. Which of the following is not an exception to the premature distribution penalty tax?",
+      "note": "Correct: C) Distribution of up to $10,000 made to purchase a principal residence (LO 19.l)"
+    },
+    {
+      "id": "u20q1-q02",
+      "question": "Which of the following statements is true regarding mandatory distribution requirements for Roger's HSA?",
+      "note": "Correct: C) There are no mandatory distribution requirements for Roger’s HSA. (LO 20.c)"
+    },
+    {
+      "id": "u20q1-q03",
+      "question": "Which of the following investments could be found in an UTMA but not an UGMA?",
+      "note": "Correct: B) Real estate (LO 20.b)"
+    },
+    {
+      "id": "u20q2-q02",
+      "question": "When saving money for a child's college education, one consideration is the impact that those savings will have on the child's eligibility for financial aid. Funds saved in which of the following vehicles has the most detrimental effect on financial aid?",
+      "note": "Correct: B) UTMA (LO 20.b)"
+    },
+    {
+      "id": "u20q2-q03",
+      "question": "All of the following statements concerning qualified tuition programs for educational funding are correct except",
+      "note": "Correct: B) control over the account passes to the student/beneficiary once withdrawals commence (LO 20.a)"
+    },
+    {
+      "id": "cq20a-q01",
+      "question": "What is the maximum amount a taxpayer may contribute each year to a Coverdell Education Savings Account (ESA) for one student?",
+      "note": "Correct: D) $2,000.00 (LO 20.a)"
+    },
+    {
+      "id": "cq20a-q02",
+      "question": "Which of the following assets will have the greatest effect on minimizing financial assistance when an individual is applying to college and using the FAFSA application?",
+      "note": "Correct: A) An UTMA account (LO 20.b)"
+    },
+    {
+      "id": "cq20a-q04",
+      "question": "Among the differences between the UGMA and UTMA accounts is the greater variety permitted in the UTMA. One asset class that can be held in an UTMA that cannot be in an UGMA is",
+      "note": "Correct: C) real estate (LO 20.b)"
+    },
+    {
+      "id": "cq20a-q06",
+      "question": "Jim is employed by a company that offers a health savings plan (HSA). For which of the following types of insurance are the associated premiums considered to be a qualified medical expense for Jim's HSA?",
+      "note": "Correct: D) His long-term care insurance (LO 20.c)"
+    },
+    {
+      "id": "cq20b-q02",
+      "question": "Suzy Stanton's wealthy Uncle Ray is a client of yours and is asking for some advice on funding a program to save for Suzy's college education with the lowest possible tax impact. Ray tells you that he set up an UGMA account for Suzy's older brother, Sammy; but, when Sammy turned 18, he took the money, bought a motorcycle, and joined a commune. Ray wants to avoid seeing something like that happen again. What would probably be the best suggestion to help Ray meet his objectives?",
+      "note": "Correct: B) A Section 529 plan (LO 20.a)"
+    },
+    {
+      "id": "cq20b-q03",
+      "question": "Money in an UTMA may be used to pay for certain expenses relating to the minor. Which of the following would be permitted usage of funds in an UTMA?",
+      "note": "Correct: D) A vacation trip to Orlando (LO 20.b)"
+    },
+    {
+      "id": "cq20b-q04",
+      "question": "Each of these would be considered an advantage of using a 529 plan rather than a Coverdell ESA to fund a child's future education except",
+      "note": "Correct: C) the 529 plan is counted at a lower percentage of assets when applying for financial aid. (LO 20.a)"
+    },
+    {
+      "id": "cq20b-q06",
+      "question": "What is the total amount that may be invested in a Coverdell Education Savings Account in 1 year?",
+      "note": "Correct: D) The current maximum per child (LO 20.a)"
     }
   ],
   "errorPatterns": [
@@ -9041,7 +9662,7 @@ const SYNC = {
     },
     {
       "rule": "Negative stems (EXCEPT / NOT): the question wants the one choice that is FALSE or NOT allowed, and he picks a true or permitted one. Underline EXCEPT/NOT and test each choice with 'is this OK?', expecting exactly one 'no' (or one 'yes' when it asks what is permitted)",
-      "count": 27,
+      "count": 30,
       "topic": "IV",
       "occurrences": [
         "rev14-q01",
@@ -9070,9 +9691,12 @@ const SYNC = {
         "rev116-q18",
         "u17q1-q01",
         "u17q2-q04",
-        "u17exam-q21"
+        "u17exam-q21",
+        "u19q1-q03",
+        "cq20a-q05",
+        "cq20b-q05"
       ],
-      "note": "Three of the eight misses on the Oct 8 Unit 1-7 Review were EXCEPT questions, and one of the two misses on the 91.7% Unit 7 checkpoint was a NOT question. This is a reading habit, not a content gap, and it is the cheapest points to win back. Oct 11: Unit 8 Quiz 2 Q3 was a NOT question and he again picked a true statement (a correct IRR definition). Oct 15-18: three more, all in Unit 11 (Quiz 1 Q3, Quiz 2 Q4, Review 1-11 Q1); each time he chose a true statement. Oct 20: two more on the Unit 14 checkpoint (commodities, precious metals), each time choosing an item that belongs on the list; two other EXCEPT questions on the same exam were right. Oct 21: the Midterm had 10 negative-stem questions and he missed 8 of them (Q1, 2, 3, 9, 25, 30, 49, 51), each time picking a true statement; plus one more on the Unit 1-13 Review (Q26). This is now the single biggest source of lost points. Oct 22: Review 1-15 Q3 (index annuity crediting) picked a real method on a NOT question; the other two negative stems on that quiz (Q7, Q10) were right. Oct 22-26: clear improvement: 12 of 15 NOT/EXCEPT questions right across the Unit 16 quizzes and checkpoint, both Units 1-7 quizzes and Review 1-16 (after 2 of 10 on the Midterm). Oct 26: three more in Unit 17 (EMH EXCEPT, a 'should not be a concern' risk question, volatility EXCEPT); six other negative stems that day were right."
+      "note": "Three of the eight misses on the Oct 8 Unit 1-7 Review were EXCEPT questions, and one of the two misses on the 91.7% Unit 7 checkpoint was a NOT question. This is a reading habit, not a content gap, and it is the cheapest points to win back. Oct 11: Unit 8 Quiz 2 Q3 was a NOT question and he again picked a true statement (a correct IRR definition). Oct 15-18: three more, all in Unit 11 (Quiz 1 Q3, Quiz 2 Q4, Review 1-11 Q1); each time he chose a true statement. Oct 20: two more on the Unit 14 checkpoint (commodities, precious metals), each time choosing an item that belongs on the list; two other EXCEPT questions on the same exam were right. Oct 21: the Midterm had 10 negative-stem questions and he missed 8 of them (Q1, 2, 3, 9, 25, 30, 49, 51), each time picking a true statement; plus one more on the Unit 1-13 Review (Q26). This is now the single biggest source of lost points. Oct 22: Review 1-15 Q3 (index annuity crediting) picked a real method on a NOT question; the other two negative stems on that quiz (Q7, Q10) were right. Oct 22-26: clear improvement: 12 of 15 NOT/EXCEPT questions right across the Unit 16 quizzes and checkpoint, both Units 1-7 quizzes and Review 1-16 (after 2 of 10 on the Midterm). Oct 26: three more in Unit 17 (EMH EXCEPT, a 'should not be a concern' risk question, volatility EXCEPT); six other negative stems that day were right. Oct 28-30: 21 of 24 negative-stem questions right across Units 18-20, including all seven on the Unit 19 checkpoint."
     },
     {
       "rule": "Federal covered securities and the four lawful routes: a security may be sold in a state if it is registered with the state, an exempt security, sold in an exempt transaction, or federal covered. 'Federal covered' is a NSMIA category (registered investment company shares, exchange-listed stock and anything senior to it, Rule 506 offerings, most munis but NOT a muni sold in its own state), not a registration status; the state may require only a notice filing. SEC registration by itself is not one of the routes",
@@ -9467,6 +10091,29 @@ const SYNC = {
         "u17exam-q11"
       ],
       "note": "Both on the Oct 26 checkpoint."
+    },
+    {
+      "rule": "Cost basis and pricing at transfer: a gift keeps the donor's cost basis; an inheritance steps up to the value at death; open-end funds are bought at POP and redeemed at NAV, while closed-end funds trade at bid/ask and NAV doesn't enter the math (a clue: an ask below NAV means closed-end)",
+      "count": 2,
+      "topic": "III",
+      "occurrences": [
+        "u18q1-q06",
+        "u18q2-q07"
+      ],
+      "note": "Both on Oct 28, on the same ABC Global Growth Fund setup; the inherited open-end version (Q6 on Quiz 2) was right."
+    },
+    {
+      "rule": "Education and custodial accounts: Coverdell ($2,000 a year) must be used by age 30 and excess earnings are taxed to the beneficiary; a 529 allows five years of gift exclusions at once; UTMA money can't pay for parental obligations (food, clothing, medical); the kiddie tax hits only unearned income; HSAs cover long-term care but not disability premiums",
+      "count": 5,
+      "topic": "III",
+      "occurrences": [
+        "u20q1-q01",
+        "u20q2-q01",
+        "cq20a-q03",
+        "cq20a-q05",
+        "cq20b-q01"
+      ],
+      "note": "Oct 30: five misses across Unit 20's two quizzes and two extra quizzes."
     }
   ],
   "quickTips": [
@@ -9520,7 +10167,7 @@ const SYNC = {
       "kind": "technique",
       "topic": "IV",
       "unitId": "U4",
-      "count": 31,
+      "count": 34,
       "fromMisses": [
         "u2exam-q07",
         "u2exam-q17",
@@ -9552,11 +10199,14 @@ const SYNC = {
         "rev116-q18",
         "u17q1-q01",
         "u17q2-q04",
-        "u17exam-q21"
+        "u17exam-q21",
+        "u19q1-q03",
+        "cq20a-q05",
+        "cq20b-q05"
       ],
       "trigger": "EXCEPT, NOT, or 'which is not true'",
       "move": "Underline it. You want the ONE choice that's false or not allowed. If your pick is true, you answered the opposite question.",
-      "why": "Thirty-one misses, each a true statement picked. Since the Midterm's 2 of 10: 18 of 24 right, 6 of 9 on Unit 17."
+      "why": "34 misses on negative stems, most by picking a true statement. Since the Midterm's 2 of 10: 39 of 48 right, 21 of 24 on Units 18-20."
     },
     {
       "id": "t-dont-overcorrect",
@@ -11576,6 +12226,123 @@ const SYNC = {
       "move": "Afraid the price will RISE: go long (a long hedge). Afraid it will fall: go short. A stop order limits losses; a limit order targets a price.",
       "why": "Both on the Oct 26 checkpoint; the limit-order one was an EXCEPT question.",
       "count": 2
+    },
+    {
+      "kind": "rule",
+      "topic": "III",
+      "unitId": "U18",
+      "id": "t-cost-basis-transfer",
+      "fromMisses": [
+        "u18q1-q06",
+        "u18q2-q07"
+      ],
+      "trigger": "Gifted or inherited fund shares: basis and sale price",
+      "move": "Gift: the donor's cost basis carries over. Inheritance: steps up to the value at death. Open-end sells at NAV; closed-end at the bid.",
+      "lines": [
+        [
+          "Spotting a closed-end fund",
+          "It has a bid and ask, and the ask can sit below NAV; NAV then plays no part"
+        ]
+      ],
+      "why": "Both on Oct 28, on the same ABC Global Growth Fund setup.",
+      "count": 2
+    },
+    {
+      "kind": "rule",
+      "topic": "III",
+      "unitId": "U18",
+      "id": "t-tax-basics",
+      "fromMisses": [
+        "u18q1-q01",
+        "u18q1-q02",
+        "u18q2-q09",
+        "u18exam-q04",
+        "u18exam-q15"
+      ],
+      "trigger": "Tax rates, earned income, filing status, corporate dividends or trust income",
+      "move": "Marginal rate = the tax on the last dollar; effective = the average. Only earned income funds an IRA; rental income is passive.",
+      "lines": [
+        [
+          "Corporation receiving dividends",
+          "Excludes 50%: a 6% preferred nets 5.37% at 21%, just ahead of a 6.75% bond's 5.33%"
+        ],
+        [
+          "Divorced parent, children at home",
+          "Head of household: bigger standard deduction and lower rates than single"
+        ],
+        [
+          "Trust income taxed to the beneficiary",
+          "Simple trust (income paid out yearly), irrevocable beneficiary; revocable means the grantor pays"
+        ]
+      ],
+      "why": "Five of Unit 18's seven misses (Oct 28): quizzes 7/10 and 8/10, checkpoint 13/15.",
+      "count": 5
+    },
+    {
+      "kind": "rule",
+      "topic": "III",
+      "unitId": "U19",
+      "id": "t-retirement-plans",
+      "fromMisses": [
+        "u19q1-q03",
+        "u19q1-q10",
+        "u19q2-q12",
+        "u19exam-q10"
+      ],
+      "trigger": "ERISA's reach, deferred comp, a solo 401(k) or a safe harbor 401(k)",
+      "move": "ERISA covers private-sector plans only. A public school or federal plan is outside it; a publicly traded company's plan is inside.",
+      "lines": [
+        [
+          "Deferred comp drawback",
+          "Forfeited if he leaves for a competitor; ordinary income at payout is normal"
+        ],
+        [
+          "Solo 401(k)",
+          "Files Form 5500-EZ once assets top $250,000 at year-end"
+        ],
+        [
+          "Nonelective safe harbor 401(k)",
+          "Employer puts in at least 3% of pay for everyone, contributing or not, vested at once"
+        ]
+      ],
+      "why": "Unit 19's four misses (Oct 30): quizzes 10/12 and 11/12, checkpoint 13/14.",
+      "count": 4
+    },
+    {
+      "kind": "rule",
+      "topic": "III",
+      "unitId": "U20",
+      "id": "t-education-accounts",
+      "fromMisses": [
+        "u20q1-q01",
+        "u20q2-q01",
+        "cq20a-q03",
+        "cq20a-q05",
+        "cq20b-q01",
+        "cq20b-q05"
+      ],
+      "trigger": "Coverdell, 529, UTMA, HSA or the kiddie tax",
+      "move": "Coverdell: $2,000 a year, used by age 30, unused earnings taxed to the beneficiary. 529: front-load five years of gift exclusions.",
+      "lines": [
+        [
+          "UTMA spending",
+          "For the child, never the parent's own duties (food, clothing, medical); piano lessons or camp are fine"
+        ],
+        [
+          "HSA premiums",
+          "Long-term care, COBRA and Medicare after 65 qualify; disability insurance doesn't"
+        ],
+        [
+          "Kiddie tax",
+          "Unearned income only"
+        ],
+        [
+          "529 front-load (2023 figure)",
+          "5 x $17,000 = $85,000; gift splitting with a spouse doubles it"
+        ]
+      ],
+      "why": "Six misses on Oct 30 across Unit 20's two quizzes and two extra quizzes; the checkpoint is still to take.",
+      "count": 6
     }
   ],
   "checkpointExams": [
@@ -12336,11 +13103,81 @@ const SYNC = {
         "did not know the rule": 9
       },
       "notes": "Second-lowest checkpoint (Unit 5 was 50%). Q18 (dollar cost averaging) took 7:38 and Q21 4:22."
+    },
+    {
+      "name": "Unit 18 Checkpoint Exam (Test 416209225)",
+      "date": "2026-10-28",
+      "score": 13,
+      "total": 15,
+      "timeUsed": 24.32,
+      "timeAllowed": null,
+      "byTopic": {
+        "III": {
+          "answered": 15,
+          "correct": 13
+        }
+      },
+      "byUnit": {
+        "U18": {
+          "answered": 15,
+          "correct": 13
+        }
+      },
+      "segments": [
+        {
+          "label": "1-5",
+          "missed": 1
+        },
+        {
+          "label": "6-10",
+          "missed": 0
+        },
+        {
+          "label": "11-15",
+          "missed": 1
+        }
+      ],
+      "missCats": {
+        "did not know the rule": 2
+      }
+    },
+    {
+      "name": "Unit 19 Checkpoint Exam (Test 416498273)",
+      "date": "2026-10-30",
+      "score": 13,
+      "total": 14,
+      "timeUsed": 20.42,
+      "timeAllowed": null,
+      "byTopic": {
+        "III": {
+          "answered": 14,
+          "correct": 13
+        }
+      },
+      "byUnit": {
+        "U19": {
+          "answered": 14,
+          "correct": 13
+        }
+      },
+      "segments": [
+        {
+          "label": "1-7",
+          "missed": 0
+        },
+        {
+          "label": "8-14",
+          "missed": 1
+        }
+      ],
+      "missCats": {
+        "did not know the rule": 1
+      }
     }
   ],
   "priorSnapshot": {
     "asOf": "2026-10-26",
-    "pooledPct": 75.1586,
+    "pooledPct": 74.7024,
     "units": {
       "U1": 74.1379,
       "U2": 62.0253,
@@ -12357,7 +13194,8 @@ const SYNC = {
       "U13": 100,
       "U14": 64.9123,
       "U15": 70.2703,
-      "U16": 90.3226
+      "U16": 90.3226,
+      "U17": 67.7419
     },
     "missIds": [
       "u1qz1-q03",
@@ -12607,7 +13445,27 @@ const SYNC = {
       "rev116-q19",
       "rev116-q21",
       "rev116-q23",
-      "rev116-q25"
+      "rev116-q25",
+      "u17q1-q01",
+      "u17q1-q05",
+      "u17q1-q06",
+      "u17q1-q10",
+      "u17q1-q11",
+      "u17q2-q04",
+      "u17q2-q09",
+      "u17exam-q01",
+      "u17exam-q05",
+      "u17exam-q06",
+      "u17exam-q07",
+      "u17exam-q10",
+      "u17exam-q11",
+      "u17exam-q13",
+      "u17exam-q18",
+      "u17exam-q21",
+      "u17exam-q22",
+      "u17exam-q23",
+      "cq17u-q05",
+      "cq17u-q09"
     ],
     "correctIds": [
       "u1qz1-q01",
@@ -13356,7 +14214,49 @@ const SYNC = {
       "rev116-q27",
       "rev116-q28",
       "rev116-q29",
-      "rev116-q30"
+      "rev116-q30",
+      "u17q1-q02",
+      "u17q1-q03",
+      "u17q1-q04",
+      "u17q1-q07",
+      "u17q1-q08",
+      "u17q1-q09",
+      "u17q1-q12",
+      "u17q1-q13",
+      "u17q1-q14",
+      "u17q2-q01",
+      "u17q2-q02",
+      "u17q2-q03",
+      "u17q2-q05",
+      "u17q2-q06",
+      "u17q2-q07",
+      "u17q2-q08",
+      "u17q2-q10",
+      "u17q2-q11",
+      "u17q2-q12",
+      "u17q2-q13",
+      "u17q2-q14",
+      "u17exam-q02",
+      "u17exam-q03",
+      "u17exam-q04",
+      "u17exam-q08",
+      "u17exam-q09",
+      "u17exam-q12",
+      "u17exam-q14",
+      "u17exam-q15",
+      "u17exam-q16",
+      "u17exam-q17",
+      "u17exam-q19",
+      "u17exam-q20",
+      "u17exam-q24",
+      "cq17u-q01",
+      "cq17u-q02",
+      "cq17u-q03",
+      "cq17u-q04",
+      "cq17u-q06",
+      "cq17u-q07",
+      "cq17u-q08",
+      "cq17u-q10"
     ],
     "patternRules": [
       "Investment Company Act of 1940 rules: $100,000 minimum capital before a public offering; no more than 3% of another investment company's voting shares; no joint trading accounts or short sales; shares can't be bought on margin; a majority shareholder vote to change fundamental policy; the adviser's contract must be written, 2 years initially then renewed annually",
@@ -13397,7 +14297,11 @@ const SYNC = {
       "Importing a rule from the adviser chapters into the broker-dealer chapters (de minimis client counts, institutional-client exclusions, place-of-business tests); and the reverse, broker-dealer agent rules such as profit sharing with written consent applied to IARs",
       "Business entity structures (Unit 15): S corporations are capped at 100 shareholders (no nonresident aliens) and pass both income and losses through; LLC owners are members; a C corporation is best for raising capital and the corporate form transfers ownership most easily; partnerships, S corps and LLCs pay no entity-level federal income tax; general partnership suitability is the partners' collective suitability",
       "Precious metals: gold, silver, platinum and palladium; lead and tin are base metals and diamonds aren't metals",
-      "Issuer vs nonissuer transactions: it's an issuer transaction only when the money goes to the issuer (the issuer selling its own securities, public or private); everything else, including an issuer buying back its own stock, is nonissuer"
+      "Issuer vs nonissuer transactions: it's an issuer transaction only when the money goes to the issuer (the issuer selling its own securities, public or private); everything else, including an issuer buying back its own stock, is nonissuer",
+      "Efficient market hypothesis: weak form = past prices and volume (technical analysis can't win), semi-strong = all public information (fundamental can't win either), strong = public plus inside; believers go passive (index funds, strategic), doubters go active or tactical. Kaplan treats widely published news as weak-form information",
+      "Investment styles: value = low P/E, low price-to-book, higher dividend yield; growth = the reverse; earnings momentum = EPS growth that accelerates; market cap = shares x price (mid-cap $2-10 billion); large-cap/small-cap are styles, rebalancing is a technique; sector rotation is a tactical technique",
+      "Which risk goes with which asset: long-term fixed income carries the most inflation and interest-rate risk; tangibles (real estate, commodities) hedge inflation; listed stocks have little liquidity risk; on this exam market risk usually means stocks",
+      "Bond portfolio strategies: a ladder has bonds maturing at intervals (good for recurring needs like tuition); a bullet has them all maturing around one date (least active); a barbell splits short and long"
     ],
     "activityIds": [
       "Unit 1 Quiz 1 (Test 410528324)",
@@ -13434,6 +14338,9 @@ const SYNC = {
       "Unit 15 Quiz 2 (Test 415149631)",
       "Unit 16 Quiz 1 (Test 415403732)",
       "Unit 16 Quiz 2 (Test 415404531)",
+      "Unit 17 Quiz 1 (Test 415858774)",
+      "Unit 17 Quiz 2 (Test 415861017)",
+      "Custom quiz '17', Unit 17 (Test 415879793)",
       "Unit 1 Checkpoint Exam (Test 410671140)",
       "Unit 2 Checkpoint Exam (Test 411154210)",
       "Unit 3 Checkpoint Exam (Test 411516480)",
@@ -13451,6 +14358,7 @@ const SYNC = {
       "Unit 15 Checkpoint Exam (Test 415150227)",
       "Midterm Exam (Test 415244720)",
       "Unit 16 Checkpoint Exam (Test 415405513)",
+      "Unit 17 Checkpoint Exam (Test 415862133)",
       "Unit 1-2 Review Quiz (Test 411496521)",
       "Unit 1-3 Review Quiz (Test 411666032)",
       "Unit 1-4 Review Quiz (Test 412336495)",
@@ -14778,7 +15686,12 @@ const DUMP_BLOCKS = [
     { k: "Inherited, non-spouse", v: "10-year rule" },
     { k: "S corporation", v: "100 owners max; income and losses flow through", tip: "t-business-entities" },
     { k: "Living trust", v: "Avoids probate, not estate or income tax", tip: "t-trust-accounts" },
-    { k: "Living will", v: "Medical wishes, not property", tip: "t-trust-accounts" }
+    { k: "Living will", v: "Medical wishes, not property", tip: "t-trust-accounts" },
+    { k: "Gift vs inheritance", v: "Gift keeps the donor's basis; inherited steps up to death value", tip: "t-cost-basis-transfer" },
+    { k: "ERISA", v: "Private-sector plans only (not public schools or government)", tip: "t-retirement-plans" },
+    { k: "Solo 401(k)", v: "Form 5500-EZ once assets top $250,000", tip: "t-retirement-plans" },
+    { k: "Coverdell", v: "$2,000 a year; used by age 30", tip: "t-education-accounts" },
+    { k: "529", v: "Front-load 5 years of gift exclusions at once", tip: "t-education-accounts" }
   ]}
 ];
 
