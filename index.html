@@ -220,6 +220,12 @@ tfoot td{border-top:1px solid var(--axis);font-weight:600;color:var(--ink);borde
 #tips-body[data-filter="repeat"] [data-n="one"],
 #tips-body[data-filter="repeat"] .qt-group:not(.has-rep),
 #tips-body[data-filter="repeat"] .qt-cleared{display:none}
+.qt-fnote{display:none;margin:-6px 0 16px;font-size:12.5px;line-height:1.45;color:var(--muted)}
+#tips-body[data-filter="focus"]{display:flex;flex-direction:column}
+#tips-body[data-filter="focus"] .qt-fnote{display:block}
+#tips-body[data-filter="focus"] .qt-group{order:var(--fo,99)}
+#tips-body[data-filter="focus"] .qt-group:not([data-focus]),
+#tips-body[data-filter="focus"] .qt-cleared{display:none}
 @media(max-width:560px){
   .qt>summary,.qt>.qt-s{grid-template-columns:30px minmax(0,1fr) 10px;gap:9px;padding:10px 11px}
   .qt-lines{grid-template-columns:1fr;gap:0}
@@ -417,7 +423,8 @@ footer.foot{margin-top:40px;padding-top:16px;border-top:1px solid var(--grid);
 <!-- ============ 3 · QUICK TIPS ============ -->
 <section class="tab" id="tab-tips" role="tabpanel" aria-labelledby="t-tips">
   <p class="lead">Your misses, compressed: the cue you'll see, and what to do about it.</p>
-  <small class="note">Rebuilt from your real misses every sync. Red means missed three or more
+  <small class="note">Rebuilt from your real misses every sync. Focus shows only the units
+    costing you the most exam points; All has every tip. Red means missed three or more
     times. Tap a tip to see why it's on the list.</small>
   <div id="tips-body"></div>
 </section>
@@ -16374,7 +16381,15 @@ function renderGuide() {
    lookup table only where the rule really is a table. Why it is on the list
    sits behind a tap. Grouped by unit; reading-habit tips lead.
    ========================================================================== */
-let tipFilter = "all";
+let tipFilter = "focus";
+
+/* Focus: units under the pass line that put at least one whole exam question at
+   risk, most at risk first (unitsBelowLine already sorts that way). Recomputed on
+   every render, so a unit drops out as soon as it climbs over the line. */
+const FOCUS_MIN_EXAM_QS = 1;
+function focusUnits() {
+  return unitsBelowLine().filter(r => r.lost !== null && r.lost >= FOCUS_MIN_EXAM_QS);
+}
 
 function tipRow(t) {
   const n = t.count || 1;
@@ -16411,8 +16426,8 @@ function applyTipFilter() {
 
 function initTipFilter() {
   try {
-    const s = localStorage.getItem("s66.tipFilter");
-    if (s === "all" || s === "repeat") tipFilter = s;
+    const s = localStorage.getItem("s66.tipView");
+    if (s === "focus" || s === "all" || s === "repeat") tipFilter = s;
   } catch (e) { /* a per-viewer convenience only */ }
   const root = $("tips-body");
   if (!root || !root.addEventListener) return;
@@ -16420,7 +16435,7 @@ function initTipFilter() {
     const b = ev.target && ev.target.closest ? ev.target.closest("[data-tipfilter]") : null;
     if (!b) return;
     tipFilter = b.getAttribute("data-tipfilter");
-    try { localStorage.setItem("s66.tipFilter", tipFilter); } catch (e) { /* optional */ }
+    try { localStorage.setItem("s66.tipView", tipFilter); } catch (e) { /* optional */ }
     applyTipFilter();
   });
 }
@@ -16436,29 +16451,45 @@ function renderQuickTips() {
   const byCount = (a, b) => (b.count || 1) - (a.count || 1);
   const live = quickTips.filter(t => !t.cleared);
   const cleared = quickTips.filter(t => t.cleared);
+  const focus = focusUnits();
+  const focusRank = {};
+  focus.forEach((r, i) => { focusRank[r.id] = i + 1; });
   const groups = [];
   const tech = live.filter(t => t.kind === "technique").sort(byCount);
-  if (tech.length) groups.push({ title: "How you read questions", sub: "every unit", tips: tech });
+  /* Reading habits cost points in every unit, so they stay in Focus. */
+  if (tech.length) groups.push({ title: "How you read questions", sub: "every unit", tips: tech, focus: 0 });
   const rules = live.filter(t => t.kind !== "technique");
   const seen = new Set();
   for (const u of unitData) {
     const mine = rules.filter(t => t.unitId === u.id).sort(byCount);
     if (!mine.length) continue;
     mine.forEach(t => seen.add(t));
-    groups.push({ title: unitShort(u.name), sub: unitTitle(u.name), tips: mine });
+    groups.push({ title: unitShort(u.name), sub: unitTitle(u.name), tips: mine,
+                  focus: focusRank[u.id] === undefined ? null : focusRank[u.id] });
   }
   const other = rules.filter(t => !seen.has(t)).sort(byCount);
-  if (other.length) groups.push({ title: "Other", sub: "", tips: other });
+  if (other.length) groups.push({ title: "Other", sub: "", tips: other, focus: null });
 
   const repCount = live.filter(t => (t.count || 1) >= 2).length;
+  const focusCount = groups.filter(g => g.focus !== null).reduce((n, g) => n + g.tips.length, 0);
   let html = '<div class="rowsel qt-bar" role="group" aria-label="Filter tips">'
-    + '<button type="button" data-tipfilter="all" aria-pressed="true">All '
-    + '<span class="qt-bn">' + live.length + '</span></button>'
+    + '<button type="button" data-tipfilter="focus" aria-pressed="true">Focus '
+    + '<span class="qt-bn">' + focusCount + '</span></button>'
     + '<button type="button" data-tipfilter="repeat" aria-pressed="false">Missed 2+ '
-    + '<span class="qt-bn">' + repCount + '</span></button></div>';
+    + '<span class="qt-bn">' + repCount + '</span></button>'
+    + '<button type="button" data-tipfilter="all" aria-pressed="false">All '
+    + '<span class="qt-bn">' + live.length + '</span></button></div>';
+  html += '<p class="qt-fnote">' + (focus.length
+    ? 'Units under the ' + EXAM.PASS_LINE + '% line that cost you at least one exam question, '
+      + 'most at risk first: '
+      + focus.map(r => '<b>' + esc(unitShort(r.name)) + '</b> (~' + r.lost.toFixed(1) + ' Qs)').join(', ')
+      + '. Reading habits stay because they cost points everywhere. Every other tip is under All.'
+    : 'No unit is under the ' + EXAM.PASS_LINE + '% line by a full exam question right now, '
+      + 'so only the reading-habit tips show here. Every other tip is under All.') + '</p>';
   for (const g of groups) {
     const hasRep = g.tips.some(t => (t.count || 1) >= 2);
-    html += '<section class="qt-group' + (hasRep ? ' has-rep' : '') + '">'
+    html += '<section class="qt-group' + (hasRep ? ' has-rep' : '') + '"'
+      + (g.focus !== null ? ' data-focus="' + g.focus + '" style="--fo:' + (g.focus + 1) + '"' : '') + '>'
       + '<h3 class="qt-gh">' + esc(g.title)
       + (g.sub ? ' <span>' + esc(g.sub) + '</span>' : '') + '</h3>'
       + '<div class="qt-list">' + g.tips.map(tipRow).join("") + '</div></section>';
