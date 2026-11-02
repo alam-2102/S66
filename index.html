@@ -260,6 +260,11 @@ ol.next li .k{font-weight:620;color:var(--ink)}
 .ucard .warnline{color:var(--warning)}
 .ucard p.rec{font-size:13.5px;margin:0 0 4px}
 .ucard .miss{margin:12px 0 16px}
+#guide-units[data-filter="focus"]{display:flex;flex-direction:column}
+#guide-units[data-filter="focus"] .ucard{order:var(--fo,99)}
+#guide-units[data-filter="focus"] .ucard:not([data-focus]),
+#guide-units[data-filter="focus"] .muted-line{display:none}
+ol.next.focus li .v .tag{margin-left:2px}
 .miss .src{font-size:12px;color:var(--muted);margin:6px 0 0}
 .muted-line{color:var(--muted);font-size:13px;margin:4px 0 14px}
 /* ---------- dump sheet ---------- */
@@ -436,12 +441,15 @@ footer.foot{margin-top:40px;padding-top:16px;border-top:1px solid var(--grid);
   <h2>Where you stand</h2>
   <div id="guide-standing"></div>
 
+  <h2>Prioritize these</h2>
+  <div id="guide-focus"></div>
+
   <h2>Study next</h2>
   <div id="guide-next"></div>
 
   <h2>By unit</h2>
-  <small class="note">Only the units you have started. Open a unit's misses to read why
-    each answer was right.</small>
+  <small class="note">Focus shows the units to prioritize, most at risk first; All has every
+    unit you have started. Open a unit's misses to read why each answer was right.</small>
   <div id="guide-units"></div>
 
   <details class="fold" id="map-fold">
@@ -15526,8 +15534,8 @@ function unitExamQuestions(unitId) {
 
 /* Priority = expected scored questions lost. Weight x miss rate. Derived,
    never typed - a unit worth 45 questions at 70% costs more than one worth 8. */
-/* How many of the biggest leaks the Study Guide names; Quick Tips' Focus view
-   always includes the same units, so the two never disagree. */
+/* How many of the biggest point leaks join the focus units, even above the line.
+   One constant, so the Study Guide's priorities and Quick Tips' Focus agree. */
 const TOP_LEAKS = 3;
 function priorityOrder() {
   return unitData.map(u => {
@@ -16183,10 +16191,97 @@ function renderStanding() {
     + '</div>'
     + '<p>' + verdict + ' '
     + (below.length
-        ? 'Below the line: ' + below.map(u => '<b>' + esc(unitShort(u.name)) + '</b>'
-            + ' <span class="muted">(' + esc(examWeightNote(u)) + ')</span>').join(", ") + '.'
+        ? below.length + ' unit' + (below.length === 1 ? ' is' : 's are') + ' below the line: '
+            + below.map(u => esc(unitShort(u.name))).join(", ")
+            + '. The ones worth your time are ranked under Prioritize these.'
         : 'Every unit you have studied is at or above the line.')
     + '</p>');
+}
+
+/* The tips the Focus view in Quick Tips shows: reading habits plus every tip
+   for a focus unit. One count, used by both tabs. */
+function focusTipCount() {
+  const ids = new Set(focusUnits().map(r => r.id));
+  return quickTips.filter(t => !t.cleared && (t.kind === "technique" || ids.has(t.unitId))).length;
+}
+
+function unitTopicIds(id) { const m = mapForUnit(id); return m ? Object.keys(m.split) : []; }
+
+/* Prioritize these: topics in the order they cost exam questions, then the focus
+   units (the same list Quick Tips' Focus view uses), each with why it is there. */
+function renderGuideFocus() {
+  if (!hasData()) {
+    setHTML("guide-focus", '<p>Nothing to prioritize until Kaplan has been read.</p>');
+    return;
+  }
+  const tp = topicPriorityOrder();
+  const focus = focusUnits();
+  const latest = latestCheckpointByUnit();
+  const line = EXAM.PASS_LINE;
+
+  const belowT = tp.filter(t => t.pct < line);
+  const belowIds = new Set(belowT.map(t => t.id));
+  const inBelow = focus.filter(r => unitTopicIds(r.id).some(k => belowIds.has(k))).length;
+  let lead;
+  if (belowT.length) {
+    lead = (belowT.length === 1
+        ? '<b>Topic ' + belowT[0].id + '</b> is the only topic'
+        : '<b>Topics ' + belowT.map(t => t.id).join(' and ') + '</b> are')
+      + ' under the ' + line + '% line'
+      + (focus.length ? ', and ' + (belowT.length === 1 ? 'it holds ' : 'they hold ')
+          + inBelow + ' of your ' + focus.length + ' focus units.' : '.');
+  } else {
+    lead = 'Every topic is over the ' + line + '% line'
+      + (tp.length ? '; <b>Topic ' + tp[0].id + '</b> still leaks the most exam questions.' : '.');
+  }
+
+  let rows = "";
+  const seen = new Set();
+  for (const t of tp) {
+    seen.add(t.id);
+    rows += '<tr' + (t.pct < line ? ' class="below"' : '') + '>'
+      + '<td><b>' + t.id + '</b> ' + esc(t.short)
+      + ' <span class="muted">&middot; ' + t.weight + '% of the exam</span></td>'
+      + '<td class="num">' + bound("topic." + t.id + ".pct") + '</td>'
+      + '<td class="num">~' + t.lost.toFixed(1) + '</td></tr>';
+  }
+  for (const t of nasaaData.topics) {
+    if (seen.has(t.id)) continue;
+    rows += '<tr><td><b>' + t.id + '</b> ' + esc(t.short)
+      + ' <span class="muted">&middot; ' + t.weight + '% of the exam</span></td>'
+      + '<td class="num"><span class="muted">not started</span></td><td class="num">' + EM + '</td></tr>';
+  }
+
+  const items = focus.map((r, i) => {
+    const cp = latest[r.id];
+    const cpPct = cp ? pct(cp.score, cp.total) : null;
+    const topics = unitTopicIds(r.id);
+    const bits = [esc(unitTitle(r.name)),
+      bound("unit." + r.id + ".pooled"),
+      (topics.length ? 'Topic ' + topics.join('/') : ''),
+      '~' + r.lost.toFixed(1) + ' exam Qs at risk'].filter(Boolean);
+    let why = r.pct !== null && r.pct >= line
+      ? ' <span class="tag warn">above the line, but heavily tested</span>' : '';
+    if (cpPct !== null && cpPct < line) {
+      why += ' <span class="tag bad">retake the checkpoint (' + cp.score + '/' + cp.total + ')</span>';
+    }
+    return '<li><span class="k">' + (i + 1) + '. ' + esc(unitShort(r.name)) + '</span>'
+      + '<span class="v">' + bits.join(' &middot; ') + why + '</span></li>';
+  });
+
+  setHTML("guide-focus",
+    '<p>' + lead + '</p>'
+    + '<div class="scroller"><table class="narrow" style="min-width:0"><thead><tr><th>Topic</th>'
+    + '<th>You</th><th>Qs at risk</th></tr></thead><tbody>'
+    + rows + '</tbody></table></div>'
+    + (items.length
+        ? '<p>Units under the ' + line + '% line that cost you at least one exam question, plus '
+          + 'your ' + TOP_LEAKS + ' biggest point leaks, most at risk first:</p>'
+          + '<ol class="next focus">' + items.join("") + '</ol>'
+          + '<p class="muted-line">Quick Tips opens on these units: ' + focusTipCount()
+          + ' tips including the reading habits. The list moves with your scores.</p>'
+        : '<p>No unit is under the line by a full exam question, and nothing has been '
+          + 'scored to rank the leaks yet.</p>'));
 }
 
 /* Latest checkpoint attempt per unit, so a retake replaces the old score. */
@@ -16220,40 +16315,20 @@ function renderNext() {
         + ' <span class="muted">(~' + fmtExamQs(r.q) + ' exam Qs)</span>').join(', ')
       + ' ' + EM + ' latest attempt is under the line; biggest first.']);
   }
-  const up = priorityOrder().slice(0, TOP_LEAKS);
-  if (up.length) {
-    items.push(['Biggest point leaks',
-      up.map(r => '<b>' + esc(unitShort(r.name)) + '</b> ' + fmtPct(r.pct)
-        + ' <span class="muted">(~' + r.lost.toFixed(1) + ' exam questions at risk)</span>')
-        .join(', ')]);
-  }
-  const rep = quickTips.filter(t => !t.cleared && (t.count || 1) >= 2).length;
-  if (rep) {
-    items.push(['Drill your repeat misses', rep + ' tips you have missed twice or more '
-      + EM + ' Quick Tips, filter "Missed 2+".']);
+  const ft = focusUnits().length ? focusTipCount() : 0;
+  if (ft) {
+    items.push(['Drill the Focus tips', ft + ' tips for the units above, plus the reading habits '
+      + EM + ' Quick Tips opens on Focus.']);
   }
   const since = daysSinceActivity();
   if (since !== null && since >= 3) {
     items.push(['Log some activity', 'Nothing new for ' + bound("meta.daysSinceActivity") + ' days.']);
   }
 
-  const tt = topicTotals();
-  let rows = "";
-  for (const t of nasaaData.topics) {
-    const acc = tt[t.id] ? tt[t.id].pct : null;
-    rows += '<tr' + (acc !== null && acc < EXAM.PASS_LINE ? ' class="below"' : '') + '>'
-      + '<td><b>' + t.id + '</b> ' + esc(t.short) + '</td>'
-      + '<td class="num">' + t.weight + '%</td>'
-      + '<td class="num">' + (acc === null ? '<span class="muted">not started</span>'
-                                          : bound("topic." + t.id + ".pct")) + '</td></tr>';
-  }
-  setHTML("guide-next",
-    (items.length
-      ? '<ol class="next">' + items.map(([k, v]) =>
-          '<li><span class="k">' + k + '</span><span class="v">' + v + '</span></li>').join("") + '</ol>'
-      : '')
-    + '<div class="scroller"><table class="narrow"><thead><tr><th>NASAA topic</th>'
-    + '<th>Exam weight</th><th>You</th></tr></thead><tbody>' + rows + '</tbody></table></div>');
+  setHTML("guide-next", items.length
+    ? '<ol class="next">' + items.map(([k, v]) =>
+        '<li><span class="k">' + k + '</span><span class="v">' + v + '</span></li>').join("") + '</ol>'
+    : '<p class="muted-line">Nothing queued beyond the priorities above.</p>');
 }
 
 function missHTML(q) {
@@ -16292,7 +16367,14 @@ function renderGuideUnits() {
   const missesFor = id => missedQuestions.filter(q => q.unitId === id);
   const started = unitData.filter(u => unitPool(u).answered > 0 || missesFor(u.id).length);
   const notStarted = unitData.filter(u => !started.includes(u));
-  let html = "";
+  const focusRank = {};
+  focusUnits().forEach((r, i) => { focusRank[r.id] = i + 1; });
+  const nFocus = started.filter(u => focusRank[u.id] !== undefined).length;
+  let html = '<div class="rowsel qt-bar" role="group" aria-label="Filter units">'
+    + '<button type="button" data-guidefilter="focus" aria-pressed="true">Focus '
+    + '<span class="qt-bn">' + nFocus + '</span></button>'
+    + '<button type="button" data-guidefilter="all" aria-pressed="false">All '
+    + '<span class="qt-bn">' + started.length + '</span></button></div>';
   for (const u of started) {
     const p = unitPool(u);
     const acc = pct(p.correct, p.answered);
@@ -16307,7 +16389,9 @@ function renderGuideUnits() {
     if (qb !== null && ex !== null && qb - ex >= 5) {
       meta.push('<span class="warnline">trust the checkpoint</span>');
     }
-    html += '<div class="ucard' + (acc !== null && acc < EXAM.PASS_LINE ? ' below' : '') + '">'
+    const fr = focusRank[u.id];
+    html += '<div class="ucard' + (acc !== null && acc < EXAM.PASS_LINE ? ' below' : '') + '"'
+      + (fr !== undefined ? ' data-focus="' + fr + '" style="--fo:' + fr + '"' : '') + '>'
       + '<div class="ucard-h"><h3>' + esc(unitShort(u.name))
       + ' <span class="ut">' + esc(unitTitle(u.name)) + '</span></h3>'
       + '<span class="big">' + bound("unit." + u.id + ".pooled") + '</span></div>'
@@ -16331,6 +16415,35 @@ function renderGuideUnits() {
     html += '<p class="muted-line">Not started yet: ' + unitRangeText(notStarted) + '.</p>';
   }
   setHTML("guide-units", html);
+  applyGuideFilter();
+}
+
+/* By unit: Focus (the prioritized units, most at risk first) or All. Remembered
+   per viewer; a convenience only. */
+let guideFilter = "focus";
+function applyGuideFilter() {
+  const root = $("guide-units");
+  if (!root) return;
+  if (root.setAttribute) root.setAttribute("data-filter", guideFilter);
+  if (root.querySelectorAll) {
+    root.querySelectorAll("[data-guidefilter]").forEach(b =>
+      b.setAttribute("aria-pressed", String(b.getAttribute("data-guidefilter") === guideFilter)));
+  }
+}
+function initGuideFilter() {
+  try {
+    const s = localStorage.getItem("s66.guideView");
+    if (s === "focus" || s === "all") guideFilter = s;
+  } catch (e) { /* optional */ }
+  const root = $("guide-units");
+  if (!root || !root.addEventListener) return;
+  root.addEventListener("click", ev => {
+    const b = ev.target && ev.target.closest ? ev.target.closest("[data-guidefilter]") : null;
+    if (!b) return;
+    guideFilter = b.getAttribute("data-guidefilter");
+    try { localStorage.setItem("s66.guideView", guideFilter); } catch (e) { /* optional */ }
+    applyGuideFilter();
+  });
 }
 
 function renderMapTable() {
@@ -16373,6 +16486,7 @@ function renderMapTable() {
 function renderGuide() {
   setHTML("guide-empty", hasData() ? "" : emptyBlock("study guide"));
   renderStanding();
+  renderGuideFocus();
   renderNext();
   renderGuideUnits();
   renderMapTable();
@@ -17500,6 +17614,7 @@ function boot() {
   initTableToggles();
   initCopy();
   initTipFilter();
+  initGuideFilter();
   renderAll();
 }
 
