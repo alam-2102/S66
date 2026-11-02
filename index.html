@@ -1231,7 +1231,7 @@ const SYNC = {
       "mixedAnswered": 0,
       "mixedCorrect": 0,
       "covers": "Securities and issuer terms, the securities registration process, registration exemptions",
-      "recurring": "Exempt transactions vs exempt securities: unsolicited orders are the most common EXEMPT TRANSACTION (missed twice in one sitting), a transaction with an ordinary operating company is not exempt, and private placements are capped at 10 retail purchasers. Conditions attached to security exemptions: a savings institution or insurer must be authorized in the state, a railroad must be rate-regulated, commercial paper needs a $50,000 denomination. Federal covered securities: which exchanges qualify (US exchanges, not Montreal) and that federal covered means notice filing, not state registration (Review Q1, Q6). Oct 8 review: federal covered securities again (Q3, the same question missed on Sep 29, and Q11, in-state munis are NOT federal covered), what makes a sale lawful in a state (Q14: SEC registration is not one of the four routes), and sale vs offer (Q7). Oct 21: Midterm 0/1, unsolicited-order acknowledgment by RULE, not ORDER. Oct 23-26: issuer vs nonissuer transactions (a buyback is nonissuer; an issuer's private placement is issuer), exempt securities (S&L, GO munis, listed issuers; bank securities can't lose the exemption), Howey test. Review 1-16 9/12."
+      "recurring": "Exempt transactions vs exempt securities: unsolicited orders are the most common EXEMPT TRANSACTION (missed twice in one sitting), a transaction with an ordinary operating company is not exempt, and private placements are capped at 10 retail offerees. Conditions attached to security exemptions: a savings institution or insurer must be authorized in the state, a railroad must be rate-regulated, commercial paper needs a $50,000 denomination. Federal covered securities: which exchanges qualify (US exchanges, not Montreal) and that federal covered means notice filing, not state registration (Review Q1, Q6). Oct 8 review: federal covered securities again (Q3, the same question missed on Sep 29, and Q11, in-state munis are NOT federal covered), what makes a sale lawful in a state (Q14: SEC registration is not one of the four routes), and sale vs offer (Q7). Oct 21: Midterm 0/1, unsolicited-order acknowledgment by RULE, not ORDER. Oct 23-26: issuer vs nonissuer transactions (a buyback is nonissuer; an issuer's private placement is issuer), exempt securities (S&L, GO munis, listed issuers; bank securities can't lose the exemption), Howey test. Review 1-16 9/12."
     },
     {
       "id": "U5",
@@ -2451,7 +2451,7 @@ const SYNC = {
       "myAnswer": "A) a sale of stock to a pension trust.",
       "correctAnswer": "D) a sale of private placement securities to 25 noninstitutional investors in a state.",
       "rationale": "Private placements are exempt under the USA if they are offered to no more than 10 general public (retail) investors in a 12-month period. Institutional investors are not included in the numerical limitations. Transactions involving issuers and underwriters, pension trusts, and other financial institutions are also exempt.",
-      "explanation": "The state private placement number is 10 RETAIL purchasers in 12 months, and institutions don't count toward it, so 25 noninstitutional investors blows the limit. The number is worth isolating because this material has several: 10 retail purchasers for the USA private placement, 10 subscribers for preorganization certificates, and 35 nonaccredited investors under federal Rule 506(b). Mixing the federal 35 into a state question is the easy error here. Note also that the pension trust answer you chose is the same institutional-buyer exemption you missed from the other side on Quiz 1 Q12: there the ordinary corporation was NOT exempt, here the pension trust IS."
+      "explanation": "The state private placement number is 10 RETAIL offers in 12 months, and institutions don't count toward it, so 25 noninstitutional investors blows the limit. The number is worth isolating because this material has several: 10 retail offerees for the USA private placement, 10 subscribers for preorganization certificates, and 35 nonaccredited investors under federal Rule 506(b). Mixing the federal 35 into a state question is the easy error here. Note also that the pension trust answer you chose is the same institutional-buyer exemption you missed from the other side on Quiz 1 Q12: there the ordinary corporation was NOT exempt, here the pension trust IS."
     },
     {
       "id": "u4q2-q10",
@@ -10403,7 +10403,7 @@ const SYNC = {
       "note": "Both misses borrowed a real number from a neighboring rule (quarterly from the transaction report; 45 days from 13F). The Unit 7 checkpoint then got 13F right."
     },
     {
-      "rule": "Custody: legal under the USA if no Administrator rule prohibits it and the adviser notifies the Administrator; discretion doesn't affect the right to custody (only the net worth number: $35,000 custody vs $10,000 discretion). A fee check payable to the adviser is not custody; password access that can move client money is; automatic fee deduction and authority to withdraw are custody, third-party checks forwarded within three business days are not",
+      "rule": "Custody: legal under the USA if no Administrator rule prohibits it and the adviser notifies the Administrator; discretion doesn't affect the right to custody (only the net worth number: $35,000 custody vs $10,000 discretion). A fee check payable to the adviser is not custody; password access that can move client money is; automatic fee deduction and authority to withdraw are custody, third-party checks forwarded within three business days are not; a check for client money that was made payable to the adviser by mistake (it should have gone to the broker-dealer) must be RETURNED to the sender within three business days, or it is custody (Midterm Q25)",
       "count": 3,
       "topic": "IV",
       "occurrences": [
@@ -10487,7 +10487,7 @@ const SYNC = {
       "note": "Both misses located the offer where it was physically received or seen rather than where it legally happened."
     },
     {
-      "rule": "Exempt TRANSACTIONS under the USA: unsolicited orders are the most common exempt transaction and the Administrator cannot forbid a client's own initiative; institutional buyers (pension trusts, financial institutions) qualify but ordinary operating companies do not; private placements are capped at 10 retail purchasers in 12 months",
+      "rule": "Exempt TRANSACTIONS under the USA: unsolicited orders are the most common exempt transaction and the Administrator cannot forbid a client's own initiative; institutional buyers (pension trusts, financial institutions) qualify but ordinary operating companies do not; private placements are capped at 10 noninstitutional OFFERS (offerees) in any 12 months (Kaplan, Review 1-16 Q27)",
       "count": 7,
       "topic": "IV",
       "occurrences": [
@@ -11358,7 +11358,7 @@ const SYNC = {
       "lines": [
         [
           "Exempt",
-          "Unsolicited, isolated nonissuer, issuer to underwriter, institutional buyers, private placement (10 retail)"
+          "Unsolicited, isolated nonissuer, issuer to underwriter, institutional buyers, private placement (10 retail offers)"
         ],
         [
           "Not exempt",
@@ -11895,6 +11895,10 @@ const SYNC = {
         [
           "Not custody",
           "A fee check payable to the adviser; a third-party check forwarded within 3 business days"
+        ],
+        [
+          "Check meant for the BD",
+          "Made out to the adviser by mistake: send it back within 3 business days, or it's custody"
         ],
         [
           "Allowed if",
@@ -15246,14 +15250,14 @@ const SYNC = {
       "Social media and communications: static content (profiles, posted ads) needs approval BEFORE use; interactive content (live posts, chat) is supervised like correspondence; linking to or endorsing third-party content is ADOPTION, helping prepare it is ENTANGLEMENT; regulators care about the content, not the platform",
       "Registration renewal: every registration under the USA (BD, agent, IA, IAR) expires December 31, regardless of when it was granted; the exception is Canadian broker-dealers and agents with limited registration, who renew by December 1",
       "Code-of-ethics and compliance timing: CCO reviews written policies at least annually; access persons file an initial holdings report within 10 days, holdings at least annually, and transaction reports within 30 days after each quarter; Form 13F is quarterly within 45 days",
-      "Custody: legal under the USA if no Administrator rule prohibits it and the adviser notifies the Administrator; discretion doesn't affect the right to custody (only the net worth number: $35,000 custody vs $10,000 discretion). A fee check payable to the adviser is not custody; password access that can move client money is; automatic fee deduction and authority to withdraw are custody, third-party checks forwarded within three business days are not",
+      "Custody: legal under the USA if no Administrator rule prohibits it and the adviser notifies the Administrator; discretion doesn't affect the right to custody (only the net worth number: $35,000 custody vs $10,000 discretion). A fee check payable to the adviser is not custody; password access that can move client money is; automatic fee deduction and authority to withdraw are custody, third-party checks forwarded within three business days are not; a check for client money that was made payable to the adviser by mistake (it should have gone to the broker-dealer) must be RETURNED to the sender within three business days, or it is custody (Midterm Q25)",
       "Offer vs sale under the USA: an OFFER is any attempt to dispose of, or solicitation of an offer to buy, a security for value; a SALE is the contract to dispose of a security for value; a 'free' bonus security given with a purchase is part of a sale",
       "Brochure delivery: 48 hours BEFORE the contract, OR at signing with five business days to cancel without penalty (adviser keeps a pro-rated fee for services rendered); annual update or summary of material changes within 120 days of fiscal year-end only when changes are material; only two delivery exemptions (registered investment company clients; impersonal advice under $500/yr); the brochure is Part 2A",
       "Principal vs agency capacity: the firm is a PRINCIPAL when it is itself the buyer or seller against the client (needs written disclosure and, for an adviser, consent before completion); in an AGENCY CROSS the firm is agent for both other parties; a broker-dealer acting as principal only discloses capacity on the confirmation",
       "Cancellation (nonpunitive: mental incompetence, cannot be located / no forwarding address, out of business) vs revocation (punitive: convictions including non-securities felonies, wrongdoing)",
       "Unit 5 numbers: civil statute of limitations is the EARLIER of 3 years after the sale or 2 years after discovery; criminal statute of limitations is 5 years; maximum criminal penalty is $5,000 and/or 3 years; 60 days to petition a court to review a final order",
       "Jurisdiction over an offer: it lies where the offer originates and where it is accepted; a cell phone counts at the owner's home state unless the client acts from elsewhere; an out-of-state newspaper never creates jurisdiction, and an in-state paper escapes only with more than 2/3 of circulation outside the state",
-      "Exempt TRANSACTIONS under the USA: unsolicited orders are the most common exempt transaction and the Administrator cannot forbid a client's own initiative; institutional buyers (pension trusts, financial institutions) qualify but ordinary operating companies do not; private placements are capped at 10 retail purchasers in 12 months",
+      "Exempt TRANSACTIONS under the USA: unsolicited orders are the most common exempt transaction and the Administrator cannot forbid a client's own initiative; institutional buyers (pension trusts, financial institutions) qualify but ordinary operating companies do not; private placements are capped at 10 noninstitutional OFFERS (offerees) in any 12 months (Kaplan, Review 1-16 Q27)",
       "Exempt SECURITIES carry conditions, and the conditions are what get tested: an S&L or insurer must be authorized in the state, a railroad must be rate-regulated, commercial paper needs a $50,000 denomination and top-three rating within nine months, and exchange-listed issues escape state registration as federal covered rather than as exempt securities; the Administrator can deny or revoke the nonprofit and employee-benefit-plan exemptions but not the bank exemption",
       "Registration reach for broker-dealers and agents: no de minimis exemption exists, a resident client (even one) requires registration, an agent must be registered where the client is domiciled even on unsolicited or institutional orders, but the snowbird exemption covers a firm with no office in the state serving existing clients who are only temporarily there",
       "Who notifies the state Administrator when an IAR is hired or terminated: a STATE-registered adviser notifies for its IARs; an IAR of a FEDERAL COVERED adviser notifies for himself; the SEC is never notified; for broker-dealer AGENTS, both the agent and the firm notify promptly",
