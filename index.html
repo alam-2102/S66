@@ -15526,6 +15526,9 @@ function unitExamQuestions(unitId) {
 
 /* Priority = expected scored questions lost. Weight x miss rate. Derived,
    never typed - a unit worth 45 questions at 70% costs more than one worth 8. */
+/* How many of the biggest leaks the Study Guide names; Quick Tips' Focus view
+   always includes the same units, so the two never disagree. */
+const TOP_LEAKS = 3;
 function priorityOrder() {
   return unitData.map(u => {
     const p = unitPool(u);
@@ -16217,7 +16220,7 @@ function renderNext() {
         + ' <span class="muted">(~' + fmtExamQs(r.q) + ' exam Qs)</span>').join(', ')
       + ' ' + EM + ' latest attempt is under the line; biggest first.']);
   }
-  const up = priorityOrder().slice(0, 3);
+  const up = priorityOrder().slice(0, TOP_LEAKS);
   if (up.length) {
     items.push(['Biggest point leaks',
       up.map(r => '<b>' + esc(unitShort(r.name)) + '</b> ' + fmtPct(r.pct)
@@ -16384,11 +16387,15 @@ function renderGuide() {
 let tipFilter = "focus";
 
 /* Focus: units under the pass line that put at least one whole exam question at
-   risk, most at risk first (unitsBelowLine already sorts that way). Recomputed on
-   every render, so a unit drops out as soon as it climbs over the line. */
+   risk, plus the Study Guide's biggest point leaks even when they sit above the
+   line (a heavy unit at 77% still leaks more than a light one at 65%). Most at
+   risk first. Recomputed on every render, so the list follows the scores. */
 const FOCUS_MIN_EXAM_QS = 1;
 function focusUnits() {
-  return unitsBelowLine().filter(r => r.lost !== null && r.lost >= FOCUS_MIN_EXAM_QS);
+  const out = new Map();
+  for (const r of unitsBelowLine()) if (r.lost !== null && r.lost >= FOCUS_MIN_EXAM_QS) out.set(r.id, r);
+  for (const r of priorityOrder().slice(0, TOP_LEAKS)) if (!out.has(r.id)) out.set(r.id, r);
+  return [...out.values()].sort((a, b) => b.lost - a.lost || a.pct - b.pct);
 }
 
 function tipRow(t) {
@@ -16481,8 +16488,9 @@ function renderQuickTips() {
     + '<span class="qt-bn">' + live.length + '</span></button></div>';
   html += '<p class="qt-fnote">' + (focus.length
     ? 'Units under the ' + EXAM.PASS_LINE + '% line that cost you at least one exam question, '
-      + 'most at risk first: '
-      + focus.map(r => '<b>' + esc(unitShort(r.name)) + '</b> (~' + r.lost.toFixed(1) + ' Qs)').join(', ')
+      + 'plus your ' + TOP_LEAKS + ' biggest point leaks, most at risk first: '
+      + focus.map(r => '<b>' + esc(unitShort(r.name)) + '</b> (~' + r.lost.toFixed(1) + ' Qs'
+          + (r.pct !== null && r.pct >= EXAM.PASS_LINE ? ', above the line but heavily tested' : '') + ')').join(', ')
       + '. Reading habits stay because they cost points everywhere. Every other tip is under All.'
     : 'No unit is under the ' + EXAM.PASS_LINE + '% line by a full exam question right now, '
       + 'so only the reading-habit tips show here. Every other tip is under All.') + '</p>';
