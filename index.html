@@ -264,7 +264,59 @@ ol.next li .k{font-weight:620;color:var(--ink)}
 #guide-units[data-filter="focus"] .ucard{order:var(--fo,99)}
 #guide-units[data-filter="focus"] .ucard:not([data-focus]),
 #guide-units[data-filter="focus"] .muted-line{display:none}
-ol.next.focus li .v .tag{margin-left:2px}
+.ucard ul.rec{margin:0 0 4px;padding-left:18px;font-size:13.5px;color:var(--ink-2)}
+.ucard ul.rec li{margin:0 0 5px}
+.ucard ul.rec li b{color:var(--ink);font-weight:600}
+/* ---------- Prioritize these ---------- */
+.pz-lead{font-size:15px;margin:0 0 12px}
+.pz-topics{background:var(--surface);border:1px solid var(--ring);border-radius:var(--radius);padding:2px 15px}
+.pz-trow{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(90px,2fr) 112px;gap:6px 16px;
+  align-items:center;padding:11px 0;border-bottom:1px solid var(--grid)}
+.pz-trow:last-child{border-bottom:0}
+.pz-tname{font-size:14px;color:var(--ink);line-height:1.35}
+.pz-tname span{display:block;font-size:12px;color:var(--muted)}
+.pz-tnum{text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums;line-height:1.3}
+.pz-tnum b{display:block;font-size:15.5px;font-weight:650;color:var(--ink)}
+.pz-tnum .sub{display:block;font-size:12px;color:var(--muted)}
+.pz-meter{position:relative;display:block;height:8px;border-radius:4px;background:var(--grid)}
+.pz-meter .fill{position:absolute;left:0;top:0;bottom:0;border-radius:4px;background:#8f8d86}
+.below .pz-meter .fill{background:var(--critical)}
+.pz-meter .tick{position:absolute;top:-4px;bottom:-4px;width:2px;margin-left:-1px;border-radius:1px;background:var(--ink)}
+.pz-key{font-size:12px;color:var(--muted);margin:6px 0 18px}
+.pz-sub{font-size:13.5px;color:var(--ink-2);margin:0 0 4px}
+.pz-gh{display:flex;align-items:baseline;flex-wrap:wrap;gap:8px;margin:16px 0 8px;font-size:12.5px;
+  font-weight:650;text-transform:uppercase;letter-spacing:.06em;color:var(--ink-2)}
+.pz-gh span{text-transform:none;letter-spacing:0;font-weight:500;color:var(--muted)}
+.pz-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:10px}
+.pz-card{display:flex;flex-direction:column;gap:10px;background:var(--surface);border:1px solid var(--ring);
+  border-radius:var(--radius);padding:13px 15px 13px}
+.pz-card.below{box-shadow:inset 3px 0 0 var(--critical)}
+.pz-h{display:grid;grid-template-columns:26px minmax(0,1fr) auto;gap:10px;align-items:start}
+.pz-rank{width:26px;height:26px;border-radius:50%;display:grid;place-items:center;font-size:12.5px;
+  font-weight:700;color:var(--ink);background:var(--surface-2);border:1px solid var(--axis)}
+.pz-name{line-height:1.3}
+.pz-name b{display:block;font-size:15px;color:var(--ink)}
+.pz-name span{display:block;font-size:12.5px;color:var(--muted)}
+.pz-score{font-size:20px;font-weight:660;color:var(--ink);font-variant-numeric:tabular-nums;white-space:nowrap}
+.pz-tags{display:flex;flex-wrap:wrap;align-items:center;gap:6px 8px;font-size:12.5px}
+.pz-risk{color:var(--ink-2);font-variant-numeric:tabular-nums}
+.pz-rem{border-top:1px solid var(--grid);padding-top:10px}
+.pz-rem .lbl{display:block;font-size:11px;font-weight:650;text-transform:uppercase;letter-spacing:.06em;
+  color:var(--muted);margin:0 0 3px}
+.pz-rem .when{display:block;font-size:12.5px;color:var(--muted);line-height:1.4}
+.pz-rem .do{display:block;font-size:14px;color:var(--ink);font-weight:560;line-height:1.45;margin-top:1px}
+.pz-lines{display:grid;grid-template-columns:fit-content(42%) minmax(0,1fr);gap:4px 12px;margin:8px 0 0;
+  font-size:12.5px;line-height:1.4}
+.pz-lines .k{color:var(--muted)}
+.pz-lines .v{color:var(--ink-2)}
+.pz-rem .more{display:block;font-size:12px;color:var(--muted);margin-top:6px}
+@media(max-width:560px){
+  .pz-trow{grid-template-columns:minmax(0,1fr) auto;row-gap:8px}
+  .pz-lines{grid-template-columns:1fr;gap:0}
+  .pz-lines .k{margin-top:5px}
+  .pz-trow .pz-meter{grid-column:1/-1;grid-row:2}
+  .pz-grid{grid-template-columns:1fr}
+}
 .miss .src{font-size:12px;color:var(--muted);margin:6px 0 0}
 .muted-line{color:var(--muted);font-size:13px;margin:4px 0 14px}
 /* ---------- dump sheet ---------- */
@@ -16208,7 +16260,20 @@ function focusTipCount() {
 function unitTopicIds(id) { const m = mapForUnit(id); return m ? Object.keys(m.split) : []; }
 
 /* Prioritize these: topics in the order they cost exam questions, then the focus
-   units (the same list Quick Tips' Focus view uses), each with why it is there. */
+   units (the same list Quick Tips' Focus view uses) grouped under their topic.
+   Each unit card carries one thing to remember: its most-missed tip. */
+function scoreMeter(p, label) {
+  const v = Math.max(0, Math.min(100, p));
+  return '<span class="pz-meter" role="img" aria-label="' + esc(label) + '" title="' + esc(label) + '">'
+    + '<span class="fill" style="width:' + v.toFixed(1) + '%"></span>'
+    + '<span class="tick" style="left:' + EXAM.PASS_LINE + '%"></span></span>';
+}
+
+function topTipFor(unitId) {
+  return quickTips.filter(t => !t.cleared && t.kind !== "technique" && t.unitId === unitId)
+    .sort((a, b) => (b.count || 1) - (a.count || 1))[0] || null;
+}
+
 function renderGuideFocus() {
   if (!hasData()) {
     setHTML("guide-focus", '<p>Nothing to prioritize until Kaplan has been read.</p>');
@@ -16235,53 +16300,102 @@ function renderGuideFocus() {
       + (tp.length ? '; <b>Topic ' + tp[0].id + '</b> still leaks the most exam questions.' : '.');
   }
 
-  let rows = "";
+  /* Topics: one row each, a 0-100 bar with the pass line marked. */
+  let trows = "";
   const seen = new Set();
   for (const t of tp) {
     seen.add(t.id);
-    rows += '<tr' + (t.pct < line ? ' class="below"' : '') + '>'
-      + '<td><b>' + t.id + '</b> ' + esc(t.short)
-      + ' <span class="muted">&middot; ' + t.weight + '% of the exam</span></td>'
-      + '<td class="num">' + bound("topic." + t.id + ".pct") + '</td>'
-      + '<td class="num">~' + t.lost.toFixed(1) + '</td></tr>';
+    const low = t.pct < line;
+    trows += '<div class="pz-trow' + (low ? ' below' : '') + '">'
+      + '<div class="pz-tname"><b>' + t.id + '</b> ' + esc(t.short)
+      + '<span>' + t.weight + '% of the exam</span></div>'
+      + scoreMeter(t.pct, 'Topic ' + t.id + ': ' + fmtPct(t.pct) + ', pass line ' + line + '%')
+      + '<div class="pz-tnum"><b>' + bound("topic." + t.id + ".pct") + '</b>'
+      + '<span class="sub">~' + t.lost.toFixed(1) + ' Qs at risk</span></div></div>';
   }
   for (const t of nasaaData.topics) {
     if (seen.has(t.id)) continue;
-    rows += '<tr><td><b>' + t.id + '</b> ' + esc(t.short)
-      + ' <span class="muted">&middot; ' + t.weight + '% of the exam</span></td>'
-      + '<td class="num"><span class="muted">not started</span></td><td class="num">' + EM + '</td></tr>';
+    trows += '<div class="pz-trow"><div class="pz-tname"><b>' + t.id + '</b> ' + esc(t.short)
+      + '<span>' + t.weight + '% of the exam</span></div><span class="pz-meter"></span>'
+      + '<div class="pz-tnum"><span class="sub">not started</span></div></div>';
   }
 
-  const items = focus.map((r, i) => {
+  /* Units: grouped under their topic (topics in priority order), global rank kept. */
+  const card = (r, rank) => {
     const cp = latest[r.id];
     const cpPct = cp ? pct(cp.score, cp.total) : null;
-    const topics = unitTopicIds(r.id);
-    const bits = [esc(unitTitle(r.name)),
-      bound("unit." + r.id + ".pooled"),
-      (topics.length ? 'Topic ' + topics.join('/') : ''),
-      '~' + r.lost.toFixed(1) + ' exam Qs at risk'].filter(Boolean);
-    let why = r.pct !== null && r.pct >= line
-      ? ' <span class="tag warn">above the line, but heavily tested</span>' : '';
-    if (cpPct !== null && cpPct < line) {
-      why += ' <span class="tag bad">retake the checkpoint (' + cp.score + '/' + cp.total + ')</span>';
-    }
-    return '<li><span class="k">' + (i + 1) + '. ' + esc(unitShort(r.name)) + '</span>'
-      + '<span class="v">' + bits.join(' &middot; ') + why + '</span></li>';
-  });
+    const low = r.pct !== null && r.pct < line;
+    const tags = ['<span class="pz-risk">~' + r.lost.toFixed(1) + ' exam Qs at risk</span>'];
+    if (!low) tags.push('<span class="tag warn">Above the line, but ~' + fmtExamQs(r.examQuestions)
+      + ' exam Qs ride on it</span>');
+    if (cpPct !== null && cpPct < line) tags.push('<span class="tag bad">Retake: last checkpoint '
+      + cp.score + '/' + cp.total + '</span>');
+    const tip = topTipFor(r.id);
+    return '<article class="pz-card' + (low ? ' below' : '') + '">'
+      + '<div class="pz-h"><span class="pz-rank" aria-label="Priority ' + rank + '">' + rank + '</span>'
+      + '<div class="pz-name"><b>' + esc(unitShort(r.name)) + '</b><span>' + esc(unitTitle(r.name)) + '</span></div>'
+      + '<span class="pz-score">' + bound("unit." + r.id + ".pooled") + '</span></div>'
+      + scoreMeter(r.pct, unitShort(r.name) + ': ' + fmtPct(r.pct) + ', pass line ' + line + '%')
+      + '<div class="pz-tags">' + tags.join('') + '</div>'
+      + (tip ? '<div class="pz-rem"><span class="lbl">Remember &middot; missed ' + (tip.count || 1) + '&times;</span>'
+          + '<span class="when">' + esc(tip.trigger) + '</span>'
+          + '<span class="do">' + esc(tip.move) + '</span>'
+          + (tip.lines && tip.lines.length
+              ? '<span class="pz-lines">' + tip.lines.slice(0, 3).map(l =>
+                  '<span class="k">' + esc(l[0]) + '</span><span class="v">' + esc(l[1]) + '</span>').join('')
+                + '</span>'
+                + (tip.lines.length > 3 ? '<span class="more">+' + (tip.lines.length - 3)
+                    + ' more in Quick Tips</span>' : '')
+              : '')
+          + '</div>' : '')
+      + '</article>';
+  };
+  const rankOf = {};
+  focus.forEach((r, i) => { rankOf[r.id] = i + 1; });
+  const order = tp.map(t => t.id).concat(nasaaData.topics.map(t => t.id).filter(id => !tp.some(t => t.id === id)));
+  const placed = new Set();
+  let groups = "";
+  for (const tid of order) {
+    const mine = focus.filter(r => !placed.has(r.id) && unitTopicIds(r.id).includes(tid));
+    if (!mine.length) continue;
+    mine.forEach(r => placed.add(r.id));
+    const t = nasaaData.topics.find(x => x.id === tid);
+    groups += '<h3 class="pz-gh">Topic ' + tid + (t ? ' &middot; ' + esc(t.short) : '')
+      + ' <span>' + mine.length + ' focus unit' + (mine.length === 1 ? '' : 's') + '</span></h3>'
+      + '<div class="pz-grid">' + mine.map(r => card(r, rankOf[r.id])).join('') + '</div>';
+  }
+  const loose = focus.filter(r => !placed.has(r.id));
+  if (loose.length) {
+    groups += '<h3 class="pz-gh">Other</h3><div class="pz-grid">'
+      + loose.map(r => card(r, rankOf[r.id])).join('') + '</div>';
+  }
 
   setHTML("guide-focus",
-    '<p>' + lead + '</p>'
-    + '<div class="scroller"><table class="narrow" style="min-width:0"><thead><tr><th>Topic</th>'
-    + '<th>You</th><th>Qs at risk</th></tr></thead><tbody>'
-    + rows + '</tbody></table></div>'
-    + (items.length
-        ? '<p>Units under the ' + line + '% line that cost you at least one exam question, plus '
-          + 'your ' + TOP_LEAKS + ' biggest point leaks, most at risk first:</p>'
-          + '<ol class="next focus">' + items.join("") + '</ol>'
+    '<p class="pz-lead">' + lead + '</p>'
+    + '<div class="pz-topics">' + trows + '</div>'
+    + '<p class="pz-key">The white tick on each bar is the ' + line + '% pass line.</p>'
+    + (focus.length
+        ? '<p class="pz-sub">Focus units, numbered by exam questions at risk: everything under the '
+          + 'line by a full question, plus your ' + TOP_LEAKS + ' biggest leaks.</p>' + groups
           + '<p class="muted-line">Quick Tips opens on these units: ' + focusTipCount()
-          + ' tips including the reading habits. The list moves with your scores.</p>'
+          + ' tips including the reading habits. Both lists move with your scores.</p>'
         : '<p>No unit is under the line by a full exam question, and nothing has been '
           + 'scored to rank the leaks yet.</p>'));
+}
+
+/* Cowork's per-unit notes arrive as one paragraph. Split them into points at each
+   "Label: ..." sentence (a theme or a date), and drop bare question references like
+   "(Quiz 2 Q3, Exam Q6)" that mean nothing outside Kaplan. No lookbehind, so older
+   Safari can still parse the page. */
+const REC_REF = /\s*\((?:(?:Quiz|Exam|Review|Midterm|Checkpoint|U\d+ quiz)\s*)?[0-9-]*\s*Q\d+(?:[\/,;]\s*(?:(?:Quiz|Exam|Review|Midterm|Checkpoint|U\d+ quiz)\s*)?[0-9-]*\s*Q\d+)*\)/g;
+function recurringHTML(text) {
+  const parts = String(text).replace(/([.)])\s+(?=[A-Z][^.:;()]{1,60}:\s)/g, '$1\u0001')
+    .split('\u0001').map(s => s.replace(REC_REF, '').trim()).filter(Boolean);
+  if (parts.length < 2) return '<p class="rec">' + esc(parts[0] || text) + '</p>';
+  return '<ul class="rec">' + parts.map(s => {
+    const m = s.match(/^([A-Z][^.:;()]{1,60}):\s+([\s\S]*)$/);
+    return '<li>' + (m ? '<b>' + esc(m[1]) + ':</b> ' + esc(m[2]) : esc(s)) + '</li>';
+  }).join('') + '</ul>';
 }
 
 /* Latest checkpoint attempt per unit, so a retake replaces the old score. */
@@ -16396,7 +16510,7 @@ function renderGuideUnits() {
       + ' <span class="ut">' + esc(unitTitle(u.name)) + '</span></h3>'
       + '<span class="big">' + bound("unit." + u.id + ".pooled") + '</span></div>'
       + '<p class="meta">' + meta.join(' &middot; ') + '</p>'
-      + (u.recurring ? '<p class="rec">' + esc(u.recurring) + '</p>' : '')
+      + (u.recurring ? recurringHTML(u.recurring) : '')
       + (mine.length
           ? '<details class="fold"><summary>' + mine.length + ' missed question'
             + (mine.length === 1 ? '' : 's') + ', explained</summary>'
