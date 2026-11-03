@@ -271,10 +271,21 @@ tfoot td{border-top:1px solid var(--axis);font-weight:600;color:var(--ink);borde
 .dr-trap b{color:var(--ink);margin-right:5px}
 .dr-close .dr-cue.big{font-size:24px}
 .dr-close .dr-rule.big{font-size:22px;font-weight:600;line-height:1.4}
-.dr-reveal{display:block;width:100%;margin-top:18px;padding:16px;border-radius:12px;border:1px dashed var(--axis);
-  background:var(--surface-2);color:var(--ink);font:600 18px/1.2 var(--sans);cursor:pointer;min-height:56px}
-.dr-mark{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:18px}
-.dr-mark button,.dr-nav button{min-height:52px;border-radius:12px;font:650 17px/1 var(--sans);cursor:pointer;
+.dr-stem{margin:0 0 14px;font-size:18px;line-height:1.5;color:var(--ink);white-space:pre-line}
+.dr-opts{display:grid;gap:10px}
+.dr-opt{display:block;width:100%;text-align:left;padding:13px 14px;border-radius:12px;border:1px solid var(--axis);
+  background:var(--surface-2);color:var(--ink);font:500 17px/1.4 var(--sans);cursor:pointer;min-height:52px}
+.dr-opt:disabled{cursor:default}
+.dr-opt.right{border-color:var(--good);box-shadow:inset 3px 0 0 var(--good)}
+.dr-opt.wrong{border-color:var(--critical);box-shadow:inset 3px 0 0 var(--critical)}
+.dr-opt.dim{opacity:.55}
+.dr-mk{font-weight:700;margin-right:8px}
+.dr-verdict{margin:14px 0 4px;font-size:17px;font-weight:700;color:var(--ink)}
+.dr-why{margin:0 0 6px;font-size:17px;color:var(--ink-2);line-height:1.5}
+.dr-more{font-size:15px;color:var(--ink-2)}
+.dr-more summary{cursor:pointer;color:var(--s1);font-weight:600;padding:4px 0}
+.dr-more p{margin:6px 0 0;line-height:1.5}
+.dr-nav button{min-height:52px;border-radius:12px;font:650 17px/1 var(--sans);cursor:pointer;
   border:1px solid var(--axis);background:var(--surface-2);color:var(--ink)}
 .dr-mark button[data-review="miss"]{color:var(--ink-2)}
 .dr-nav{display:flex;gap:10px;margin:12px 0 0}
@@ -460,7 +471,7 @@ footer.foot{margin-top:40px;padding-top:16px;border-top:1px solid var(--grid);
 #print-root{display:none;color:#000;background:#fff;font-family:Arial,Helvetica,sans-serif}
 #print-root.measuring{display:block;position:absolute;left:-20000px;top:0;width:7.7in;visibility:hidden}
 @page{size:letter;margin:0.4in}
-@page dumpsheet{size:letter;margin:0.3in}
+@page dumpsheet{size:letter;margin:.25in .3in}
 @media print{
   body[data-print]{background:#fff!important;color:#000!important}
   body[data-print] .wrap{display:none!important}
@@ -470,9 +481,9 @@ footer.foot{margin-top:40px;padding-top:16px;border-top:1px solid var(--grid);
 .dp{font-size:9pt;page:dumpsheet}
 #print-root.measuring.k-dump,#print-root.measuring.k-blank{width:7.9in}
 .dp-h{font-size:9pt;line-height:1.2;margin:0 0 3pt;padding:0 0 2pt;border-bottom:.75pt solid #000}
-.dp-cols{--lh:1.2;line-height:var(--lh);columns:2;column-gap:.12in;column-fill:auto;height:10.18in;overflow:hidden}
+.dp-cols{--lh:1.2;line-height:var(--lh);columns:2;column-gap:.12in;column-fill:auto;height:9.88in;overflow:hidden}
 .dp.blank .dp-cols{height:auto;overflow:visible;column-fill:balance}
-.db h4{margin:3.5pt 0 1pt;font-size:9pt;text-transform:uppercase;letter-spacing:.03em;break-after:avoid}
+.db h4{margin:3pt 0 .5pt;font-size:9pt;text-transform:uppercase;letter-spacing:.03em;break-after:avoid}
 .db:first-child h4{margin-top:0}
 .db h4 span{font-weight:400;text-transform:none;letter-spacing:0}
 .dr{padding-left:6pt;text-indent:-6pt;break-inside:avoid}
@@ -1028,12 +1039,14 @@ footer.foot{margin-top:40px;padding-top:16px;border-top:1px solid var(--grid);
 </section>
 <!-- ============ 5 · DUMP SHEET ============ -->
 <section class="tab" id="tab-dump" role="tabpanel" aria-labelledby="t-dump">
-  <p class="lead">Write these down cold in the first five minutes. Go in this order, and if
-    time is short, skip the last two.</p>
+  <p class="lead">Practice writing this from memory. On exam day, only jot down the 5
+    most-missed numbers if your test center gives you scratch material, since writing time
+    counts against your <span data-bind="exam.minutes"></span> minutes. Go in this order, and
+    if time is short, skip the last two.</p>
   <small class="note"><span data-bind="exam.minutes"></span> minutes for
     <span data-bind="exam.total"></span> questions is
-    <span data-bind="exam.secondsPerQuestion"></span> seconds each, so the dump has to be
-    fast. The order comes from exam weight against your accuracy, then from how many of a
+    <span data-bind="exam.secondsPerQuestion"></span> seconds each, so any time spent writing
+    comes out of answering. The order comes from exam weight against your accuracy, then from how many of a
     block's lines you have missed, so it moves as your data moves.</small>
   <div class="print-bar">
     <button type="button" class="reveal-btn" data-print-kind="dump">Print the sheet</button>
@@ -15642,8 +15655,15 @@ function fmtDate(iso) {
   if (isNaN(d)) return EM;
   return d.toLocaleDateString("en-US", { year: "numeric", month: "short", day: "numeric", timeZone: "UTC" });
 }
-/* The viewer's LOCAL calendar date, not UTC: at 9 pm Eastern it is still today. */
+/* Today in Pacific time (Austin's clock), whatever the device or UTC says. */
+const STUDY_TZ = "America/Los_Angeles";
 function todayISO() {
+  try {
+    const p = {};
+    for (const x of new Intl.DateTimeFormat("en-US", { timeZone: STUDY_TZ, year: "numeric", month: "2-digit",
+        day: "2-digit" }).formatToParts(new Date())) p[x.type] = x.value;
+    if (p.year && p.month && p.day) return p.year + "-" + p.month + "-" + p.day;
+  } catch (e) { /* no Intl time zones: fall back to the device's own date */ }
   const d = new Date();
   return d.getFullYear() + "-" + String(d.getMonth() + 1).padStart(2, "0") + "-" + String(d.getDate()).padStart(2, "0");
 }
@@ -17273,9 +17293,10 @@ function renderPairs() {
 
 /* ==========================================================================
    DAILY REVIEW - a 5-10 minute phone review, Nov 2 through exam morning Nov 9.
-   Every card is built at render time from Quick Tips, Pairs or Dump Sheet rows
-   (never the Reference Sheet), so a sync rewrites the cards too. A day's plan
-   names its cards by reference:
+   Warm-up cards are built at render time from Quick Tips, Pairs and Dump Sheet
+   rows (never the Reference Sheet). Quick checks are real Kaplan questions he
+   missed: the question, his old wrong answer against Kaplan's right one, then
+   why. A day's warm-up names its cards by reference:
      "tip:ID"         the tip's cue and rule        "tip:ID:n"   line n of the tip
      "tipall:ID"      the tip with its lines        "pair:ID:n"  row n of a pair
      "pairall:ID"     the whole pair                "dump:KEY:k" the Dump Sheet row labelled k
@@ -17284,31 +17305,28 @@ function renderPairs() {
    ========================================================================== */
 const REVIEW_MAX_CARDS = 14;
 const REVIEW_DAYS = [
-  { date: "2026-11-02", title: "Who registers where", sub: "Units 1-3",
+  { date: "2026-11-02", title: "Who registers where", sub: "Units 1-3", units: ["U1", "U2", "U3"],
     read: ["pair:p1:0", "tip:t-where-to-register:1", "tip:t-where-to-register:0",
            "tip:t-where-to-register:3", "pair:p1:4", "tip:t-dec-31-renewal"],
-    check: ["tip:t-where-to-register:4", "tip:t-where-to-register:5", "tip:t-who-notifies:2",
-            "tip:t-dec-31-renewal:0", "pair:p1:1", "dump:reg:SEC adviser falls under $90M"] },
-  { date: "2026-11-03", title: "Conduct", sub: "Unit 7",
+    also: ["tip:t-who-notifies", "tip:t-exclusion-vs-exemption", "tip:t-supervised-persons", "pair:p2:2"] },
+  { date: "2026-11-03", title: "Conduct", sub: "Unit 7", units: ["U7"],
     read: ["pairall:p5", "tip:t-discretion-who", "dump:never:Exculpatory clause", "pair:p2:0",
            "dump:never:Borrow from a client", "tip:t-fraud-gain-and-intent:0"],
-    check: ["tip:t-custody:3", "dump:never:Blanket recommendation", "tip:t-commission-sharing",
-            "dump:never:Imply registration = approval", "tip:t-fraud-gain-and-intent:1", "tip:t-confidentiality-exits"] },
-  { date: "2026-11-04", title: "Communications", sub: "Unit 6",
+    also: ["tip:t-custody", "tip:t-commission-sharing", "tip:t-suitability", "tip:t-confidentiality-exits",
+           "tip:t-code-of-ethics-clock", "tip:t-no-waivers"] },
+  { date: "2026-11-04", title: "Communications", sub: "Unit 6", units: ["U6"],
     read: ["tipall:t-brochure-delivery", "pair:p13:0", "tip:t-principal-vs-agency", "tip:t-form-crs",
            "tipall:t-content-not-device", "tip:t-performance-ads"],
-    check: ["tip:t-brochure-delivery:3", "tip:t-brochure-delivery:2", "tip:t-principal-vs-agency:0",
-            "tip:t-content-not-device:3", "tip:t-form-adv-grid:1", "tip:t-principal-vs-agency:1"] },
-  { date: "2026-11-05", title: "Securities and enforcement", sub: "Units 4-5",
+    also: ["tip:t-form-adv-grid", "tip:t-ordinary-business", "tip:t-disclose-conflicts-only", "tip:t-fees-fit-the-account"] },
+  { date: "2026-11-05", title: "Securities and enforcement", sub: "Units 4-5", units: ["U4", "U5"],
     read: ["pairall:p6", "tip:t-exempt-transactions", "pair:p7:0", "tip:t-cancel-vs-revoke:2",
            "tipall:t-unit5-numbers", "pair:p4:0"],
-    check: ["tip:t-exempt-securities-conditions:2", "tip:t-federal-covered", "tip:t-unit5-numbers:0",
-            "tip:t-unit5-numbers:2", "tip:t-cancel-vs-revoke:3", "tip:t-exempt-securities-conditions:0"] },
-  { date: "2026-11-06", title: "Clients and portfolios", sub: "Units 15, 17, 20, 22",
+    also: ["tip:t-exempt-securities-conditions", "tip:t-federal-covered", "tip:t-cancel-vs-revoke",
+           "tip:t-jurisdiction", "tip:t-rule-vs-order"] },
+  { date: "2026-11-06", title: "Clients and portfolios", sub: "Units 15, 17, 20, 22", units: ["U15", "U17", "U20", "U22"],
     read: ["pairall:p11", "tip:t-investment-styles", "tip:t-risk-by-asset", "tip:t-business-entities:0",
            "pairall:p9", "tip:t-margin-accounts"],
-    check: ["tip:t-bond-strategies", "tip:t-trust-accounts", "tip:t-emh:0", "tip:t-trust-accounts:3",
-            "pair:p10:3", "tip:t-business-entities:1"] },
+    also: ["tip:t-emh", "tip:t-bond-strategies", "tip:t-trust-accounts", "tip:t-education-accounts", "tip:t-portfolio-math"] },
   { date: "2026-11-07", title: "Numbers day", sub: "Dump Sheet blocks 1-2 and the formulas", numbers: true },
   { date: "2026-11-08", title: "Light day", sub: "The Pairs, then this week's misses", pairs: true },
   { date: "2026-11-09", title: "Exam morning", sub: "Read only. No quiz.",
@@ -17316,13 +17334,13 @@ const REVIEW_DAYS = [
            "dump:money:Net worth", "dump:money:Substantial prepayment", "dump:money:Performance fees",
            "dump:clock:Adviser records", "dump:clock:Exploitation hold"], readOnly: true }
 ];
-const REVIEW_SEC_PER_CARD = 35;
+const REVIEW_SEC = { read: 35, check: 50 };
 
-/* ---- cards ---------------------------------------------------------------- */
+/* ---- warm-up cards ---------------------------------------------------------- */
 function lastPickTrap(ids) {
   const qs = knownMisses(ids).map(id => MISS_BY_ID[id]).sort((a, b) => String(b.date).localeCompare(String(a.date)));
   if (!qs.length || !qs[0].myAnswer) return "";
-  let a = String(qs[0].myAnswer).replace(/^[A-D]\)\s*/, "").trim();
+  let a = String(qs[0].myAnswer).replace(/^[A-E]\)\s*/, "").trim();
   if (a.length > 110) a = a.slice(0, 107).replace(/\s+\S*$/, "") + "...";
   return "Last time you picked “" + a + "”";
 }
@@ -17339,7 +17357,7 @@ function reviewCard(ref) {
     }
     const lines = kind === "tipall" ? (t.lines || []).slice(0, 4).map(l => l[0] + ": " + l[1]) : [];
     return { key: ref, cue: t.trigger, rule: t.move, list: lines, tip: t,
-             trap: (t.count || 1) && !t.cleared ? lastPickTrap(t.fromMisses) : "" };
+             trap: t.cleared ? "" : lastPickTrap(t.fromMisses) };
   }
   if (kind === "pair" || kind === "pairall") {
     const p = PAIRS.find(x => x.id === id);
@@ -17361,16 +17379,105 @@ function reviewCard(ref) {
   }
   return null;
 }
-function cardMisses(c) { return c.tip ? (c.tip.count || 1) : c.pair ? pairMissCount(c.pair) : 0; }
 function cardYield(c) {
   if (c.tip) return tipYield(c.tip);
   if (c.pair) return pairMissCount(c.pair) * unitExamQuestions(c.pair.unitId);
   return 0;
 }
+function numbersDayRows() {
+  const blocks = dumpOrder().filter(b => b.key !== "formulas").slice(0, 2)
+    .concat(DUMP_BLOCKS.filter(b => b.key === "formulas"));
+  return blocks.map(b => ({ b, rows: b.key === "formulas" ? b.rows : b.rows.filter(r => /\d/.test(r.k + r.v)) }));
+}
+function numbersDayRead() {
+  const read = [];
+  for (const { b, rows } of numbersDayRows()) {
+    const half = Math.ceil(rows.length / 2);
+    [rows.slice(0, half), rows.slice(half)].forEach((chunk, n) => {
+      if (!chunk.length) return;
+      read.push({ key: "num:" + b.key + ":" + n, ctx: "Every number", cue: b.name + (half < rows.length ? " (" + (n + 1) + " of 2)" : ""),
+                  list: chunk.map(r => r.k + ": " + r.v) });
+    });
+  }
+  return read.slice(0, 6);
+}
+
+/* ---- quick-check questions ---------------------------------------------------
+   One real Kaplan question per card: his old wrong answer against Kaplan's right
+   one, in a fixed but unpredictable order, then the reason. Letters are dropped,
+   since only two of the original choices are shown. */
+function stripLetter(a) { return String(a || "").replace(/^\s*[A-E]\)\s*/, "").trim(); }
+function idHash(s) { let h = 0; for (const ch of String(s)) h = (h * 31 + ch.charCodeAt(0)) | 0; return Math.abs(h); }
+function firstSentences(text, n) {
+  const parts = String(text || "").replace(/\s+/g, " ").match(/[^.!?]+[.!?]+(\s|$)/g) || [String(text || "")];
+  return parts.slice(0, n).join("").trim();
+}
+function questionCard(id) {
+  const q = MISS_BY_ID[id];
+  if (!q) return null;
+  const right = stripLetter(q.correctAnswer), wrong = stripLetter(q.myAnswer);
+  if (!right || !wrong || right === wrong) return null;
+  const flip = idHash(id) % 2 === 1;
+  /* Roman-numeral statements read better one per line. */
+  const stem = String(q.question).replace(/\s+(I{1,3}|IV)\.\s+(?=[A-Z])/g, "\n$1. ");
+  return { key: "q:" + id, kind: "q", id, unitId: q.unitId, date: q.date, stem,
+           options: flip ? [wrong, right] : [right, wrong], right: flip ? 1 : 0,
+           why: firstSentences(q.explanation || q.rationale, 2), full: q.explanation || q.rationale || "" };
+}
+/* The Kaplan misses behind a day's theme: every tip and pair it touches, kept to
+   its units, the most-missed rule first and its latest miss first, one rule at a
+   time so the six don't all test the same thing. */
+function themeQuestionIds(d) {
+  const refs = d.numbers ? [] : (d.read || []).concat(d.also || []);
+  const groups = [];
+  const seenTip = new Set();
+  const addGroup = (ids, weight) => { if (ids.length) groups.push({ ids, weight }); };
+  const fromTip = t => { if (t && !seenTip.has(t.id) && t.kind !== "technique") { seenTip.add(t.id); addGroup(knownMisses(t.fromMisses), t.count || 1); } };
+  if (d.numbers) {
+    for (const { rows } of numbersDayRows()) for (const r of rows) if (r.tip) fromTip(quickTips.find(t => t.id === r.tip));
+  }
+  for (const ref of refs) {
+    const [kind, id] = ref.split(":");
+    if (kind === "tip" || kind === "tipall") fromTip(quickTips.find(t => t.id === id));
+    else if (kind === "pair" || kind === "pairall") {
+      const p = PAIRS.find(x => x.id === id);
+      if (p && !seenTip.has(p.id)) { seenTip.add(p.id); addGroup(knownMisses(p.misses), pairMissCount(p)); }
+    } else if (kind === "dump") {
+      const b = DUMP_BLOCKS.find(x => x.key === id);
+      const r = b ? b.rows.find(x => x.k === ref.split(":").slice(2).join(":")) : null;
+      if (r && r.tip) fromTip(quickTips.find(t => t.id === r.tip));
+    }
+  }
+  const inUnits = id => !d.units || d.units.includes(MISS_BY_ID[id].unitId);
+  const byDate = (a, b) => String(MISS_BY_ID[b].date).localeCompare(String(MISS_BY_ID[a].date));
+  const lists = groups.sort((a, b) => b.weight - a.weight).map(g => g.ids.filter(inUnits).sort(byDate));
+  const out = [];
+  for (let round = 0; lists.some(l => l.length > round); round++) {
+    for (const l of lists) if (l[round] && !out.includes(l[round])) out.push(l[round]);
+  }
+  return out.filter(id => questionCard(id));
+}
+/* Heaviest units first, for a day with no earlier days to space from. */
+function focusQuestionIds(skipUnits) {
+  const rank = {};
+  focusUnits().forEach((r, i) => { rank[r.id] = i; });
+  return missedQuestions.filter(q => rank[q.unitId] !== undefined && !(skipUnits || []).includes(q.unitId))
+    .sort((a, b) => rank[a.unitId] - rank[b.unitId] || String(b.date).localeCompare(String(a.date)))
+    .map(q => q.id).filter(id => questionCard(id));
+}
+/* Questions from a full-length sim taken the day before, heaviest unit first. */
+function simSwapIds(viewISO) {
+  const prev = REVIEW_DAYS.find((d, i) => REVIEW_DAYS[i + 1] && REVIEW_DAYS[i + 1].date === viewISO);
+  if (!prev) return [];
+  const ids = [];
+  for (const e of fullLengthSims().filter(x => x.date === prev.date)) ids.push(...knownMisses(e.missIds));
+  return ids.sort((a, b) => unitExamQuestions(MISS_BY_ID[b].unitId) - unitExamQuestions(MISS_BY_ID[a].unitId))
+    .filter(id => questionCard(id)).slice(0, 2);
+}
 
 /* ---- which day ---------------------------------------------------------------
-   The phone's LOCAL date picks the day. Before the first day shows the first;
-   after exam morning shows exam morning. */
+   Pacific time decides the day (his clock), not the device and not UTC. Before
+   the first day shows the first; after exam morning shows exam morning. */
 function reviewDayFor(iso) {
   if (iso <= REVIEW_DAYS[0].date) return 0;
   const last = REVIEW_DAYS.length - 1;
@@ -17380,8 +17487,8 @@ function reviewDayFor(iso) {
 }
 
 /* ---- "Missed it" memory (per device; optional) -------------------------------
-   marks[key] = { day: plan date it was marked on, res: "got" | "miss", missed: true if
-   ever missed }. Without storage the quick checks just rotate. */
+   marks["q:<miss id>"] = { day: plan date answered on, res: "got" | "miss", missed: true
+   if ever missed }. Without storage the quick checks just rotate. */
 function reviewMarks() {
   try {
     const raw = localStorage.getItem("s66.reviewMarks");
@@ -17398,56 +17505,7 @@ function saveReviewMark(key, res, day) {
   } catch (e) { /* storage is optional; the day still works */ }
 }
 
-/* Cards that earlier days covered, as candidates for spaced review. */
-function earlierCards(di) {
-  const out = [];
-  for (let j = 0; j < di; j++) {
-    const d = REVIEW_DAYS[j];
-    const cs = d.numbers ? numbersDayCards().check : (d.read || []).concat(d.check || []).map(reviewCard);
-    for (const c of cs) if (c && !out.some(x => x.key === c.key)) out.push(c);
-  }
-  return out;
-}
-function techniqueCards() {
-  return quickTips.filter(t => t.kind === "technique" && !t.cleared)
-    .sort((a, b) => (b.count || 1) - (a.count || 1)).map(t => reviewCard("tip:" + t.id)).filter(Boolean);
-}
-/* Rules behind a full-length sim's misses, heaviest unit first: they take two of the
-   next day's quick-check slots. */
-function simSwapCards(viewISO) {
-  const prev = REVIEW_DAYS.find((d, i) => REVIEW_DAYS[i + 1] && REVIEW_DAYS[i + 1].date === viewISO);
-  if (!prev) return [];
-  const sims = fullLengthSims().filter(e => e.date === prev.date);
-  const tips = new Map();
-  for (const e of sims) {
-    for (const id of (e.missIds || [])) {
-      for (const t of quickTips) if (!t.cleared && (t.fromMisses || []).includes(id)) tips.set(t.id, t);
-    }
-  }
-  return [...tips.values()]
-    .sort((a, b) => tipWeight(b) - tipWeight(a) || (b.count || 1) - (a.count || 1))
-    .slice(0, 2).map(t => Object.assign(reviewCard("tip:" + t.id), { sim: true }));
-}
-
-function numbersDayCards() {
-  const blocks = dumpOrder().filter(b => b.key !== "formulas").slice(0, 2)
-    .concat(DUMP_BLOCKS.filter(b => b.key === "formulas"));
-  const read = [], rows = [];
-  for (const b of blocks) {
-    const nums = b.key === "formulas" ? b.rows : b.rows.filter(r => /\d/.test(r.k + r.v));
-    const half = Math.ceil(nums.length / 2);
-    [nums.slice(0, half), nums.slice(half)].forEach((chunk, n) => {
-      if (!chunk.length) return;
-      read.push({ key: "num:" + b.key + ":" + n, ctx: "Every number", cue: b.name + (half < nums.length ? " (" + (n + 1) + " of 2)" : ""),
-                  list: chunk.map(r => r.k + ": " + r.v) });
-    });
-    for (const r of nums) rows.push(reviewCard("dump:" + b.key + ":" + r.k));
-  }
-  const check = rows.filter(Boolean).sort((a, b) => cardYield(b) - cardYield(a));
-  return { read: read.slice(0, 6), check };
-}
-
-/* ---- build a day ---------------------------------------------------------- */
+/* ---- build a day ------------------------------------------------------------ */
 function buildReviewDay(di) {
   const d = REVIEW_DAYS[di];
   const marks = reviewMarks();
@@ -17455,59 +17513,56 @@ function buildReviewDay(di) {
   const used = new Set();
   const add = (c, part) => { if (c && !used.has(c.key)) { used.add(c.key); cards.push(Object.assign({}, c, { part })); return true; } return false; };
 
-  let read = [], themeCheck = [];
-  if (d.numbers) {
-    const nd = numbersDayCards();
-    read = nd.read; themeCheck = nd.check;
-  } else if (d.pairs) {
-    read = PAIRS.slice().sort((a, b) => pairMissCount(b) - pairMissCount(a) || PAIRS.indexOf(a) - PAIRS.indexOf(b))
+  let read;
+  if (d.numbers) read = numbersDayRead();
+  else if (d.pairs) read = PAIRS.slice().sort((a, b) => pairMissCount(b) - pairMissCount(a) || PAIRS.indexOf(a) - PAIRS.indexOf(b))
       .slice(0, 8).map(p => reviewCard("pairall:" + p.id));
-  } else {
-    read = (d.read || []).map(reviewCard).filter(Boolean);
-    themeCheck = (d.check || []).map(reviewCard).filter(Boolean);
-  }
+  else read = (d.read || []).map(reviewCard).filter(Boolean);
   read.forEach(c => add(c, "read"));
   if (d.readOnly) return { day: d, cards };
 
-  /* Missed-it cards from earlier days come back first. */
-  const pool = earlierCards(di);
-  const byKey = {};
-  for (const c of pool) byKey[c.key] = c;
+  const before = REVIEW_DAYS.slice(0, di).filter(x => !x.readOnly);
+  const earlier = [];
+  for (const x of before) for (const id of themeQuestionIds(x)) if (!earlier.includes(id)) earlier.push(id);
+  const isMark = (id, f) => marks && marks["q:" + id] && f(marks["q:" + id]);
+  /* Missed on an earlier day: these come back first, most recent first. */
   const carried = marks ? Object.keys(marks)
-      .filter(k => marks[k].res === "miss" && marks[k].day < d.date && byKey[k])
+      .filter(k => k.startsWith("q:") && marks[k].res === "miss" && marks[k].day < d.date && MISS_BY_ID[k.slice(2)])
       .sort((a, b) => String(marks[b].day).localeCompare(String(marks[a].day)))
-      .map(k => byKey[k]) : [];
+      .map(k => k.slice(2)).filter(id => questionCard(id)) : [];
 
   const checks = [];
+  const push = id => { if (checks.length < 6 && !checks.includes(id)) checks.push(id); };
   if (d.pairs) {
-    /* Sunday: only cards marked Missed it this week, then earlier cards. Nothing new. */
-    const week = marks ? Object.keys(marks).filter(k => marks[k].missed && marks[k].day < d.date && byKey[k])
-        .sort((a, b) => String(marks[b].day).localeCompare(String(marks[a].day))).map(k => byKey[k]) : [];
-    for (const c of week) if (checks.length < 6 && !checks.some(x => x.key === c.key)) checks.push(c);
+    /* Sunday: only questions missed this week, then earlier days' questions. Nothing new. */
+    const week = marks ? Object.keys(marks).filter(k => k.startsWith("q:") && marks[k].missed && marks[k].day < d.date
+        && MISS_BY_ID[k.slice(2)]).map(k => k.slice(2)) : [];
+    week.forEach(push);
   } else {
-    for (const c of themeCheck) if (checks.length < 3 && !used.has(c.key)) checks.push(c);
+    const theme = themeQuestionIds(d);
+    const fresh = theme.filter(id => !isMark(id, m => m.res === "got"));
+    (fresh.length >= 3 ? fresh : theme).slice(0, 3).forEach(push);
   }
-  const spacedStart = checks.length;
-  const sims = simSwapCards(d.date);
-  for (const c of sims) if (checks.length < spacedStart + 2) checks.push(c);
-  for (const c of carried) if (checks.length < 6 && !checks.some(x => x.key === c.key)) checks.push(c);
-  /* Rotate through the earlier days so each sitting sees different cards; with no
-     earlier day yet, the reading habits stand in. */
-  const rot = (pool.length ? pool : techniqueCards()).filter(c => !used.has(c.key));
-  const fresh = rot.filter(c => !(marks && marks[c.key]));
-  const order = (fresh.length >= 6 - checks.length ? fresh : rot);
-  for (let n = 0; n < order.length && checks.length < 6; n++) {
-    const c = order[(n + di * 3) % order.length];
-    if (!checks.some(x => x.key === c.key)) checks.push(c);
-  }
-  checks.forEach(c => add(c, "check"));
+  const spacedFrom = checks.length;
+  simSwapIds(d.date).forEach(id => { if (checks.length < spacedFrom + 2) push(id); });
+  carried.forEach(push);
+  /* Spaced review: earlier days' questions not yet answered right here, rotating by
+     day. With no earlier day yet, the heaviest focus units stand in. */
+  const pool = earlier.length ? earlier : focusQuestionIds(d.units);
+  const open = pool.filter(id => !checks.includes(id) && !isMark(id, () => true));
+  const order = open.length ? open : pool.filter(id => !checks.includes(id));
+  for (let n = 0; n < order.length && checks.length < 6; n++) push(order[(n + di * 3) % order.length]);
+  checks.forEach(id => add(questionCard(id), "check"));
 
-  /* One carry-over beyond the six, if more missed cards are waiting. */
-  const extra = carried.filter(c => !used.has(c.key))[0];
-  if (extra && cards.length < REVIEW_MAX_CARDS - (d.pairs ? 0 : 1)) add(extra, "check");
+  /* One carry-over beyond the six, if more missed questions are waiting. */
+  const extra = carried.find(id => !checks.includes(id));
+  if (extra && cards.length < REVIEW_MAX_CARDS - (d.pairs ? 0 : 1)) add(questionCard(extra), "check");
 
   if (!d.pairs) {
-    const theme = read.concat(themeCheck).filter(c => c.tip && !c.tip.cleared);
+    const pool = d.numbers
+      ? numbersDayRows().flatMap(({ b, rows }) => rows.map(r => reviewCard("dump:" + b.key + ":" + r.k)))
+      : read;
+    const theme = pool.filter(c => c && c.tip && !c.tip.cleared && c.tip.kind !== "technique");
     const top = theme.sort((a, b) => (b.tip.count || 1) - (a.tip.count || 1))[0];
     if (top && cards.length < REVIEW_MAX_CARDS) {
       cards.push({ part: "close", key: "close:" + top.tip.id, cue: top.tip.trigger, rule: top.tip.move,
@@ -17517,8 +17572,8 @@ function buildReviewDay(di) {
   return { day: d, cards: cards.slice(0, REVIEW_MAX_CARDS) };
 }
 
-/* ---- UI -------------------------------------------------------------------- */
-const REVIEW = { di: 0, set: null, i: 0, shown: false };
+/* ---- UI ----------------------------------------------------------------------- */
+const REVIEW = { di: 0, set: null, i: 0, pick: null };
 const REVIEW_PART = { read: "Warm-up read", check: "Quick check", close: "Today's one-liner" };
 function fmtReviewDay(iso, long) {
   const d = new Date(iso + "T12:00:00Z");
@@ -17526,33 +17581,49 @@ function fmtReviewDay(iso, long) {
                                              : { weekday: "short", month: "short", day: "numeric", timeZone: "UTC" });
 }
 function reviewMinutes(set) {
-  const n = set.cards.filter(c => c.part !== "close").length;
-  return Math.max(1, Math.round(n * REVIEW_SEC_PER_CARD / 60));
+  let s = 0;
+  for (const c of set.cards) s += REVIEW_SEC[c.part] || 0;
+  return Math.max(1, Math.round(s / 60));
 }
-function reviewCardHTML(c, set, i) {
+function questionHTML(c) {
+  const picked = REVIEW.pick;
+  let h = '<p class="dr-ctx">' + esc(unitShort(unitName(c.unitId))) + ' &middot; a Kaplan question you missed'
+    + (c.date ? ' on ' + esc(fmtDate(c.date).replace(/, \d{4}$/, '')) : '') + '</p>'
+    + '<p class="dr-stem">' + esc(c.stem) + '</p><div class="dr-opts">';
+  c.options.forEach((o, k) => {
+    const cls = picked === null ? '' : k === c.right ? ' right' : k === picked ? ' wrong' : ' dim';
+    h += '<button type="button" class="dr-opt' + cls + '" data-review="pick" data-opt="' + k + '"'
+      + (picked === null ? '' : ' disabled') + '>'
+      + (picked !== null && k === c.right ? '<span class="dr-mk">&#10003;</span>' : '')
+      + (picked !== null && k === picked && k !== c.right ? '<span class="dr-mk">&#10007;</span>' : '')
+      + esc(o) + '</button>';
+  });
+  h += '</div>';
+  if (picked !== null) {
+    h += '<p class="dr-verdict">' + (picked === c.right ? 'Right.' : 'Not this time. It comes back tomorrow.') + '</p>'
+      + (c.why ? '<p class="dr-why">' + esc(c.why) + '</p>' : '')
+      + (c.full && c.full.length > c.why.length + 20
+          ? '<details class="dr-more"><summary>Full explanation</summary><p>' + esc(c.full) + '</p></details>' : '');
+  }
+  return h;
+}
+function reviewCardHTML(c, set) {
   const partCards = set.cards.filter(x => x.part === c.part);
   const pi = partCards.indexOf(c) + 1;
-  const body = c.list && c.list.length
-    ? (c.rule ? '<p class="dr-rule">' + esc(c.rule) + '</p>' : '')
-      + '<ul class="dr-list">' + c.list.map(x => '<li>' + esc(x) + '</li>').join('') + '</ul>'
-    : '<p class="dr-rule">' + esc(c.rule || "") + '</p>';
   let h = '<article class="dr-card dr-' + c.part + '">'
-    + '<p class="dr-part">' + REVIEW_PART[c.part] + (c.part === "close" ? '' : ' &middot; ' + pi + ' of ' + partCards.length)
-    + (c.sim ? ' &middot; from your last sim' : '') + '</p>';
+    + '<p class="dr-part">' + REVIEW_PART[c.part] + (c.part === "close" ? '' : ' &middot; ' + pi + ' of ' + partCards.length) + '</p>';
   if (c.part === "close") {
     h += '<p class="dr-ctx">The rule you have missed most on this theme (' + c.misses + '&times;)</p>'
       + '<p class="dr-cue big">' + esc(c.cue) + '</p><p class="dr-rule big">' + esc(c.rule) + '</p>';
+  } else if (c.kind === "q") {
+    h += questionHTML(c);
   } else {
-    h += (c.ctx ? '<p class="dr-ctx">' + esc(c.ctx) + '</p>' : '') + '<p class="dr-cue">' + esc(c.cue) + '</p>';
-    if (c.part === "check" && !REVIEW.shown) {
-      h += '<button type="button" class="dr-reveal" data-review="reveal">Tap to reveal</button>';
-    } else {
-      h += body + (c.trap ? '<p class="dr-trap"><b>Trap</b> ' + esc(c.trap) + '</p>' : '');
-      if (c.part === "check") {
-        h += '<div class="dr-mark"><button type="button" data-review="got">Got it</button>'
-          + '<button type="button" data-review="miss">Missed it</button></div>';
-      }
-    }
+    const body = c.list && c.list.length
+      ? (c.rule ? '<p class="dr-rule">' + esc(c.rule) + '</p>' : '')
+        + '<ul class="dr-list">' + c.list.map(x => '<li>' + esc(x) + '</li>').join('') + '</ul>'
+      : '<p class="dr-rule">' + esc(c.rule || "") + '</p>';
+    h += (c.ctx ? '<p class="dr-ctx">' + esc(c.ctx) + '</p>' : '') + '<p class="dr-cue">' + esc(c.cue) + '</p>'
+      + body + (c.trap ? '<p class="dr-trap"><b>Trap</b> ' + esc(c.trap) + '</p>' : '');
   }
   return h + '</article>';
 }
@@ -17573,14 +17644,15 @@ function renderReview() {
     + reviewMinutes(set) + ' min</p>'
     + '<div class="dr-bar" aria-hidden="true"><span style="width:' + (100 * Math.min(i + 1, n) / n).toFixed(1) + '%"></span></div></header>';
   if (i < n) {
-    html += reviewCardHTML(set.cards[i], set, i)
+    const c = set.cards[i];
+    const waiting = c.kind === "q" && REVIEW.pick === null;
+    html += reviewCardHTML(c, set)
       + '<nav class="dr-nav"><button type="button" data-review="back"' + (i === 0 ? ' disabled' : '') + '>Back</button>'
-      + (set.cards[i].part === "check" ? '' : '<button type="button" class="pri" data-review="next">Next</button>')
-      + '</nav>';
+      + (waiting ? '' : '<button type="button" class="pri" data-review="next">Next</button>') + '</nav>';
   } else {
     html += '<article class="dr-card dr-done"><p class="dr-cue">Done for today.</p>'
       + (d.readOnly ? '<p class="dr-rule">Good luck. Read the question, then the choices.</p>'
-          : '<p class="dr-rule">Anything you marked Missed it comes back tomorrow.</p>')
+          : '<p class="dr-rule">Any question you missed comes back tomorrow.</p>')
       + '</article><nav class="dr-nav"><button type="button" data-review="back">Back</button>'
       + '<button type="button" data-review="restart">Start over</button></nav>';
   }
@@ -17599,7 +17671,7 @@ function initReview() {
     const dayBtn = t && t.closest ? t.closest("[data-review-day]") : null;
     if (dayBtn) {
       REVIEW.di = Number(dayBtn.getAttribute("data-review-day"));
-      REVIEW.set = null; REVIEW.i = 0; REVIEW.shown = false;
+      REVIEW.set = null; REVIEW.i = 0; REVIEW.pick = null;
       renderReview();
       return;
     }
@@ -17609,23 +17681,23 @@ function initReview() {
     const set = REVIEW.set;
     if (!set) return;
     const c = set.cards[REVIEW.i];
-    if (act === "reveal") { REVIEW.shown = true; }
-    else if (act === "got" || act === "miss") {
-      if (c) saveReviewMark(c.key, act, set.day.date);
-      REVIEW.i++; REVIEW.shown = false;
+    if (act === "pick" && c && c.kind === "q" && REVIEW.pick === null) {
+      REVIEW.pick = Number(b.getAttribute("data-opt"));
+      saveReviewMark(c.key, REVIEW.pick === c.right ? "got" : "miss", set.day.date);
     }
-    else if (act === "next") { REVIEW.i++; REVIEW.shown = false; }
-    else if (act === "back") { REVIEW.i = Math.max(0, REVIEW.i - 1); REVIEW.shown = false; }
-    else if (act === "restart") { REVIEW.i = 0; REVIEW.shown = false; }
+    else if (act === "next") { REVIEW.i++; REVIEW.pick = null; }
+    else if (act === "back") { REVIEW.i = Math.max(0, REVIEW.i - 1); REVIEW.pick = null; }
+    else if (act === "restart") { REVIEW.i = 0; REVIEW.pick = null; }
     renderReview();
     const top = $("tab-review");
-    if (top && top.scrollIntoView && act !== "reveal") top.scrollIntoView({ block: "start" });
+    if (top && top.scrollIntoView && act !== "pick") top.scrollIntoView({ block: "start" });
   });
 }
 
 /* ==========================================================================
    DUMP SHEET
-   What to write cold in the first five minutes. The facts are rules, not his
+   What to practice writing from memory (the exam is computer-based, so on the day
+   only the 5 most-missed numbers get jotted down). The facts are rules, not his
    data; what is derived is the ORDER (exam weight against his accuracy) and the
    red dot on any line that matches a Quick Tip he has missed.
    ========================================================================== */
@@ -17920,8 +17992,10 @@ function guidePagesHTML() {
 function dumpPrintHTML(blank) {
   const order = dumpOrder();
   return '<section class="dp' + (blank ? ' blank' : '') + '">'
-    + (blank ? '<header class="dp-h"><b>Series 66 dump sheet: practice.</b> Write each answer from memory, '
-        + 'then check it against the answer sheet.</header>' : '')
+    + '<header class="dp-h"><b>Practice writing this from memory.</b> On exam day, only jot down the 5 '
+    + 'most-missed numbers if your test center gives you scratch material, since writing time counts '
+    + 'against your ' + EXAM.minutes + ' minutes.' + (blank ? ' Check each answer against the answer sheet.' : '')
+    + '</header>'
     + '<div class="dp-cols">' + order.map((b, i) => '<div class="db"><h4>' + (i + 1) + '. ' + esc(b.name)
       + ' <span>Topic ' + b.topic + '</span></h4>' + b.rows.map(r => blank
           ? '<div class="dr"><span class="dk">' + esc(r.k) + '</span><span class="dl"></span></div>'
@@ -17962,7 +18036,7 @@ function fitGuide(root) {
 function fitDump(root) {
   const cols = root.querySelector(".dp-cols");
   if (!cols) return null;
-  for (const lh of [1.2, 1.16, 1.12, 1.09, 1.06]) {
+  for (const lh of [1.2, 1.16, 1.12, 1.09, 1.06, 1.04]) {
     cols.style.setProperty("--lh", lh);
     if (cols.scrollWidth <= cols.clientWidth + 2) return lh;
   }

@@ -465,7 +465,7 @@ function rowCount(html) { return (String(html).match(/<tr/g) || []).length; }
 /* ------------------------------------------------ 7c. Daily Review */
 if (X.quickTips.length) {
   const dangling = [];
-  X.REVIEW_DAYS.forEach(d => (d.read || []).concat(d.check || []).forEach(r => { if (!X.reviewCard(r)) dangling.push(d.date + " " + r); }));
+  X.REVIEW_DAYS.forEach(d => (d.read || []).concat(d.also || []).forEach(r => { if (!X.reviewCard(r)) dangling.push(d.date + " " + r); }));
   assert(dangling.length === 0, "every Daily Review card reference resolves to a tip, pair or dump row", dangling.join(", "));
   const sizes = X.REVIEW_DAYS.map((d, i) => X.buildReviewDay(i).cards.length);
   assert(sizes.every(n => n > 0 && n <= X.REVIEW_MAX_CARDS), "no Daily Review day has more than " + X.REVIEW_MAX_CARDS + " cards", sizes.join("/"));
