@@ -193,44 +193,78 @@ tfoot td{border-top:1px solid var(--axis);font-weight:600;color:var(--ink);borde
   font-weight:650;color:var(--ink)}
 .qt-gh span{font-weight:500;color:var(--muted);font-size:12.5px}
 .qt-list{background:var(--surface);border:1px solid var(--ring);border-radius:var(--radius);overflow:hidden}
-.qt{border-top:1px solid var(--grid)}
+.qt{border-top:1px solid var(--grid);padding:10px 13px 11px}
 .qt:first-child{border-top:0}
-.qt>summary,.qt>.qt-s{display:grid;grid-template-columns:34px minmax(0,1fr) 12px;gap:11px;
-  padding:10px 13px;list-style:none}
-.qt>summary{cursor:pointer}
-.qt>summary::-webkit-details-marker{display:none}
-.qt>summary:hover{background:var(--surface-2)}
-.qt>summary:focus-visible{outline:2px solid var(--s1);outline-offset:-2px}
-.qt-n{align-self:start;margin-top:1px;text-align:center;font-size:11.5px;font-weight:700;
-  border-radius:6px;padding:2px 0;background:var(--surface-2);color:var(--muted);
+.qt-top{display:flex;align-items:center;gap:8px;margin:0 0 4px;min-height:22px}
+.qt-n{display:inline-block;min-width:30px;text-align:center;font-size:11.5px;font-weight:700;
+  border-radius:6px;padding:2px 5px;background:var(--surface-2);color:var(--muted);
   font-variant-numeric:tabular-nums}
-.qt.warm .qt-n{background:rgba(236,131,90,.16);color:var(--serious)}
 .qt.hot .qt-n{background:rgba(208,59,59,.2);color:#ff8f8f}
-.qt.done .qt-n{background:rgba(12,163,12,.16);color:var(--good)}
-.qt-main{display:block;min-width:0}
-.qt-when{display:block;font-size:12.5px;color:var(--muted);line-height:1.4;margin:0 0 2px}
-.qt-do{display:block;font-size:14px;color:var(--ink);font-weight:560;line-height:1.45}
-.qt-lines{display:grid;grid-template-columns:fit-content(46%) minmax(0,1fr);gap:4px 14px;
-  margin:7px 0 1px;font-size:13px;line-height:1.4}
-.qt-lines .k{color:var(--muted)}
-.qt-lines .v{color:var(--ink-2)}
-.qt-chev{align-self:start;color:var(--muted);font-size:16px;line-height:1;transition:transform .15s}
-.qt[open] .qt-chev{transform:rotate(90deg)}
-.qt-why{margin:0;padding:0 13px 11px 58px;font-size:12.5px;color:var(--muted)}
+.qt.done .qt-n{background:var(--surface-2);color:var(--ink-2)}
+.qt-u{font-size:12px;color:var(--muted)}
+.qt-whyb{margin-left:auto;background:none;border:1px solid var(--axis);color:var(--s1);border-radius:999px;
+  font:600 12px/1 var(--sans);padding:5px 10px;cursor:pointer;min-height:28px}
+.qt-whyb span{color:var(--muted);font-weight:500;margin-left:2px}
+.qt-whyb[aria-expanded="true"]{background:var(--surface-2)}
+/* A cue shows alone; the rule waits for a tap, so recall comes first. */
+.rv{display:block;width:100%;text-align:left;background:none;border:0;color:inherit;font:inherit;
+  padding:5px 0;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.rv:focus-visible{outline:2px solid var(--s1);outline-offset:2px;border-radius:4px}
+.rv-cue{display:block;font-weight:650;color:var(--ink);line-height:1.4}
+.rv.main .rv-cue{font-size:14.5px}
+.rv-rule{display:none;color:var(--ink-2);line-height:1.45;margin-top:2px}
+.rv-hint{display:block;font-size:12px;color:var(--muted);margin-top:1px}
+.rv[aria-expanded="true"] .rv-rule,[data-reveal="all"] .rv-rule{display:block}
+.rv[aria-expanded="true"] .rv-hint,[data-reveal="all"] .rv-hint{display:none}
+.qt-lines{margin:2px 0 0 0;padding:2px 0 0 12px;border-left:2px solid var(--grid)}
+.qt-lines .rv-cue{font-size:13.5px;font-weight:600}
+.qt-lines .rv-rule{font-size:13.5px}
+.why-panel{margin:10px 0 2px;padding:10px 0 0;border-top:1px dashed var(--axis)}
+.why-panel .why-ctx{font-size:12.5px;color:var(--muted);margin:0 0 12px}
+.why-panel .miss{margin-bottom:14px}
+.qt-tools{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:0 0 14px}
+.qt-tools .qt-bar{margin:0}
+.reveal-btn{background:var(--surface);border:1px solid var(--ring);color:var(--ink-2);border-radius:999px;
+  font:600 12.5px/1 var(--sans);padding:8px 13px;cursor:pointer;min-height:34px}
+.reveal-btn[aria-pressed="true"]{background:var(--surface-2);color:var(--ink);border-color:var(--axis)}
+.t4-banner{background:var(--surface);border:1px solid var(--axis);border-left:3px solid var(--ink-2);
+  border-radius:var(--radius);padding:10px 14px;margin:0 0 12px;font-size:14px;line-height:1.5;color:var(--ink)}
 #tips-body[data-filter="repeat"] [data-n="one"],
 #tips-body[data-filter="repeat"] .qt-group:not(.has-rep),
 #tips-body[data-filter="repeat"] .qt-cleared{display:none}
-.qt-fnote{display:none;margin:-6px 0 16px;font-size:12.5px;line-height:1.45;color:var(--muted)}
-#tips-body[data-filter="focus"]{display:flex;flex-direction:column}
-#tips-body[data-filter="focus"] .qt-fnote{display:block}
-#tips-body[data-filter="focus"] .qt-group{order:var(--fo,99)}
-#tips-body[data-filter="focus"] .qt-group:not([data-focus]),
+#tips-body[data-filter="focus"] .qt-groups,
 #tips-body[data-filter="focus"] .qt-cleared{display:none}
+#tips-body:not([data-filter="focus"]) .qt-focus{display:none}
+.qt-fnote{margin:0 0 14px;font-size:12.5px;line-height:1.45;color:var(--muted)}
 @media(max-width:560px){
-  .qt>summary,.qt>.qt-s{grid-template-columns:30px minmax(0,1fr) 10px;gap:9px;padding:10px 11px}
-  .qt-lines{grid-template-columns:1fr;gap:0}
-  .qt-lines .k{margin-top:5px;font-size:12px}
-  .qt-why{padding-left:50px}
+  .qt{padding:10px 11px 11px}
+}
+/* ---------- pairs ---------- */
+.pair{background:var(--surface);border:1px solid var(--ring);border-radius:var(--radius);
+  padding:12px 15px 13px;margin:0 0 12px}
+.pr-h{display:flex;align-items:center;gap:10px;margin:0 0 8px}
+.pr-h h3{margin:0;font-size:15px;flex:1 1 auto;line-height:1.3}
+.pair.hot .qt-n{background:rgba(208,59,59,.2);color:#ff8f8f}
+.pr-grid{display:grid;grid-template-columns:var(--pr-cols);font-size:14px;line-height:1.45}
+.pr-row{display:contents}
+.pr-row>div{padding:7px 10px 7px 0;border-top:1px solid var(--grid)}
+.pr-head>div{border-top:0;font-size:12px;font-weight:650;text-transform:uppercase;letter-spacing:.05em;
+  color:var(--ink-2);padding-bottom:4px}
+.pr-k{color:var(--muted);font-size:13px}
+.pr-c{color:var(--ink)}
+.pr-c ul{margin:0;padding-left:17px}
+.pr-c li{margin:0 0 2px}
+.pr-span .pr-c{color:var(--ink-2);font-style:italic}
+.pr-trap{margin:9px 0 0;padding:8px 10px;background:var(--surface-2);border-radius:8px;font-size:13.5px;
+  line-height:1.45;color:var(--ink-2)}
+.pr-trap b{color:var(--ink);margin-right:4px}
+@media(max-width:620px){
+  .pr-grid{display:block}
+  .pr-row{display:block;border-top:1px solid var(--grid);padding:7px 0}
+  .pr-row>div{border-top:0;padding:2px 0}
+  .pr-head{display:none}
+  .pr-k{font-size:12.5px}
+  .pr-c[data-col]::before{content:attr(data-col) ": ";font-weight:650;color:var(--ink-2)}
 }
 /* ---------- folds ---------- */
 details.fold{border-top:1px solid var(--grid);margin-top:10px}
@@ -346,8 +380,9 @@ ol.dump-order li.cut .n{background:var(--surface-2);color:var(--muted)}
 .drow dd{margin:0;color:var(--ink);font-size:13.5px;font-weight:560;line-height:1.4;
   font-variant-numeric:tabular-nums}
 .drow dd small{color:var(--muted);font-weight:400;font-size:12px}
-.mdot{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--critical);
+.mdot{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--muted);
   margin:0 7px 1px 0;vertical-align:middle}
+.mdot.hot{background:var(--critical)}
 .dblock-f{margin:0;padding:8px 14px 10px;font-size:12.5px;color:var(--warning);border-top:1px solid var(--grid)}
 @media(max-width:400px){.drow{grid-template-columns:1fr;gap:0}.drow dt{font-size:12px;color:var(--muted)}}
 /* ---------- claude paste ---------- */
@@ -392,6 +427,7 @@ footer.foot{margin-top:40px;padding-top:16px;border-top:1px solid var(--grid);
   <button role="tab" id="t-perf"  aria-controls="tab-perf"  aria-selected="true">Performance</button>
   <button role="tab" id="t-exams" aria-controls="tab-exams" aria-selected="false">Practice &amp; Sim Exams</button>
   <button role="tab" id="t-tips"  aria-controls="tab-tips"  aria-selected="false">Quick Tips</button>
+  <button role="tab" id="t-pairs" aria-controls="tab-pairs" aria-selected="false">Pairs</button>
   <button role="tab" id="t-guide" aria-controls="tab-guide" aria-selected="false">Study Guide</button>
   <button role="tab" id="t-ref"   aria-controls="tab-ref"   aria-selected="false">Reference Sheet</button>
   <button role="tab" id="t-dump"  aria-controls="tab-dump"  aria-selected="false">Dump Sheet</button>
@@ -480,10 +516,19 @@ footer.foot{margin-top:40px;padding-top:16px;border-top:1px solid var(--grid);
 <!-- ============ 3 · QUICK TIPS ============ -->
 <section class="tab" id="tab-tips" role="tabpanel" aria-labelledby="t-tips">
   <p class="lead">Your misses, compressed: the cue you'll see, and what to do about it.</p>
-  <small class="note">Rebuilt from your real misses every sync. Focus shows only the units
-    costing you the most exam points; All has every tip. Red means missed three or more
-    times. Tap a tip to see why it's on the list.</small>
+  <small class="note">Rebuilt from your real misses every sync. Each cue shows alone: say the
+    rule, then tap to check it. Show all reveals every answer for skimming. Why opens the
+    Kaplan questions behind a tip. Red means missed three or more times.</small>
   <div id="tips-body"></div>
+</section>
+
+<!-- ============ PAIRS ============ -->
+<section class="tab" id="tab-pairs" role="tabpanel" aria-labelledby="t-pairs">
+  <p class="lead">The rules you mix up, side by side.</p>
+  <small class="note">Each trap line says which way you have gone wrong, and Why opens the
+    Kaplan questions behind it. The count is how many of those you missed; red means three
+    or more.</small>
+  <div id="pairs-body"></div>
 </section>
 
 <!-- ============ 4 · STUDY GUIDE ============ -->
@@ -540,8 +585,10 @@ footer.foot{margin-top:40px;padding-top:16px;border-top:1px solid var(--grid);
     </table>
   </div>
   <p><b>The split that gets tested:</b> the IA registers where it has a place of business or
-    enough clients; the <b>IAR always registers with the state</b>, including when their firm
-    is federal covered. A federal covered IA <i>notice files</i> with the state and pays the
+    enough clients; the <b>IAR always registers with the state</b>, never the SEC. An IAR of a
+    <b>federal covered</b> IA registers only where it has a <b>place of business</b> (client
+    counts never matter); an IAR of a state IA also registers in any state with a 6th retail
+    client. A federal covered IA <i>notice files</i> with the state and pays the
     fee &mdash; it does not register there.</p>
 
   <h3>Federal covered vs. state-registered IA &mdash; the dollar thresholds</h3>
@@ -556,9 +603,7 @@ footer.foot{margin-top:40px;padding-top:16px;border-top:1px solid var(--grid);
       </tbody>
     </table>
   </div>
-  <p>Also federal covered regardless of AUM: advisers to <b>registered investment companies</b>,
-    and advisers not required to register in <i>any</i> state. An adviser with under $25m in a
-    state that has no registration provision is federal covered by default.</p>
+  <p>Also federal covered regardless of AUM: advisers to <b>registered investment companies</b>.</p>
 
   <h3>Exclusions &mdash; not an IA at all</h3>
   <p>The classic mnemonic is <b>LATE</b> &mdash; these professions are excluded when advice is
@@ -623,10 +668,13 @@ footer.foot{margin-top:40px;padding-top:16px;border-top:1px solid var(--grid);
         <tr><td>Statute of limitations &mdash; criminal</td><td>5 years</td></tr>
         <tr><td>Criminal penalty under USA</td><td>Up to $5,000 and/or 3 years (&ldquo;5 and 3&rdquo;)</td></tr>
         <tr><td>Right of rescission &mdash; buyer must accept within</td><td>30 days of the offer</td></tr>
-        <tr><td>Books and records retention (state IA)</td><td>5 years, first 2 readily accessible</td></tr>
+        <tr><td>Adviser books and records</td><td>5 years from the end of the fiscal year, first 2 in the office</td></tr>
+        <tr><td>Adviser organizational papers (articles, charter, minute books)</td><td>3 years after the business ends</td></tr>
+        <tr><td>Broker-dealer advertisements and website</td><td>3 years from first use</td></tr>
         <tr><td>Appeal an Administrator's order</td><td>60 days to the appropriate court</td></tr>
         <tr><td>Custody &mdash; surprise annual audit</td><td>Once per year, unannounced, by an independent accountant</td></tr>
-        <tr><td>Custody &mdash; notify Administrator of client funds received</td><td>Promptly; funds forwarded within 3 business days if not permitted custody</td></tr>
+        <tr><td>Custody &mdash; third-party check received</td><td>Forward it within 3 business days = not custody</td></tr>
+        <tr><td>Custody &mdash; client money made payable to the adviser by mistake</td><td>Return it to the sender within 3 business days, or it's custody</td></tr>
       </tbody>
     </table>
   </div>
@@ -636,10 +684,11 @@ footer.foot{margin-top:40px;padding-top:16px;border-top:1px solid var(--grid);
     obtain possession of them. It includes a general power of attorney, acting as trustee,
     and direct fee deduction from a client account.</p>
   <ul>
-    <li>Receiving a cheque made out to a <b>third party</b> and forwarding it within
+    <li>Receiving a check made out to a <b>third party</b> and forwarding it within
       3 business days is <b>not</b> custody</li>
-    <li>Receiving a cheque made out to <b>the adviser</b> is custody</li>
-    <li>Inadvertently receiving client funds and returning them within 3 business days is not custody</li>
+    <li>A <b>fee check</b> payable to the adviser is <b>not</b> custody: it's the adviser's money</li>
+    <li>Client money made payable to the adviser by mistake (it should go to the BD): return
+      it to the <b>sender</b> within 3 business days, or it's custody</li>
     <li>Custody requires: notice to the Administrator, a qualified custodian, quarterly
       account statements, and the annual surprise audit</li>
     <li>Fee deduction is custody, but is relieved of the surprise audit if the custodian
@@ -653,8 +702,8 @@ footer.foot{margin-top:40px;padding-top:16px;border-top:1px solid var(--grid);
     &mdash; &ldquo;buy 100 XYZ when you think it's right today&rdquo; is an unsolicited order
     good for that day only, not discretionary authority.</p>
   <ul>
-    <li><b>IA:</b> may exercise discretion orally for the first 10 business days, then needs
-      written authority</li>
+    <li><b>IA or IAR:</b> oral discretion is good for 10 business days after the first
+      discretionary trade, then it needs written authority</li>
     <li><b>BD:</b> needs prior written authorization before the <i>first</i> discretionary trade</li>
   </ul>
   <p>That 10-day asymmetry is a favourite exam question.</p>
@@ -673,11 +722,11 @@ footer.foot{margin-top:40px;padding-top:16px;border-top:1px solid var(--grid);
   </ul>
 
   <h3>Brochure rule</h3>
-  <p>Form ADV Part 2 (or an equivalent brochure) must be delivered <b>not later than entry
-    into the contract</b>. Under state rules the older 48-hour test still appears: deliver
-    48 hours before entering the contract, <i>or</i> at entry provided the client has 5
-    business days to cancel without penalty. Annual delivery of a summary of material
-    changes within 120 days of fiscal year end.</p>
+  <p>The brochure (Form ADV Part 2A) has two legal timings: deliver it at least <b>48 hours
+    before</b> signing, <i>or</i> <b>at signing</b> with 5 business days to cancel without
+    penalty (the adviser keeps a pro-rated fee for services already given). The annual
+    update, or a summary of material changes, goes out within 120 days of fiscal year-end,
+    and only if there are material changes.</p>
   <p><b>Impersonal advice under $500/year</b> and advice to registered investment companies
     are excepted from brochure delivery.</p>
 
@@ -688,8 +737,8 @@ footer.foot{margin-top:40px;padding-top:16px;border-top:1px solid var(--grid);
     <li><b>Loans to or from clients</b> &mdash; prohibited, unless the client is a bank,
       an affiliate, or a broker-dealer in the business of lending</li>
     <li><b>Sharing in profits and losses</b> &mdash; an IAR may never share; a BD agent may
-      only with written approval of the firm, a joint account, and sharing proportionate
-      to capital contributed</li>
+      only with the written consent of the client and the firm, in proportion to what each
+      contributed</li>
     <li><b>Guaranteeing against loss</b> &mdash; always prohibited, no exceptions</li>
     <li><b>Churning / excessive trading</b> &mdash; judged against the client's objectives
       and resources, not a fixed turnover number</li>
@@ -707,9 +756,10 @@ footer.foot{margin-top:40px;padding-top:16px;border-top:1px solid var(--grid);
       compensated advisory services to a government client after a triggering contribution.
       <i>De minimis</i> exceptions: $350 per election to a candidate you can vote for,
       $150 if you cannot</li>
-    <li><b>Exploitation of vulnerable adults</b> &mdash; the NASAA model act permits a
-      delay of disbursement on reasonable belief of exploitation, with notification to
-      the Administrator and Adult Protective Services</li>
+    <li><b>Exploitation of vulnerable adults</b> &mdash; the NASAA model act permits a firm
+      that reasonably suspects exploitation to hold a disbursement for up to 15 business days,
+      plus 10 more at the regulator's or Adult Protective Services' request (FINRA's own rule
+      allows up to 55), notifying both</li>
     <li><b>Unlawful representation concerning registration</b> &mdash; registration never
       implies the Administrator approved the merits. Saying or implying it is prohibited.</li>
     <li><b>Performance guarantees</b> &mdash; prohibited; so is cherry-picked or
@@ -15373,6 +15423,10 @@ const SYNC = {
    Kaplan it must not move this date.
    -------------------------------------------------------------------------- */
 const META = SYNC.meta;
+/* Austin booked the exam for Mon Nov 9. Kaplan's payload carries no exam date
+   (examDate stays null), so the booked date stands in until a sync supplies one. */
+const EXAM_BOOKED_DATE = "2026-11-09";
+const EXAM_DATE = META.examDate || EXAM_BOOKED_DATE;
 
 /* ---------- Kaplan unit -> NASAA topic map ----------------------------------
    MUST be derived from Kaplan's actual unit list and learning objectives, then
@@ -15481,7 +15535,11 @@ function fmtDate(iso) {
   if (isNaN(d)) return EM;
   return d.toLocaleDateString("en-US", { year: "numeric", month: "short", day: "numeric", timeZone: "UTC" });
 }
-function todayISO() { return new Date().toISOString().slice(0, 10); }
+/* The viewer's LOCAL calendar date, not UTC: at 9 pm Eastern it is still today. */
+function todayISO() {
+  const d = new Date();
+  return d.getFullYear() + "-" + String(d.getMonth() + 1).padStart(2, "0") + "-" + String(d.getDate()).padStart(2, "0");
+}
 function daysBetween(aISO, bISO) {
   if (!aISO || !bISO) return null;
   const a = new Date(aISO + "T12:00:00Z"), b = new Date(bISO + "T12:00:00Z");
@@ -15590,9 +15648,6 @@ function unitExamQuestions(unitId) {
 
 /* Priority = expected scored questions lost. Weight x miss rate. Derived,
    never typed - a unit worth 45 questions at 70% costs more than one worth 8. */
-/* How many of the biggest point leaks join the focus units, even above the line.
-   One constant, so the Study Guide's priorities and Quick Tips' Focus agree. */
-const TOP_LEAKS = 3;
 function priorityOrder() {
   return unitData.map(u => {
     const p = unitPool(u);
@@ -15630,13 +15685,68 @@ function unitsBelowLine() {
     .filter(r => r.pct !== null && r.pct < EXAM.PASS_LINE)
     .sort((a, b) => b.lost - a.lost || a.pct - b.pct);
 }
+/* ---- Focus: where the exam points are --------------------------------------
+   One list, shared by the Study Guide, Quick Tips, Daily Review and the printouts.
+   Rank = Kaplan's exam questions for the unit x the share missed under exam
+   conditions: exam points at risk. Full-length sims outrank everything; then the
+   checkpoints and Midterm (unitData's exam columns); the pooled score only for a
+   unit with neither. A unit at FOCUS_HIDE_AT or better leaves Focus (it stays
+   under All), and so does one risking less than a whole exam question. */
+const FOCUS_HIDE_AT = 85;
+const FOCUS_MIN_EXAM_QS = 1;
+function fullLengthSims() {
+  return simExams.filter(e => (e.total || 0) >= EXAM.FULL_LENGTH_MIN);
+}
+function simUnitTotals(id) {
+  let correct = 0, answered = 0;
+  for (const e of fullLengthSims()) {
+    const b = (e.byUnit || {})[id];
+    if (b) { correct += b.correct || 0; answered += b.answered || 0; }
+  }
+  return { correct, answered };
+}
+const FOCUS_SOURCE_LABEL = { sims: "on full-length sims", exam: "under exam conditions", pooled: "pooled" };
+function rankAccuracy(u) {
+  const s = simUnitTotals(u.id);
+  if (s.answered) return { pct: pct(s.correct, s.answered), correct: s.correct, answered: s.answered, source: "sims" };
+  if (u.examAnswered) return { pct: pct(u.examCorrect, u.examAnswered), correct: u.examCorrect,
+                               answered: u.examAnswered, source: "exam" };
+  const p = unitPool(u);
+  return { pct: pct(p.correct, p.answered), correct: p.correct, answered: p.answered, source: "pooled" };
+}
+function focusRows() {
+  return unitData.map(u => {
+    const a = rankAccuracy(u);
+    const q = unitExamQuestions(u.id);
+    return { id: u.id, name: u.name, pct: a.pct, correct: a.correct, answered: a.answered,
+             source: a.source, examQuestions: q, lost: a.pct === null ? null : q * (1 - a.pct / 100) };
+  })
+  .filter(r => r.lost !== null)
+  .sort((a, b) => b.lost - a.lost || a.pct - b.pct);
+}
+function focusUnits() {
+  return focusRows().filter(r => r.pct < FOCUS_HIDE_AT && r.lost >= FOCUS_MIN_EXAM_QS);
+}
+function focusHiddenUnits() { return focusRows().filter(r => r.pct >= FOCUS_HIDE_AT); }
+
+/* Topics under the line, heaviest first, for the banner at the top of each Focus view. */
+function topicBannerHTML() {
+  const below = topicPriorityOrder().filter(t => t.pct < EXAM.PASS_LINE)
+    .sort((a, b) => b.weight - a.weight);
+  if (!below.length) return '';
+  return '<div class="t4-banner">' + below.map(t =>
+      '<b>Topic ' + t.id + '</b> ' + EM + ' ' + t.weight + '% of the exam, '
+      + (below.length === 1 ? 'the only topic under the line.' : 'under the line.')).join('<br>')
+    + '</div>';
+}
+
 function fmtExamQs(q) { return (Number.isInteger(q) ? String(q) : q.toFixed(1)); }
 function examWeightNote(u) { return "~" + fmtExamQs(u.examQuestions) + " of " + EXAM.scored + " exam questions"; }
 function unmappedUnits() { return unitData.filter(u => !mapForUnit(u.id)); }
 
 function daysUntilExam() {
-  if (!META.examDate) return null;
-  return daysBetween(todayISO(), META.examDate);
+  if (!EXAM_DATE) return null;
+  return daysBetween(todayISO(), EXAM_DATE);
 }
 function daysSinceActivity() {
   if (!META.lastActivityDate) return null;
@@ -15687,7 +15797,7 @@ function buildBindings() {
     "meta.lastRun":        META.lastRunAttempted ? fmtDate(META.lastRunAttempted) : EM,
     "meta.source":         META.source || "no data yet",
     "meta.noDataRuns":     String(META.noDataRuns),
-    "meta.examDate":       META.examDate ? fmtDate(META.examDate) : "not booked",
+    "meta.examDate":       EXAM_DATE ? fmtDate(EXAM_DATE) : "not booked",
     "meta.daysUntilExam":  days === null ? "no date booked" : String(days),
     "meta.lastActivity":   META.lastActivityDate ? fmtDate(META.lastActivityDate) : EM,
     "meta.daysSinceActivity": since === null ? EM : String(since),
@@ -15761,6 +15871,8 @@ function buildBindings() {
     b["unit." + u.id + ".answered"] = String(p.answered);
     b["unit." + u.id + ".qbank"]    = fmtPct(pct(u.qbankCorrect, u.qbankAnswered));
     b["unit." + u.id + ".exam"]     = fmtPct(pct(u.examCorrect, u.examAnswered));
+    const ra = rankAccuracy(u);
+    b["unit." + u.id + ".focus"]    = fmtPct(ra.pct);
   }
   return b;
 }
@@ -15827,11 +15939,10 @@ function renderStatCards() {
   const days = daysUntilExam();
 
   let examCard;
-  if (META.examDate === null) {
+  if (!EXAM_DATE) {
     examCard = '<div class="stat">'
       + '<div class="label">Days until exam</div>'
-      + '<div class="value none">No date booked</div>'
-      + '<div class="meta">Booking it is the standing top action.</div>'
+      + '<div class="value none">No date</div>'
       + '</div>';
   } else {
     examCard = statCard("Days until exam", "meta.daysUntilExam",
@@ -16254,12 +16365,8 @@ function renderStanding() {
     + '</p>');
 }
 
-/* The tips the Focus view in Quick Tips shows: reading habits plus every tip
-   for a focus unit. One count, used by both tabs. */
-function focusTipCount() {
-  const ids = new Set(focusUnits().map(r => r.id));
-  return quickTips.filter(t => !t.cleared && (t.kind === "technique" || ids.has(t.unitId))).length;
-}
+/* The tips the Focus view in Quick Tips shows. One count, used by both tabs. */
+function focusTipCount() { return focusTips().length; }
 
 function unitTopicIds(id) { const m = mapForUnit(id); return m ? Object.keys(m.split) : []; }
 
@@ -16293,12 +16400,8 @@ function renderGuideFocus() {
   const inBelow = focus.filter(r => unitTopicIds(r.id).some(k => belowIds.has(k))).length;
   let lead;
   if (belowT.length) {
-    lead = (belowT.length === 1
-        ? '<b>Topic ' + belowT[0].id + '</b> is the only topic'
-        : '<b>Topics ' + belowT.map(t => t.id).join(' and ') + '</b> are')
-      + ' under the ' + line + '% line'
-      + (focus.length ? ', and ' + (belowT.length === 1 ? 'it holds ' : 'they hold ')
-          + inBelow + ' of your ' + focus.length + ' focus units.' : '.');
+    lead = (focus.length ? (belowT.length === 1 ? 'It holds ' : 'They hold ')
+          + inBelow + ' of your ' + focus.length + ' focus units.' : '');
   } else {
     lead = 'Every topic is over the ' + line + '% line'
       + (tp.length ? '; <b>Topic ' + tp[0].id + '</b> still leaks the most exam questions.' : '.');
@@ -16329,17 +16432,19 @@ function renderGuideFocus() {
     const cp = latest[r.id];
     const cpPct = cp ? pct(cp.score, cp.total) : null;
     const low = r.pct !== null && r.pct < line;
-    const tags = ['<span class="pz-risk">~' + r.lost.toFixed(1) + ' exam Qs at risk</span>'];
-    if (!low) tags.push('<span class="tag warn">Above the line, but ~' + fmtExamQs(r.examQuestions)
-      + ' exam Qs ride on it</span>');
-    if (cpPct !== null && cpPct < line) tags.push('<span class="tag bad">Retake: last checkpoint '
-      + cp.score + '/' + cp.total + '</span>');
+    const tags = ['<span class="pz-risk">~' + r.lost.toFixed(1) + ' exam Qs at risk</span>',
+      '<span class="tag neutral">' + r.correct + '/' + r.answered + ' ' + FOCUS_SOURCE_LABEL[r.source]
+        + ' &middot; ~' + fmtExamQs(r.examQuestions) + ' exam Qs</span>'];
+    if (cpPct !== null && cpPct < line) tags.push('<span class="tag neutral">Checkpoint '
+      + cp.score + '/' + cp.total + ': run a custom quiz on this unit</span>');
     const tip = topTipFor(r.id);
-    return '<article class="pz-card' + (low ? ' below' : '') + '">'
+    return '<article class="pz-card">'
       + '<div class="pz-h"><span class="pz-rank" aria-label="Priority ' + rank + '">' + rank + '</span>'
       + '<div class="pz-name"><b>' + esc(unitShort(r.name)) + '</b><span>' + esc(unitTitle(r.name)) + '</span></div>'
-      + '<span class="pz-score">' + bound("unit." + r.id + ".pooled") + '</span></div>'
-      + scoreMeter(r.pct, unitShort(r.name) + ': ' + fmtPct(r.pct) + ', pass line ' + line + '%')
+      + '<span class="pz-score">' + bound("unit." + r.id + ".focus") + '</span></div>'
+      + '<div class="' + (low ? 'below' : '') + '">'
+      + scoreMeter(r.pct, unitShort(r.name) + ': ' + fmtPct(r.pct) + ' ' + FOCUS_SOURCE_LABEL[r.source]
+          + ', pass line ' + line + '%') + '</div>'
       + '<div class="pz-tags">' + tags.join('') + '</div>'
       + (tip ? '<div class="pz-rem"><span class="lbl">Remember &middot; missed ' + (tip.count || 1) + '&times;</span>'
           + '<span class="when">' + esc(tip.trigger) + '</span>'
@@ -16375,14 +16480,16 @@ function renderGuideFocus() {
   }
 
   setHTML("guide-focus",
-    '<p class="pz-lead">' + lead + '</p>'
+    topicBannerHTML() + (lead ? '<p class="pz-lead">' + lead + '</p>' : '')
     + '<div class="pz-topics">' + trows + '</div>'
     + '<p class="pz-key">The white tick on each bar is the ' + line + '% pass line.</p>'
     + (focus.length
-        ? '<p class="pz-sub">Focus units, numbered by exam questions at risk: everything under the '
-          + 'line by a full question, plus your ' + TOP_LEAKS + ' biggest leaks.</p>' + groups
-          + '<p class="muted-line">Quick Tips opens on these units: ' + focusTipCount()
-          + ' tips including the reading habits. Both lists move with your scores.</p>'
+        ? '<p class="pz-sub">Focus units, numbered by exam points at risk: Kaplan\'s exam questions '
+          + 'for the unit &times; the share you miss ' + FOCUS_SOURCE_LABEL.exam + ' (checkpoints and the '
+          + 'Midterm; full-length sims outrank both once you take one). Units at ' + FOCUS_HIDE_AT
+          + '%+, or risking less than one exam question, stay off the list.</p>' + groups
+          + '<p class="muted-line">Quick Tips\' Focus has the ' + focusTipCount()
+          + ' tips worth the most points from these units and the reading habits. Both lists move with your scores.</p>'
         : '<p>No unit is under the line by a full exam question, and nothing has been '
           + 'scored to rank the leaks yet.</p>'));
 }
@@ -16402,7 +16509,7 @@ function recurringHTML(text) {
   }).join('') + '</ul>';
 }
 
-/* Latest checkpoint attempt per unit, so a retake replaces the old score. */
+/* Latest checkpoint per unit. Kaplan allows one attempt, so this is normally the only one. */
 function latestCheckpointByUnit() {
   const latest = {};
   for (const e of unitCheckpoints) {
@@ -16418,25 +16525,23 @@ function renderNext() {
   if (!hasData()) {
     items.push(['Run a sync', 'Nothing to rank until Kaplan has been read.']);
   }
-  if (META.examDate === null) {
-    items.push(['Book the exam date', 'A plan is easier to pace against a real date.']);
-  }
   const latest = latestCheckpointByUnit();
-  /* Most exam questions at stake first, so a 2-question unit's retake waits. */
-  const retake = Object.keys(latest)
+  /* Kaplan checkpoints allow ONE attempt, so a checkpoint under the line points to a
+     custom quiz on that unit, never a retake. Most exam questions at stake first. */
+  const quiz = Object.keys(latest)
     .map(uid => ({ uid, p: pct(latest[uid].score, latest[uid].total), q: unitExamQuestions(uid) }))
     .filter(r => r.p !== null && r.p < EXAM.PASS_LINE)
     .sort((a, b) => b.q * (100 - b.p) - a.q * (100 - a.p) || a.p - b.p);
-  if (retake.length) {
-    items.push(['Retake ' + (retake.length === 1 ? 'a checkpoint' : retake.length + ' checkpoints'),
-      retake.map(r => esc(unitShort(unitName(r.uid))) + ' at ' + fmtPct(r.p, 0)
+  if (quiz.length) {
+    items.push(['Build a custom quiz' + (quiz.length === 1 ? '' : ' on each'),
+      quiz.map(r => esc(unitShort(unitName(r.uid))) + ' at ' + fmtPct(r.p, 0)
         + ' <span class="muted">(~' + fmtExamQs(r.q) + ' exam Qs)</span>').join(', ')
-      + ' ' + EM + ' latest attempt is under the line; biggest first.']);
+      + ' ' + EM + ' the checkpoint was under the line and allows one attempt, so quiz the unit in Kaplan\'s QBank instead; biggest first.']);
   }
   const ft = focusUnits().length ? focusTipCount() : 0;
   if (ft) {
-    items.push(['Drill the Focus tips', ft + ' tips for the units above, plus the reading habits '
-      + EM + ' Quick Tips opens on Focus.']);
+    items.push(['Drill the Focus tips', 'The ' + ft + ' tips worth the most exam points; say each rule '
+      + 'before you tap it ' + EM + ' Quick Tips opens on Focus.']);
   }
   const since = daysSinceActivity();
   if (since !== null && since >= 3) {
@@ -16618,48 +16723,111 @@ function renderGuide() {
    ========================================================================== */
 let tipFilter = "focus";
 
-/* Focus: units under the pass line that put at least one whole exam question at
-   risk, plus the Study Guide's biggest point leaks even when they sit above the
-   line (a heavy unit at 77% still leaks more than a light one at 65%). Most at
-   risk first. Recomputed on every render, so the list follows the scores. */
-const FOCUS_MIN_EXAM_QS = 1;
-function focusUnits() {
-  const out = new Map();
-  for (const r of unitsBelowLine()) if (r.lost !== null && r.lost >= FOCUS_MIN_EXAM_QS) out.set(r.id, r);
-  for (const r of priorityOrder().slice(0, TOP_LEAKS)) if (!out.has(r.id)) out.set(r.id, r);
-  return [...out.values()].sort((a, b) => b.lost - a.lost || a.pct - b.pct);
+
+/* ---- tip ranking -----------------------------------------------------------
+   A tip's yield = times missed x its unit's exam questions. A reading habit
+   (a technique) costs points in every unit, so it counts as an average unit. */
+const FOCUS_TIP_CAP = 15;
+function avgUnitExamQs() {
+  const ids = unitData.map(u => u.id).filter(id => mapForUnit(id));
+  return ids.length ? ids.reduce((n, id) => n + unitExamQuestions(id), 0) / ids.length : 0;
+}
+function tipWeight(t) { return t.kind === "technique" ? avgUnitExamQs() : unitExamQuestions(t.unitId); }
+function tipYield(t) { return (t.count || 1) * tipWeight(t); }
+function focusTips() {
+  const ids = new Set(focusUnits().map(r => r.id));
+  return quickTips.filter(t => !t.cleared && (t.kind === "technique" || ids.has(t.unitId)))
+    .sort((a, b) => tipYield(b) - tipYield(a) || (b.count || 1) - (a.count || 1))
+    .slice(0, FOCUS_TIP_CAP);
 }
 
-function tipRow(t) {
+/* ---- shared pieces: tap-to-reveal and the Why panel ------------------------ */
+const MISS_BY_ID = {};
+for (const q of missedQuestions) MISS_BY_ID[q.id] = q;
+function knownMisses(ids) { return (ids || []).filter(id => MISS_BY_ID[id]); }
+function revealHTML(cue, rule, cls) {
+  return '<button type="button" class="rv' + (cls ? ' ' + cls : '') + '" aria-expanded="false">'
+    + '<span class="rv-cue">' + esc(cue) + '</span>'
+    + '<span class="rv-rule">' + esc(rule) + '</span>'
+    + '<span class="rv-hint" aria-hidden="true">tap to check</span></button>';
+}
+function whyButton(key, n) {
+  return n ? '<button type="button" class="qt-whyb" data-why="' + esc(key) + '" aria-expanded="false">Why'
+    + ' <span>' + n + '</span></button>' : '';
+}
+/* The Why panel is filled on first open: rendering every write-up up front would
+   put a few hundred kilobytes of explanations in the page for nothing. */
+function whyPanelHTML(key) {
+  const [kind, id] = String(key).split(":");
+  let ctx = "", ids = [];
+  if (kind === "tip") {
+    const t = quickTips.find(x => x.id === id);
+    if (t) { ids = t.fromMisses || []; ctx = t.why || ""; }
+  } else if (kind === "pair") {
+    const p = PAIRS.find(x => x.id === id);
+    if (p) { ids = p.misses || []; ctx = p.trap ? "Trap: " + p.trap : ""; }
+  }
+  const qs = knownMisses(ids).map(m => MISS_BY_ID[m]).sort((a, b) => String(b.date).localeCompare(String(a.date)));
+  return (ctx ? '<p class="why-ctx">' + esc(ctx) + '</p>' : '')
+    + (qs.length ? qs.map(missHTML).join("") : '<p class="why-ctx">No Kaplan write-up is on file for these.</p>');
+}
+function initReveal() {
+  if (!document.addEventListener) return;
+  document.addEventListener("click", ev => {
+    const t = ev.target;
+    const rv = t && t.closest ? t.closest(".rv") : null;
+    if (rv && !rv.closest(".dr-card")) {
+      rv.setAttribute("aria-expanded", String(rv.getAttribute("aria-expanded") !== "true"));
+      return;
+    }
+    const wb = t && t.closest ? t.closest("[data-why]") : null;
+    if (wb) {
+      const host = wb.closest(".qt, .pair");
+      const panel = host ? host.querySelector(".why-panel") : null;
+      if (!panel) return;
+      const open = wb.getAttribute("aria-expanded") !== "true";
+      if (open && !panel.getAttribute("data-filled")) {
+        panel.innerHTML = whyPanelHTML(wb.getAttribute("data-why"));
+        panel.setAttribute("data-filled", "1");
+      }
+      panel.hidden = !open;
+      wb.setAttribute("aria-expanded", String(open));
+    }
+  });
+}
+
+function tipCard(t, showUnit) {
   const n = t.count || 1;
-  const cls = 'qt' + (t.cleared ? ' done' : n >= 3 ? ' hot' : n === 2 ? ' warm' : '');
-  const chip = '<span class="qt-n" title="' + (t.cleared ? 'cleared on retest'
+  const cls = 'qt' + (t.cleared ? ' done' : n >= 3 ? ' hot' : '');
+  const chip = '<span class="qt-n" title="' + (t.cleared ? 'answered right since'
       : 'missed ' + n + ' time' + (n === 1 ? '' : 's')) + '">'
     + (t.cleared ? '&#10003;' : n + '&times;') + '</span>';
-  const body = chip
-    + '<span class="qt-main"><span class="qt-when">' + esc(t.trigger) + '</span>'
-    + '<span class="qt-do">' + esc(t.move) + '</span>'
+  const unitLbl = showUnit
+    ? '<span class="qt-u">' + (t.kind === "technique" ? 'Reading habit' : esc(unitShort(unitName(t.unitId)))) + '</span>' : '';
+  return '<div class="' + cls + '" data-n="' + (n >= 2 ? 'rep' : 'one') + '">'
+    + '<div class="qt-top">' + chip + unitLbl + whyButton('tip:' + t.id, knownMisses(t.fromMisses).length) + '</div>'
+    + revealHTML(t.trigger, t.move, 'main')
     + (t.lines && t.lines.length
-        ? '<span class="qt-lines">' + t.lines.map(l =>
-            '<span class="k">' + esc(l[0]) + '</span><span class="v">' + esc(l[1]) + '</span>').join("")
-          + '</span>'
-        : '')
-    + '</span>';
-  const attrs = ' data-n="' + (n >= 2 ? 'rep' : 'one') + '"';
-  return t.why
-    ? '<details class="' + cls + '"' + attrs + '><summary>' + body
-      + '<span class="qt-chev" aria-hidden="true">&rsaquo;</span></summary>'
-      + '<p class="qt-why">' + esc(t.why) + '</p></details>'
-    : '<div class="' + cls + '"' + attrs + '><div class="qt-s">' + body + '</div></div>';
+        ? '<div class="qt-lines">' + t.lines.map(l => revealHTML(l[0], l[1])).join("") + '</div>' : '')
+    + '<div class="why-panel" hidden></div>'
+    + '</div>';
 }
 
+let tipReveal = false;
 function applyTipFilter() {
   const root = $("tips-body");
   if (!root) return;
-  if (root.setAttribute) root.setAttribute("data-filter", tipFilter);
+  if (root.setAttribute) {
+    root.setAttribute("data-filter", tipFilter);
+    root.setAttribute("data-reveal", tipReveal ? "all" : "tap");
+  }
   if (root.querySelectorAll) {
     root.querySelectorAll("[data-tipfilter]").forEach(b =>
       b.setAttribute("aria-pressed", String(b.getAttribute("data-tipfilter") === tipFilter)));
+    root.querySelectorAll("[data-tipreveal]").forEach(b => {
+      b.setAttribute("aria-pressed", String(tipReveal));
+      b.textContent = tipReveal ? "Hide answers" : "Show all";
+    });
   }
 }
 
@@ -16667,10 +16835,18 @@ function initTipFilter() {
   try {
     const s = localStorage.getItem("s66.tipView");
     if (s === "focus" || s === "all" || s === "repeat") tipFilter = s;
+    tipReveal = localStorage.getItem("s66.tipReveal") === "all";
   } catch (e) { /* a per-viewer convenience only */ }
   const root = $("tips-body");
   if (!root || !root.addEventListener) return;
   root.addEventListener("click", ev => {
+    const rb = ev.target && ev.target.closest ? ev.target.closest("[data-tipreveal]") : null;
+    if (rb) {
+      tipReveal = !tipReveal;
+      try { localStorage.setItem("s66.tipReveal", tipReveal ? "all" : "tap"); } catch (e) { /* optional */ }
+      applyTipFilter();
+      return;
+    }
     const b = ev.target && ev.target.closest ? ev.target.closest("[data-tipfilter]") : null;
     if (!b) return;
     tipFilter = b.getAttribute("data-tipfilter");
@@ -16691,55 +16867,205 @@ function renderQuickTips() {
   const live = quickTips.filter(t => !t.cleared);
   const cleared = quickTips.filter(t => t.cleared);
   const focus = focusUnits();
-  const focusRank = {};
-  focus.forEach((r, i) => { focusRank[r.id] = i + 1; });
+  const ftips = focusTips();
+  const hidden = focusHiddenUnits();
+
   const groups = [];
   const tech = live.filter(t => t.kind === "technique").sort(byCount);
-  /* Reading habits cost points in every unit, so they stay in Focus. */
-  if (tech.length) groups.push({ title: "How you read questions", sub: "every unit", tips: tech, focus: 0 });
+  if (tech.length) groups.push({ title: "How you read questions", sub: "every unit", tips: tech });
   const rules = live.filter(t => t.kind !== "technique");
   const seen = new Set();
   for (const u of unitData) {
     const mine = rules.filter(t => t.unitId === u.id).sort(byCount);
     if (!mine.length) continue;
     mine.forEach(t => seen.add(t));
-    groups.push({ title: unitShort(u.name), sub: unitTitle(u.name), tips: mine,
-                  focus: focusRank[u.id] === undefined ? null : focusRank[u.id] });
+    groups.push({ title: unitShort(u.name), sub: unitTitle(u.name), tips: mine });
   }
   const other = rules.filter(t => !seen.has(t)).sort(byCount);
-  if (other.length) groups.push({ title: "Other", sub: "", tips: other, focus: null });
+  if (other.length) groups.push({ title: "Other", sub: "", tips: other });
 
   const repCount = live.filter(t => (t.count || 1) >= 2).length;
-  const focusCount = groups.filter(g => g.focus !== null).reduce((n, g) => n + g.tips.length, 0);
-  let html = '<div class="rowsel qt-bar" role="group" aria-label="Filter tips">'
+  let html = '<div class="qt-tools"><div class="rowsel qt-bar" role="group" aria-label="Filter tips">'
     + '<button type="button" data-tipfilter="focus" aria-pressed="true">Focus '
-    + '<span class="qt-bn">' + focusCount + '</span></button>'
+    + '<span class="qt-bn">' + ftips.length + '</span></button>'
     + '<button type="button" data-tipfilter="repeat" aria-pressed="false">Missed 2+ '
     + '<span class="qt-bn">' + repCount + '</span></button>'
     + '<button type="button" data-tipfilter="all" aria-pressed="false">All '
-    + '<span class="qt-bn">' + live.length + '</span></button></div>';
-  html += '<p class="qt-fnote">' + (focus.length
-    ? 'Units under the ' + EXAM.PASS_LINE + '% line that cost you at least one exam question, '
-      + 'plus your ' + TOP_LEAKS + ' biggest point leaks, most at risk first: '
-      + focus.map(r => '<b>' + esc(unitShort(r.name)) + '</b> (~' + r.lost.toFixed(1) + ' Qs'
-          + (r.pct !== null && r.pct >= EXAM.PASS_LINE ? ', above the line but heavily tested' : '') + ')').join(', ')
-      + '. Reading habits stay because they cost points everywhere. Every other tip is under All.'
-    : 'No unit is under the ' + EXAM.PASS_LINE + '% line by a full exam question right now, '
-      + 'so only the reading-habit tips show here. Every other tip is under All.') + '</p>';
+    + '<span class="qt-bn">' + live.length + '</span></button></div>'
+    + '<button type="button" class="reveal-btn" data-tipreveal aria-pressed="false">Show all</button></div>';
+
+  html += '<div class="qt-focus">' + topicBannerHTML()
+    + '<p class="qt-fnote">The ' + ftips.length + ' tips worth the most exam points: times missed '
+    + '&times; the unit\'s exam questions (a reading habit counts as an average unit). '
+    + (focus.length
+        ? 'Drawn from ' + focus.map(r => esc(unitShort(r.name))).join(', ') + ' and the reading habits. '
+        : 'Only the reading habits qualify right now. ')
+    + (hidden.length
+        ? 'Units at ' + FOCUS_HIDE_AT + '%+ ' + FOCUS_SOURCE_LABEL[hidden[0].source] + ' stay under All ('
+          + hidden.map(r => r.id).sort((a, b) => a.slice(1) - b.slice(1)).map(id => id.slice(1)).join(', ') + ').'
+        : '') + '</p>'
+    + '<div class="qt-list">' + ftips.map(t => tipCard(t, true)).join("") + '</div></div>';
+
+  html += '<div class="qt-groups">';
   for (const g of groups) {
     const hasRep = g.tips.some(t => (t.count || 1) >= 2);
-    html += '<section class="qt-group' + (hasRep ? ' has-rep' : '') + '"'
-      + (g.focus !== null ? ' data-focus="' + g.focus + '" style="--fo:' + (g.focus + 1) + '"' : '') + '>'
+    html += '<section class="qt-group' + (hasRep ? ' has-rep' : '') + '">'
       + '<h3 class="qt-gh">' + esc(g.title)
       + (g.sub ? ' <span>' + esc(g.sub) + '</span>' : '') + '</h3>'
-      + '<div class="qt-list">' + g.tips.map(tipRow).join("") + '</div></section>';
+      + '<div class="qt-list">' + g.tips.map(t => tipCard(t, false)).join("") + '</div></section>';
   }
+  html += '</div>';
   if (cleared.length) {
-    html += '<details class="fold qt-cleared"><summary>Cleared on retest (' + cleared.length
-      + ')</summary><div class="qt-list">' + cleared.map(tipRow).join("") + '</div></details>';
+    html += '<details class="fold qt-cleared"><summary>Answered right since (' + cleared.length
+      + ')</summary><div class="qt-list">' + cleared.map(t => tipCard(t, false)).join("") + '</div></details>';
   }
   setHTML("tips-body", html);
   applyTipFilter();
+}
+
+/* ==========================================================================
+   PAIRS - the rules he mixes up, side by side. The rule text is Austin's Nov 2
+   list, used word for word. The trap line says which way he has gone wrong, and
+   `misses` lists the Kaplan questions behind it, so every count on the tab is
+   derived from missedQuestions (the sanity check fails a pair that names a miss
+   that isn't on file).
+   cols: column heads. rows: { k: row label, c: [one cell per column] } or
+   { c: [one cell] } spanning the pair. An array cell renders as a list.
+   ========================================================================== */
+const PAIRS = [
+  { id: "p1", title: "State-registered IA vs Federal covered IA", unitId: "U2",
+    cols: ["State-registered IA", "Federal covered IA"], rows: [
+      { k: "Registers", c: ["state", "SEC ($110M+ AUM, or advises a registered investment company at any AUM)"] },
+      { k: "In the state", c: ["registration", "notice filing + fee only"] },
+      { k: "Net worth", c: ["$35,000 custody / $10,000 discretion", "no state financial rules"] },
+      { k: "Substantial prepayment", c: ["over $500, 6+ months ahead", "over $1,200, 6+ months ahead"] },
+      { k: "IAR hired/leaves, who notifies the state", c: ["the firm", "the IAR"] },
+      { k: "IAR registers where", c: ["place of business + any state with a 6th retail client",
+                                      "place of business only (client counts never matter)"] }],
+    trap: "You carry state rules onto federal covered firms: the client count for their IARs, the firm doing the notifying, $500 instead of $1,200.",
+    misses: ["u2q1-q01","u2exam-q01","u2exam-q11","rev116-q25","u2q1-q07","u2q3-q02","u2exam-q15","mid-q11","mid-q27","rev13-q10","rev19-q10","rev15-q07","mid-q28"] },
+  { id: "p2", title: "IAR vs BD agent", unitId: "U7",
+    cols: ["IAR", "BD agent"], rows: [
+      { k: "Share in client profits/losses", c: ["never", "written consent of client and firm, proportionate to contribution"] },
+      { k: "Discretion", c: ["oral OK for 10 business days after first trade", "written before first trade"] },
+      { k: "Hired/leaves, who notifies", c: ["see pair 1", "both agent and BD, promptly"] },
+      { k: "Firm acting as principal", c: ["written disclosure + client consent before completion", "disclosed on the confirmation"] }],
+    trap: "You hand the agent's rules to the IAR: profit sharing with consent (twice), and written discretion before the first trade.",
+    misses: ["mid-q35","cq17a-q02","u7exam-q02","rev16-q16","rev19-q16","u6q2-q02"] },
+  { id: "p3", title: "Exclusion vs Exemption", unitId: "U1",
+    cols: ["Exclusion (not an IA at all)", "Exemption (an IA that need not register)"], rows: [
+      { c: [["lawyers, accountants, teachers, engineers when incidental", "banks", "bona fide publishers",
+             "BDs with incidental advice", "Treasury-only advice (federal)", "federal covered advisers (under the USA)"],
+            ["no office in the state + 5 or fewer retail clients in 12 months", "institutional-only clients",
+             "insurance-company-only clients (federal exemption, not an exclusion)"]] }],
+    trap: "You file the insurance-company exemption under exclusions, and keep the exclusion for professionals who advertise or charge for advice.",
+    misses: ["u1qz2-q03","u1qz2-q11","u1exam-q06","u1exam-q11","u1exam-q12","rev113-q17","cq17a-q04"] },
+  { id: "p4", title: "Cancellation vs Revocation", unitId: "U5",
+    cols: ["Cancel", "Revoke"], rows: [
+      { c: ["non-punitive (out of business, can't be located, mental incompetence)", "punitive (violations, convictions)"] }],
+    trap: "You attach mental incompetence to revoke. It's cancel: nobody did anything wrong.",
+    misses: ["u5q2-q03","u5exam-q04","u5exam-q13","rev113-q16"] },
+  { id: "p5", title: "Custody checks: three cases", unitId: "U7", rows: [
+      { k: "Fee check payable to the adviser", c: ["not custody"] },
+      { k: "Client money made payable to the adviser by mistake (should go to the BD)", c: ["return to the SENDER within 3 business days, or it's custody"] },
+      { k: "Third-party check", c: ["forward within 3 business days = not custody"] },
+      { k: "Fee deduction, certificates, passwords that can move money", c: ["custody"] }],
+    trap: "You call real custody 'not custody': passwords that can move money, and automatic fee deduction.",
+    misses: ["u7q1-q11","u7exam-q14","mid-q25"] },
+  { id: "p6", title: "Exempt security vs Exempt transaction vs Federal covered", unitId: "U4",
+    cols: ["Exempt security", "Exempt transaction", "Federal covered"], rows: [
+      { c: ["what it is (govt, munis, banks, S&Ls/insurers authorized in the state, exchange-listed issues per Kaplan)",
+            "how it's sold (unsolicited, isolated nonissuer, institutions, private placement = 10 or fewer noninstitutional OFFERS in 12 months)",
+            "e.g. investment company shares: notice filing, never state registration"] },
+      { c: ["Antifraud applies to all three"] }],
+    trap: "You miss the unsolicited order when the stem only describes the client calling in, and treat federal covered as a kind of registration.",
+    misses: ["u4q1-q03","u4q1-q12","u4q1-q14","u4q2-q02","u4q2-q10","u4q2-q12","u4exam-q11","rev14-q06","rev15-q08","rev17-q03","rev17-q11","rev17-q14","rev19-q13","mid-q23","cq17b-q09"] },
+  { id: "p7", title: "Issuer vs Nonissuer", unitId: "U4",
+    cols: ["Issuer", "Nonissuer"], rows: [
+      { c: ["the money goes to the issuer (including its private placement)", "everything else, including a company buying back its own stock"] }],
+    trap: "You call a company buying back its own stock an issuer transaction; the money goes to the selling shareholders.",
+    misses: ["cq17a-q19","rev116-q23"] },
+  { id: "p8", title: "Gift vs Inheritance", unitId: "U18",
+    cols: ["Gift", "Inheritance"], rows: [
+      { c: ["donor's cost basis carries over", "stepped up to value at death"] },
+      { k: "Fund prices", c: ["Open-end fund: buy at POP, redeem at NAV", "closed-end: bid/ask, NAV not used"] }],
+    trap: "You step up a gift to its value on the day it was given, and use NAV on a closed-end fund.",
+    misses: ["u18q1-q06","u18q2-q07"] },
+  { id: "p9", title: "529 vs Coverdell vs UTMA", unitId: "U20",
+    cols: ["529", "Coverdell", "UTMA"], rows: [
+      { c: [["no age limit", "pays student loans ($10,000 lifetime)", "5 years of gift exclusions at once"],
+            ["$2,000/yr", "use by age 30", "K-12 or college", "unused earnings taxed to the beneficiary"],
+            ["can't pay parental obligations (food, clothing, medical)", "can hold real estate"]] }],
+    trap: "You give the Coverdell's age-30 limit to the 529, and let UTMA money pay parental bills like medical care.",
+    misses: ["u20q1-q01","u20q2-q01","cq20a-q03","cq20b-q01","u20exam-q06","u20exam-q08"] },
+  { id: "p10", title: "Margin documents", unitId: "U22", rows: [
+      { k: "Credit agreement", c: ["the loan itself (terms, interest)"] },
+      { k: "Hypothecation agreement", c: ["firm may pledge my securities for its bank loan"] },
+      { k: "Loan consent (optional)", c: ["firm may lend my securities out"] },
+      { c: ["Reg T sets initial margin", "FINRA/SROs set maintenance (25% long, 30% short)"] }],
+    trap: "You slide each document one place over: loan consent for hypothecation, hypothecation for the credit agreement.",
+    misses: ["u22q1-q01","u22q2-q07","u22exam-q01"] },
+  { id: "p11", title: "Efficient market forms", unitId: "U17", rows: [
+      { k: "Weak", c: ["past prices/volume (technical analysis fails; Kaplan counts WSJ news here)"] },
+      { k: "Semi-strong", c: ["all public info (fundamental analysis fails too)"] },
+      { k: "Strong", c: ["public + inside"] },
+      { c: ["Believers go passive/strategic", "doubters go active/tactical"] }],
+    trap: "You pair the belief with the wrong strategy: a semi-strong believer going active, a doubter going passive.",
+    misses: ["u17q1-q01","u17q1-q05","u17exam-q01","u17exam-q10"] },
+  { id: "p12", title: "Measures", unitId: "U23", rows: [
+      { c: ["Sharpe uses std dev", "Treynor uses beta"] },
+      { c: ["CML uses std dev", "CAPM uses beta"] },
+      { c: ["Time-weighted judges the manager", "dollar-weighted (IRR) judges the client"] },
+      { c: ["Yield = income only", "total return adds price change"] }],
+    trap: "You reach for beta on the capital market line, and add the price change to a yield.",
+    misses: ["u17exam-q06","u23q2-q03","u23q2-q06"] },
+  { id: "p13", title: "Form ADV", unitId: "U2", rows: [
+      { c: ["Part 2A = the brochure", "2B = supplement on the individual advisers"] }],
+    trap: "You call Part 2B the brochure, and count 2B as filed with the SEC.",
+    misses: ["u2q2-q07","u2exam-q05","u6exam-q08"] }
+];
+function pairMissCount(p) { return knownMisses(p.misses).length; }
+/* Plain text of a pair row, for review cards and print. */
+function pairRowText(p, r) {
+  if (p.cols && r.c.length === p.cols.length) {
+    return r.c.map((c, i) => p.cols[i] + ": " + (Array.isArray(c) ? c.join("; ") : c)).join("  |  ");
+  }
+  return r.c.map(c => Array.isArray(c) ? c.join("; ") : c).join("  |  ");
+}
+
+function pairCellHTML(c) {
+  return Array.isArray(c) ? '<ul>' + c.map(x => '<li>' + esc(x) + '</li>').join('') + '</ul>' : esc(c);
+}
+function pairHTML(p, i) {
+  const n = pairMissCount(p);
+  const nc = Math.max(1, ...p.rows.map(r => r.c.length));
+  const hasK = p.rows.some(r => r.k);
+  const tmpl = (hasK ? 'minmax(0,0.9fr) ' : '') + 'repeat(' + nc + ',minmax(0,1fr))';
+  let grid = '';
+  if (p.cols) {
+    grid += '<div class="pr-row pr-head">' + (hasK ? '<div class="pr-k"></div>' : '')
+      + p.cols.map(c => '<div class="pr-c">' + esc(c) + '</div>').join('') + '</div>';
+  }
+  for (const r of p.rows) {
+    const full = r.c.length === 1 && nc > 1 && !r.k;
+    const matchCols = p.cols && r.c.length === p.cols.length;
+    grid += '<div class="pr-row' + (full ? ' pr-span' : '') + '">'
+      + (hasK ? '<div class="pr-k">' + esc(r.k || '') + '</div>' : '')
+      + r.c.map((c, j) => '<div class="pr-c"' + (matchCols ? ' data-col="' + esc(p.cols[j]) + '"' : '')
+          + (r.c.length === 1 && nc > 1 ? ' style="grid-column:span ' + nc + '"' : '') + '>'
+          + pairCellHTML(c) + '</div>').join('')
+      + '</div>';
+  }
+  return '<article class="pair' + (n >= 3 ? ' hot' : '') + '" id="pair-' + p.id + '">'
+    + '<header class="pr-h"><span class="pz-rank">' + (i + 1) + '</span><h3>' + esc(p.title) + '</h3>'
+    + (n ? '<span class="qt-n">' + n + '&times;</span>' : '')
+    + whyButton('pair:' + p.id, n) + '</header>'
+    + '<div class="pr-grid" style="--pr-cols:' + tmpl + '">' + grid + '</div>'
+    + (n ? '<p class="pr-trap"><b>Trap</b> ' + esc(p.trap) + '</p>' : '')
+    + '<div class="why-panel" hidden></div></article>';
+}
+function renderPairs() {
+  setHTML("pairs-body", PAIRS.map(pairHTML).join(""));
 }
 
 /* ==========================================================================
@@ -16814,7 +17140,7 @@ const DUMP_BLOCKS = [
     { k: "Unsolicited order", v: "Client asked = exempt, even an unregistered stock", tip: "t-exempt-transactions" },
     { k: "Isolated nonissuer", v: "Exempt" },
     { k: "Issuer transaction", v: "Money goes to the issuer; a buyback is nonissuer", tip: "t-issuer-vs-nonissuer" },
-    { k: "Private placement", v: "10 or fewer retail offerees in 12 months" },
+    { k: "Private placement", v: "10 or fewer noninstitutional offers in 12 months", tip: "t-exempt-transactions" },
     { k: "Preorganization certificates", v: "10 or fewer subscribers, no commission" },
     { k: "Fiduciaries", v: "Executor, trustee in bankruptcy, guardian" },
     { k: "Institutional buyers", v: "Banks, insurers, pension trusts, BDs (not ordinary companies)", tip: "t-exempt-transactions" },
@@ -16913,8 +17239,8 @@ function renderDump() {
     '<ol class="dump-order">' + order.map((b, i) =>
       '<li' + (i >= cutFrom ? ' class="cut" title="Cut first if short on time"' : '') + '>'
       + '<span class="n">' + (i + 1) + '</span>' + esc(b.name) + '</li>').join("") + '</ol>'
-    + '<p class="dump-key"><span class="mdot"></span> a line you have missed '
-    + '(it has a Quick Tip) &middot; dashed = cut first if short on time</p>');
+    + '<p class="dump-key"><span class="mdot hot"></span> missed 3+ times &middot; '
+    + '<span class="mdot"></span> missed once or twice &middot; dashed = cut first if short on time</p>');
 
   setHTML("dump-blocks", order.map((b, i) =>
     '<article class="dblock' + (i >= cutFrom ? ' is-cut' : '') + '">'
@@ -16924,7 +17250,7 @@ function renderDump() {
     + '<dl class="drows">' + b.rows.map(r => {
         const c = dumpMissed(r.tip);
         return '<div class="drow"><dt>'
-          + (c ? '<span class="mdot" title="Missed ' + c + '&times; ' + EM + ' see Quick Tips"></span>' : '')
+          + (c ? '<span class="mdot' + (c >= 3 ? ' hot' : '') + '" title="Missed ' + c + '&times; ' + EM + ' see Quick Tips"></span>' : '')
           + esc(r.k) + '</dt><dd>' + esc(r.v)
           + (r.note ? ' <small>' + esc(r.note) + '</small>' : '') + '</dd></div>';
       }).join("") + '</dl>'
@@ -17056,7 +17382,8 @@ const EXAM_FACTS =
 + nasaaData.topics.map(t => "    " + t.id + ". " + t.name + " - " + t.weight + "% ("
        + t.questions + " questions)").join("\n") + "\n"
 + "  Note: several prep sites publish 5/20/30/45 for this exam. That is wrong.\n"
-+ "- I have already passed the Series 7, which is the co-requisite.\n";
++ "- I have already passed the Series 7, which is the co-requisite.\n"
++ (EXAM_DATE ? "- My exam is booked for " + fmtDate(EXAM_DATE) + ".\n" : "");
 
 /* ---- variant: full ------------------------------------------------------- */
 function briefFull(budget) {
@@ -17721,6 +18048,7 @@ function renderAll() {
   renderExams();
   renderGuide();
   renderQuickTips();
+  renderPairs();
   renderDump();
   renderPaste();
   renderCharts();
@@ -17733,6 +18061,7 @@ function boot() {
   initCopy();
   initTipFilter();
   initGuideFilter();
+  initReveal();
   renderAll();
 }
 

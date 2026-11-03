@@ -131,7 +131,8 @@ const EXPORTS = `
   PRIOR_SNAPSHOT,
   pooledTotals, topicTotals, unitPool, unitExamQuestions, reweightedScore,
   buildBindings, bindAll, renderAll,
-  renderSimulated, renderPerformance, buildPaste, MISSING_BINDS
+  renderSimulated, renderPerformance, buildPaste, MISSING_BINDS,
+  PAIRS, focusUnits, focusTips, FOCUS_TIP_CAP, FOCUS_HIDE_AT
 };`;
 
 let X;
@@ -440,6 +441,24 @@ function rowCount(html) { return (String(html).match(/<tr/g) || []).length; }
   /* The delta must stay small enough to drop into a running conversation. */
   assert(delta.length <= 70000,
     "delta stays pasteable", delta.length + " chars (~" + Math.round(delta.length/4) + " tokens)");
+}
+
+/* ------------------------------------------- 7b. Nov 2 change list rules */
+{
+  const known = new Set(X.missedQuestions.map(q => q.id));
+  const badPairs = X.PAIRS.filter(p => (p.misses || []).some(id => !known.has(id))).map(p => p.id);
+  assert(badPairs.length === 0 || !X.missedQuestions.length,
+    "every Pairs trap points at misses that are on file", badPairs.join(", "));
+  assert(X.focusTips().length <= X.FOCUS_TIP_CAP, "Quick Tips Focus shows at most " + X.FOCUS_TIP_CAP + " tips",
+    X.focusTips().length + " tips");
+  const hidden = X.focusUnits().filter(r => r.pct >= X.FOCUS_HIDE_AT).map(r => r.id);
+  assert(hidden.length === 0, "no unit at " + X.FOCUS_HIDE_AT + "%+ sits in Focus", hidden.join(", "));
+  /* Kaplan checkpoints allow ONE attempt: nothing on the page or in a briefing may say retake. */
+  const code = SOURCE.replace(/\/\*[\s\S]*?\*\//g, "");
+  const briefs = ["full", "delta", "focused", "quiz"].map(v => X.buildPaste(v)).join("\n");
+  assert(!/retake/i.test(code.replace(/never a retake/gi, "")) && !/retake/i.test(briefs),
+    "nothing suggests retaking a checkpoint (one attempt only)");
+  assert(!/Book the exam date|No date booked/.test(SOURCE), "no 'book the exam date' prompt (booked for Nov 9)");
 }
 
 /* ------------------------------------------------ 8. empty means empty */
