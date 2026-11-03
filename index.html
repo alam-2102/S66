@@ -239,6 +239,18 @@ tfoot td{border-top:1px solid var(--axis);font-weight:600;color:var(--ink);borde
 @media(max-width:560px){
   .qt{padding:10px 11px 11px}
 }
+/* ---------- sim trend ---------- */
+.st{display:block;width:100%;height:auto;max-height:260px}
+.st-grid{stroke:var(--grid);stroke-width:1}
+.st-ax{fill:var(--muted);font-size:11px}
+.st-pass{stroke:var(--ink-2);stroke-width:1.5}
+.st-target{stroke:var(--ink-2);stroke-width:1.5;stroke-dasharray:5 4}
+.st-ref{fill:var(--ink-2);font-size:11px}
+.st-line{fill:none;stroke:var(--s1);stroke-width:2;stroke-linejoin:round}
+.st-dot{fill:var(--s1);stroke:var(--surface);stroke-width:2}
+.st-hit{fill:transparent}
+.st-pt:hover .st-dot{r:7}
+.st-val{fill:var(--ink);font-size:12px;font-weight:650}
 /* ---------- daily review (phone first) ---------- */
 #tab-review{font-size:18px;line-height:1.5;max-width:640px}
 .dr-head{margin:4px 0 14px}
@@ -538,6 +550,7 @@ footer.foot{margin-top:40px;padding-top:16px;border-top:1px solid var(--grid);
   <div id="exam-detail"></div>
 
   <h2>Exam over exam</h2>
+  <div id="sim-trend"></div>
   <small class="note">Gaps that appear in consecutive full-length exams without improving are
     flagged &mdash; a repeated weakness that has not moved is the strongest signal here.</small>
   <div class="scroller" id="exam-delta"></div>
@@ -16145,6 +16158,60 @@ function renderSimulated(idx) {
   bindAll();
 }
 
+/* ---- full-length sims: misses, patterns, trend ------------------------------ */
+function simMissIds(e) { return knownMisses(e.missIds); }
+function patternShort(rule) {
+  const s = String(rule || "");
+  const c = s.indexOf(":");
+  if (c > 0 && c <= 70) return s.slice(0, c);
+  return s.length > 72 ? s.slice(0, 70).replace(/\s+\S*$/, "") + "..." : s;
+}
+/* A pattern missed on two or more full-length sims has survived a re-sit: still open. */
+function stillOpenPatterns() {
+  const sims = fullLengthSims();
+  return errorPatterns.map(p => ({ p, sims: sims.filter(e =>
+      simMissIds(e).some(id => (p.occurrences || []).includes(id))) }))
+    .filter(x => x.sims.length >= 2)
+    .sort((a, b) => b.sims.length - a.sims.length);
+}
+function renderSimTrend() {
+  const sims = fullLengthSims().slice().sort((a, b) => String(a.date).localeCompare(String(b.date)));
+  if (!sims.length) {
+    setHTML("sim-trend", '<p class="muted-line">The sim-over-sim line starts with your first full-length '
+      + 'sim (Sim 1, Sim 2, Sim 3, Mastery).</p>');
+    return;
+  }
+  const W = 640, H = 220, L = 40, R = 66, T = 14, B = 34;
+  const lo = 40, hi = 100;
+  const x = i => sims.length === 1 ? L + (W - L - R) / 2 : L + i * (W - L - R) / (sims.length - 1);
+  const y = v => T + (hi - Math.max(lo, Math.min(hi, v))) * (H - T - B) / (hi - lo);
+  const pts = sims.map((e, i) => ({ e, i, v: pct(e.score, e.total) }));
+  /* A value label just under a reference line goes below its dot instead. */
+  const crowd = v => [EXAM.PASS_LINE, EXAM.TARGET_AVG].some(r => r - v >= 0 && r - v < 7);
+  let g = '';
+  for (const v of [40, 60, 80, 100]) {
+    g += '<line x1="' + L + '" x2="' + (W - R) + '" y1="' + y(v) + '" y2="' + y(v) + '" class="st-grid"/>'
+      + '<text x="' + (L - 6) + '" y="' + (y(v) + 4) + '" class="st-ax" text-anchor="end">' + v + '%</text>';
+  }
+  const ref = (v, cls, label) => '<line x1="' + L + '" x2="' + (W - R) + '" y1="' + y(v) + '" y2="' + y(v) + '" class="' + cls + '"/>'
+    + '<text x="' + (W - R + 6) + '" y="' + (y(v) + 4) + '" class="st-ref">' + label + '</text>';
+  g += ref(EXAM.PASS_LINE, "st-pass", EXAM.PASS_LINE + "% pass") + ref(EXAM.TARGET_AVG, "st-target", EXAM.TARGET_AVG + "% target");
+  if (pts.length > 1) g += '<polyline class="st-line" points="' + pts.map(p => x(p.i) + ',' + y(p.v)).join(' ') + '"/>';
+  for (const p of pts) {
+    const tip = p.e.name + ': ' + fmtPct(p.v) + ' (' + p.e.score + ' of ' + p.e.total + '), ' + fmtDate(p.e.date);
+    g += '<g class="st-pt"><title>' + esc(tip) + '</title>'
+      + '<circle cx="' + x(p.i) + '" cy="' + y(p.v) + '" r="14" class="st-hit"/>'
+      + '<circle cx="' + x(p.i) + '" cy="' + y(p.v) + '" r="5" class="st-dot"/>'
+      + '<text x="' + x(p.i) + '" y="' + (crowd(p.v) ? y(p.v) + 21 : y(p.v) - 11) + '" class="st-val" text-anchor="middle">' + fmtPct(p.v, 0) + '</text>'
+      + '<text x="' + x(p.i) + '" y="' + (H - 12) + '" class="st-ax" text-anchor="middle">' + esc(p.e.name) + '</text></g>';
+  }
+  setHTML("sim-trend", '<div class="figure"><div class="fig-head"><span class="fig-title">Sim over sim</span></div>'
+    + '<p class="fig-sub">Each full-length sim\'s score against the ' + EXAM.PASS_LINE + '% pass line and the '
+    + EXAM.TARGET_AVG + '% target.</p>'
+    + '<svg class="st" viewBox="0 0 ' + W + ' ' + H + '" role="img" aria-label="'
+    + esc('Sim scores: ' + pts.map(p => p.e.name + ' ' + fmtPct(p.v)).join(', ')) + '">' + g + '</svg></div>');
+}
+
 /* One exam's breakdown: header, topics, units, quarters, error kinds. Full-length
    exams default to the real time limit; a shorter mixed exam passes null and only
    shows the time used. */
@@ -16186,20 +16253,51 @@ function examDetailHTML(e, defaultMinutes) {
       + '</tr></thead><tbody>' + rows + '</tbody></table></div>';
   }
 
-  /* by unit */
+  /* by unit: misses next to the unit's weight on the real exam, costliest first */
   if (e.byUnit && Object.keys(e.byUnit).length) {
     let rows = "";
-    for (const [uid, d] of Object.entries(e.byUnit)) {
+    const units = Object.entries(e.byUnit).map(([uid, d]) => ({ uid, d, missed: (d.answered || 0) - (d.correct || 0),
+        q: unitExamQuestions(uid) }))
+      .sort((a, b) => b.missed * b.q - a.missed * a.q || b.missed - a.missed);
+    for (const { uid, d, missed, q } of units) {
       const u = unitData.find(x => x.id === uid);
       const p = pct(d.correct, d.answered);
       rows += '<tr' + (p !== null && p < EXAM.PASS_LINE ? ' class="below"' : '') + '>'
         + '<td>' + esc(u ? u.name : uid) + '</td>'
+        + '<td class="num">' + missed + '</td>'
         + '<td class="num">' + d.correct + ' / ' + d.answered + '</td>'
-        + '<td class="num">' + fmtPct(p) + '</td></tr>';
+        + '<td class="num">' + fmtPct(p) + '</td>'
+        + '<td class="num">' + (q ? '~' + fmtExamQs(q) : EM) + '</td></tr>';
     }
-    html += '<h3>By Kaplan unit</h3><div class="scroller"><table class="narrow"><thead><tr>'
-      + '<th>Unit</th><th>Correct</th><th>Accuracy</th>'
+    html += '<h3>By Kaplan unit</h3><small class="note">Misses next to each unit\'s weight on the real exam '
+      + '(Kaplan\'s count of its questions), costliest first.</small>'
+      + '<div class="scroller"><table class="narrow"><thead><tr>'
+      + '<th>Unit</th><th>Missed</th><th>Correct</th><th>Accuracy</th><th>Exam Qs</th>'
       + '</tr></thead><tbody>' + rows + '</tbody></table></div>';
+  }
+
+  /* by error pattern: which of his recurring mistakes this sitting's misses fall into */
+  if ((e.total || 0) >= EXAM.FULL_LENGTH_MIN) {
+    const ids = simMissIds(e);
+    if (ids.length) {
+      const open = new Set(stillOpenPatterns().map(x => x.p));
+      const hits = errorPatterns.map(p => ({ p, n: (p.occurrences || []).filter(id => ids.includes(id)).length }))
+        .filter(x => x.n).sort((a, b) => b.n - a.n);
+      const loose = ids.filter(id => !errorPatterns.some(p => (p.occurrences || []).includes(id))).length;
+      html += '<h3>By error pattern</h3>'
+        + (hits.length
+            ? '<div class="scroller"><table class="narrow"><thead><tr><th>Pattern</th><th>Missed</th><th></th>'
+              + '</tr></thead><tbody>' + hits.map(x => '<tr><td>' + esc(patternShort(x.p.rule)) + '</td>'
+                + '<td class="num">' + x.n + '</td><td>'
+                + (open.has(x.p) ? '<span class="tag neutral">still open</span>' : '') + '</td></tr>').join('')
+              + '</tbody></table></div>'
+            : '')
+        + (loose ? '<p class="muted-line">' + loose + ' miss' + (loose === 1 ? ' is' : 'es are')
+            + ' not in a recorded pattern yet.</p>' : '');
+    } else {
+      html += '<h3>By error pattern</h3><p class="muted-line">This sitting\'s missed questions have not '
+        + 'been synced with their ids yet, so they cannot be matched to your error patterns.</p>';
+    }
   }
 
   /* pacing across quarters - stamina and late-exam fade */
@@ -16288,6 +16386,16 @@ function renderExamDelta() {
       + 'survives a second sitting is not noise, and re-reading the same material has '
       + 'already been tried once.</p></div>'
     : "");
+  renderStillOpen();
+}
+function renderStillOpen() {
+  const open = stillOpenPatterns();
+  if (!open.length) return;
+  const el = $("exam-stuck");
+  if (!el) return;
+  el.innerHTML += '<div class="card"><h3>Still open</h3><p>Error patterns you missed on two or more '
+    + 'full-length sims:</p><ul>' + open.map(x => '<li><b>' + esc(patternShort(x.p.rule)) + '</b> '
+      + EM + ' ' + x.sims.map(e => esc(e.name)).join(', ') + '</li>').join('') + '</ul></div>';
 }
 
 function renderCheckpointExams() {
@@ -16357,6 +16465,7 @@ function renderExams() {
       + 'readiness, so nothing shorter is counted here.</p>'
       + '<p>Unit checkpoint exams are logged further down this tab.</p></div>');
   renderSimulated(currentExam);
+  renderSimTrend();
   renderExamDelta();
   renderCheckpointExams();
 }

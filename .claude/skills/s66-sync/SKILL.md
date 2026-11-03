@@ -177,6 +177,10 @@ Checkpoint Exam was filed as a simulated exam and drove the "latest exam" card o
 
 ### Full-length exams - extra capture
 For any full-length simulated exam also capture:
+- **`missIds`**: the `missedQuestions` ids of every question missed on that sitting.
+  The dashboard matches a sim to error patterns, flags patterns missed on two or more
+  sims as "still open", and feeds the next day's Daily Review from these ids. Without
+  them the per-sim pattern view stays empty.
 - **Per-question topic tags**, so `byTopic` can be built
 - **Miss categories** - what kind of error each miss was (`missCats`)
 - **Per-quarter miss counts** (1-25, 26-50, 51-75, 76-100) as `segments`, so stamina
@@ -340,7 +344,8 @@ has `correct` exceeding `answered`, or leaves a unit unmapped. It writes the
       "byUnit":  { "U1": { "answered": 30, "correct": 18 } },
       "segments": [ { "label": "1-25", "missed": 6 }, { "label": "26-50", "missed": 7 },
                     { "label": "51-75", "missed": 8 }, { "label": "76-100", "missed": 11 } ],
-      "missCats": { "misread the question": 5, "did not know the rule": 12 } }
+      "missCats": { "misread the question": 5, "did not know the rule": 12 },
+      "missIds": ["e1q07", "e1q12"] }
   ],
   "checkpointExams": [ /* unit checkpoints (single-unit) plus any short multi-unit exam such as the Midterm */
     { "name": "Unit 1 Checkpoint Exam", "date": "2026-09-17", "score": 7, "total": 12,
