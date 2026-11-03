@@ -132,7 +132,8 @@ const EXPORTS = `
   pooledTotals, topicTotals, unitPool, unitExamQuestions, reweightedScore,
   buildBindings, bindAll, renderAll,
   renderSimulated, renderPerformance, buildPaste, MISSING_BINDS,
-  PAIRS, focusUnits, focusTips, FOCUS_TIP_CAP, FOCUS_HIDE_AT
+  PAIRS, focusUnits, focusTips, FOCUS_TIP_CAP, FOCUS_HIDE_AT,
+  REVIEW_DAYS, REVIEW_MAX_CARDS, buildReviewDay, reviewCard, reviewDayFor
 };`;
 
 let X;
@@ -459,6 +460,19 @@ function rowCount(html) { return (String(html).match(/<tr/g) || []).length; }
   assert(!/retake/i.test(code.replace(/never a retake/gi, "")) && !/retake/i.test(briefs),
     "nothing suggests retaking a checkpoint (one attempt only)");
   assert(!/Book the exam date|No date booked/.test(SOURCE), "no 'book the exam date' prompt (booked for Nov 9)");
+}
+
+/* ------------------------------------------------ 7c. Daily Review */
+if (X.quickTips.length) {
+  const dangling = [];
+  X.REVIEW_DAYS.forEach(d => (d.read || []).concat(d.check || []).forEach(r => { if (!X.reviewCard(r)) dangling.push(d.date + " " + r); }));
+  assert(dangling.length === 0, "every Daily Review card reference resolves to a tip, pair or dump row", dangling.join(", "));
+  const sizes = X.REVIEW_DAYS.map((d, i) => X.buildReviewDay(i).cards.length);
+  assert(sizes.every(n => n > 0 && n <= X.REVIEW_MAX_CARDS), "no Daily Review day has more than " + X.REVIEW_MAX_CARDS + " cards", sizes.join("/"));
+  const last = X.buildReviewDay(X.REVIEW_DAYS.length - 1);
+  assert(last.cards.length === 8 && last.cards.every(c => c.part === "read"), "exam morning is 8 read cards, no quiz");
+  assert(X.reviewDayFor("2026-10-01") === 0 && X.reviewDayFor("2026-12-01") === X.REVIEW_DAYS.length - 1,
+    "Daily Review clamps to the first and last day");
 }
 
 /* ------------------------------------------------ 8. empty means empty */
