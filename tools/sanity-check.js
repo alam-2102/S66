@@ -133,7 +133,7 @@ const EXPORTS = `
   buildBindings, bindAll, renderAll,
   renderSimulated, renderPerformance, buildPaste, MISSING_BINDS,
   PAIRS, focusUnits, focusTips, FOCUS_TIP_CAP, FOCUS_HIDE_AT,
-  REVIEW_DAYS, REVIEW_MAX_CARDS, buildReviewDay, reviewCard, reviewDayFor
+  REVIEW_DAYS, REVIEW_MAX_CARDS, buildReviewDay, reviewCard, reviewDayFor, STUDY_GUIDE_PAGES
 };`;
 
 let X;
@@ -473,6 +473,16 @@ if (X.quickTips.length) {
   assert(last.cards.length === 8 && last.cards.every(c => c.part === "read"), "exam morning is 8 read cards, no quiz");
   assert(X.reviewDayFor("2026-10-01") === 0 && X.reviewDayFor("2026-12-01") === X.REVIEW_DAYS.length - 1,
     "Daily Review clamps to the first and last day");
+}
+
+/* ------------------------------------------------ 7d. printouts */
+if (X.quickTips.length) {
+  const dangling = [];
+  X.STUDY_GUIDE_PAGES.forEach(p => (p.sections || []).forEach(([h, refs]) => refs.forEach(r => {
+    if (!X.reviewCard(r)) dangling.push(h + " " + r);
+  })));
+  assert(dangling.length === 0, "every printed study guide line resolves to a tip, pair or dump row", dangling.join(", "));
+  assert(X.STUDY_GUIDE_PAGES.length === 4, "the printed study guide is 4 pages");
 }
 
 /* ------------------------------------------------ 8. empty means empty */

@@ -455,6 +455,49 @@ footer.foot{margin-top:40px;padding-top:16px;border-top:1px solid var(--grid);
 [hidden]{display:none!important}
 [data-bind-missing]{outline:2px dashed var(--critical);outline-offset:2px}
 @media print{nav.tabs{display:none}section.tab{display:block!important}}
+/* ---------- printouts (US Letter, black and white) ---------- */
+.print-bar{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 14px}
+#print-root{display:none;color:#000;background:#fff;font-family:Arial,Helvetica,sans-serif}
+#print-root.measuring{display:block;position:absolute;left:-20000px;top:0;width:7.7in;visibility:hidden}
+@page{size:letter;margin:0.4in}
+@page dumpsheet{size:letter;margin:0.3in}
+@media print{
+  body[data-print]{background:#fff!important;color:#000!important}
+  body[data-print] .wrap{display:none!important}
+  body[data-print] #print-root{display:block}
+}
+#print-root b,#print-root h4{color:#000}
+.dp{font-size:9pt;page:dumpsheet}
+#print-root.measuring.k-dump,#print-root.measuring.k-blank{width:7.9in}
+.dp-h{font-size:9pt;line-height:1.2;margin:0 0 3pt;padding:0 0 2pt;border-bottom:.75pt solid #000}
+.dp-cols{--lh:1.2;line-height:var(--lh);columns:2;column-gap:.12in;column-fill:auto;height:10.18in;overflow:hidden}
+.dp.blank .dp-cols{height:auto;overflow:visible;column-fill:balance}
+.db h4{margin:3.5pt 0 1pt;font-size:9pt;text-transform:uppercase;letter-spacing:.03em;break-after:avoid}
+.db:first-child h4{margin-top:0}
+.db h4 span{font-weight:400;text-transform:none;letter-spacing:0}
+.dr{padding-left:6pt;text-indent:-6pt;break-inside:avoid}
+.dr.df{font-style:italic}
+.dp.blank .dr{display:flex;align-items:flex-end;gap:6pt;min-height:19pt;padding:0;text-indent:0}
+.dp.blank .dk{flex:0 1 auto;max-width:48%}
+.dp.blank .dl{flex:1 1 auto;border-bottom:.6pt solid #000;height:13pt}
+.dp-f{margin-top:2pt;font-size:9pt;line-height:1.1}
+.pg{font-size:11pt;line-height:1.3;break-after:page;page-break-after:always}
+.pg:last-child{break-after:auto;page-break-after:auto}
+.pg-h{display:flex;justify-content:space-between;gap:12pt;font-size:12.5pt;font-weight:700;
+  border-bottom:1pt solid #000;padding:0 0 4pt;margin:0 0 7pt}
+.pg-h span:last-child{font-weight:400;font-size:11pt;text-align:right}
+.pg-cols{columns:2;column-gap:.3in}
+.ps h4{margin:6pt 0 2pt;font-size:11pt;text-transform:uppercase;letter-spacing:.04em;break-after:avoid}
+.ps:first-child h4{margin-top:0}
+.pi{margin:0 0 3pt;break-inside:avoid}
+.pp{width:100%;min-width:0;border-collapse:collapse;margin:0 0 6pt;break-inside:avoid;font-size:inherit}
+.pp td,.pp th{padding:1pt 8pt 1pt 0;vertical-align:top;text-align:left;white-space:normal;min-width:0;
+  border-bottom:0;color:#000;font-size:inherit}
+.pp-t th{font-size:11.5pt;border-bottom:.5pt solid #000;padding-top:2pt}
+.pp-c td{font-weight:700}
+.pp-k{font-weight:700;width:24%}
+.pp-trap td{font-style:italic}
+.pg-f{margin-top:8pt;padding-top:3pt;border-top:.5pt solid #000;font-size:10pt}
 </style>
 </head>
 <body>
@@ -590,6 +633,9 @@ footer.foot{margin-top:40px;padding-top:16px;border-top:1px solid var(--grid);
 <!-- ============ 4 · STUDY GUIDE ============ -->
 <section class="tab" id="tab-guide" role="tabpanel" aria-labelledby="t-guide">
   <div id="guide-empty"></div>
+  <div class="print-bar">
+    <button type="button" class="reveal-btn" data-print-kind="guide">Print study guide</button>
+  </div>
 
   <h2>Where you stand</h2>
   <div id="guide-standing"></div>
@@ -989,6 +1035,10 @@ footer.foot{margin-top:40px;padding-top:16px;border-top:1px solid var(--grid);
     <span data-bind="exam.secondsPerQuestion"></span> seconds each, so the dump has to be
     fast. The order comes from exam weight against your accuracy, then from how many of a
     block's lines you have missed, so it moves as your data moves.</small>
+  <div class="print-bar">
+    <button type="button" class="reveal-btn" data-print-kind="dump">Print the sheet</button>
+    <button type="button" class="reveal-btn" data-print-kind="blank">Print blank practice</button>
+  </div>
   <div id="dump-cutorder"></div>
   <div class="dump-grid" id="dump-blocks"></div>
 </section>
@@ -1023,6 +1073,7 @@ footer.foot{margin-top:40px;padding-top:16px;border-top:1px solid var(--grid);
     <span data-bind="exam.targetAvg"></span>.</p>
 </footer>
 </div>
+<div id="print-root" aria-hidden="true"></div>
 <script>
 "use strict";
 /* ==========================================================================
@@ -17625,7 +17676,7 @@ const DUMP_BLOCKS = [
     { k: "Borrow from a client", v: "Only from a lending institution, BD or affiliate" },
     { k: "Front-run, churn, sell away", v: "Never; manipulation turns on intent", tip: "t-fraud-gain-and-intent" },
     { k: "Agents sharing commissions", v: "Same BD + both registered in the trade's state", tip: "t-commission-sharing" },
-    { k: "IAR sharing a client's profits", v: "Never (a BD agent needs written consent)", tip: "t-commission-sharing" },
+    { k: "IAR sharing a client's profits", v: "Never (BD agent: written consent of client and firm, proportionate)", tip: "t-commission-sharing" },
     { k: "Underwriter keeping IPO shares", v: "Never; it must make a bona fide offering", tip: "t-fraud-gain-and-intent" },
     { k: "Releasing client info", v: "Only with consent or legal compulsion", tip: "t-confidentiality-exits" }
   ]},
@@ -17760,6 +17811,187 @@ function renderDump() {
       }).join("") + '</dl>'
     + (b.foot ? '<p class="dblock-f">' + esc(b.foot) + '</p>' : '')
     + '</article>').join(""));
+}
+
+/* ==========================================================================
+   PRINT - US Letter, black and white, built from the data at click time, so a
+   sync regenerates every printout. Never from the Reference Sheet's static text.
+     dump   the Dump Sheet: one page, two columns, same blocks and order as the tab
+     blank  the same cues with a ruled line for each answer, to write from memory
+     guide  the 4-page study guide; anything that would spill a page is cut,
+            lowest yield (times missed x unit exam questions) first
+   ========================================================================== */
+const PRINT_PAGE_IN = { w: 8.5, h: 11, margin: 0.4 };
+const STUDY_GUIDE_PAGES = [
+  { title: "Units 1-7: who registers where", topics: ["IV"], sections: [
+    ["Thresholds and reach", ["dump:reg:AUM under $100M", "dump:reg:$100M to $110M", "dump:reg:$110M or more",
+      "dump:reg:SEC adviser falls under $90M", "pair:p1:0", "pair:p1:1", "dump:reg:IA, no office in the state",
+      "dump:reg:IAR of a state IA", "dump:reg:IAR of a federal covered IA", "tip:t-where-to-register:2",
+      "dump:reg:IAR", "dump:reg:BD or agent", "tip:t-where-to-register:3", "tip:t-where-to-register:4",
+      "tip:t-where-to-register:5"]],
+    ["Who notifies", ["tip:t-who-notifies", "tip:t-who-notifies:0", "tip:t-who-notifies:1",
+      "tip:t-who-notifies:2", "tip:t-who-notifies:3"]],
+    ["Renewals", ["dump:reg:Every registration", "tip:t-dec-31-renewal"]],
+    ["Adviser or not", ["tip:t-exclusion-vs-exemption", "tip:t-exclusion-vs-exemption:0", "tip:t-exclusion-vs-exemption:1",
+      "tip:t-exclusion-vs-exemption:2", "tip:t-exclusion-vs-exemption:3", "tip:t-exclusion-vs-exemption:4",
+      "tip:t-exclusion-vs-exemption:5", "tip:t-which-law-first"]],
+    ["Who counts as the firm's", ["tip:t-supervised-persons:0", "tip:t-supervised-persons:1",
+      "tip:t-supervised-persons:2", "tip:t-supervised-persons:3", "tip:t-form-adv-grid"]]
+  ]},
+  { title: "Units 1-7: conduct and numbers", topics: ["IV"], sections: [
+    ["Custody", ["pair:p5:0", "pair:p5:1", "pair:p5:2", "pair:p5:3", "tip:t-custody:3"]],
+    ["Discretion", ["dump:disc:IA or IAR", "dump:disc:BD agent", "dump:disc:Time and price only", "tip:t-discretion-who:0"]],
+    ["Brochure", ["tip:t-brochure-delivery:0", "tip:t-brochure-delivery:1", "tip:t-brochure-delivery:2",
+      "tip:t-brochure-delivery:3", "tip:t-brochure-delivery:4"]],
+    ["Never allowed", ["dump:never:Guarantee against loss", "dump:never:Imply registration = approval",
+      "dump:never:Exculpatory clause", "dump:never:Blanket recommendation", "dump:never:Borrow from a client",
+      "dump:never:IAR sharing a client's profits", "dump:never:Agents sharing commissions",
+      "dump:never:Front-run, churn, sell away", "dump:never:Releasing client info"]],
+    ["Exempt securities and transactions", ["tip:t-exempt-transactions", "tip:t-exempt-transactions:0",
+      "dump:exempt:Private placement", "tip:t-exempt-securities-conditions:0", "tip:t-exempt-securities-conditions:2",
+      "tip:t-exempt-securities-conditions:4", "tip:t-federal-covered:0"]],
+    ["Administrator powers", ["tip:t-cancel-vs-revoke:0", "tip:t-cancel-vs-revoke:1", "tip:t-cancel-vs-revoke:2",
+      "tip:t-cancel-vs-revoke:3", "tip:t-rule-vs-order"]],
+    ["Penalties and time limits", ["tip:t-unit5-numbers:0", "tip:t-unit5-numbers:1", "tip:t-unit5-numbers:2",
+      "tip:t-unit5-numbers:3", "tip:t-unit5-numbers:5"]],
+    ["Money thresholds", ["dump:money:Net worth", "dump:money:Substantial prepayment", "dump:money:Performance fees"]],
+    ["Record retention", ["tip:t-records-belong-to-firms:0", "tip:t-records-belong-to-firms:1",
+      "tip:t-records-belong-to-firms:2", "tip:t-records-belong-to-firms:3"]]
+  ]},
+  { title: "Pairs: the rules you mix up", pairs: true },
+  { title: "Topics I-III: formulas, then your weak Topic III units", topics: ["I", "II", "III"], sections: [
+    ["Formulas", DUMP_BLOCKS.filter(b => b.key === "formulas").flatMap(b => b.rows.map(r => "dump:formulas:" + r.k))],
+    ["Unit 17: portfolio management", ["tip:t-emh", "tip:t-emh:0", "tip:t-emh:1", "tip:t-emh:2",
+      "tip:t-investment-styles", "tip:t-investment-styles:0", "tip:t-investment-styles:1", "tip:t-risk-by-asset",
+      "tip:t-bond-strategies"]],
+    ["Unit 15: clients and accounts", ["tip:t-business-entities:0", "tip:t-business-entities:1",
+      "tip:t-business-entities:2", "tip:t-business-entities:3", "tip:t-trust-accounts", "tip:t-trust-accounts:3"]],
+    ["Unit 20: education accounts", ["tip:t-education-accounts", "tip:t-education-accounts:0",
+      "tip:t-education-accounts:4"]],
+    ["Unit 22: margin documents", ["tip:t-margin-accounts", "tip:t-margin-accounts:0"]]
+  ]}
+];
+
+function builtLine() { return 'Built ' + (META.lastVerified ? fmtDate(META.lastVerified) : EM); }
+function pageTopicLabel(ids) {
+  const ts = nasaaData.topics.filter(t => ids.includes(t.id));
+  const w = ts.reduce((n, t) => n + t.weight, 0);
+  const name = ts.length === 1 ? 'Topic ' + ts[0].id + ' ' + EM + ' ' + ts[0].short
+    : 'Topics ' + ts.map(t => t.id).join(', ');
+  return name + ' ' + EM + ' ' + w + '% of exam';
+}
+function printItemHTML(c) {
+  const rule = c.list && c.list.length ? (c.rule ? c.rule + ' ' : '') + c.list.join('; ') : c.rule;
+  return '<div class="pi" data-yield="' + cardYield(c).toFixed(2) + '"><b>' + esc(c.cue) + '</b> ' + esc(rule || '') + '</div>';
+}
+function guidePagesHTML() {
+  return STUDY_GUIDE_PAGES.map((pg, n) => {
+    let body = '', topics = pg.topics || [];
+    if (pg.pairs) {
+      const ts = new Set();
+      PAIRS.forEach(p => unitTopicIds(p.unitId).forEach(t => ts.add(t)));
+      topics = [...ts];
+      const cell = c => esc(Array.isArray(c) ? c.join("; ") : c);
+      body = PAIRS.map(p => {
+        const nc = Math.max(1, ...p.rows.map(r => r.c.length));
+        const hasK = p.rows.some(r => r.k);
+        const span = nc + (hasK ? 1 : 0);
+        let t = '<tr class="pp-t"><th colspan="' + span + '">' + esc(p.title) + '</th></tr>';
+        if (p.cols) t += '<tr class="pp-c">' + (hasK ? '<td></td>' : '') + p.cols.map(c => '<td>' + esc(c) + '</td>').join('') + '</tr>';
+        for (const r of p.rows) {
+          t += '<tr>' + (hasK ? '<td class="pp-k">' + esc(r.k || '') + '</td>' : '')
+            + r.c.map(c => '<td' + (r.c.length === 1 && nc > 1 ? ' colspan="' + nc + '"' : '') + '>' + cell(c) + '</td>').join('') + '</tr>';
+        }
+        if (pairMissCount(p)) t += '<tr class="pp-trap pi" data-yield="0"><td colspan="' + span + '">Trap: ' + esc(p.trap) + '</td></tr>';
+        return '<table class="pp pi" data-yield="' + (pairMissCount(p) * unitExamQuestions(p.unitId)).toFixed(2) + '">' + t + '</table>';
+      }).join('');
+    } else {
+      body = '<div class="pg-cols">' + pg.sections.map(([h, refs]) => {
+        const items = refs.map(reviewCard).filter(Boolean);
+        return items.length ? '<div class="ps"><h4>' + esc(h) + '</h4>' + items.map(printItemHTML).join('') + '</div>' : '';
+      }).join('') + '</div>';
+    }
+    return '<section class="pg"><header class="pg-h"><span>' + esc(pg.title) + '</span><span>'
+      + esc(pageTopicLabel(topics)) + '</span></header><div class="pg-b">' + body + '</div>'
+      + '<footer class="pg-f">Series 66 study guide &middot; page ' + (n + 1) + ' of ' + STUDY_GUIDE_PAGES.length
+      + ' &middot; ' + builtLine() + '</footer></section>';
+  }).join('');
+}
+function dumpPrintHTML(blank) {
+  const order = dumpOrder();
+  return '<section class="dp' + (blank ? ' blank' : '') + '">'
+    + (blank ? '<header class="dp-h"><b>Series 66 dump sheet: practice.</b> Write each answer from memory, '
+        + 'then check it against the answer sheet.</header>' : '')
+    + '<div class="dp-cols">' + order.map((b, i) => '<div class="db"><h4>' + (i + 1) + '. ' + esc(b.name)
+      + ' <span>Topic ' + b.topic + '</span></h4>' + b.rows.map(r => blank
+          ? '<div class="dr"><span class="dk">' + esc(r.k) + '</span><span class="dl"></span></div>'
+          : '<div class="dr"><b>' + esc(r.k) + '</b> ' + esc(r.v) + (r.note ? ' (' + esc(r.note) + ')' : '') + '</div>').join('')
+      + (b.foot && !blank ? '<div class="dr df">' + esc(b.foot) + '</div>' : '') + '</div>').join('')
+    + '</div><footer class="dp-f">Series 66 dump sheet' + (blank ? ', practice' : '') + ' &middot; '
+    + builtLine() + ' from Kaplan data.</footer></section>';
+}
+
+/* Fit: the guide's pages are measured off-screen at the printed size and the
+   lowest-yield item on an overfull page is dropped until it fits. The dump sheet
+   is never cut; its line height steps down until its columns fit the page. */
+const PX_PER_IN = 96;
+function fitGuide(root) {
+  const limit = (PRINT_PAGE_IN.h - 2 * PRINT_PAGE_IN.margin) * PX_PER_IN * 0.97;
+  const cut = [];
+  root.querySelectorAll(".pg").forEach(pg => {
+    let guard = 200, n = 0;
+    while (pg.getBoundingClientRect().height > limit && guard--) {
+      const items = Array.from(pg.querySelectorAll(".pi"));
+      if (!items.length) break;
+      let worst = items[items.length - 1];
+      for (let k = items.length - 1; k >= 0; k--) {
+        if (Number(items[k].dataset.yield) < Number(worst.dataset.yield)) worst = items[k];
+      }
+      const sec = worst.closest(".ps");
+      cut.push(worst.textContent.slice(0, 40));
+      if (!worst.classList.contains("pp-trap")) n++;
+      worst.remove();
+      if (sec && !sec.querySelector(".pi")) sec.remove();
+    }
+    const f = pg.querySelector(".pg-f");
+    if (f && n) f.textContent += " \u00b7 " + n + " lower-yield " + (n === 1 ? "item" : "items")
+      + " cut to fit; all are on the dashboard";
+  });
+  return cut;
+}
+function fitDump(root) {
+  const cols = root.querySelector(".dp-cols");
+  if (!cols) return null;
+  for (const lh of [1.2, 1.16, 1.12, 1.09, 1.06]) {
+    cols.style.setProperty("--lh", lh);
+    if (cols.scrollWidth <= cols.clientWidth + 2) return lh;
+  }
+  /* Still too long at the tightest spacing: let it run to a second page rather than cut a rule. */
+  cols.style.height = "auto"; cols.style.overflow = "visible";
+  return 0;
+}
+function preparePrint(kind) {
+  const root = $("print-root");
+  if (!root) return null;
+  root.innerHTML = kind === "guide" ? guidePagesHTML() : dumpPrintHTML(kind === "blank");
+  document.body.setAttribute("data-print", kind);
+  root.className = "measuring k-" + kind;
+  const res = kind === "guide" ? { cut: fitGuide(root) } : kind === "dump" ? { lh: fitDump(root) } : {};
+  root.className = "";
+  return res;
+}
+function printView(kind) {
+  preparePrint(kind);
+  const done = () => { document.body.removeAttribute("data-print"); window.removeEventListener("afterprint", done); };
+  window.addEventListener("afterprint", done);
+  window.print();
+}
+function initPrint() {
+  if (!document.addEventListener) return;
+  document.addEventListener("click", ev => {
+    const b = ev.target && ev.target.closest ? ev.target.closest("[data-print-kind]") : null;
+    if (b) printView(b.getAttribute("data-print-kind"));
+  });
 }
 
 /* ==========================================================================
@@ -18572,6 +18804,7 @@ function boot() {
   initGuideFilter();
   initReveal();
   initReview();
+  initPrint();
   renderAll();
 }
 
