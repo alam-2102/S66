@@ -482,7 +482,7 @@ if (X.quickTips.length) {
     if (!X.reviewCard(r)) dangling.push(h + " " + r);
   })));
   assert(dangling.length === 0, "every printed study guide line resolves to a tip, pair or dump row", dangling.join(", "));
-  assert(X.STUDY_GUIDE_PAGES.length === 4, "the printed study guide is 4 pages");
+  assert(X.STUDY_GUIDE_PAGES.length === 5, "the printed study guide is 5 pages");
 }
 
 /* ------------------------------------------------ 8. empty means empty */

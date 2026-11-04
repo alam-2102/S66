@@ -618,11 +618,12 @@ footer.foot{margin-top:40px;padding-top:16px;border-top:1px solid var(--grid);
 /* ---------- printouts (US Letter, black and white) ---------- */
 .print-bar{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 14px}
 #print-root{display:none;color:#000;background:#fff;font-family:Arial,Helvetica,sans-serif}
-#print-root.measuring{display:block;position:absolute;left:-20000px;top:0;width:7.7in;visibility:hidden}
-@page{size:letter;margin:0.4in}
+#print-root.measuring{display:block;position:absolute;left:-20000px;top:0;width:7.5in;visibility:hidden}
+@page{size:letter;margin:0.5in}
 @page dumpsheet{size:letter;margin:.25in .3in}
 @media print{
-  body[data-print]{background:#fff!important;color:#000!important}
+  :root,html{color-scheme:light!important;background:#fff!important}
+  html,body[data-print]{background:#fff!important;color:#000!important}
   body[data-print] .wrap,body[data-print] .app,body[data-print] .tabbar,body[data-print] .scrim{display:none!important}
   body[data-print] #print-root{display:block}
 }
@@ -641,23 +642,24 @@ footer.foot{margin-top:40px;padding-top:16px;border-top:1px solid var(--grid);
 .dp.blank .dk{flex:0 1 auto;max-width:48%}
 .dp.blank .dl{flex:1 1 auto;border-bottom:.6pt solid #000;height:13pt}
 .dp-f{margin-top:2pt;font-size:9pt;line-height:1.1}
-.pg{font-size:11pt;line-height:1.3;break-after:page;page-break-after:always}
+.pg{font-size:12pt;line-height:1.4;break-after:page;page-break-after:always}
 .pg:last-child{break-after:auto;page-break-after:auto}
-.pg-h{display:flex;justify-content:space-between;gap:12pt;font-size:12.5pt;font-weight:700;
-  border-bottom:1pt solid #000;padding:0 0 4pt;margin:0 0 7pt}
-.pg-h span:last-child{font-weight:400;font-size:11pt;text-align:right}
-.pg-cols{columns:2;column-gap:.3in}
-.ps h4{margin:6pt 0 2pt;font-size:11pt;text-transform:uppercase;letter-spacing:.04em;break-after:avoid}
+.pg-h{display:flex;justify-content:space-between;gap:12pt;font-size:14pt;font-weight:700;
+  border-bottom:1pt solid #000;padding:0 0 5pt;margin:0 0 10pt}
+.pg-h span:last-child{font-weight:400;font-size:11.5pt;text-align:right}
+.pg-cols{columns:2;column-gap:.4in}
+.ps h4{margin:11pt 0 4pt;padding:0 0 2pt;border-bottom:.5pt solid #000;font-size:12pt;text-transform:uppercase;letter-spacing:.04em;break-after:avoid}
 .ps:first-child h4{margin-top:0}
-.pi{margin:0 0 3pt;break-inside:avoid}
-.pp{width:100%;min-width:0;border-collapse:collapse;margin:0 0 6pt;break-inside:avoid;font-size:inherit}
-.pp td,.pp th{padding:1pt 8pt 1pt 0;vertical-align:top;text-align:left;white-space:normal;min-width:0;
+.pi{margin:0 0 6pt;break-inside:avoid}
+.pp{width:100%;min-width:0;border-collapse:collapse;margin:0 0 9pt;break-inside:avoid;font-size:inherit}
+.pp td,.pp th{padding:2pt 10pt 2pt 0;vertical-align:top;text-align:left;white-space:normal;min-width:0;
   border-bottom:0;color:#000;font-size:inherit}
-.pp-t th{font-size:11.5pt;border-bottom:.5pt solid #000;padding-top:2pt}
+.pp-t th{font-size:12.5pt;border-bottom:.5pt solid #000;padding-top:3pt}
 .pp-c td{font-weight:700}
 .pp-k{font-weight:700;width:24%}
 .pp-trap td{font-style:italic}
-.pg-f{margin-top:8pt;padding-top:3pt;border-top:.5pt solid #000;font-size:10pt}
+.pp-note{margin:0 0 9pt;font-style:italic}
+.pg-f{margin-top:10pt;padding-top:4pt;border-top:.5pt solid #000;font-size:10pt}
 </style>
 </head>
 <body>
@@ -19703,10 +19705,10 @@ function renderDump() {
    sync regenerates every printout. Never from the Reference Sheet's static text.
      dump   the Dump Sheet: one page, two columns, same blocks and order as the tab
      blank  the same cues with a ruled line for each answer, to write from memory
-     guide  the 4-page study guide; anything that would spill a page is cut,
+     guide  the 5-page study guide at 12pt; anything that would spill a page is cut,
             lowest yield (times missed x unit exam questions) first
    ========================================================================== */
-const PRINT_PAGE_IN = { w: 8.5, h: 11, margin: 0.4 };
+const PRINT_PAGE_IN = { w: 8.5, h: 11, margin: 0.5 };
 const STUDY_GUIDE_PAGES = [
   { title: "Units 1-7: who registers where", topics: ["IV"], sections: [
     ["Thresholds and reach", ["dump:reg:AUM under $100M", "dump:reg:$100M to $110M", "dump:reg:$110M or more",
@@ -19717,17 +19719,20 @@ const STUDY_GUIDE_PAGES = [
     ["Who notifies", ["tip:t-who-notifies", "tip:t-who-notifies:0", "tip:t-who-notifies:1",
       "tip:t-who-notifies:2", "tip:t-who-notifies:3"]],
     ["Renewals", ["dump:reg:Every registration", "tip:t-dec-31-renewal"]],
-    ["Adviser or not", ["tip:t-exclusion-vs-exemption", "tip:t-exclusion-vs-exemption:0", "tip:t-exclusion-vs-exemption:1",
-      "tip:t-exclusion-vs-exemption:2", "tip:t-exclusion-vs-exemption:3", "tip:t-exclusion-vs-exemption:4",
-      "tip:t-exclusion-vs-exemption:5", "tip:t-which-law-first"]],
     ["Who counts as the firm's", ["tip:t-supervised-persons:0", "tip:t-supervised-persons:1",
       "tip:t-supervised-persons:2", "tip:t-supervised-persons:3", "tip:t-form-adv-grid"]]
   ]},
-  { title: "Units 1-7: conduct and numbers", topics: ["IV"], sections: [
+  { title: "Units 1-7: advisers and their duties", topics: ["IV"], sections: [
+    ["Adviser or not", ["tip:t-exclusion-vs-exemption", "tip:t-exclusion-vs-exemption:0", "tip:t-exclusion-vs-exemption:1",
+      "tip:t-exclusion-vs-exemption:2", "tip:t-exclusion-vs-exemption:3", "tip:t-exclusion-vs-exemption:4",
+      "tip:t-exclusion-vs-exemption:5", "tip:t-which-law-first"]],
     ["Custody", ["pair:p5:0", "pair:p5:1", "pair:p5:2", "pair:p5:3", "tip:t-custody:3"]],
     ["Discretion", ["dump:disc:IA or IAR", "dump:disc:BD agent", "dump:disc:Time and price only", "tip:t-discretion-who:0"]],
     ["Brochure", ["tip:t-brochure-delivery:0", "tip:t-brochure-delivery:1", "tip:t-brochure-delivery:2",
       "tip:t-brochure-delivery:3", "tip:t-brochure-delivery:4"]],
+    ["Money thresholds", ["dump:money:Net worth", "dump:money:Substantial prepayment", "dump:money:Performance fees"]]
+  ]},
+  { title: "Units 1-7: never allowed, exemptions, enforcement", topics: ["IV"], sections: [
     ["Never allowed", ["dump:never:Guarantee against loss", "dump:never:Imply registration = approval",
       "dump:never:Exculpatory clause", "dump:never:Blanket recommendation", "dump:never:Borrow from a client",
       "dump:never:IAR sharing a client's profits", "dump:never:Agents sharing commissions",
@@ -19739,13 +19744,15 @@ const STUDY_GUIDE_PAGES = [
       "tip:t-cancel-vs-revoke:3", "tip:t-rule-vs-order"]],
     ["Penalties and time limits", ["tip:t-unit5-numbers:0", "tip:t-unit5-numbers:1", "tip:t-unit5-numbers:2",
       "tip:t-unit5-numbers:3", "tip:t-unit5-numbers:5"]],
-    ["Money thresholds", ["dump:money:Net worth", "dump:money:Substantial prepayment", "dump:money:Performance fees"]],
     ["Record retention", ["tip:t-records-belong-to-firms:0", "tip:t-records-belong-to-firms:1",
       "tip:t-records-belong-to-firms:2", "tip:t-records-belong-to-firms:3"]]
   ]},
   { title: "Pairs: the rules you mix up", pairs: true },
-  { title: "Topics I-III: formulas, then your weak Topic III units", topics: ["I", "II", "III"], sections: [
+  { title: "Topics I-III: formulas, Unit 8, then Topic III", topics: ["I", "II", "III"], sections: [
     ["Formulas", DUMP_BLOCKS.filter(b => b.key === "formulas").flatMap(b => b.rows.map(r => "dump:formulas:" + r.k))],
+    ["Unit 8: financial statements", ["tip:t-financial-statements", "tip:t-financial-statements:5",
+      "tip:t-financial-statements:0", "tip:t-financial-statements:2", "tip:t-financial-statements:3",
+      "tip:t-balance-sheet", "tip:t-balance-sheet:0", "tip:t-tvm-direction"]],
     ["Unit 17: portfolio management", ["tip:t-emh", "tip:t-emh:0", "tip:t-emh:1", "tip:t-emh:2",
       "tip:t-investment-styles", "tip:t-investment-styles:0", "tip:t-investment-styles:1", "tip:t-risk-by-asset",
       "tip:t-bond-strategies"]],
@@ -19777,7 +19784,16 @@ function guidePagesHTML() {
       PAIRS.forEach(p => unitTopicIds(p.unitId).forEach(t => ts.add(t)));
       topics = [...ts];
       const cell = c => esc(Array.isArray(c) ? c.join("; ") : c);
-      body = PAIRS.map(p => {
+      /* A pair the topic pages already print is not printed twice; a note says where it is. */
+      const pageOf = {};
+      STUDY_GUIDE_PAGES.forEach((x, i) => (x.sections || []).forEach(([, refs]) => refs.forEach(r => {
+        const [kind, id] = r.split(":");
+        if ((kind === "pair" || kind === "pairall") && !(id in pageOf)) pageOf[id] = i + 1;
+      })));
+      const elsewhere = PAIRS.filter(p => p.id in pageOf);
+      const note = elsewhere.length ? '<p class="pp-note">Also in this guide: ' + elsewhere.map(p =>
+          esc(p.title) + ' (page ' + pageOf[p.id] + ')').join('; ') + '. Every pair is on the Pairs tab.</p>' : '';
+      body = note + PAIRS.filter(p => !(p.id in pageOf)).map(p => {
         const nc = Math.max(1, ...p.rows.map(r => r.c.length));
         const hasK = p.rows.some(r => r.k);
         const span = nc + (hasK ? 1 : 0);
@@ -19787,8 +19803,9 @@ function guidePagesHTML() {
           t += '<tr>' + (hasK ? '<td class="pp-k">' + esc(r.k || '') + '</td>' : '')
             + r.c.map(c => '<td' + (r.c.length === 1 && nc > 1 ? ' colspan="' + nc + '"' : '') + '>' + cell(c) + '</td>').join('') + '</tr>';
         }
-        if (pairMissCount(p)) t += '<tr class="pp-trap pi" data-yield="0"><td colspan="' + span + '">Trap: ' + esc(p.trap) + '</td></tr>';
-        return '<table class="pp pi" data-yield="' + (pairMissCount(p) * unitExamQuestions(p.unitId)).toFixed(2) + '">' + t + '</table>';
+        if (pairMissCount(p)) t += '<tr class="pp-trap"><td colspan="' + span + '">Trap: ' + esc(p.trap) + '</td></tr>';
+        return '<table class="pp pi" data-t="' + unitTopicIds(p.unitId).join(" ") + '" data-yield="'
+          + (pairMissCount(p) * unitExamQuestions(p.unitId)).toFixed(2) + '">' + t + '</table>';
       }).join('');
     } else {
       body = '<div class="pg-cols">' + pg.sections.map(([h, refs]) => {
@@ -19796,7 +19813,7 @@ function guidePagesHTML() {
         return items.length ? '<div class="ps"><h4>' + esc(h) + '</h4>' + items.map(printItemHTML).join('') + '</div>' : '';
       }).join('') + '</div>';
     }
-    return '<section class="pg"><header class="pg-h"><span>' + esc(pg.title) + '</span><span>'
+    return '<section class="pg"><header class="pg-h"><span>' + esc(pg.title) + '</span><span' + (pg.pairs ? ' data-tlabel' : '') + '>'
       + esc(pageTopicLabel(topics)) + '</span></header><div class="pg-b">' + body + '</div>'
       + '<footer class="pg-f">Series 66 study guide &middot; page ' + (n + 1) + ' of ' + STUDY_GUIDE_PAGES.length
       + ' &middot; ' + builtLine() + '</footer></section>';
@@ -19825,22 +19842,47 @@ const PX_PER_IN = 96;
 function fitGuide(root) {
   const limit = (PRINT_PAGE_IN.h - 2 * PRINT_PAGE_IN.margin) * PX_PER_IN * 0.97;
   const cut = [];
+  const y = el => Number(el.dataset.yield);
+  /* Put an element back where it was: before its first later sibling still on the page. */
+  const restore = (el, parent) => {
+    const ord = Number(el.dataset.ord);
+    const next = Array.from(parent.children).find(c => Number(c.dataset.ord) > ord);
+    parent.insertBefore(el, next || null);
+  };
   root.querySelectorAll(".pg").forEach(pg => {
-    let guard = 200, n = 0;
-    while (pg.getBoundingClientRect().height > limit && guard--) {
+    pg.querySelectorAll(".pi, .ps").forEach((el, i) => { el.dataset.ord = String(i); });
+    const over = () => pg.getBoundingClientRect().height > limit;
+    const removed = [];
+    let guard = 200;
+    while (over() && guard--) {
       const items = Array.from(pg.querySelectorAll(".pi"));
       if (!items.length) break;
       let worst = items[items.length - 1];
-      for (let k = items.length - 1; k >= 0; k--) {
-        if (Number(items[k].dataset.yield) < Number(worst.dataset.yield)) worst = items[k];
-      }
+      for (let k = items.length - 1; k >= 0; k--) if (y(items[k]) < y(worst)) worst = items[k];
       const sec = worst.closest(".ps");
-      cut.push(worst.textContent.slice(0, 40));
-      if (!worst.classList.contains("pp-trap")) n++;
+      removed.push({ el: worst, parent: worst.parentNode, sec, secParent: sec ? sec.parentNode : null });
       worst.remove();
       if (sec && !sec.querySelector(".pi")) sec.remove();
     }
+    /* Backfill: a smaller item cut early can fit in the room a bigger cut left.
+       Highest yield first, each back in its own place, kept only if the page still fits. */
+    removed.slice().sort((a, b) => y(b.el) - y(a.el)).forEach(r => {
+      const secBack = r.sec && !r.sec.isConnected;
+      if (secBack) restore(r.sec, r.secParent);
+      restore(r.el, r.parent);
+      if (over()) { r.el.remove(); if (secBack) r.sec.remove(); }
+    });
+    const gone = removed.filter(r => !r.el.isConnected);
+    /* The Pairs page names the topics of the pairs that made it onto the page. */
+    const lab = pg.querySelector("[data-tlabel]");
+    if (lab) {
+      const ts = new Set();
+      pg.querySelectorAll("table.pp[data-t]").forEach(t => t.dataset.t.split(" ").forEach(x => x && ts.add(x)));
+      if (ts.size) lab.textContent = pageTopicLabel([...ts]);
+    }
+    gone.forEach(r => cut.push(r.el.textContent.slice(0, 40)));
     const f = pg.querySelector(".pg-f");
+    const n = gone.length;
     if (f && n) f.textContent += " \u00b7 " + n + " lower-yield " + (n === 1 ? "item" : "items")
       + " cut to fit; all are on the dashboard";
   });
