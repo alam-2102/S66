@@ -133,7 +133,8 @@ const EXPORTS = `
   buildBindings, bindAll, renderAll,
   renderSimulated, renderPerformance, buildPaste, MISSING_BINDS,
   PAIRS, focusUnits, focusTips, FOCUS_TIP_CAP, FOCUS_HIDE_AT,
-  REVIEW_DAYS, REVIEW_MAX_CARDS, buildReviewDay, reviewCard, reviewDayFor, STUDY_GUIDE_PAGES
+  REVIEW_DAYS, REVIEW_MAX_CARDS, buildReviewDay, reviewCard, reviewDayFor, STUDY_GUIDE_PAGES,
+  practiceSets, questionCard
 };`;
 
 let X;
@@ -483,6 +484,16 @@ if (X.quickTips.length) {
   })));
   assert(dangling.length === 0, "every printed study guide line resolves to a tip, pair or dump row", dangling.join(", "));
   assert(X.STUDY_GUIDE_PAGES.length === 5, "the printed study guide is 5 pages");
+}
+if (typeof X.practiceSets === "function" && X.missedQuestions.length) {
+  const sets = X.practiceSets();
+  const bad = sets.filter(s => !s.ids.length || s.ids.some(id => !X.questionCard(id)));
+  assert(sets.length > 0 && bad.length === 0, "every practice set is non-empty and every question in it renders",
+    sets.length + " sets" + (bad.length ? "; bad: " + bad.map(s => s.key).join(", ") : ""));
+  const sims = X.simExams.filter(e => (e.total || 0) >= X.EXAM.FULL_LENGTH_MIN && (e.missIds || []).length);
+  const short = sims.filter((e, i) => { const s = sets.find(x => x.key === "sim:" + i); return !s || s.ids.length > e.total - e.score; });
+  assert(short.length === 0, "a sim's practice set never holds more than that sim's misses",
+    sims.map((e, i) => { const s = sets.find(x => x.key === "sim:" + i); return (s ? s.ids.length : 0) + "/" + (e.total - e.score); }).join(" "));
 }
 
 /* ------------------------------------------------ 8. empty means empty */

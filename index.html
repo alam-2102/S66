@@ -385,6 +385,15 @@ tfoot td{border-top:1px solid var(--axis);font-weight:600;color:var(--ink);borde
 #tips-body[data-filter="focus"] .qt-cleared{display:none}
 #tips-body:not([data-filter="focus"]) .qt-focus{display:none}
 .qt-fnote{margin:0 0 14px;font-size:12.5px;line-height:1.45;color:var(--muted)}
+.qt-searchrow{margin:0 0 12px}
+.qt-search{width:100%;font:500 16px/1.3 var(--sans);color:var(--ink);background:var(--surface);border:1px solid var(--axis);
+  border-radius:999px;padding:11px 18px;min-height:46px;box-shadow:var(--elev);-webkit-appearance:none;appearance:none}
+.qt-search::placeholder{color:var(--muted)}
+.qt-search:focus{outline:2px solid var(--accent);outline-offset:1px}
+.qt-qcount{margin:-4px 0 12px;font-size:13.5px;color:var(--ink-2)}
+#tips-body[data-filter="search"] .qt.q-out,#tips-body[data-filter="search"] .q-empty{display:none}
+#tips-body[data-filter="search"] .rv-rule{display:block}
+#tips-body[data-filter="search"] .rv-hint{display:none}
 @media(max-width:560px){
   .qt{padding:10px 11px 11px}
 }
@@ -441,6 +450,18 @@ tfoot td{border-top:1px solid var(--axis);font-weight:600;color:var(--ink);borde
 .dr-nav button{flex:1 1 0}
 .dr-nav button.pri{background:var(--accent);color:var(--on-accent);border-color:var(--accent)}
 .dr-nav button:disabled{opacity:.35;cursor:default}
+.dr-practice{margin:22px 0 0;background:var(--surface);border:1px solid var(--ring);border-radius:20px;
+  padding:16px 16px 14px;box-shadow:var(--elev)}
+.dr-practice h3{margin:0 0 4px;font-size:17px}
+.dr-pnote{margin:0 0 12px;font-size:14px;color:var(--muted);line-height:1.45}
+.dr-practice .rowsel{margin:0 0 12px}
+.dr-unitpick{display:flex;flex-direction:column;gap:6px;font-size:14px;color:var(--muted)}
+.dr-unitpick select{font:500 15px/1.3 var(--sans);color:var(--ink);background:var(--surface-2);border:1px solid var(--axis);
+  border-radius:12px;padding:11px 12px;min-height:46px;max-width:100%}
+.dr-back{appearance:none;background:none;border:0;padding:4px 0;font:600 14px/1.2 var(--sans);color:var(--accent-ink);cursor:pointer}
+.pz-practice{appearance:none;background:var(--accent-wash);color:var(--accent-ink);border:0;border-radius:999px;
+  font:600 12px/1 var(--sans);padding:6px 11px;cursor:pointer;min-height:28px}
+.pr-go{margin:10px 0 0}
 .dr-days{margin:22px 0 0;font-size:15px}
 .dr-days summary{cursor:pointer;color:var(--accent-ink);font-weight:600;padding:6px 0}
 .dr-daylist{display:grid;gap:6px;margin-top:8px}
@@ -18095,6 +18116,9 @@ function examDetailHTML(e, defaultMinutes) {
     + (pace ? ' &middot; ' + pace.toFixed(0) + 's per question' : '') + '</dd>'
     + '</dl>'
     + (e.notes ? '<p>' + esc(e.notes) + '</p>' : '')
+    + (fullLengthSims().indexOf(e) >= 0 && knownMisses(e.missIds).length
+        ? '<p class="pr-go"><button type="button" class="reveal-btn" data-practice="sim:' + fullLengthSims().indexOf(e) + '">Practice these '
+          + knownMisses(e.missIds).filter(id => questionCard(id)).length + ' misses</button></p>' : '')
     + '</div>';
 
   /* by topic */
@@ -18452,6 +18476,9 @@ function renderGuideFocus() {
         + ' &middot; ~' + fmtExamQs(r.examQuestions) + ' exam Qs</span>'];
     if (cpPct !== null && cpPct < line) tags.push('<span class="tag neutral">Checkpoint '
       + cp.score + '/' + cp.total + ': run a custom quiz on this unit</span>');
+    const nq = missedQuestions.filter(q => q.unitId === r.id && questionCard(q.id)).length;
+    if (nq) tags.push('<button type="button" class="pz-practice" data-practice="unit:' + r.id + '">Practice '
+      + nq + ' missed</button>');
     const tip = topTipFor(r.id);
     return '<article class="pz-card">'
       + '<div class="pz-h"><span class="pz-rank" aria-label="Priority ' + rank + '">' + rank + '</span>'
@@ -18835,11 +18862,39 @@ function tipCard(t, showUnit) {
 }
 
 let tipReveal = false;
+let tipSearchQ = "";
+/* Search reads every tip, its rule and its lines, answers shown. Rules hide until
+   tapped, so the browser's own find can't reach them; this can. */
+function applyTipSearch() {
+  const root = $("tips-body");
+  if (!root || !root.querySelectorAll) return;
+  const q = tipSearchQ.trim().toLowerCase();
+  const count = $("qt-qcount");
+  root.querySelectorAll(".qt-group, .qt-cleared").forEach(g => g.classList.remove("q-empty"));
+  root.querySelectorAll(".qt").forEach(t => t.classList.remove("q-out"));
+  if (!q) { if (count) count.hidden = true; return; }
+  let hits = 0;
+  root.querySelectorAll(".qt-groups .qt, .qt-cleared .qt").forEach(t => {
+    const hit = t.textContent.toLowerCase().indexOf(q) >= 0;
+    t.classList.toggle("q-out", !hit);
+    if (hit) hits++;
+  });
+  root.querySelectorAll(".qt-group, .qt-cleared").forEach(g => {
+    const any = g.querySelector(".qt:not(.q-out)");
+    g.classList.toggle("q-empty", !any);
+    if (any && g.tagName === "DETAILS") g.open = true;
+  });
+  if (count) {
+    count.hidden = false;
+    count.textContent = hits ? hits + (hits === 1 ? " tip mentions " : " tips mention ") + "\u201c" + tipSearchQ.trim() + "\u201d"
+      : "No tip mentions \u201c" + tipSearchQ.trim() + "\u201d. The Reference Sheet has every rule.";
+  }
+}
 function applyTipFilter() {
   const root = $("tips-body");
   if (!root) return;
   if (root.setAttribute) {
-    root.setAttribute("data-filter", tipFilter);
+    root.setAttribute("data-filter", tipSearchQ.trim() ? "search" : tipFilter);
     root.setAttribute("data-reveal", tipReveal ? "all" : "tap");
   }
   if (root.querySelectorAll) {
@@ -18872,7 +18927,20 @@ function initTipFilter() {
     if (!b) return;
     tipFilter = b.getAttribute("data-tipfilter");
     try { localStorage.setItem("s66.tipView", tipFilter); } catch (e) { /* optional */ }
+    if (tipSearchQ) {
+      tipSearchQ = "";
+      const box = root.querySelector("[data-tipsearch]");
+      if (box) box.value = "";
+      applyTipSearch();
+    }
     applyTipFilter();
+  });
+  root.addEventListener("input", ev => {
+    const box = ev.target && ev.target.closest ? ev.target.closest("[data-tipsearch]") : null;
+    if (!box) return;
+    tipSearchQ = box.value;
+    applyTipFilter();
+    applyTipSearch();
   });
 }
 
@@ -18906,7 +18974,10 @@ function renderQuickTips() {
   if (other.length) groups.push({ title: "Other", sub: "", tips: other });
 
   const repCount = live.filter(t => (t.count || 1) >= 2).length;
-  let html = '<div class="qt-tools"><div class="rowsel qt-bar" role="group" aria-label="Filter tips">'
+  let html = '<div class="qt-searchrow"><input type="search" class="qt-search" data-tipsearch'
+    + ' placeholder="Search tips: custody, Coverdell, 180 days" aria-label="Search all tips" autocomplete="off"'
+    + ' value="' + esc(tipSearchQ) + '"></div><p class="qt-qcount" id="qt-qcount" hidden></p>'
+    + '<div class="qt-tools"><div class="rowsel qt-bar" role="group" aria-label="Filter tips">'
     + '<button type="button" data-tipfilter="focus" aria-pressed="true">Focus '
     + '<span class="qt-bn">' + ftips.length + '</span></button>'
     + '<button type="button" data-tipfilter="repeat" aria-pressed="false">Missed 2+ '
@@ -18942,6 +19013,7 @@ function renderQuickTips() {
   }
   setHTML("tips-body", html);
   applyTipFilter();
+  applyTipSearch();
 }
 
 /* ==========================================================================
@@ -19134,7 +19206,7 @@ const REVIEW_DAYS = [
            "dump:money:Net worth", "dump:money:Substantial prepayment", "dump:money:Performance fees",
            "dump:clock:Adviser records", "dump:clock:Exploitation hold"], readOnly: true }
 ];
-const REVIEW_SEC = { read: 35, check: 50 };
+const REVIEW_SEC = { read: 35, check: 50, practice: 50 };
 
 /* ---- warm-up cards ---------------------------------------------------------- */
 function lastPickTrap(ids) {
@@ -19323,7 +19395,10 @@ function saveReviewMark(key, res, day) {
 /* ---- build a day ------------------------------------------------------------ */
 function buildReviewDay(di) {
   const d = REVIEW_DAYS[di];
-  const marks = reviewMarks();
+  /* Only earlier days steer a day's picks, so the set stays put however often it is
+     opened that day, and practice doesn't reshuffle it. */
+  const allMarks = reviewMarks();
+  const marks = allMarks ? Object.fromEntries(Object.entries(allMarks).filter(([, v]) => v && v.day < d.date)) : null;
   const cards = [];
   const used = new Set();
   const add = (c, part) => { if (c && !used.has(c.key)) { used.add(c.key); cards.push(Object.assign({}, c, { part })); return true; } return false; };
@@ -19387,9 +19462,92 @@ function buildReviewDay(di) {
   return { day: d, cards: cards.slice(0, REVIEW_MAX_CARDS) };
 }
 
+/* ---- practice on demand -------------------------------------------------------
+   Any set of his real Kaplan misses, ten at a time, in the same card as the daily
+   checks. Order: never answered here first, then the ones missed last time, then
+   the ones already answered right. A miss is marked like a daily check, so it also
+   comes back in the next day's review. */
+const PRACTICE_ROUND = 10;
+function planDateToday() { return REVIEW_DAYS[reviewDayFor(todayISO())].date; }
+/* True when a later plan day still asks questions, so "it comes back" is honest. */
+function comesBackAfter(date) { return REVIEW_DAYS.some(x => x.date > date && !x.readOnly); }
+function simShortName(e) { return String(e.name || "Sim").replace(/\s*\(Test \d+\)\s*$/, ""); }
+function practiceSets() {
+  const usable = ids => knownMisses(ids).filter(id => questionCard(id));
+  const byDate = (a, b) => String(MISS_BY_ID[b].date).localeCompare(String(MISS_BY_ID[a].date));
+  const sets = [];
+  fullLengthSims().forEach((e, i) => {
+    const ids = usable(e.missIds);
+    if (ids.length) sets.push({ key: "sim:" + i, label: simShortName(e) + " misses", ids,
+      blurb: "The questions you missed on " + simShortName(e) + ", in exam order." });
+  });
+  const rank = {};
+  focusUnits().forEach((r, i) => { rank[r.id] = i; });
+  const per = {};
+  for (const q of missedQuestions) if (q.unitId in rank && questionCard(q.id)) (per[q.unitId] = per[q.unitId] || []).push(q.id);
+  const units = Object.keys(per).sort((a, b) => rank[a] - rank[b]);
+  units.forEach(u => per[u].sort(byDate));
+  const focusIds = [];
+  for (let r = 0; units.some(u => per[u].length > r); r++) for (const u of units) if (per[u][r]) focusIds.push(per[u][r]);
+  if (focusIds.length) sets.push({ key: "focus", label: "Focus units", ids: focusIds,
+    blurb: "Your Focus units in rank order, one unit at a time so the questions mix." });
+  const neg = quickTips.find(t => t.id === "t-except-questions");
+  const negIds = neg ? usable(neg.fromMisses).sort(byDate) : [];
+  if (negIds.length) sets.push({ key: "except", label: "NOT / EXCEPT", ids: negIds,
+    blurb: "Every negative-stem question you have missed. Find the one that is false or not allowed." });
+  const marks = reviewMarks() || {};
+  const wrong = Object.keys(marks).filter(k => k.startsWith("q:") && marks[k].res === "miss" && MISS_BY_ID[k.slice(2)])
+    .sort((a, b) => String(marks[b].day).localeCompare(String(marks[a].day))).map(k => k.slice(2)).filter(id => questionCard(id));
+  if (wrong.length) sets.push({ key: "wrong", label: "Wrong last time", ids: wrong,
+    blurb: "Questions you got wrong here, in the review or in practice, most recent first." });
+  for (const u of unitData) {
+    const ids = missedQuestions.filter(q => q.unitId === u.id).map(q => q.id).filter(id => questionCard(id)).sort(byDate);
+    if (ids.length) sets.push({ key: "unit:" + u.id, label: unitShort(u.name), ids, unit: true,
+      blurb: unitTitle(u.name) + ": every question you have missed, most recent first." });
+  }
+  return sets;
+}
+function practiceOrder(ids) {
+  const m = reviewMarks() || {};
+  const st = id => { const x = m["q:" + id]; return !x ? 0 : x.res === "miss" ? 1 : 2; };
+  return ids.map((id, i) => ({ id, i, s: st(id) })).sort((a, b) => a.s - b.s || a.i - b.i).map(x => x.id);
+}
+function startPractice(key) {
+  const set = practiceSets().find(x => x.key === key);
+  if (!set) return false;
+  if (!REVIEW.practice && REVIEW.set) REVIEW.saved = { di: REVIEW.di, set: REVIEW.set, i: REVIEW.i };
+  REVIEW.practice = { key, label: set.label, blurb: set.blurb, order: practiceOrder(set.ids), start: 0, got: 0, answered: 0 };
+  REVIEW.set = null; REVIEW.i = 0; REVIEW.pick = null;
+  return true;
+}
+function buildPracticeRound() {
+  const p = REVIEW.practice;
+  const ids = p.order.slice(p.start, p.start + PRACTICE_ROUND);
+  return { day: { date: planDateToday(), title: p.label, practice: true,
+                  sub: "Questions " + (p.start + 1) + "-" + (p.start + ids.length) + " of " + p.order.length },
+           cards: ids.map(questionCard).filter(Boolean).map(c => Object.assign({}, c, { part: "practice" })) };
+}
+function practicePanelHTML() {
+  const sets = practiceSets();
+  if (!sets.length) return '';
+  const chips = sets.filter(x => !x.unit).map(x => '<button type="button" data-practice="' + x.key + '"'
+      + (REVIEW.practice && REVIEW.practice.key === x.key ? ' aria-pressed="true"' : '') + '>'
+      + esc(x.label) + ' <span class="qt-bn">' + x.ids.length + '</span></button>').join('');
+  const units = sets.filter(x => x.unit);
+  return '<section class="dr-practice" aria-label="Practice">'
+    + '<h3>Practice more</h3>'
+    + '<p class="dr-pnote">Your real missed Kaplan questions, ' + PRACTICE_ROUND + ' at a time. A miss also comes back in the next day\'s review.</p>'
+    + '<div class="rowsel">' + chips + '</div>'
+    + (units.length ? '<label class="dr-unitpick"><span>Or one unit</span><select data-practice-select>'
+        + '<option value="">Pick a unit</option>'
+        + units.map(x => '<option value="' + x.key + '">' + esc(x.label) + ' &middot; ' + esc(unitTitle(unitName(x.key.slice(5))))
+          + ' (' + x.ids.length + ')</option>').join('') + '</select></label>' : '')
+    + '</section>';
+}
+
 /* ---- UI ----------------------------------------------------------------------- */
-const REVIEW = { di: 0, set: null, i: 0, pick: null };
-const REVIEW_PART = { read: "Warm-up read", check: "Quick check", close: "Today's one-liner" };
+const REVIEW = { di: 0, set: null, i: 0, pick: null, practice: null };
+const REVIEW_PART = { read: "Warm-up read", check: "Quick check", close: "Today's one-liner", practice: "Practice" };
 function fmtReviewDay(iso, long) {
   const d = new Date(iso + "T12:00:00Z");
   return d.toLocaleDateString("en-US", long ? { weekday: "long", month: "short", day: "numeric", timeZone: "UTC" }
@@ -19415,7 +19573,9 @@ function questionHTML(c) {
   });
   h += '</div>';
   if (picked !== null) {
-    h += '<p class="dr-verdict">' + (picked === c.right ? 'Right.' : 'Not this time. It comes back tomorrow.') + '</p>'
+    const back = REVIEW.set && comesBackAfter(REVIEW.set.day.date);
+    h += '<p class="dr-verdict">' + (picked === c.right ? 'Right.'
+        : 'Not this time.' + (back ? ' It comes back in tomorrow\'s review.' : '')) + '</p>'
       + (c.why ? '<p class="dr-why">' + esc(c.why) + '</p>' : '')
       + (c.full && c.full.length > c.why.length + 20
           ? '<details class="dr-more"><summary>Full explanation</summary><p>' + esc(c.full) + '</p></details>' : '');
@@ -19449,11 +19609,14 @@ function renderReview() {
     setHTML("review-body", '<p>Nothing to review until the Quick Tips have been written from your misses.</p>');
     return;
   }
-  const set = REVIEW.set || (REVIEW.set = buildReviewDay(REVIEW.di));
+  const set = REVIEW.set || (REVIEW.set = REVIEW.practice ? buildPracticeRound() : buildReviewDay(REVIEW.di));
   const d = set.day;
   const n = set.cards.length;
   const i = Math.min(REVIEW.i, n);
-  let html = '<header class="dr-head"><p class="dr-day">' + fmtReviewDay(d.date, true) + '</p>'
+  const p = REVIEW.practice;
+  let html = '<header class="dr-head">'
+    + (p ? '<p class="dr-day"><button type="button" class="dr-back" data-review="today">&larr; Back to today\'s review</button></p>'
+         : '<p class="dr-day">' + fmtReviewDay(d.date, true) + '</p>')
     + '<h2 class="dr-title">' + esc(d.title) + ' <span>' + esc(d.sub) + '</span></h2>'
     + '<p class="dr-meta">' + (i < n ? (i + 1) + ' of ' + n : 'Done') + ' &middot; about '
     + reviewMinutes(set) + ' min</p>'
@@ -19464,13 +19627,25 @@ function renderReview() {
     html += reviewCardHTML(c, set)
       + '<nav class="dr-nav"><button type="button" data-review="back"' + (i === 0 ? ' disabled' : '') + '>Back</button>'
       + (waiting ? '' : '<button type="button" class="pri" data-review="next">Next</button>') + '</nav>';
+  } else if (p) {
+    const more = p.start + PRACTICE_ROUND < p.order.length;
+    html += '<article class="dr-card dr-done"><p class="dr-cue">Round done: ' + p.got + ' of ' + p.answered + ' right.</p>'
+      + '<p class="dr-rule">' + (p.answered > p.got
+          ? (comesBackAfter(d.date) ? 'The ones you missed come back in tomorrow\'s review, and under Wrong last time.'
+                                    : 'The ones you missed are under Wrong last time.')
+          : 'Clean round.') + '</p>'
+      + '</article><nav class="dr-nav"><button type="button" data-review="today">Back to today</button>'
+      + (more ? '<button type="button" class="pri" data-review="more">Next ' + Math.min(PRACTICE_ROUND, p.order.length - p.start - PRACTICE_ROUND) + '</button>' : '')
+      + '</nav>';
   } else {
     html += '<article class="dr-card dr-done"><p class="dr-cue">Done for today.</p>'
       + (d.readOnly ? '<p class="dr-rule">Good luck. Read the question, then the choices.</p>'
-          : '<p class="dr-rule">Any question you missed comes back tomorrow.</p>')
+          : '<p class="dr-rule">' + (comesBackAfter(d.date) ? 'Any question you missed comes back tomorrow. '
+              : '') + 'Want more? Pick a practice set below.</p>')
       + '</article><nav class="dr-nav"><button type="button" data-review="back">Back</button>'
       + '<button type="button" data-review="restart">Start over</button></nav>';
   }
+  if (!d.readOnly || p) html += practicePanelHTML();
   html += '<details class="dr-days"><summary>Other days</summary><div class="dr-daylist">'
     + REVIEW_DAYS.map((x, j) => '<button type="button" data-review-day="' + j + '"'
         + (j === REVIEW.di ? ' aria-current="true"' : '') + '><b>' + fmtReviewDay(x.date, false) + '</b> '
@@ -19486,7 +19661,7 @@ function initReview() {
     const dayBtn = t && t.closest ? t.closest("[data-review-day]") : null;
     if (dayBtn) {
       REVIEW.di = Number(dayBtn.getAttribute("data-review-day"));
-      REVIEW.set = null; REVIEW.i = 0; REVIEW.pick = null;
+      REVIEW.set = null; REVIEW.i = 0; REVIEW.pick = null; REVIEW.practice = null; REVIEW.saved = null;
       renderReview();
       return;
     }
@@ -19499,6 +19674,16 @@ function initReview() {
     if (act === "pick" && c && c.kind === "q" && REVIEW.pick === null) {
       REVIEW.pick = Number(b.getAttribute("data-opt"));
       saveReviewMark(c.key, REVIEW.pick === c.right ? "got" : "miss", set.day.date);
+      if (REVIEW.practice) { REVIEW.practice.answered++; if (REVIEW.pick === c.right) REVIEW.practice.got++; }
+    }
+    else if (act === "today") {
+      /* Back to the card he left in today's review. */
+      const sv = REVIEW.saved && REVIEW.saved.di === REVIEW.di ? REVIEW.saved : null;
+      REVIEW.practice = null; REVIEW.set = sv ? sv.set : null; REVIEW.i = sv ? sv.i : 0; REVIEW.pick = null; REVIEW.saved = null;
+    }
+    else if (act === "more" && REVIEW.practice) {
+      REVIEW.practice.start += PRACTICE_ROUND; REVIEW.practice.got = 0; REVIEW.practice.answered = 0;
+      REVIEW.set = null; REVIEW.i = 0; REVIEW.pick = null;
     }
     else if (act === "next") { REVIEW.i++; REVIEW.pick = null; }
     else if (act === "back") { REVIEW.i = Math.max(0, REVIEW.i - 1); REVIEW.pick = null; }
@@ -19507,6 +19692,22 @@ function initReview() {
     const top = $("tab-review");
     if (top && top.scrollIntoView && act !== "pick") top.scrollIntoView({ block: "start" });
   });
+  root.addEventListener("change", ev => {
+    const sel = ev.target && ev.target.closest ? ev.target.closest("[data-practice-select]") : null;
+    if (sel && sel.value) openPractice(sel.value);
+  });
+  /* Practice can start from any tab: a sim's misses, a Focus unit. */
+  document.addEventListener("click", ev => {
+    const b = ev.target && ev.target.closest ? ev.target.closest("[data-practice]") : null;
+    if (b) openPractice(b.getAttribute("data-practice"));
+  });
+}
+function openPractice(key) {
+  if (!startPractice(key)) return;
+  const tab = $("t-review");
+  if (tab && !(tab.getAttribute("aria-selected") === "true")) tab.click();
+  renderReview();
+  try { window.scrollTo(0, 0); } catch (e) { /* not essential */ }
 }
 
 /* ==========================================================================
