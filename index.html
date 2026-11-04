@@ -1,89 +1,238 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="color-scheme" content="dark">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#f2f1ee" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0d0d0d" media="(prefers-color-scheme: dark)">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="Series 66">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
 <title>Series 66 Progress</title>
 <style>
 :root{
-  color-scheme:dark;
-  --plane:#0d0d0d;
-  --surface:#1a1a19;
-  --surface-2:#211f1e;
-  --ink:#ffffff;
-  --ink-2:#c3c2b7;
-  --muted:#898781;
-  --grid:#2c2c2a;
-  --axis:#383835;
-  --ring:rgba(255,255,255,0.10);
-  --s1:#3987e5;
-  --s2:#d95926;
-  --s3:#199e70;
-  --s4:#c98500;
+  color-scheme:light;
+  --plane:#f2f1ee;
+  --surface:#fcfcfb;
+  --surface-2:#f0efec;
+  --ink:#0b0b0b;
+  --ink-2:#52514e;
+  --muted:#6b6a65;
+  --grid:#e6e5df;
+  --axis:#d3d2ca;
+  --ring:rgba(11,11,11,0.09);
+  --s1:#2a78d6;
+  --s2:#eb6834;
+  --s3:#1baf7a;
+  --s4:#eda100;
   --good:#0ca30c;
   --warning:#fab219;
   --serious:#ec835a;
   --critical:#d03b3b;
-  --radius:10px;
+  /* status hues stay fixed; text that carries them uses a step that reads on the surface */
+  --good-ink:#006300;
+  --warning-ink:#8a5d00;
+  --crit-ink:#b82f2f;
+  --crit-wash:rgba(208,59,59,.10);
+  --accent:#2a78d6;
+  --accent-ink:#1c5cab;
+  --accent-wash:rgba(42,120,214,.11);
+  --on-accent:#ffffff;
+  --meter:#a6a49c;
+  --pass-line:#9a6700;
+  --target-line:#006300;
+  --chrome:rgba(250,250,248,.86);
+  --scrim:rgba(20,20,18,.36);
+  --elev:0 1px 2px rgba(20,20,18,.05),0 2px 10px rgba(20,20,18,.045);
+  --elev-2:0 -8px 40px rgba(20,20,18,.18);
+  --radius:14px;
   --gutter:16px;
+  --tabbar-h:62px;
   --sans:system-ui,-apple-system,"Segoe UI",sans-serif;
+}
+/* Dark follows the phone; data-theme can force either way. */
+@media (prefers-color-scheme: dark){
+  :root:where(:not([data-theme="light"])){
+  color-scheme:dark;
+  --plane:#0d0d0d;
+  --surface:#1a1a19;
+  --surface-2:#242321;
+  --ink:#f0efec;
+  --ink-2:#c3c2b7;
+  --muted:#8f8d87;
+  --grid:#2c2c2a;
+  --axis:#383835;
+  --ring:rgba(255,255,255,0.09);
+  --s1:#3987e5;
+  --s2:#d95926;
+  --s3:#199e70;
+  --s4:#c98500;
+  --good-ink:#0ca30c;
+  --warning-ink:#fab219;
+  --crit-ink:#f07a7a;
+  --crit-wash:rgba(208,59,59,.17);
+  --accent:#3987e5;
+  --accent-ink:#6da7ec;
+  --accent-wash:rgba(57,135,229,.17);
+  --meter:#8f8d86;
+  --pass-line:#fab219;
+  --target-line:#0ca30c;
+  --chrome:rgba(17,17,16,.84);
+  --scrim:rgba(0,0,0,.55);
+  --elev:none;
+  --elev-2:0 -8px 40px rgba(0,0,0,.6);
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --plane:#0d0d0d;
+  --surface:#1a1a19;
+  --surface-2:#242321;
+  --ink:#f0efec;
+  --ink-2:#c3c2b7;
+  --muted:#8f8d87;
+  --grid:#2c2c2a;
+  --axis:#383835;
+  --ring:rgba(255,255,255,0.09);
+  --s1:#3987e5;
+  --s2:#d95926;
+  --s3:#199e70;
+  --s4:#c98500;
+  --good-ink:#0ca30c;
+  --warning-ink:#fab219;
+  --crit-ink:#f07a7a;
+  --crit-wash:rgba(208,59,59,.17);
+  --accent:#3987e5;
+  --accent-ink:#6da7ec;
+  --accent-wash:rgba(57,135,229,.17);
+  --meter:#8f8d86;
+  --pass-line:#fab219;
+  --target-line:#0ca30c;
+  --chrome:rgba(17,17,16,.84);
+  --scrim:rgba(0,0,0,.55);
+  --elev:none;
+  --elev-2:0 -8px 40px rgba(0,0,0,.6);
 }
 *{box-sizing:border-box}
 html,body{margin:0;padding:0}
+html{background:var(--plane)}
 body{
   background:var(--plane);
   color:var(--ink);
   font:15px/1.55 var(--sans);
   -webkit-text-size-adjust:100%;
+  -webkit-tap-highlight-color:transparent;
   overflow-x:hidden;
 }
-.wrap{max-width:1080px;margin:0 auto;padding:0 var(--gutter) 64px}
+button{-webkit-tap-highlight-color:transparent}
+.wrap{max-width:1080px;margin:0 auto;padding:14px var(--gutter) 56px}
 
-/* ---------- header ---------- */
-header.top{padding:22px 0 12px}
-header.top h1{margin:0;font-size:19px;font-weight:650;letter-spacing:-0.01em}
-header.top .sub{margin:3px 0 0;color:var(--muted);font-size:13px}
-.stamp{margin-top:10px;display:flex;flex-wrap:wrap;gap:6px}
+/* ---------- app shell ----------
+   Phone: a sticky title bar, a bottom tab bar (Review, Guide, Tips, Pairs, More) and a
+   sheet that slides up for the rest. Wide screens: the sheet's contents become a sidebar. */
+.app{min-height:100vh}
+.side{background:var(--surface)}
+header.top{padding:2px 2px 0}
+.brand{display:flex;gap:12px;align-items:flex-start}
+.app-icon{flex:0 0 auto;display:grid;place-items:center;width:42px;height:42px;border-radius:11px;
+  background:var(--accent);color:var(--on-accent);font:800 16px/1 var(--sans);letter-spacing:-.03em}
+header.top h1{margin:1px 0 0;font-size:15.5px;line-height:1.3;font-weight:700;letter-spacing:-0.01em}
+header.top .sub{margin:4px 0 0;color:var(--muted);font-size:12.5px;line-height:1.45}
+.stamp{margin-top:12px;display:flex;flex-wrap:wrap;gap:6px}
 .pill{
   display:inline-flex;align-items:center;gap:6px;
-  background:var(--surface);border:1px solid var(--ring);border-radius:999px;
+  background:var(--surface-2);border:1px solid var(--ring);border-radius:999px;
   padding:4px 10px;font-size:12px;color:var(--ink-2);white-space:nowrap
 }
 .pill b{color:var(--ink);font-weight:600}
-.pill.warn{border-color:rgba(250,178,25,.45);color:var(--warning)}
-.pill.warn b{color:var(--warning)}
+.pill.warn{border-color:rgba(250,178,25,.55);color:var(--warning-ink)}
+.pill.warn b{color:var(--warning-ink)}
 
-/* ---------- tabs ---------- */
-nav.tabs{
-  position:sticky;top:0;z-index:20;background:var(--plane);
-  border-bottom:1px solid var(--grid);
-  display:flex;gap:2px;overflow-x:auto;scrollbar-width:none;
-  margin:14px calc(var(--gutter)*-1) 0;padding:0 var(--gutter);
-}
-nav.tabs::-webkit-scrollbar{display:none}
+nav.tabs{display:flex;flex-direction:column;gap:2px;margin:16px 0 0}
+.nav-group{margin:14px 10px 4px;font-size:11.5px;font-weight:650;letter-spacing:.06em;
+  text-transform:uppercase;color:var(--muted)}
+.nav-group:first-child{margin-top:4px}
 nav.tabs button{
-  flex:0 0 auto;appearance:none;background:none;border:0;
-  border-bottom:2px solid transparent;
-  color:var(--muted);font:inherit;font-size:13.5px;font-weight:550;
-  padding:11px 12px;cursor:pointer;white-space:nowrap;
+  display:flex;align-items:center;gap:12px;width:100%;appearance:none;background:none;border:0;
+  border-radius:10px;color:var(--ink-2);font:inherit;font-size:14.5px;font-weight:560;
+  padding:9px 10px;min-height:42px;cursor:pointer;text-align:left;white-space:nowrap
 }
-nav.tabs button:hover{color:var(--ink-2)}
-nav.tabs button[aria-selected="true"]{color:var(--ink);border-bottom-color:var(--s1)}
-nav.tabs button:focus-visible{outline:2px solid var(--s1);outline-offset:-2px;border-radius:4px}
-section.tab{display:none;padding-top:20px}
+nav.tabs button svg{width:20px;height:20px;flex:0 0 auto}
+nav.tabs button .chev{display:none}
+nav.tabs button:hover{background:var(--surface-2);color:var(--ink)}
+nav.tabs button[aria-selected="true"]{background:var(--accent-wash);color:var(--accent-ink)}
+nav.tabs button:focus-visible{outline:2px solid var(--accent);outline-offset:-2px}
+
+.appbar{position:sticky;top:0;z-index:40;background:var(--chrome);
+  -webkit-backdrop-filter:saturate(180%) blur(16px);backdrop-filter:saturate(180%) blur(16px);
+  border-bottom:1px solid var(--grid)}
+.appbar-in{max-width:1080px;margin:0 auto;display:flex;align-items:center;gap:10px;
+  padding:calc(10px + env(safe-area-inset-top)) var(--gutter) 10px}
+.appbar .app-icon{width:30px;height:30px;border-radius:8px;font-size:12px}
+.ab-title{margin:0;flex:1 1 auto;min-width:0;font-size:19px;font-weight:720;letter-spacing:-.015em;
+  color:var(--ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+
+.tabbar{position:fixed;left:0;right:0;bottom:0;z-index:50;display:flex;justify-content:space-around;
+  padding:5px 4px calc(5px + env(safe-area-inset-bottom));background:var(--chrome);
+  -webkit-backdrop-filter:saturate(180%) blur(16px);backdrop-filter:saturate(180%) blur(16px);
+  border-top:1px solid var(--grid)}
+.tabbar button{flex:1 1 0;max-width:110px;display:flex;flex-direction:column;align-items:center;gap:3px;
+  appearance:none;background:none;border:0;color:var(--muted);font:600 11px/1.15 var(--sans);
+  padding:3px 2px 2px;min-height:50px;cursor:pointer}
+.tabbar .tb-ico{display:grid;place-items:center;width:54px;height:30px;border-radius:15px;transition:background .15s}
+.tabbar svg{width:23px;height:23px}
+.tabbar button.on{color:var(--accent-ink)}
+.tabbar button.on .tb-ico{background:var(--accent-wash)}
+.tabbar button:focus-visible{outline:2px solid var(--accent);outline-offset:-2px;border-radius:12px}
+.scrim{position:fixed;inset:0;z-index:55;background:var(--scrim)}
+.sheet-grab{display:none}
+
+@media (min-width:900px){
+  .app{display:grid;grid-template-columns:268px minmax(0,1fr)}
+  .side{position:sticky;top:0;height:100vh;overflow-y:auto;border-right:1px solid var(--grid);
+    padding:22px 14px 28px}
+  .tabbar,.scrim{display:none!important}
+  .appbar .app-icon,.appbar .chip{display:none}
+  .appbar-in{padding:20px 32px 14px}
+  .ab-title{font-size:25px}
+  .wrap{padding:18px 32px 64px}
+}
+@media (max-width:899.98px){
+  body{padding-bottom:calc(var(--tabbar-h) + env(safe-area-inset-bottom))}
+  .side{position:fixed;left:0;right:0;bottom:0;z-index:60;max-height:88vh;overflow-y:auto;
+    overscroll-behavior:contain;border-radius:22px 22px 0 0;box-shadow:var(--elev-2);
+    padding:6px 18px calc(22px + env(safe-area-inset-bottom));
+    transform:translateY(105%);visibility:hidden;
+    transition:transform .28s cubic-bezier(.2,.8,.2,1),visibility 0s linear .28s}
+  .side.open{transform:none;visibility:visible;transition:transform .3s cubic-bezier(.2,.8,.2,1)}
+  .sheet-grab{display:block;width:40px;height:5px;border-radius:3px;background:var(--axis);margin:4px auto 14px}
+  nav.tabs [data-primary],nav.tabs .g-study{display:none}
+  nav.tabs{margin-top:10px}
+  nav.tabs button{font-size:16px;min-height:52px;padding:11px 12px;border-radius:12px}
+  nav.tabs button .chev{display:block;margin-left:auto;width:16px;height:16px;color:var(--muted)}
+  .side header.top{background:var(--surface-2);border-radius:16px;padding:14px}
+}
+@media (max-width:420px){.appbar .app-icon{display:none}}
+@media (prefers-reduced-motion: reduce){.side,.side.open{transition:none}}
+
+section.tab{display:none;padding-top:6px}
 section.tab.active{display:block}
 
 /* ---------- blocks ---------- */
-h2{font-size:16px;font-weight:620;margin:28px 0 10px;letter-spacing:-0.01em}
+h2{font-size:18px;font-weight:700;margin:32px 0 12px;letter-spacing:-0.015em}
 h2:first-child{margin-top:4px}
-h3{font-size:14px;font-weight:600;margin:20px 0 7px;color:var(--ink)}
+h3{font-size:14.5px;font-weight:650;margin:20px 0 8px;color:var(--ink)}
 p{margin:0 0 11px;color:var(--ink-2)}
 p.lead{color:var(--ink)}
 small.note{display:block;color:var(--muted);font-size:12.5px;margin:-4px 0 12px}
 .card{
   background:var(--surface);border:1px solid var(--ring);
-  border-radius:var(--radius);padding:15px 16px;margin:0 0 14px
+  border-radius:var(--radius);padding:16px 17px;margin:0 0 14px;box-shadow:var(--elev)
 }
 .card h3{margin-top:0}
 ul,ol{margin:0 0 12px;padding-left:20px;color:var(--ink-2)}
@@ -97,22 +246,22 @@ code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12.5px;
   border:1px dashed var(--axis);border-radius:var(--radius);
   padding:20px 18px;margin:0 0 16px;background:var(--surface);
 }
-.empty h3{margin:0 0 6px;color:var(--warning);font-size:14px}
+.empty h3{margin:0 0 6px;color:var(--warning-ink);font-size:14px}
 .empty p{margin:0 0 8px;font-size:13.5px}
 .empty p:last-child{margin-bottom:0}
 
 /* ---------- stat cards ---------- */
-.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin:0 0 18px}
-.stat{background:var(--surface);border:1px solid var(--ring);border-radius:var(--radius);padding:13px 14px}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin:0 0 20px}
+.stat{background:var(--surface);border:1px solid var(--ring);border-radius:var(--radius);padding:15px 16px;box-shadow:var(--elev)}
 .stat .label{font-size:11.5px;color:var(--muted);text-transform:uppercase;letter-spacing:.055em;font-weight:600}
-.stat .value{font-size:26px;font-weight:660;margin:5px 0 0;letter-spacing:-0.02em;line-height:1.1}
+.stat .value{font-size:28px;font-weight:700;margin:6px 0 0;letter-spacing:-0.025em;line-height:1.1}
 .stat .value.none{color:var(--muted);font-size:20px;font-weight:550}
 .stat .meta{font-size:12px;color:var(--muted);margin-top:3px}
 .stat.flag{border-color:rgba(208,59,59,.5)}
-.stat.flag .value{color:var(--critical)}
+.stat.flag .value{color:var(--crit-ink)}
 
 /* ---------- charts ---------- */
-.figure{background:var(--surface);border:1px solid var(--ring);border-radius:var(--radius);padding:14px 14px 10px;margin:0 0 16px}
+.figure{background:var(--surface);border:1px solid var(--ring);border-radius:var(--radius);padding:16px 16px 12px;margin:0 0 16px;box-shadow:var(--elev)}
 .figure .fig-head{display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin-bottom:2px}
 .figure .fig-title{font-size:14px;font-weight:600}
 .figure .fig-sub{font-size:12.5px;color:var(--muted);margin:0 0 12px}
@@ -120,8 +269,8 @@ code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12.5px;
 @media(max-width:560px){.figure .canvas-box{height:230px}}
 .toggle{
   appearance:none;background:var(--surface-2);border:1px solid var(--ring);
-  color:var(--ink-2);border-radius:6px;font:inherit;font-size:12px;font-weight:550;
-  padding:4px 9px;cursor:pointer;flex:0 0 auto
+  color:var(--ink-2);border-radius:999px;font:inherit;font-size:12px;font-weight:600;
+  padding:5px 12px;cursor:pointer;flex:0 0 auto
 }
 .toggle:hover{color:var(--ink);border-color:var(--axis)}
 .legend{display:flex;flex-wrap:wrap;gap:12px;margin:10px 0 2px;font-size:12.5px;color:var(--ink-2)}
@@ -132,7 +281,7 @@ code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12.5px;
 
 /* ---------- tables ---------- */
 .scroller{overflow-x:auto;-webkit-overflow-scrolling:touch;margin:0 0 14px;
-  border:1px solid var(--ring);border-radius:var(--radius);background:var(--surface)}
+  border:1px solid var(--ring);border-radius:var(--radius);background:var(--surface);box-shadow:var(--elev)}
 table{border-collapse:collapse;width:100%;min-width:520px;font-size:13.5px}
 table.narrow{min-width:360px}
 th,td{padding:9px 12px;text-align:right;white-space:nowrap;border-bottom:1px solid var(--grid)}
@@ -149,31 +298,31 @@ tfoot td{border-top:1px solid var(--axis);font-weight:600;color:var(--ink);borde
 .below td:first-child{box-shadow:inset 3px 0 0 var(--critical)}
 .tag{display:inline-block;font-size:11px;font-weight:600;padding:2px 7px;border-radius:999px;
   border:1px solid currentColor;line-height:1.5}
-.tag.bad{color:var(--critical)}
-.tag.ok{color:var(--good)}
-.tag.warn{color:var(--warning)}
+.tag.bad{color:var(--crit-ink)}
+.tag.ok{color:var(--good-ink)}
+.tag.warn{color:var(--warning-ink)}
 .tag.neutral{color:var(--muted)}
-.delta-up{color:var(--good);font-variant-numeric:tabular-nums}
-.delta-down{color:var(--critical);font-variant-numeric:tabular-nums}
+.delta-up{color:var(--good-ink);font-variant-numeric:tabular-nums}
+.delta-down{color:var(--crit-ink);font-variant-numeric:tabular-nums}
 .delta-flat{color:var(--muted);font-variant-numeric:tabular-nums}
 .empty-row td{text-align:center;color:var(--muted);padding:24px 12px;font-size:13px}
 
 /* ---------- misc ---------- */
-.rowsel{display:flex;flex-wrap:wrap;gap:7px;margin:0 0 14px}
+.rowsel{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 16px}
 .rowsel button{
   appearance:none;background:var(--surface);border:1px solid var(--ring);color:var(--ink-2);
-  border-radius:7px;font:inherit;font-size:12.5px;font-weight:550;padding:6px 11px;cursor:pointer
+  border-radius:999px;font:inherit;font-size:13px;font-weight:600;padding:7px 14px;min-height:36px;cursor:pointer
 }
-.rowsel button[aria-pressed="true"]{background:var(--s1);border-color:var(--s1);color:#fff}
+.rowsel button[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:var(--on-accent)}
 .rowsel button:hover:not([aria-pressed="true"]){color:var(--ink);border-color:var(--axis)}
 .kv{display:grid;grid-template-columns:auto 1fr;gap:4px 14px;font-size:13.5px;margin:0 0 12px}
 .kv dt{color:var(--muted)}
 .kv dd{margin:0;color:var(--ink);font-variant-numeric:tabular-nums}
-.miss{border-left:2px solid var(--critical);padding:2px 0 2px 13px;margin:0 0 18px}
+.miss{border-left:3px solid var(--critical);padding:2px 0 2px 13px;margin:0 0 18px}
 .miss .q{font-weight:600;margin:0 0 7px;color:var(--ink)}
 .miss .ans{font-size:13px;margin:0 0 3px;color:var(--ink-2)}
-.miss .ans .mine{color:var(--critical);font-weight:600}
-.miss .ans .right{color:var(--good);font-weight:600}
+.miss .ans .mine{color:var(--crit-ink);font-weight:600}
+.miss .ans .right{color:var(--good-ink);font-weight:600}
 .miss .why{margin:8px 0 0;font-size:13.5px}
 .hit{border-left:2px solid var(--good);padding:2px 0 2px 13px;margin:0 0 12px;font-size:13.5px}
 .pattern{border-left:2px solid var(--warning);padding:2px 0 2px 13px;margin:0 0 14px}
@@ -192,24 +341,24 @@ tfoot td{border-top:1px solid var(--axis);font-weight:600;color:var(--ink);borde
 .qt-gh{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap;margin:0 0 7px;font-size:13px;
   font-weight:650;color:var(--ink)}
 .qt-gh span{font-weight:500;color:var(--muted);font-size:12.5px}
-.qt-list{background:var(--surface);border:1px solid var(--ring);border-radius:var(--radius);overflow:hidden}
-.qt{border-top:1px solid var(--grid);padding:10px 13px 11px}
+.qt-list{background:var(--surface);border:1px solid var(--ring);border-radius:var(--radius);overflow:hidden;box-shadow:var(--elev)}
+.qt{border-top:1px solid var(--grid);padding:12px 15px 13px}
 .qt:first-child{border-top:0}
 .qt-top{display:flex;align-items:center;gap:8px;margin:0 0 4px;min-height:22px}
 .qt-n{display:inline-block;min-width:30px;text-align:center;font-size:11.5px;font-weight:700;
   border-radius:6px;padding:2px 5px;background:var(--surface-2);color:var(--muted);
   font-variant-numeric:tabular-nums}
-.qt.hot .qt-n{background:rgba(208,59,59,.2);color:#ff8f8f}
+.qt.hot .qt-n{background:var(--crit-wash);color:var(--crit-ink)}
 .qt.done .qt-n{background:var(--surface-2);color:var(--ink-2)}
 .qt-u{font-size:12px;color:var(--muted)}
-.qt-whyb{margin-left:auto;background:none;border:1px solid var(--axis);color:var(--s1);border-radius:999px;
+.qt-whyb{margin-left:auto;background:none;border:1px solid var(--axis);color:var(--accent-ink);border-radius:999px;
   font:600 12px/1 var(--sans);padding:5px 10px;cursor:pointer;min-height:28px}
 .qt-whyb span{color:var(--muted);font-weight:500;margin-left:2px}
 .qt-whyb[aria-expanded="true"]{background:var(--surface-2)}
 /* A cue shows alone; the rule waits for a tap, so recall comes first. */
 .rv{display:block;width:100%;text-align:left;background:none;border:0;color:inherit;font:inherit;
   padding:5px 0;cursor:pointer;-webkit-tap-highlight-color:transparent}
-.rv:focus-visible{outline:2px solid var(--s1);outline-offset:2px;border-radius:4px}
+.rv:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:4px}
 .rv-cue{display:block;font-weight:650;color:var(--ink);line-height:1.4}
 .rv.main .rv-cue{font-size:14.5px}
 .rv-rule{display:none;color:var(--ink-2);line-height:1.45;margin-top:2px}
@@ -225,9 +374,9 @@ tfoot td{border-top:1px solid var(--axis);font-weight:600;color:var(--ink);borde
 .qt-tools{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:0 0 14px}
 .qt-tools .qt-bar{margin:0}
 .reveal-btn{background:var(--surface);border:1px solid var(--ring);color:var(--ink-2);border-radius:999px;
-  font:600 12.5px/1 var(--sans);padding:8px 13px;cursor:pointer;min-height:34px}
+  font:600 13px/1 var(--sans);padding:9px 15px;cursor:pointer;min-height:36px;box-shadow:var(--elev)}
 .reveal-btn[aria-pressed="true"]{background:var(--surface-2);color:var(--ink);border-color:var(--axis)}
-.t4-banner{background:var(--surface);border:1px solid var(--axis);border-left:3px solid var(--ink-2);
+.t4-banner{background:var(--surface);border:1px solid var(--ring);border-left:4px solid var(--critical);box-shadow:var(--elev);
   border-radius:var(--radius);padding:10px 14px;margin:0 0 12px;font-size:14px;line-height:1.5;color:var(--ink)}
 #tips-body[data-filter="repeat"] [data-n="one"],
 #tips-body[data-filter="repeat"] .qt-group:not(.has-rep),
@@ -252,15 +401,15 @@ tfoot td{border-top:1px solid var(--axis);font-weight:600;color:var(--ink);borde
 .st-pt:hover .st-dot{r:7}
 .st-val{fill:var(--ink);font-size:12px;font-weight:650}
 /* ---------- daily review (phone first) ---------- */
-#tab-review{font-size:18px;line-height:1.5;max-width:640px}
+#tab-review{font-size:18px;line-height:1.5;max-width:640px;margin:0 auto}
 .dr-head{margin:4px 0 14px}
 .dr-day{margin:0;font-size:14px;color:var(--muted)}
 .dr-title{margin:2px 0 4px;font-size:22px;line-height:1.25;font-weight:680}
 .dr-title span{display:block;font-size:15px;font-weight:500;color:var(--muted);margin-top:2px}
 .dr-meta{margin:0 0 8px;font-size:15px;color:var(--ink-2);font-variant-numeric:tabular-nums}
 .dr-bar{height:4px;border-radius:2px;background:var(--grid);overflow:hidden}
-.dr-bar span{display:block;height:100%;background:var(--ink-2)}
-.dr-card{background:var(--surface);border:1px solid var(--ring);border-radius:14px;padding:18px 18px 20px;min-height:260px}
+.dr-bar span{display:block;height:100%;background:var(--accent);border-radius:2px}
+.dr-card{background:var(--surface);border:1px solid var(--ring);border-radius:20px;padding:20px 20px 22px;min-height:260px;box-shadow:var(--elev)}
 .dr-part{margin:0 0 12px;font-size:13px;font-weight:650;letter-spacing:.05em;text-transform:uppercase;color:var(--muted)}
 .dr-ctx{margin:0 0 4px;font-size:15px;color:var(--muted)}
 .dr-cue{margin:0 0 12px;font-size:20px;font-weight:700;line-height:1.35;color:var(--ink)}
@@ -273,7 +422,7 @@ tfoot td{border-top:1px solid var(--axis);font-weight:600;color:var(--ink);borde
 .dr-close .dr-rule.big{font-size:22px;font-weight:600;line-height:1.4}
 .dr-stem{margin:0 0 14px;font-size:18px;line-height:1.5;color:var(--ink);white-space:pre-line}
 .dr-opts{display:grid;gap:10px}
-.dr-opt{display:block;width:100%;text-align:left;padding:13px 14px;border-radius:12px;border:1px solid var(--axis);
+.dr-opt{display:block;width:100%;text-align:left;padding:14px 15px;border-radius:14px;border:1px solid var(--axis);
   background:var(--surface-2);color:var(--ink);font:500 17px/1.4 var(--sans);cursor:pointer;min-height:52px}
 .dr-opt:disabled{cursor:default}
 .dr-opt.right{border-color:var(--good);box-shadow:inset 3px 0 0 var(--good)}
@@ -283,28 +432,28 @@ tfoot td{border-top:1px solid var(--axis);font-weight:600;color:var(--ink);borde
 .dr-verdict{margin:14px 0 4px;font-size:17px;font-weight:700;color:var(--ink)}
 .dr-why{margin:0 0 6px;font-size:17px;color:var(--ink-2);line-height:1.5}
 .dr-more{font-size:15px;color:var(--ink-2)}
-.dr-more summary{cursor:pointer;color:var(--s1);font-weight:600;padding:4px 0}
+.dr-more summary{cursor:pointer;color:var(--accent-ink);font-weight:600;padding:4px 0}
 .dr-more p{margin:6px 0 0;line-height:1.5}
-.dr-nav button{min-height:52px;border-radius:12px;font:650 17px/1 var(--sans);cursor:pointer;
+.dr-nav button{min-height:52px;border-radius:14px;font:650 17px/1 var(--sans);cursor:pointer;
   border:1px solid var(--axis);background:var(--surface-2);color:var(--ink)}
 .dr-mark button[data-review="miss"]{color:var(--ink-2)}
 .dr-nav{display:flex;gap:10px;margin:12px 0 0}
 .dr-nav button{flex:1 1 0}
-.dr-nav button.pri{background:var(--ink);color:var(--plane);border-color:var(--ink)}
+.dr-nav button.pri{background:var(--accent);color:var(--on-accent);border-color:var(--accent)}
 .dr-nav button:disabled{opacity:.35;cursor:default}
 .dr-days{margin:22px 0 0;font-size:15px}
-.dr-days summary{cursor:pointer;color:var(--s1);font-weight:600;padding:6px 0}
+.dr-days summary{cursor:pointer;color:var(--accent-ink);font-weight:600;padding:6px 0}
 .dr-daylist{display:grid;gap:6px;margin-top:8px}
-.dr-daylist button{text-align:left;background:var(--surface);border:1px solid var(--ring);border-radius:10px;
+.dr-daylist button{text-align:left;background:var(--surface);border:1px solid var(--ring);border-radius:12px;
   color:var(--ink-2);font:15px/1.35 var(--sans);padding:10px 12px;cursor:pointer;min-height:44px}
-.dr-daylist button[aria-current="true"]{border-color:var(--ink-2);color:var(--ink)}
+.dr-daylist button[aria-current="true"]{border-color:var(--accent);background:var(--accent-wash);color:var(--ink)}
 .dr-daylist b{color:var(--ink);margin-right:6px}
 /* ---------- pairs ---------- */
 .pair{background:var(--surface);border:1px solid var(--ring);border-radius:var(--radius);
-  padding:12px 15px 13px;margin:0 0 12px}
+  padding:15px 17px 16px;margin:0 0 14px;box-shadow:var(--elev)}
 .pr-h{display:flex;align-items:center;gap:10px;margin:0 0 8px}
 .pr-h h3{margin:0;font-size:15px;flex:1 1 auto;line-height:1.3}
-.pair.hot .qt-n{background:rgba(208,59,59,.2);color:#ff8f8f}
+.pair.hot .qt-n{background:var(--crit-wash);color:var(--crit-ink)}
 .pr-grid{display:grid;grid-template-columns:var(--pr-cols);font-size:14px;line-height:1.45}
 .pr-row{display:contents}
 .pr-row>div{padding:7px 10px 7px 0;border-top:1px solid var(--grid)}
@@ -329,7 +478,7 @@ tfoot td{border-top:1px solid var(--axis);font-weight:600;color:var(--ink);borde
 /* ---------- folds ---------- */
 details.fold{border-top:1px solid var(--grid);margin-top:10px}
 details.fold>summary{cursor:pointer;list-style:none;padding:9px 0 3px;font-size:13px;
-  font-weight:600;color:var(--s1)}
+  font-weight:600;color:var(--accent-ink)}
 details.fold>summary::-webkit-details-marker{display:none}
 details.fold>summary::before{content:"\25B8";display:inline-block;width:14px;transition:transform .15s}
 details.fold[open]>summary::before{transform:rotate(90deg)}
@@ -338,20 +487,20 @@ details.fold.qt-cleared .qt-list{margin-top:8px}
 /* ---------- study guide ---------- */
 ol.next{list-style:none;padding:0;margin:0 0 14px}
 ol.next li{display:grid;grid-template-columns:fit-content(38%) minmax(0,1fr);gap:14px;
-  padding:10px 14px;margin:0 0 6px;background:var(--surface);border:1px solid var(--ring);
-  border-radius:8px;font-size:13.5px;color:var(--ink-2)}
+  padding:12px 15px;margin:0 0 8px;background:var(--surface);border:1px solid var(--ring);
+  border-radius:12px;font-size:13.5px;color:var(--ink-2);box-shadow:var(--elev)}
 ol.next li .k{font-weight:620;color:var(--ink)}
 @media(max-width:560px){ol.next li{grid-template-columns:1fr;gap:2px}}
 .ucard{background:var(--surface);border:1px solid var(--ring);border-radius:var(--radius);
-  padding:13px 16px 11px;margin:0 0 10px}
+  padding:15px 17px 13px;margin:0 0 12px;box-shadow:var(--elev)}
 .ucard.below{box-shadow:inset 3px 0 0 var(--critical)}
 .ucard-h{display:flex;align-items:baseline;justify-content:space-between;gap:12px}
 .ucard-h h3{margin:0;font-size:14.5px}
 .ucard-h .ut{font-weight:500;color:var(--ink-2)}
 .ucard-h .big{font-size:20px;font-weight:660;font-variant-numeric:tabular-nums;white-space:nowrap}
-.ucard.below .big{color:var(--critical)}
+.ucard.below .big{color:var(--crit-ink)}
 .ucard .meta{font-size:12.5px;color:var(--muted);margin:2px 0 8px}
-.ucard .warnline{color:var(--warning)}
+.ucard .warnline{color:var(--warning-ink)}
 .ucard p.rec{font-size:13.5px;margin:0 0 4px}
 .ucard .miss{margin:12px 0 16px}
 #guide-units[data-filter="focus"]{display:flex;flex-direction:column}
@@ -363,7 +512,7 @@ ol.next li .k{font-weight:620;color:var(--ink)}
 .ucard ul.rec li b{color:var(--ink);font-weight:600}
 /* ---------- Prioritize these ---------- */
 .pz-lead{font-size:15px;margin:0 0 12px}
-.pz-topics{background:var(--surface);border:1px solid var(--ring);border-radius:var(--radius);padding:2px 15px}
+.pz-topics{background:var(--surface);border:1px solid var(--ring);border-radius:var(--radius);padding:2px 16px;box-shadow:var(--elev)}
 .pz-trow{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(90px,2fr) 112px;gap:6px 16px;
   align-items:center;padding:11px 0;border-bottom:1px solid var(--grid)}
 .pz-trow:last-child{border-bottom:0}
@@ -373,7 +522,7 @@ ol.next li .k{font-weight:620;color:var(--ink)}
 .pz-tnum b{display:block;font-size:15.5px;font-weight:650;color:var(--ink)}
 .pz-tnum .sub{display:block;font-size:12px;color:var(--muted)}
 .pz-meter{position:relative;display:block;height:8px;border-radius:4px;background:var(--grid)}
-.pz-meter .fill{position:absolute;left:0;top:0;bottom:0;border-radius:4px;background:#8f8d86}
+.pz-meter .fill{position:absolute;left:0;top:0;bottom:0;border-radius:4px;background:var(--meter)}
 .below .pz-meter .fill{background:var(--critical)}
 .pz-meter .tick{position:absolute;top:-4px;bottom:-4px;width:2px;margin-left:-1px;border-radius:1px;background:var(--ink)}
 .pz-key{font-size:12px;color:var(--muted);margin:6px 0 18px}
@@ -381,13 +530,13 @@ ol.next li .k{font-weight:620;color:var(--ink)}
 .pz-gh{display:flex;align-items:baseline;flex-wrap:wrap;gap:8px;margin:16px 0 8px;font-size:12.5px;
   font-weight:650;text-transform:uppercase;letter-spacing:.06em;color:var(--ink-2)}
 .pz-gh span{text-transform:none;letter-spacing:0;font-weight:500;color:var(--muted)}
-.pz-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:10px}
+.pz-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:12px}
 .pz-card{display:flex;flex-direction:column;gap:10px;background:var(--surface);border:1px solid var(--ring);
-  border-radius:var(--radius);padding:13px 15px 13px}
+  border-radius:var(--radius);padding:15px 16px 15px;box-shadow:var(--elev)}
 .pz-card.below{box-shadow:inset 3px 0 0 var(--critical)}
 .pz-h{display:grid;grid-template-columns:26px minmax(0,1fr) auto;gap:10px;align-items:start}
 .pz-rank{width:26px;height:26px;border-radius:50%;display:grid;place-items:center;font-size:12.5px;
-  font-weight:700;color:var(--ink);background:var(--surface-2);border:1px solid var(--axis)}
+  font-weight:700;color:var(--accent-ink);background:var(--accent-wash);border:0}
 .pz-name{line-height:1.3}
 .pz-name b{display:block;font-size:15px;color:var(--ink)}
 .pz-name span{display:block;font-size:12.5px;color:var(--muted)}
@@ -424,7 +573,7 @@ ol.dump-order li.cut{border-style:dashed;color:var(--muted)}
 ol.dump-order li.cut .n{background:var(--surface-2);color:var(--muted)}
 .dump-key{font-size:12.5px;color:var(--muted);margin:0 0 14px}
 .dump-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,430px),1fr));gap:12px}
-.dblock{background:var(--surface);border:1px solid var(--ring);border-radius:var(--radius);overflow:hidden}
+.dblock{background:var(--surface);border:1px solid var(--ring);border-radius:var(--radius);overflow:hidden;box-shadow:var(--elev)}
 .dblock.is-cut{border-style:dashed}
 .dblock-h{display:flex;align-items:center;gap:10px;padding:11px 14px;border-bottom:1px solid var(--axis);
   background:var(--surface-2)}
@@ -443,20 +592,20 @@ ol.dump-order li.cut .n{background:var(--surface-2);color:var(--muted)}
 .mdot{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--muted);
   margin:0 7px 1px 0;vertical-align:middle}
 .mdot.hot{background:var(--critical)}
-.dblock-f{margin:0;padding:8px 14px 10px;font-size:12.5px;color:var(--warning);border-top:1px solid var(--grid)}
+.dblock-f{margin:0;padding:8px 14px 10px;font-size:12.5px;color:var(--warning-ink);border-top:1px solid var(--grid)}
 @media(max-width:400px){.drow{grid-template-columns:1fr;gap:0}.drow dt{font-size:12px;color:var(--muted)}}
 /* ---------- claude paste ---------- */
 .paste-bar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:0 0 12px}
 .copybtn{
-  appearance:none;border:0;border-radius:9px;background:var(--s1);color:#fff;
-  font:inherit;font-size:15px;font-weight:620;padding:13px 22px;cursor:pointer;flex:0 0 auto
+  appearance:none;border:0;border-radius:14px;background:var(--accent);color:var(--on-accent);
+  font:inherit;font-size:15px;font-weight:650;padding:14px 24px;cursor:pointer;flex:0 0 auto
 }
-.copybtn:hover{background:#4d95ea}
+.copybtn:hover{filter:brightness(1.08)}
 .copybtn:active{transform:translateY(1px)}
 .copybtn.done{background:var(--good)}
 .count{font-size:12.5px;color:var(--muted);font-variant-numeric:tabular-nums}
 pre.paste{
-  background:var(--surface);border:1px solid var(--ring);border-radius:var(--radius);
+  background:var(--surface);border:1px solid var(--ring);border-radius:var(--radius);box-shadow:var(--elev);
   padding:14px;margin:0;max-height:440px;overflow:auto;-webkit-overflow-scrolling:touch;
   font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12px;line-height:1.5;
   white-space:pre-wrap;word-break:break-word;color:var(--ink-2);user-select:text
@@ -465,7 +614,7 @@ footer.foot{margin-top:40px;padding-top:16px;border-top:1px solid var(--grid);
   color:var(--muted);font-size:12px}
 [hidden]{display:none!important}
 [data-bind-missing]{outline:2px dashed var(--critical);outline-offset:2px}
-@media print{nav.tabs{display:none}section.tab{display:block!important}}
+@media print{.side,.appbar,.tabbar,.scrim{display:none!important}.app{display:block}body{padding:0}section.tab{display:block!important}}
 /* ---------- printouts (US Letter, black and white) ---------- */
 .print-bar{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 14px}
 #print-root{display:none;color:#000;background:#fff;font-family:Arial,Helvetica,sans-serif}
@@ -474,7 +623,7 @@ footer.foot{margin-top:40px;padding-top:16px;border-top:1px solid var(--grid);
 @page dumpsheet{size:letter;margin:.25in .3in}
 @media print{
   body[data-print]{background:#fff!important;color:#000!important}
-  body[data-print] .wrap{display:none!important}
+  body[data-print] .wrap,body[data-print] .app,body[data-print] .tabbar,body[data-print] .scrim{display:none!important}
   body[data-print] #print-root{display:block}
 }
 #print-root b,#print-root h4{color:#000}
@@ -512,13 +661,16 @@ footer.foot{margin-top:40px;padding-top:16px;border-top:1px solid var(--grid);
 </style>
 </head>
 <body>
-<div class="wrap">
+<div class="app">
+<aside class="side" id="side" aria-label="Sections and exam facts">
+<div class="sheet-grab" aria-hidden="true"></div>
 <header class="top">
+  <div class="brand"><span class="app-icon" aria-hidden="true">66</span><div>
   <h1>Series 66 &mdash; Uniform Combined State Law</h1>
   <p class="sub">NASAA blueprint &middot; <span data-bind="exam.scored"></span> scored questions
     (+<span data-bind="exam.pretest"></span> pretest) &middot;
     <span data-bind="exam.minutes"></span> minutes &middot;
-    <span data-bind="exam.passLine"></span> to pass</p>
+    <span data-bind="exam.passLine"></span> to pass</p></div></div>
   <div class="stamp">
     <span class="pill">Data as of <b data-bind="meta.lastVerified"></b></span>
     <span class="pill">Source <b data-bind="meta.source"></b></span>
@@ -527,16 +679,29 @@ footer.foot{margin-top:40px;padding-top:16px;border-top:1px solid var(--grid);
 </header>
 
 <nav class="tabs" role="tablist" aria-label="Sections">
-  <button role="tab" id="t-review" aria-controls="tab-review" aria-selected="false">Daily Review</button>
-  <button role="tab" id="t-perf"  aria-controls="tab-perf"  aria-selected="true">Performance</button>
-  <button role="tab" id="t-exams" aria-controls="tab-exams" aria-selected="false">Practice &amp; Sim Exams</button>
-  <button role="tab" id="t-tips"  aria-controls="tab-tips"  aria-selected="false">Quick Tips</button>
-  <button role="tab" id="t-pairs" aria-controls="tab-pairs" aria-selected="false">Pairs</button>
-  <button role="tab" id="t-guide" aria-controls="tab-guide" aria-selected="false">Study Guide</button>
-  <button role="tab" id="t-ref"   aria-controls="tab-ref"   aria-selected="false">Reference Sheet</button>
-  <button role="tab" id="t-dump"  aria-controls="tab-dump"  aria-selected="false">Dump Sheet</button>
-  <button role="tab" id="t-paste" aria-controls="tab-paste" aria-selected="false">Claude Paste</button>
+  <p class="nav-group g-study" aria-hidden="true">Study</p>
+  <button role="tab" id="t-review" aria-controls="tab-review" aria-selected="false" data-primary><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15.5" rx="3"/><path d="M8 3v4M16 3v4M3.5 10h17M9 15.2l2 2 4-4"/></svg><span>Daily Review</span><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button>
+  <button role="tab" id="t-guide" aria-controls="tab-guide" aria-selected="false" data-primary><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="4.6"/><circle cx="12" cy="12" r="1.1" fill="currentColor"/></svg><span>Study Guide</span><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button>
+  <button role="tab" id="t-tips" aria-controls="tab-tips" aria-selected="false" data-primary><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9.5 18h5M10.5 21h3M12 3a6 6 0 0 0-3.7 10.7c.7.6 1.2 1.4 1.2 2.3h5c0-.9.5-1.7 1.2-2.3A6 6 0 0 0 12 3z"/></svg><span>Quick Tips</span><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button>
+  <button role="tab" id="t-pairs" aria-controls="tab-pairs" aria-selected="false" data-primary><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="4.5" width="7" height="15" rx="2"/><rect x="13.5" y="4.5" width="7" height="15" rx="2"/><path d="M6 9h2M6 12.5h2M16 9h2M16 12.5h2"/></svg><span>Pairs</span><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button>
+  <p class="nav-group" aria-hidden="true">Progress</p>
+  <button role="tab" id="t-perf" aria-controls="tab-perf" aria-selected="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4v16h16"/><path d="M7.5 15l3.5-4 3 2.5 5-6.5"/></svg><span>Performance</span><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button>
+  <button role="tab" id="t-exams" aria-controls="tab-exams" aria-selected="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="4.5" width="14" height="16.5" rx="2.5"/><path d="M9 3v3h6V3M8.5 11h7M8.5 14.5h7M8.5 18h4"/></svg><span>Practice &amp; Sim Exams</span><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button>
+  <p class="nav-group" aria-hidden="true">Sheets</p>
+  <button role="tab" id="t-ref" aria-controls="tab-ref" aria-selected="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 5.5A2 2 0 0 1 6.5 3.5H19v14H6.5a2 2 0 0 0-2 2z"/><path d="M4.5 19.5a2 2 0 0 0 2 2H19v-4M8.5 8h6.5M8.5 11.5h4.5"/></svg><span>Reference Sheet</span><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button>
+  <button role="tab" id="t-dump" aria-controls="tab-dump" aria-selected="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20h5"/><path d="M15 4.5l4.5 4.5L10 18.5H5.5V14z"/><path d="M13 6.5l4.5 4.5"/></svg><span>Dump Sheet</span><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button>
+  <p class="nav-group" aria-hidden="true">Tools</p>
+  <button role="tab" id="t-paste" aria-controls="tab-paste" aria-selected="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="8.5" y="8.5" width="11.5" height="12" rx="2.5"/><path d="M15.5 8.5V6A2.5 2.5 0 0 0 13 3.5H6.5A2.5 2.5 0 0 0 4 6v7.5A2.5 2.5 0 0 0 6.5 16h2"/></svg><span>Claude Paste</span><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button>
 </nav>
+</aside>
+
+<main class="main">
+<div class="appbar"><div class="appbar-in">
+  <span class="app-icon" aria-hidden="true">66</span>
+  <p class="ab-title" id="ab-title">Performance</p>
+  <span class="pill chip">Data <b data-bind="meta.lastVerified"></b></span>
+</div></div>
+<div class="wrap">
 
 <!-- ============ DAILY REVIEW ============ -->
 <section class="tab" id="tab-review" role="tabpanel" aria-labelledby="t-review">
@@ -1086,6 +1251,16 @@ footer.foot{margin-top:40px;padding-top:16px;border-top:1px solid var(--grid);
     <span data-bind="exam.targetAvg"></span>.</p>
 </footer>
 </div>
+</main>
+</div>
+<nav class="tabbar" aria-label="Main sections">
+  <button type="button" data-go="tab-review"><span class="tb-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15.5" rx="3"/><path d="M8 3v4M16 3v4M3.5 10h17M9 15.2l2 2 4-4"/></svg></span><span>Review</span></button>
+  <button type="button" data-go="tab-guide"><span class="tb-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="4.6"/><circle cx="12" cy="12" r="1.1" fill="currentColor"/></svg></span><span>Guide</span></button>
+  <button type="button" data-go="tab-tips"><span class="tb-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9.5 18h5M10.5 21h3M12 3a6 6 0 0 0-3.7 10.7c.7.6 1.2 1.4 1.2 2.3h5c0-.9.5-1.7 1.2-2.3A6 6 0 0 0 12 3z"/></svg></span><span>Tips</span></button>
+  <button type="button" data-go="tab-pairs"><span class="tb-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="4.5" width="7" height="15" rx="2"/><rect x="13.5" y="4.5" width="7" height="15" rx="2"/><path d="M6 9h2M6 12.5h2M16 9h2M16 12.5h2"/></svg></span><span>Pairs</span></button>
+  <button type="button" id="more-btn" aria-haspopup="dialog" aria-expanded="false" aria-controls="side"><span class="tb-ico"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="5.5" cy="12" r="1.8"/><circle cx="12" cy="12" r="1.8"/><circle cx="18.5" cy="12" r="1.8"/></svg></span><span>More</span></button>
+</nav>
+<div class="scrim" id="scrim" hidden></div>
 <div id="print-root" aria-hidden="true"></div>
 <script>
 "use strict";
@@ -18320,7 +18495,7 @@ function renderGuideFocus() {
   setHTML("guide-focus",
     topicBannerHTML() + (lead ? '<p class="pz-lead">' + lead + '</p>' : '')
     + '<div class="pz-topics">' + trows + '</div>'
-    + '<p class="pz-key">The white tick on each bar is the ' + line + '% pass line.'
+    + '<p class="pz-key">The tick on each bar is the ' + line + '% pass line.'
       + (onSims ? ' Topics and units here are scored ' + FOCUS_SOURCE_LABEL.sims + ' ('
           + fullLengthSims().reduce((n, e) => n + (e.total || 0), 0) + ' questions so far); '
           + 'the Performance tab keeps the pooled score.' : '') + '</p>'
@@ -20191,12 +20366,22 @@ function renderPaste() {
    still renders readable tables - that matters more now it is served over the
    network rather than opened from disk.
    ========================================================================== */
-const CHART_COLORS = {
-  s1: "#3987e5", s2: "#d95926", s3: "#199e70",
-  pass: "#fab219", target: "#0ca30c",
-  grid: "#2c2c2a", axis: "#383835", ink: "#c3c2b7", muted: "#898781",
-  critical: "#d03b3b"
+/* Read from the page's CSS tokens at draw time, so the charts follow light and dark.
+   The fallbacks are the dark steps, for a context with no stylesheet. */
+const CHART_VARS = {
+  s1: ["--s1", "#3987e5"], s2: ["--s2", "#d95926"], s3: ["--s3", "#199e70"],
+  pass: ["--pass-line", "#fab219"], target: ["--target-line", "#0ca30c"],
+  grid: ["--grid", "#2c2c2a"], axis: ["--axis", "#383835"], ink: ["--ink-2", "#c3c2b7"], muted: ["--muted", "#898781"],
+  critical: ["--critical", "#d03b3b"], tipBg: ["--surface-2", "#211f1e"], tipBorder: ["--axis", "#383835"],
+  tipTitle: ["--ink", "#ffffff"], tipBody: ["--ink-2", "#c3c2b7"], surface: ["--surface", "#1a1a19"]
 };
+const CHART_COLORS = {};
+for (const [k, [v, fb]] of Object.entries(CHART_VARS)) {
+  Object.defineProperty(CHART_COLORS, k, { enumerable: true, get() {
+    try { return getComputedStyle(document.documentElement).getPropertyValue(v).trim() || fb; }
+    catch (e) { return fb; }
+  } });
+}
 /* Reference lines drawn straight onto the canvas rather than as datasets.
    A dataset line needs two points to render a segment, so with a single
    scored sitting the pass line and target simply vanished. This draws at any
@@ -20305,7 +20490,7 @@ function renderTrendChart() {
         { label: "Score", data: pts.map(p => p.pct),
           borderColor: CHART_COLORS.s1, borderWidth: 2, tension: 0.25, fill: false,
           pointRadius: 5, pointHoverRadius: 8, pointBorderWidth: 2,
-          pointBorderColor: "#1a1a19",
+          pointBorderColor: CHART_COLORS.surface,
           pointBackgroundColor: pts.map(p => p.kind === "exam" ? CHART_COLORS.s2
                                   : p.kind === "checkpoint" ? CHART_COLORS.s3 : CHART_COLORS.s1) },
       ]
@@ -20327,8 +20512,8 @@ function renderTrendChart() {
           { value: EXAM.TARGET_AVG, color: CHART_COLORS.target }
         ] },
         tooltip: {
-          backgroundColor: "#211f1e", borderColor: "rgba(255,255,255,.12)", borderWidth: 1,
-          titleColor: "#fff", bodyColor: "#c3c2b7", padding: 10, displayColors: false,
+          backgroundColor: CHART_COLORS.tipBg, borderColor: CHART_COLORS.tipBorder, borderWidth: 1,
+          titleColor: CHART_COLORS.tipTitle, bodyColor: CHART_COLORS.tipBody, padding: 10, displayColors: false,
           filter: item => item.datasetIndex === 0,
           callbacks: {
             title: items => items.length ? pts[items[0].dataIndex].label : "",
@@ -20402,8 +20587,8 @@ function renderTopicChart() {
         legend: { display: false },
         reflines: { axis: "x", lines: [ { value: EXAM.PASS_LINE, color: CHART_COLORS.pass } ] },
         tooltip: {
-          backgroundColor: "#211f1e", borderColor: "rgba(255,255,255,.12)", borderWidth: 1,
-          titleColor: "#fff", bodyColor: "#c3c2b7", padding: 10, displayColors: false,
+          backgroundColor: CHART_COLORS.tipBg, borderColor: CHART_COLORS.tipBorder, borderWidth: 1,
+          titleColor: CHART_COLORS.tipTitle, bodyColor: CHART_COLORS.tipBody, padding: 10, displayColors: false,
           filter: item => item.datasetIndex === 0,
           callbacks: {
             label: item => fmtPct(item.parsed.x) + "  ("
@@ -20420,9 +20605,60 @@ function renderCharts() { renderTrendChart(); renderTopicChart(); }
 /* ==========================================================================
    UI WIRING
    ========================================================================== */
+/* ---- the app shell: bottom tab bar, the More sheet, the title bar -------------- */
+function sheetOpen() { const side = $("side"); return !!(side && side.classList.contains("open")); }
+function setSheet(open) {
+  const side = $("side"), scrim = $("scrim"), more = $("more-btn");
+  if (!side) return;
+  side.classList.toggle("open", open);
+  if (scrim) scrim.hidden = !open;
+  if (more) more.setAttribute("aria-expanded", String(open));
+  if (open) {
+    side.setAttribute("role", "dialog");
+    side.setAttribute("aria-modal", "true");
+    const first = side.querySelector('nav.tabs button[role="tab"]:not([data-primary])');
+    if (first) { try { first.focus({ preventScroll: true }); } catch (e) { first.focus(); } }
+  } else {
+    side.removeAttribute("role");
+    side.removeAttribute("aria-modal");
+  }
+}
+function initShell() {
+  const more = $("more-btn"), scrim = $("scrim");
+  if (more) more.addEventListener("click", () => setSheet(!sheetOpen()));
+  if (scrim) scrim.addEventListener("click", () => { setSheet(false); if (more) more.focus(); });
+  document.addEventListener("keydown", e => {
+    if (e.key === "Escape" && sheetOpen()) { setSheet(false); if (more) more.focus(); }
+  });
+  document.querySelectorAll(".tabbar [data-go]").forEach(b => b.addEventListener("click", () => {
+    const tab = document.querySelector('nav.tabs button[aria-controls="' + b.getAttribute("data-go") + '"]');
+    if (tab) tab.click();
+  }));
+  /* Charts draw on a canvas, so they redraw when the phone switches light and dark. */
+  try {
+    const mq = window.matchMedia("(prefers-color-scheme: dark)");
+    const redraw = () => { const p = $("tab-perf"); if (p && p.classList.contains("active")) renderCharts(); };
+    if (mq.addEventListener) mq.addEventListener("change", redraw); else if (mq.addListener) mq.addListener(redraw);
+  } catch (e) { /* no matchMedia: the first draw stands */ }
+}
+function shellFor(id) {
+  const tab = document.querySelector('nav.tabs button[aria-controls="' + id + '"]');
+  const title = $("ab-title");
+  if (title && tab) title.textContent = tab.textContent.trim();
+  let inBar = false;
+  document.querySelectorAll(".tabbar [data-go]").forEach(b => {
+    const on = b.getAttribute("data-go") === id;
+    if (on) inBar = true;
+    b.classList.toggle("on", on);
+    if (on) b.setAttribute("aria-current", "page"); else b.removeAttribute("aria-current");
+  });
+  const more = $("more-btn");
+  if (more) more.classList.toggle("on", !inBar);
+}
+
 function initTabs() {
-  const buttons = Array.from(document.querySelectorAll('nav.tabs button'));
-  function show(id) {
+  const buttons = Array.from(document.querySelectorAll('nav.tabs button[role="tab"]'));
+  function show(id, fromUser) {
     buttons.forEach(b => {
       const on = b.getAttribute("aria-controls") === id;
       b.setAttribute("aria-selected", String(on));
@@ -20430,10 +20666,13 @@ function initTabs() {
     document.querySelectorAll("section.tab").forEach(s =>
       s.classList.toggle("active", s.id === id));
     try { localStorage.setItem("s66.tab", id); } catch (e) { /* never required for correctness */ }
+    shellFor(id);
+    if (sheetOpen()) setSheet(false);
+    if (fromUser) { try { window.scrollTo(0, 0); } catch (e) { /* not essential */ } }
     if (id === "tab-paste") renderPaste();
     if (id === "tab-perf") renderCharts();
   }
-  buttons.forEach(b => b.addEventListener("click", () => show(b.getAttribute("aria-controls"))));
+  buttons.forEach(b => b.addEventListener("click", () => show(b.getAttribute("aria-controls"), true)));
   let start = "tab-perf";
   try {
     const saved = localStorage.getItem("s66.tab");
@@ -20509,6 +20748,7 @@ function renderAll() {
 }
 
 function boot() {
+  initShell();
   initTabs();
   initTableToggles();
   initCopy();
