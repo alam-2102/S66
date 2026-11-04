@@ -427,6 +427,21 @@ tfoot td{border-top:1px solid var(--axis);font-weight:600;color:var(--ink);borde
 .dr-list li{margin:0 0 7px}
 .dr-trap{margin:14px 0 0;padding:10px 12px;border-radius:10px;background:var(--surface-2);font-size:16px;color:var(--ink-2)}
 .dr-trap b{color:var(--ink);margin-right:5px}
+.dr-trapq{line-height:1.45}
+.dr-trapq p{margin:0 0 9px}
+.dr-trap-h{font-size:14px;color:var(--muted)}
+.dr-trap-h b{text-transform:uppercase;letter-spacing:.05em;font-size:13px}
+.dr-trap-q{color:var(--ink);font-weight:600}
+.dr-trap-sum b{margin:0}
+.dr-trap-st{list-style:none;margin:0 0 9px;padding:0}
+.dr-trap-st li{margin:0 0 8px;padding:2px 0 2px 11px;border-left:3px solid var(--critical);color:var(--ink)}
+.dr-trap-st li.out{border-left-color:var(--good)}
+.dr-trap-st span,.dr-trap-ans span,.dr-trap-why span{display:block;font-size:13px;font-weight:650;color:var(--muted)}
+.dr-trap-st li.in span,.dr-trap-ans.mine span{color:var(--crit-ink)}
+.dr-trap-st li.out span,.dr-trap-ans.right span{color:var(--good-ink)}
+.dr-trap-ans{color:var(--ink)}
+.dr-trapq .dr-more{margin-top:2px}
+.dr-whole{white-space:pre-line;color:var(--ink)}
 .dr-close .dr-cue.big{font-size:24px}
 .dr-close .dr-rule.big{font-size:22px;font-weight:600;line-height:1.4}
 .dr-stem{margin:0 0 14px;font-size:18px;line-height:1.5;color:var(--ink);white-space:pre-line}
@@ -1352,19 +1367,19 @@ const EXAM = {
    ========================================================================== */
 const SYNC = {
   "meta": {
-    "lastVerified": "2026-11-03",
-    "lastRunAttempted": "2026-11-03",
+    "lastVerified": "2026-11-04",
+    "lastRunAttempted": "2026-11-04",
     "source": "kaplan",
     "examDate": null,
     "noDataRuns": 0,
-    "lastActivityDate": "2026-11-03",
-    "courseActivitiesDone": 113,
+    "lastActivityDate": "2026-11-04",
+    "courseActivitiesDone": 114,
     "courseActivitiesTotal": 137,
-    "studyPlanPct": 59.2,
+    "studyPlanPct": 62,
     "kaplanExamAvg": 75.19,
-    "kaplanQBankAvg": 77.05,
+    "kaplanQBankAvg": 77.32,
     "unreadReason": "",
-    "dataNotes": "Oct 21: Kaplan's QBank tracker counts 25 of the 30 Unit 1-13 Review questions (U1 +6 of 8, U3 +6 of 8, U12 +2 of 3); the five uncounted ones appear to be questions seen before. unitData follows Kaplan's tracker; the review quiz itself is recorded at 21/30 in mixedQuizzes. The Midterm's 55 questions match the exam tracker exactly. Oct 22: the tracker again counts 25 of the 30 Unit 1-15 Review questions, and Unit 8 shows +5 correct on +4 answered, so Kaplan appears to count each unique question once and keep the latest answer. Kaplan does not show the Unit 16 reading as complete. Oct 26: the two Units 1-7 custom quizzes (Oct 23) are named '1-7' and '1-7 pt 2' in Kaplan. Unit 16 Quiz 2 Q7 has no LO tag in Kaplan; it is counted under Unit 16. The tracker again counts fewer questions than were answered on the review quiz (repeats). Oct 26 evening: Unit 17 Quiz 1 Q11 (market cap) has no LO tag; counted under Unit 17. The extra Unit 17 custom quiz is named '17' in Kaplan. Oct 30: two Unit 20 custom quizzes are both named '20' in Kaplan (Tests 416509222 and 416509611). Kaplan's tracker counts 19 of the 20 Unit 18 quiz questions and 23 of the 24 Unit 19 quiz questions (one repeated question each). Kaplan's dashboard now shows a Ready Date of Nov 7. Nov 1: all 23 units' reading, quizzes and checkpoints are done. No Kaplan activity was logged Oct 31. Kaplan's tracker counts 24 of the 26 Unit 22 quiz questions (two questions appeared on both quizzes). The Unit 1-17 through 1-21 review quizzes remain open in Kaplan. Nov 3: the 110-question 'Simulated Exam November 3, 2026' in the QBank list is Kaplan's Simulated Exam 1 (Austin confirmed); it isn't checked off on the course plan yet, so the dashboard still shows 113/137. Kaplan builds it from the QBank, so it can repeat questions seen before. Kaplan's course plan shows no Mastery Exam. The QBank tracker counted 140 of the 160 questions taken Nov 2-3 (repeats)."
+    "dataNotes": "Oct 21: Kaplan's QBank tracker counts 25 of the 30 Unit 1-13 Review questions (U1 +6 of 8, U3 +6 of 8, U12 +2 of 3); the five uncounted ones appear to be questions seen before. unitData follows Kaplan's tracker; the review quiz itself is recorded at 21/30 in mixedQuizzes. The Midterm's 55 questions match the exam tracker exactly. Oct 22: the tracker again counts 25 of the 30 Unit 1-15 Review questions, and Unit 8 shows +5 correct on +4 answered, so Kaplan appears to count each unique question once and keep the latest answer. Kaplan does not show the Unit 16 reading as complete. Oct 26: the two Units 1-7 custom quizzes (Oct 23) are named '1-7' and '1-7 pt 2' in Kaplan. Unit 16 Quiz 2 Q7 has no LO tag in Kaplan; it is counted under Unit 16. The tracker again counts fewer questions than were answered on the review quiz (repeats). Oct 26 evening: Unit 17 Quiz 1 Q11 (market cap) has no LO tag; counted under Unit 17. The extra Unit 17 custom quiz is named '17' in Kaplan. Oct 30: two Unit 20 custom quizzes are both named '20' in Kaplan (Tests 416509222 and 416509611). Kaplan's tracker counts 19 of the 20 Unit 18 quiz questions and 23 of the 24 Unit 19 quiz questions (one repeated question each). Kaplan's dashboard now shows a Ready Date of Nov 7. Nov 1: all 23 units' reading, quizzes and checkpoints are done. No Kaplan activity was logged Oct 31. Kaplan's tracker counts 24 of the 26 Unit 22 quiz questions (two questions appeared on both quizzes). The Unit 1-17 through 1-21 review quizzes remain open in Kaplan. Nov 3: the 110-question 'Simulated Exam November 3, 2026' in the QBank list is Kaplan's Simulated Exam 1 (Austin confirmed); Austin marked it complete on Nov 4 (dashboard 114/137). Kaplan builds it from the QBank, so it can repeat questions seen before. Kaplan's course plan shows no Mastery Exam. The QBank tracker counted 140 of the 160 questions taken Nov 2-3 (repeats)."
   },
   "unitTopicMap": [
     {
@@ -1580,8 +1595,8 @@ const SYNC = {
     {
       "id": "U3",
       "name": "Unit 3: Regulation of Broker-Dealers and Their Agents",
-      "qbankAnswered": 47,
-      "qbankCorrect": 33,
+      "qbankAnswered": 49,
+      "qbankCorrect": 35,
       "examAnswered": 16,
       "examCorrect": 10,
       "mixedAnswered": 0,
@@ -1604,8 +1619,8 @@ const SYNC = {
     {
       "id": "U5",
       "name": "Unit 5: Remedies and Administrative Provisions",
-      "qbankAnswered": 54,
-      "qbankCorrect": 45,
+      "qbankAnswered": 58,
+      "qbankCorrect": 48,
       "examAnswered": 18,
       "examCorrect": 9,
       "mixedAnswered": 0,
@@ -1616,8 +1631,8 @@ const SYNC = {
     {
       "id": "U6",
       "name": "Unit 6: Communications with Clients and Prospects",
-      "qbankAnswered": 87,
-      "qbankCorrect": 58,
+      "qbankAnswered": 96,
+      "qbankCorrect": 66,
       "examAnswered": 24,
       "examCorrect": 17,
       "mixedAnswered": 0,
@@ -1640,8 +1655,8 @@ const SYNC = {
     {
       "id": "U8",
       "name": "Unit 8: Analytical Methods",
-      "qbankAnswered": 51,
-      "qbankCorrect": 38,
+      "qbankAnswered": 56,
+      "qbankCorrect": 43,
       "examAnswered": 20,
       "examCorrect": 15,
       "mixedAnswered": 0,
@@ -1937,6 +1952,13 @@ const SYNC = {
       "answered": 50,
       "correct": 35,
       "notes": "Units 1-7: 24/34 (71%); Units 14, 15, 17, 20: 11/16. About 82 seconds a question. Six of the 14 NOT/EXCEPT questions were missed."
+    },
+    {
+      "date": "2026-11-04",
+      "label": "Custom quiz '3,5,6,8' (Test 417112804)",
+      "answered": 20,
+      "correct": 18,
+      "notes": "The day after Sim 1, on its weakest units: Unit 3 2/2, Unit 5 3/4, Unit 6 8/9, Unit 8 5/5 (including capital structure, net income and NPV). 27:45, about 83 seconds a question."
     }
   ],
   "kaplanQBank": [
@@ -2416,7 +2438,6 @@ const SYNC = {
     }
   ],
   "weakSpots": [
-    "Topic I (Unit 8): 5/8 on the simulated exam; financial statements (gross margin twice, footnotes, capital structure)",
     "Late-exam accuracy: questions 83-110 on the simulated exam went 19/28 at about 99 seconds each, after 71/82 on the first 82",
     "NOT/EXCEPT on mixed quizzes: 6 of 14 missed on the Nov 2 custom quiz",
     "Unit 6 and Unit 3 under exam conditions (9/12 and 3/5 on the sim); Unit 5 0/2 on the custom quiz",
@@ -2424,6 +2445,7 @@ const SYNC = {
     "The NASAA dollar and time thresholds: $35,000 custody, $1,200 federal prepayment, qualified-client test (9 misses now)"
   ],
   "strongSpots": [
+    "Nov 4 custom quiz on Sim 1's weakest units (3, 5, 6, 8): 18/20 (90%), Unit 8 5/5",
     "Simulated Exam 1: 90/110 (81.8%), timed, finished in 2:14 of 150 minutes",
     "Topic IV on the sim: 42/50 (84%), including Unit 7 14/15 and Unit 1 8/8; Units 1-7 across Nov 2-3: 66/84 (79%)",
     "Units 18-23 finished: checkpoints 87%, 93%, 80%, 90%, 89% and 100%; all content is done",
@@ -6391,6 +6413,30 @@ const SYNC = {
       "correctAnswer": "C) The GP, as the active manager of the partnership, does not maintain a financial interest in the partnership and only receives income distributions from profits on the business prior to the limited partners.",
       "rationale": "General partners (GPs) must maintain a financial interest in the partnership and generally do not receive distributions from profits before those paid to the limited partners (LPs). The GP is the active investor in a limited partnership and assumes responsibility for all aspects of the partnership's operations and has a fiduciary relationship to the LPs. The GP, as a fiduciary, cannot borrow from the partnership, compete with the partnership, or commingle personal funds with partnership funds.",
       "explanation": "NOT question. C is the false one: a general partner must keep a financial interest in the partnership and doesn't get paid out of profits ahead of the limited partners. Your pick, A, is true."
+    },
+    {
+      "id": "cq3568-q10",
+      "date": "2026-11-04",
+      "unitId": "U5",
+      "topic": "IV",
+      "lo": "LO 5.l",
+      "question": "Which of the following is true regarding violations of the Uniform Securities Act?\n\nThe Administrator may issue a cease and desist order without a prior hearing.\nViolators may incur a criminal penalty of a $5,000 fine or three years in jail, but not both.\nThere is no statute of limitations on the return of criminal indictments.",
+      "myAnswer": "C) I and II",
+      "correctAnswer": "B) I only",
+      "rationale": "The Administrator may issue a cease and desist order with or without a prior hearing. The statute of limitations on criminal violations is five years, not unlimited. Regarding the criminal penalties described, the amounts are correct—a $5,000 fine, three years in prison—but violators may face both, not just one or the other.",
+      "explanation": "Only I is true: the Administrator can issue a cease and desist order without a prior hearing. II is false because the criminal penalty is up to $5,000, up to 3 years, or BOTH. III is false because the criminal statute of limitations is 5 years."
+    },
+    {
+      "id": "cq3568-q15",
+      "date": "2026-11-04",
+      "unitId": "U6",
+      "topic": "IV",
+      "lo": "LO 6.i",
+      "question": "Which of the following statements regarding the brochure delivery requirements of the Investment Advisers Act of 1940 are true?\n\nThe brochure must be updated each time Part 1A of Form ADV is updated.\nThe brochure delivery requirement does not apply to investment companies or clients who are serviced on an impersonal basis, such as with a newsletter, with an annual cost of less than $500.\nA brochure, or summary of material changes, if any, must be delivered to all clients within 120 days of the end of the adviser's fiscal year.",
+      "myAnswer": "D) I, II, and III",
+      "correctAnswer": "B) II and III",
+      "rationale": "Because the information in the brochure is derived from Part 2A of the Form ADV, changes to Part 1A will not necessarily apply to items that are important to the client. Therefore, stating that the brochure must be updated whenever there is a change to Part 1A would not be correct. SEC rules require that a brochure, or summary of material changes, if any, be delivered to all clients within 120 days of the end of the adviser's fiscal year. If there are no material changes, a brochure does not have to be sent. The brochure delivery requirements do not apply to customers that are investment companies or for clients of impersonal services (those that do not purport to meet the investment objectives or needs of specific clients), as long as the cost of the service is less than $500 per year.",
+      "explanation": "II and III are true: investment company clients and impersonal advice under $500 a year are exempt, and the brochure or a summary of material changes goes out within 120 days of fiscal year-end. I is false: the brochure comes from Part 2A, so a Part 1A update doesn't force a new brochure."
     }
   ],
   "answeredCorrect": [
@@ -11768,6 +11814,96 @@ const SYNC = {
       "id": "cq50-q50",
       "question": "You have a 37-year-old client whose wife has just given birth to triplets. Because of the added responsibilities, he wants to maximize the amount of life insurance he can acquire. Which of the following types of insuranc",
       "note": "Correct: D) Annual renewable term (LO 14.g)"
+    },
+    {
+      "id": "cq3568-q01",
+      "question": "A state-registered investment adviser would like to employ the services of an individual as a solicitor to help bring in more business. The solicitor will be compensated by receiving a percentage on all assets placed under management. In order to do this, all of the following must be done except",
+      "note": "Correct: B) <p>clients must sign the advisory contract at the same time as they receive the investment adviser’s brochure.</p> (LO 6.i)"
+    },
+    {
+      "id": "cq3568-q02",
+      "question": "An investment adviser wishes to advertise a proprietary charting system used to time the market. To be in compliance with the Investment Advisers Act of 1940,",
+      "note": "Correct: C) a statement reflecting the limitations and difficulties of using the system must be included in the ad. (LO 6.l)"
+    },
+    {
+      "id": "cq3568-q03",
+      "question": "Present value is a computation that is frequently used to determine the amount of a deposit needed now to meet a future need, such as a college education. If an investor uses an expected return of 8% but the actual return over the period is 10%, the future value will be",
+      "note": "Correct: C) higher than anticipated (LO 8.b)"
+    },
+    {
+      "id": "cq3568-q04",
+      "question": "In general, the Administrator would require that a broker-dealer's social media policies be",
+      "note": "Correct: B) committed to writing and communicated firmwide. (LO 6.n)"
+    },
+    {
+      "id": "cq3568-q05",
+      "question": "An investor who resides in New York reads a newspaper ad for advisory services in a newspaper published in New Jersey. More than 80% of the newspaper's circulation is in the state of New York. According to the Uniform Securities Act, an offer has been made in",
+      "note": "Correct: D) neither New Jersey nor New York. (LO 5.a)"
+    },
+    {
+      "id": "cq3568-q06",
+      "question": "As defined in the Uniform Securities Act, which of the following statements is true regarding an agent?",
+      "note": "Correct: B) An agent represents a broker-dealer or an issuer in effecting or attempting to effect purchases or sales of securities. (LO 3.e)"
+    },
+    {
+      "id": "cq3568-q07",
+      "question": "Wealth Funders and Associates (WFA) is a state-registered investment adviser organized as a partnership. The firm has had five equal partners since its inception. However, with the retirement of one of the partners and the need for additional capital, WFA has added three new partners. As a result of this activity, WFA",
+      "note": "Correct: C) shall notify clients of the change to the partnership within a reasonable time. (LO 6.e)"
+    },
+    {
+      "id": "cq3568-q08",
+      "question": "Financial ratios derived from a corporation's balance sheet can be useful tools for investors. Someone looking to determine the company's liquidity would most likely to ignore its",
+      "note": "Correct: B) debt to equity ratio (LO 8.n)"
+    },
+    {
+      "id": "cq3568-q09",
+      "question": "Included among the powers of the Administrator is the ability to",
+      "note": "Correct: D) request that the court appoint a receiver to freeze the bank accounts of a broker-dealer who is the subject of an injunction. (LO 5.d)"
+    },
+    {
+      "id": "cq3568-q11",
+      "question": "Issuance of which of the following would most likely increase the leverage in a company's capital structure?",
+      "note": "Correct: B) Bonds (LO 8.o)"
+    },
+    {
+      "id": "cq3568-q12",
+      "question": "If persons other than the original person entering the post can comment on social media, the content is considered",
+      "note": "Correct: A) interactive. (LO 6.m)"
+    },
+    {
+      "id": "cq3568-q13",
+      "question": "Under the Uniform Securities Act, a broker-dealer is defined as any person who",
+      "note": "Correct: C) is in the business of effecting securities transactions for its own account or for the accounts of others. (LO 3.a)"
+    },
+    {
+      "id": "cq3568-q14",
+      "question": "An agent receives a notice of execution for 500 shares on a customer's order for only 400 shares. Which of the following actions should he take?",
+      "note": "Correct: D) Report the problem immediately to his supervisor. (LO 6.d)"
+    },
+    {
+      "id": "cq3568-q16",
+      "question": "Net income",
+      "note": "Correct: D) represents the amount of money remaining after all expenses, including taxes. (LO 8.p)"
+    },
+    {
+      "id": "cq3568-q17",
+      "question": "Civil liability may arise under the Uniform Securities Act if which of these occur?\n\nAn agent acting on behalf of an issuer fails to guarantee the safety of a new issue of debt securities rated BBB or higher.\nAn agent uses an artifice or scheme that could reasonably be considered misleading in connection with a securities offering.\nAn agent effects a sale of a nonexempt new issue of securities before filing a registration statement in that state.\nAn agent fails to disclose an immaterial fact.",
+      "note": "Correct: A) II and III (LO 5.k)"
+    },
+    {
+      "id": "cq3568-q18",
+      "question": "Strategic Capital Asset Managers (SCAM) is an investment adviser that is registered in five states. In lieu of preparing a fancy brochure, SCAM is permitted to provide its clients with a copy of its",
+      "note": "Correct: C) Form ADV, Part 2A and Part 2B. (LO 6.f)"
+    },
+    {
+      "id": "cq3568-q19",
+      "question": "Under the Uniform Securities Act, investment advisory contracts",
+      "note": "Correct: D) must contain a description of fees. (LO 6.e)"
+    },
+    {
+      "id": "cq3568-q20",
+      "question": "An investor is comparing several different bonds for inclusion to the fixed income portion of her portfolio. Assuming equal ratings and maturities, she would be most likely to choose the bond with",
+      "note": "Correct: A) the highest positive NPV (LO 8.d)"
     }
   ],
   "errorPatterns": [
@@ -12029,7 +12165,7 @@ const SYNC = {
     },
     {
       "rule": "Brochure delivery: 48 hours BEFORE the contract, OR at signing with five business days to cancel without penalty (adviser keeps a pro-rated fee for services rendered); annual update or summary of material changes within 120 days of fiscal year-end only when changes are material; only two delivery exemptions (registered investment company clients; impersonal advice under $500/yr); the brochure is Part 2A",
-      "count": 8,
+      "count": 9,
       "topic": "IV",
       "occurrences": [
         "u6q1-q01",
@@ -12039,9 +12175,10 @@ const SYNC = {
         "u6exam-q03",
         "rev110-q04",
         "mid-q53",
-        "cq17a-q16"
+        "cq17a-q16",
+        "cq3568-q15"
       ],
-      "note": "Five misses in three days on one rule. The most common error is treating '48 hours before' as the only permitted timing, or moving the 48 hours to after signing. Oct 15: treated delivery at signing as a violation again; it's legal and triggers the 5-day cancellation right. Oct 21: Midterm Q53, only two exemptions (investment company clients; impersonal advice under $500/yr), and he picked broker-dealer and insurance-company clients. Oct 23: Part 2 is filed through IARD, and the 48 hours is before signing, not after."
+      "note": "Five misses in three days on one rule. The most common error is treating '48 hours before' as the only permitted timing, or moving the 48 hours to after signing. Oct 15: treated delivery at signing as a violation again; it's legal and triggers the 5-day cancellation right. Oct 21: Midterm Q53, only two exemptions (investment company clients; impersonal advice under $500/yr), and he picked broker-dealer and insurance-company clients. Oct 23: Part 2 is filed through IARD, and the 48 hours is before signing, not after. Nov 4: a Part 1A update doesn't force a new brochure (the brochure is Part 2A)."
     },
     {
       "rule": "Principal vs agency capacity: the firm is a PRINCIPAL when it is itself the buyer or seller against the client (needs written disclosure and, for an adviser, consent before completion); in an AGENCY CROSS the firm is agent for both other parties; a broker-dealer acting as principal only discloses capacity on the confirmation",
@@ -12071,15 +12208,16 @@ const SYNC = {
     },
     {
       "rule": "Unit 5 numbers: civil statute of limitations is the EARLIER of 3 years after the sale or 2 years after discovery; criminal statute of limitations is 5 years; maximum criminal penalty is $5,000 and/or 3 years; 60 days to petition a court to review a final order",
-      "count": 4,
+      "count": 5,
       "topic": "IV",
       "occurrences": [
         "u5q2-q13",
         "u5exam-q01",
         "u5exam-q03",
-        "u5exam-q15"
+        "u5exam-q15",
+        "cq3568-q10"
       ],
-      "note": "Each miss picked a real number from the neighboring rule (5-year SOL used as a prison term, civil SOL used for a criminal question, 90 days from Unit 2 used for an appeal). He answered the $5,000/3-year penalty correctly twice on the same day, so this is swapping, not ignorance. Improving: on Oct 5 he answered the $5,000/3-year penalty (twice) and the civil statute of limitations correctly on review quizzes."
+      "note": "Each miss picked a real number from the neighboring rule (5-year SOL used as a prison term, civil SOL used for a criminal question, 90 days from Unit 2 used for an appeal). He answered the $5,000/3-year penalty correctly twice on the same day, so this is swapping, not ignorance. Improving: on Oct 5 he answered the $5,000/3-year penalty (twice) and the civil statute of limitations correctly on review quizzes. Nov 4: the criminal penalty is $5,000, 3 years, or both, and the criminal statute of limitations is 5 years."
     },
     {
       "rule": "Jurisdiction over an offer: it lies where the offer originates and where it is accepted; a cell phone counts at the owner's home state unless the client acts from elsewhere; an out-of-state newspaper never creates jurisdiction, and an in-state paper escapes only with more than 2/3 of circulation outside the state",
@@ -13200,13 +13338,14 @@ const SYNC = {
       "kind": "rule",
       "topic": "IV",
       "unitId": "U5",
-      "count": 5,
+      "count": 6,
       "fromMisses": [
         "u5q2-q13",
         "u5exam-q01",
         "u5exam-q03",
         "u5exam-q15",
-        "rev113-q19"
+        "rev113-q19",
+        "cq3568-q10"
       ],
       "trigger": "A deadline, penalty, or what a winning client recovers",
       "move": "Circle CIVIL or CRIMINAL first.",
@@ -13221,7 +13360,7 @@ const SYNC = {
         ],
         [
           "Max penalty",
-          "$5,000 and/or 3 years"
+          "$5,000, up to 3 years in prison, or BOTH"
         ],
         [
           "Appeal an order",
@@ -13236,7 +13375,7 @@ const SYNC = {
           "Price paid + interest, less income received, + court costs and attorney's fees"
         ]
       ],
-      "why": "Four misses, each a real number from the rule next door. Holding up on review since Oct 5."
+      "why": "Five misses, each a real number from the rule next door. Nov 4: the fine and the prison term can come together."
     },
     {
       "id": "t-cancel-vs-revoke",
@@ -13337,7 +13476,7 @@ const SYNC = {
       "kind": "rule",
       "topic": "IV",
       "unitId": "U6",
-      "count": 8,
+      "count": 9,
       "fromMisses": [
         "u6q1-q01",
         "u6q1-q13",
@@ -13346,7 +13485,8 @@ const SYNC = {
         "u6exam-q03",
         "rev110-q04",
         "mid-q53",
-        "cq17a-q16"
+        "cq17a-q16",
+        "cq3568-q15"
       ],
       "trigger": "Brochure timing, cancellation or exemptions",
       "move": "Two legal timings. '48 hours before' is an option, not a must.",
@@ -13373,10 +13513,10 @@ const SYNC = {
         ],
         [
           "Filed",
-          "Through IARD with the rest of Form ADV"
+          "Through IARD. It's built from Part 2A, so a Part 1A update doesn't force a new brochure."
         ]
       ],
-      "why": "Eight misses. Oct 23: Part 2 is filed through IARD, and the 48 hours runs before signing, not after."
+      "why": "Nine misses. Oct 23: Part 2 is filed through IARD. Nov 4: a Part 1A update doesn't force a new brochure."
     },
     {
       "id": "t-principal-vs-agency",
@@ -15907,32 +16047,32 @@ const SYNC = {
     }
   ],
   "priorSnapshot": {
-    "asOf": "2026-11-01",
-    "pooledPct": 76.4262,
+    "asOf": "2026-11-03",
+    "pooledPct": 76.5015,
     "units": {
-      "U1": 74.1379,
-      "U2": 62.0253,
-      "U3": 67.8571,
-      "U4": 71.7647,
-      "U5": 76.8116,
-      "U6": 67.3913,
-      "U7": 77.1739,
-      "U8": 76.5625,
-      "U9": 86.6667,
-      "U10": 81.6667,
-      "U11": 81.1594,
-      "U12": 93.5484,
+      "U1": 76.9231,
+      "U2": 65.9091,
+      "U3": 68.254,
+      "U4": 71.7391,
+      "U5": 75,
+      "U6": 67.5676,
+      "U7": 77.8761,
+      "U8": 74.6479,
+      "U9": 87.234,
+      "U10": 81.5385,
+      "U11": 81.6901,
+      "U12": 93.9394,
       "U13": 100,
-      "U14": 64.9123,
-      "U15": 70.2703,
-      "U16": 90.3226,
-      "U17": 67.7419,
-      "U18": 82.3529,
-      "U19": 89.1892,
-      "U20": 71.4286,
-      "U21": 95,
-      "U22": 88.3721,
-      "U23": 90.9091
+      "U14": 64.0625,
+      "U15": 73.3333,
+      "U16": 89.1892,
+      "U17": 69.4444,
+      "U18": 83.3333,
+      "U19": 87.8049,
+      "U20": 71.875,
+      "U21": 90.4762,
+      "U22": 87.234,
+      "U23": 86.9565
     },
     "missIds": [
       "u1qz1-q03",
@@ -16229,7 +16369,42 @@ const SYNC = {
       "u22exam-q01",
       "u22exam-q11",
       "u23q2-q03",
-      "u23q2-q06"
+      "u23q2-q06",
+      "qsim1-q06",
+      "qsim1-q08",
+      "qsim1-q15",
+      "qsim1-q20",
+      "qsim1-q28",
+      "qsim1-q29",
+      "qsim1-q32",
+      "qsim1-q37",
+      "qsim1-q60",
+      "qsim1-q78",
+      "qsim1-q79",
+      "qsim1-q85",
+      "qsim1-q88",
+      "qsim1-q91",
+      "qsim1-q92",
+      "qsim1-q96",
+      "qsim1-q98",
+      "qsim1-q104",
+      "qsim1-q107",
+      "qsim1-q108",
+      "cq50-q04",
+      "cq50-q07",
+      "cq50-q09",
+      "cq50-q14",
+      "cq50-q18",
+      "cq50-q21",
+      "cq50-q28",
+      "cq50-q30",
+      "cq50-q31",
+      "cq50-q33",
+      "cq50-q37",
+      "cq50-q38",
+      "cq50-q39",
+      "cq50-q43",
+      "cq50-q48"
     ],
     "correctIds": [
       "u1qz1-q01",
@@ -17181,7 +17356,132 @@ const SYNC = {
       "u23exam-q07",
       "u23exam-q08",
       "u23exam-q09",
-      "u23exam-q10"
+      "u23exam-q10",
+      "qsim1-q01",
+      "qsim1-q02",
+      "qsim1-q03",
+      "qsim1-q04",
+      "qsim1-q05",
+      "qsim1-q07",
+      "qsim1-q09",
+      "qsim1-q10",
+      "qsim1-q11",
+      "qsim1-q12",
+      "qsim1-q13",
+      "qsim1-q14",
+      "qsim1-q16",
+      "qsim1-q17",
+      "qsim1-q18",
+      "qsim1-q19",
+      "qsim1-q21",
+      "qsim1-q22",
+      "qsim1-q23",
+      "qsim1-q24",
+      "qsim1-q25",
+      "qsim1-q26",
+      "qsim1-q27",
+      "qsim1-q30",
+      "qsim1-q31",
+      "qsim1-q33",
+      "qsim1-q34",
+      "qsim1-q35",
+      "qsim1-q36",
+      "qsim1-q38",
+      "qsim1-q39",
+      "qsim1-q40",
+      "qsim1-q41",
+      "qsim1-q42",
+      "qsim1-q43",
+      "qsim1-q44",
+      "qsim1-q45",
+      "qsim1-q46",
+      "qsim1-q47",
+      "qsim1-q48",
+      "qsim1-q49",
+      "qsim1-q50",
+      "qsim1-q51",
+      "qsim1-q52",
+      "qsim1-q53",
+      "qsim1-q54",
+      "qsim1-q55",
+      "qsim1-q56",
+      "qsim1-q57",
+      "qsim1-q58",
+      "qsim1-q59",
+      "qsim1-q61",
+      "qsim1-q62",
+      "qsim1-q63",
+      "qsim1-q64",
+      "qsim1-q65",
+      "qsim1-q66",
+      "qsim1-q67",
+      "qsim1-q68",
+      "qsim1-q69",
+      "qsim1-q70",
+      "qsim1-q71",
+      "qsim1-q72",
+      "qsim1-q73",
+      "qsim1-q74",
+      "qsim1-q75",
+      "qsim1-q76",
+      "qsim1-q77",
+      "qsim1-q80",
+      "qsim1-q81",
+      "qsim1-q82",
+      "qsim1-q83",
+      "qsim1-q84",
+      "qsim1-q86",
+      "qsim1-q87",
+      "qsim1-q89",
+      "qsim1-q90",
+      "qsim1-q93",
+      "qsim1-q94",
+      "qsim1-q95",
+      "qsim1-q97",
+      "qsim1-q99",
+      "qsim1-q100",
+      "qsim1-q101",
+      "qsim1-q102",
+      "qsim1-q103",
+      "qsim1-q105",
+      "qsim1-q106",
+      "qsim1-q109",
+      "qsim1-q110",
+      "cq50-q01",
+      "cq50-q02",
+      "cq50-q03",
+      "cq50-q05",
+      "cq50-q06",
+      "cq50-q08",
+      "cq50-q10",
+      "cq50-q11",
+      "cq50-q12",
+      "cq50-q13",
+      "cq50-q15",
+      "cq50-q16",
+      "cq50-q17",
+      "cq50-q19",
+      "cq50-q20",
+      "cq50-q22",
+      "cq50-q23",
+      "cq50-q24",
+      "cq50-q25",
+      "cq50-q26",
+      "cq50-q27",
+      "cq50-q29",
+      "cq50-q32",
+      "cq50-q34",
+      "cq50-q35",
+      "cq50-q36",
+      "cq50-q40",
+      "cq50-q41",
+      "cq50-q42",
+      "cq50-q44",
+      "cq50-q45",
+      "cq50-q46",
+      "cq50-q47",
+      "cq50-q49",
+      "cq50-q50"
     ],
     "patternRules": [
       "Investment Company Act of 1940 rules: $100,000 minimum capital before a public offering; no more than 3% of another investment company's voting shares; no joint trading accounts or short sales; shares can't be bought on margin; a majority shareholder vote to change fundamental policy; the adviser's contract must be written, 2 years initially then renewed annually",
@@ -17307,6 +17607,7 @@ const SYNC = {
       "Unit 21 Checkpoint Exam (Test 416665453)",
       "Unit 22 Checkpoint Exam (Test 416676605)",
       "Unit 23 Checkpoint Exam (Test 416681325)",
+      "Simulated Exam 1 (Test 416956277)",
       "Unit 1-2 Review Quiz (Test 411496521)",
       "Unit 1-3 Review Quiz (Test 411666032)",
       "Unit 1-4 Review Quiz (Test 412336495)",
@@ -17322,7 +17623,8 @@ const SYNC = {
       "Unit 1-15 Review Quiz (Test 415393169)",
       "Custom quiz '1-7', Units 1-7 (Test 415532525)",
       "Custom quiz '1-7 pt 2', Units 1-7 (Test 415534723)",
-      "Unit 1-16 Review Quiz (Test 415845229)"
+      "Unit 1-16 Review Quiz (Test 415845229)",
+      "Custom quiz '1-7,14,15,17,20' (Test 416830723)"
     ]
   }
 };
@@ -19209,14 +19511,101 @@ const REVIEW_DAYS = [
 const REVIEW_SEC = { read: 35, check: 50, practice: 50 };
 
 /* ---- warm-up cards ---------------------------------------------------------- */
-function lastPickTrap(ids) {
-  const qs = knownMisses(ids).map(id => MISS_BY_ID[id]).sort((a, b) => String(b.date).localeCompare(String(a.date)));
-  if (!qs.length || !qs[0].myAnswer) return "";
-  let a = String(qs[0].myAnswer).replace(/^[A-E]\)\s*/, "").trim();
-  if (a.length > 110) a = a.slice(0, 107).replace(/\s+\S*$/, "") + "...";
-  return "Last time you picked “" + a + "”";
+/* The trap on a tip card: the newest Kaplan miss behind the tip, from before the
+   day. It shows the question, what he picked against Kaplan's answer, and why. On a
+   Roman-numeral question it also quotes each statement he wrongly put in or left out,
+   since "I, II, and IV" means nothing without the statements. */
+function romanSet(ans) {
+  const s = stripLetter(ans).replace(/\.$/, "");
+  if (!/^(?:\s*(?:IV|V|I{1,3}|and|or|only|,)\s*)+$/.test(s)) return null;
+  const m = s.match(/\b(?:IV|V|I{1,3})\b/g);
+  return m ? m.filter((x, i) => m.indexOf(x) === i) : null;
 }
-function reviewCard(ref) {
+/* A Roman-numeral question split into its lead-in and statements, written inline
+   ("I. ... II. ...") or one to a line after a blank line. Null when not found. */
+function romanParts(question) {
+  const text = String(question || "");
+  const NUMS = ["I", "II", "III", "IV", "V"];
+  const inline = text.split(/(?:^|\s)(IV|I{1,3})\.\s+(?=\S)/);
+  if (inline.length >= 5 && inline.filter((x, i) => i % 2 === 1).every((x, k) => x === NUMS[k])) {
+    const st = {};
+    for (let i = 1; i + 1 < inline.length; i += 2) st[inline[i]] = inline[i + 1].trim();
+    return { lead: inline[0].trim(), st };
+  }
+  const blocks = text.split(/\n\s*\n/);
+  if (blocks.length >= 2) {
+    const lines = blocks.slice(1).join("\n").split("\n")
+      .map(x => x.replace(/^\s*(?:IV|I{1,3})\.\s*/, "").trim()).filter(Boolean);
+    if (lines.length >= 2 && lines.length <= 5) {
+      const st = {};
+      lines.forEach((l, i) => { st[NUMS[i]] = l; });
+      return { lead: blocks[0].trim(), st };
+    }
+  }
+  return null;
+}
+function sentencesOf(text) {
+  return String(text || "").replace(/\s+/g, " ").trim()
+    .replace(/([.!?])\s+(?=[A-Z0-9"'“(])/g, "$1\u0001").split("\u0001").filter(Boolean);
+}
+function clipText(s, n) {
+  s = String(s || "").replace(/\s+/g, " ").trim();
+  return s.length > n ? s.slice(0, n - 1).replace(/\s+\S*$/, "") + "…" : s;
+}
+const TRAP_STOP = ["that", "this", "with", "from", "have", "must", "only", "which", "would", "their", "they",
+  "there", "these", "those", "when", "what", "will", "been", "being", "were", "into", "does", "doesn't", "isn't",
+  "aren't", "also", "than", "then", "such", "each", "other", "some", "more", "most", "under", "about", "following"];
+function trapFor(ids, beforeISO) {
+  const q = knownMisses(ids).map(id => MISS_BY_ID[id])
+    .filter(x => x.myAnswer && x.correctAnswer && (!beforeISO || String(x.date) < beforeISO))
+    .sort((a, b) => String(b.date).localeCompare(String(a.date)))[0];
+  if (!q) return null;
+  const sim = fullLengthSims().find(e => (e.missIds || []).includes(q.id));
+  const when = fmtDate(q.date).replace(/, \d{4}$/, "");
+  const x = { id: q.id,
+    ctx: "from a " + unitShort(unitName(q.unitId)) + " question you missed on "
+      + (sim ? String(sim.name).replace(/\s*\(Test \d+\)/, "") + ", " + when : when),
+    picked: stripLetter(q.myAnswer), answer: stripLetter(q.correctAnswer),
+    whole: String(q.question).replace(/\s+(I{1,3}|IV)\.\s+(?=[A-Z])/g, "\n$1. "),
+    full: String(q.explanation || q.rationale || "") };
+  const sents = sentencesOf(x.full);
+  const mine = romanSet(q.myAnswer), right = romanSet(q.correctAnswer), parts = mine && right ? romanParts(q.question) : null;
+  const nums = mine && right ? mine.filter(r => !right.includes(r)).concat(right.filter(r => !mine.includes(r))) : [];
+  let why = [];
+  if (parts && nums.length && nums.every(r => parts.st[r])) {
+    x.stem = clipText(parts.lead, 360);
+    x.items = nums.map(r => ({ n: r, wrongIn: mine.includes(r), text: clipText(parts.st[r], 240) }));
+    /* The explanation's own words on those statements: the sentence that names the
+       numeral, or else the one that shares the most words with the statement. */
+    const names = (t, r) => new RegExp("(^|[^A-Za-z])" + r + "(?![A-Za-z])").test(t);
+    const meta = t => /^You (?:included|missed|left|picked|chose)\b/.test(t);
+    const stems = t => (String(t).toLowerCase().match(/[a-z0-9$%,]{4,}/g) || [])
+      .filter(w => !TRAP_STOP.includes(w)).map(w => w.slice(0, 4));
+    const near = r => {
+      const want = stems(parts.st[r]);
+      let best = null, top = 1;
+      for (const t of sents) {
+        if (meta(t)) continue;
+        const have = stems(t);
+        const n = want.filter((w, i) => want.indexOf(w) === i && have.includes(w)).length;
+        if (n > top) { best = t; top = n; }
+      }
+      return best;
+    };
+    const picks = [];
+    for (const r of nums) {
+      const t = sents.find(t => names(t, r) && !meta(t) && t.length >= 30) || near(r);
+      if (t && !picks.includes(t) && picks.length < 2) picks.push(t);
+    }
+    why = picks.sort((a, b) => sents.indexOf(a) - sents.indexOf(b));
+  } else {
+    x.stem = clipText(String(q.question).split(/\n\s*\n/)[0], 360);
+  }
+  if (!why.length) for (const t of sents) { if (why.length >= 2 || why.join(" ").length >= 80) break; why.push(t); }
+  x.why = clipText(why.join(" "), 360);
+  return x;
+}
+function reviewCard(ref, beforeISO) {
   const parts = String(ref).split(":");
   const kind = parts[0], id = parts[1], rest = parts.slice(2).join(":");
   if (kind === "tip" || kind === "tipall") {
@@ -19229,7 +19618,7 @@ function reviewCard(ref) {
     }
     const lines = kind === "tipall" ? (t.lines || []).slice(0, 4).map(l => l[0] + ": " + l[1]) : [];
     return { key: ref, cue: t.trigger, rule: t.move, list: lines, tip: t,
-             trap: t.cleared ? "" : lastPickTrap(t.fromMisses) };
+             trapQ: t.cleared ? null : trapFor(t.fromMisses, beforeISO) };
   }
   if (kind === "pair" || kind === "pairall") {
     const p = PAIRS.find(x => x.id === id);
@@ -19303,8 +19692,10 @@ function themeQuestionIds(d) {
   const refs = d.numbers ? [] : (d.read || []).concat(d.also || []);
   const groups = [];
   const seenTip = new Set();
-  const addGroup = (ids, weight) => { if (ids.length) groups.push({ ids, weight }); };
-  const fromTip = t => { if (t && !seenTip.has(t.id) && t.kind !== "technique") { seenTip.add(t.id); addGroup(knownMisses(t.fromMisses), t.count || 1); } };
+  /* Only misses from before the day, so a quiz taken that day can't reshuffle it. */
+  const before = ids => knownMisses(ids).filter(id => String(MISS_BY_ID[id].date) < d.date);
+  const addGroup = ids => { if (ids.length) groups.push({ ids, weight: ids.length }); };
+  const fromTip = t => { if (t && !seenTip.has(t.id) && t.kind !== "technique") { seenTip.add(t.id); addGroup(before(t.fromMisses)); } };
   if (d.numbers) {
     for (const { rows } of numbersDayRows()) for (const r of rows) if (r.tip) fromTip(quickTips.find(t => t.id === r.tip));
   }
@@ -19313,7 +19704,7 @@ function themeQuestionIds(d) {
     if (kind === "tip" || kind === "tipall") fromTip(quickTips.find(t => t.id === id));
     else if (kind === "pair" || kind === "pairall") {
       const p = PAIRS.find(x => x.id === id);
-      if (p && !seenTip.has(p.id)) { seenTip.add(p.id); addGroup(knownMisses(p.misses), pairMissCount(p)); }
+      if (p && !seenTip.has(p.id)) { seenTip.add(p.id); addGroup(before(p.misses)); }
     } else if (kind === "dump") {
       const b = DUMP_BLOCKS.find(x => x.key === id);
       const r = b ? b.rows.find(x => x.k === ref.split(":").slice(2).join(":")) : null;
@@ -19407,7 +19798,7 @@ function buildReviewDay(di) {
   if (d.numbers) read = numbersDayRead();
   else if (d.pairs) read = PAIRS.slice().sort((a, b) => pairMissCount(b) - pairMissCount(a) || PAIRS.indexOf(a) - PAIRS.indexOf(b))
       .slice(0, 8).map(p => reviewCard("pairall:" + p.id));
-  else read = (d.read || []).map(reviewCard).filter(Boolean);
+  else read = (d.read || []).map(r => reviewCard(r, d.date)).filter(Boolean);
   read.forEach(c => add(c, "read"));
   if (d.readOnly) return { day: d, cards };
 
@@ -19582,6 +19973,22 @@ function questionHTML(c) {
   }
   return h;
 }
+function trapHTML(x) {
+  let h = '<div class="dr-trap dr-trapq"><p class="dr-trap-h"><b>Trap</b> ' + esc(x.ctx) + '</p>'
+    + '<p class="dr-trap-q">' + esc(x.stem) + '</p>';
+  if (x.items) {
+    h += '<p class="dr-trap-sum">You picked <b>' + esc(x.picked) + '</b>. The answer was <b>' + esc(x.answer) + '</b>.</p>'
+      + '<ul class="dr-trap-st">' + x.items.map(it => '<li class="' + (it.wrongIn ? 'in' : 'out') + '"><span>'
+        + (it.wrongIn ? 'You put in ' + esc(it.n) + ", which isn't in the answer" : 'You left out ' + esc(it.n) + ', which is in the answer')
+        + '</span>“' + esc(it.text) + '”</li>').join('') + '</ul>';
+  } else {
+    h += '<p class="dr-trap-ans mine"><span>You picked</span>' + esc(clipText(x.picked, 220)) + '</p>'
+      + '<p class="dr-trap-ans right"><span>The answer</span>' + esc(clipText(x.answer, 220)) + '</p>';
+  }
+  if (x.why) h += '<p class="dr-trap-why"><span>Why</span>' + esc(x.why) + '</p>';
+  return h + '<details class="dr-more"><summary>The whole question</summary><p class="dr-whole">' + esc(x.whole) + '</p>'
+    + (x.full && x.full.replace(/\s+/g, " ").trim() !== x.why ? '<p>' + esc(x.full) + '</p>' : '') + '</details></div>';
+}
 function reviewCardHTML(c, set) {
   const partCards = set.cards.filter(x => x.part === c.part);
   const pi = partCards.indexOf(c) + 1;
@@ -19598,7 +20005,7 @@ function reviewCardHTML(c, set) {
         + '<ul class="dr-list">' + c.list.map(x => '<li>' + esc(x) + '</li>').join('') + '</ul>'
       : '<p class="dr-rule">' + esc(c.rule || "") + '</p>';
     h += (c.ctx ? '<p class="dr-ctx">' + esc(c.ctx) + '</p>' : '') + '<p class="dr-cue">' + esc(c.cue) + '</p>'
-      + body + (c.trap ? '<p class="dr-trap"><b>Trap</b> ' + esc(c.trap) + '</p>' : '');
+      + body + (c.trapQ ? trapHTML(c.trapQ) : c.trap ? '<p class="dr-trap"><b>Trap</b> ' + esc(c.trap) + '</p>' : '');
   }
   return h + '</article>';
 }

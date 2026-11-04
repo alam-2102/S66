@@ -134,7 +134,7 @@ const EXPORTS = `
   renderSimulated, renderPerformance, buildPaste, MISSING_BINDS,
   PAIRS, focusUnits, focusTips, FOCUS_TIP_CAP, FOCUS_HIDE_AT,
   REVIEW_DAYS, REVIEW_MAX_CARDS, buildReviewDay, reviewCard, reviewDayFor, STUDY_GUIDE_PAGES,
-  practiceSets, questionCard
+  practiceSets, questionCard, trapFor, romanSet, MISS_BY_ID
 };`;
 
 let X;
@@ -474,6 +474,29 @@ if (X.quickTips.length) {
   assert(last.cards.length === 8 && last.cards.every(c => c.part === "read"), "exam morning is 8 read cards, no quiz");
   assert(X.reviewDayFor("2026-10-01") === 0 && X.reviewDayFor("2026-12-01") === X.REVIEW_DAYS.length - 1,
     "Daily Review clamps to the first and last day");
+
+  /* Traps: quoted from the miss itself, never written; a Roman-numeral answer always
+     comes with its statements; a day's trap is from a miss before that day. */
+  const flat = x => String(x || "").replace(/\s+/g, " ").trim();
+  const cut = x => flat(x).replace(/…$/, "");
+  const traps = X.quickTips.filter(t => !t.cleared).map(t => ({ t, x: X.trapFor(t.fromMisses) })).filter(o => o.x);
+  const bare = traps.filter(o => X.romanSet(X.MISS_BY_ID[o.x.id].myAnswer) && X.romanSet(X.MISS_BY_ID[o.x.id].correctAnswer) && !o.x.items)
+    .map(o => o.t.id + ":" + o.x.id);
+  assert(bare.length === 0, "every Roman-numeral trap quotes the statements, not just the numerals", bare.join(", "));
+  const unquoted = [];
+  for (const { t, x } of traps) {
+    const q = X.MISS_BY_ID[x.id];
+    const src = flat(q.question), why = flat(q.explanation || q.rationale);
+    (x.items || []).forEach(it => { if (!src.includes(cut(it.text))) unquoted.push(t.id + " " + it.n); });
+    if (!src.includes(cut(x.stem))) unquoted.push(t.id + " stem");
+    if (x.why && !cut(x.why).split(/(?<=[.!?]) /).every(s => why.includes(s))) unquoted.push(t.id + " why");
+  }
+  assert(unquoted.length === 0, "every trap's question, statements and reason are quoted from the miss on file", unquoted.join(", "));
+  const late = [];
+  X.REVIEW_DAYS.forEach((d, i) => X.buildReviewDay(i).cards.forEach(c => {
+    if (c.trapQ && !(String(X.MISS_BY_ID[c.trapQ.id].date) < d.date)) late.push(d.date + " " + c.key);
+  }));
+  assert(late.length === 0, "a review day's traps come from misses before that day", late.join(", "));
 }
 
 /* ------------------------------------------------ 7d. printouts */
