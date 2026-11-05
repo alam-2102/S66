@@ -134,7 +134,9 @@ const EXPORTS = `
   renderSimulated, renderPerformance, buildPaste, MISSING_BINDS,
   PAIRS, focusUnits, focusTips, FOCUS_TIP_CAP, FOCUS_HIDE_AT,
   REVIEW_DAYS, REVIEW_MAX_CARDS, buildReviewDay, reviewCard, reviewDayFor, STUDY_GUIDE_PAGES,
-  practiceSets, questionCard, trapFor, romanSet, MISS_BY_ID
+  practiceSets, questionCard, trapFor, romanSet, MISS_BY_ID,
+  GAME, GAME_TOKEN, GAME_WARM_EVERY, GAME_BOARD, gameFacts, gameWarmUnits, totNext, sortNext, matchBoard,
+  keepWarmIds, keepWarmUnitOrder, keepWarmTips, REVIEW_WARM_FROM, REVIEW_WARM_PER_DAY
 };`;
 
 let X;
@@ -517,6 +519,64 @@ if (typeof X.practiceSets === "function" && X.missedQuestions.length) {
   const short = sims.filter((e, i) => { const s = sets.find(x => x.key === "sim:" + i); return !s || s.ids.length > e.total - e.score; });
   assert(short.length === 0, "a sim's practice set never holds more than that sim's misses",
     sims.map((e, i) => { const s = sets.find(x => x.key === "sim:" + i); return (s ? s.ids.length : 0) + "/" + (e.total - e.score); }).join(" "));
+}
+
+/* ------------------------------------------------ 7e. Game and keep-warm reps */
+if (X.quickTips.length && typeof X.gameFacts === "function") {
+  const facts = X.gameFacts();
+  const allTokens = new Set();
+  facts.forEach(f => f.tokens.forEach(t => allTokens.add(t)));
+  /* Trap or True: a trap is never the truth, and every number on a card is one the sheets hold. */
+  const r = { n: 0, used: {}, lastGroup: null };
+  let traps = 0, warmSeen = 0, cards = 0;
+  const badTrap = [], invented = [];
+  for (let i = 0; i < 600; i++) {
+    const c = X.totNext(r); r.n++;
+    if (!c) break;
+    cards++; if (c.warm) warmSeen++;
+    if (!c.truth) { traps++; if (c.shown.toLowerCase() === c.fact.value.toLowerCase()) badTrap.push(c.fact.key); }
+    (c.shown.match(X.GAME_TOKEN) || []).forEach(t => { if (!/^\$\d$/.test(t) && !allTokens.has(t)) invented.push(c.fact.key + " " + t); });
+  }
+  assert(cards === 600 && traps > 240 && traps < 360 && badTrap.length === 0,
+    "Trap or True: every trap differs from the real rule", traps + " traps in " + cards + (badTrap.length ? "; same: " + badTrap.slice(0, 5).join(", ") : ""));
+  assert(invented.length === 0, "Trap or True: no number on a card that the Dump Sheet, tips or Pairs don't hold", invented.slice(0, 5).join(", "));
+  const share = warmSeen / cards;
+  assert(Math.abs(share - 1 / X.GAME_WARM_EVERY) < 0.02, "Trap or True: one card in " + X.GAME_WARM_EVERY + " keeps a stronger unit warm",
+    (100 * share).toFixed(1) + "%");
+  /* Sort Rush: the right box is always one of the boxes, and boxes never repeat. */
+  const s = { n: 0, used: {} };
+  const badSort = [];
+  for (let i = 0; i < 300; i++) {
+    const c = X.sortNext(s); s.n++;
+    if (!c || c.right < 0 || c.right >= c.bins.length || new Set(c.bins.map(b => b.toLowerCase())).size !== c.bins.length) badSort.push(c ? c.key : "none");
+  }
+  assert(badSort.length === 0, "Sort Rush: every item has one right box among distinct boxes", badSort.slice(0, 5).join(", "));
+  /* Number Match: four different numbers, each the one in its own rule. */
+  const badBoard = [];
+  for (let i = 0; i < 60; i++) {
+    const b = X.matchBoard();
+    if (!b || b.items.length !== X.GAME_BOARD || new Set(b.items.map(x => x.norm)).size !== X.GAME_BOARD
+        || b.items.some(x => x.f.value.indexOf(x.tok) < 0)) badBoard.push(b ? b.cls : "none");
+  }
+  assert(badBoard.length === 0, "Number Match: every board has " + X.GAME_BOARD + " different numbers, each from its own rule", badBoard.slice(0, 5).join(", "));
+  /* Keep warm in the Daily Review: from the start day, each theme day carries its warm checks,
+     all from units Focus has dropped; days before it are untouched. */
+  const warmUnits = new Set(X.gameWarmUnits());
+  const badDays = [];
+  X.REVIEW_DAYS.forEach((d, i) => {
+    const ids = X.keepWarmIds(i);
+    const want = d.date >= X.REVIEW_WARM_FROM && !d.readOnly && !d.pairs ? Math.min(X.REVIEW_WARM_PER_DAY, X.keepWarmUnitOrder().length) : 0;
+    const cardsW = X.buildReviewDay(i).cards.filter(c => c.warm);
+    if (ids.length !== want || cardsW.length !== want || cardsW.some(c => !warmUnits.has(c.unitId))) badDays.push(d.date + " " + ids.length + "/" + want);
+  });
+  assert(badDays.length === 0, "Daily Review: keep-warm checks only from " + X.REVIEW_WARM_FROM + ", only from units Focus has dropped", badDays.join(", "));
+  const focusSet = X.practiceSets().find(x => x.key === "focus");
+  const inFocus = new Set(X.focusUnits().map(u => u.id));
+  const slots = focusSet ? focusSet.ids.filter((id, k) => (k + 1) % X.GAME_WARM_EVERY === 0) : [];
+  assert(!focusSet || slots.every(id => !inFocus.has(X.MISS_BY_ID[id].unitId)),
+    "Practice: every " + X.GAME_WARM_EVERY + "th Focus question comes from a unit Focus has dropped", slots.length + " slots");
+  const wt = X.keepWarmTips(5);
+  assert(wt.every(t => !inFocus.has(t.unitId) && !t.cleared), "Quick Tips: keep-warm tips come only from units Focus has dropped", wt.map(t => t.id).join(", "));
 }
 
 /* ------------------------------------------------ 8. empty means empty */

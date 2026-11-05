@@ -651,6 +651,92 @@ footer.foot{margin-top:40px;padding-top:16px;border-top:1px solid var(--grid);
 [hidden]{display:none!important}
 [data-bind-missing]{outline:2px dashed var(--critical);outline-offset:2px}
 @media print{.side,.appbar,.tabbar,.scrim{display:none!important}.app{display:block}body{padding:0}section.tab{display:block!important}}
+/* ---------- game (phone first) ---------- */
+#tab-game{font-size:17px;line-height:1.5;max-width:640px;margin:0 auto}
+.gm-intro{margin:0 0 14px;color:var(--ink-2);font-size:16px;line-height:1.5}
+.gm-modes{display:grid;gap:12px;margin:0 0 14px}
+.gm-mode{display:block;width:100%;text-align:left;background:var(--surface);border:1px solid var(--ring);border-radius:20px;
+  padding:16px 18px;box-shadow:var(--elev);color:var(--ink);font:inherit;cursor:pointer}
+.gm-mode h3{margin:0 0 4px;font-size:19px;font-weight:700}
+.gm-mode p{margin:0;color:var(--ink-2);font-size:15.5px;line-height:1.45}
+.gm-best{display:inline-block;margin-top:8px;font-size:13px;font-weight:650;color:var(--muted)}
+.gm-missedbtn{display:flex;align-items:center;justify-content:space-between;width:100%;min-height:54px;padding:12px 18px;
+  border-radius:16px;border:1px solid var(--axis);background:var(--surface-2);color:var(--ink);font:650 16.5px/1.2 var(--sans);cursor:pointer}
+.gm-missedbtn b{min-width:30px;padding:3px 9px;border-radius:999px;background:var(--accent-wash);color:var(--accent-ink);text-align:center}
+.gm-hud{display:flex;align-items:center;gap:10px;margin:0 0 12px}
+.gm-quit{min-width:44px;min-height:44px;border-radius:12px;border:1px solid var(--axis);background:var(--surface-2);
+  color:var(--ink);font:700 19px/1 var(--sans);cursor:pointer}
+.gm-name{font-weight:700;font-size:17px;flex:1 1 auto;min-width:0}
+.gm-name small{font-weight:600;color:var(--muted);font-size:13px}
+.gm-lives{font-size:20px;letter-spacing:2px;line-height:1}
+.gm-lives .on{color:var(--critical)}
+.gm-lives .off{color:var(--grid)}
+.gm-score{min-width:40px;text-align:right;font-weight:750;font-size:20px;font-variant-numeric:tabular-nums;color:var(--ink)}
+.gm-card,.gm-miss{background:var(--surface);border:1px solid var(--ring);border-radius:20px;padding:18px 18px 20px;box-shadow:var(--elev)}
+.gm-card{min-height:240px}
+.gm-card.good{box-shadow:var(--elev),inset 0 3px 0 var(--good)}
+.gm-card.bad{box-shadow:var(--elev),inset 0 3px 0 var(--critical)}
+.gm-miss{min-height:0;margin:0 0 12px}
+.gm-btns.gm-top{margin:0 0 14px}
+.dr-warm{margin:0 4px 0 0}
+.qt-warmh{margin:22px 0 10px}
+.gm-ctx{margin:0 0 6px;font-size:14px;color:var(--muted)}
+.gm-tag{display:inline-block;margin-left:6px;padding:1px 8px;border-radius:999px;font-size:12px;font-weight:650;
+  background:var(--accent-wash);color:var(--accent-ink);vertical-align:1px}
+.gm-cue{margin:0 0 8px;font-size:21px;font-weight:700;line-height:1.3;color:var(--ink)}
+.gm-prompt{margin:0 0 6px;font-size:16px;font-weight:650;color:var(--ink-2)}
+.gm-val{margin:0;font-size:19px;line-height:1.45;color:var(--ink)}
+.gm-btns{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:16px 0 0}
+.gm-btns.one{grid-template-columns:1fr}
+.gm-btn{min-height:56px;border-radius:14px;border:1px solid var(--axis);background:var(--surface-2);color:var(--ink);
+  font:700 18px/1.2 var(--sans);cursor:pointer;padding:8px 10px}
+.gm-btn.trap{border-color:var(--critical);color:var(--crit-ink)}
+.gm-btn.true{border-color:var(--good);color:var(--good-ink)}
+.gm-btn.pri{background:var(--accent);border-color:var(--accent);color:var(--on-accent)}
+.gm-verdict{margin:16px 0 4px;font-size:17px;font-weight:700;color:var(--ink)}
+.gm-why{margin:0;font-size:16.5px;line-height:1.5;color:var(--ink-2)}
+.gm-why.bad{margin-top:12px;color:var(--crit-ink)}
+.gm-why.good{margin-top:12px;color:var(--good-ink)}
+.gm-bar{height:6px;border-radius:3px;background:var(--grid);overflow:hidden;margin:0 0 12px}
+.gm-bar span{display:block;height:100%;background:var(--accent);transform-origin:left center;animation:gm-shrink linear forwards}
+@keyframes gm-shrink{from{transform:scaleX(1)}to{transform:scaleX(0)}}
+.gm-bins{display:grid;gap:10px;margin:16px 0 0}
+.gm-bin{display:flex;align-items:center;gap:10px;width:100%;text-align:left;min-height:54px;padding:12px 14px;border-radius:14px;
+  border:1px solid var(--axis);background:var(--surface-2);color:var(--ink);font:600 16.5px/1.35 var(--sans);cursor:pointer}
+.gm-bin:disabled{cursor:default}
+.gm-bin.right{border-color:var(--good);box-shadow:inset 3px 0 0 var(--good)}
+.gm-bin.wrong{border-color:var(--critical);box-shadow:inset 3px 0 0 var(--critical)}
+.gm-bin.dim{opacity:.55}
+.gm-key{flex:0 0 auto;display:grid;place-items:center;width:24px;height:24px;border-radius:7px;font-size:13px;font-weight:700;
+  background:var(--grid);color:var(--ink-2)}
+.gm-match{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);gap:8px}
+.gm-tile{display:flex;flex-direction:column;justify-content:center;gap:2px;min-height:64px;padding:9px 11px;border-radius:13px;
+  border:1px solid var(--axis);background:var(--surface-2);color:var(--ink);text-align:left;cursor:pointer;font:inherit}
+.gm-tile.num{align-items:center;text-align:center;font-weight:750;font-size:18px;font-variant-numeric:tabular-nums}
+.gm-tcue{font-weight:650;font-size:15px;line-height:1.3}
+.gm-tctx{font-size:12px;color:var(--muted);line-height:1.25}
+.gm-tile.sel{border-color:var(--accent);box-shadow:inset 0 0 0 2px var(--accent)}
+.gm-tile.done{opacity:.4;cursor:default;border-style:dashed}
+.gm-tile.bad{border-color:var(--critical);box-shadow:inset 0 0 0 2px var(--critical);animation:gm-shake .32s}
+@keyframes gm-shake{0%,100%{transform:none}25%{transform:translateX(-4px)}75%{transform:translateX(4px)}}
+@media (prefers-reduced-motion: reduce){.gm-tile.bad{animation:none}}
+.gm-over{text-align:center}
+.gm-big{margin:4px 0 0;font-size:54px;font-weight:800;line-height:1.05;color:var(--ink);font-variant-numeric:tabular-nums}
+.gm-sub{margin:4px 0 0;color:var(--ink-2)}
+.gm-h3{margin:20px 0 8px;font-size:15px;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);text-align:left}
+.gm-list{list-style:none;margin:0;padding:0;text-align:left}
+.gm-list li{margin:0 0 10px;padding:2px 0 2px 11px;border-left:3px solid var(--critical)}
+.gm-list b{display:block;color:var(--ink)}
+.gm-list span{display:block;font-size:15px;color:var(--ink-2)}
+.gm-link{display:block;margin:14px auto 0;min-height:44px;padding:0 10px;background:none;border:0;color:var(--accent-ink);
+  font:650 15.5px/1 var(--sans);cursor:pointer}
+.gm-miss .gm-link{margin:10px 0 0;padding:0}
+.gm-mrow{margin:0 0 7px;color:var(--ink);font-size:16px}
+.gm-mrow span{display:block;font-size:12.5px;font-weight:650;color:var(--muted);text-transform:uppercase;letter-spacing:.04em}
+.gm-mrow.good span{color:var(--good-ink)}
+.gm-src{margin:6px 0 0;font-size:14px;color:var(--muted)}
+.gm-miss .dr-more{margin-top:8px}
+.gm-miss .dr-trap{margin-top:8px}
 /* ---------- printouts (US Letter, black and white) ---------- */
 .print-bar{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 14px}
 #print-root{display:none;color:#000;background:#fff;font-family:Arial,Helvetica,sans-serif}
@@ -722,6 +808,7 @@ footer.foot{margin-top:40px;padding-top:16px;border-top:1px solid var(--grid);
   <button role="tab" id="t-guide" aria-controls="tab-guide" aria-selected="false" data-primary><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="4.6"/><circle cx="12" cy="12" r="1.1" fill="currentColor"/></svg><span>Study Guide</span><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button>
   <button role="tab" id="t-tips" aria-controls="tab-tips" aria-selected="false" data-primary><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9.5 18h5M10.5 21h3M12 3a6 6 0 0 0-3.7 10.7c.7.6 1.2 1.4 1.2 2.3h5c0-.9.5-1.7 1.2-2.3A6 6 0 0 0 12 3z"/></svg><span>Quick Tips</span><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button>
   <button role="tab" id="t-pairs" aria-controls="tab-pairs" aria-selected="false" data-primary><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="4.5" width="7" height="15" rx="2"/><rect x="13.5" y="4.5" width="7" height="15" rx="2"/><path d="M6 9h2M6 12.5h2M16 9h2M16 12.5h2"/></svg><span>Pairs</span><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button>
+  <button role="tab" id="t-game" aria-controls="tab-game" aria-selected="false" data-primary><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7.2 7.5h9.6a4.6 4.6 0 0 1 4.5 5.5l-.8 3.7a2.4 2.4 0 0 1-4.2 1.1L14.4 15.6H9.6l-1.9 2.2a2.4 2.4 0 0 1-4.2-1.1L2.7 13a4.6 4.6 0 0 1 4.5-5.5z"/><path d="M8 10.3v3.4M6.3 12h3.4"/><path d="M15.6 11.2h.01M17.6 13h.01" stroke-width="2.6"/></svg><span>Game</span><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button>
   <p class="nav-group" aria-hidden="true">Progress</p>
   <button role="tab" id="t-perf" aria-controls="tab-perf" aria-selected="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4v16h16"/><path d="M7.5 15l3.5-4 3 2.5 5-6.5"/></svg><span>Performance</span><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button>
   <button role="tab" id="t-exams" aria-controls="tab-exams" aria-selected="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="4.5" width="14" height="16.5" rx="2.5"/><path d="M9 3v3h6V3M8.5 11h7M8.5 14.5h7M8.5 18h4"/></svg><span>Practice &amp; Sim Exams</span><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button>
@@ -845,6 +932,11 @@ footer.foot{margin-top:40px;padding-top:16px;border-top:1px solid var(--grid);
 </section>
 
 <!-- ============ 4 · STUDY GUIDE ============ -->
+<!-- ============ GAME ============ -->
+<section class="tab" id="tab-game" role="tabpanel" aria-labelledby="t-game">
+  <div id="game-body"></div>
+</section>
+
 <section class="tab" id="tab-guide" role="tabpanel" aria-labelledby="t-guide">
   <div id="guide-empty"></div>
   <div class="print-bar">
@@ -1296,6 +1388,7 @@ footer.foot{margin-top:40px;padding-top:16px;border-top:1px solid var(--grid);
   <button type="button" data-go="tab-guide"><span class="tb-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="4.6"/><circle cx="12" cy="12" r="1.1" fill="currentColor"/></svg></span><span>Guide</span></button>
   <button type="button" data-go="tab-tips"><span class="tb-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9.5 18h5M10.5 21h3M12 3a6 6 0 0 0-3.7 10.7c.7.6 1.2 1.4 1.2 2.3h5c0-.9.5-1.7 1.2-2.3A6 6 0 0 0 12 3z"/></svg></span><span>Tips</span></button>
   <button type="button" data-go="tab-pairs"><span class="tb-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="4.5" width="7" height="15" rx="2"/><rect x="13.5" y="4.5" width="7" height="15" rx="2"/><path d="M6 9h2M6 12.5h2M16 9h2M16 12.5h2"/></svg></span><span>Pairs</span></button>
+  <button type="button" data-go="tab-game"><span class="tb-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7.2 7.5h9.6a4.6 4.6 0 0 1 4.5 5.5l-.8 3.7a2.4 2.4 0 0 1-4.2 1.1L14.4 15.6H9.6l-1.9 2.2a2.4 2.4 0 0 1-4.2-1.1L2.7 13a4.6 4.6 0 0 1 4.5-5.5z"/><path d="M8 10.3v3.4M6.3 12h3.4"/><path d="M15.6 11.2h.01M17.6 13h.01" stroke-width="2.6"/></svg></span><span>Game</span></button>
   <button type="button" id="more-btn" aria-haspopup="dialog" aria-expanded="false" aria-controls="side"><span class="tb-ico"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="5.5" cy="12" r="1.8"/><circle cx="12" cy="12" r="1.8"/><circle cx="18.5" cy="12" r="1.8"/></svg></span><span>More</span></button>
 </nav>
 <div class="scrim" id="scrim" hidden></div>
@@ -19246,6 +19339,24 @@ function initTipFilter() {
   });
 }
 
+/* Tips from the units Focus has dropped, one unit at a time, a new set each day (Pacific),
+   so a stronger topic still gets a look. About one in four of what the Focus view shows. */
+function keepWarmTips(n) {
+  const inFocus = new Set(focusUnits().map(r => r.id));
+  const pool = quickTips.filter(t => !t.cleared && t.kind !== "technique" && t.unitId && !inFocus.has(t.unitId));
+  const per = {};
+  pool.forEach(t => { (per[t.unitId] = per[t.unitId] || []).push(t); });
+  const units = Object.keys(per).sort((a, b) => Number(a.slice(1)) - Number(b.slice(1)));
+  units.forEach(u => per[u].sort((a, b) => tipYield(b) - tipYield(a) || String(a.id).localeCompare(String(b.id))));
+  const list = [];
+  for (let r = 0; units.some(u => per[u].length > r); r++) for (const u of units) if (per[u][r]) list.push(per[u][r]);
+  if (!list.length || n <= 0) return [];
+  const day = Math.floor(Date.parse(todayISO() + "T12:00:00Z") / 864e5);
+  const start = ((day * n) % list.length + list.length) % list.length;
+  const out = [];
+  for (let k = 0; k < Math.min(n, list.length); k++) out.push(list[(start + k) % list.length]);
+  return out;
+}
 function renderQuickTips() {
   if (!quickTips.length) {
     setHTML("tips-body",
@@ -19260,6 +19371,8 @@ function renderQuickTips() {
   const focus = focusUnits();
   const ftips = focusTips();
   const hidden = focusHiddenUnits();
+  /* One keep-warm tip for every three Focus tips. */
+  const warmTips = keepWarmTips(Math.ceil(ftips.length / (GAME_WARM_EVERY - 1)));
 
   const groups = [];
   const tech = live.filter(t => t.kind === "technique").sort(byCount);
@@ -19298,7 +19411,13 @@ function renderQuickTips() {
         ? 'Units at ' + FOCUS_HIDE_AT + '%+ ' + FOCUS_SOURCE_LABEL[hidden[0].source] + ' stay under All ('
           + hidden.map(r => r.id).sort((a, b) => a.slice(1) - b.slice(1)).map(id => id.slice(1)).join(', ') + ').'
         : '') + '</p>'
-    + '<div class="qt-list">' + ftips.map(t => tipCard(t, true)).join("") + '</div></div>';
+    + '<div class="qt-list">' + ftips.map(t => tipCard(t, true)).join("") + '</div>'
+    + (warmTips.length
+        ? '<h3 class="qt-gh qt-warmh">Keep warm <span>' + esc(gameUnitList(Array.from(new Set(warmTips.map(t => t.unitId)))))
+          + ', from the units Focus has dropped; a new set each day</span></h3>'
+          + '<div class="qt-list">' + warmTips.map(t => tipCard(t, true)).join("") + '</div>'
+        : '')
+    + '</div>';
 
   html += '<div class="qt-groups">';
   for (const g of groups) {
@@ -19509,6 +19628,36 @@ const REVIEW_DAYS = [
            "dump:clock:Adviser records", "dump:clock:Exploitation hold"], readOnly: true }
 ];
 const REVIEW_SEC = { read: 35, check: 50, practice: 50 };
+/* Keep-warm checks: from this day on, each theme day carries REVIEW_WARM_PER_DAY questions
+   from units Focus has dropped, rotating so every one of them gets a rep before the exam.
+   Earlier days were already built and stay exactly as they were. */
+const REVIEW_WARM_FROM = "2026-11-05";
+const REVIEW_WARM_PER_DAY = 2;
+/* Units Focus leaves out (sim at 85%+, or under one exam question at risk), with a missed
+   question on file to rep. Units that never had a theme day come first, heaviest first. */
+function keepWarmUnitOrder() {
+  const inFocus = new Set(focusUnits().map(r => r.id));
+  const themed = new Set();
+  REVIEW_DAYS.forEach(d => (d.units || []).forEach(u => themed.add(u)));
+  return unitData.map(u => u.id)
+    .filter(id => !inFocus.has(id) && missedQuestions.some(q => q.unitId === id && questionCard(q.id)))
+    .sort((a, b) => (Number(themed.has(a)) - Number(themed.has(b)))
+      || (unitExamQuestions(b) - unitExamQuestions(a)) || (Number(a.slice(1)) - Number(b.slice(1))));
+}
+function keepWarmIds(di) {
+  const d = REVIEW_DAYS[di];
+  if (!d || d.readOnly || d.pairs || d.date < REVIEW_WARM_FROM) return [];
+  const slot = REVIEW_DAYS.slice(0, di).filter(x => x.date >= REVIEW_WARM_FROM && !x.readOnly && !x.pairs).length;
+  const order = keepWarmUnitOrder();
+  const out = [];
+  for (let k = 0; k < REVIEW_WARM_PER_DAY && k < order.length; k++) {
+    const u = order[(slot * REVIEW_WARM_PER_DAY + k) % order.length];
+    const q = missedQuestions.filter(x => x.unitId === u && String(x.date) < d.date && questionCard(x.id))
+      .sort((a, b) => String(b.date).localeCompare(String(a.date)))[0];
+    if (q && out.indexOf(q.id) < 0) out.push(q.id);
+  }
+  return out;
+}
 
 /* ---- warm-up cards ---------------------------------------------------------- */
 /* The trap on a tip card: the newest Kaplan miss behind the tip, from before the
@@ -19826,6 +19975,8 @@ function buildReviewDay(di) {
   }
   const spacedFrom = checks.length;
   simSwapIds(d.date).forEach(id => { if (checks.length < spacedFrom + 2) push(id); });
+  const warmIds = keepWarmIds(di);
+  warmIds.forEach(push);
   carried.forEach(push);
   /* Spaced review: earlier days' questions not yet answered right here, rotating by
      day. With no earlier day yet, the heaviest focus units stand in. */
@@ -19833,7 +19984,7 @@ function buildReviewDay(di) {
   const open = pool.filter(id => !checks.includes(id) && !isMark(id, () => true));
   const order = open.length ? open : pool.filter(id => !checks.includes(id));
   for (let n = 0; n < order.length && checks.length < 6; n++) push(order[(n + di * 3) % order.length]);
-  checks.forEach(id => add(questionCard(id), "check"));
+  checks.forEach(id => { const qc = questionCard(id); add(qc ? Object.assign(qc, { warm: warmIds.indexOf(id) >= 0 }) : null, "check"); });
 
   /* One carry-over beyond the six, if more missed questions are waiting. */
   const extra = carried.find(id => !checks.includes(id));
@@ -19878,10 +20029,26 @@ function practiceSets() {
   for (const q of missedQuestions) if (q.unitId in rank && questionCard(q.id)) (per[q.unitId] = per[q.unitId] || []).push(q.id);
   const units = Object.keys(per).sort((a, b) => rank[a] - rank[b]);
   units.forEach(u => per[u].sort(byDate));
+  const focusOnly = [];
+  for (let r = 0; units.some(u => per[u].length > r); r++) for (const u of units) if (per[u][r]) focusOnly.push(per[u][r]);
+  /* The units Focus has dropped, one at a time, newest miss first. */
+  const wu = keepWarmUnitOrder();
+  const wper = {};
+  wu.forEach(u => { wper[u] = missedQuestions.filter(q => q.unitId === u && questionCard(q.id)).sort((a, b) => byDate(a.id, b.id)).map(q => q.id); });
+  const warmIds = [];
+  for (let r = 0; wu.some(u => wper[u].length > r); r++) for (const u of wu) if (wper[u][r]) warmIds.push(wper[u][r]);
+  /* Every fourth Focus question keeps one of them warm. */
   const focusIds = [];
-  for (let r = 0; units.some(u => per[u].length > r); r++) for (const u of units) if (per[u][r]) focusIds.push(per[u][r]);
+  let wi = 0;
+  focusOnly.forEach(id => {
+    focusIds.push(id);
+    if (focusIds.length % GAME_WARM_EVERY === GAME_WARM_EVERY - 1 && wi < warmIds.length) focusIds.push(warmIds[wi++]);
+  });
   if (focusIds.length) sets.push({ key: "focus", label: "Focus units", ids: focusIds,
-    blurb: "Your Focus units in rank order, one unit at a time so the questions mix." });
+    blurb: "Your Focus units in rank order, one unit at a time so the questions mix. Every " + GAME_WARM_EVERY
+      + "th question keeps a stronger unit warm." });
+  if (warmIds.length) sets.push({ key: "warm", label: "Keep warm", ids: warmIds,
+    blurb: "The units Focus has dropped (" + gameUnitList(wu) + "), one at a time, newest miss first." });
   const neg = quickTips.find(t => t.id === "t-except-questions");
   const negIds = neg ? usable(neg.fromMisses).sort(byDate) : [];
   if (negIds.length) sets.push({ key: "except", label: "NOT / EXCEPT", ids: negIds,
@@ -19951,7 +20118,8 @@ function reviewMinutes(set) {
 }
 function questionHTML(c) {
   const picked = REVIEW.pick;
-  let h = '<p class="dr-ctx">' + esc(unitShort(unitName(c.unitId))) + ' &middot; a Kaplan question you missed'
+  let h = '<p class="dr-ctx">' + (c.warm ? '<span class="gm-tag dr-warm">Keep warm</span> ' : '')
+    + esc(unitShort(unitName(c.unitId))) + ' &middot; a Kaplan question you missed'
     + (c.date ? ' on ' + esc(fmtDate(c.date).replace(/, \d{4}$/, '')) : '') + '</p>'
     + '<p class="dr-stem">' + esc(c.stem) + '</p><div class="dr-opts">';
   c.options.forEach((o, k) => {
@@ -21253,6 +21421,667 @@ function renderTopicChart() {
 function renderCharts() { renderTrendChart(); renderTopicChart(); }
 
 /* ==========================================================================
+   GAME
+   Three short games built only from what is already on this page: the Dump
+   Sheet rows, the Quick Tip lines and the Pairs. A trap is never invented: it
+   is the real number or rule from the one next door, which is how most of his
+   misses happened. Three of every four cards come from his weak spots (units on
+   the Focus list); every fourth keeps a stronger topic warm (a unit Focus has
+   dropped, a cleared tip, or a rule with no misses on file), so nothing goes
+   cold. Misses go to the game's own Missed list, with the rule, the tip and the
+   Kaplan question behind it.
+   ========================================================================== */
+const GAME_LIVES = 3;
+const GAME_WARM_EVERY = 4;
+const GAME_BOARD = 4;
+const GAME_SORT_MS = { start: 9000, step: 300, floor: 4500 };
+const GAME_MISS_CAP = 300;
+const GAME_MODES = [
+  { id: "tot", name: "Trap or True",
+    blurb: "A rule card flashes up. Is it right, or a trap with the number or rule from the one next door?" },
+  { id: "sort", name: "Sort Rush",
+    blurb: "Put each item in the right box before the bar runs out: which side, which deadline, which document." },
+  { id: "match", name: "Number Match",
+    blurb: "Match each rule to its number. Every board uses numbers that look alike, the way the exam does." }
+];
+/* Dump Sheet blocks whose rows can stand in for each other as traps (the rest only
+   trade values inside one tip's rule family, or swap numbers). */
+const GAME_SWAP_BLOCKS = ["reg", "formulas"];
+const GAME = { view: "home", r: null, facts: null, sortPairs: null, matchC: null, clearArm: false, last: null };
+let gameTimer = null;
+
+/* Numbers in a rule, by kind, so a trap only ever swaps like for like. */
+const GAME_TOKEN = /\$\d(?:[\d,]*\d)?(?:\.\d+)?(?:\s?[MB]\b|\s(?:million|billion)\b)?|\d+(?:\.\d+)?%|\d+(?:\.\d+)?\+?\s(?:business\s)?(?:days?|years?|yrs?|months?)\b|(?:January|February|March|April|May|June|July|August|September|October|November|December)\s\d{1,2}\b/g;
+function gTokClass(t) {
+  t = String(t);
+  if (t.charAt(0) === "$") return /[MB]\b|illion/.test(t) ? "$big" : "$";
+  if (/%$/.test(t)) return "%";
+  if (/day/.test(t)) return "days";
+  if (/\by(ea)?rs?\b/.test(t)) return "years";
+  if (/month/.test(t)) return "months";
+  return "date";
+}
+function gTokNorm(t) {
+  t = String(t);
+  const c = gTokClass(t);
+  if (c === "date") return c + ":" + t.toLowerCase();
+  const n = (t.match(/\d[\d,.]*/) || [""])[0].replace(/,/g, "");
+  const suf = (t.match(/[MB]\b|million|billion/) || [""])[0].charAt(0).toUpperCase();
+  /* "3 days" and "3 business days" count as the same number: the sheets use both for one rule. */
+  return c + ":" + n + suf + (/\+/.test(t) ? "+" : "");
+}
+/* Number Match pairs dollars with dollars whatever their size. */
+function gMatchClass(t) { const c = gTokClass(t); return c === "$big" ? "$" : c; }
+
+function gRand(n) { return Math.floor(Math.random() * n); }
+function gPick(a) { return a[gRand(a.length)]; }
+function gShuffle(a) {
+  const b = a.slice();
+  for (let i = b.length - 1; i > 0; i--) { const j = gRand(i + 1); const x = b[i]; b[i] = b[j]; b[j] = x; }
+  return b;
+}
+function gWeighted(a, w) {
+  let s = 0;
+  const ws = a.map(x => { const v = Math.max(0.0001, w(x)); s += v; return v; });
+  let r = Math.random() * s;
+  for (let i = 0; i < a.length; i++) { r -= ws[i]; if (r <= 0) return a[i]; }
+  return a[a.length - 1];
+}
+/* Weighted order without replacement (heavier items tend to come first). */
+function gWeightedOrder(a, w) {
+  return a.map(x => ({ x, k: Math.pow(Math.random(), 1 / Math.max(0.0001, w(x))) }))
+    .sort((p, q) => q.k - p.k).map(p => p.x);
+}
+function gLow(s) { return String(s).replace(/\s+/g, " ").trim().toLowerCase(); }
+function gEnd(s) { s = String(s).trim(); return /[.!?]$/.test(s) ? s : s + "."; }
+const GAME_STOP = ["with","from","that","this","than","then","only","into","over","under","each","they","when","what",
+  "your","it's","isn't","doesn't","also","both","after","before","more","less","year","years","days","must","have"];
+/* Words that carry meaning: four letters or more, or an acronym such as IAR or NAV. */
+function gWords(s) {
+  return (String(s).match(/[A-Za-z0-9$%][A-Za-z0-9$%'\/-]*/g) || [])
+    .filter(w => (w.length >= 4 && GAME_STOP.indexOf(w.toLowerCase()) < 0) || /^[A-Z][A-Z0-9]{1,4}s?$/.test(w))
+    .map(w => w.toLowerCase());
+}
+/* Two values close enough that one can pass for the other: a number of the same
+   kind, or a key word in common. Anything less makes a trap nobody would fall for. */
+function gAlike(f, g) {
+  const fc = f.tokens.map(gTokClass), gc = g.tokens.map(gTokClass);
+  if (fc.some(c => gc.indexOf(c) >= 0)) return true;
+  const fw = gWords(f.value);
+  return gWords(g.value).some(w => fw.indexOf(w) >= 0);
+}
+/* Two values that could not both describe the same rule: neither one contains the other. */
+function gDistinct(a, b) { a = gLow(a); b = gLow(b); return a !== b && a.indexOf(b) < 0 && b.indexOf(a) < 0; }
+
+/* Units Focus currently leaves out: the keep-warm side of the 1-in-4 mix. */
+function gameWarmUnits() {
+  const inFocus = new Set(focusUnits().map(r => r.id));
+  return unitData.map(u => u.id).filter(id => !inFocus.has(id));
+}
+
+/* Every rule the games can use, each with its unit, its rule family and its weight. */
+function gameFacts() {
+  if (GAME.facts) return GAME.facts;
+  const focus = new Set(focusUnits().map(r => r.id));
+  const tipById = {};
+  quickTips.forEach(t => { tipById[t.id] = t; });
+  const out = [];
+  const add = f => {
+    f.value = String(f.value);
+    /* A one-digit dollar figure ("a $1 bounce") is an illustration, not a number to learn. */
+    f.tokens = (f.value.match(GAME_TOKEN) || []).filter(t => !/^\$\d$/.test(t));
+    f.warm = !!(f.tip && f.tip.cleared) || !f.unitId || !focus.has(f.unitId);
+    if (!f.topic) f.topic = f.unitId ? (unitTopicIds(f.unitId)[0] || null) : null;
+    const misses = f.tip ? (f.tip.count || 1) : f.pair ? Math.max(1, pairMissCount(f.pair)) : 1;
+    f.weight = 1 + Math.log(misses) / Math.LN2;
+    out.push(f);
+  };
+  DUMP_BLOCKS.forEach(b => b.rows.forEach(r => {
+    const t = r.tip ? tipById[r.tip] : null;
+    add({ key: "d:" + b.key + ":" + r.k, ctx: b.name, group: "d:" + b.key, swap: GAME_SWAP_BLOCKS.indexOf(b.key) >= 0,
+          cue: r.k, value: r.v, tip: t, unitId: t ? t.unitId : null, topic: b.topic, src: "Dump Sheet: " + b.name });
+  }));
+  quickTips.forEach(t => {
+    if (t.kind === "technique" || !t.lines) return;
+    t.lines.forEach((l, i) => add({ key: "t:" + t.id + ":" + i, ctx: t.trigger, group: "t:" + t.id, swap: true,
+      cue: l[0], value: l[1], tip: t, unitId: t.unitId, src: "Quick Tip: " + t.trigger }));
+  });
+  PAIRS.forEach(p => p.rows.forEach((r, ri) => {
+    if (!r.k || !r.c) return;
+    if (p.cols && p.cols.length === 2 && r.c.length === 2 && typeof r.c[0] === "string" && typeof r.c[1] === "string"
+        && gLow(r.c[0]) !== gLow(r.c[1])) {
+      r.c.forEach((v, ci) => add({ key: "p:" + p.id + ":" + ri + ":" + ci, ctx: p.title, group: "p:" + p.id + ":" + ri,
+        swap: true, cue: p.cols[ci] + ": " + r.k, value: v, pair: p, side: ci, unitId: p.unitId, src: "Pairs: " + p.title }));
+    } else if (!p.cols && r.c.length === 1 && typeof r.c[0] === "string") {
+      add({ key: "p:" + p.id + ":" + ri, ctx: p.title, group: "p:" + p.id, swap: true,
+        cue: r.k, value: r.c[0], pair: p, unitId: p.unitId, src: "Pairs: " + p.title });
+    }
+  }));
+  GAME.facts = out;
+  return out;
+}
+function gameFact(key) { return gameFacts().find(f => f.key === key) || null; }
+/* A cue that means nothing on its own ("Option 2") can't be a box or a tile. */
+function gNamed(f) { return !/^(option|case|step|rule|example)\s*\d+$/i.test(String(f.cue).trim()) && f.cue.length >= 3; }
+/* A worked example ("= 40%") is arithmetic, not a rule to remember. */
+function gWorked(f) { return /\d[^=]*=|=[^=]*\d/.test(f.value); }
+
+/* ---- Trap or True ----------------------------------------------------------- */
+/* A trap for one rule: a number from the rule next door, or the value of a rule in
+   the same family. Null when the rule has no honest trap. */
+function totTrap(f) {
+  const facts = gameFacts();
+  const opts = [];
+  if (f.tokens.length && f.tokens.length <= 2 && f.value.length <= 120) {
+    const tok = gPick(f.tokens), cls = gTokClass(tok);
+    const have = f.tokens.map(gTokNorm);
+    const donors = [];
+    facts.forEach(g => {
+      /* A worked example (several numbers in one line) lends no numbers. */
+      if (g === f || gLow(g.value) === gLow(f.value) || g.tokens.length > 2) return;
+      g.tokens.forEach(u => { if (gTokClass(u) === cls && have.indexOf(gTokNorm(u)) < 0) donors.push({ g, u }); });
+    });
+    const near = donors.filter(d => d.g.group === f.group);
+    const sameCtx = donors.filter(d => d.g.ctx === f.ctx || (f.tip && d.g.tip === f.tip));
+    const sameTopic = donors.filter(d => f.topic && d.g.topic === f.topic);
+    const pool = near.length ? near : sameCtx.length ? sameCtx : sameTopic;
+    if (pool.length) {
+      const d = gPick(pool);
+      opts.push({ shown: f.value.replace(tok, d.u), donor: d.g, kind: "number",
+        why: "Trap. " + f.cue + ": " + gEnd(f.value) + " The " + d.u + " is from " + d.g.cue + ": " + gEnd(d.g.value) });
+    }
+  }
+  const sib = facts.filter(g => g !== f && g.group === f.group && (f.swap || (f.tip && g.tip === f.tip))
+    && gDistinct(g.value, f.value) && g.value.length <= 140 && (f.side !== undefined || gAlike(f, g)));
+  if (sib.length) {
+    const g = gPick(sib);
+    const side = f.side !== undefined && g.side !== undefined;
+    opts.push({ shown: g.value, donor: g, kind: "rule",
+      why: side ? "Trap. That's the " + f.pair.cols[g.side] + " side. " + f.cue + ": " + gEnd(f.value)
+                : "Trap. That's the rule for " + g.cue + ". " + f.cue + ": " + gEnd(f.value) });
+  }
+  if (!opts.length) return null;
+  return opts.length > 1 && Math.random() < 0.6 ? opts[0] : gPick(opts);
+}
+function totPool(r, warm) {
+  return gameFacts().filter(f => f.value.length <= 140 && f.cue.length <= 90
+    && (r.only ? r.only.indexOf(f.key) >= 0 : f.warm === warm));
+}
+function gNextFact(r, pool) {
+  let c = pool.filter(f => !r.used[f.key] && f.group !== r.lastGroup);
+  if (!c.length) c = pool.filter(f => f.group !== r.lastGroup);
+  if (!c.length) c = pool;
+  const f = gWeighted(c, x => x.weight);
+  r.used[f.key] = 1; r.lastGroup = f.group;
+  return f;
+}
+function totNext(r) {
+  const warmTurn = !r.only && (r.n + 1) % GAME_WARM_EVERY === 0;
+  let pool = totPool(r, warmTurn);
+  if (!pool.length) pool = totPool(r, !warmTurn);
+  if (!pool.length) return null;
+  /* Half the cards are traps. A rule with no honest trap hands the turn to the next one. */
+  const wantTrap = Math.random() < 0.5;
+  let f = gNextFact(r, pool), trap = wantTrap ? totTrap(f) : null;
+  for (let k = 0; wantTrap && !trap && k < 5; k++) { f = gNextFact(r, pool); trap = totTrap(f); }
+  return { key: f.key, fact: f, warm: !r.only && f.warm, truth: !trap, shown: trap ? trap.shown : f.value,
+           why: trap ? trap.why : "True. " + f.cue + ": " + gEnd(f.value) };
+}
+
+/* ---- Sort Rush ------------------------------------------------------------- */
+/* Items from the Pairs: each cell (or each listed feature) belongs in its column. */
+function sortPairItems() {
+  if (GAME.sortPairs) return GAME.sortPairs;
+  const focus = new Set(focusUnits().map(r => r.id));
+  const out = [];
+  PAIRS.forEach(p => {
+    if (!p.cols || p.cols.length < 2) return;
+    p.rows.forEach((r, ri) => {
+      if (!r.c || r.c.length !== p.cols.length) return;
+      const cells = r.c.map(x => Array.isArray(x) ? x : [x]);
+      const flat = cells.map(a => gLow(a.join("; ")));
+      if (new Set(flat).size !== flat.length) return;
+      cells.forEach((arr, ci) => arr.forEach((v, vi) => {
+        if (String(v).length > 120) return;
+        out.push({ key: "s:" + p.id + ":" + ri + ":" + ci + ":" + vi, ctx: p.title, prompt: r.k || "Which one?",
+          value: String(v), bins: p.cols.slice(), right: ci, pair: p, unitId: p.unitId,
+          warm: !focus.has(p.unitId), weight: 1 + Math.log(Math.max(1, pairMissCount(p))) / Math.LN2,
+          src: "Pairs: " + p.title,
+          why: p.cols[ci] + ": " + (r.k ? r.k + ": " : "") + gEnd(cells[ci].join("; ")) });
+      }));
+    });
+  });
+  GAME.sortPairs = out;
+  return out;
+}
+/* An item from a rule family: one rule's value against one or two of its neighbours. */
+function sortFamilyItem(f) {
+  const facts = gameFacts();
+  if (f.value.length < 12) return null;
+  const sibs = facts.filter(g => g !== f && g.group === f.group && g.side === undefined && g.cue.length <= 48 && gNamed(g)
+    && gDistinct(g.value, f.value) && gLow(g.cue) !== gLow(f.cue));
+  if (!sibs.length) return null;
+  const cls = f.tokens.length ? gTokClass(f.tokens[0]) : null;
+  const like = cls ? sibs.filter(g => g.tokens.some(u => gTokClass(u) === cls)) : [];
+  const pool = gShuffle(like.length ? like : sibs);
+  const picks = [];
+  for (const g of pool.concat(gShuffle(sibs))) {
+    if (picks.length >= 2) break;
+    if (picks.indexOf(g) < 0 && !picks.some(x => gLow(x.cue) === gLow(g.cue))) picks.push(g);
+  }
+  const rules = gShuffle([f].concat(picks));
+  return { key: "f:" + f.key, ctx: f.ctx, prompt: "Which rule is this?", value: f.value,
+           bins: rules.map(g => g.cue), right: rules.indexOf(f), fact: f, unitId: f.unitId, warm: f.warm,
+           tip: f.tip, src: f.src, why: rules.map(g => g.cue + ": " + gEnd(g.value)).join(" ") };
+}
+function sortNext(r) {
+  const warmTurn = (r.n + 1) % GAME_WARM_EVERY === 0;
+  const famFacts = w => gameFacts().filter(f => f.warm === w && f.side === undefined && f.value.length <= 110
+    && f.cue.length <= 48 && gNamed(f) && !r.used["f:" + f.key]);
+  const pairs = w => sortPairItems().filter(x => x.warm === w && !r.used[x.key]);
+  for (const w of [warmTurn, !warmTurn]) {
+    const fam = famFacts(w), pi = pairs(w);
+    if (!fam.length && !pi.length) continue;
+    /* About half pair items, half rule families, when both are there. */
+    if (pi.length && (!fam.length || Math.random() < 0.45)) {
+      const x = gWeighted(pi, y => y.weight); r.used[x.key] = 1; return x;
+    }
+    for (let k = 0; k < 6; k++) {
+      const f = gWeighted(fam, y => y.weight);
+      const it = sortFamilyItem(f);
+      r.used[it ? it.key : "f:" + f.key] = 1;
+      if (it) return it;
+    }
+  }
+  /* Everything has been dealt once: start the deck over. */
+  if (Object.keys(r.used).length && !r.resetOnce) { r.used = {}; r.resetOnce = true; const x = sortNext(r); r.resetOnce = false; return x; }
+  return null;
+}
+function sortMs(r) { return Math.max(GAME_SORT_MS.floor, GAME_SORT_MS.start - GAME_SORT_MS.step * r.score); }
+
+/* ---- Number Match ------------------------------------------------------------ */
+function matchCandidates() {
+  if (GAME.matchC) return GAME.matchC;
+  const by = {};
+  gameFacts().forEach(f => {
+    if (f.value.length > 140 || f.cue.length > 48 || f.side !== undefined || !gNamed(f) || gWorked(f)) return;
+    /* One number, or two of different kinds in a short line ("$5,000 and/or 3 years"):
+       a longer line with two numbers may be talking about two different rules. */
+    if (!f.tokens.length || f.tokens.length > 2 || (f.tokens.length === 2 && f.value.length > 60)) return;
+    const per = {};
+    f.tokens.forEach(t => { const c = gMatchClass(t); (per[c] = per[c] || []).push(t); });
+    Object.keys(per).forEach(c => {
+      if (c === "date" || per[c].length !== 1) return;
+      /* A cue that already holds the number gives the answer away. */
+      const num = (per[c][0].match(/\d[\d,.]*/) || [""])[0];
+      if (num && f.cue.indexOf(num) >= 0) return;
+      (by[c] = by[c] || []).push({ f, tok: per[c][0], norm: gTokNorm(per[c][0]) });
+    });
+  });
+  GAME.matchC = by;
+  return by;
+}
+function matchBoard() {
+  const by = matchCandidates();
+  const distinct = c => new Set(by[c].map(x => x.norm)).size;
+  const classes = Object.keys(by).filter(c => distinct(c) >= GAME_BOARD);
+  if (!classes.length) return null;
+  const cls = gWeighted(classes, c => by[c].length);
+  const pool = gWeightedOrder(by[cls], x => x.f.weight);
+  const chosen = [];
+  const take = (pred, n) => {
+    for (const x of pool) {
+      if (n <= 0 || chosen.length >= GAME_BOARD) return;
+      if (!pred(x) || chosen.indexOf(x) >= 0 || chosen.some(y => y.norm === x.norm || gLow(y.f.cue) === gLow(x.f.cue))) continue;
+      chosen.push(x); n--;
+    }
+  };
+  take(x => x.f.warm, 1);
+  take(x => !x.f.warm, GAME_BOARD - chosen.length);
+  take(() => true, GAME_BOARD - chosen.length);
+  if (chosen.length < GAME_BOARD) return null;
+  const items = gShuffle(chosen);
+  return { cls, items, right: gShuffle(items.map((x, i) => i)), done: [], selL: null, selR: null, bad: null, log: null };
+}
+
+/* ---- the round ---------------------------------------------------------------- */
+function gameStore(key, fallback) {
+  try { const s = localStorage.getItem(key); return s ? JSON.parse(s) : fallback; } catch (e) { return fallback; }
+}
+function gameSave(key, v) { try { localStorage.setItem(key, JSON.stringify(v)); } catch (e) { /* the game still runs; it just forgets */ } }
+function gameMisses() { const m = gameStore("s66.gameMisses", []); return Array.isArray(m) ? m : []; }
+function gameBest() { const b = gameStore("s66.gameBest", {}); return b && typeof b === "object" ? b : {}; }
+function gameRecordMiss(m) {
+  const list = gameMisses();
+  const id = m.mode + "|" + m.key;
+  const old = list.find(x => x.id === id);
+  const rec = Object.assign({}, m, { id, date: todayISO(), n: old ? (old.n || 1) + 1 : 1 });
+  const next = [rec].concat(list.filter(x => x.id !== id)).slice(0, GAME_MISS_CAP);
+  gameSave("s66.gameMisses", next);
+  if (GAME.r) GAME.r.missed.push(rec);
+}
+function gameStart(mode, only) {
+  gameStop();
+  const r = { mode, lives: GAME_LIVES, score: 0, streak: 0, best: 0, n: 0, used: {}, lastGroup: null,
+              missed: [], card: null, ans: null, only: only || null, timerFor: null, paused: false };
+  GAME.r = r; GAME.view = "play";
+  gameDeal();
+}
+function gameDeal() {
+  const r = GAME.r;
+  if (!r) return;
+  r.ans = null;
+  if (r.mode === "tot") r.card = totNext(r);
+  else if (r.mode === "sort") r.card = sortNext(r);
+  else r.card = matchBoard();
+  if (!r.card) { GAME.view = "over"; return; }
+  r.n++;
+}
+function gameStop() { if (gameTimer) { clearTimeout(gameTimer); gameTimer = null; } }
+function gamePause() {
+  const r = GAME.r;
+  if (gameTimer) { gameStop(); if (r && r.mode === "sort" && r.ans === null) { r.paused = true; r.timerFor = null; } }
+}
+function gameLoseLife() {
+  const r = GAME.r;
+  r.lives--; r.streak = 0;
+}
+function gameEnd() {
+  const r = GAME.r;
+  gameStop();
+  const best = gameBest();
+  r.newBest = r.score > (best[r.mode] || 0) && !r.only;
+  if (r.newBest) { best[r.mode] = r.score; gameSave("s66.gameBest", best); }
+  GAME.view = "over";
+}
+function totAnswer(sayTrue) {
+  const r = GAME.r, c = r.card;
+  if (!c || r.ans !== null) return;
+  r.ans = sayTrue;
+  if (sayTrue === c.truth) { r.score++; r.streak++; }
+  else {
+    gameLoseLife();
+    const f = c.fact;
+    gameRecordMiss({ mode: "tot", key: f.key, shown: f.cue + ": " + c.shown, truth: c.truth,
+      right: f.cue + ": " + f.value, why: c.why, src: f.src, tip: f.tip ? f.tip.id : null, pair: f.pair ? f.pair.id : null });
+  }
+}
+function sortAnswer(bin) {
+  const r = GAME.r, c = r.card;
+  if (!c || r.ans !== null) return;
+  gameStop();
+  r.ans = bin;
+  if (bin === c.right) { r.score++; r.streak++; }
+  else {
+    gameLoseLife();
+    gameRecordMiss({ mode: "sort", key: c.fact ? c.fact.key : c.key, shown: c.value,
+      picked: bin >= 0 ? c.bins[bin] : "time ran out", right: c.bins[c.right], why: c.why, src: c.src,
+      tip: c.tip ? c.tip.id : c.fact && c.fact.tip ? c.fact.tip.id : null, pair: c.pair ? c.pair.id : null });
+  }
+}
+function gameSortTimeout() {
+  gameTimer = null;
+  const t = $("tab-game");
+  if (!t || !t.classList.contains("active")) { gamePause(); return; }
+  sortAnswer(-1);
+  renderGame();
+}
+function matchTap(side, i) {
+  const r = GAME.r, b = r.card;
+  if (!b || b.done.indexOf(i) >= 0) return;
+  b.bad = null;
+  if (side === "L") b.selL = b.selL === i ? null : i; else b.selR = b.selR === i ? null : i;
+  if (b.selL === null || b.selR === null) return;
+  const L = b.items[b.selL], R = b.items[b.selR];
+  if (b.selL === b.selR) {
+    b.done.push(b.selL); r.score++; r.streak++;
+    b.log = L.f.cue + ": " + L.f.value;
+  } else {
+    gameLoseLife();
+    b.bad = [b.selL, b.selR];
+    gameRecordMiss({ mode: "match", key: L.f.key, shown: L.f.cue + " → " + R.tok, right: L.f.cue + ": " + L.tok,
+      why: L.f.cue + ": " + gEnd(L.f.value) + " " + R.tok + " is " + R.f.cue + ": " + gEnd(R.f.value),
+      src: L.f.src, tip: L.f.tip ? L.f.tip.id : null, pair: L.f.pair ? L.f.pair.id : null });
+  }
+  b.selL = null; b.selR = null;
+}
+
+/* ---- drawing ------------------------------------------------------------------ */
+function gameHearts(n) {
+  let h = '<span class="gm-lives" role="img" aria-label="' + n + ' of ' + GAME_LIVES + ' lives left">';
+  for (let i = 0; i < GAME_LIVES; i++) h += '<span class="' + (i < n ? 'on' : 'off') + '" aria-hidden="true">&#9829;</span>';
+  return h + '</span>';
+}
+function gameUnitList(ids) {
+  const n = ids.map(id => Number(String(id).replace(/\D/g, ""))).filter(x => x).sort((a, b) => a - b);
+  if (!n.length) return "";
+  return (n.length === 1 ? "Unit " : "Units ") + (n.length > 1 ? n.slice(0, -1).join(", ") + " and " + n[n.length - 1] : n[0]);
+}
+function gameWarmTag(on, unitId) {
+  return on ? '<span class="gm-tag">Keep warm' + (unitId ? ' &middot; ' + esc(unitShort(unitName(unitId))) : '') + '</span>' : '';
+}
+function gameHomeHTML() {
+  const best = gameBest(), misses = gameMisses();
+  const warm = gameWarmUnits();
+  let h = '<p class="gm-intro">Three quick games built from your own rules: the Dump Sheet, your Quick Tips and the Pairs. '
+    + 'Each round lasts until your ' + GAME_LIVES + ' lives are gone. Three of every four cards come from your Focus units; '
+    + 'every ' + GAME_WARM_EVERY + 'th keeps a stronger topic warm'
+    + (warm.length ? ' (today: ' + esc(gameUnitList(warm)) + ', the units Focus has dropped)' : '') + '.</p>'
+    + '<div class="gm-modes">';
+  for (const m of GAME_MODES) {
+    h += '<button type="button" class="gm-mode" data-game="play" data-mode="' + m.id + '"><h3>' + esc(m.name) + '</h3>'
+      + '<p>' + esc(m.blurb) + '</p>'
+      + '<span class="gm-best">' + (best[m.id] ? 'Best ' + best[m.id] : 'Not played yet') + '</span></button>';
+  }
+  h += '</div><button type="button" class="gm-missedbtn" data-game="missed"><span>Missed in the game</span>'
+    + '<b>' + misses.length + '</b></button>';
+  return h;
+}
+function gameHudHTML(r) {
+  const m = GAME_MODES.find(x => x.id === r.mode);
+  return '<div class="gm-hud"><button type="button" class="gm-quit" data-game="home" aria-label="Back to the games">&larr;</button>'
+    + '<span class="gm-name">' + esc(m ? m.name : "") + (r.only ? ' <small>your misses</small>' : '') + '</span>'
+    + gameHearts(r.lives) + '<span class="gm-score">' + r.score + '</span></div>';
+}
+function totHTML(r) {
+  const c = r.card, f = c.fact;
+  let h = '<article class="gm-card' + (r.ans === null ? '' : r.ans === c.truth ? ' good' : ' bad') + '">'
+    + '<p class="gm-ctx">' + esc(f.ctx) + gameWarmTag(c.warm, f.unitId) + '</p>'
+    + '<p class="gm-cue">' + esc(f.cue) + '</p><p class="gm-val">&ldquo;' + esc(c.shown) + '&rdquo;</p>';
+  if (r.ans === null) {
+    h += '<div class="gm-btns"><button type="button" class="gm-btn trap" data-game="ans" data-v="0">Trap</button>'
+      + '<button type="button" class="gm-btn true" data-game="ans" data-v="1">True</button></div>';
+  } else {
+    const ok = r.ans === c.truth;
+    h += '<p class="gm-verdict">' + (ok ? (c.truth ? 'Right, it&rsquo;s true.' : 'Right, it&rsquo;s a trap.')
+                                        : (c.truth ? 'It was true.' : 'That was a trap.')) + '</p>'
+      + (c.truth && ok ? '' : '<p class="gm-why">' + esc(c.why) + '</p>')
+      + '<div class="gm-btns one"><button type="button" class="gm-btn pri" data-game="next">'
+      + (r.lives > 0 ? 'Next' : 'See the round') + '</button></div>';
+  }
+  return h + '</article>';
+}
+function sortHTML(r) {
+  const c = r.card;
+  let h = '<article class="gm-card' + (r.ans === null ? '' : r.ans === c.right ? ' good' : ' bad') + '">';
+  if (r.ans === null && !r.paused) {
+    h += '<div class="gm-bar" aria-hidden="true"><span style="animation-duration:' + sortMs(r) + 'ms"></span></div>';
+  }
+  h += '<p class="gm-ctx">' + esc(c.ctx) + gameWarmTag(c.warm, c.unitId) + '</p>'
+    + '<p class="gm-prompt">' + esc(c.prompt) + '</p><p class="gm-val">&ldquo;' + esc(c.value) + '&rdquo;</p>';
+  if (r.paused) {
+    return h + '<div class="gm-btns one"><button type="button" class="gm-btn pri" data-game="resume">Resume</button></div></article>';
+  }
+  h += '<div class="gm-bins">';
+  c.bins.forEach((b, i) => {
+    const cls = r.ans === null ? '' : i === c.right ? ' right' : i === r.ans ? ' wrong' : ' dim';
+    h += '<button type="button" class="gm-bin' + cls + '" data-game="bin" data-v="' + i + '"' + (r.ans === null ? '' : ' disabled') + '>'
+      + '<span class="gm-key" aria-hidden="true">' + (i + 1) + '</span>' + esc(b) + '</button>';
+  });
+  h += '</div>';
+  if (r.ans !== null) {
+    const ok = r.ans === c.right;
+    h += '<p class="gm-verdict">' + (ok ? 'Right.' : r.ans < 0 ? 'Time ran out.' : 'Not that one.') + '</p>'
+      + (ok ? '' : '<p class="gm-why">' + esc(c.why) + '</p>')
+      + '<div class="gm-btns one"><button type="button" class="gm-btn pri" data-game="next">'
+      + (r.lives > 0 ? 'Next' : 'See the round') + '</button></div>';
+  }
+  return h + '</article>';
+}
+function matchHTML(r) {
+  const b = r.card;
+  const warmUnit = (b.items.find(x => x.f.warm) || {}).f;
+  let h = '<article class="gm-card gm-mcard"><p class="gm-ctx">Tap a rule, then its number.'
+    + (warmUnit ? gameWarmTag(true, null) : '') + '</p><div class="gm-match">';
+  const tile = (side, i, inner, extra) => {
+    const done = b.done.indexOf(i) >= 0;
+    const sel = side === "L" ? b.selL === i : b.selR === i;
+    const bad = b.bad && b.bad[side === "L" ? 0 : 1] === i;
+    return '<button type="button" class="gm-tile ' + extra + (done ? ' done' : '') + (sel ? ' sel' : '') + (bad ? ' bad' : '')
+      + '" data-game="tile" data-side="' + side + '" data-v="' + i + '"' + (done ? ' disabled' : '')
+      + ' aria-pressed="' + (sel ? 'true' : 'false') + '">' + inner + '</button>';
+  };
+  for (let k = 0; k < b.items.length; k++) {
+    const L = b.items[k], j = b.right[k], R = b.items[j];
+    h += tile("L", k, '<span class="gm-tcue">' + esc(L.f.cue) + '</span><span class="gm-tctx">' + esc(L.f.ctx) + '</span>', 'cue')
+      + tile("R", j, esc(R.tok), 'num');
+  }
+  h += '</div>';
+  if (b.bad) {
+    const L = b.items[b.bad[0]], R = b.items[b.bad[1]];
+    h += '<p class="gm-why bad">' + esc(R.tok) + ' is ' + esc(R.f.cue) + ', not ' + esc(L.f.cue) + '.</p>';
+  } else if (b.log) {
+    h += '<p class="gm-why good">' + esc(b.log) + '</p>';
+  }
+  return h + '</article>';
+}
+function gameOverHTML() {
+  const r = GAME.r;
+  const m = GAME_MODES.find(x => x.id === r.mode);
+  const best = gameBest();
+  let h = '<article class="gm-card gm-over"><p class="gm-ctx">' + esc(m ? m.name : "") + (r.only ? ' &middot; your misses' : '') + '</p>'
+    + '<p class="gm-big">' + r.score + '</p><p class="gm-sub">'
+    + (r.lives > 0 ? 'Every card in this set played.' : 'Out of lives.')
+    + (r.newBest ? ' New best.' : best[r.mode] ? ' Best ' + best[r.mode] + '.' : '') + '</p>';
+  if (r.missed.length) {
+    h += '<h3 class="gm-h3">Missed this round</h3><ul class="gm-list">'
+      + r.missed.map(x => '<li><b>' + esc(x.right) + '</b><span>' + esc(x.why) + '</span></li>').join('') + '</ul>';
+  }
+  h += '<div class="gm-btns"><button type="button" class="gm-btn pri" data-game="again">Play again</button>'
+    + '<button type="button" class="gm-btn" data-game="missed">Missed list</button></div>'
+    + '<button type="button" class="gm-link" data-game="home">All games</button></article>';
+  return h;
+}
+function gameMissedHTML() {
+  const list = gameMisses();
+  let h = '<div class="gm-hud"><button type="button" class="gm-quit" data-game="home" aria-label="Back to the games">&larr;</button>'
+    + '<span class="gm-name">Missed in the game</span><span class="gm-score">' + list.length + '</span></div>';
+  if (!list.length) {
+    return h + '<p class="gm-intro">Nothing here yet. Anything you miss in a game lands here with the rule, '
+      + 'the tip and the Kaplan question behind it.</p>';
+  }
+  const replayable = list.filter(x => gameFact(x.key)).length;
+  h += '<p class="gm-intro">Newest first. Tap &ldquo;Got it&rdquo; once a rule has stuck.</p><div class="gm-btns gm-top">'
+    + (replayable ? '<button type="button" class="gm-btn pri" data-game="replay">Replay these</button>' : '')
+    + '<button type="button" class="gm-btn" data-game="clear">' + (GAME.clearArm ? 'Tap again to clear all' : 'Clear the list') + '</button></div>';
+  const modeName = id => (GAME_MODES.find(x => x.id === id) || {}).name || "";
+  for (const x of list) {
+    const t = x.tip ? quickTips.find(q => q.id === x.tip) : null;
+    const p = x.pair ? PAIRS.find(q => q.id === x.pair) : null;
+    const trap = t ? trapFor(t.fromMisses) : null;
+    h += '<article class="gm-miss"><p class="gm-ctx">' + esc(modeName(x.mode)) + ' &middot; '
+      + esc(fmtDate(x.date).replace(/, \d{4}$/, '')) + (x.n > 1 ? ' &middot; missed ' + x.n + '&times;' : '') + '</p>'
+      + (x.mode === "sort"
+          ? '<p class="gm-mrow"><span>You put</span>&ldquo;' + esc(x.shown) + '&rdquo; under ' + esc(x.picked) + '</p>'
+          : '<p class="gm-mrow"><span>' + (x.mode === "tot" ? (x.truth ? 'It was true' : 'The trap') : 'You matched') + '</span>'
+            + esc(x.shown) + '</p>')
+      + '<p class="gm-mrow good"><span>Right</span>' + esc(x.mode === "sort" ? x.right + ': ' + x.shown : x.right) + '</p>'
+      + '<p class="gm-mrow"><span>Why</span>' + esc(x.why) + '</p>'
+      + '<p class="gm-src">' + esc(x.src || "") + '</p>';
+    if (t) {
+      h += '<details class="dr-more"><summary>The Quick Tip</summary><p><b>' + esc(t.trigger) + '</b><br>' + esc(t.move) + '</p>'
+        + (t.why ? '<p>' + esc(t.why) + '</p>' : '') + '</details>';
+    }
+    if (p && p.trap) h += '<p class="gm-src">' + esc(p.trap) + '</p>';
+    if (trap) h += '<details class="dr-more"><summary>The Kaplan question behind it</summary>' + trapHTML(trap) + '</details>';
+    h += '<button type="button" class="gm-link" data-game="forget" data-id="' + esc(x.id) + '">Got it, take it off</button></article>';
+  }
+  return h;
+}
+function renderGame() {
+  const root = $("game-body");
+  if (!root) return;
+  const r = GAME.r;
+  let h;
+  if (GAME.view === "missed") h = gameMissedHTML();
+  else if (GAME.view === "over" && r) h = gameOverHTML();
+  else if (GAME.view === "play" && r && r.card) {
+    h = gameHudHTML(r) + (r.mode === "tot" ? totHTML(r) : r.mode === "sort" ? sortHTML(r) : matchHTML(r));
+  } else { GAME.view = "home"; h = gameHomeHTML(); }
+  root.innerHTML = h;
+  /* The Sort Rush clock runs only while its card is on screen. */
+  if (GAME.view === "play" && r && r.mode === "sort" && r.ans === null && !r.paused && r.timerFor !== r.n) {
+    gameStop();
+    r.timerFor = r.n;
+    gameTimer = setTimeout(gameSortTimeout, sortMs(r));
+  }
+}
+function gameAct(act, el) {
+  const r = GAME.r;
+  if (act !== "clear") GAME.clearArm = false;
+  if (act === "home") { gameStop(); GAME.view = "home"; }
+  else if (act === "play") gameStart(el.getAttribute("data-mode"));
+  else if (act === "again" && r) gameStart(r.mode, r.only);
+  else if (act === "missed") { gameStop(); GAME.view = "missed"; }
+  else if (act === "replay") {
+    const keys = gameMisses().map(x => x.key).filter(k => gameFact(k));
+    if (keys.length) gameStart("tot", keys);
+  }
+  else if (act === "clear") {
+    if (GAME.clearArm) { gameSave("s66.gameMisses", []); GAME.clearArm = false; } else GAME.clearArm = true;
+  }
+  else if (act === "forget") {
+    const id = el.getAttribute("data-id");
+    gameSave("s66.gameMisses", gameMisses().filter(x => x.id !== id));
+  }
+  else if (act === "resume" && r) { r.paused = false; r.timerFor = null; }
+  else if (act === "ans" && r && r.mode === "tot") totAnswer(el.getAttribute("data-v") === "1");
+  else if (act === "bin" && r && r.mode === "sort") sortAnswer(Number(el.getAttribute("data-v")));
+  else if (act === "tile" && r && r.mode === "match") {
+    matchTap(el.getAttribute("data-side"), Number(el.getAttribute("data-v")));
+    if (r.lives <= 0) gameEnd();
+    else if (r.card.done.length === r.card.items.length) gameDeal();
+  }
+  else if (act === "next" && r) { if (r.lives <= 0) gameEnd(); else gameDeal(); }
+  renderGame();
+}
+function initGame() {
+  const root = $("game-body");
+  if (!root || !root.addEventListener) return;
+  root.addEventListener("click", ev => {
+    const b = ev.target && ev.target.closest ? ev.target.closest("[data-game]") : null;
+    if (!b || b.disabled) return;
+    gameAct(b.getAttribute("data-game"), b);
+    if (b.getAttribute("data-game") !== "tile") { try { window.scrollTo(0, 0); } catch (e) { /* not essential */ } }
+  });
+  document.addEventListener("keydown", ev => {
+    const tab = $("tab-game");
+    const r = GAME.r;
+    if (!tab || !tab.classList.contains("active") || GAME.view !== "play" || !r || ev.altKey || ev.ctrlKey || ev.metaKey) return;
+    const tag = ev.target && ev.target.tagName;
+    if (tag === "INPUT" || tag === "TEXTAREA") return;
+    let act = null, v = null;
+    if (r.ans !== null && (ev.key === "Enter" || ev.key === " ")) act = "next";
+    else if (r.mode === "tot" && r.ans === null && (ev.key === "ArrowLeft" || ev.key === "ArrowRight")) { act = "ans"; v = ev.key === "ArrowRight" ? "1" : "0"; }
+    else if (r.mode === "sort" && r.ans === null && !r.paused && /^[1-3]$/.test(ev.key) && r.card && Number(ev.key) <= r.card.bins.length) { act = "bin"; v = String(Number(ev.key) - 1); }
+    if (!act) return;
+    ev.preventDefault();
+    gameAct(act, { getAttribute: k => (k === "data-v" ? v : null) });
+  });
+  document.addEventListener("visibilitychange", () => { if (document.hidden && gameTimer) { gamePause(); renderGame(); } });
+}
+
+/* ==========================================================================
    UI WIRING
    ========================================================================== */
 /* ---- the app shell: bottom tab bar, the More sheet, the title bar -------------- */
@@ -21321,6 +22150,7 @@ function initTabs() {
     if (fromUser) { try { window.scrollTo(0, 0); } catch (e) { /* not essential */ } }
     if (id === "tab-paste") renderPaste();
     if (id === "tab-perf") renderCharts();
+    if (id === "tab-game") renderGame(); else gamePause();
   }
   buttons.forEach(b => b.addEventListener("click", () => show(b.getAttribute("aria-controls"), true)));
   let start = "tab-perf";
@@ -21392,6 +22222,7 @@ function renderAll() {
   renderPairs();
   renderDump();
   renderReview();
+  renderGame();
   renderPaste();
   renderCharts();
   bindAll();          // last: generated markup contributes data-bind nodes too
@@ -21406,6 +22237,7 @@ function boot() {
   initGuideFilter();
   initReveal();
   initReview();
+  initGame();
   initPrint();
   renderAll();
 }
