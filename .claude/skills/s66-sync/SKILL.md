@@ -305,7 +305,9 @@ git commit -am "Sim 2 logged, 71.2% -> pooled 68.4%" && git push
 `apply-payload.js` validates before it writes and **refuses** a payload that
 claims `lastVerified` with empty arrays, has split weights that do not sum to 1,
 has `correct` exceeding `answered`, or leaves a unit unmapped. It writes the
-`SYNC` block and nothing else, so no number is ever hand-typed.
+`SYNC` block and nothing else, so no number is ever hand-typed. Kaplan's inline HTML in
+question and answer text (`<p>`, `<em>`, the two-column `<table>` some order-type answers
+use) is turned into plain text on the way in, since the page escapes everything it shows.
 
 ### The payload schema
 

@@ -561,15 +561,21 @@ if (X.quickTips.length && typeof X.gameFacts === "function") {
   assert(badBoard.length === 0, "Number Match: every board has " + X.GAME_BOARD + " different numbers, each from its own rule", badBoard.slice(0, 5).join(", "));
   /* Keep warm in the Daily Review: from the start day, each theme day carries its warm checks,
      all from units Focus has dropped; days before it are untouched. */
-  const warmUnits = new Set(X.gameWarmUnits());
-  const badDays = [];
+  /* Each day reads Focus as it stood before it, so a sim taken today can't reshape today. */
+  const badDays = [], repped = [];
   X.REVIEW_DAYS.forEach((d, i) => {
     const ids = X.keepWarmIds(i);
-    const want = d.date >= X.REVIEW_WARM_FROM && !d.readOnly && !d.pairs ? Math.min(X.REVIEW_WARM_PER_DAY, X.keepWarmUnitOrder().length) : 0;
+    const order = X.keepWarmUnitOrder(d.date);
+    const want = d.date >= X.REVIEW_WARM_FROM && !d.readOnly && !d.pairs ? Math.min(X.REVIEW_WARM_PER_DAY, order.length) : 0;
     const cardsW = X.buildReviewDay(i).cards.filter(c => c.warm);
-    if (ids.length !== want || cardsW.length !== want || cardsW.some(c => !warmUnits.has(c.unitId))) badDays.push(d.date + " " + ids.length + "/" + want);
+    if (ids.length !== want || cardsW.length !== want || cardsW.some(c => order.indexOf(c.unitId) < 0 || !(String(c.date) < d.date)))
+      badDays.push(d.date + " " + ids.length + "/" + want);
+    ids.forEach(id => repped.push(X.MISS_BY_ID[id].unitId));
   });
-  assert(badDays.length === 0, "Daily Review: keep-warm checks only from " + X.REVIEW_WARM_FROM + ", only from units Focus has dropped", badDays.join(", "));
+  assert(badDays.length === 0, "Daily Review: keep-warm checks only from " + X.REVIEW_WARM_FROM + ", only from units Focus had dropped before the day, only from earlier misses", badDays.join(", "));
+  const allWarm = new Set(X.REVIEW_DAYS.flatMap(d => X.keepWarmUnitOrder(d.date)));
+  assert(new Set(repped).size === repped.length || new Set(repped).size === allWarm.size,
+    "Daily Review: no keep-warm unit gets a second rep before every one has had a first", repped.join(", "));
   const focusSet = X.practiceSets().find(x => x.key === "focus");
   const inFocus = new Set(X.focusUnits().map(u => u.id));
   const slots = focusSet ? focusSet.ids.filter((id, k) => (k + 1) % X.GAME_WARM_EVERY === 0) : [];

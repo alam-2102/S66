@@ -145,6 +145,33 @@ for (const q of payload.missedQuestions) {
   if (!q.explanation) warnings.push("missed question " + (q.id || "?") + " has no tutoring explanation - that is the highest-value field on the page");
 }
 
+/* ------------------------------------- Kaplan's inline HTML to plain text */
+/* Kaplan's review pages sometimes hand over answer text with markup in it (<p>, <em>,
+   a two-column <table> for "GMB / RML" answers). The page escapes everything it shows,
+   so markup would appear as literal tags. Tables become "cell / cell; row", the rest drop. */
+function plainText(s) {
+  if (typeof s !== "string" || s.indexOf("<") < 0) return s;
+  const cells = r => (r.match(/<td[^>]*>[\s\S]*?<\/td>/g) || [])
+    .map(c => c.replace(/<[^>]+>/g, "").trim()).join(" / ");
+  const out = s
+    .replace(/<table[^>]*>[\s\S]*?<\/table>/g, t => (t.match(/<tr[^>]*>[\s\S]*?<\/tr>/g) || []).map(cells).join("; "))
+    .replace(/<\/?(?:p|em|strong|b|i|span|br)\b[^>]*>/g, "")
+    .replace(/ {2,}/g, " ").trim();
+  return out;
+}
+let plained = 0;
+for (const k of ["missedQuestions", "answeredCorrect"]) {
+  for (const q of payload[k]) {
+    for (const f of ["question", "myAnswer", "correctAnswer", "rationale", "explanation", "note"]) {
+      const v = plainText(q[f]);
+      if (v !== q[f]) { q[f] = v; plained++; }
+      if (typeof q[f] === "string" && /<\/?[a-zA-Z][^>]*>/.test(q[f])) {
+        warnings.push(k + " " + (q.id || "?") + "." + f + " still has markup the page will show as text");
+      }
+    }
+  }
+}
+
 /* --------------------------------------------------------------- report */
 const counts = ARRAYS.map(k => "  " + k.padEnd(16) + payload[k].length).join("\n");
 console.log("\nPayload: " + path.resolve(file));
@@ -152,6 +179,7 @@ console.log("  lastVerified    " + (m.lastVerified || "null"));
 console.log("  source          " + (m.source || "null"));
 console.log("  noDataRuns      " + m.noDataRuns);
 console.log(counts);
+if (plained) console.log("  (" + plained + " text field(s) had Kaplan markup turned into plain text)");
 
 if (warnings.length) {
   console.log("\nWarnings:");
