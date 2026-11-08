@@ -515,6 +515,14 @@ if (typeof X.practiceSets === "function" && X.missedQuestions.length) {
   const bad = sets.filter(s => !s.ids.length || s.ids.some(id => !X.questionCard(id)));
   assert(sets.length > 0 && bad.length === 0, "every practice set is non-empty and every question in it renders",
     sets.length + " sets" + (bad.length ? "; bad: " + bad.map(s => s.key).join(", ") : ""));
+  /* The line shown after answering is the explanation's opening, never a piece cut at a
+     decimal point ("102.25") or an abbreviation ("U.S."). */
+  const cut = X.missedQuestions.filter(q => {
+    const c = X.questionCard(q.id);
+    return c && !String(q.explanation || q.rationale || "").replace(/\s+/g, " ").trim().startsWith(c.why);
+  }).map(q => q.id);
+  assert(cut.length === 0, "every question card's 'why' line opens the explanation, not mid-sentence",
+    cut.length ? cut.slice(0, 8).join(", ") : "");
   const sims = X.simExams.filter(e => (e.total || 0) >= X.EXAM.FULL_LENGTH_MIN && (e.missIds || []).length);
   const short = sims.filter((e, i) => { const s = sets.find(x => x.key === "sim:" + i); return !s || s.ids.length > e.total - e.score; });
   assert(short.length === 0, "a sim's practice set never holds more than that sim's misses",
