@@ -741,8 +741,9 @@ footer.foot{margin-top:40px;padding-top:16px;border-top:1px solid var(--grid);
 .print-bar{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 14px}
 #print-root{display:none;color:#000;background:#fff;font-family:Arial,Helvetica,sans-serif}
 #print-root.measuring{display:block;position:absolute;left:-20000px;top:0;width:7.5in;visibility:hidden}
+/* One page size and margin for every printout. Half an inch clears any printer's edge, and
+   one @page rule works in every browser (Safari ignores named pages). */
 @page{size:letter;margin:0.5in}
-@page dumpsheet{size:letter;margin:.25in .3in}
 @media print{
   :root,html{color-scheme:light!important;background:#fff!important}
   html,body[data-print]{background:#fff!important;color:#000!important}
@@ -750,12 +751,12 @@ footer.foot{margin-top:40px;padding-top:16px;border-top:1px solid var(--grid);
   body[data-print] #print-root{display:block}
 }
 #print-root b,#print-root h4{color:#000}
-.dp{font-size:9pt;page:dumpsheet}
-#print-root.measuring.k-dump,#print-root.measuring.k-blank{width:7.9in}
-.dp-h{font-size:9pt;line-height:1.2;margin:0 0 3pt;padding:0 0 2pt;border-bottom:.75pt solid #000}
-.dp-cols{--lh:1.2;line-height:var(--lh);columns:2;column-gap:.12in;column-fill:auto;height:9.88in;overflow:hidden}
-.dp.blank .dp-cols{height:auto;overflow:visible;column-fill:balance}
-.db h4{margin:3pt 0 .5pt;font-size:9pt;text-transform:uppercase;letter-spacing:.03em;break-after:avoid}
+.dp{font-size:var(--fs,9pt)}
+.dp-h{font-size:inherit;line-height:1.2;margin:0 0 3pt;padding:0 0 2pt;border-bottom:.75pt solid #000}
+/* Balanced columns with no fixed height: if a browser lays it out a little longer than
+   measured, it runs onto the next page instead of hiding the last rows. */
+.dp-cols{--lh:1.2;line-height:var(--lh);columns:2;column-gap:.2in;column-fill:balance}
+.db h4{margin:3pt 0 .5pt;font-size:inherit;text-transform:uppercase;letter-spacing:.03em;break-after:avoid}
 .db:first-child h4{margin-top:0}
 .db h4 span{font-weight:400;text-transform:none;letter-spacing:0}
 .dr{padding-left:6pt;text-indent:-6pt;break-inside:avoid}
@@ -763,7 +764,7 @@ footer.foot{margin-top:40px;padding-top:16px;border-top:1px solid var(--grid);
 .dp.blank .dr{display:flex;align-items:flex-end;gap:6pt;min-height:19pt;padding:0;text-indent:0}
 .dp.blank .dk{flex:0 1 auto;max-width:48%}
 .dp.blank .dl{flex:1 1 auto;border-bottom:.6pt solid #000;height:13pt}
-.dp-f{margin-top:2pt;font-size:9pt;line-height:1.1}
+.dp-f{margin-top:2pt;font-size:inherit;line-height:1.1}
 .pg{font-size:12pt;line-height:1.4;break-after:page;page-break-after:always}
 .pg:last-child{break-after:auto;page-break-after:auto}
 .pg-h{display:flex;justify-content:space-between;gap:12pt;font-size:14pt;font-weight:700;
@@ -23219,16 +23220,24 @@ function fitGuide(root) {
   });
   return cut;
 }
+/* The answer sheet is measured at the printed size (7.5in wide inside half-inch margins)
+   and its spacing, then its type, steps down until the whole sheet fits one page with a
+   little room to spare for a browser's own rounding. */
+const DUMP_FIT_STEPS = [[9, 1.2], [9, 1.14], [9, 1.08], [8.75, 1.08], [8.5, 1.08], [8.5, 1.04],
+                        [8.25, 1.04], [8, 1.04]];
 function fitDump(root) {
-  const cols = root.querySelector(".dp-cols");
-  if (!cols) return null;
-  for (const lh of [1.2, 1.16, 1.12, 1.09, 1.06, 1.04]) {
+  const sheet = root.querySelector(".dp"), cols = root.querySelector(".dp-cols");
+  if (!sheet || !cols) return null;
+  const limit = (PRINT_PAGE_IN.h - 2 * PRINT_PAGE_IN.margin) * PX_PER_IN * 0.96;
+  for (const [fs, lh] of DUMP_FIT_STEPS) {
+    sheet.style.setProperty("--fs", fs + "pt");
     cols.style.setProperty("--lh", lh);
-    if (cols.scrollWidth <= cols.clientWidth + 2) return lh;
+    if (sheet.getBoundingClientRect().height <= limit) return { fs, lh };
   }
-  /* Still too long at the tightest spacing: let it run to a second page rather than cut a rule. */
-  cols.style.height = "auto"; cols.style.overflow = "visible";
-  return 0;
+  /* Too long even at the smallest step: run onto a second page at a readable size. */
+  sheet.style.setProperty("--fs", "9pt");
+  cols.style.setProperty("--lh", 1.14);
+  return { fs: 9, lh: 1.14, pages: 2 };
 }
 function preparePrint(kind) {
   const root = $("print-root");
@@ -23236,7 +23245,7 @@ function preparePrint(kind) {
   root.innerHTML = kind === "guide" ? guidePagesHTML() : dumpPrintHTML(kind === "blank");
   document.body.setAttribute("data-print", kind);
   root.className = "measuring k-" + kind;
-  const res = kind === "guide" ? { cut: fitGuide(root) } : kind === "dump" ? { lh: fitDump(root) } : {};
+  const res = kind === "guide" ? { cut: fitGuide(root) } : kind === "dump" ? { fit: fitDump(root) } : {};
   root.className = "";
   return res;
 }

@@ -515,6 +515,14 @@ if (typeof X.practiceSets === "function" && X.missedQuestions.length) {
   const bad = sets.filter(s => !s.ids.length || s.ids.some(id => !X.questionCard(id)));
   assert(sets.length > 0 && bad.length === 0, "every practice set is non-empty and every question in it renders",
     sets.length + " sets" + (bad.length ? "; bad: " + bad.map(s => s.key).join(", ") : ""));
+  /* Printouts: one half-inch @page margin (thinner margins got clipped by real printers, and
+     Safari ignores named pages), and no print block that hides what doesn't fit. */
+  const pageRules = HTML.match(/@page(?:\s+[\w-]+)?\s*\{[^}]*\}/g) || [];
+  const thin = pageRules.filter(r => /@page\s+[\w-]+\s*\{/.test(r) || !/margin:\s*0?\.5in/.test(r));
+  const hides = /\.dp-cols\{[^}]*overflow:\s*hidden/.test(HTML);
+  assert(pageRules.length >= 1 && !thin.length && !hides,
+    "printouts use half-inch margins and never hide content that doesn't fit",
+    thin.join(" ") + (hides ? " .dp-cols hides overflow" : ""));
   /* The full briefing is built at every load. It once rebuilt itself per trimmed miss
      (quadratic) and froze the page for 4-20 seconds; keep it fast as the misses grow. */
   if (typeof X.buildPaste === "function") {
