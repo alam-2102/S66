@@ -1358,8 +1358,8 @@ footer.foot{margin-top:40px;padding-top:16px;border-top:1px solid var(--grid);
     your whole picture in one shot, no server and no API key sitting in a public repo.</p>
 
   <div class="rowsel" id="paste-variants">
-    <button data-variant="full"    aria-pressed="true">Full briefing</button>
-    <button data-variant="delta"   aria-pressed="false">Delta since last sync</button>
+    <button data-variant="full"    aria-pressed="false">Full briefing</button>
+    <button data-variant="delta"   aria-pressed="true">Delta since last sync</button>
     <button data-variant="focused" aria-pressed="false">Focused</button>
     <button data-variant="quiz"    aria-pressed="false">Quiz me</button>
   </div>
@@ -20358,11 +20358,17 @@ function fmtSigned(v, dp) {
   const d = dp === undefined ? 1 : dp;
   return (v > 0 ? "+" : "") + v.toFixed(d);
 }
+/* Formatting a date builds a new formatter each time, which is slow; the page formats
+   the same few hundred dates over and over, so each is worked out once. */
+const FMT_DATE_SEEN = new Map();
 function fmtDate(iso) {
   if (!iso) return EM;
+  if (FMT_DATE_SEEN.has(iso)) return FMT_DATE_SEEN.get(iso);
   const d = new Date(iso + (iso.length === 10 ? "T12:00:00Z" : ""));
-  if (isNaN(d)) return EM;
-  return d.toLocaleDateString("en-US", { year: "numeric", month: "short", day: "numeric", timeZone: "UTC" });
+  const s = isNaN(d) ? EM
+    : d.toLocaleDateString("en-US", { year: "numeric", month: "short", day: "numeric", timeZone: "UTC" });
+  FMT_DATE_SEEN.set(iso, s);
+  return s;
 }
 /* Today in Pacific time (Austin's clock), whatever the device or UTC says. */
 const STUDY_TZ = "America/Los_Angeles";
@@ -23453,25 +23459,30 @@ function briefFull(budget) {
       + answeredCorrect.map(q => "- " + q.question + "\n  " + (q.note || "")).join("\n") + "\n\n";
   }
 
-  const assemble = (misses, includeStrong, includeCorrect) =>
+  /* Each miss is written out once. Rebuilding the whole briefing per dropped miss was
+     quadratic and, at 370+ misses, froze the page for seconds at every load. */
+  const missText = ordered.map(q => txtMiss(q, true));
+  const assemble = (n, includeStrong, includeCorrect) =>
     head + standing
     + (includeStrong ? strong : "")
-    + missBlock + misses.map(q => txtMiss(q, true)).join("")
+    + missBlock + missText.slice(0, n).join("")
     + "\n" + tips + patterns
     + (includeCorrect ? correctBlock : "")
     + HOW_TO_HELP;
 
   const cap = budget || PASTE_BUDGET;
-  let out = assemble(ordered, true, true);
-  if (out.length > cap && strong) { trimmed.push("strong-unit detail"); out = assemble(ordered, false, true); }
-  if (out.length > cap && correctBlock) { trimmed.push("correct-answer notes"); out = assemble(ordered, false, false); }
-  let keep = ordered.slice();
-  while (out.length > cap && keep.length > 1) {
-    keep = keep.slice(0, keep.length - 1);            // drop the oldest miss
+  let keep = ordered.length;
+  let out = assemble(keep, true, true);
+  if (out.length > cap && strong) { trimmed.push("strong-unit detail"); out = assemble(keep, false, true); }
+  if (out.length > cap && correctBlock) { trimmed.push("correct-answer notes"); out = assemble(keep, false, false); }
+  if (out.length > cap && keep > 1) {
+    /* Drop the oldest misses until it fits, keeping at least the newest one. */
+    let len = out.length;
+    while (len > cap && keep > 1) { keep--; len -= missText[keep].length; }
     out = assemble(keep, false, false);
   }
-  if (keep.length < ordered.length) {
-    trimmed.push((ordered.length - keep.length) + " older missed question(s)");
+  if (keep < ordered.length) {
+    trimmed.push((ordered.length - keep) + " older missed question(s)");
   }
   if (trimmed.length) {
     out += "\n[TRIMMED TO FIT: this briefing left out " + trimmed.join(", ")
@@ -23693,7 +23704,7 @@ const PASTE_BLURBS = {
          + "chat for this so it does not turn your tutoring conversation into a quiz."
 };
 
-let pasteVariant = "full";
+let pasteVariant = "delta";   /* the one Austin uses; Full stays a tap away */
 function buildPaste(v) {
   switch (v) {
     case "delta":   return briefDelta();

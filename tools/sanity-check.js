@@ -515,6 +515,12 @@ if (typeof X.practiceSets === "function" && X.missedQuestions.length) {
   const bad = sets.filter(s => !s.ids.length || s.ids.some(id => !X.questionCard(id)));
   assert(sets.length > 0 && bad.length === 0, "every practice set is non-empty and every question in it renders",
     sets.length + " sets" + (bad.length ? "; bad: " + bad.map(s => s.key).join(", ") : ""));
+  /* The full briefing is built at every load. It once rebuilt itself per trimmed miss
+     (quadratic) and froze the page for 4-20 seconds; keep it fast as the misses grow. */
+  if (typeof X.buildPaste === "function") {
+    const t0 = Date.now(); X.buildPaste("full"); const ms = Date.now() - t0;
+    assert(ms < 1000, "the full Claude briefing builds in under a second", ms + " ms");
+  }
   /* The line shown after answering is the explanation's opening, never a piece cut at a
      decimal point ("102.25") or an abbreviation ("U.S."). */
   const cut = X.missedQuestions.filter(q => {
