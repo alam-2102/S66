@@ -133,7 +133,8 @@ const EXPORTS = `
   buildBindings, bindAll, renderAll,
   renderSimulated, renderPerformance, buildPaste, MISSING_BINDS,
   PAIRS, focusUnits, focusTips, FOCUS_TIP_CAP, FOCUS_HIDE_AT,
-  REVIEW_DAYS, REVIEW_MAX_CARDS, buildReviewDay, reviewCard, reviewDayFor, STUDY_GUIDE_PAGES,
+  REVIEW_DAYS, REVIEW_MAX_CARDS, buildReviewDay, reviewCard, reviewDayFor, simGuideHTML, simGuideData, fullLengthSims,
+  dumpOrder, dumpPrintHTML,
   practiceSets, questionCard, trapFor, romanSet, MISS_BY_ID,
   GAME, GAME_TOKEN, GAME_WARM_EVERY, GAME_BOARD, gameFacts, gameWarmUnits, totNext, sortNext, matchBoard,
   keepWarmIds, keepWarmUnitOrder, keepWarmTips, REVIEW_WARM_FROM, REVIEW_WARM_PER_DAY
@@ -502,13 +503,38 @@ if (X.quickTips.length) {
 }
 
 /* ------------------------------------------------ 7d. printouts */
-if (X.quickTips.length) {
-  const dangling = [];
-  X.STUDY_GUIDE_PAGES.forEach(p => (p.sections || []).forEach(([h, refs]) => refs.forEach(r => {
-    if (!X.reviewCard(r)) dangling.push(h + " " + r);
-  })));
-  assert(dangling.length === 0, "every printed study guide line resolves to a tip, pair or dump row", dangling.join(", "));
-  assert(X.STUDY_GUIDE_PAGES.length === 5, "the printed study guide is 5 pages");
+if (X.quickTips.length && typeof X.simGuideHTML === "function") {
+  /* The printed study guide is built from the full-length exams alone: every question
+     missed on one shows up under a rule, and nothing else does. */
+  const d = X.simGuideData();
+  const simIds = new Set(X.fullLengthSims().flatMap(e => (e.missIds || []).filter(id => X.MISS_BY_ID[id])));
+  const covered = new Set(d.tips.flatMap(x => x.ms));
+  const uncovered = [...simIds].filter(id => !covered.has(id));
+  const stray = [...covered].filter(id => !simIds.has(id));
+  assert(uncovered.length === 0 && stray.length === 0,
+    "the printed study guide covers every full-length exam miss, and only those",
+    simIds.size + " misses, " + d.tips.length + " rules" + (uncovered.length ? "; missing " + uncovered.join(", ") : "")
+      + (stray.length ? "; not from a full-length exam " + stray.join(", ") : ""));
+  const html = X.simGuideHTML();
+  const blocks = (html.match(/class="sg-i"/g) || []).length;
+  const traps = (html.match(/class="sg-x"/g) || []).length;
+  const pairs = d.tips.reduce((n, x) => n + x.ms.length, 0);
+  assert(blocks === d.tips.length && traps === pairs && !/undefined|NaN/.test(html),
+    "the printed study guide has one block per rule and the exam question behind each miss",
+    blocks + " blocks, " + traps + " exam questions");
+  /* The dump sheets (answer and blank) mark a row only when its rule was missed on a
+     full-length exam, and mark every such row. */
+  if (typeof X.dumpOrder === "function" && d.sims.length) {
+    const onSims = new Set(d.tips.filter(x => !x.t.cleared).map(x => x.t.id));
+    const rows = X.dumpOrder().flatMap(b => b.rows);
+    const wrong = rows.filter(r => !!r.sm !== onSims.has(r.tip)).map(r => r.k);
+    const want = rows.filter(r => r.sm).length + 1; // + the key in the header
+    const marks = [false, true].map(bl => (X.dumpPrintHTML(bl).match(/&#9679;/g) || []).length);
+    assert(wrong.length === 0 && marks.every(m => m === want),
+      "the dump sheets mark exactly the rows whose rule was missed on a full-length exam",
+      (want - 1) + " of " + rows.length + " rows marked" + (wrong.length ? "; wrong: " + wrong.join(", ") : "")
+        + (marks.some(m => m !== want) ? "; marks on the sheets " + marks.join("/") : ""));
+  }
 }
 if (typeof X.practiceSets === "function" && X.missedQuestions.length) {
   const sets = X.practiceSets();
